@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fcf-v1"
+version = "0.1.0"
+description = "Executable RC4 baseline for the Fish-Centric Conditional Funnel"
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+calibration = ["numpy>=1.20", "matplotlib>=3.5"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

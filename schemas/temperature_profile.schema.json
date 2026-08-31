@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/fcf/v1/temperature-profile.schema.json",
+  "title": "FCF V1 TemperatureProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "waterbody_id", "spatial_frame_id", "profile_mode", "temperature_unit", "temporal_clock", "source_policy", "interpolation_policy", "depth_layers", "profile_revision", "source_manifest_hash", "authoring_metadata"],
+  "properties": {
+    "schema_version": {"const": "fcf.temperature_profile.v1"},
+    "profile_id": {"$ref": "#/$defs/id"},
+    "waterbody_id": {"$ref": "#/$defs/id"},
+    "spatial_frame_id": {"type": "string", "minLength": 1},
+    "profile_mode": {"enum": ["SINGLE_LAYER", "DEPTH_LAYERS"]},
+    "temperature_unit": {"const": "CELSIUS"},
+    "temporal_clock": {"$ref": "#/$defs/temporalClock"},
+    "source_policy": {"$ref": "#/$defs/sourcePolicy"},
+    "interpolation_policy": {"$ref": "#/$defs/interpolationPolicy"},
+    "depth_layers": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/depthLayer"}},
+    "thermocline_boundaries": {"type": "array", "items": {"$ref": "#/$defs/thermoclineBoundary"}},
+    "profile_revision": {"type": "string", "minLength": 1},
+    "source_manifest_hash": {"type": "string", "pattern": "^sha256:[0-9a-fA-F]{64}$"},
+    "authoring_metadata": {"$ref": "#/$defs/authoringMetadata"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "temporalClock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clock_id", "clock_revision", "unit", "epoch"],
+      "properties": {
+        "clock_id": {"$ref": "#/$defs/id"},
+        "clock_revision": {"type": "string", "minLength": 1},
+        "unit": {"const": "MILLISECONDS"},
+        "epoch": {"oneOf": [{"const": "SIMULATION_START"}, {"type": "string", "format": "date-time"}]}
+      }
+    },
+    "sourcePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["accepted_source_kinds", "maximum_uncertainty_c", "freshness_by_source_s", "stale_behavior", "missing_behavior", "outlier_policy_id", "calibration_policy_id"],
+      "properties": {
+        "accepted_source_kinds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["SENSOR", "HYDRO_MODEL", "MANUAL_CALIBRATION"]}},
+        "maximum_uncertainty_c": {"type": "number", "minimum": 0},
+        "freshness_by_source_s": {
+          "type": "object", "additionalProperties": false,
+          "properties": {"SENSOR": {"type": "number", "minimum": 0}, "HYDRO_MODEL": {"type": "number", "minimum": 0}, "MANUAL_CALIBRATION": {"type": "number", "minimum": 0}}
+        },
+        "stale_behavior": {"enum": ["RETURN_STALE_FACT", "RETURN_UNKNOWN"]},
+        "missing_behavior": {"const": "RETURN_UNKNOWN"},
+        "outlier_policy_id": {"type": "string", "minLength": 1},
+        "calibration_policy_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "interpolationPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["spatial_method", "maximum_spatial_gap_m", "depth_method", "maximum_depth_gap_m", "temporal_method", "maximum_time_gap_s", "thermocline_crossing", "algorithm_revision"],
+      "properties": {
+        "spatial_method": {"enum": ["NEAREST_CELL", "LINEAR_WITHIN_CELL_GROUP"]},
+        "maximum_spatial_gap_m": {"type": "number", "minimum": 0},
+        "depth_method": {"enum": ["NEAREST_IN_LAYER", "LINEAR_WITHIN_LAYER"]},
+        "maximum_depth_gap_m": {"type": "number", "minimum": 0},
+        "temporal_method": {"enum": ["HOLD_LAST", "LINEAR_WITHIN_WINDOW"]},
+        "maximum_time_gap_s": {"type": "number", "minimum": 0},
+        "thermocline_crossing": {"const": "BLOCK"},
+        "algorithm_revision": {"type": "string", "minLength": 1}
+      }
+    },
+    "depthLayer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["layer_id", "depth_min_m", "depth_max_m", "location_cell_group_id", "samples"],
+      "properties": {
+        "layer_id": {"$ref": "#/$defs/id"},
+        "depth_min_m": {"type": "number", "minimum": 0},
+        "depth_max_m": {"type": "number", "exclusiveMinimum": 0},
+        "location_cell_group_id": {"$ref": "#/$defs/id"},
+        "samples": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sample"}}
+      }
+    },
+    "sample": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sample_id", "location_cell", "depth_m", "observed_at_ms", "valid_from_ms", "valid_to_ms", "value_c", "uncertainty_c", "source_kind", "source_revision", "quality", "calibration_revision", "source_sample_ids"],
+      "properties": {
+        "sample_id": {"$ref": "#/$defs/id"},
+        "location_cell": {"$ref": "#/$defs/id"},
+        "depth_m": {"type": "number", "minimum": 0},
+        "observed_at_ms": {"type": "integer", "minimum": 0},
+        "valid_from_ms": {"type": "integer", "minimum": 0},
+        "valid_to_ms": {"type": "integer", "minimum": 0},
+        "value_c": {"type": "number"},
+        "uncertainty_c": {"type": "number", "minimum": 0},
+        "source_kind": {"enum": ["SENSOR", "HYDRO_MODEL", "MANUAL_CALIBRATION"]},
+        "source_revision": {"type": "string", "minLength": 1},
+        "quality": {"enum": ["DIRECT", "INTERPOLATED", "STALE"]},
+        "calibration_revision": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "source_sample_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "thermoclineBoundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["boundary_id", "location_cell_group_id", "top_depth_m", "bottom_depth_m", "valid_from_ms", "valid_to_ms", "source_revision", "crossing_policy"],
+      "properties": {
+        "boundary_id": {"$ref": "#/$defs/id"},
+        "location_cell_group_id": {"$ref": "#/$defs/id"},
+        "top_depth_m": {"type": "number", "minimum": 0},
+        "bottom_depth_m": {"type": "number", "exclusiveMinimum": 0},
+        "valid_from_ms": {"type": "integer", "minimum": 0},
+        "valid_to_ms": {"type": "integer", "minimum": 0},
+        "source_revision": {"type": "string", "minLength": 1},
+        "crossing_policy": {"const": "BLOCK_INTERPOLATION"}
+      }
+    },
+    "authoringMetadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["author", "created_at", "change_reason", "evidence_refs"],
+      "properties": {
+        "author": {"type": "string", "minLength": 1},
+        "created_at": {"type": "string", "format": "date-time"},
+        "change_reason": {"type": "string", "minLength": 1},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

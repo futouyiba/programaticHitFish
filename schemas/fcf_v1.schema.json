@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/fcf/v1/schema.json",
+  "title": "FCF V1 Authoring Artifact",
+  "type": "object",
+  "required": ["schema_version", "species", "programs", "settlement_owners"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "fcf.v1"},
+    "species": {"$ref": "#/$defs/species"},
+    "population_definitions": {"type": "array", "items": {"$ref": "#/$defs/populationDefinition"}, "uniqueItems": true},
+    "population_slices": {"type": "array", "items": {"$ref": "#/$defs/populationSlice"}, "uniqueItems": true},
+    "programs": {"type": "array", "items": {"$ref": "#/$defs/program"}, "minItems": 1},
+    "variants": {"type": "array", "items": {"$ref": "#/$defs/variant"}, "uniqueItems": true},
+    "world_facts": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "settlement_owners": {"type": "array", "items": {"$ref": "#/$defs/settlementOwner"}, "uniqueItems": true},
+    "resolver_rules": {"type": "array", "items": {"$ref": "#/$defs/resolverRule"}},
+    "trace_contract": {"$ref": "#/$defs/traceContract"},
+    "arrival": {"type": "object", "additionalProperties": false, "properties": {"produces_new_units": {"type": "boolean"}, "temporal_factor": {"type": "number", "minimum": 0, "maximum": 1}}}
+  },
+  "$defs": {
+    "species": {
+      "type": "object",
+      "required": ["id", "anatomy_profile", "sensory_channels", "allowed_contacts", "history_schema"],
+      "oneOf": [
+        {"required": ["population_definition_id"]},
+        {"required": ["population_id", "q"]}
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "population_id": {"type": "string"},
+        "population_definition_id": {"type": "string"},
+        "q": {"type": "number", "exclusiveMinimum": 0},
+        "anatomy_profile": {"type": "string"},
+        "sensory_channels": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+        "allowed_contacts": {"type": "array", "items": {"enum": ["ENGULF", "SUCK_INTAKE", "PICKUP", "SLASH", "BITE_REMOVE", "NIBBLE"]}, "minItems": 1, "uniqueItems": true},
+        "history_schema": {"type": "string"},
+        "capability_limits": {"type": "object", "additionalProperties": false, "properties": {"tasks": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}, "max_defendable_distance_m": {"type": "number", "minimum": 0}}}
+      }
+    },
+    "program": {
+      "type": "object",
+      "required": ["id", "slice_role", "motive_priority", "occupancy", "entry_offers"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "slice_role": {"type": "string"},
+        "motive_priority": {"type": "array", "items": {"enum": ["FORAGE", "DEFEND", "INVESTIGATE", "NONE"]}, "minItems": 1, "uniqueItems": true},
+        "tasks": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "contact_types": {"type": "array", "items": {"enum": ["ENGULF", "SUCK_INTAKE", "PICKUP", "SLASH", "BITE_REMOVE", "NIBBLE"]}, "uniqueItems": true},
+        "occupancy": {"type": "array", "items": {"type": "object", "required": ["node_tag", "grade"], "additionalProperties": false, "properties": {"node_tag": {"type": "string"}, "grade": {"enum": ["FORBIDDEN", "ACCIDENTAL", "MARGINAL", "GOOD", "PRIME"]}}}},
+        "entry_offers": {"type": "object", "additionalProperties": {"$ref": "#/$defs/entryOffer"}},
+        "reevaluation_triggers": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "trigger_policies": {"type": "object", "additionalProperties": {"type": "object", "required": ["debounce_s", "hysteresis"], "additionalProperties": false, "properties": {"debounce_s": {"type": "number", "minimum": 0}, "hysteresis": {"type": ["number", "boolean"]}}}}
+      }
+    },
+    "variant": {
+      "type": "object",
+      "required": ["id", "species_id", "policy_overrides"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "species_id": {"type": "string"},
+        "program_id": {"type": "string"},
+        "policy_overrides": {"type": "object", "additionalProperties": {"type": ["string", "number", "boolean", "array", "object"]}}
+      }
+    },
+    "populationSlice": {
+      "type": "object",
+      "required": ["id", "population_id", "cohort_key", "lifecycle_role_key", "behavior_program_id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"}, "population_id": {"type": "string"}, "cohort_key": {"type": "string"},
+        "lifecycle_role_key": {"type": "string"}, "behavior_program_id": {"type": "string"},
+        "minimum_hold_s": {"type": "number", "minimum": 0}, "hysteresis_policy_id": {"type": "string"}
+      }
+    },
+    "populationDefinition": {
+      "type": "object", "required": ["id", "q"], "additionalProperties": false,
+      "properties": {"id": {"type": "string"}, "q": {"type": "number", "exclusiveMinimum": 0}, "cohort_axes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}, "history_scope": {"enum": ["SLICE", "COHORT"]}, "population_revision": {"type": "string"}}
+    },
+    "entryOffer": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "base": {"enum": ["NONE", "WEAK", "NORMAL", "STRONG", "VERY_STRONG", "CERTAIN"]},
+        "deny": {"type": "boolean"},
+        "rules": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+          "properties": {"when": {"type": "string"}, "add": {"enum": ["WEAK", "NORMAL", "STRONG", "VERY_STRONG", "CERTAIN"]}, "subtract": {"enum": ["WEAK", "NORMAL", "STRONG", "VERY_STRONG", "CERTAIN"]}, "deny": {"type": "boolean"}}}}
+      }
+    },
+    "resolverRule": {
+      "type": "object", "required": ["rule_id", "priority", "consequence_id", "owner"], "additionalProperties": false,
+      "properties": {
+        "rule_id": {"type": "string"}, "priority": {"type": "integer"}, "when": {"type": "object"},
+        "requires": {"type": "array", "items": {"type": "string"}}, "then": {"type": "object"},
+        "consequence_id": {"type": "string"}, "owner": {"type": "string"},
+        "effective_interval": {"type": "object", "required": ["start", "end", "unit", "clock"], "additionalProperties": false,
+          "properties": {"start": {"type": "number"}, "end": {"type": "number"}, "unit": {"type": "string"}, "clock": {"type": "string"}}}
+      }
+    },
+    "traceContract": {
+      "type": "object", "required": ["version", "required_stages"], "additionalProperties": false,
+      "properties": {"version": {"type": "string"}, "required_stages": {"type": "array", "items": {"type": "string"}, "minItems": 1}, "include_inputs": {"type": "boolean"}, "include_revisions": {"type": "boolean"}}
+    },
+    "settlementOwner": {
+      "type": "object",
+      "required": ["physical_consequence_id", "owner"],
+      "additionalProperties": false,
+      "properties": {"physical_consequence_id": {"type": "string"}, "owner": {"type": "string"}}
+    }
+  }
+}
