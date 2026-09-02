@@ -32,6 +32,13 @@ from .editor import ArtifactStore, ArtifactVersion
 from .journal import DurableJournal, JournalConflict, JournalAdapter, SQLiteJournal
 from .conformance import ConformanceCheck, ConformanceReport, run_core_conformance
 from .temperature_profile import compile_temperature_profile
+from .pre_generation import (
+    ResolveSnapshotBundle, RootSemanticOccurrence, OpportunityBasis,
+    OpportunityId, SemanticSupportRef, CandidateContribution, CandidateBasisKey,
+    CandidateEntry, MeaningResponse, ResolveResult, MaterializationPlan,
+    ConcreteFishResult, PreGenerationHarness,
+)
+from .authoring import CompiledContentBundle, AuthoringError, lint_authoring, compile_authoring
 
 __all__ = [
     "Candidate",
@@ -74,4 +81,9 @@ __all__ = [
     "run_core_conformance",
     "JournalConflict",
     "compile_temperature_profile",
+    "ResolveSnapshotBundle", "RootSemanticOccurrence", "OpportunityBasis", "OpportunityId",
+    "SemanticSupportRef", "CandidateContribution", "CandidateBasisKey", "CandidateEntry",
+    "MeaningResponse", "ResolveResult", "MaterializationPlan", "ConcreteFishResult",
+    "PreGenerationHarness",
+    "CompiledContentBundle", "AuthoringError", "lint_authoring", "compile_authoring",
 ]

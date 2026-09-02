@@ -1,0 +1,17 @@
+{
+  "schema_version": "pre-generation-authoring-r0",
+  "templates": {"NORMAL_FEEDING_BASE": {"kind":"response_policy"}},
+  "template_ref": "NORMAL_FEEDING_BASE",
+  "species": {"species_id":"Bass", "slow_facts":{"FeedingReadiness":"NORMAL", "FeedingCueDisposition":{"SHAD":"PREFERRED","CRAWFISH":"NEUTRAL"}}, "fish_modes":[{"id":"NORMAL","pathways":["FEEDING"]},{"id":"SPAWN_GUARD","pathways":["GUARD_DEFENSE","FEEDING"]}]},
+  "lifecycles": [
+    {"id":"Ordinary","supply_share":0.70,"mode":"NORMAL","response_slice":null,"materialization_profile":"normal"},
+    {"id":"ActiveSpawning","supply_share":0.20,"mode":"NORMAL","response_slice":"ACTIVE_SPAWNING","materialization_profile":"reproductive"},
+    {"id":"Guard","supply_share":0.10,"mode":"SPAWN_GUARD","materialization_profile":"guard"}
+  ],
+  "spatial_opportunities":[{"support_ref":"GRASS_EDGE_01","cohort":"Ordinary","engagement_mass":1.0},{"support_ref":"SPAWN_BED_03","cohort":"ActiveSpawning","engagement_mass":1.0},{"support_ref":"SPAWN_BED_03","cohort":"Guard","engagement_mass":1.0}],
+  "pathways":[{"id":"FEEDING"},{"id":"GUARD_DEFENSE"}],
+  "response_slices":[{"id":"ACTIVE_SPAWNING","operation":"CEILING","grade":"LOW"}],
+  "meanings":[{"id":"FeedingMatch"},{"id":"NestThreat"}],
+  "rules":[{"id":"NORMAL_FEEDING","priority":10,"grade":"NORMAL","operation":"SET"},{"id":"SPAWN_GUARD_DEFENSE","priority":20,"grade":"HIGH","operation":"SET"},{"id":"DEFAULT_FALLBACK","priority":0,"grade":"LOW","operation":"SET","fallback":true}],
+  "materialization_profiles":[{"id":"normal","requires_anchor":false},{"id":"reproductive","requires_anchor":false},{"id":"guard","requires_anchor":true,"behavior_anchor_ref":"Nest_03","reproductive_only":true}]
+}
