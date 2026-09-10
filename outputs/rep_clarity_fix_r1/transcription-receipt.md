@@ -9,3 +9,11 @@
 - F6 四指针 ✓（例4/Q1/Q2/Q3 表尾）。
 - **跳过项**：F5-5.3（M7 裸 threshold）——live M7 未见裸字面量（疑已参数化），按补丁规则 4 跳过回报；§6.3 Response 表头「固定汇总」为列名非算子占位，不标。
 - 原文零删除核对：插入前后页长度 96058→104797（+8739 chars ≈ 34 段插入），无缩减段。
+
+---
+
+## 更正与补遗（2026-09-10T10:58Z，验收 REP-CLARITY-VERIFY-001 后）
+
+1. **F5-5.3 跳过项被验收反驳，已补插**：M7 裸 threshold 实际位于 §15.1 A. Config 的 Mode 表行（`FrontPhase == POST AND PostFrontSeverity >= threshold`），原回执「live M7 未见裸字面量」系在 §15.9 错误位置搜寻所致——前提为假。现已在 Mode 表下补一行取值说明（第 35 个标记）。教训：跳过声明必须回到审计原始锚点位置在 live 复查，不得采信转写者重释的位置。
+2. **两起转写事故与修复**：①M7 补插首锚（含表尾标签的 old_str）不匹配后改用纯文本锚，new_str 携带表格闭合标签导致 Mode 表 M7 备注格与 M0 行被打成转义残渣；②G3 ConditionGroup 插入同样把其后路由表打成残渣。两处均已按原结构完整重建并全页扫描确认零残留。教训：**new_str 永不携带表格闭合标签；表邻插入一律锚定表外 prose/heading；批量表邻更新后必扫 `\</` 转义残渣模式**。
+3. 验收 verdict：PATCH_APPROVE（F1 忠实、F4 无漏网、F2 偏差判定为正确防 false fit、抽查 3 张达标）；minor 观察（F1 摘要省略 Optional DO Feasibility Gate 组件）留下批处理。
