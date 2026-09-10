@@ -146,3 +146,9 @@ PASS (5 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-P02-001
+
+---
+
+## REP-FULL-P02-REV-001 验收记录（2026-09-11）
+
+- verdict: **ARTIFACT_APPROVE**（第四批直接通过）。核心声明经 census B1 冻结快照第一手证据独立成立。MINOR-1 计数修正。
