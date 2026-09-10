@@ -1,0 +1,57 @@
+{
+  "schema_version": "usable_forage.config.r1",
+  "instance": {
+    "instance_of": "UsableForageAvailability semantic contract, representation r1",
+    "example_population_id": "largemouth_bass_adult_summer",
+    "note": "Bass Summer illustrative instance. All numeric values are placeholders and are not frozen; only the representation boundary is delivered."
+  },
+  "contract": {
+    "name": "UsableForageAvailability",
+    "output_fact": "usable_forage_availability",
+    "grain": "population x cell",
+    "semantics": "per population and cell: the sum of prey biomass in that cell over prey classes that are diet-eligible for the population and whose representative prey size is inside the population's gape window; all inputs are read from the single Resolved Snapshot",
+    "input_scope": "resolved_snapshot_only",
+    "prey_field_semantics": "raw_biomass_uncorrected"
+  },
+  "prey_fields": [
+    {
+      "prey_class": "fish",
+      "snapshot_key": "resolved_snapshot.prey_biomass_density.fish",
+      "representative_size_mm": 80.0,
+      "unit": "g_per_m2"
+    },
+    {
+      "prey_class": "crayfish",
+      "snapshot_key": "resolved_snapshot.prey_biomass_density.crayfish",
+      "representative_size_mm": 60.0,
+      "unit": "g_per_m2"
+    },
+    {
+      "prey_class": "insect_larvae",
+      "snapshot_key": "resolved_snapshot.prey_biomass_density.insect_larvae",
+      "representative_size_mm": 15.0,
+      "unit": "g_per_m2"
+    },
+    {
+      "prey_class": "zooplankton",
+      "snapshot_key": "resolved_snapshot.prey_biomass_density.zooplankton",
+      "representative_size_mm": 1.5,
+      "unit": "g_per_m2"
+    }
+  ],
+  "population_eligibility": [
+    {
+      "population_id": "largemouth_bass_adult_summer",
+      "diet_classes": ["fish", "crayfish"],
+      "size_window_mm": {
+        "min": 30.0,
+        "max": 300.0
+      }
+    }
+  ],
+  "fixed_combine": {
+    "operator": "FILTERED_SUM",
+    "author_selectable": false,
+    "rule": "for each prey_class bound in prey_fields, add its snapshot biomass at the cell if and only if the prey_class is in the population's diet_classes and representative_size_mm is inside [size_window_mm.min, size_window_mm.max]; the aggregation shape is a contract constant and cannot be altered per instance"
+  }
+}

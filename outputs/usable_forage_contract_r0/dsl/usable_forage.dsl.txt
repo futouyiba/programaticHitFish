@@ -1,0 +1,52 @@
+# =====================================================================
+# UsableForageAvailability — Narrow DSL comparison expression
+# Status: NOT ADMITTED — comparison / L_observed only
+# =====================================================================
+#
+# 本文件是什么：同一份已批准的 UsableForageAvailability 语义契约，
+# 渲染成 Narrow Expression Layer（Summer Knife R0 页 Option C）的形状。
+# 它没有被 Expression Gate 准入（准入判据：作者必须编辑中间结果之间的
+# 依赖拓扑；本契约不存在任何作者可编辑的中间依赖）。它存在的唯一目的
+# 是让 Config 主路径与 DSL 两种表达可以对比表达开销（L_observed）。
+#
+# 本文件不是契约输入：它不声明任何键、绑定或新语义。README 边界表中
+# 列出的被排除语义（各归其 owner）不得在本表达式中作为因子、乘项或
+# 注释语义出现——那样会把别的 owner 的结算理由走私进本契约。
+#
+# 对照的 Config 主路径表达见 ../config/usable_forage.config.json。
+# ---------------------------------------------------------------------
+
+usable_forage_availability(population, cell) =
+    filtered_sum(
+        over   prey_class in prey_field_bindings,
+        take   snapshot(prey_class, cell),
+        where  prey_class in diet_classes(population)
+           and size_window_min_mm(population)
+                 <= representative_size_mm(prey_class)
+           and representative_size_mm(prey_class)
+                 <= size_window_max_mm(population)
+    )
+
+# ---------------------------------------------------------------------
+# L_observed（对比观察，非 Verdict）
+#
+# 1. 表达长度：DSL 版与 Config 版几乎等长。本契约的全部内容是
+#    「对绑定表做一次固定的过滤求和」，没有任何需要作者编辑的
+#    中间依赖拓扑，DSL 没有可压缩的冗余。
+#
+# 2. DSL 会额外买进什么自由度（本契约明确要拒绝的自由度）：
+#    - 可把 filtered_sum 换成 product / max / weighted_mix；
+#    - 可嵌套第二层表达式、内联其它事实作为乘项；
+#    - 可按实例改写整棵算子树。
+#    这些自由度正是 Expression Gate 的准入对象；在本契约上放开了它们，
+#    等于为「不需要编辑依赖拓扑的契约」购买了完整 Expression AST
+#    （Operator Node / Profile Call / 嵌套 / Trace / Editor / 报错路径）。
+#
+# 3. 结论（L_observed）：同一契约下 DSL 表达开销 >= Config 表达开销，
+#    且 DSL 引入的作者自由度与契约的收窄意图直接冲突。
+#    本契约不构成 Expression Gate 的正证据。
+#
+# 4. 硬窗 vs 软响应：size 过滤在此为布尔硬窗（inside / outside）。
+#    「对边界尺寸的渐变偏好」属于 Response 面（Fish 因子对本事实做
+#    unary profile lookup）的表达内容，不属于本事实契约。
+# =====================================================================
