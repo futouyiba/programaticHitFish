@@ -42,6 +42,7 @@ ROLE_REGISTRY = {
     "DESIGN-INTEGRATION-OWNER": RoleSpec("DESIGN-INTEGRATION-OWNER", ("mechanism", "tradeoffs", "formula", "owner", "gate", "narrow fixes"), ("unbounded V1 expansion",)),
     "INDEPENDENT-NARROW-REVIEWER": RoleSpec("INDEPENDENT-NARROW-REVIEWER", ("false fit", "replay", "conservation", "owner", "hidden complexity"), ("replacing upstream design", "expanding verdict scope")),
     "CROSS-BATCH-COLD-REVIEWER": RoleSpec("CROSS-BATCH-COLD-REVIEWER", ("rubber-stamp", "ontology anchoring", "over-compression"), ("routine batch workflow",)),
+    "FCF-CENSUS-WORKER": RoleSpec("FCF-CENSUS-WORKER", ("blind program reconstruction", "minimal program sketch", "pairwise merge test", "census registry"), ("rebuilding reality baseline", "design promotion gate", "self-approval of templates")),
     "CODING-AGENT-HARNESS": RoleSpec("CODING-AGENT-HARNESS", ("executable prototype", "property tests", "concurrency", "replay", "regression fixtures"), ("mechanism promotion",)),
 }
 

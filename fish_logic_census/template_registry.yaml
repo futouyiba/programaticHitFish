@@ -1,0 +1,27 @@
+# FCF LogicTemplate Registry（Census 权威文件）
+# 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
+# 种子来源：Fish Logic Discovery & Template Census Method R0 §6（2026-09-10，NOT CONFIRMED / NOT PROMOTED）
+version: 0
+templates:
+  - template_id: CONSTRAINED_RELATIVE_REFUGE
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      source: https://app.notion.com/p/3d7a4137d23681aa9640f14a997a9f23 (Method R0 §6)
+      seeded: 2026-09-10
+    canonical_program_body: |
+      AccessibleSet
+      -> Apply Hard Viability Constraint(s)
+      -> FeasibleSet
+      -> RelativeRank(target, reference_set=FeasibleSet, objective)
+      -> Secondary Refuge / Habitat Evaluation
+      -> Fixed Combine
+      -> SpatialDistributionWeight
+    allowed_parameter_axes:
+      - RelativeRank.objective = WARMER | COOLER
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
+    known_instances: []
+    known_non_matches: []
+    merge_candidate_status:
+      pike_winter_vs_pike_summer: STRONG_MERGE_CANDIDATE
+      bass_coldslow_vs_pike: PLAUSIBLE_MERGE_CANDIDATE
