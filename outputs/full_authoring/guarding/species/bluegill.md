@@ -88,6 +88,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 | 字段 | 值 |
 |---|---|
 | BakeTemplate | BA-GUARD-ANCHOR-GATE |
+| GuardAnchorResolverInstance | colony_nest（集群巢床结构——蓝鳃殖民地巢床 [需正文：集群巢 vs 独巢分布]） |
 | GuardAnchorEligibilityRule | @BluegillLocalGuardAnchorEligibility |
 | GuardAnchorRelationProfile | @BluegillGuardRelationProfile |
 | GuardAnchorSuitabilityProfile | @BluegillColonyNestSuitabilityProfile |

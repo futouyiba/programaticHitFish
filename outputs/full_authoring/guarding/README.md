@@ -48,12 +48,12 @@ P04＝Persistent Guard Condition + Relation → RelationalConflict（FR Semantic
 | 毛鳞鱼（R02-S05）、高体鳑鲏（R02-S31） | K4 繁殖/育幼锚聚类成员，但语义=产卵锚（岸滩/蚌床），无 guard relation——P04 不受理（R06 FR3「guard relation 未证实即归属=False FIT」判例） |
 | 停食洄游双例（大马哈鱼/美洲西鲱） | R06 FR3 已裁：P05 状态×Response multi-path，**拒 P04** |
 | 电鳗 S9 幼成食性切换 | P01 typed 摄食故事；其 typed evaluator 已由本批 electric_eel.md NormalFeeding 面绑定承载 |
-| R10 收官批（49 行） | 本地无快照（R09 后下发）；若含 P04 新样本需补批登记，不在本批冒充覆盖 |
+| R10 收官批（50 行=47 Complete+3 Blocked） | triage_r10.md 已达（REP-FULL-GUARD-REV-001 F1 修正）：含狼鱼停食护卵第 5 例（首例护卵型停食，P04/P05 归属 FR3 已裁分支化——P04 承载）；**登记补批待办：狼鱼加入 Guarding 系补批**，不在本批冒充覆盖 |
 
 ## 2. 表达读数（对模板计数的影响）
 
 - **Group Routing**：全部 20 文件落在 G-T1 DECLARATIVE ROUTING VECTOR（§13.1）；条件原子 3–5 个/鱼；规则集全部 R1 单层 AND（无嵌套、无 OR 路径——未出现 G3 型多路径）；Share 契约（§7）逐文件落实（SpecialShareTotal>1 → Validation Error，不静默归一化）。**L_group 无增长。**
-- **Bake**：Guard 面 20 文件全部收敛到 **1 个模板**（BA-GUARD-ANCHOR-GATE＝BA-T2 泛化「Parental Guard Anchor Template」，§11.2 MERGE_SUPPORTED 判例的实证）：巢守型（nest 类锚实例 ×11）、育幼型（fry_school ×3）、两段切换（×2）、退化绑定（口孵 ×1）、构建型（stone/foam ×3，巢体存在事实原子）。护巢形态多样性（树根/洞巢/石巢/洞穴顶/岩缝/泡沫/口孵/洪水稚鱼群）**全部由锚实例 + Profile 重绑定承载，零新 BakeTemplate**。Normal 面 BA-T1（+电鳗 HARD_GATED 族成员绑定 + 乌鳢低光槽 + 巨骨舌鱼漫滩槽——均为既有槽位/族实例）。**L_bake_base 无增长。**
+- **Bake**：Guard 面 20 文件全部收敛到 **1 个模板**（BA-GUARD-ANCHOR-GATE＝BA-T2 泛化「Parental Guard Anchor Template」，§11.2 MERGE_SUPPORTED 判例的实证）：巢守型（nest 类锚实例 ×11，含 oscar 两段切换 nest_anchor｜fry_anchor）、育幼型（fry_school ×3）、两段切换（×2）、退化绑定（口孵 ×1）、构建型（stone/foam ×3，巢体存在事实原子）。护巢形态多样性（树根/洞巢/石巢/洞穴顶/岩缝/泡沫/口孵/洪水稚鱼群）**全部由锚实例 + Profile 重绑定承载，零新 BakeTemplate**（REV-001 F2 口径注：模板**数**零增长成立；但存在三个非模板级增量——① oscar `AnchorDominanceProfile` 为单文件新增第 5 槽、② arapaima guard 模板挂 DynamicSpatialSlot 为跨模板槽位移植、③ 电鳗/肺鱼绑定 census HARD_GATED 族用 `BA-EEL-GATED-FACTORS`/`BA-LUN-WET-GATED-FACTORS` 命名——均为槽位/命名/移植级，不构成新模板，但记账时应区分三层口径）。Normal 面 BA-T1（+电鳗 HARD_GATED 族成员绑定 + 乌鳢低光槽 + 巨骨舌鱼漫滩槽——均为既有槽位/族实例）。**L_bake_base 无增长**（按模板数口径）。
 - **Response**：Guard 面 19/20 用 Defense-only（RR-DEFENSE-01/§17.5 RR-T2；结构族 R-T1 Channel=Defense；§8.8 结构性关闭由伪脚本「不再评价普通 Feeding」+ Program Binding 验证）；唯一例外罗非鱼 Brooding=Feeding-with-Cap（R-T1+Cap，判定句即「摄食减少」）。Normal 面 R-T1 ×17、R-T2 ×3（乌鳢反应主导 / 罗非双通道）。**Response 结构族仍＝2（R-T1/R-T2），L_response 无增长。**
 - **Quality**：全部 QT-1（绑定表形态）；0 个 W1–W3 物种级品质调整表（护巢资格全部由 Eligibility Profile 表达——§12.6「资格与 Response 分开」防双 boost 逐文件落实）。**L_quality 无增长。**
 - **新列结构**：零（全部复用 V1/R1/分群结果 5 列/绑定表/例 1C 5 列/字段-值 2 列；无未声明变体——由 validate_guarding.py VARIANT/VARIANT_COLS/STRUCT 族强制）。
@@ -72,7 +72,7 @@ P04＝Persistent Guard Condition + Relation → RelationalConflict（FR Semantic
 | 退回 1（笋壳鱼） | 本地快照 Pattern=P01（伏击），护巢语义零证据；handoff 点名与快照冲突——需 Story DB 行标签或 Story 页正文后补写（marble_goby.md §2） |
 | 退回 2（接吻鲷） | 仅名单成员资格，护巢形态零证据；骨架占位可装结构，正文判无护巢关系即撤回（kissing_gourami.md §0 撤回条件） |
 | [需正文] 批量项 | Tier B 11 文件的结构集合成员/亲鱼组成/浊度档位/洪水位相成员/Cichla 种级身份/口孵期空间偏好（逐文件 §5 列出）；Story 正文到达后只填 Profile 语义，不改结构 |
-| R10 尾批 | 收官批 49 行本地无快照；P04 对账待其归档 |
+| R10 尾批 | triage_r10 已归档（50 行=47+3）；狼鱼 P04 停食护卵登记补批待办（REV-001 F1）；R08 银龙雄口哺为 P04 边界样本未入排除表——并入补批对账 |
 | 无 UPSTREAM_CHANGE_EVENT | 本批未发现机制侧问题；表达层全部落在既有模板/变体/槽位内 |
 
 ## 5. 验证记录（命令与输出原样）

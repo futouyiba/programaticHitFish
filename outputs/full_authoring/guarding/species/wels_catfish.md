@@ -231,5 +231,6 @@ NormalFeeding Group：
 - 使用的自由度：V1 三原子 + R1；BA-T2 锚实例=burrow_nest；R-T1 Profile 重绑定；QT-1。
 - 放弃的自由度：(1) Defense / Feeding arbitration（live V0）；(2) Guard 合并算子数学 OPERATOR UNDEFINED；(3) 雄性个体识别（Eligibility / share 粒度）。
 - [需正文] 洞巢结构集合成员与窗口数值由 Profile 层定值。
+- [需正文·结构级] C4（巢体存在原子）有无取决于正文是否判「洞巢为雄鱼挖掘/清理建造」——若建造语义成立则需补 C4 原子（改结构），与「只填 Profile 不改结构」承诺冲突；本文件按场地利用型处理（无 C4）为当前判断（REV-001 F4）。
 
 BATCH_ID: REP-FULL-GUARD-001
