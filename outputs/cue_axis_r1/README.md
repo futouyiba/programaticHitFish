@@ -292,3 +292,12 @@ EXIT=0
 | 工件形态与 validator 模式 | `outputs/usable_forage_contract_r0/`（FORAGE-CONTRACT-REP-001 R1 修复轮） |
 
 BATCH_ID: REP-CUE-AXIS-001
+
+---
+
+## 附录：验收与修复记录（2026-09-11）
+
+- **REP-CUE-AXIS-REV-001**：ARTIFACT_APPROVE（五 minor：F1' 英文词干转义面缺口/F2' 主动放电自名族无词法条目/F3' fact_semantics 未钉/F4' Notion 镜像 schema 失真/F5' 镜像 provenance 领先本地）。
+- F1'-F3' 已修入 validate_config.py（英文面加 \uXXXX 解码面=zh 三面镜像；discharg/electrogen/放电 入表；fact_semantics 钉死含 forage R1 F2 先例注）；自测 69 例全过（2 例改 zh-in-note / co-fire 期望）。
+- F4' 镜像 §2 schema 已勘误（7 键）；F5' 本地 README 特此补记：**R07 FR3 CD-R07-01 被动电感知双例（白斑角鲨+棘背钝头鳐）已并入本轴 K8**（FISH-R07-FR3-001 Packet 3d7a4137d236814d90e7f882fef36168），与 CD-R05-01 发电端构成同轴双向语义。
+- 源码 guard_violations 现为英文双面（raw+unescaped）+中文三面（walked+raw+unescaped）。
