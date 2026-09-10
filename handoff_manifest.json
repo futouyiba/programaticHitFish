@@ -1,0 +1,2640 @@
+{
+  "agent_roles": [
+    {
+      "boundary": "不做 Representation PT1–PT4；不把未经审核猜测写成事实",
+      "canonical_name": "FCF-FISH-RESEARCHER",
+      "registered_handle": "01a0843e-7214-77b0-b3c2-5e7f909ed87e",
+      "responsibility": "Reality/Strategy Research, Story Sweep, Research Package"
+    },
+    {
+      "boundary": "不读 Worker scratchpad；不直接修改 Worker 产物",
+      "canonical_name": "FCF-EVIDENCE-REVIEWER",
+      "registered_handle": "01a085a9-51ec-7161-8d99-f5b374e9b412",
+      "responsibility": "独立核验事实、Evidence、Scope、Owner、Missed Story"
+    },
+    {
+      "boundary": "不修改 Design Authority；不按自然语言名字聚类",
+      "canonical_name": "FCF-SEMANTIC-TRIAGE",
+      "registered_handle": "01a086f5-95af-7282-ae79-1ddecf399be5",
+      "responsibility": "Existing Pattern、Compression、Coverage Delta、Semantic Escalation"
+    },
+    {
+      "boundary": "不重建 Reality Baseline；不隐藏 Authoring freedom",
+      "canonical_name": "FCF-REPRESENTATION-WORKER",
+      "registered_handle": "01a0848f-de82-7d93-9f3c-d4d973eec831",
+      "responsibility": "已审核 Mechanism Story 到 Config/Table/Step Table/Narrow DSL"
+    }
+  ],
+  "generated_at_utc": "2026-09-10T03:45:01.514320Z",
+  "handoff_protocol": {
+    "bootstrap": [
+      "Read HARNESS_HANDOFF.md and AGENTS.md",
+      "Read FCF Router",
+      "Read Project State Current",
+      "Select exactly one branch-local route",
+      "Read only the required Current/Working and review dependencies"
+    ],
+    "do_not_infer": [
+      "Working/Candidate is not Current or Promotion",
+      "Notion fetch success is not semantic review approval",
+      "Reference tests are not production runtime evidence",
+      "Cross-branch citation does not transfer ownership",
+      "A missing Notion target is transport failure, not a mechanism counterexample"
+    ],
+    "handoff_envelope_fields": [
+      "FROM_ROLE",
+      "TO_ROLE",
+      "BATCH_ID",
+      "CURRENT_STATE",
+      "ARTIFACT_URL",
+      "ROLE_PROMPT_URL",
+      "REQUESTED_ACTION",
+      "EXPECTED_OUTPUT",
+      "BLOCKING_FINDINGS",
+      "NOTES"
+    ],
+    "review_verdict_fields": [
+      "level",
+      "scope",
+      "baseline",
+      "proves",
+      "does_not_prove",
+      "open_findings",
+      "verdict"
+    ]
+  },
+  "local_inventory": {
+    "counts_by_category": {
+      "canonical": 137,
+      "delivery_bundle": 112,
+      "historical_or_external_evidence": 4,
+      "scratch": 18,
+      "v0_experiment": 23
+    },
+    "file_count_excluding_transient_and_manifest": 294,
+    "files": [
+      {
+        "bytes": 244,
+        "category": "canonical",
+        "path": ".gitignore",
+        "sha256": "baa094b96036aca3472478d48e4a8b58ef3580be25191e6e88cb6d16adbde6a9"
+      },
+      {
+        "bytes": 5212,
+        "category": "canonical",
+        "path": "AGENTS.md",
+        "sha256": "05c3cdf1dddfc088632e7dfec67f3254882dd6a2d37861d89779a7103058b14f"
+      },
+      {
+        "bytes": 18933,
+        "category": "canonical",
+        "path": "HARNESS_HANDOFF.md",
+        "sha256": "a9dc6a4acd2d2aabbabc735401dc28ec5b6b7049a3105d4c6b14c5dd6b14e71d"
+      },
+      {
+        "bytes": 2754,
+        "category": "canonical",
+        "path": "README.md",
+        "sha256": "89f3ac01bc02dccd1e04a2c593ac39ae76ec79292367ea55a04ada1031d974c0"
+      },
+      {
+        "bytes": 1711,
+        "category": "canonical",
+        "path": "authoring/bass_v0.json",
+        "sha256": "3cd0515363f127dff195b6b3255d9d6708d7f823d91a716b66d4a5c727c75596"
+      },
+      {
+        "bytes": 1664,
+        "category": "canonical",
+        "path": "authoring/maintenance_fixtures.py",
+        "sha256": "257c6facd06e812f1dee4f0d7311d56d8226382973ffb58a53d231b277fb86b5"
+      },
+      {
+        "bytes": 81,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/__init__.py",
+        "sha256": "6e8301cfec6c62079a4869acf44d6467beadd5925d799c91df56d8bc989c5378"
+      },
+      {
+        "bytes": 4571,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/output.json",
+        "sha256": "ae1a3fe8074d9666e62b0ecccddb4312399751cb88002f92419a100571234628"
+      },
+      {
+        "bytes": 18037,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/prototype.py",
+        "sha256": "39623310ffdadfffa4a74c05b061a2ee0c678b06ecf1bfd1c94a3eda84392778"
+      },
+      {
+        "bytes": 21238,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/prototype_output/continuous_spatial_bias.csv",
+        "sha256": "4ff9f23a29b0ee9a9c2f02e64e74638b7ff84c5808516147a1dda0cface27c6e"
+      },
+      {
+        "bytes": 8022,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/prototype_output/continuous_spatial_bias.svg",
+        "sha256": "f403a8897b4a08e7b41e9f69b60e7db3562788b81bcb882f89dc349a59bccbf0"
+      },
+      {
+        "bytes": 6372,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/prototype_output/generated_map.json",
+        "sha256": "40cb288ca133731d73a37013a448e597c8bbb5b3484b21f9559d59ae49ebb430"
+      },
+      {
+        "bytes": 5207,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/prototype_output/prototype_results.json",
+        "sha256": "bf2da267049355ef79c53fcd1e0468aea59036414a968ab365235d01990c10c7"
+      },
+      {
+        "bytes": 4051,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/run_case.py",
+        "sha256": "f263fe071ba5bef5291902a8c1222ee74196fec6e155aeb2c0dd17bc5e46d95a"
+      },
+      {
+        "bytes": 5203,
+        "category": "v0_experiment",
+        "path": "bass_dynamic_preference/run_prototype.py",
+        "sha256": "ba4d9e852d6fb230c6c14feba139e4c4f68f1cb4b186a205035c341dc7f86805"
+      },
+      {
+        "bytes": 405768,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/algae-rock-shore.jpg",
+        "sha256": "a08bd07d161278d2e076d8549be07e9754a9872417b6874b6e1687bfed1cec17"
+      },
+      {
+        "bytes": 787646,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/lily-pads-dusk.jpg",
+        "sha256": "6fe47115ee4a80fd1a8a54d248759c7e51989476b44f7d0d4fb4af43079952d9"
+      },
+      {
+        "bytes": 610118,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/old-burg-map.webp",
+        "sha256": "eb51c2a3420bb57db2c86fe1f81dcb3aecc827cc846b7057429ffb73d4792c81"
+      },
+      {
+        "bytes": 171918,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/reed-bank-morning.jpg",
+        "sha256": "5bc9a4e8b41551a20a2b0f0e4eb1268d8e95a2f721a09b1c6ac19eb7709549d6"
+      },
+      {
+        "bytes": 264895,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/shore-algae-morning.jpg",
+        "sha256": "2b1a89be64fb46e48a7715b7a0f82f72f2cec709d003d4f40c4269947b9231f1"
+      },
+      {
+        "bytes": 6819,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/export_spatial_bake_fixture.js",
+        "sha256": "54f5c84526a82b1f2aab25a4169c08457d121956d637193ab91c1520be7ffbc4"
+      },
+      {
+        "bytes": 6034,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/ogre_lake_overlay_model.js",
+        "sha256": "9fb507c2a0ca779ee8d698c6e3b1f736465cad2f057ad80922d357d06219c856"
+      },
+      {
+        "bytes": 28404,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/index.html",
+        "sha256": "16908030a818acfd0646dd1dfee74c863e224d06c50f9364c76db6cac3685d46"
+      },
+      {
+        "bytes": 8485,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_reproducible_overlay_experiment.md",
+        "sha256": "44795ac78d01e1eee9c94f83979ffb596e1ec3df80fbb32b224e9317349014f0"
+      },
+      {
+        "bytes": 8513,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_visualization_user_guide.md",
+        "sha256": "377d4188090f2ded513d25b39c5b248838c4356469455279e273a7d9167fe73d"
+      },
+      {
+        "bytes": 4542,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/README.md",
+        "sha256": "572c47922208864e638fbf952cdf6fdf09c2f4469785a5b84cb13c85b34fc06f"
+      },
+      {
+        "bytes": 2490785,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/cell_layer_labels.json",
+        "sha256": "4047819a5767ff509fc6f3410bab465edf9a9223a3173bcfda297ade4f205f89"
+      },
+      {
+        "bytes": 304969,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/habitat_sources.json",
+        "sha256": "2a345cf68ccb40dea76e21af7640e1f75dbc39c43e00aba586ab7641e41af488"
+      },
+      {
+        "bytes": 1309687,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/lake_grid.json",
+        "sha256": "a4ce888b1534153b2c0f09d2d1525c0eac43739edc3907f93780f429a20f9613"
+      },
+      {
+        "bytes": 955,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/source_metadata.json",
+        "sha256": "96ed133ed5b02766cd57b25c7f70cb11f39b8e635524774e69ed2ffe8befa814"
+      },
+      {
+        "bytes": 2405058,
+        "category": "delivery_bundle",
+        "path": "deliverables/ogre-lake-spatial-authoring-explainer-package.zip",
+        "sha256": "b54bfdcee337e75876838273576dcb52df3a260542eb1e20d2624415ffb6de84"
+      },
+      {
+        "bytes": 10965,
+        "category": "historical_or_external_evidence",
+        "path": "docs/archive/fcf_v0/ogre_lake_manual_region_companion_experiment.md",
+        "sha256": "512bfbf95f605b83efab1da6ca3457aea294176fef57c740bfc93363e5f16a16"
+      },
+      {
+        "bytes": 11082,
+        "category": "historical_or_external_evidence",
+        "path": "docs/archive/fcf_v0/rf4_old_burg_spatial_authoring_estimate.md",
+        "sha256": "fe6f0f7bea320e340afa5c411c8bfc1d8775b6e755a101c921c5ac669d5cf168"
+      },
+      {
+        "bytes": 405768,
+        "category": "canonical",
+        "path": "docs/assets/rf4-old-burg/algae-rock-shore.jpg",
+        "sha256": "a08bd07d161278d2e076d8549be07e9754a9872417b6874b6e1687bfed1cec17"
+      },
+      {
+        "bytes": 787646,
+        "category": "canonical",
+        "path": "docs/assets/rf4-old-burg/lily-pads-dusk.jpg",
+        "sha256": "6fe47115ee4a80fd1a8a54d248759c7e51989476b44f7d0d4fb4af43079952d9"
+      },
+      {
+        "bytes": 610118,
+        "category": "canonical",
+        "path": "docs/assets/rf4-old-burg/old-burg-map.webp",
+        "sha256": "eb51c2a3420bb57db2c86fe1f81dcb3aecc827cc846b7057429ffb73d4792c81"
+      },
+      {
+        "bytes": 171918,
+        "category": "canonical",
+        "path": "docs/assets/rf4-old-burg/reed-bank-morning.jpg",
+        "sha256": "5bc9a4e8b41551a20a2b0f0e4eb1268d8e95a2f721a09b1c6ac19eb7709549d6"
+      },
+      {
+        "bytes": 264895,
+        "category": "canonical",
+        "path": "docs/assets/rf4-old-burg/shore-algae-morning.jpg",
+        "sha256": "2b1a89be64fb46e48a7715b7a0f82f72f2cec709d003d4f40c4269947b9231f1"
+      },
+      {
+        "bytes": 2979,
+        "category": "canonical",
+        "path": "docs/authoring_maintenance_ia_gate_r0.md",
+        "sha256": "ae2352948a6f479bfdb6748516f08be61339645c18f55c45274f9b23eab5fdc7"
+      },
+      {
+        "bytes": 6208,
+        "category": "canonical",
+        "path": "docs/bass_dynamic_preference_pressure_test.md",
+        "sha256": "0c00dc53714d1abb6599702be0b333b12581774e09ee355021d2919ff617a2e7"
+      },
+      {
+        "bytes": 10121,
+        "category": "canonical",
+        "path": "docs/bass_dynamic_preference_prototype_validation.md",
+        "sha256": "795e4a41ba999a25e6b07210aec8b110d623f7954bbad45e2208f527e5ee08d5"
+      },
+      {
+        "bytes": 7515,
+        "category": "canonical",
+        "path": "docs/contact_hook_mechanism_design.md",
+        "sha256": "7b09e10945b925157066f8b8a0a8ba5dfbb11a84323e9098e5e97a2b04610c9a"
+      },
+      {
+        "bytes": 6921,
+        "category": "canonical",
+        "path": "docs/depth_structure_mechanism_design.md",
+        "sha256": "f6aa5da996e5eaba32ccc581356b5738641022d96d2346438fe97c652b8bacbb"
+      },
+      {
+        "bytes": 6530,
+        "category": "canonical",
+        "path": "docs/design_closure_index.md",
+        "sha256": "86e67c666ee6eb3596d3a2519a3414c514275d71bfcfe675f1b6c2401e01a5e7"
+      },
+      {
+        "bytes": 3867,
+        "category": "canonical",
+        "path": "docs/design_decision_log.md",
+        "sha256": "703a8c1108b6db00800f91a195883ea98c1f4f47167b4f42a19147753fc94d60"
+      },
+      {
+        "bytes": 2428,
+        "category": "canonical",
+        "path": "docs/designer_authoring_editor_prototype_r0.md",
+        "sha256": "3c72a6440ac6a1e525b1529b10f45ff70b8cb54baf90e069d3e271e7864490ff"
+      },
+      {
+        "bytes": 8887,
+        "category": "canonical",
+        "path": "docs/dissolved_oxygen_mechanism_design.md",
+        "sha256": "0c24fe86a17adaa9529b66db3bc23ecdbacdb7382eeffd3307b31ef392c61c65"
+      },
+      {
+        "bytes": 7090,
+        "category": "canonical",
+        "path": "docs/dsl_semantic_design.md",
+        "sha256": "d18046fa567343b9dc33af0699aaa43b6f78ac869fcd2e7b043919aff993a1af"
+      },
+      {
+        "bytes": 2703,
+        "category": "canonical",
+        "path": "docs/editor_contract.md",
+        "sha256": "40e709a4c2f0d68acc1f258fd978907acf3f0ccbe4a6a2fc76c01785e8912da8"
+      },
+      {
+        "bytes": 7672,
+        "category": "canonical",
+        "path": "docs/editor_interaction_design.md",
+        "sha256": "2296804dc3e6151fa065c17c17a80543499383ddd36daadd6dc80b15fc5658db"
+      },
+      {
+        "bytes": 7593,
+        "category": "canonical",
+        "path": "docs/encounter_conversion_mechanism_design.md",
+        "sha256": "e1dfc90d18f4378b083c78d2e81a27a89eda84f26aa7dcf423951eb16d1a0f67"
+      },
+      {
+        "bytes": 7124,
+        "category": "canonical",
+        "path": "docs/environment_factor_composition_design.md",
+        "sha256": "9857dfbdb6902ad352524ff7e1bc47844cdf1464c725aeaa281dc33c4a734d25"
+      },
+      {
+        "bytes": 6819,
+        "category": "canonical",
+        "path": "docs/experiments/export_spatial_bake_fixture.js",
+        "sha256": "54f5c84526a82b1f2aab25a4169c08457d121956d637193ab91c1520be7ffbc4"
+      },
+      {
+        "bytes": 6173,
+        "category": "canonical",
+        "path": "docs/experiments/ogre_lake_overlay_model.js",
+        "sha256": "195a22157e37092b7759c0c5dcb9d701be3f90986f2d487705679790911ddb3c"
+      },
+      {
+        "bytes": 3004,
+        "category": "canonical",
+        "path": "docs/fcf_v0_conflict_register.md",
+        "sha256": "cd88c472364f9d51969fd9c8d14cff31c5129ba146171b8ab8fcc3eee60cb9a8"
+      },
+      {
+        "bytes": 5606,
+        "category": "canonical",
+        "path": "docs/fcf_v0_document_governance.md",
+        "sha256": "7bf5cfaccea4391d951c0fcaad533a97c8f57cfc9a0c4d60580de5631daa2188"
+      },
+      {
+        "bytes": 23886,
+        "category": "canonical",
+        "path": "docs/fcf_v1_engineering_spec.md",
+        "sha256": "23f137da2656b76cfd4dba0ba0fafcc3a7a60fdd6b96e7eb2ba14cbeabbf159d"
+      },
+      {
+        "bytes": 18194,
+        "category": "canonical",
+        "path": "docs/fcf_v1_overview_cn.md",
+        "sha256": "7f7e97b11ed863d80231067991f106edcd4ce227ee679539cb138bc45625278c"
+      },
+      {
+        "bytes": 8660,
+        "category": "canonical",
+        "path": "docs/fish_entity_variant_design.md",
+        "sha256": "388336457ced56c4a18ff8c53ca6a41f6610d0067a258de6a2a3900f07186544"
+      },
+      {
+        "bytes": 1783,
+        "category": "canonical",
+        "path": "docs/flagship_traces.md",
+        "sha256": "d1fe067bfb95172a9fd7fa89cb73a920976ecde6e399a1c4a61a2d19a0bfb539"
+      },
+      {
+        "bytes": 8949,
+        "category": "canonical",
+        "path": "docs/flow_mechanism_design.md",
+        "sha256": "be842183409727d8ba89145d5dd218a10b85b3271490688af220b6513e9825fd"
+      },
+      {
+        "bytes": 17825,
+        "category": "canonical",
+        "path": "docs/glossary_cn.md",
+        "sha256": "bf211bf28a5408c39913a52df4c138df228dd6a754af19a06735be708563c495"
+      },
+      {
+        "bytes": 3029,
+        "category": "canonical",
+        "path": "docs/implementation_readiness_matrix.md",
+        "sha256": "2be0413c89b418a79bf743db83ae4aad2289e49bc5d86ea7b2e914e855357bb5"
+      },
+      {
+        "bytes": 3043,
+        "category": "canonical",
+        "path": "docs/independent_review_checklist.md",
+        "sha256": "607cb5dffd1737cdbc46103f818612eeb702435459d30c0d5205961291d66f81"
+      },
+      {
+        "bytes": 6977,
+        "category": "canonical",
+        "path": "docs/light_turbidity_mechanism_design.md",
+        "sha256": "310280b6259c31b72d14ea32150316196fd7ce9efbe725b11d35b718394d97ba"
+      },
+      {
+        "bytes": 19808,
+        "category": "canonical",
+        "path": "docs/mechanism_spec_writing_and_review_guide_cn.md",
+        "sha256": "189ea28651cdaed22a6f980e146b2c7251070460b1a5d2034b6cef0e7f1cff17"
+      },
+      {
+        "bytes": 7430,
+        "category": "canonical",
+        "path": "docs/motive_behavior_program_design.md",
+        "sha256": "499c4e92b864aea4f4815b125b54e7ba5e4d6eebfbbac175304e67db49cc86fe"
+      },
+      {
+        "bytes": 61685,
+        "category": "canonical",
+        "path": "docs/ogre-lake-authoring-cost-standalone.html",
+        "sha256": "42f4982fea6527e0e077af06dfb186a06fe4f8177a9fd26a3fd568bedfc66872"
+      },
+      {
+        "bytes": 46484,
+        "category": "canonical",
+        "path": "docs/ogre-lake-exact-overlay-standalone.html",
+        "sha256": "f252db087eb6928082217f6149116788a8c0db6ab93f0bd2230eccef4da34586"
+      },
+      {
+        "bytes": 28404,
+        "category": "canonical",
+        "path": "docs/ogre-lake-spatial-authoring-explainer.html",
+        "sha256": "16908030a818acfd0646dd1dfee74c863e224d06c50f9364c76db6cac3685d46"
+      },
+      {
+        "bytes": 8485,
+        "category": "canonical",
+        "path": "docs/ogre_lake_reproducible_overlay_experiment.md",
+        "sha256": "44795ac78d01e1eee9c94f83979ffb596e1ec3df80fbb32b224e9317349014f0"
+      },
+      {
+        "bytes": 8513,
+        "category": "canonical",
+        "path": "docs/ogre_lake_visualization_user_guide.md",
+        "sha256": "377d4188090f2ded513d25b39c5b248838c4356469455279e273a7d9167fe73d"
+      },
+      {
+        "bytes": 2548,
+        "category": "canonical",
+        "path": "docs/pre_generation_authoring_vertical_slice_r0.md",
+        "sha256": "cf459a4848e3fc2c621fb3bc48e4e3003d703ce192c76fce4924f8a11a144acc"
+      },
+      {
+        "bytes": 1950,
+        "category": "canonical",
+        "path": "docs/pre_generation_harness_report.md",
+        "sha256": "01a193c2b9db084192ff81fa0367a85d7ac5825df068dbb661bb0af0c625eecf"
+      },
+      {
+        "bytes": 7932,
+        "category": "canonical",
+        "path": "docs/resource_history_mechanism_design.md",
+        "sha256": "089424f512b7ab1ff76b7074160ad2fc66947466689754c7bfdbcb2d562fd120"
+      },
+      {
+        "bytes": 14143,
+        "category": "historical_or_external_evidence",
+        "path": "docs/rf4_fishing_planet_bite_mechanism_audit_appendix.md",
+        "sha256": "fbccfe8730991bdbe32e72c3ecf885724bb1ca0d6d7c6267c095f2654613e983"
+      },
+      {
+        "bytes": 20171,
+        "category": "historical_or_external_evidence",
+        "path": "docs/rf4_fishing_planet_bite_mechanism_research_report.md",
+        "sha256": "6f8bfaf07cc1026de8b00afe9483feccb24d660e34399822771b16de14f309ba"
+      },
+      {
+        "bytes": 3876,
+        "category": "canonical",
+        "path": "docs/scoped_review_protocol.md",
+        "sha256": "55f6d14d81e694402186d31fc7132924f3e6d0dc4739c4f619869bb7bb107a36"
+      },
+      {
+        "bytes": 4542,
+        "category": "canonical",
+        "path": "docs/spatial_bake_fixture/README.md",
+        "sha256": "572c47922208864e638fbf952cdf6fdf09c2f4469785a5b84cb13c85b34fc06f"
+      },
+      {
+        "bytes": 2490785,
+        "category": "canonical",
+        "path": "docs/spatial_bake_fixture/cell_layer_labels.json",
+        "sha256": "4047819a5767ff509fc6f3410bab465edf9a9223a3173bcfda297ade4f205f89"
+      },
+      {
+        "bytes": 304969,
+        "category": "canonical",
+        "path": "docs/spatial_bake_fixture/habitat_sources.json",
+        "sha256": "2a345cf68ccb40dea76e21af7640e1f75dbc39c43e00aba586ab7641e41af488"
+      },
+      {
+        "bytes": 1309687,
+        "category": "canonical",
+        "path": "docs/spatial_bake_fixture/lake_grid.json",
+        "sha256": "a4ce888b1534153b2c0f09d2d1525c0eac43739edc3907f93780f429a20f9613"
+      },
+      {
+        "bytes": 955,
+        "category": "canonical",
+        "path": "docs/spatial_bake_fixture/source_metadata.json",
+        "sha256": "96ed133ed5b02766cd57b25c7f70cb11f39b8e635524774e69ed2ffe8befa814"
+      },
+      {
+        "bytes": 19184,
+        "category": "canonical",
+        "path": "docs/temperature_mechanism_design.md",
+        "sha256": "a64ce705e708c789834ab6cf8a341f2504ec0c45f64d4861e97a60ae9243cf29"
+      },
+      {
+        "bytes": 12989,
+        "category": "canonical",
+        "path": "docs/temperature_profile_configuration.md",
+        "sha256": "0ea626042b162e544175f47a93860045c70dff1ccb5d960633fda3455c4c6611"
+      },
+      {
+        "bytes": 3849,
+        "category": "canonical",
+        "path": "docs/verification_report.md",
+        "sha256": "c7550163fdeee35ddf4393f8ea72adc33bbecfead6fe113001cf91a48a80357c"
+      },
+      {
+        "bytes": 4476,
+        "category": "canonical",
+        "path": "editor/index.html",
+        "sha256": "c80489308ea6fd1b9331becd78089f31b3ad04886660820d764f450aae28c602"
+      },
+      {
+        "bytes": 1948,
+        "category": "canonical",
+        "path": "editor/prototype.py",
+        "sha256": "a4239f960c901d075c93801e73a8d6f69384b60650606c6e7d66a47ef473ddda"
+      },
+      {
+        "bytes": 3037,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/README.md",
+        "sha256": "74b64f1f4c44629ef6ad489bd89c341b68ec7c0524efae1483c2bd3ae8a58205"
+      },
+      {
+        "bytes": 164261,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/conversion_reroll_curves.png",
+        "sha256": "73bcf6b4a2fc31c4fd74a5e50dca982928488aed7b70e58e9bb72b4a0f993f19"
+      },
+      {
+        "bytes": 154189,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/engagement_saturation_curves.png",
+        "sha256": "8a40674b5cce995e9dadad720ad47dd53ef693460f4006f1cd59d05fc5658eef"
+      },
+      {
+        "bytes": 104363,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/grade_map_sensitivity.png",
+        "sha256": "0420df9de9bf71d3866616d0063e54fe31a918a4e2bbf9a3b27feafb85de2261"
+      },
+      {
+        "bytes": 148595,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/mixed_species_substitution_curves.png",
+        "sha256": "059158615eea734404533a281e17e6070263dfcd41f50152df83aeb32434401f"
+      },
+      {
+        "bytes": 82430,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/opportunity_cadence_heatmap.png",
+        "sha256": "292fcc92ea647cd231bbe86d1c28e07dc2a0a99a9d11d9ce54dfb28d38ab9132"
+      },
+      {
+        "bytes": 50999,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/figures/roster_saturation_heatmap.png",
+        "sha256": "6f0a9ab0dde105c3959cf6d47e8e75f931bf4486909ffbf27fc3f7d9835fd312"
+      },
+      {
+        "bytes": 6892,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/cadence.csv",
+        "sha256": "2386e64f42c04d6b27ba42b3fdb2666c294d28d12d30e0069e4a962ef3e2105a"
+      },
+      {
+        "bytes": 6644,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/conversion_reroll.csv",
+        "sha256": "784c6c48674d25045e5652cada983fe24059c9c6787ba8a88d45f8190ba9ef8a"
+      },
+      {
+        "bytes": 1650,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/gear_isolation.csv",
+        "sha256": "ab482336bbd109924f784530ae02c845a0f23c8fa3e35e5ae74ddc4a46ddcb3d"
+      },
+      {
+        "bytes": 13595,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/invariance.csv",
+        "sha256": "f93258dd0fb9fdd8e9275c1d5f369875b4e85d737f047f4115c38bdbf9015d6d"
+      },
+      {
+        "bytes": 2943,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/roster_saturation.csv",
+        "sha256": "d79f4bf523b04d8117e8b2378f7b22e6549530680da73b16b06d4f87fdfe0f56"
+      },
+      {
+        "bytes": 25865,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/substitution.csv",
+        "sha256": "a98ff0d214cf24b61294532343325d56626c49d85d6d77994a43d95f44b30306"
+      },
+      {
+        "bytes": 30672,
+        "category": "v0_experiment",
+        "path": "experiments/fcf_simplified_v0/results/summary.csv",
+        "sha256": "e9c5619676d68379a8f48ad2f68f261c90fcd886ae9d81780b783b08100dda79"
+      },
+      {
+        "bytes": 2724,
+        "category": "canonical",
+        "path": "fcf_v1/__init__.py",
+        "sha256": "ce12ca52ebdbb1b808298028fdef565ce098381c8bdc3af8a33bdaebf0717e4c"
+      },
+      {
+        "bytes": 4432,
+        "category": "canonical",
+        "path": "fcf_v1/authoring.py",
+        "sha256": "78a40ba8fcb83a230d0b233a113b94282cdf460bd9cf3bc554d5d10274fc05e4"
+      },
+      {
+        "bytes": 38086,
+        "category": "canonical",
+        "path": "fcf_v1/calibration_experiment.py",
+        "sha256": "1a8bb57d208b028ab34506ec63a45ae67b0b457e1492c6381c225255f3ffc991"
+      },
+      {
+        "bytes": 3416,
+        "category": "canonical",
+        "path": "fcf_v1/conformance.py",
+        "sha256": "28f3f096d7fe4cfed7652bbefdce3940e1eb2d1472a97c477aa7556a61adb62f"
+      },
+      {
+        "bytes": 21675,
+        "category": "canonical",
+        "path": "fcf_v1/dsl.py",
+        "sha256": "01cd7c78a12e3632f962a0f3d14388d9897898eba08bf388d1445c426eeb63c9"
+      },
+      {
+        "bytes": 2654,
+        "category": "canonical",
+        "path": "fcf_v1/editor.py",
+        "sha256": "b032b614fd4d4a5e3264158d8d6fd0f06897313eb5cf3ff8fae10a1a116a778a"
+      },
+      {
+        "bytes": 27521,
+        "category": "canonical",
+        "path": "fcf_v1/engine.py",
+        "sha256": "750b49109664446e342126e0b2691e13a184d5f6d96b3faa0b3558bc08b2878f"
+      },
+      {
+        "bytes": 8805,
+        "category": "canonical",
+        "path": "fcf_v1/journal.py",
+        "sha256": "61de05ae6d6a165b283b2fd5d6d719c489ba1b97733c2289e95618de136c2dca"
+      },
+      {
+        "bytes": 1742,
+        "category": "canonical",
+        "path": "fcf_v1/lifecycle.py",
+        "sha256": "5219ab567ba4a6ac4acce72a1763f3b60c276f6129d27ee16b42fdc4a8a8b1a6"
+      },
+      {
+        "bytes": 5212,
+        "category": "canonical",
+        "path": "fcf_v1/model.py",
+        "sha256": "f7f9be166420a7107dd14501a097ad958d86e68b644750775ce2773f9494f632"
+      },
+      {
+        "bytes": 8254,
+        "category": "canonical",
+        "path": "fcf_v1/pre_generation.py",
+        "sha256": "00b73aecb557d62fe69ba1ad117c4bcf51cef583fd78a55e5e85720bf82d6c6e"
+      },
+      {
+        "bytes": 6533,
+        "category": "canonical",
+        "path": "fcf_v1/resolution.py",
+        "sha256": "de5a32e75a7219ad304d56e3c6d6b5c20cc0af08d332b10f0cd82ee129e8c63a"
+      },
+      {
+        "bytes": 9042,
+        "category": "canonical",
+        "path": "fcf_v1/temperature_profile.py",
+        "sha256": "65f8542a93aa9a684402ae977d59c0195b444c2184c31fec09262e62e7327656"
+      },
+      {
+        "bytes": 1734,
+        "category": "canonical",
+        "path": "fcf_v1/trace.py",
+        "sha256": "37ce223ce71041337b3f3b506630ca8dc16a44a045e4651da332d184075270c8"
+      },
+      {
+        "bytes": 1363,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/README.md",
+        "sha256": "ffafe240b0477f5e7eedc49137d28e9d1cc6cb3fc26462208cdeeda4966a413f"
+      },
+      {
+        "bytes": 169,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/bass_spatial_profiles.yaml",
+        "sha256": "3d70b2b542e39cfeb0126b75c5a875c38d80534ab533b96d9e5b544825e47e97"
+      },
+      {
+        "bytes": 217,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/lifecycle_fixtures.json",
+        "sha256": "55b6d71a9cb13fb0e14a7512af0e9bd255cfa635df66ec601644a03b7e8d6c6b"
+      },
+      {
+        "bytes": 833,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/ogre_lake_sources.json",
+        "sha256": "c7080811dd8c456bf8dc073c41cd386624351ce90e6174da0b382b28af7e39d7"
+      },
+      {
+        "bytes": 1823,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/benchmark.csv",
+        "sha256": "e4a83812d4e3f70a03b733d2477762b4043acf74f800dfd6687b26bd453188f0"
+      },
+      {
+        "bytes": 64780,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/query_results.csv",
+        "sha256": "b26e7e3ae16200e5db96888e61eb29b5021a62f1409401d94e2f35186eb44054"
+      },
+      {
+        "bytes": 44386,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_hotspots.png",
+        "sha256": "09ddb802af66e051f9fbdfd8b76011a5fc0cb5e44579b33e082817ecbdd7ad5b"
+      },
+      {
+        "bytes": 24404261,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json",
+        "sha256": "641917c49f51199ce7f2fe96c0ec789ec2fce9b1dfadf3f82f0efc82da0c5c01"
+      },
+      {
+        "bytes": 660374,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json.gz",
+        "sha256": "76cd11178f0114d224db6989600ae911743fa8377460989332ff883e1e9bb71c"
+      },
+      {
+        "bytes": 26142457,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json",
+        "sha256": "9bd9e96cf3536851417e712763b373358b665ea137af6b4f5ec0a5d42f83c3e7"
+      },
+      {
+        "bytes": 683084,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json.gz",
+        "sha256": "3e512da56913098e868ec57047debf19db24e85c34f97fa2bf11fd7b6658507d"
+      },
+      {
+        "bytes": 26154697,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json",
+        "sha256": "c2d191f07d9c662db6951273b9e41560f42d06492b83a68c06409bbb0b5de970"
+      },
+      {
+        "bytes": 683248,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json.gz",
+        "sha256": "bf90bb882a28a2d92a17e1045a766b48e26487cedbbf993f0ba44ac131f7764f"
+      },
+      {
+        "bytes": 26154697,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json",
+        "sha256": "c2d191f07d9c662db6951273b9e41560f42d06492b83a68c06409bbb0b5de970"
+      },
+      {
+        "bytes": 683251,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json.gz",
+        "sha256": "b494cabe863a2a9fb9c71981b928a98b0d8a8135e9fa5f8594dade36a84cc9c1"
+      },
+      {
+        "bytes": 24482989,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json",
+        "sha256": "b998f9f46ae5ae2a3db5d75a770ee537ce751675ab72b5372b4e15365ae9058d"
+      },
+      {
+        "bytes": 635543,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json.gz",
+        "sha256": "a2f4eae0d8cb350a4add8d267ba617bf2d6ecf2b84105b11a569100adabc57ff"
+      },
+      {
+        "bytes": 26249065,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json",
+        "sha256": "0fb468ba2f0fcf6d9f0c1388f94487684994444d379ebc23a0e2df72be424a34"
+      },
+      {
+        "bytes": 657785,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json.gz",
+        "sha256": "497567b8713a27811a9920fe047f9d246cd600e41324b936f4fee1731eb77e75"
+      },
+      {
+        "bytes": 26261305,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json",
+        "sha256": "842258d9eae55ad53510d388fef4e4c64e3384437e3a4c1991421968fa44f6cd"
+      },
+      {
+        "bytes": 657916,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json.gz",
+        "sha256": "512d2d6f6c12f87f0e88a09bcdfd19e10ffd2e61a616d6dccf1bd8fbfee9210c"
+      },
+      {
+        "bytes": 26261305,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json",
+        "sha256": "842258d9eae55ad53510d388fef4e4c64e3384437e3a4c1991421968fa44f6cd"
+      },
+      {
+        "bytes": 657919,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json.gz",
+        "sha256": "39e9c853d7840359f634d63f6b6b431dea8ee5bd117aca9fba031ffb6e9aafb5"
+      },
+      {
+        "bytes": 23414981,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json",
+        "sha256": "ec9ce5a343c482381498a62274425dbe893bca054d87f37dc37dba0f10556186"
+      },
+      {
+        "bytes": 589380,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json.gz",
+        "sha256": "36999b345325fcb4da6c2a0c9bc51b55e45a14c591891e1e6c94aec68b892629"
+      },
+      {
+        "bytes": 24695449,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json",
+        "sha256": "951c32d99071a815b792247e531adbabe0456e1f0829bd29a28a801128bd70fe"
+      },
+      {
+        "bytes": 605528,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json.gz",
+        "sha256": "81434d7ac59b1e02e05b92a1822e984bc685231f08627bd76bfacb7bce78ed22"
+      },
+      {
+        "bytes": 24695449,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json",
+        "sha256": "951c32d99071a815b792247e531adbabe0456e1f0829bd29a28a801128bd70fe"
+      },
+      {
+        "bytes": 605528,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json.gz",
+        "sha256": "ae0a5a74dd9b66986bd96b1e779fb123754c67a426b60594034b0dc5ec71693d"
+      },
+      {
+        "bytes": 24695449,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json",
+        "sha256": "951c32d99071a815b792247e531adbabe0456e1f0829bd29a28a801128bd70fe"
+      },
+      {
+        "bytes": 605531,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json.gz",
+        "sha256": "8fda33a49c91101d5bbf2905293b30185a51f26d4bb81812087ddfcb3d508aeb"
+      },
+      {
+        "bytes": 6244,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output/summary.json",
+        "sha256": "0aee4930180de918ba6fa2a3d5d8aae065a0bfd885d9c8191c15944dad6560cf"
+      },
+      {
+        "bytes": 1973,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/benchmark.csv",
+        "sha256": "0d51fc5a14ad514dd3d177eaec1aa7b43d797d591a86b04f53449c02eddc2cc7"
+      },
+      {
+        "bytes": 39571,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/query_results.csv",
+        "sha256": "df2380cd32c420724ccadf38a0264f8894a7bf3b9e1ff02bcfd50288da88bd82"
+      },
+      {
+        "bytes": 573042,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/reach_falloff_comparison.png",
+        "sha256": "7775c55ee9133b90a8bbc35e5d685e758836dd645d50a789f90a53d7a9a3fcef"
+      },
+      {
+        "bytes": 79592,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/reach_falloff_grouped.png",
+        "sha256": "425843952de3275f673cc21ea18dbd98a074ba2743aa6f89fe33e54578efebbc"
+      },
+      {
+        "bytes": 94401,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_hotspots.png",
+        "sha256": "92f4eebb1208d828ff4bcb137e19c682f070937d7a38408cfda183219027cfa6"
+      },
+      {
+        "bytes": 139352,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_2.json.gz",
+        "sha256": "89c836e00ddf607a44cce0d25ed9b2e10aee39572227618dc3319d584c551412"
+      },
+      {
+        "bytes": 157475,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_4.json.gz",
+        "sha256": "7fe414af83acd0eb60205f13fbf0f96d6a966ce08cc2abc805ce2ecad3061b0d"
+      },
+      {
+        "bytes": 157475,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_8.json.gz",
+        "sha256": "4f74515a126c8f55607e8e478e03545fee82d481d4b230220c177b935f916064"
+      },
+      {
+        "bytes": 157478,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_full.json.gz",
+        "sha256": "a5fc4470d1611f2fd96f6dcb8a6ad7f6b1453d668dcfb76cd9948e3b8bde8177"
+      },
+      {
+        "bytes": 138115,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_2.json.gz",
+        "sha256": "e07e31d98b0f99d2ccc590e2a08dd1866d551a227c6bbd7c4aa8ca5b6f16f758"
+      },
+      {
+        "bytes": 158551,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_4.json.gz",
+        "sha256": "7042ceca52cf3aea880faa96e1162206d9fcbdc7bcb214d79b7c763df214bb88"
+      },
+      {
+        "bytes": 158551,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_8.json.gz",
+        "sha256": "7d8989de3f34814d2a28c4a502bd89d27636f5f4488391d4bc15efad4a355c86"
+      },
+      {
+        "bytes": 158554,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_full.json.gz",
+        "sha256": "89530a78595eb4a0f01af0f74718e51e95073f27fa980736889b3e0e85e62993"
+      },
+      {
+        "bytes": 134808,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_2.json.gz",
+        "sha256": "4afa3e811c517862c095857074018445e316c2830e12dc4c3365705b6727580d"
+      },
+      {
+        "bytes": 145506,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_4.json.gz",
+        "sha256": "735e1d34aad768b5c736133a0b15f1660f2992a64a85a8480c215bd3bac8c87a"
+      },
+      {
+        "bytes": 145506,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_8.json.gz",
+        "sha256": "ab1f5a72cff1544fbceb729582b13d1e28dfb9a76d19b7fe68c4031ea7dcdc5b"
+      },
+      {
+        "bytes": 145509,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_full.json.gz",
+        "sha256": "542826abb4b74e9e0d0ba7f2fbee02931475d783d088576e6329e0b21b41c2dd"
+      },
+      {
+        "bytes": 6356,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/output_fixture/summary.json",
+        "sha256": "53ebf405bc4c0816b9a24c6098b0731ddd04d3a6924fa6b2eb8f6e3e2e481648"
+      },
+      {
+        "bytes": 7711,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/run_experiment.py",
+        "sha256": "63ebd41923e283f0bff50cb37e0d0d244b819869c9e892d0b595ba27694f39a6"
+      },
+      {
+        "bytes": 5511,
+        "category": "canonical",
+        "path": "ogre_lake_spatial_bake/run_fixture_experiment.py",
+        "sha256": "8eabb3bc9e54397412fda4161b6659cb9fa6ba45a7647376fedba388421dd72a"
+      },
+      {
+        "bytes": 608608,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
+        "sha256": "7b211fb3e5cf9202c682188cb6b041f3538b9d28862a429b01f80c215e94eb37"
+      },
+      {
+        "bytes": 2329,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/README.md",
+        "sha256": "168eac3f750c63fa535230b141ecd31de93cc0bdd36f03361f1c6225b2b4f73d"
+      },
+      {
+        "bytes": 109434,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "sha256": "3691d83edcbd583a9752b15845093357ded25c646ef84224bd295dffeabfd0ac"
+      },
+      {
+        "bytes": 44001,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "sha256": "cd386a6e798f97d23bc3f59f1f2638bc3eba9ee982c8ff5437b5e3b6b0bdf7b3"
+      },
+      {
+        "bytes": 8172,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "sha256": "50acb781e1ac087afcf7af2818fe1e49afbda2ae6cbb95c4de12c5362966dd5f"
+      },
+      {
+        "bytes": 39286,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "sha256": "e41995d42e8a215df315478686d0425653ca1214adad87cd2afb436505b62b65"
+      },
+      {
+        "bytes": 61813,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/baseline_stress.md",
+        "sha256": "9abc0091157cf3029dada4ed8b8312585e3716b038c0af7bd8a5018024af109d"
+      },
+      {
+        "bytes": 68968,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/build.py",
+        "sha256": "18a896daa8d36797914ae6fd07d2d56c80e461c576eac19c0d8349c6a598ef16"
+      },
+      {
+        "bytes": 160481,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/c08.png",
+        "sha256": "8879500d334e1736c49a55cdef7f551f28aa6187c0a6fe51b266fa16db87bf69"
+      },
+      {
+        "bytes": 16791,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/cases.json",
+        "sha256": "f4402b090b381a52e40bfe2d257c9c3c7172b44b646b285375c22899cc37b6b6"
+      },
+      {
+        "bytes": 2382,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/check-page.cjs",
+        "sha256": "f07461be945d7ea6f698b4102cbb781cadb4ae860b4f797139c546319000bd45"
+      },
+      {
+        "bytes": 2090,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/cost-independent-review.md",
+        "sha256": "d58d71379bfca10ee13f924728fc015e46733f5def3a51cf16d46a7d3377263d"
+      },
+      {
+        "bytes": 1598,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/current-state-snapshot.md",
+        "sha256": "51e577dbd383b35045162e3c106c96302c7e13dce1601b288bb0695c11b956ae"
+      },
+      {
+        "bytes": 8545,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
+        "sha256": "b11aaa80c9a60ce6467c3c632434a70fce20de7809be940526ff97c6a9dad177"
+      },
+      {
+        "bytes": 128923,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/desktop.png",
+        "sha256": "98c5890bce574c9105b4270a8113cc7266c94c06226f94b97ab3f3305c804c13"
+      },
+      {
+        "bytes": 2968,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/equivalence-independent-review.md",
+        "sha256": "d6115f90f3f86ea051a2ca5986213f6c1c2da3d4120be72c8e5f8338236ef654"
+      },
+      {
+        "bytes": 22460,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/four-surface-completion-r1.md",
+        "sha256": "56b2a7749b9ad9dfc7912324f37ff44ee20b9a15152a5ca09074f6ec2d87d106"
+      },
+      {
+        "bytes": 218,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/four_surface_preflight.json",
+        "sha256": "28262ab67a3df7e583c6981661b533352969e3215233f6de33bc3ecd217b8d46"
+      },
+      {
+        "bytes": 1359,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/four_surface_preflight.py",
+        "sha256": "c044d4d5162e179e09dcd5db56b9f3ab40291b06be51933715ebd9baed8f642a"
+      },
+      {
+        "bytes": 4468,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/frozen-consumption-manifest-r3.md",
+        "sha256": "d1c69b94af3266f200279b712cdf38b88b2b8073cdcbccdf358e28d19f3dd125"
+      },
+      {
+        "bytes": 3475,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/independent-review.md",
+        "sha256": "145bcb7e435d5d54528b50b597567e2add3dc90762bbf2a04d718dfddbfb6591"
+      },
+      {
+        "bytes": 195533,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/index.html",
+        "sha256": "4486a8a87ba2528e052f4d8e0369190a043162bd38fedb7b7410cb68f6ea9bd6"
+      },
+      {
+        "bytes": 65253,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/mobile.png",
+        "sha256": "f3d6961d00dfa31efb0996c8cd36eabfe2f9f249eb3bac0d7143cda1bf7287f8"
+      },
+      {
+        "bytes": 5256,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "sha256": "33786576707e4f31efa7b17cc69d13d4d0eebd15ece2263b55ca4729542d4b26"
+      },
+      {
+        "bytes": 1549,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-01.md",
+        "sha256": "eded63981b920d60e430f84794eaccb927ba5b1577f2180d5019ba4e397360b6"
+      },
+      {
+        "bytes": 4656,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-02.md",
+        "sha256": "30d0aef6ca161379f69be5ed8be94201a01afa2177257f3ec28b6b27a814acb0"
+      },
+      {
+        "bytes": 9819,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-03.md",
+        "sha256": "2197d587c447df16ab4371977d704d55aa15b1586a12c8c9cb5d5a459cf303dd"
+      },
+      {
+        "bytes": 2888,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-04.md",
+        "sha256": "9cd7b0168f14c68d091407bf841a50f6a4eee7b7b0d937bcbf30e76195e03350"
+      },
+      {
+        "bytes": 9122,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-05.md",
+        "sha256": "2cf95d41c32e692a660ad1000001ab72ed8e2ee6047efcbcc6c6bf420e18fb60"
+      },
+      {
+        "bytes": 3363,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-06.md",
+        "sha256": "552920fe5527ea34c1fa2f36a605eeaba51658308917d0aeb92ed69f98be742e"
+      },
+      {
+        "bytes": 1328,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-07.md",
+        "sha256": "1dd9e414a461fa4328d5fcc6b6d0a48b3b12ebd1ab0c8cf57a1021055ec1a329"
+      },
+      {
+        "bytes": 710,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-08.md",
+        "sha256": "af06e8ec3ad37758e5406c5f7a1990638da4515df15207b21c9025a3dfab0a91"
+      },
+      {
+        "bytes": 1297,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-09.md",
+        "sha256": "8d6675b8c47f89000293ae35f0420be828448b9507d39b1fd2ee39ca62d9b650"
+      },
+      {
+        "bytes": 1923,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-10.md",
+        "sha256": "42f3457701c323db1f36f19a7532927727786bee090dabfc941166b4b0450e38"
+      },
+      {
+        "bytes": 6014,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-11.md",
+        "sha256": "c4227bf9a102f5e9486b15aa74f6ccf9b121b2035a343c3bb12e290a73631ac4"
+      },
+      {
+        "bytes": 785,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-12.md",
+        "sha256": "2c5742ed21b09ada798822296e9585444b35419e5a35a4f3ea83b7b938f1fc13"
+      },
+      {
+        "bytes": 10950,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-13.md",
+        "sha256": "9e93ee00d23c45e4d4bbf9d490132298bc52f39a734b4559d7d9d16236f2ec2e"
+      },
+      {
+        "bytes": 61,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-14.md",
+        "sha256": "e4acd028743697481ccede64eb76370dd9815a179db11753008aafc4ede353fc"
+      },
+      {
+        "bytes": 1792,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-15.md",
+        "sha256": "2a82648f59d43ef09ff25efeb676b4688f44d2f37271bbc73e16afe51568e313"
+      },
+      {
+        "bytes": 1786,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-16.md",
+        "sha256": "11dc33292b48e3a6cf715aceeb5ba9654425f031a889800840e6edb4f35687e3"
+      },
+      {
+        "bytes": 1128,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-17.md",
+        "sha256": "bc393e9f4d54cf681fe7cc4c57184cbbc984203bd936645f31cd4c0b6eb91c60"
+      },
+      {
+        "bytes": 1041,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-18.md",
+        "sha256": "97205687ef5b468eca66597952eef258aecd2524e92360e1714937d454b31bd3"
+      },
+      {
+        "bytes": 1776,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-19.md",
+        "sha256": "81f67732dd1528d289c9db2beb6c5ec8117cfa5152cfad0cfdf22551b00fe785"
+      },
+      {
+        "bytes": 923,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-20.md",
+        "sha256": "872ec4bba77d5fa95f93165c975a1c11249847e6144f266888b2ace7a325c2cc"
+      },
+      {
+        "bytes": 922,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-21.md",
+        "sha256": "1efa169d75d628003f1e1f519340a97b13b5aca93d56b252b2435b6c732e3334"
+      },
+      {
+        "bytes": 1115,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-22.md",
+        "sha256": "34da36526c8cbfc5cd887a19905fce25cacd412f7c74c28910c5cabe3b8abcf7"
+      },
+      {
+        "bytes": 1344,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-23.md",
+        "sha256": "614e49334da24ab7a0ee280fd6d06e0a41e7c8901ecd7d4a95166c5ffb94eb4b"
+      },
+      {
+        "bytes": 1375,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-24.md",
+        "sha256": "b05fbdb986c50e2bd1e8abd501554e85b00edf345a9c0db483e4db30c2affb0d"
+      },
+      {
+        "bytes": 1357,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-25.md",
+        "sha256": "27bc2e687fef172f77420a92d58b9d4eb3b7589006077e9a2c8516353d6d5c57"
+      },
+      {
+        "bytes": 2080,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-26.md",
+        "sha256": "82b6af42e8f97ede4752ed9a3a7cddba4790986d6b1fd6c65ed345d8d390fd5f"
+      },
+      {
+        "bytes": 2943,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-27.md",
+        "sha256": "0d5826efd55618538522216b43c9de6eabc9ebdb2c23a96714e9e768ed444b6b"
+      },
+      {
+        "bytes": 276,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-28.md",
+        "sha256": "5172f8eafb39e63789e746958a79db65e4f1e060baaa16ef299a9a5e4bafb335"
+      },
+      {
+        "bytes": 249,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-29.md",
+        "sha256": "6e9744b0656d3885df73b9d4b3041ecd7e358b6a6ce5af3e367e6a6ccc6d60de"
+      },
+      {
+        "bytes": 5009,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-30.md",
+        "sha256": "5d69965b0d2bc614e6b0ca7c6701ff87405d3bcf12422b58bf14871b46afa20e"
+      },
+      {
+        "bytes": 5752,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-31.md",
+        "sha256": "9ddf092502a62c0becc1aa8baa1c4cc949791968029b05ef1b46b6ed8328bf7d"
+      },
+      {
+        "bytes": 5275,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-32.md",
+        "sha256": "6e757a5df7a59e77df30ca8099cc5802614cea14ca1f30cf4deedad8d536b3da"
+      },
+      {
+        "bytes": 5602,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-33.md",
+        "sha256": "f193214e3567360f2f85cbf7d962c584fed9fd7db44e32b442c703a8fab21136"
+      },
+      {
+        "bytes": 2170,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-34.md",
+        "sha256": "a4c70ed9ca938c84e22d8ab81b4f8b6e0c14e91e0d093f50e4932f26f419c89f"
+      },
+      {
+        "bytes": 5132,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-35.md",
+        "sha256": "21161fda4eed2b35b8c8c5502bc28eb121c71c0e9a49c020b4016c61ad6ae732"
+      },
+      {
+        "bytes": 1417,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-36.md",
+        "sha256": "e12da11ad65074b2b25b301966511c2e07c061bb320cee82fe4b0b097a9995c5"
+      },
+      {
+        "bytes": 1438,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-37.md",
+        "sha256": "a34b3cafe3d8f9c61b55d40abb1e7637a76b360fdddc3b2da68fc4a4ed86d36f"
+      },
+      {
+        "bytes": 1314,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-38.md",
+        "sha256": "d7d002e0b155adb69d4a0f57e445c4d5a34e34be2f908e66affba78e2a10ecfe"
+      },
+      {
+        "bytes": 2328,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-39.md",
+        "sha256": "b4b4e06fbf1a55c31484c5ec030b1b884aff1fa4c93d53fc27b231e9f45e10a1"
+      },
+      {
+        "bytes": 2497,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-40.md",
+        "sha256": "6beb95d75594a037be09a473265f9b9e97d7ad1468c3aa1e98653074485755fe"
+      },
+      {
+        "bytes": 2448,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-41.md",
+        "sha256": "d4d49120dd0e8cf1d770fd180cee98e74c393f5641d1727c89f11f60bf185df7"
+      },
+      {
+        "bytes": 5326,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-42.md",
+        "sha256": "0fb55cf52d53699f6319e84619247c452929531f85f3667ee6126f6bf173acec"
+      },
+      {
+        "bytes": 483,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/notion-43.md",
+        "sha256": "d1fa09ac3fc344bf918374b424e1e195740dc19f25060a05c003a3a3a5121a72"
+      },
+      {
+        "bytes": 7979,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/progress-overview.html",
+        "sha256": "11f895d6ba4fd984742d4c167367bad7dbb5d7e047b753ab06f3453064057711"
+      },
+      {
+        "bytes": 131651,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "sha256": "b57982a310c72d1b37f3fc3b742ce1543b3fbfb2a9cf332f11403407e9782dc4"
+      },
+      {
+        "bytes": 4201,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        "sha256": "49ca0910122afbfd8f6c7ad7fdb1e9e98b9376d0e501e8bda783c390ace0aa76"
+      },
+      {
+        "bytes": 5069,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-cost-r3.md",
+        "sha256": "3bbe5bbc1019535e254b7f9c406116648e2f0faaef3bf29a3321aa607b93ccc5"
+      },
+      {
+        "bytes": 39342,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.json",
+        "sha256": "695300cf131fafa4ccfc763fc1d0d369b57e5e0f841144b8df965b3ab65f0579"
+      },
+      {
+        "bytes": 1864,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.md",
+        "sha256": "7de5e287651ad17ddcd975188ff2610ab6fe4ed8b7fd6fe0273f0e14ec345997"
+      },
+      {
+        "bytes": 2432,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.py",
+        "sha256": "6b2e950252b9035132528737aec64cf414b5b178590190f92b8008dc67b9a165"
+      },
+      {
+        "bytes": 8017,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-shootout-r3.md",
+        "sha256": "0dc36583e7ee5d38535101e933b332f4d77d2d8ada5d4714187dd2e38d9d9e05"
+      },
+      {
+        "bytes": 1524,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/representation-work-contract.md",
+        "sha256": "ce93a91809fce3918a540b2174abc08e7fd837a30dd3e29a6d3c8a47710a564c"
+      },
+      {
+        "bytes": 35616,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/scripts.json",
+        "sha256": "56ee76e0b0f85ad13f0777865569da4a3061973fd5bc32e6cd5ae2cf77ce56e7"
+      },
+      {
+        "bytes": 1439,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/self-qa-and-cold-review.md",
+        "sha256": "5abc8628db84110c169fb0b3cf9d393faa879f19e25910a3f93a820f1cce9ad5"
+      },
+      {
+        "bytes": 2202,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/shootout-independent-review.md",
+        "sha256": "776dabfe7718314ba2026b44243b8849bb112864c22949875af30869d659d5e5"
+      },
+      {
+        "bytes": 2032,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/surface-coverage-audit.md",
+        "sha256": "c7d7b8603eaa0fcc468ba88ef7eaffb9fe743b6525d8ba7932289dfb3e0841e3"
+      },
+      {
+        "bytes": 2441,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/Binding.csv",
+        "sha256": "bc5cc479feacce2df153c9b30cd6f1a801a4e939e0a0049522872caf426720c8"
+      },
+      {
+        "bytes": 422,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/Boundary.csv",
+        "sha256": "b4d20c7d87dc3fc55369076745f618f64f1dbf348cc36f12922cdde0e3a3d80c"
+      },
+      {
+        "bytes": 3553,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/CurvePoint.csv",
+        "sha256": "9fec546b410e23b3a63c1ef04957d197d78b835145440d82da936dba3ec1d70d"
+      },
+      {
+        "bytes": 514,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/GroupShare.csv",
+        "sha256": "e6150e1248065ee9ac28ce5acf646d4fa8b2649e45516c82ebc45191921b08c3"
+      },
+      {
+        "bytes": 1200,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/Parameter.csv",
+        "sha256": "241279dbf956dda57f69133e2e42487bfaf966eb26dcd2d27312adb6399adcb1"
+      },
+      {
+        "bytes": 1568,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/Predicate.csv",
+        "sha256": "3e2a30f64fc27e2e42d3949810834f03e59068390e8bcd0bd057b4afa99e203c"
+      },
+      {
+        "bytes": 440,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/PredicateMember.csv",
+        "sha256": "65587b61234820eaf50cc9c3f2e7f85b4a22ed2e13c5be1ef81710bc131aab2d"
+      },
+      {
+        "bytes": 2566,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/QualityModifier.csv",
+        "sha256": "714c2c411d9af2438be89b5cbf177bd7ea072595b71dd540bf7676421e5bf8b0"
+      },
+      {
+        "bytes": 563,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/QualityWeight.csv",
+        "sha256": "e1580bd93231aa286fcac273a47283904b9eab5cc3e8cdd0e9989866eb8a6c3f"
+      },
+      {
+        "bytes": 167,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/ResponseBand.csv",
+        "sha256": "b770ae72a648e39b9d423592d0d2027d9f7d94ab47a08d4db3dddd463cd867b9"
+      },
+      {
+        "bytes": 4427,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/Slot.csv",
+        "sha256": "2f5f491bd73e34e67bf69987290afb0d8832471216aa975e8adec567724cc58d"
+      },
+      {
+        "bytes": 7952,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables/TemplateStep.csv",
+        "sha256": "a4765ba3b3822e4230e14691c1c9bd293ea5f1d30ad47c13395178b94a11853e"
+      },
+      {
+        "bytes": 75157,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/tables.json",
+        "sha256": "00aad070631a4f6c1ed524afdd9cca1159754b96dd91262b536820732c5b40ac"
+      },
+      {
+        "bytes": 10810,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/traces.json",
+        "sha256": "39a266b61c6cb741f0f6a5ca66637e49823635b9f484402eed0090b3db9232c8"
+      },
+      {
+        "bytes": 5766,
+        "category": "delivery_bundle",
+        "path": "outputs/fcf_authoring_concrete_r2/verification.json",
+        "sha256": "ee063af2f66b627cb47478c4915eb023caf03713447077b04591babb74b7f154"
+      },
+      {
+        "bytes": 182041,
+        "category": "delivery_bundle",
+        "path": "outputs/fish-reference-20260908/fish-reference-20260908.csv",
+        "sha256": "6460e9bcec46357aea4ec6f5a6d8d6ef1c3498604ec2a7209f5dbe6c052a882e"
+      },
+      {
+        "bytes": 367,
+        "category": "canonical",
+        "path": "pyproject.toml",
+        "sha256": "2e0bedcdae2d46572e65a3117023c60d250f499a7336ecd0cbf94200142c12d0"
+      },
+      {
+        "bytes": 14252,
+        "category": "canonical",
+        "path": "representation-pilot-a-overview.html",
+        "sha256": "4f42e3ed73ab5e3d13ad30fe6e64417c1c0af750cddda9120d79fb4e925bedbb"
+      },
+      {
+        "bytes": 7155,
+        "category": "canonical",
+        "path": "schemas/fcf_v1.schema.json",
+        "sha256": "a1edb48cd8896261b644f5ec8e72ef6b50cd1fbda54b424929ba4686b09c5f13"
+      },
+      {
+        "bytes": 6802,
+        "category": "canonical",
+        "path": "schemas/temperature_profile.schema.json",
+        "sha256": "6864704d81316c151bf06753c29184945041f641630c5d24f379216d598a01f5"
+      },
+      {
+        "bytes": 1710,
+        "category": "canonical",
+        "path": "tests/test_authoring_maintenance_gate.py",
+        "sha256": "95e9ba0938eef2070041765f3745197c1f4c0ff648f76ae6d9fd2557ec158010"
+      },
+      {
+        "bytes": 997,
+        "category": "canonical",
+        "path": "tests/test_authoring_vertical_slice.py",
+        "sha256": "f55dd26cd16c6e7d45ecc176180a15aa1c1e23161d998076cfcf6b756a4a3400"
+      },
+      {
+        "bytes": 5095,
+        "category": "canonical",
+        "path": "tests/test_bass_dynamic_preference.py",
+        "sha256": "1c210b7bf56477e7a189efa8977095cdc8cf01edbf4ad07a6e559789f0298bcb"
+      },
+      {
+        "bytes": 2703,
+        "category": "canonical",
+        "path": "tests/test_calibration_experiment.py",
+        "sha256": "622de4188e51688ac2062254a2077734aaeb9336a888f8979197d17c5edb7297"
+      },
+      {
+        "bytes": 700,
+        "category": "canonical",
+        "path": "tests/test_editor_prototype.py",
+        "sha256": "81815861d5447c28248b897f6665526403cf1f565f7ce17c5beb10383472c297"
+      },
+      {
+        "bytes": 49488,
+        "category": "canonical",
+        "path": "tests/test_fcf_v1.py",
+        "sha256": "b84fc5996278d57498640bed07e118dd167c6ae1a69bc5eb7740500dc820abeb"
+      },
+      {
+        "bytes": 4467,
+        "category": "canonical",
+        "path": "tests/test_pre_generation_harness.py",
+        "sha256": "fb144acd919b9d2b4a6894b621a5f2d9156433bd1da31e591c690249633824e0"
+      },
+      {
+        "bytes": 3416,
+        "category": "scratch",
+        "path": "tmp/0-3-4-authoring-runtime.svg",
+        "sha256": "e509a99aa9cff93f9131c48b9019dd6d2ff7b8d2468812fc974a69c3e83e6fe9"
+      },
+      {
+        "bytes": 3831,
+        "category": "scratch",
+        "path": "tmp/0-3-4-bass-sequence.svg",
+        "sha256": "bdad5d8d454aa17c19b950a1e220d1bef8c267b8c7ec85c1e16261e509224c6e"
+      },
+      {
+        "bytes": 3533,
+        "category": "scratch",
+        "path": "tmp/0-3-4-module-flow.svg",
+        "sha256": "c3a4c34a814914d9e91e500d392b57f2ac9820253e48a44a83c4fd8d3de383ac"
+      },
+      {
+        "bytes": 8469,
+        "category": "scratch",
+        "path": "tmp/0-3-4-overview.svg",
+        "sha256": "d221ea5872f70b5da09b46fe34447db090eff5797e1112f4186513899ee8d3a4"
+      },
+      {
+        "bytes": 210116,
+        "category": "scratch",
+        "path": "tmp/lark_whiteboard/raw.json",
+        "sha256": "789986eaf40d2e02656d7451f71b4070120e26cd7647fdad34c73abbe1172ba9"
+      },
+      {
+        "bytes": 223066,
+        "category": "scratch",
+        "path": "tmp/lark_whiteboard/whiteboard_QXHjwmb1DhVWFRbaWIfcxoARngg.png",
+        "sha256": "d2e1be67c4352a5a3465634e37841402ecb02d5845fae2c1219f712f73395982"
+      },
+      {
+        "bytes": 124994,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-01.png",
+        "sha256": "1709416052c7ee3655ae415817f91bde4309904f25120c0074011888838aec71"
+      },
+      {
+        "bytes": 117023,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-02.png",
+        "sha256": "68e3efc8493a9a0d337c0f0ddb26cb48b97e2bf428f5ee584e4bf0f55539a104"
+      },
+      {
+        "bytes": 189383,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-03.png",
+        "sha256": "c165ec8cfad7228a0bfee5d5dca3d42765733b0fd3da67d51704ec8cfe39e164"
+      },
+      {
+        "bytes": 109122,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-06.png",
+        "sha256": "b94e90ace56aad6674171506754cf3b11297ae1643f0494c8374884af3c1a4b4"
+      },
+      {
+        "bytes": 105836,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-07.png",
+        "sha256": "20261635a155c03e776c22c1d2b7544f0a9792d4e56d809b9feda45dd938612b"
+      },
+      {
+        "bytes": 89524,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-08.png",
+        "sha256": "9d4d648220c69ece0ae427ceb736a1d9278314da899557fbc88ca258de1aba40"
+      },
+      {
+        "bytes": 71052,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-09.png",
+        "sha256": "4949c92ce116bfaf8e2966108602b9d213f2884d7932c9d17baa026e229e6304"
+      },
+      {
+        "bytes": 71012,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-10.png",
+        "sha256": "5f31b4a7d132d09c4e449ba34de5757494882e2d10b02143947ae0a2d00aeb97"
+      },
+      {
+        "bytes": 93375,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-11.png",
+        "sha256": "23ebeaee11d576a8694f3c2da84afc936175c4a094db55dcc3637a6c13c6983d"
+      },
+      {
+        "bytes": 101457,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-12.png",
+        "sha256": "09885ef433a2598008accbc9ba08b3fa5aede0b1641d6d54bdaa00afa1fcca7d"
+      },
+      {
+        "bytes": 43542,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-13.png",
+        "sha256": "78fdf0b8bfacee23e891db4f24eaa450433ab21bf75e36661d036f3a027be430"
+      },
+      {
+        "bytes": 106920,
+        "category": "scratch",
+        "path": "tmp/pdfs/lure-14.png",
+        "sha256": "89660b177f2b75aab2239a55616281a6a0f069cc42dd79903c5cf41cc8e2f850"
+      },
+      {
+        "bytes": 12243,
+        "category": "canonical",
+        "path": "tools/build_handoff_manifest.py",
+        "sha256": "fe81023b36c0ef21512377d00776d4400c513b8503f5ad46f9a5cbd4637cc2fa"
+      }
+    ]
+  },
+  "manifest_version": 1,
+  "notion_sources": [
+    {
+      "role": "bootstrap_router",
+      "title": "FCF Start Here / Agent Router",
+      "url": "https://app.notion.com/p/3cca4137d2368152bcd4dadaa0ab9e47"
+    },
+    {
+      "role": "branch_topology_and_ownership",
+      "title": "FCF Design Branch Index",
+      "url": "https://app.notion.com/p/3cda4137d236819dbbc0d371ee6084dd"
+    },
+    {
+      "role": "current_authority_and_active_targets",
+      "title": "FCF Project State Current",
+      "url": "https://app.notion.com/p/3cca4137d2368114a982f3b09e965e49"
+    },
+    {
+      "role": "v1_review_target",
+      "title": "FCF V1 Core Candidate RC4 / Closure Revision",
+      "url": "https://app.notion.com/p/3cca4137d236819aa3baddca8a2c251c"
+    },
+    {
+      "role": "v1_closure_patch",
+      "title": "RC3 Review Adjudication & RC4 Closure Patch",
+      "url": "https://app.notion.com/p/3cca4137d23681fba563eccaec1cbf8c"
+    },
+    {
+      "role": "v0_current_working_main",
+      "title": "Simplified Production V0 / Working Main",
+      "url": "https://app.notion.com/p/3cda4137d23681508740ceff789abd41"
+    },
+    {
+      "role": "production_doc_authoring_governance",
+      "title": "Production Design Document Authoring Guide",
+      "url": "https://app.notion.com/p/3cfa4137d23681d68f89cc0eed80f99b"
+    },
+    {
+      "role": "v1_design_integration_startup",
+      "title": "GPT Work Startup Prompt v2 / V1",
+      "url": "https://app.notion.com/p/3cca4137d236815689b9d0cc97d4c287"
+    },
+    {
+      "role": "v1_migration_and_role_firewall",
+      "title": "GPT Work Migration Handoff / V1",
+      "url": "https://app.notion.com/p/3cca4137d236813388aadeb304bb6515"
+    },
+    {
+      "role": "representation_execution_method",
+      "title": "GPT Work Method Handoff / Representation",
+      "url": "https://app.notion.com/p/3d6a4137d23681829824f57f9105e74f"
+    },
+    {
+      "role": "state_and_artifact_manifest",
+      "title": "FCF Research Orchestration Hub R2",
+      "url": "https://app.notion.com/p/3d6a4137d236814e9f35e6ae2a761927"
+    },
+    {
+      "role": "canonical_process_contract",
+      "title": "Execution Runbook R2",
+      "url": "https://app.notion.com/p/3d6a4137d23681ca8265f98253f258a5"
+    },
+    {
+      "role": "stable_agent_roles_and_handles",
+      "title": "Persistent Role Registry",
+      "url": "https://app.notion.com/p/3d6a4137d2368137a8f3c7898e8e7ae5"
+    },
+    {
+      "role": "representation_gate",
+      "title": "Representation Design Gate R1",
+      "url": "https://app.notion.com/p/3d6a4137d23681eab6cfd3a535a8938a"
+    },
+    {
+      "role": "representation_case_baseline",
+      "title": "15 Case Authoring Visualization R0",
+      "url": "https://app.notion.com/p/3d6a4137d236814ea872ed6305942594"
+    },
+    {
+      "role": "representation_stress_and_working_handoff",
+      "title": "4 Logic Surface Authoring Stress Test R1",
+      "url": "https://app.notion.com/p/3d6a4137d2368118aeb7c6a569c4c3c3"
+    }
+  ],
+  "notion_urls_discovered": [
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "Project State Current",
+      "url": "https://app.notion.com/p/3cca4137d2368114a982f3b09e965e49"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "GPT Work Migration Handoff｜V1",
+      "url": "https://app.notion.com/p/3cca4137d236813388aadeb304bb6515"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md"
+      ],
+      "title": "FCF Router",
+      "url": "https://app.notion.com/p/3cca4137d2368152bcd4dadaa0ab9e47"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "GPT Work Startup Prompt v2｜V1",
+      "url": "https://app.notion.com/p/3cca4137d236815689b9d0cc97d4c287"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "V1 Core Candidate RC4｜Closure Revision",
+      "url": "https://app.notion.com/p/3cca4137d236819aa3baddca8a2c251c"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "RC3 Review Adjudication & RC4 Closure Patch",
+      "url": "https://app.notion.com/p/3cca4137d23681fba563eccaec1cbf8c"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md"
+      ],
+      "title": "Simplified V0 Working Main",
+      "url": "https://app.notion.com/p/3cda4137d23681508740ceff789abd41"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3cda4137d236819198fecae3c69570b5"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md"
+      ],
+      "title": "Branch Index",
+      "url": "https://app.notion.com/p/3cda4137d236819dbbc0d371ee6084dd"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "Human Usability Validation R0",
+      "url": "https://app.notion.com/p/3cfa4137d236810e8e0cc09a96e2b4e5"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3cfa4137d23681cca208eaa97dfe7767"
+    },
+    {
+      "discovered_in": [
+        "AGENTS.md",
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "Production Design Document Authoring Guide",
+      "url": "https://app.notion.com/p/3cfa4137d23681d68f89cc0eed80f99b"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "4 Logic Surface Authoring Stress Test R1",
+      "url": "https://app.notion.com/p/3d6a4137d2368118aeb7c6a569c4c3c3"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368125b5b5e56d5fa1b5f9"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681309f9ff91cb3d7614b"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "Persistent Role Registry",
+      "url": "https://app.notion.com/p/3d6a4137d2368137a8f3c7898e8e7ae5"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368139bf62f16e80bdf503"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "FCF Research Orchestration Hub R2",
+      "url": "https://app.notion.com/p/3d6a4137d236814e9f35e6ae2a761927"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/README.md",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/index.html",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "15 Case Authoring Visualization R0",
+      "url": "https://app.notion.com/p/3d6a4137d236814ea872ed6305942594"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        "representation-pilot-a-overview.html"
+      ],
+      "title": "案例映射",
+      "url": "https://app.notion.com/p/3d6a4137d2368151b762e50bc5ce6dfd"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681528003cfc978d2c39b"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681539ee4e534897defa2"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d236816286c4ec21e387d973"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        "representation-pilot-a-overview.html"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368165b064dab4b0db8f60"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681759b0fff070b2f0e4c"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md"
+      ],
+      "title": "Authoring Projection Protocol R0｜四执行面铺量与展开粒度规范",
+      "url": "https://app.notion.com/p/3d6a4137d23681799bf0e688169c049d"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "GPT Work Method Handoff｜Representation",
+      "url": "https://app.notion.com/p/3d6a4137d23681829824f57f9105e74f"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368182a0addcd6d9efa81f"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368183a2a6c257bafd6426"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d236818fa4d2ddd5fa8b3c46"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d2368195a862e6286e5cf034"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d236819e93c1f2cf006532b8"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681a48773c46adf6abba6"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "representation-pilot-a-overview.html"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681ac83f6fed813c33dd2"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681b6a907f475138affea"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json"
+      ],
+      "title": "Execution Runbook R2",
+      "url": "https://app.notion.com/p/3d6a4137d23681ca8265f98253f258a5"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681d1b26ed8d7102ec625"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681d8a687de638c693432"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "representation-pilot-a-overview.html"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681d98ba2ee8f3599dc0f"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681d99a2ac51f8f564d5f"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json"
+      ],
+      "title": "鲈鱼五群最新 Working",
+      "url": "https://app.notion.com/p/3d6a4137d23681e2af96e873eef9411a"
+    },
+    {
+      "discovered_in": [
+        "HARNESS_HANDOFF.md",
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "Representation Design Gate R1",
+      "url": "https://app.notion.com/p/3d6a4137d23681eab6cfd3a535a8938a"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681f2af3ed529d8a54f18"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681ff8ea6d954a69f7385"
+    },
+    {
+      "discovered_in": [
+        "handoff_manifest.json",
+        "tmp/lark_whiteboard/raw.json"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/Species-Funnel-12-DSL-M39-M40-3cca4137d236813cb7d1e58bfecf362a"
+    }
+  ],
+  "repository": {
+    "absolute_path": "/Volumes/Mac DS - Data/SharedProjects/programaticHitFish",
+    "git": {
+      "branch": "main",
+      "deleted_tracked": [
+        "docs/ogre_lake_manual_region_companion_experiment.md",
+        "docs/rf4_old_burg_spatial_authoring_estimate.md"
+      ],
+      "head": "eb39175050ea063d3e342cf2d6a4e1089ca3d647",
+      "head_short": "eb39175",
+      "head_subject": "chore: add harness handoff package",
+      "modified_tracked": [
+        "README.md",
+        "docs/depth_structure_mechanism_design.md",
+        "docs/design_closure_index.md",
+        "docs/dissolved_oxygen_mechanism_design.md",
+        "docs/experiments/ogre_lake_overlay_model.js",
+        "docs/fcf_v1_overview_cn.md",
+        "docs/flow_mechanism_design.md",
+        "docs/independent_review_checklist.md",
+        "docs/light_turbidity_mechanism_design.md",
+        "docs/ogre_lake_manual_region_companion_experiment.md",
+        "docs/ogre_lake_reproducible_overlay_experiment.md",
+        "docs/ogre_lake_visualization_user_guide.md",
+        "docs/rf4_old_burg_spatial_authoring_estimate.md",
+        "docs/temperature_mechanism_design.md",
+        "experiments/fcf_simplified_v0/README.md"
+      ],
+      "porcelain": [
+        "M README.md",
+        " M docs/depth_structure_mechanism_design.md",
+        " M docs/design_closure_index.md",
+        " M docs/dissolved_oxygen_mechanism_design.md",
+        " M docs/experiments/ogre_lake_overlay_model.js",
+        " M docs/fcf_v1_overview_cn.md",
+        " M docs/flow_mechanism_design.md",
+        " M docs/independent_review_checklist.md",
+        " M docs/light_turbidity_mechanism_design.md",
+        " D docs/ogre_lake_manual_region_companion_experiment.md",
+        " M docs/ogre_lake_reproducible_overlay_experiment.md",
+        " M docs/ogre_lake_visualization_user_guide.md",
+        " D docs/rf4_old_burg_spatial_authoring_estimate.md",
+        " M docs/temperature_mechanism_design.md",
+        " M experiments/fcf_simplified_v0/README.md",
+        "?? AGENTS.md",
+        "?? bass_dynamic_preference/",
+        "?? deliverables/",
+        "?? docs/archive/",
+        "?? docs/bass_dynamic_preference_pressure_test.md",
+        "?? docs/bass_dynamic_preference_prototype_validation.md",
+        "?? docs/experiments/export_spatial_bake_fixture.js",
+        "?? docs/fcf_v0_conflict_register.md",
+        "?? docs/fcf_v0_document_governance.md",
+        "?? docs/glossary_cn.md",
+        "?? docs/mechanism_spec_writing_and_review_guide_cn.md",
+        "?? docs/ogre-lake-spatial-authoring-explainer.html",
+        "?? docs/rf4_fishing_planet_bite_mechanism_audit_appendix.md",
+        "?? docs/rf4_fishing_planet_bite_mechanism_research_report.md",
+        "?? docs/scoped_review_protocol.md",
+        "?? docs/spatial_bake_fixture/",
+        "?? ogre_lake_spatial_bake/",
+        "?? outputs/",
+        "?? representation-pilot-a-overview.html",
+        "?? tests/test_bass_dynamic_preference.py",
+        "?? tmp/"
+      ],
+      "remotes": [],
+      "untracked": [
+        "AGENTS.md",
+        "bass_dynamic_preference/__init__.py",
+        "bass_dynamic_preference/output.json",
+        "bass_dynamic_preference/prototype.py",
+        "bass_dynamic_preference/prototype_output/continuous_spatial_bias.csv",
+        "bass_dynamic_preference/prototype_output/continuous_spatial_bias.svg",
+        "bass_dynamic_preference/prototype_output/generated_map.json",
+        "bass_dynamic_preference/prototype_output/prototype_results.json",
+        "bass_dynamic_preference/run_case.py",
+        "bass_dynamic_preference/run_prototype.py",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package.zip",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/algae-rock-shore.jpg",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/lily-pads-dusk.jpg",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/old-burg-map.webp",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/reed-bank-morning.jpg",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/shore-algae-morning.jpg",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/export_spatial_bake_fixture.js",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/ogre_lake_overlay_model.js",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/index.html",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_reproducible_overlay_experiment.md",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_visualization_user_guide.md",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/README.md",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/cell_layer_labels.json",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/habitat_sources.json",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/lake_grid.json",
+        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/source_metadata.json",
+        "docs/archive/fcf_v0/ogre_lake_manual_region_companion_experiment.md",
+        "docs/archive/fcf_v0/rf4_old_burg_spatial_authoring_estimate.md",
+        "docs/bass_dynamic_preference_pressure_test.md",
+        "docs/bass_dynamic_preference_prototype_validation.md",
+        "docs/experiments/export_spatial_bake_fixture.js",
+        "docs/fcf_v0_conflict_register.md",
+        "docs/fcf_v0_document_governance.md",
+        "docs/glossary_cn.md",
+        "docs/mechanism_spec_writing_and_review_guide_cn.md",
+        "docs/ogre-lake-spatial-authoring-explainer.html",
+        "docs/rf4_fishing_planet_bite_mechanism_audit_appendix.md",
+        "docs/rf4_fishing_planet_bite_mechanism_research_report.md",
+        "docs/scoped_review_protocol.md",
+        "docs/spatial_bake_fixture/README.md",
+        "docs/spatial_bake_fixture/cell_layer_labels.json",
+        "docs/spatial_bake_fixture/habitat_sources.json",
+        "docs/spatial_bake_fixture/lake_grid.json",
+        "docs/spatial_bake_fixture/source_metadata.json",
+        "ogre_lake_spatial_bake/README.md",
+        "ogre_lake_spatial_bake/bass_spatial_profiles.yaml",
+        "ogre_lake_spatial_bake/lifecycle_fixtures.json",
+        "ogre_lake_spatial_bake/ogre_lake_sources.json",
+        "ogre_lake_spatial_bake/output/benchmark.csv",
+        "ogre_lake_spatial_bake/output/query_results.csv",
+        "ogre_lake_spatial_bake/output/spatial_hotspots.png",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json.gz",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json",
+        "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json.gz",
+        "ogre_lake_spatial_bake/output/summary.json",
+        "ogre_lake_spatial_bake/output_fixture/benchmark.csv",
+        "ogre_lake_spatial_bake/output_fixture/query_results.csv",
+        "ogre_lake_spatial_bake/output_fixture/reach_falloff_comparison.png",
+        "ogre_lake_spatial_bake/output_fixture/reach_falloff_grouped.png",
+        "ogre_lake_spatial_bake/output_fixture/spatial_hotspots.png",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_2.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_4.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_8.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_full.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_2.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_4.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_8.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_full.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_2.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_4.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_8.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_full.json.gz",
+        "ogre_lake_spatial_bake/output_fixture/summary.json",
+        "ogre_lake_spatial_bake/run_experiment.py",
+        "ogre_lake_spatial_bake/run_fixture_experiment.py",
+        "outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
+        "outputs/fcf_authoring_concrete_r2/README.md",
+        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
+        "outputs/fcf_authoring_concrete_r2/baseline_stress.md",
+        "outputs/fcf_authoring_concrete_r2/build.py",
+        "outputs/fcf_authoring_concrete_r2/c08.png",
+        "outputs/fcf_authoring_concrete_r2/cases.json",
+        "outputs/fcf_authoring_concrete_r2/check-page.cjs",
+        "outputs/fcf_authoring_concrete_r2/cost-independent-review.md",
+        "outputs/fcf_authoring_concrete_r2/current-state-snapshot.md",
+        "outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
+        "outputs/fcf_authoring_concrete_r2/desktop.png",
+        "outputs/fcf_authoring_concrete_r2/equivalence-independent-review.md",
+        "outputs/fcf_authoring_concrete_r2/four-surface-completion-r1.md",
+        "outputs/fcf_authoring_concrete_r2/four_surface_preflight.json",
+        "outputs/fcf_authoring_concrete_r2/four_surface_preflight.py",
+        "outputs/fcf_authoring_concrete_r2/frozen-consumption-manifest-r3.md",
+        "outputs/fcf_authoring_concrete_r2/independent-review.md",
+        "outputs/fcf_authoring_concrete_r2/index.html",
+        "outputs/fcf_authoring_concrete_r2/mobile.png",
+        "outputs/fcf_authoring_concrete_r2/notion-00.md",
+        "outputs/fcf_authoring_concrete_r2/notion-01.md",
+        "outputs/fcf_authoring_concrete_r2/notion-02.md",
+        "outputs/fcf_authoring_concrete_r2/notion-03.md",
+        "outputs/fcf_authoring_concrete_r2/notion-04.md",
+        "outputs/fcf_authoring_concrete_r2/notion-05.md",
+        "outputs/fcf_authoring_concrete_r2/notion-06.md",
+        "outputs/fcf_authoring_concrete_r2/notion-07.md",
+        "outputs/fcf_authoring_concrete_r2/notion-08.md",
+        "outputs/fcf_authoring_concrete_r2/notion-09.md",
+        "outputs/fcf_authoring_concrete_r2/notion-10.md",
+        "outputs/fcf_authoring_concrete_r2/notion-11.md",
+        "outputs/fcf_authoring_concrete_r2/notion-12.md",
+        "outputs/fcf_authoring_concrete_r2/notion-13.md",
+        "outputs/fcf_authoring_concrete_r2/notion-14.md",
+        "outputs/fcf_authoring_concrete_r2/notion-15.md",
+        "outputs/fcf_authoring_concrete_r2/notion-16.md",
+        "outputs/fcf_authoring_concrete_r2/notion-17.md",
+        "outputs/fcf_authoring_concrete_r2/notion-18.md",
+        "outputs/fcf_authoring_concrete_r2/notion-19.md",
+        "outputs/fcf_authoring_concrete_r2/notion-20.md",
+        "outputs/fcf_authoring_concrete_r2/notion-21.md",
+        "outputs/fcf_authoring_concrete_r2/notion-22.md",
+        "outputs/fcf_authoring_concrete_r2/notion-23.md",
+        "outputs/fcf_authoring_concrete_r2/notion-24.md",
+        "outputs/fcf_authoring_concrete_r2/notion-25.md",
+        "outputs/fcf_authoring_concrete_r2/notion-26.md",
+        "outputs/fcf_authoring_concrete_r2/notion-27.md",
+        "outputs/fcf_authoring_concrete_r2/notion-28.md",
+        "outputs/fcf_authoring_concrete_r2/notion-29.md",
+        "outputs/fcf_authoring_concrete_r2/notion-30.md",
+        "outputs/fcf_authoring_concrete_r2/notion-31.md",
+        "outputs/fcf_authoring_concrete_r2/notion-32.md",
+        "outputs/fcf_authoring_concrete_r2/notion-33.md",
+        "outputs/fcf_authoring_concrete_r2/notion-34.md",
+        "outputs/fcf_authoring_concrete_r2/notion-35.md",
+        "outputs/fcf_authoring_concrete_r2/notion-36.md",
+        "outputs/fcf_authoring_concrete_r2/notion-37.md",
+        "outputs/fcf_authoring_concrete_r2/notion-38.md",
+        "outputs/fcf_authoring_concrete_r2/notion-39.md",
+        "outputs/fcf_authoring_concrete_r2/notion-40.md",
+        "outputs/fcf_authoring_concrete_r2/notion-41.md",
+        "outputs/fcf_authoring_concrete_r2/notion-42.md",
+        "outputs/fcf_authoring_concrete_r2/notion-43.md",
+        "outputs/fcf_authoring_concrete_r2/progress-overview.html",
+        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        "outputs/fcf_authoring_concrete_r2/representation-cost-r3.md",
+        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.json",
+        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.md",
+        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.py",
+        "outputs/fcf_authoring_concrete_r2/representation-shootout-r3.md",
+        "outputs/fcf_authoring_concrete_r2/representation-work-contract.md",
+        "outputs/fcf_authoring_concrete_r2/scripts.json",
+        "outputs/fcf_authoring_concrete_r2/self-qa-and-cold-review.md",
+        "outputs/fcf_authoring_concrete_r2/shootout-independent-review.md",
+        "outputs/fcf_authoring_concrete_r2/surface-coverage-audit.md",
+        "outputs/fcf_authoring_concrete_r2/tables.json",
+        "outputs/fcf_authoring_concrete_r2/tables/Binding.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/Boundary.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/CurvePoint.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/GroupShare.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/Parameter.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/Predicate.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/PredicateMember.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/QualityModifier.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/QualityWeight.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/ResponseBand.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/Slot.csv",
+        "outputs/fcf_authoring_concrete_r2/tables/TemplateStep.csv",
+        "outputs/fcf_authoring_concrete_r2/traces.json",
+        "outputs/fcf_authoring_concrete_r2/verification.json",
+        "outputs/fish-reference-20260908/fish-reference-20260908.csv",
+        "representation-pilot-a-overview.html",
+        "tests/test_bass_dynamic_preference.py",
+        "tmp/0-3-4-authoring-runtime.svg",
+        "tmp/0-3-4-bass-sequence.svg",
+        "tmp/0-3-4-module-flow.svg",
+        "tmp/0-3-4-overview.svg",
+        "tmp/lark_whiteboard/raw.json",
+        "tmp/lark_whiteboard/whiteboard_QXHjwmb1DhVWFRbaWIfcxoARngg.png",
+        "tmp/pdfs/lure-01.png",
+        "tmp/pdfs/lure-02.png",
+        "tmp/pdfs/lure-03.png",
+        "tmp/pdfs/lure-06.png",
+        "tmp/pdfs/lure-07.png",
+        "tmp/pdfs/lure-08.png",
+        "tmp/pdfs/lure-09.png",
+        "tmp/pdfs/lure-10.png",
+        "tmp/pdfs/lure-11.png",
+        "tmp/pdfs/lure-12.png",
+        "tmp/pdfs/lure-13.png",
+        "tmp/pdfs/lure-14.png"
+      ]
+    },
+    "remote_push_available": false
+  },
+  "snapshot_date": "2026-09-10",
+  "state_summary": {
+    "representation": {
+      "scope": "Pilot-A; 15 cases x 4 surfaces = 60 cells",
+      "status": "A4 PROCEED_TO_REPRESENTATION; B4 DESIGN_REVISE"
+    },
+    "simplified_v0": {
+      "authority": "branch-local Working Main",
+      "status": "WORKING / NOT PROMOTED; next gate is Human Usability Validation"
+    },
+    "v1": {
+      "authority": "FCF V1 default authority; active review target RC4",
+      "status": "Freeze blocked pending production runtime/storage evidence and Independent Narrow Close Review"
+    }
+  },
+  "validation": {
+    "command": "python3 -m pytest -q",
+    "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.46s",
+    "passed": true,
+    "returncode": 0
+  }
+}
