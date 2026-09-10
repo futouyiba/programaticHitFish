@@ -103,3 +103,18 @@ SEMANTIC_ESCALATION），报告发回 local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
   身份冲突无法隔离、prompt 与 Hub 矛盾、不可逆操作需确认——停下回信协调会话。
 - **审核链独立性**：Researcher 与 Reviewer 是不同对话，互不可见；协调会话只传
   envelope 和 named artifact，绝不转述 Worker 内部推理。
+
+## 5. Segment 分段（2026-09-10 生效）
+
+Notion Agent Registry 分两段，防止与原 Codex 机（Segment A，`01a0…` handle）打架：
+
+| Segment | 平台 | handle 段 | 状态 |
+|---|---|---|---|
+| A | Codex / macOS 原机 | `01a0…` | 原机自管（本机不碰） |
+| B | Claude Code / Windows 本机 | `local_…` | 本 Coordinator 管理 |
+
+Segment B 注册（Registry §7）：
+- FCF-FISH-RESEARCHER → `local_3184f5fc-5292-4fe0-b82e-04bed18aabfd`
+- FCF-EVIDENCE-REVIEWER → `local_780325b5-b1f8-4919-ae06-1be7d2b71eba`
+
+规则：两段 handle 互不混用、互不 resume；跨段只经 Notion 共享 artifact；envelope 跨段投递须显式声明并经用户同意。持久会话有完整工具——Notion 写回由角色**自写自核**（fetch live → 写 → readback），Coordinator 不再代写。
