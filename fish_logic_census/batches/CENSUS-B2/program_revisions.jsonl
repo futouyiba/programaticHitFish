@@ -1,0 +1,1 @@
+{"program_id": "P-B2-MDF-BAKE/P-B2-MDF-RESP", "action": "STATUS_FIELD_CLARIFIED", "revision_recorded": true, "round": "CENSUS-B2（判同段）", "reason": "input_status: frozen_status_disputed -> confirmed（coordinator adjudication；blind hash 未变，仅状态标注澄清）", "before": "disputed（页属性 PASS vs 正文 REVISE 矛盾）", "after": "confirmed（FISH-R03-RECON-001 + FISH-MAINT-FIX-001）"}

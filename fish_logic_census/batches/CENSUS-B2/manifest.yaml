@@ -44,5 +44,7 @@ coverage_discipline:
     - "各 Story Quality 面：无 Quality Selection 程序证据（同 B0/B1 基线）"
   out_of_scope: []
   comparison_not_duplicated: "鲢鱼 R02-S07（与鳙鱼 S09 同型，coverage #19）对照注记不建体"
-execution_mode: 分段（coordinator 批准：上下文吃紧时盲重建可分段）——本段=选样+fetch+盲冻结；判同段待 commit 确认后继续
-status: RUNNING_BLIND_FROZEN
+execution_mode: 分段执行（coordinator 批准）——盲重建段 14:10:54Z 冻结 → 节点回执 → commit 6928aed 锚定 → 判同段完成（「直接继续」指令）
+input_status_adjudication:
+  mdf: "coordinator 2026-09-10 裁决：R03 可用（最终 FR2=ARTIFACT_APPROVE 四轮链 + FR3 AUTO_CONTINUE 完成；FISH-R03-RECON-001 确认终审真实；DB 属性 Independent PASS 为权威，正文 REVISE 为历史残留转 researcher 队列清理）——MDF 两程序 frozen_status_confirmed，引注 FISH-R03-RECON-001 + FISH-MAINT-FIX-001"
+status: INDEPENDENT_REVIEW_REQUIRED

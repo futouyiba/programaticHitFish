@@ -1,0 +1,266 @@
+{
+ "vs_CRR": [
+  {
+   "program_id": "P-B2-PIK19-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-WAL-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BRT12-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-ARC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-VEN-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-FGA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-SWO-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BHC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-HER-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-MDF-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "family": [
+  {
+   "program_id": "P-B2-PIK19-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BRT12-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-ARC-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-VEN-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-FGA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-SWO-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BHC-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-HER-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-WAL-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-MDF-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-PIK19-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B2-WAL-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B2-BRT12-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-ARC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B2-VEN-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B2-FGA-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B2-SWO-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-MDF-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BHC-RESP-FIELD",
+   "family": "FOOD_FIELD_FEEDING_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-HER-RESP-FIELD",
+   "family": "FOOD_FIELD_FEEDING_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B2-BHC-RESP-FIELD",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-B2-HER-RESP-FIELD",
+   "family": "CUE_GUIDED_APPROACH_AVOID",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  }
+ ]
+}

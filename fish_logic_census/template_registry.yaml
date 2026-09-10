@@ -2,8 +2,14 @@
 # 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
 # v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 五个 Bake 程序（非匹配证据；第 6 个 P-LUN-BAKE-AESTIVATION 为 AMBIGUOUS 不入 non-match）；
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
-version: 3
+version: 4
 mutation_provenance:
+  batch: CENSUS-B2
+  date: 2026-09-10
+  previous_version: 3
+  b2_summary: "CRR +10 non-match 仍 0 成员（HRQ-B2-02 输入通道问题）；SINGLE +8（15 成员，factor_type 轴 +food_field）；PLAIN +2（5）；TYPED +8（27）；新立 FOOD_FIELD_FEEDING_RESPONSE（2 成员）——ΔL_bake=0 / ΔL_response=+1；MDF（R03）frozen_status_confirmed（RECON-001）"
+
+v3_provenance:
   batch: CENSUS-B1
   date: 2026-09-10
   previous_version: 2
@@ -60,6 +66,9 @@ templates:
       - batch: CENSUS-B1
         program_id: [P-B1-GRB-BAKE, P-B1-BRT-BAKE, P-B1-DRU-BAKE, P-B1-COD-BAKE, P-B1-PAD34-BAKE, P-B1-BLU-BAKE, P-B1-SMA-BAKE, P-B1-LAM-BAKE, P-B1-ONS-BAKE]
         reason: B1 全部 9 个 Bake 程序非匹配（单因子/patch/梯度/因子组合形态，无 RelativeRank 结构）；CRR 本批仍无新成员（B1 选样无低温 refuge 类故事）
+      - batch: CENSUS-B2
+        program_id: [P-B2-PIK19-BAKE, P-B2-WAL-BAKE, P-B2-BRT12-BAKE, P-B2-ARC-BAKE, P-B2-VEN-BAKE, P-B2-FGA-BAKE, P-B2-SWO-BAKE, P-B2-BHC-BAKE, P-B2-HER-BAKE, P-B2-MDF-BAKE]
+        reason: B2 thermal/季节/场类 10 程序全部非匹配（premise 绑定切换/因子组合形态）；CRR 真首考的结构性输入问题转 HRQ-B2-02（人类裁决）
     merge_candidate_status:
       pike_winter_vs_pike_summer: STRONG_MERGE_CANDIDATE
       bass_coldslow_vs_pike: PLAUSIBLE_MERGE_CANDIDATE
@@ -88,6 +97,8 @@ templates:
       - {batch: CENSUS-B0, program_id: P-OSC-BAKE, blind_hash: 49c23a9d14d8205f}
       - {batch: CENSUS-B0, program_id: P-CHB-BAKE, blind_hash: 7a45a474788ede01}
       - {batch: CENSUS-B1, program_id: P-B1-BRT-BAKE, blind_hash: a871643093aeb6b4, note: "第 3 成员：patch+rank_position 2 槽；槽位数伸缩+rank 因子类型准入待 HRQ-B1-04"}
+      - {batch: CENSUS-B2, program_id: P-B2-WAL-BAKE, blind_hash: 41c2972d04f4dfae, note: "第 4 成员：温度+食物 2 因子"}
+      - {batch: CENSUS-B2, program_id: P-B2-MDF-BAKE, blind_hash: 12d75c2a13f7b08e, note: "第 5 成员：结构+深度(低温绑定)；R03 frozen_status_confirmed（FISH-R03-RECON-001）"}
     known_non_matches:
       - {batch: CENSUS-B0, program_id: P-MGC-BAKE-ADULT, reason: 单链无 combine/依赖扇入（merge_tests 确证）}
       - {batch: CENSUS-B0, program_id: P-LUN-BAKE-WET, reason: 前置 hard gate（extend-vs-split 见 HRQ-03）}
@@ -173,6 +184,7 @@ templates:
       - {batch: CENSUS-B0-FIX-001, program_id: P-EEL-RESP-FEEDING, blind_hash: null, note: "修复轮非盲补录（EEL S9 幼成切换）：evaluator_binding 轴第二 premise 实例（首个=P-MGC-RESP-FEEDING）"}
       - {batch: CENSUS-B1, program_id: [P-B1-GRB-RESP, P-B1-BRT-RESP, P-B1-TIL-RESP, P-B1-PAD35-RESP, P-B1-DRU-RESP, P-B1-COD-RESP, P-B1-PIK-RESP, P-B1-GAR-RESP, P-B1-BLU-RESP, P-B1-SMA-RESP, P-B1-RAI-RESP, P-B1-ONS-RESP], note: "12 标准成员（engine 无字面差异）；binding 新实例：TIL 口孵 cap / PAD35 cue_history 输入 / BLU 窄接受"}
       - {batch: CENSUS-B1, program_id: P-B1-PAD34-RESP-SENSE, blind_hash: 448a1b0d61629f96, note: "evaluator_channel 新实例 PASSIVE_ELECTROSENSE（被动电感受；对照 B0 电鳗 ACTIVE_ELECTROLOCATION）；产品电呈现契约未定（TAR-07）"}
+      - {batch: CENSUS-B2, program_id: [P-B2-PIK19-RESP, P-B2-WAL-RESP, P-B2-BRT12-RESP, P-B2-ARC-RESP, P-B2-VEN-RESP, P-B2-FGA-RESP, P-B2-SWO-RESP, P-B2-MDF-RESP], note: "8 标准成员（MDF=motion-triggered 强实例：静止不触发/移动触发追捕）"}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: CUE_GUIDED_APPROACH_AVOID, reason: evaluand=环境梯度场+RETURN=Approach|Avoid（真结构差异立新族）}
   - template_id: GUARD_CONFLICT_DUAL_PATH_RESPONSE
@@ -227,6 +239,8 @@ templates:
       - {batch: CENSUS-B1, program_id: P-B1-COD-BAKE, blind_hash: f78b761e75ef034f}
       - {batch: CENSUS-B1, program_id: P-B1-BLU-BAKE, blind_hash: 780566f2df78e5d7}
       - {batch: CENSUS-B1, program_id: P-B1-LAM-BAKE, blind_hash: dc12005c1ccc5a14, note: "最宽 factor_type 实例：chemical_gradient_field（非资源场）"}
+      - {batch: CENSUS-B2, program_id: [P-B2-PIK19-BAKE, P-B2-BRT12-BAKE, P-B2-ARC-BAKE, P-B2-VEN-BAKE, P-B2-FGA-BAKE, P-B2-SWO-BAKE], blind_hash: "见 blind_programs.jsonl", note: "habitat/resource 因子 6 例（position/patch/layer/structure/diel-layer）"}
+      - {batch: CENSUS-B2, program_id: [P-B2-BHC-BAKE, P-B2-HER-BAKE], note: "factor_type 轴 +food_field（场实例第 2/3 个，继 LAM chemical_gradient）"}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: PATCH_RESOURCE_FOLLOWING, reason: 缺 typed context 步（optional_context 边界 HRQ-B1-02）}
       - {batch: CENSUS-B1, template_id: CONSTRAINED_RELATIVE_REFUGE, reason: 无 RelativeRank 结构}
@@ -255,3 +269,30 @@ templates:
     known_non_matches:
       - {batch: CENSUS-B1, template_id: TYPED_TARGET_RESPONSE, reason: "OPERATOR+RETURN 真差异（环境梯度场 evaluand + Approach|Avoid 返回 vs 离散目标 + TargetFeeding）"}
     provisional_note: 单成员 PROVISIONAL_CASE_SPECIFIC + product_deferred（TAR-06：产品不纳诱捕/化学趋向则候选冻结归档）
+  - template_id: FOOD_FIELD_FEEDING_RESPONSE
+    surface: Response
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-B2
+      seeded: 2026-09-10
+      review_queue: HRQ-B2-01
+      semantic_pattern_correspondence: P03（Food Field → FieldFeeding / Field Opportunity，New Candidate；两层登记待 review）
+    canonical_program_body: |
+      EVAL_FOOD_FIELD_INTAKE(食物场浓度 evaluand，非离散目标)
+      -> DECIDE_FIELD_FEEDING
+      -> Response(FieldFeeding)
+    ir_pointer: batches/CENSUS-B2/run_merge_tests.py::CANONICALS.FOOD_FIELD_FEEDING_RESPONSE
+    allowed_parameter_axes:
+      - field_type(typed: plankton_field | 其它具名食物场)
+      - intake_semantics(持续滤食 | 脉冲摄入)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 离散目标 evaluand（那是 TYPED 族域）, 趋向/避让决策（那是 CUE_GUIDED 族域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-B2, program_id: P-B2-BHC-RESP-FIELD, blind_hash: 8f3c897d68152a74, role: canonical_source}
+      - {batch: CENSUS-B2, program_id: P-B2-HER-RESP-FIELD, blind_hash: 9d8f33094b9b4afe}
+    known_non_matches:
+      - {batch: CENSUS-B2, template_id: TYPED_TARGET_RESPONSE, reason: "evaluand=食物场+RETURN=FieldFeeding（B1-LAM 判例同型真差异）"}
+      - {batch: CENSUS-B2, template_id: CUE_GUIDED_APPROACH_AVOID, reason: "同为场 evaluand 但程序目的（摄入 vs 趋向/避让）与 RETURN 不同"}
+    open_precedents: [HRQ-B2-01（opportunity identity/lifetime/dedup 压力——P03 Notes 同源；产品捕获方式 TAR-09）]
+    provisional_note: 双成员；P03 语义层为 New Candidate——census 族独立性不自动 promote Grammar
