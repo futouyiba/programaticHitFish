@@ -47,7 +47,15 @@ artifact / evidence 进本 repo，本机另有 run journal。对话只是执行�
   供 cwd 在交接根目录的会话加载）。
 - **同步规则**：修改角色章程只在规范源改，然后复制到工作区根；
   `tests/harness/test_agent_defs.py` 校验定义与 `harness/core.py` 的
-  `ROLE_REGISTRY` 一致、reviewer 角色无写工具、章程含 envelope/边界声明。
+  `ROLE_REGISTRY` 一致、reviewer 角色无写工具、章程含 envelope/边界声明，
+  且（部署目录存在时）部署副本与规范源逐字一致。
+- **ROLE_PROMPT_URL 约定**：envelope 中的 ROLE_PROMPT_URL 使用
+  `<repo 相对路径>@<commit short SHA>` 形式（如
+  `.claude/agents/fcf-evidence-reviewer.md@91ae7e1`），把章程内容锚定到具体提交；
+  未推送的本地 commit 在 SHA 后标注 `(local)`。
+- 只读角色的记忆写回：当前为 **Coordinator 代写机制**——角色以「记忆增量提案」
+  附于报告末尾，Coordinator 逐字转写入 `role_memory/<role>.md` 并标注来源批次
+  （各章程已声明）。后续若引入受限写工具再升级。
 - 新会话启动时加载 agent 定义；改完文件需要重启会话（或新开 tab）生效。
 
 ## 3. 通讯模式

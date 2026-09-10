@@ -48,3 +48,14 @@ Live 通道：Notion 官方远程 MCP（`https://mcp.notion.com/mcp`，用户级
 - 未写回任何 Notion 页面（治理默认只读）。
 - 未把本报告升级为任何 review verdict。
 - 未读取 Knife 页全文（留给下一刀任务本体，按其页面自身状态声明处理）。
+
+## 附录：本机 pytest 基线（环境说明）
+
+- 命令：`.venv/Scripts/python -m pytest -q`（Windows 11，Python 3.14.5，项目 venv 含 pytest + numpy）。
+- 基线（harness 基建 commit 91ae7e1 后）：**129 passed / 3 failed**。
+- 3 个失败为 `tests/test_fcf_v1.py` 中 `multiprocessing.get_context("fork")` 的跨进程
+  DurableJournal 用例（integrity_safe / exactly_once_same_id / rejects_conflicting_same_id）：
+  Windows 无 fork 上下文，属交接前既有的平台差异，非回归。同文件 SQLite 版用 `"spawn"`
+  在本机通过。macOS 上全量 117 passed（交接方报告）与本机数字对账一致（当时测试总数不同）。
+- 修复该差异需将 fork 改为 spawn（worker 均为模块级函数，spawn 兼容），属独立小改动，
+  待负责人批准后另行提交，不与 harness 基建混批。

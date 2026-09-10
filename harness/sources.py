@@ -49,19 +49,37 @@ def classify_transport_error(message: str) -> NotionTransportError:
     return NotionTransportError("TRANSPORT_FAILURE", message)
 
 
+def _normalize_url(url: str) -> str:
+    """Canonical form for identity comparison: strip query/fragment, trim slash."""
+    return url.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+
+
 class OfflineSnapshotProvider:
+    """Resolve pages against snapshot files' own identity headers.
+
+    A snapshot file IS a snapshot of exactly the page named in its fetch
+    header; a page merely mentioned inside another snapshot's body is NOT
+    covered (that mismatch is the silent-downgrade this provider must never do).
+    """
+
     mode = "SNAPSHOT_ONLY"
 
     def __init__(self, snapshot_root: str):
         self.root = Path(snapshot_root)
 
+    @staticmethod
+    def _identity_header(text: str) -> str:
+        return "\n".join(text.splitlines()[:5])
+
     def find_url(self, url: str) -> SourceRef:
-        page_id = re.search(r"/p/([a-f0-9]+)", url)
-        needle = page_id.group(1) if page_id else ""
+        target = _normalize_url(url)
         for path in sorted(self.root.glob("*.md")):
             text = path.read_text(encoding="utf-8", errors="replace")
-            if url in text or (needle and needle in text):
-                return SourceRef(url, str(path), self.mode, "SNAPSHOT_UNVERIFIED")
+            header = self._identity_header(text)
+            if f"Page with URL {target}" not in header and f'<page url="{target}"' not in header:
+                continue
+            fetched = re.search(r"as of (\S+):", header)
+            return SourceRef(url, str(path), self.mode, "SNAPSHOT_UNVERIFIED", fetched.group(1) if fetched else None)
         raise FileNotFoundError(f"SNAPSHOT_MISSING: {url}")
 
 

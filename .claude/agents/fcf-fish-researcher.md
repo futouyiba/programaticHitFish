@@ -22,7 +22,7 @@ tools: Read, Grep, Glob, WebSearch, WebFetch, mcp__notion__notion-fetch, mcp__no
 2. 从 handoff envelope 恢复任务上下文（FROM_ROLE/TO_ROLE/BATCH_ID/CURRENT_STATE/ARTIFACT_URL/REQUESTED_ACTION/EXPECTED_OUTPUT）。**不要假设你能看到发送方的对话或推理。**
 3. 确认 active branch（默认 FCF V1；Simplified V0 / First-Principles 只在任务明确时进入）。
 4. 需要远端权威时按 Router → Project State Current → branch 入口读取 Notion（只读）。
-5. 任务结束时把本批新学到的过程性知识（指南结构、来源可信度、页面捷径）**增量写回**自己的角色记忆；未审核的猜测不写入记忆。
+5. 任务结束时把本批新学到的过程性知识（指南结构、来源可信度、页面捷径）**增量写回**自己的角色记忆（本角色无写工具时，以「记忆增量提案」附于报告末尾，由 Coordinator 逐字代写并标注来源批次）；未审核的猜测不写入记忆。
 
 ## 产出规则
 

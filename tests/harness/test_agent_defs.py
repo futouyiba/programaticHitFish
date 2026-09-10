@@ -16,9 +16,10 @@ ACTIVE_ROLES = {
     "independent-narrow-reviewer",
 }
 
-# Reviewers verify, they never mutate worker output or remote pages.
+# Reviewers verify, they never mutate worker output, run commands, or edit remote pages.
 READONLY_ROLES = {"fcf-evidence-reviewer", "independent-narrow-reviewer", "fcf-semantic-triage"}
-WRITE_TOOLS = {"Write", "Edit", "NotebookEdit"}
+WRITE_TOOLS = {"Write", "Edit", "NotebookEdit", "Bash"}
+NOTION_READ_TOOLS = {"mcp__notion__notion-fetch", "mcp__notion__notion-search"}
 
 
 def parse_frontmatter(path: Path) -> dict:
@@ -62,7 +63,22 @@ def test_reviewers_are_readonly():
         tools = {t.strip() for t in fields.get("tools", "").split(",") if t.strip()}
         if stem in READONLY_ROLES:
             leaked = tools & WRITE_TOOLS
-            assert not leaked, f"{stem} is a reviewer; write tools leaked: {sorted(leaked)}"
+            assert not leaked, f"{stem} is a reviewer; write/exec tools leaked: {sorted(leaked)}"
+            notion_write = {t for t in tools if t.startswith("mcp__notion__")} - NOTION_READ_TOOLS
+            assert not notion_write, f"{stem}: non-read Notion tools leaked: {sorted(notion_write)}"
+
+
+def test_deployed_copies_match_canonical_source():
+    """When the workspace-root deploy dir exists it must equal the repo source."""
+    deployed = AGENTS_DIR.parents[2] / ".claude" / "agents"
+    if not deployed.is_dir():
+        pytest.skip("workspace-root agent deploy dir not present on this machine")
+    for stem in ACTIVE_ROLES:
+        deployed_file = deployed / f"{stem}.md"
+        assert deployed_file.exists(), f"deployed copy missing: {stem}.md"
+        assert deployed_file.read_text(encoding="utf-8") == (AGENTS_DIR / f"{stem}.md").read_text(encoding="utf-8"), (
+            f"{stem}.md: deployed copy drifted from canonical source"
+        )
 
 
 def test_charters_declare_envelope_and_exclusions():

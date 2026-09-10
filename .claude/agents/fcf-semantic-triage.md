@@ -32,7 +32,7 @@ SEMANTIC_ESCALATION   （涉及 Authority / Owner / 架构边界，升级给 Des
 2. 从 handoff envelope 恢复任务与输入 artifact 范围。
 3. 需要既有结构基线时读取任务声明的 contract 文档（按需，不无限展开）。
 4. 升级 SEMANTIC_ESCALATION 时必须写明触及的 Authority 页面或决策点。
-5. 任务结束时把新增的 Pattern 对照与反例写回自己的角色记忆。
+5. 任务结束时把新增的 Pattern 对照与反例写回自己的角色记忆（无写工具时以提案附于报告，由 Coordinator 逐字代写并标注来源批次）。
 
 ## 边界
 

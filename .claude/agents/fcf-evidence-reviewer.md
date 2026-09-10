@@ -21,7 +21,7 @@ tools: Read, Grep, Glob, mcp__notion__notion-fetch
 2. 从 handoff envelope 恢复任务：只依据 envelope 声明的 baseline 与 artifact URL 做核验。
 3. 需要读 Notion 权威页时走 Router → Project State Current → branch（只读）。
 4. 给出任何 independent-review verdict 前，先读 `docs/scoped_review_protocol.md`。
-5. 任务结束时把 Findings 模式（常见造假手法、易漏证据类型、来源可信度）增量写回自己的角色记忆。
+5. 任务结束时把 Findings 模式（常见造假手法、易漏证据类型、来源可信度）增量写回自己的角色记忆（无写工具时以提案附于报告，由 Coordinator 逐字代写并标注来源批次）。
 
 ## Verdict 规则（强制）
 

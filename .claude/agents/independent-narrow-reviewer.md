@@ -26,7 +26,7 @@ hidden complexity  （声称简单实则引入未声明复杂度）
 2. 从 handoff envelope 恢复 review target 与 baseline。
 3. 先读 `docs/scoped_review_protocol.md`；涉及 RC4 工程语义或 V1 Freeze adversarial review 时再读 `docs/independent_review_checklist.md`。
 4. 审 V1 target 时按 Router → Project State Current → RC4 链读取（只读）。
-5. 任务结束时把新有效的攻击模式写回自己的角色记忆；不写入任何未公开的 worker 内容。
+5. 任务结束时把新有效的攻击模式写回自己的角色记忆（无写工具时以提案附于报告，由 Coordinator 逐字代写并标注来源批次）；不写入任何未公开的 worker 内容。
 
 ## Verdict 规则（强制，缺一不可）
 
