@@ -1,0 +1,1280 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FCF 具体配置与中文脚本 · R2</title><style>
+ :root{color-scheme:light;--ink:#15352e;--soft:#ecf3ef;--line:#d4e0d9;--accent:#17624d}*{box-sizing:border-box}body{margin:0;background:#f6f7f2;color:var(--ink);font:16px/1.7 system-ui,-apple-system,'PingFang SC',sans-serif}header,main,footer{max-width:1480px;margin:auto;padding:32px}header{padding-top:64px}h1{font-size:clamp(30px,4vw,54px);line-height:1.2;max-width:1000px}h2{font-size:26px;line-height:1.4}h3{margin-top:20px}a{color:var(--accent)}.eyebrow,.small{font-size:13px;color:#526b61}.badge{border:1px solid var(--line);border-radius:20px;padding:6px 12px;display:inline-block;margin-right:8px;background:white}.flow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:24px 0}.flow b{padding:14px 20px;background:#deebe1;border-radius:8px}.toolbar{position:sticky;top:0;z-index:3;background:#f6f7f2ee;backdrop-filter:blur(10px);border-block:1px solid var(--line);padding:12px;display:flex;gap:8px;flex-wrap:wrap}input,select,button{font:inherit;padding:10px 14px;border:1px solid #afc4b6;border-radius:6px;background:white;color:var(--ink)}input{flex:1;min-width:170px}.case{background:white;padding:26px;border:1px solid var(--line);border-radius:12px;margin:24px 0;scroll-margin-top:95px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;min-width:0}.pair>div{min-width:0}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.5}th,td{padding:8px 10px;text-align:left;border:1px solid var(--line);vertical-align:top}th{background:#e8f0e9;white-space:nowrap}details{border:1px solid var(--line);border-radius:6px;margin:8px 0;padding:10px}summary{cursor:pointer;font-weight:600}pre{font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border-radius:6px;background:#f0f5f1;margin:8px 0;max-height:900px;overflow:auto}.notice{padding:18px 22px;background:#fff4d9;border-left:4px solid #ab7b29}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}.stats>div{padding:18px;background:#e7eee5;border-radius:8px}.stats strong{display:block;font-size:32px}.hide{display:none}.single .pair{grid-template-columns:1fr}.single .pair>div:first-child{display:none}@media(max-width:850px){header,main,footer{padding:20px}.pair{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.case{padding:16px}}@media print{.toolbar{display:none}details>*{display:block}.case{break-inside:avoid}pre{max-height:none}.pair{grid-template-columns:1fr}}
+ body{overflow-wrap:anywhere}.scroll{max-width:100%}details{min-width:0}</style><header><span class="eyebrow">FCF / AUTHORING REPRESENTATION / R2</span><h1>配置到底填什么，<br>中文脚本到底怎么写。</h1><p>左边是完整样例行，右边是展开后的中文执行逻辑。相同输入、相同曲线、相同结果。</p><span class="badge">WORKING · 未选型</span><span class="badge">全数值为演示</span><span class="badge">保留历史投影</span><div class="flow"><b>只读快照</b>→<b>具名条件 / Profile</b>→<b>固定因果步骤</b>→<b>类型化结果</b></div><div class="notice">“两张 Profile”不等于 Selector；“8条 PARTIAL”不等于都要继续查鱼。当前演示沿用最新 Design Gate，具体数值仍与生产决策分开。</div><div class="stats"><div><strong>11 + 1</strong>表格：作者表 + 模板目录</div><div><strong>5 + 1</strong>脚本：共用表 + 文本集合</div><div><strong>15</strong>原案例含范围外边界</div><div><strong>5</strong>鲈鱼群体完整投影</div></div><p><a href="four-surface-completion-r1.md">四面补齐包 R1.1</a> · <a href="authoring-concrete-r2.md">完整中文文档</a> · <a href="tables.json">完整表数据</a> · <a href="scripts.json">全部中文脚本</a> · <a href="verification.json">复算记录</a> · <a href="independent-review.md">独立审核记录</a> · <a href="https://app.notion.com/p/3d6a4137d236814ea872ed6305942594">Notion 正文 §25</a></p></header><main><div class="toolbar"><input id="search" aria-label="搜索案例" placeholder="搜索 C08、鲈鱼、Q3…"><select id="group" aria-label="选择案例组"><option value="all">所有案例</option><option value="C">C01–C15</option><option value="BASS">鲈鱼五群</option><option value="G">Group 条件</option><option value="Q">Quality 修正</option></select><button id="mode">只看脚本</button><button id="expand">展开当前案例的全部表</button></div><section class="case"><h2>全局表头与实际行数</h2><p>行数按本文件去重，不把每例重复引用的共享行重复相加。TemplateStep 是工程提供的固定目录。</p><div class="scroll"><table><thead><tr><th>表</th><th>全列</th><th>去重实际行数</th><th>权限</th></tr></thead><tbody><tr><td>Binding</td><td>binding_id / surface / subject / template_id / status</td><td>38</td><td>作者数据</td></tr><tr><td>Slot</td><td>binding_id / slot / enabled / ref_kind / ref_id</td><td>100</td><td>作者数据</td></tr><tr><td>Parameter</td><td>parameter_id / type / value / unit</td><td>32</td><td>作者数据</td></tr><tr><td>CurvePoint</td><td>profile_id / x / y</td><td>159</td><td>作者数据</td></tr><tr><td>Predicate</td><td>node_id / kind / field / operator / parameter_id</td><td>29</td><td>作者数据</td></tr><tr><td>PredicateMember</td><td>parent_id / display_index / child_id</td><td>17</td><td>作者数据</td></tr><tr><td>ResponseBand</td><td>binding_id / priority / predicate_id / response_strength</td><td>4</td><td>作者数据</td></tr><tr><td>GroupShare</td><td>binding_id / group / predicate_id / share_kind / share_ref / input_field</td><td>7</td><td>作者数据</td></tr><tr><td>QualityWeight</td><td>binding_id / bucket / base_weight</td><td>32</td><td>作者数据</td></tr><tr><td>QualityModifier</td><td>binding_id / rule_id / predicate_id / bucket / multiplier</td><td>64</td><td>作者数据</td></tr><tr><td>Boundary</td><td>case_id / scope / reason</td><td>3</td><td>作者数据</td></tr><tr><td>TemplateStep</td><td>template_id / step / operation / input / output / failure</td><td>46</td><td>只读目录</td></tr></tbody></table></div><details><summary>字段类型、主键与规则</summary><h3>Binding</h3><p>PK binding_id；surface=GROUP/BAKE/RESPONSE/QUALITY；template_id FK→只读模板目录。subject 是上游已选择的群/情景；不以字符串匹配在 Runtime 路由。status 区分演示 Working、情景及合成压力。</p><h3>Slot</h3><p>PK(binding_id,slot)，binding FK；slot 必须属于该模板白名单。enabled 为 bool；ref_kind=PROFILE/PARAMETER/SWITCH。PROFILE/PARAMETER 开启时 ref_id 必须存在且类型匹配，关闭时 N/A。纯 SWITCH 的 ref_id 始终 N/A，唯一真值源就是 enabled，没有第二个 bool Parameter。可关 Slot 没有 Side effect，也不能调整步骤位置。</p><h3>Parameter</h3><p>PK parameter_id；type=number/bool/string/set&lt;string&gt;；value 按 type 解析（BETWEEN 的数值二元范围见特例）；unit 必须一致。所有本批数字是 DEMO 校验值，不是生态/平衡标定。</p><h3>CurvePoint</h3><p>PK(profile_id,x)；x 严格递增、有限，y∈[0,1]。至少两点；线性插值、两端夹持。不同 Profile 不混单位；输入量纲由固定 Slot 定义。没有未写出的 spline 或随机噪声。</p><h3>Predicate</h3><p>PK node_id；kind=ATOM/ALL/ANY/NOT。ATOM 的 field 是只读白名单字段，operator∈GE/GT/LE/EQ/BETWEEN/IN/CONTAINS_ANY；parameter_id FK。组合节点三个叶字段显式 N/A。BETWEEN 为闭区间；空集、缺失字段/类型错拒绝。</p><h3>PredicateMember</h3><p>PK(parent_id,display_index)；parent/child FK→Predicate；ALL/ANY 至少一个子节点，NOT 恰一个；禁止环。display_index 只用于作者阅读，没有 Runtime 顺序意义；全部条件是纯读。</p><h3>ResponseBand</h3><p>PK(binding_id,priority)；仅 R_BANDS，priority 为唯一整数递增，predicate_id FK；结果 response_strength∈[0,1]。FIRST_MATCH；无命中用显式 Default。这里的 priority 是同一响应分档规则顺序，绝非 Defense/Feeding 优先级。</p><h3>GroupShare</h3><p>PK(binding_id,group)；predicate FK。share_kind=PARAMETER 时 share_ref→[0,1]标量且 input_field=N/A；PROFILE 时 ref→CurvePoint 并指定慢速输入。全部条件同快照、同时算；总和超1拒绝；Normal 不单列可编辑 Share。</p><h3>QualityWeight</h3><p>PK(binding_id,bucket)；bucket 固定 Small/Medium/Large/Rare 的演示枚举；base_weight 非负、至少一项正值。不声称这四桶已成为生产枚举，也不等同生命周期。</p><h3>QualityModifier</h3><p>PK(binding_id,rule_id,bucket)；predicate FK；multiplier 非负有限。命中行按桶连乘，未列桶×1；所有条件读原始快照；只归一化一次，抽样在外部。</p><h3>Boundary</h3><p>PK case_id；scope=SCOPE_RESOLUTION/OUT_OF_SCOPE；reason 是作者范围说明，不是可执行 predicate。C14/C15 无 Binding 而非伪造 Response=0。</p><h3>TemplateStep</h3><p>PK(template_id,step)；是方案A须明确给工程/作者看的只读模板目录，不是普通配置表。operation/input/output/failure 展开固定因果；修改执行拓扑须创建/修改模板，经现有机制治理，不能让 Switch 偷改顺序。</p></details></section><section class="case" data-search="C01 大西洋鳕：普通觅食空间"><h2>C01 大西洋鳕：普通觅食空间</h2><p>T→S→D 是填满样本所选的演示顺序；Owner 的生产空间顺序未冻结。三个独立乘因子交换顺序不改变结果。</p><p class="small">4 张作者表 · 18 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 10,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25
+  },
+  &quot;target.depth_m&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C01_B</td><td>BAKE</td><td>AtlanticCod.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C01_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>C01_B_Temperature</td></tr><tr><td>C01_B</td><td>Anchor</td><td>True</td><td>PARAMETER</td><td>C01_B_Anchor</td></tr><tr><td>C01_B</td><td>Structure</td><td>True</td><td>PROFILE</td><td>C01_B_Structure</td></tr><tr><td>C01_B</td><td>Depth</td><td>True</td><td>PROFILE</td><td>C01_B_Depth</td></tr><tr><td>C01_B</td><td>Light</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C01_B</td><td>ColdFront</td><td>False</td><td>SWITCH</td><td>N/A</td></tr><tr><td>C01_B</td><td>Cover</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C01_B</td><td>Deep</td><td>False</td><td>PROFILE</td><td>N/A</td></tr></tbody></table></div></details><details><summary>Parameter · 1 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>C01_B_Anchor</td><td>string</td><td>stable_cover</td><td>category</td></tr></tbody></table></div></details><details><summary>CurvePoint · 8 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C01_B_Temperature</td><td>0</td><td>0.2</td></tr><tr><td>C01_B_Temperature</td><td>10</td><td>1</td></tr><tr><td>C01_B_Temperature</td><td>20</td><td>0.2</td></tr><tr><td>C01_B_Structure</td><td>0</td><td>1</td></tr><tr><td>C01_B_Structure</td><td>100</td><td>0.2</td></tr><tr><td>C01_B_Depth</td><td>0</td><td>0.1</td></tr><tr><td>C01_B_Depth</td><td>20</td><td>1</td></tr><tr><td>C01_B_Depth</td><td>60</td><td>0.3</td></tr></tbody></table></div></details><details><summary>TemplateStep · 6 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>S_FIXED</td><td>1</td><td>查分段线性曲线</td><td>target.temperature_c × @Temperature</td><td>T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>2</td><td>按具名锚点读取距离，再查曲线</td><td>target.anchor_distances_m[@Anchor] × @Structure</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>3</td><td>查分段线性曲线</td><td>target.depth_m × @Depth</td><td>D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>4</td><td>固定 Light Slot：关=1；开=查曲线</td><td>target.illuminance_lux × @Light</td><td>L</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>5</td><td>独立因子乘积</td><td>T × S × D × L</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>6</td><td>固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)</td><td>BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C01_B</h4><pre>表达 C01_B 用于 AtlanticCod.Normal / BAKE
+模板 S_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Temperature = @C01_B_Temperature
+  Anchor = @C01_B_Anchor
+  Structure = @C01_B_Structure
+  Depth = @C01_B_Depth
+  Light = 关闭（无引用）
+  ColdFront = 关闭（无引用）
+  Cover = 关闭（无引用）
+  Deep = 关闭（无引用）
+执行：
+T = 查曲线(@C01_B_Temperature, target.temperature_c)
+AnchorDistance = target.anchor_distances_m[@C01_B_Anchor]
+S = 查曲线(@C01_B_Structure, AnchorDistance)
+D = 查曲线(@C01_B_Depth, target.depth_m)
+L = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1
+Base = T × S × D × L
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)
+Deep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C01&quot;,
+  &quot;binding&quot;: &quot;C01_B&quot;,
+  &quot;template&quot;: &quot;S_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Anchor&quot;: &quot;stable_cover&quot;,
+    &quot;AnchorDistance&quot;: 25,
+    &quot;Structure&quot;: 0.8,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Depth&quot;: 1.0,
+    &quot;Base&quot;: 0.8
+  },
+  &quot;result&quot;: 0.8
+}</pre></details></div></div></section><section class="case" data-search="C02 斑点叉尾鮰：近底空间"><h2>C02 斑点叉尾鮰：近底空间</h2><p>普通近底觅食样本；气味留在 Exposure Owner，本表不再扣一次 Feeding。生产空间顺序未冻结。</p><p class="small">4 张作者表 · 18 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 25,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 50
+  },
+  &quot;target.depth_m&quot;: 3
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C02_B</td><td>BAKE</td><td>ChannelCatfish.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C02_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>C02_B_Temperature</td></tr><tr><td>C02_B</td><td>Anchor</td><td>True</td><td>PARAMETER</td><td>C02_B_Anchor</td></tr><tr><td>C02_B</td><td>Structure</td><td>True</td><td>PROFILE</td><td>C02_B_Structure</td></tr><tr><td>C02_B</td><td>Depth</td><td>True</td><td>PROFILE</td><td>C02_B_Depth</td></tr><tr><td>C02_B</td><td>Light</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C02_B</td><td>ColdFront</td><td>False</td><td>SWITCH</td><td>N/A</td></tr><tr><td>C02_B</td><td>Cover</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C02_B</td><td>Deep</td><td>False</td><td>PROFILE</td><td>N/A</td></tr></tbody></table></div></details><details><summary>Parameter · 1 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>C02_B_Anchor</td><td>string</td><td>stable_cover</td><td>category</td></tr></tbody></table></div></details><details><summary>CurvePoint · 8 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C02_B_Temperature</td><td>5</td><td>0.2</td></tr><tr><td>C02_B_Temperature</td><td>25</td><td>1</td></tr><tr><td>C02_B_Temperature</td><td>35</td><td>0.3</td></tr><tr><td>C02_B_Structure</td><td>0</td><td>1</td></tr><tr><td>C02_B_Structure</td><td>100</td><td>0.4</td></tr><tr><td>C02_B_Depth</td><td>0</td><td>0.2</td></tr><tr><td>C02_B_Depth</td><td>3</td><td>1</td></tr><tr><td>C02_B_Depth</td><td>15</td><td>0.3</td></tr></tbody></table></div></details><details><summary>TemplateStep · 6 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>S_FIXED</td><td>1</td><td>查分段线性曲线</td><td>target.temperature_c × @Temperature</td><td>T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>2</td><td>按具名锚点读取距离，再查曲线</td><td>target.anchor_distances_m[@Anchor] × @Structure</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>3</td><td>查分段线性曲线</td><td>target.depth_m × @Depth</td><td>D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>4</td><td>固定 Light Slot：关=1；开=查曲线</td><td>target.illuminance_lux × @Light</td><td>L</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>5</td><td>独立因子乘积</td><td>T × S × D × L</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>6</td><td>固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)</td><td>BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C02_B</h4><pre>表达 C02_B 用于 ChannelCatfish.Normal / BAKE
+模板 S_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Temperature = @C02_B_Temperature
+  Anchor = @C02_B_Anchor
+  Structure = @C02_B_Structure
+  Depth = @C02_B_Depth
+  Light = 关闭（无引用）
+  ColdFront = 关闭（无引用）
+  Cover = 关闭（无引用）
+  Deep = 关闭（无引用）
+执行：
+T = 查曲线(@C02_B_Temperature, target.temperature_c)
+AnchorDistance = target.anchor_distances_m[@C02_B_Anchor]
+S = 查曲线(@C02_B_Structure, AnchorDistance)
+D = 查曲线(@C02_B_Depth, target.depth_m)
+L = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1
+Base = T × S × D × L
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)
+Deep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C02&quot;,
+  &quot;binding&quot;: &quot;C02_B&quot;,
+  &quot;template&quot;: &quot;S_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Anchor&quot;: &quot;stable_cover&quot;,
+    &quot;AnchorDistance&quot;: 50,
+    &quot;Structure&quot;: 0.7,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Depth&quot;: 1.0,
+    &quot;Base&quot;: 0.7
+  },
+  &quot;result&quot;: 0.7000000000000001
+}</pre></details></div></div></section><section class="case" data-search="C03 虹鳟：自然漂流匹配"><h2>C03 虹鳟：自然漂流匹配</h2><p>明确 FIRST_MATCH + 默认0；结果只到 ResponseStrength，不创建 Follow/Track/Attack 状态或后生成追击。</p><p class="small">6 张作者表 · 14 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.natural_drift_fit&quot;: 0.7
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C03_R</td><td>RESPONSE</td><td>RainbowTrout.Normal</td><td>R_BANDS</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C03_R</td><td>Default</td><td>True</td><td>PARAMETER</td><td>C03_R_Default</td></tr></tbody></table></div></details><details><summary>Parameter · 4 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>C03_R_Default</td><td>number</td><td>0</td><td>1</td></tr><tr><td>C03_good_match_value</td><td>number</td><td>0.7</td><td>1</td></tr><tr><td>C03_drift_value</td><td>number</td><td>0.6</td><td>1</td></tr><tr><td>C03_some_match_value</td><td>number</td><td>0.3</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 4 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>C03_good_match</td><td>ATOM</td><td>response.feeding_match</td><td>GE</td><td>C03_good_match_value</td></tr><tr><td>C03_drift</td><td>ATOM</td><td>response.natural_drift_fit</td><td>GE</td><td>C03_drift_value</td></tr><tr><td>C03_high</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>C03_some_match</td><td>ATOM</td><td>response.feeding_match</td><td>GE</td><td>C03_some_match_value</td></tr></tbody></table></div></details><details><summary>PredicateMember · 2 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>C03_high</td><td>1</td><td>C03_good_match</td></tr><tr><td>C03_high</td><td>2</td><td>C03_drift</td></tr></tbody></table></div></details><details><summary>ResponseBand · 2 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>priority</th><th>predicate_id</th><th>response_strength</th></tr></thead><tbody><tr><td>C03_R</td><td>10</td><td>C03_high</td><td>0.8</td></tr><tr><td>C03_R</td><td>20</td><td>C03_some_match</td><td>0.25</td></tr></tbody></table></div></details><details><summary>TemplateStep · 3 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_BANDS</td><td>1</td><td>只读同一 Opportunity Evaluation Scope</td><td>FeedingMatch / Presentation facts</td><td>facts</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_BANDS</td><td>2</td><td>按显式 priority 递增测试条件；FIRST_MATCH</td><td>ResponseBand + Predicate</td><td>第一条命中行</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_BANDS</td><td>3</td><td>SET；无命中使用固定 Default Slot</td><td>response_strength 或 @Default</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C03_R</h4><pre>表达 C03_R 用于 RainbowTrout.Normal / RESPONSE
+模板 R_BANDS（固定结构，仅展开便于阅读）
+配置：
+  Default = @C03_R_Default
+执行：
+读取 本次 Scope 的只读 facts
+按以下 priority 顺序，第一条满足就返回 指定响应强度
+优先级 10：若 (response.feeding_match GE @C03_good_match_value AND response.natural_drift_fit GE @C03_drift_value)：返回 响应强度(0.8)
+优先级 20：若 response.feeding_match GE @C03_some_match_value：返回 响应强度(0.25)
+否则 返回 响应强度(@C03_R_Default)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C03&quot;,
+  &quot;binding&quot;: &quot;C03_R&quot;,
+  &quot;template&quot;: &quot;R_BANDS&quot;,
+  &quot;intermediate&quot;: {
+    &quot;C03_high&quot;: true
+  },
+  &quot;result&quot;: 0.8
+}</pre></details></div></div></section><section class="case" data-search="C04 褐鳟：普通摄食响应"><h2>C04 褐鳟：普通摄食响应</h2><p>明确 FIRST_MATCH + 默认0；结果只到 ResponseStrength，不创建 Follow/Track/Attack 状态或后生成追击。</p><p class="small">5 张作者表 · 9 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.feeding_match&quot;: 0.8
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C04_R</td><td>RESPONSE</td><td>BrownTrout.Normal</td><td>R_BANDS</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C04_R</td><td>Default</td><td>True</td><td>PARAMETER</td><td>C04_R_Default</td></tr></tbody></table></div></details><details><summary>Parameter · 3 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>C04_R_Default</td><td>number</td><td>0</td><td>1</td></tr><tr><td>C04_good_match_value</td><td>number</td><td>0.7</td><td>1</td></tr><tr><td>C04_some_match_value</td><td>number</td><td>0.3</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 2 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>C04_good_match</td><td>ATOM</td><td>response.feeding_match</td><td>GE</td><td>C04_good_match_value</td></tr><tr><td>C04_some_match</td><td>ATOM</td><td>response.feeding_match</td><td>GE</td><td>C04_some_match_value</td></tr></tbody></table></div></details><details><summary>ResponseBand · 2 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>priority</th><th>predicate_id</th><th>response_strength</th></tr></thead><tbody><tr><td>C04_R</td><td>10</td><td>C04_good_match</td><td>0.8</td></tr><tr><td>C04_R</td><td>20</td><td>C04_some_match</td><td>0.25</td></tr></tbody></table></div></details><details><summary>TemplateStep · 3 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_BANDS</td><td>1</td><td>只读同一 Opportunity Evaluation Scope</td><td>FeedingMatch / Presentation facts</td><td>facts</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_BANDS</td><td>2</td><td>按显式 priority 递增测试条件；FIRST_MATCH</td><td>ResponseBand + Predicate</td><td>第一条命中行</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_BANDS</td><td>3</td><td>SET；无命中使用固定 Default Slot</td><td>response_strength 或 @Default</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C04_R</h4><pre>表达 C04_R 用于 BrownTrout.Normal / RESPONSE
+模板 R_BANDS（固定结构，仅展开便于阅读）
+配置：
+  Default = @C04_R_Default
+执行：
+读取 本次 Scope 的只读 facts
+按以下 priority 顺序，第一条满足就返回 指定响应强度
+优先级 10：若 response.feeding_match GE @C04_good_match_value：返回 响应强度(0.8)
+优先级 20：若 response.feeding_match GE @C04_some_match_value：返回 响应强度(0.25)
+否则 返回 响应强度(@C04_R_Default)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C04&quot;,
+  &quot;binding&quot;: &quot;C04_R&quot;,
+  &quot;template&quot;: &quot;R_BANDS&quot;,
+  &quot;intermediate&quot;: {
+    &quot;C04_good_match&quot;: true
+  },
+  &quot;result&quot;: 0.8
+}</pre></details></div></div></section><section class="case" data-search="C05 玻璃梭鲈：低光空间"><h2>C05 玻璃梭鲈：低光空间</h2><p>Light 是 S_FIXED 预定义 Slot；本例开启。没有新建昼夜 Runtime Mode，生产空间顺序未冻结。</p><p class="small">4 张作者表 · 21 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 15,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 0
+  },
+  &quot;target.depth_m&quot;: 8,
+  &quot;target.illuminance_lux&quot;: 100
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C05_B</td><td>BAKE</td><td>Walleye.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C05_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>C05_B_Temperature</td></tr><tr><td>C05_B</td><td>Anchor</td><td>True</td><td>PARAMETER</td><td>C05_B_Anchor</td></tr><tr><td>C05_B</td><td>Structure</td><td>True</td><td>PROFILE</td><td>C05_B_Structure</td></tr><tr><td>C05_B</td><td>Depth</td><td>True</td><td>PROFILE</td><td>C05_B_Depth</td></tr><tr><td>C05_B</td><td>Light</td><td>True</td><td>PROFILE</td><td>C05_B_Light</td></tr><tr><td>C05_B</td><td>ColdFront</td><td>False</td><td>SWITCH</td><td>N/A</td></tr><tr><td>C05_B</td><td>Cover</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C05_B</td><td>Deep</td><td>False</td><td>PROFILE</td><td>N/A</td></tr></tbody></table></div></details><details><summary>Parameter · 1 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>C05_B_Anchor</td><td>string</td><td>stable_cover</td><td>category</td></tr></tbody></table></div></details><details><summary>CurvePoint · 11 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C05_B_Temperature</td><td>0</td><td>0.2</td></tr><tr><td>C05_B_Temperature</td><td>15</td><td>1</td></tr><tr><td>C05_B_Temperature</td><td>30</td><td>0.1</td></tr><tr><td>C05_B_Structure</td><td>0</td><td>1</td></tr><tr><td>C05_B_Structure</td><td>100</td><td>0.2</td></tr><tr><td>C05_B_Depth</td><td>0</td><td>0.2</td></tr><tr><td>C05_B_Depth</td><td>8</td><td>1</td></tr><tr><td>C05_B_Depth</td><td>25</td><td>0.4</td></tr><tr><td>C05_B_Light</td><td>0</td><td>1</td></tr><tr><td>C05_B_Light</td><td>100</td><td>0.8</td></tr><tr><td>C05_B_Light</td><td>1000</td><td>0.2</td></tr></tbody></table></div></details><details><summary>TemplateStep · 6 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>S_FIXED</td><td>1</td><td>查分段线性曲线</td><td>target.temperature_c × @Temperature</td><td>T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>2</td><td>按具名锚点读取距离，再查曲线</td><td>target.anchor_distances_m[@Anchor] × @Structure</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>3</td><td>查分段线性曲线</td><td>target.depth_m × @Depth</td><td>D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>4</td><td>固定 Light Slot：关=1；开=查曲线</td><td>target.illuminance_lux × @Light</td><td>L</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>5</td><td>独立因子乘积</td><td>T × S × D × L</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>6</td><td>固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)</td><td>BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C05_B</h4><pre>表达 C05_B 用于 Walleye.Normal / BAKE
+模板 S_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Temperature = @C05_B_Temperature
+  Anchor = @C05_B_Anchor
+  Structure = @C05_B_Structure
+  Depth = @C05_B_Depth
+  Light = @C05_B_Light
+  ColdFront = 关闭（无引用）
+  Cover = 关闭（无引用）
+  Deep = 关闭（无引用）
+执行：
+T = 查曲线(@C05_B_Temperature, target.temperature_c)
+AnchorDistance = target.anchor_distances_m[@C05_B_Anchor]
+S = 查曲线(@C05_B_Structure, AnchorDistance)
+D = 查曲线(@C05_B_Depth, target.depth_m)
+L = 若 Light 开启 则 查曲线(@C05_B_Light, target.illuminance_lux) 否则 1
+Base = T × S × D × L
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)
+Deep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C05&quot;,
+  &quot;binding&quot;: &quot;C05_B&quot;,
+  &quot;template&quot;: &quot;S_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Anchor&quot;: &quot;stable_cover&quot;,
+    &quot;AnchorDistance&quot;: 0,
+    &quot;Structure&quot;: 1,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Depth&quot;: 1.0,
+    &quot;Light&quot;: 0.8,
+    &quot;Base&quot;: 0.8
+  },
+  &quot;result&quot;: 0.8
+}</pre></details></div></div></section><section class="case" data-search="C06 护巢蓝鳃太阳鱼"><h2>C06 护巢蓝鳃太阳鱼</h2><p>Previous: Defense/Feeding precedence 未决 → Updated: 上游 Guarding 分群，只评价 Defense 并返回。普通 Feeding Slot 不存在；不声称现实绝不摄食。</p><p class="small">3 张作者表 · 5 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.intrusion_strength&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C06_R</td><td>RESPONSE</td><td>Bluegill.Guarding</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C06_R</td><td>Defense</td><td>True</td><td>PROFILE</td><td>C06_R_Defense</td></tr></tbody></table></div></details><details><summary>CurvePoint · 3 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C06_R_Defense</td><td>0</td><td>0</td></tr><tr><td>C06_R_Defense</td><td>0.5</td><td>0.6</td></tr><tr><td>C06_R_Defense</td><td>1</td><td>0.9</td></tr></tbody></table></div></details><details><summary>TemplateStep · 2 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_DEFENSE</td><td>1</td><td>只读已准入的入侵强度</td><td>response.intrusion_strength</td><td>intrusion</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DEFENSE</td><td>2</td><td>查 Defense 曲线</td><td>intrusion × @Defense</td><td>ResponseStrength；立即返回</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C06_R</h4><pre>表达 C06_R 用于 Bluegill.Guarding / RESPONSE
+模板 R_DEFENSE（固定结构，仅展开便于阅读）
+配置：
+  Defense = @C06_R_Defense
+执行：
+Defense = 查曲线(@C06_R_Defense, response.intrusion_strength)
+返回 响应强度(Defense)
+// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C06&quot;,
+  &quot;binding&quot;: &quot;C06_R&quot;,
+  &quot;template&quot;: &quot;R_DEFENSE&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Defense&quot;: 0.6
+  },
+  &quot;result&quot;: 0.6
+}</pre></details></div></div></section><section class="case" data-search="C07 亲护小口黑鲈"><h2>C07 亲护小口黑鲈</h2><p>Previous: Defense/Feeding precedence 未决 → Updated: 上游 Guarding 分群，只评价 Defense 并返回。普通 Feeding Slot 不存在；不声称现实绝不摄食。</p><p class="small">3 张作者表 · 5 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.intrusion_strength&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C07_R</td><td>RESPONSE</td><td>Smallmouth.Parental</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C07_R</td><td>Defense</td><td>True</td><td>PROFILE</td><td>C07_R_Defense</td></tr></tbody></table></div></details><details><summary>CurvePoint · 3 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C07_R_Defense</td><td>0</td><td>0</td></tr><tr><td>C07_R_Defense</td><td>0.5</td><td>0.7</td></tr><tr><td>C07_R_Defense</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 2 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_DEFENSE</td><td>1</td><td>只读已准入的入侵强度</td><td>response.intrusion_strength</td><td>intrusion</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DEFENSE</td><td>2</td><td>查 Defense 曲线</td><td>intrusion × @Defense</td><td>ResponseStrength；立即返回</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C07_R</h4><pre>表达 C07_R 用于 Smallmouth.Parental / RESPONSE
+模板 R_DEFENSE（固定结构，仅展开便于阅读）
+配置：
+  Defense = @C07_R_Defense
+执行：
+Defense = 查曲线(@C07_R_Defense, response.intrusion_strength)
+返回 响应强度(Defense)
+// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C07&quot;,
+  &quot;binding&quot;: &quot;C07_R&quot;,
+  &quot;template&quot;: &quot;R_DEFENSE&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Defense&quot;: 0.7
+  },
+  &quot;result&quot;: 0.7
+}</pre></details></div></div></section><section class="case" data-search="C08 罗非鱼：固定双通道"><h2>C08 罗非鱼：固定双通道</h2><p>Previous: SELECT Profile candidate/结构未决 → Updated: 单 evaluator + 两固定 Slot 已闭合。MAX 只是本样本固定聚合函数，具体数值/聚合生产标定未完成；不是结构 blocker。</p><p class="small">3 张作者表 · 7 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;food.grazing_availability&quot;: 0.75,
+  &quot;food.suspended_availability&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C08_R</td><td>RESPONSE</td><td>Tilapia.Feeding</td><td>R_DUAL_FIXED</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 2 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C08_R</td><td>Grazing</td><td>True</td><td>PROFILE</td><td>C08_R_Grazing</td></tr><tr><td>C08_R</td><td>Suspended</td><td>True</td><td>PROFILE</td><td>C08_R_Suspended</td></tr></tbody></table></div></details><details><summary>CurvePoint · 4 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C08_R_Grazing</td><td>0</td><td>0</td></tr><tr><td>C08_R_Grazing</td><td>1</td><td>0.8</td></tr><tr><td>C08_R_Suspended</td><td>0</td><td>0</td></tr><tr><td>C08_R_Suspended</td><td>1</td><td>0.9</td></tr></tbody></table></div></details><details><summary>TemplateStep · 3 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_DUAL_FIXED</td><td>1</td><td>从同一快照评价固定 Grazing Slot</td><td>food.grazing_availability × @Grazing</td><td>G</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DUAL_FIXED</td><td>2</td><td>从同一快照评价固定 Suspended Slot</td><td>food.suspended_availability × @Suspended</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DUAL_FIXED</td><td>3</td><td>固定聚合 MAX（本样本的演示函数）</td><td>G,S</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C08_R</h4><pre>表达 C08_R 用于 Tilapia.Feeding / RESPONSE
+模板 R_DUAL_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Grazing = @C08_R_Grazing
+  Suspended = @C08_R_Suspended
+执行：
+G = 查曲线(@C08_R_Grazing, food.grazing_availability)
+S = 查曲线(@C08_R_Suspended, food.suspended_availability)
+返回 响应强度(MAX(G, S))
+// G、S 总是都算。没有按资源条件 SELECT Profile。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C08&quot;,
+  &quot;binding&quot;: &quot;C08_R&quot;,
+  &quot;template&quot;: &quot;R_DUAL_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Grazing&quot;: 0.6,
+    &quot;Suspended&quot;: 0.45
+  },
+  &quot;result&quot;: 0.6000000000000001
+}</pre></details></div></div></section><section class="case" data-search="C09 匙吻鲟：既有 Opportunity 的 FieldFeeding"><h2>C09 匙吻鲟：既有 Opportunity 的 FieldFeeding</h2><p>Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。</p><p class="small">3 张作者表 · 10 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;food.density_index&quot;: 0.75,
+  &quot;food.suitability&quot;: 0.5,
+  &quot;response.feeding_match&quot;: 0
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C09_R</td><td>RESPONSE</td><td>Paddlefish.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C09_R</td><td>Density</td><td>True</td><td>PROFILE</td><td>C09_R_Density</td></tr><tr><td>C09_R</td><td>Suitability</td><td>True</td><td>PROFILE</td><td>C09_R_Suitability</td></tr><tr><td>C09_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>C09_R_Match</td></tr></tbody></table></div></details><details><summary>CurvePoint · 6 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C09_R_Density</td><td>0</td><td>0</td></tr><tr><td>C09_R_Density</td><td>1</td><td>0.8</td></tr><tr><td>C09_R_Suitability</td><td>0</td><td>0</td></tr><tr><td>C09_R_Suitability</td><td>1</td><td>1</td></tr><tr><td>C09_R_Match</td><td>0</td><td>0</td></tr><tr><td>C09_R_Match</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FIELD</td><td>1</td><td>使用已有 Session/Root/Opportunity/Scope；本模板不生成身份</td><td>同一 semantic particle 已准入 Scope</td><td>只读 facts</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>2</td><td>查 FoodField 的量级和适宜性</td><td>food.density_index × @Density；food.suitability × @Suitability</td><td>DensityFit, SuitFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>3</td><td>读取同一 Active Presentation Channel 的 FeedingMatch</td><td>response.feeding_match × @Match</td><td>PresentationFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>4</td><td>乘积（演示函数）；不把帧数当次数</td><td>DensityFit × SuitFit × PresentationFit</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C09_R</h4><pre>表达 C09_R 用于 Paddlefish.FieldFeeding / RESPONSE
+模板 R_FIELD（固定结构，仅展开便于阅读）
+配置：
+  Density = @C09_R_Density
+  Suitability = @C09_R_Suitability
+  Match = @C09_R_Match
+执行：
+// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。
+D = 查曲线(@C09_R_Density, food.density_index)
+S = 查曲线(@C09_R_Suitability, food.suitability)
+M = 查曲线(@C09_R_Match, response.feeding_match)
+返回 响应强度(D × S × M)
+// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C09&quot;,
+  &quot;binding&quot;: &quot;C09_R&quot;,
+  &quot;template&quot;: &quot;R_FIELD&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Density&quot;: 0.6,
+    &quot;Suitability&quot;: 0.5,
+    &quot;Match&quot;: 0
+  },
+  &quot;result&quot;: 0.0
+}</pre></details></div></div></section><section class="case" data-search="C10 大口胭脂鱼：既有 Opportunity 的 FieldFeeding"><h2>C10 大口胭脂鱼：既有 Opportunity 的 FieldFeeding</h2><p>Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。</p><p class="small">3 张作者表 · 10 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;food.density_index&quot;: 0.75,
+  &quot;food.suitability&quot;: 0.5,
+  &quot;response.feeding_match&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C10_R</td><td>RESPONSE</td><td>BigmouthBuffalo.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C10_R</td><td>Density</td><td>True</td><td>PROFILE</td><td>C10_R_Density</td></tr><tr><td>C10_R</td><td>Suitability</td><td>True</td><td>PROFILE</td><td>C10_R_Suitability</td></tr><tr><td>C10_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>C10_R_Match</td></tr></tbody></table></div></details><details><summary>CurvePoint · 6 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C10_R_Density</td><td>0</td><td>0</td></tr><tr><td>C10_R_Density</td><td>1</td><td>0.8</td></tr><tr><td>C10_R_Suitability</td><td>0</td><td>0</td></tr><tr><td>C10_R_Suitability</td><td>1</td><td>1</td></tr><tr><td>C10_R_Match</td><td>0</td><td>0</td></tr><tr><td>C10_R_Match</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FIELD</td><td>1</td><td>使用已有 Session/Root/Opportunity/Scope；本模板不生成身份</td><td>同一 semantic particle 已准入 Scope</td><td>只读 facts</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>2</td><td>查 FoodField 的量级和适宜性</td><td>food.density_index × @Density；food.suitability × @Suitability</td><td>DensityFit, SuitFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>3</td><td>读取同一 Active Presentation Channel 的 FeedingMatch</td><td>response.feeding_match × @Match</td><td>PresentationFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>4</td><td>乘积（演示函数）；不把帧数当次数</td><td>DensityFit × SuitFit × PresentationFit</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C10_R</h4><pre>表达 C10_R 用于 BigmouthBuffalo.FieldFeeding / RESPONSE
+模板 R_FIELD（固定结构，仅展开便于阅读）
+配置：
+  Density = @C10_R_Density
+  Suitability = @C10_R_Suitability
+  Match = @C10_R_Match
+执行：
+// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。
+D = 查曲线(@C10_R_Density, food.density_index)
+S = 查曲线(@C10_R_Suitability, food.suitability)
+M = 查曲线(@C10_R_Match, response.feeding_match)
+返回 响应强度(D × S × M)
+// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C10&quot;,
+  &quot;binding&quot;: &quot;C10_R&quot;,
+  &quot;template&quot;: &quot;R_FIELD&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Density&quot;: 0.6,
+    &quot;Suitability&quot;: 0.5,
+    &quot;Match&quot;: 0.5
+  },
+  &quot;result&quot;: 0.15000000000000002
+}</pre></details></div></div></section><section class="case" data-search="C11 鲻鱼：既有 Opportunity 的 FieldFeeding"><h2>C11 鲻鱼：既有 Opportunity 的 FieldFeeding</h2><p>Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。</p><p class="small">3 张作者表 · 10 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;food.density_index&quot;: 0.75,
+  &quot;food.suitability&quot;: 0.5,
+  &quot;response.feeding_match&quot;: 0.8
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C11_R</td><td>RESPONSE</td><td>Mullet.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C11_R</td><td>Density</td><td>True</td><td>PROFILE</td><td>C11_R_Density</td></tr><tr><td>C11_R</td><td>Suitability</td><td>True</td><td>PROFILE</td><td>C11_R_Suitability</td></tr><tr><td>C11_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>C11_R_Match</td></tr></tbody></table></div></details><details><summary>CurvePoint · 6 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C11_R_Density</td><td>0</td><td>0</td></tr><tr><td>C11_R_Density</td><td>1</td><td>0.8</td></tr><tr><td>C11_R_Suitability</td><td>0</td><td>0</td></tr><tr><td>C11_R_Suitability</td><td>1</td><td>1</td></tr><tr><td>C11_R_Match</td><td>0</td><td>0</td></tr><tr><td>C11_R_Match</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FIELD</td><td>1</td><td>使用已有 Session/Root/Opportunity/Scope；本模板不生成身份</td><td>同一 semantic particle 已准入 Scope</td><td>只读 facts</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>2</td><td>查 FoodField 的量级和适宜性</td><td>food.density_index × @Density；food.suitability × @Suitability</td><td>DensityFit, SuitFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>3</td><td>读取同一 Active Presentation Channel 的 FeedingMatch</td><td>response.feeding_match × @Match</td><td>PresentationFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FIELD</td><td>4</td><td>乘积（演示函数）；不把帧数当次数</td><td>DensityFit × SuitFit × PresentationFit</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C11_R</h4><pre>表达 C11_R 用于 Mullet.FieldFeeding / RESPONSE
+模板 R_FIELD（固定结构，仅展开便于阅读）
+配置：
+  Density = @C11_R_Density
+  Suitability = @C11_R_Suitability
+  Match = @C11_R_Match
+执行：
+// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。
+D = 查曲线(@C11_R_Density, food.density_index)
+S = 查曲线(@C11_R_Suitability, food.suitability)
+M = 查曲线(@C11_R_Match, response.feeding_match)
+返回 响应强度(D × S × M)
+// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C11&quot;,
+  &quot;binding&quot;: &quot;C11_R&quot;,
+  &quot;template&quot;: &quot;R_FIELD&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Density&quot;: 0.6,
+    &quot;Suitability&quot;: 0.5,
+    &quot;Match&quot;: 0.8
+  },
+  &quot;result&quot;: 0.24000000000000005
+}</pre></details></div></div></section><section class="case" data-search="C12 大西洋鲑：上游分群后使用两个绑定"><h2>C12 大西洋鲑：上游分群后使用两个绑定</h2><p>两个 Binding 分别被已分配的 Group 调用，同一鱼不连续执行两个 Binding。Migration 演示选择普通 Feeding 关闭；Reaction 不声称已证明领地攻击或任一单一生物动机。</p><p class="small">3 张作者表 · 15 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.trigger_salience&quot;: 0.8,
+  &quot;response.sustained_pursuit_demand&quot;: 0.2
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 2 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C12_N</td><td>RESPONSE</td><td>AtlanticSalmon.NormalFeeding</td><td>R_FEED</td><td>DEMO_WORKING</td></tr><tr><td>C12_M</td><td>RESPONSE</td><td>AtlanticSalmon.FreshwaterSpawningMigration</td><td>R_REACTION</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 5 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C12_N</td><td>Match</td><td>True</td><td>PROFILE</td><td>C12_N_Match</td></tr><tr><td>C12_N</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>C12_N_Presentation</td></tr><tr><td>C12_N</td><td>Familiarity</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C12_M</td><td>Salience</td><td>True</td><td>PROFILE</td><td>C12_M_Salience</td></tr><tr><td>C12_M</td><td>Pursuit</td><td>True</td><td>PROFILE</td><td>C12_M_Pursuit</td></tr></tbody></table></div></details><details><summary>CurvePoint · 8 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C12_N_Match</td><td>0</td><td>0</td></tr><tr><td>C12_N_Match</td><td>1</td><td>1</td></tr><tr><td>C12_N_Presentation</td><td>0</td><td>0</td></tr><tr><td>C12_N_Presentation</td><td>1</td><td>1</td></tr><tr><td>C12_M_Salience</td><td>0</td><td>0</td></tr><tr><td>C12_M_Salience</td><td>1</td><td>0.5</td></tr><tr><td>C12_M_Pursuit</td><td>0</td><td>1</td></tr><tr><td>C12_M_Pursuit</td><td>1</td><td>0.1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 7 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FEED</td><td>1</td><td>查匹配曲线</td><td>response.feeding_match × @Match</td><td>F</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>2</td><td>查呈现曲线</td><td>response.presentation_fit × @Presentation</td><td>P</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>3</td><td>固定只读 Familiarity Slot：关闭=1；开启=查曲线</td><td>response.cue_familiarity × @Familiarity</td><td>U</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>4</td><td>相乘</td><td>F × P × U</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_REACTION</td><td>1</td><td>普通 Feeding 没有 Slot：分群已在上游完成</td><td>Migration FishGroup</td><td>只读刺激/追逐要求</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_REACTION</td><td>2</td><td>查刺激显著性与持续追逐容忍曲线</td><td>response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit</td><td>R,D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_REACTION</td><td>3</td><td>相乘；类型为 Response，不携带已证实动机</td><td>R × D</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C12_N</h4><pre>表达 C12_N 用于 AtlanticSalmon.NormalFeeding / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @C12_N_Match
+  Presentation = @C12_N_Presentation
+  Familiarity = 关闭（无引用）
+执行：
+F = 查曲线(@C12_N_Match, response.feeding_match)
+P = 查曲线(@C12_N_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C12&quot;,
+  &quot;binding&quot;: &quot;C12_N&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.8,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Feeding&quot;: 0.6000000000000001
+  },
+  &quot;result&quot;: 0.6000000000000001
+}</pre></details><h4>C12_M</h4><pre>表达 C12_M 用于 AtlanticSalmon.FreshwaterSpawningMigration / RESPONSE
+模板 R_REACTION（固定结构，仅展开便于阅读）
+配置：
+  Salience = @C12_M_Salience
+  Pursuit = @C12_M_Pursuit
+执行：
+R = 查曲线(@C12_M_Salience, response.trigger_salience)
+D = 查曲线(@C12_M_Pursuit, response.sustained_pursuit_demand)
+返回 响应强度(R × D)
+// 上游 Migration 分群；普通 Feeding 关闭。不读取 Runtime Stage Predicate。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C12&quot;,
+  &quot;binding&quot;: &quot;C12_M&quot;,
+  &quot;template&quot;: &quot;R_REACTION&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Salience&quot;: 0.4,
+    &quot;Pursuit&quot;: 0.82,
+    &quot;Reaction&quot;: 0.328
+  },
+  &quot;result&quot;: 0.328
+}</pre></details></div></div></section><section class="case" data-search="C13 红鲑：三个独立情景，先解决范围"><h2>C13 红鲑：三个独立情景，先解决范围</h2><p>J 展示浮游/小型悬浮猎物 feeding；O 的 FeedingMatch 输入可覆盖浮游与较大猎物；S 演示停食取0。三者由上游 lifecycle 情景绑定，未证明 J 是正常可钓场景，不作 breaker、不加 Runtime Selector。</p><p class="small">3 张作者表 · 24 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>C13_J</td><td>RESPONSE</td><td>Sockeye.JuvenileSuspended</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr><tr><td>C13_O</td><td>RESPONSE</td><td>Sockeye.OceanFeedingAdult</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr><tr><td>C13_S</td><td>RESPONSE</td><td>Sockeye.FreshwaterSpawningAdult</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr></tbody></table></div></details><details><summary>Slot · 9 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>C13_J</td><td>Match</td><td>True</td><td>PROFILE</td><td>C13_J_Match</td></tr><tr><td>C13_J</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>C13_J_Presentation</td></tr><tr><td>C13_J</td><td>Familiarity</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C13_O</td><td>Match</td><td>True</td><td>PROFILE</td><td>C13_O_Match</td></tr><tr><td>C13_O</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>C13_O_Presentation</td></tr><tr><td>C13_O</td><td>Familiarity</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>C13_S</td><td>Match</td><td>True</td><td>PROFILE</td><td>C13_S_Match</td></tr><tr><td>C13_S</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>C13_S_Presentation</td></tr><tr><td>C13_S</td><td>Familiarity</td><td>False</td><td>PROFILE</td><td>N/A</td></tr></tbody></table></div></details><details><summary>CurvePoint · 12 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>C13_J_Match</td><td>0</td><td>0</td></tr><tr><td>C13_J_Match</td><td>1</td><td>0.8</td></tr><tr><td>C13_J_Presentation</td><td>0</td><td>0</td></tr><tr><td>C13_J_Presentation</td><td>1</td><td>1</td></tr><tr><td>C13_O_Match</td><td>0</td><td>0</td></tr><tr><td>C13_O_Match</td><td>1</td><td>1</td></tr><tr><td>C13_O_Presentation</td><td>0</td><td>0</td></tr><tr><td>C13_O_Presentation</td><td>1</td><td>1</td></tr><tr><td>C13_S_Match</td><td>0</td><td>0</td></tr><tr><td>C13_S_Match</td><td>1</td><td>0</td></tr><tr><td>C13_S_Presentation</td><td>0</td><td>0</td></tr><tr><td>C13_S_Presentation</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FEED</td><td>1</td><td>查匹配曲线</td><td>response.feeding_match × @Match</td><td>F</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>2</td><td>查呈现曲线</td><td>response.presentation_fit × @Presentation</td><td>P</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>3</td><td>固定只读 Familiarity Slot：关闭=1；开启=查曲线</td><td>response.cue_familiarity × @Familiarity</td><td>U</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>4</td><td>相乘</td><td>F × P × U</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>C13_J</h4><pre>表达 C13_J 用于 Sockeye.JuvenileSuspended / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @C13_J_Match
+  Presentation = @C13_J_Presentation
+  Familiarity = 关闭（无引用）
+执行：
+F = 查曲线(@C13_J_Match, response.feeding_match)
+P = 查曲线(@C13_J_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C13&quot;,
+  &quot;binding&quot;: &quot;C13_J&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.64,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Feeding&quot;: 0.4800000000000001
+  },
+  &quot;result&quot;: 0.4800000000000001
+}</pre></details><h4>C13_O</h4><pre>表达 C13_O 用于 Sockeye.OceanFeedingAdult / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @C13_O_Match
+  Presentation = @C13_O_Presentation
+  Familiarity = 关闭（无引用）
+执行：
+F = 查曲线(@C13_O_Match, response.feeding_match)
+P = 查曲线(@C13_O_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C13&quot;,
+  &quot;binding&quot;: &quot;C13_O&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.8,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Feeding&quot;: 0.6000000000000001
+  },
+  &quot;result&quot;: 0.6000000000000001
+}</pre></details><h4>C13_S</h4><pre>表达 C13_S 用于 Sockeye.FreshwaterSpawningAdult / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @C13_S_Match
+  Presentation = @C13_S_Presentation
+  Familiarity = 关闭（无引用）
+执行：
+F = 查曲线(@C13_S_Match, response.feeding_match)
+P = 查曲线(@C13_S_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;C13&quot;,
+  &quot;binding&quot;: &quot;C13_S&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.0,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Feeding&quot;: 0.0
+  },
+  &quot;result&quot;: 0.0
+}</pre></details></div></div></section><section class="case" data-search="C14 七鳃鳗寄生附着"><h2>C14 七鳃鳗寄生附着</h2><p>宿主附着位于本次生成前 Response 表达范围外；没有合法 Binding/输出/运行步骤。 表中用显式 OUT_OF_SCOPE；不使用空字符串或虚构的0响应。</p></section><section class="case" data-search="C15 匙吻鲟锚鱼"><h2>C15 匙吻鲟锚鱼</h2><p>响应无关的外部捕获机制；不得把锚鱼成功编成 Feeding Response。 表中用显式 OUT_OF_SCOPE；不使用空字符串或虚构的0响应。</p></section><section class="case" data-search="BASS-C 大口黑鲈 ColdSlow"><h2>BASS-C 大口黑鲈 ColdSlow</h2><p>Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。</p><p class="small">8 张作者表 · 52 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 20,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25,
+    &quot;nest_site&quot;: 2.5
+  },
+  &quot;target.depth_m&quot;: 3,
+  &quot;target.cover_distance_m&quot;: 20,
+  &quot;target.adjacent_deep_access&quot;: 0.9,
+  &quot;weather.cold_front_severity&quot;: 0.5,
+  &quot;target.relative_warmth&quot;: 0.8,
+  &quot;target.stability&quot;: 0.9,
+  &quot;target.low_energy_refuge&quot;: 0.75,
+  &quot;target.oxygen_mg_l&quot;: 5,
+  &quot;target.relative_cooling&quot;: 0.8,
+  &quot;target.oxygen_margin&quot;: 0.75,
+  &quot;target.cover_prey_tradeoff&quot;: 0.6,
+  &quot;target.forage_school_intensity&quot;: 0.8,
+  &quot;target.vertical_alignment&quot;: 0.75,
+  &quot;target.open_water_context&quot;: 1,
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.cue_familiarity&quot;: 0.4,
+  &quot;response.intrusion_strength&quot;: 0.8,
+  &quot;response.trigger_salience&quot;: 0.9,
+  &quot;response.sustained_pursuit_demand&quot;: 0.1,
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_C_B</td><td>BAKE</td><td>LargemouthBass.ColdSlow</td><td>S_COLD</td><td>DEMO_WORKING</td></tr><tr><td>BASS_C_R</td><td>RESPONSE</td><td>LargemouthBass.ColdSlow</td><td>R_FEED_REACTION</td><td>DEMO_WORKING</td></tr><tr><td>BASS_C_Q</td><td>QUALITY</td><td>LargemouthBass.ColdSlow</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 7 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>BASS_C_B</td><td>Warmth</td><td>True</td><td>PROFILE</td><td>BASS_C_B_Warmth</td></tr><tr><td>BASS_C_B</td><td>Stability</td><td>True</td><td>PROFILE</td><td>BASS_C_B_Stability</td></tr><tr><td>BASS_C_B</td><td>Refuge</td><td>True</td><td>PROFILE</td><td>BASS_C_B_Refuge</td></tr><tr><td>BASS_C_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>BASS_C_R_Match</td></tr><tr><td>BASS_C_R</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>BASS_C_R_Presentation</td></tr><tr><td>BASS_C_R</td><td>Salience</td><td>True</td><td>PROFILE</td><td>BASS_C_R_Salience</td></tr><tr><td>BASS_C_R</td><td>Pursuit</td><td>True</td><td>PROFILE</td><td>BASS_C_R_Pursuit</td></tr></tbody></table></div></details><details><summary>Parameter · 5 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 14 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BASS_C_B_Warmth</td><td>0</td><td>0</td></tr><tr><td>BASS_C_B_Warmth</td><td>1</td><td>1</td></tr><tr><td>BASS_C_B_Stability</td><td>0</td><td>0</td></tr><tr><td>BASS_C_B_Stability</td><td>1</td><td>1</td></tr><tr><td>BASS_C_B_Refuge</td><td>0</td><td>0</td></tr><tr><td>BASS_C_B_Refuge</td><td>1</td><td>1</td></tr><tr><td>BASS_C_R_Match</td><td>0</td><td>0</td></tr><tr><td>BASS_C_R_Match</td><td>1</td><td>0.25</td></tr><tr><td>BASS_C_R_Presentation</td><td>0</td><td>0</td></tr><tr><td>BASS_C_R_Presentation</td><td>1</td><td>1</td></tr><tr><td>BASS_C_R_Salience</td><td>0</td><td>0</td></tr><tr><td>BASS_C_R_Salience</td><td>1</td><td>0.8</td></tr><tr><td>BASS_C_R_Pursuit</td><td>0</td><td>1</td></tr><tr><td>BASS_C_R_Pursuit</td><td>1</td><td>0.1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>BASS_C_Q</td><td>Small</td><td>55</td></tr><tr><td>BASS_C_Q</td><td>Medium</td><td>30</td></tr><tr><td>BASS_C_Q</td><td>Large</td><td>12</td></tr><tr><td>BASS_C_Q</td><td>Rare</td><td>3</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>BASS_C_Q</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>BASS_C_Q</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>BASS_C_Q</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>BASS_C_Q</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>BASS_C_Q</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>BASS_C_Q</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>BASS_C_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>BASS_C_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 9 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FEED_REACTION</td><td>1</td><td>同一 Scope 评价 Feeding</td><td>response.feeding_match × @Match；response.presentation_fit × @Presentation</td><td>F=两 Fit 乘积</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED_REACTION</td><td>2</td><td>同一 Scope 评价 Reaction</td><td>response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit</td><td>R=两 Fit 乘积</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED_REACTION</td><td>3</td><td>固定聚合 MAX（Working Candidate 的演示实例）</td><td>F,R</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr><tr><td>S_COLD</td><td>1</td><td>查相对温暖、稳定、低能耗避难所</td><td>target.relative_warmth × @Warmth；target.stability × @Stability；target.low_energy_refuge × @Refuge</td><td>W,S,R</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_COLD</td><td>2</td><td>固定乘积</td><td>W × S × R</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_C_B</h4><pre>表达 BASS_C_B 用于 LargemouthBass.ColdSlow / BAKE
+模板 S_COLD（固定结构，仅展开便于阅读）
+配置：
+  Warmth = @BASS_C_B_Warmth
+  Stability = @BASS_C_B_Stability
+  Refuge = @BASS_C_B_Refuge
+执行：
+W = 查曲线(@BASS_C_B_Warmth, target.relative_warmth)
+S = 查曲线(@BASS_C_B_Stability, target.stability)
+R = 查曲线(@BASS_C_B_Refuge, target.low_energy_refuge)
+返回 空间权重(W × S × R)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-C&quot;,
+  &quot;binding&quot;: &quot;BASS_C_B&quot;,
+  &quot;template&quot;: &quot;S_COLD&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Warmth&quot;: 0.8,
+    &quot;Stability&quot;: 0.9,
+    &quot;Refuge&quot;: 0.75
+  },
+  &quot;result&quot;: 0.54
+}</pre></details><h4>BASS_C_R</h4><pre>表达 BASS_C_R 用于 LargemouthBass.ColdSlow / RESPONSE
+模板 R_FEED_REACTION（固定结构，仅展开便于阅读）
+配置：
+  Match = @BASS_C_R_Match
+  Presentation = @BASS_C_R_Presentation
+  Salience = @BASS_C_R_Salience
+  Pursuit = @BASS_C_R_Pursuit
+执行：
+F = 查曲线(@BASS_C_R_Match, response.feeding_match) × 查曲线(@BASS_C_R_Presentation, response.presentation_fit)
+R = 查曲线(@BASS_C_R_Salience, response.trigger_salience) × 查曲线(@BASS_C_R_Pursuit, response.sustained_pursuit_demand)
+返回 响应强度(MAX(F, R))
+// 两通道均评价；强短刺激与持续高速追逐是两个独立输入。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-C&quot;,
+  &quot;binding&quot;: &quot;BASS_C_R&quot;,
+  &quot;template&quot;: &quot;R_FEED_REACTION&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.2,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Salience&quot;: 0.72,
+    &quot;Pursuit&quot;: 0.91,
+    &quot;Feeding&quot;: 0.15000000000000002,
+    &quot;Reaction&quot;: 0.6552000000000001
+  },
+  &quot;result&quot;: 0.6552000000000001
+}</pre></details><h4>BASS_C_Q</h4><pre>表达 BASS_C_Q 用于 LargemouthBass.ColdSlow / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-C&quot;,
+  &quot;binding&quot;: &quot;BASS_C_Q&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 55,
+      &quot;Medium&quot;: 30,
+      &quot;Large&quot;: 18.0,
+      &quot;Rare&quot;: 3.5999999999999996
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.5159474671669794,
+    &quot;Medium&quot;: 0.28142589118198874,
+    &quot;Large&quot;: 0.16885553470919326,
+    &quot;Rare&quot;: 0.03377110694183865
+  }
+}</pre></details></div></div></section><section class="case" data-search="BASS-F 大口黑鲈 ForageChase"><h2>BASS-F 大口黑鲈 ForageChase</h2><p>Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。 Forage 的食物场强度只在 Bake 使用，Response 不再乘同一密度。</p><p class="small">8 张作者表 · 66 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 20,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25,
+    &quot;nest_site&quot;: 2.5
+  },
+  &quot;target.depth_m&quot;: 3,
+  &quot;target.cover_distance_m&quot;: 20,
+  &quot;target.adjacent_deep_access&quot;: 0.9,
+  &quot;weather.cold_front_severity&quot;: 0.5,
+  &quot;target.relative_warmth&quot;: 0.8,
+  &quot;target.stability&quot;: 0.9,
+  &quot;target.low_energy_refuge&quot;: 0.75,
+  &quot;target.oxygen_mg_l&quot;: 5,
+  &quot;target.relative_cooling&quot;: 0.8,
+  &quot;target.oxygen_margin&quot;: 0.75,
+  &quot;target.cover_prey_tradeoff&quot;: 0.6,
+  &quot;target.forage_school_intensity&quot;: 0.8,
+  &quot;target.vertical_alignment&quot;: 0.75,
+  &quot;target.open_water_context&quot;: 1,
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.cue_familiarity&quot;: 0.4,
+  &quot;response.intrusion_strength&quot;: 0.8,
+  &quot;response.trigger_salience&quot;: 0.9,
+  &quot;response.sustained_pursuit_demand&quot;: 0.1,
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_F_B</td><td>BAKE</td><td>LargemouthBass.ForageChase</td><td>S_FORAGE</td><td>DEMO_WORKING</td></tr><tr><td>BASS_F_R</td><td>RESPONSE</td><td>LargemouthBass.ForageChase</td><td>R_FEED</td><td>DEMO_WORKING</td></tr><tr><td>BASS_F_Q</td><td>QUALITY</td><td>LargemouthBass.ForageChase</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 12 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>BASS_F_B</td><td>ForageMin</td><td>True</td><td>PARAMETER</td><td>BASS_F_B_ForageMin</td></tr><tr><td>BASS_F_B</td><td>Forage</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Forage</td></tr><tr><td>BASS_F_B</td><td>Vertical</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Vertical</td></tr><tr><td>BASS_F_B</td><td>OpenWater</td><td>True</td><td>PROFILE</td><td>BASS_F_B_OpenWater</td></tr><tr><td>BASS_F_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Temperature</td></tr><tr><td>BASS_F_B</td><td>Oxygen</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Oxygen</td></tr><tr><td>BASS_F_B</td><td>ColdFront</td><td>True</td><td>SWITCH</td><td>N/A</td></tr><tr><td>BASS_F_B</td><td>Cover</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Cover</td></tr><tr><td>BASS_F_B</td><td>Deep</td><td>True</td><td>PROFILE</td><td>BASS_F_B_Deep</td></tr><tr><td>BASS_F_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>BASS_F_R_Match</td></tr><tr><td>BASS_F_R</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>BASS_F_R_Presentation</td></tr><tr><td>BASS_F_R</td><td>Familiarity</td><td>True</td><td>PROFILE</td><td>BASS_F_R_Familiarity</td></tr></tbody></table></div></details><details><summary>Parameter · 6 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>BASS_F_B_ForageMin</td><td>number</td><td>0.2</td><td>1</td></tr><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 22 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BASS_F_B_Forage</td><td>0</td><td>0</td></tr><tr><td>BASS_F_B_Forage</td><td>1</td><td>1</td></tr><tr><td>BASS_F_B_Vertical</td><td>0</td><td>0</td></tr><tr><td>BASS_F_B_Vertical</td><td>1</td><td>1</td></tr><tr><td>BASS_F_B_OpenWater</td><td>0</td><td>0</td></tr><tr><td>BASS_F_B_OpenWater</td><td>1</td><td>1</td></tr><tr><td>BASS_F_B_Temperature</td><td>0</td><td>0.1</td></tr><tr><td>BASS_F_B_Temperature</td><td>20</td><td>1</td></tr><tr><td>BASS_F_B_Temperature</td><td>35</td><td>0.2</td></tr><tr><td>BASS_F_B_Oxygen</td><td>0</td><td>0</td></tr><tr><td>BASS_F_B_Oxygen</td><td>5</td><td>1</td></tr><tr><td>BASS_F_B_Oxygen</td><td>10</td><td>1</td></tr><tr><td>BASS_F_B_Cover</td><td>0</td><td>1</td></tr><tr><td>BASS_F_B_Cover</td><td>100</td><td>0</td></tr><tr><td>BASS_F_B_Deep</td><td>0</td><td>0</td></tr><tr><td>BASS_F_B_Deep</td><td>1</td><td>1</td></tr><tr><td>BASS_F_R_Match</td><td>0</td><td>0</td></tr><tr><td>BASS_F_R_Match</td><td>1</td><td>0.95</td></tr><tr><td>BASS_F_R_Presentation</td><td>0</td><td>0</td></tr><tr><td>BASS_F_R_Presentation</td><td>1</td><td>1</td></tr><tr><td>BASS_F_R_Familiarity</td><td>0</td><td>1</td></tr><tr><td>BASS_F_R_Familiarity</td><td>1</td><td>0.5</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>BASS_F_Q</td><td>Small</td><td>25</td></tr><tr><td>BASS_F_Q</td><td>Medium</td><td>50</td></tr><tr><td>BASS_F_Q</td><td>Large</td><td>20</td></tr><tr><td>BASS_F_Q</td><td>Rare</td><td>5</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>BASS_F_Q</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>BASS_F_Q</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>BASS_F_Q</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>BASS_F_Q</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>BASS_F_Q</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>BASS_F_Q</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>BASS_F_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>BASS_F_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 13 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FEED</td><td>1</td><td>查匹配曲线</td><td>response.feeding_match × @Match</td><td>F</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>2</td><td>查呈现曲线</td><td>response.presentation_fit × @Presentation</td><td>P</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>3</td><td>固定只读 Familiarity Slot：关闭=1；开启=查曲线</td><td>response.cue_familiarity × @Familiarity</td><td>U</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>4</td><td>相乘</td><td>F × P × U</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr><tr><td>S_FORAGE</td><td>1</td><td>猎物场准入 Gate</td><td>target.forage_school_intensity ≥ @ForageMin</td><td>通过目标</td><td>不通过 → 空间权重0并立即返回；Overlay不得复活</td></tr><tr><td>S_FORAGE</td><td>2</td><td>猎物主锚点及垂向匹配</td><td>target.forage_school_intensity × @Forage；target.vertical_alignment × @Vertical</td><td>F,V</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FORAGE</td><td>3</td><td>温度、氧、开放水环境适宜性</td><td>target.temperature_c × @Temperature；target.oxygen_mg_l × @Oxygen；target.open_water_context × @OpenWater</td><td>T,O,W</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FORAGE</td><td>4</td><td>固定乘积</td><td>F × V × T × O × W</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FORAGE</td><td>5</td><td>固定末端 ColdFront Overlay；关=原值</td><td>base / Cover / Deep / severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_F_B</h4><pre>表达 BASS_F_B 用于 LargemouthBass.ForageChase / BAKE
+模板 S_FORAGE（固定结构，仅展开便于阅读）
+配置：
+  ForageMin = @BASS_F_B_ForageMin
+  Forage = @BASS_F_B_Forage
+  Vertical = @BASS_F_B_Vertical
+  OpenWater = @BASS_F_B_OpenWater
+  Temperature = @BASS_F_B_Temperature
+  Oxygen = @BASS_F_B_Oxygen
+  ColdFront = 开启
+  Cover = @BASS_F_B_Cover
+  Deep = @BASS_F_B_Deep
+执行：
+若 target.forage_school_intensity &lt; @BASS_F_B_ForageMin：返回 空间权重(0)
+F = 查曲线(@BASS_F_B_Forage, target.forage_school_intensity)
+V = 查曲线(@BASS_F_B_Vertical, target.vertical_alignment)
+T = 查曲线(@BASS_F_B_Temperature, target.temperature_c)
+O = 查曲线(@BASS_F_B_Oxygen, target.oxygen_mg_l)
+W = 查曲线(@BASS_F_B_OpenWater, target.open_water_context)
+Base = F × V × T × O × W
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(@BASS_F_B_Cover, target.cover_distance_m)
+Deep = 查曲线(@BASS_F_B_Deep, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-F&quot;,
+  &quot;binding&quot;: &quot;BASS_F_B&quot;,
+  &quot;template&quot;: &quot;S_FORAGE&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Forage&quot;: 0.8,
+    &quot;Vertical&quot;: 0.75,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Oxygen&quot;: 1.0,
+    &quot;OpenWater&quot;: 1,
+    &quot;Base&quot;: 0.6,
+    &quot;Cover&quot;: 0.8,
+    &quot;Deep&quot;: 0.9,
+    &quot;Refuge&quot;: 0.9
+  },
+  &quot;result&quot;: 0.75
+}</pre></details><h4>BASS_F_R</h4><pre>表达 BASS_F_R 用于 LargemouthBass.ForageChase / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @BASS_F_R_Match
+  Presentation = @BASS_F_R_Presentation
+  Familiarity = @BASS_F_R_Familiarity
+执行：
+F = 查曲线(@BASS_F_R_Match, response.feeding_match)
+P = 查曲线(@BASS_F_R_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(@BASS_F_R_Familiarity, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-F&quot;,
+  &quot;binding&quot;: &quot;BASS_F_R&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.76,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Familiarity&quot;: 0.8,
+    &quot;Feeding&quot;: 0.5700000000000001
+  },
+  &quot;result&quot;: 0.45600000000000007
+}</pre></details><h4>BASS_F_Q</h4><pre>表达 BASS_F_Q 用于 LargemouthBass.ForageChase / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-F&quot;,
+  &quot;binding&quot;: &quot;BASS_F_Q&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 25,
+      &quot;Medium&quot;: 50,
+      &quot;Large&quot;: 30.0,
+      &quot;Rare&quot;: 6.0
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.22522522522522523,
+    &quot;Medium&quot;: 0.45045045045045046,
+    &quot;Large&quot;: 0.2702702702702703,
+    &quot;Rare&quot;: 0.05405405405405406
+  }
+}</pre></details></div></div></section><section class="case" data-search="BASS-G 大口黑鲈 Guarding"><h2>BASS-G 大口黑鲈 Guarding</h2><p>Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。</p><p class="small">8 张作者表 · 51 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 20,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25,
+    &quot;nest_site&quot;: 2.5
+  },
+  &quot;target.depth_m&quot;: 3,
+  &quot;target.cover_distance_m&quot;: 20,
+  &quot;target.adjacent_deep_access&quot;: 0.9,
+  &quot;weather.cold_front_severity&quot;: 0.5,
+  &quot;target.relative_warmth&quot;: 0.8,
+  &quot;target.stability&quot;: 0.9,
+  &quot;target.low_energy_refuge&quot;: 0.75,
+  &quot;target.oxygen_mg_l&quot;: 5,
+  &quot;target.relative_cooling&quot;: 0.8,
+  &quot;target.oxygen_margin&quot;: 0.75,
+  &quot;target.cover_prey_tradeoff&quot;: 0.6,
+  &quot;target.forage_school_intensity&quot;: 0.8,
+  &quot;target.vertical_alignment&quot;: 0.75,
+  &quot;target.open_water_context&quot;: 1,
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.cue_familiarity&quot;: 0.4,
+  &quot;response.intrusion_strength&quot;: 0.8,
+  &quot;response.trigger_salience&quot;: 0.9,
+  &quot;response.sustained_pursuit_demand&quot;: 0.1,
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_G_B</td><td>BAKE</td><td>LargemouthBass.Guarding</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr><tr><td>BASS_G_R</td><td>RESPONSE</td><td>LargemouthBass.Guarding</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr><tr><td>BASS_G_Q</td><td>QUALITY</td><td>LargemouthBass.Guarding</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 9 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>BASS_G_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>BASS_G_B_Temperature</td></tr><tr><td>BASS_G_B</td><td>Anchor</td><td>True</td><td>PARAMETER</td><td>BASS_G_B_Anchor</td></tr><tr><td>BASS_G_B</td><td>Structure</td><td>True</td><td>PROFILE</td><td>BASS_G_B_Structure</td></tr><tr><td>BASS_G_B</td><td>Depth</td><td>True</td><td>PROFILE</td><td>BASS_G_B_Depth</td></tr><tr><td>BASS_G_B</td><td>Light</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>BASS_G_B</td><td>ColdFront</td><td>False</td><td>SWITCH</td><td>N/A</td></tr><tr><td>BASS_G_B</td><td>Cover</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>BASS_G_B</td><td>Deep</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>BASS_G_R</td><td>Defense</td><td>True</td><td>PROFILE</td><td>BASS_G_R_Defense</td></tr></tbody></table></div></details><details><summary>Parameter · 6 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>BASS_G_B_Anchor</td><td>string</td><td>nest_site</td><td>category</td></tr><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 10 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BASS_G_B_Temperature</td><td>0</td><td>0.1</td></tr><tr><td>BASS_G_B_Temperature</td><td>20</td><td>1</td></tr><tr><td>BASS_G_B_Temperature</td><td>35</td><td>0.2</td></tr><tr><td>BASS_G_B_Structure</td><td>0</td><td>1</td></tr><tr><td>BASS_G_B_Structure</td><td>10</td><td>0.2</td></tr><tr><td>BASS_G_B_Depth</td><td>0</td><td>0.2</td></tr><tr><td>BASS_G_B_Depth</td><td>3</td><td>1</td></tr><tr><td>BASS_G_B_Depth</td><td>15</td><td>0.3</td></tr><tr><td>BASS_G_R_Defense</td><td>0</td><td>0</td></tr><tr><td>BASS_G_R_Defense</td><td>1</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>BASS_G_Q</td><td>Small</td><td>20</td></tr><tr><td>BASS_G_Q</td><td>Medium</td><td>40</td></tr><tr><td>BASS_G_Q</td><td>Large</td><td>30</td></tr><tr><td>BASS_G_Q</td><td>Rare</td><td>10</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>BASS_G_Q</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>BASS_G_Q</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>BASS_G_Q</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>BASS_G_Q</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>BASS_G_Q</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>BASS_G_Q</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>BASS_G_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>BASS_G_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 12 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>S_FIXED</td><td>1</td><td>查分段线性曲线</td><td>target.temperature_c × @Temperature</td><td>T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>2</td><td>按具名锚点读取距离，再查曲线</td><td>target.anchor_distances_m[@Anchor] × @Structure</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>3</td><td>查分段线性曲线</td><td>target.depth_m × @Depth</td><td>D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>4</td><td>固定 Light Slot：关=1；开=查曲线</td><td>target.illuminance_lux × @Light</td><td>L</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>5</td><td>独立因子乘积</td><td>T × S × D × L</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>6</td><td>固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)</td><td>BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DEFENSE</td><td>1</td><td>只读已准入的入侵强度</td><td>response.intrusion_strength</td><td>intrusion</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_DEFENSE</td><td>2</td><td>查 Defense 曲线</td><td>intrusion × @Defense</td><td>ResponseStrength；立即返回</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_G_B</h4><pre>表达 BASS_G_B 用于 LargemouthBass.Guarding / BAKE
+模板 S_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Temperature = @BASS_G_B_Temperature
+  Anchor = @BASS_G_B_Anchor
+  Structure = @BASS_G_B_Structure
+  Depth = @BASS_G_B_Depth
+  Light = 关闭（无引用）
+  ColdFront = 关闭（无引用）
+  Cover = 关闭（无引用）
+  Deep = 关闭（无引用）
+执行：
+T = 查曲线(@BASS_G_B_Temperature, target.temperature_c)
+AnchorDistance = target.anchor_distances_m[@BASS_G_B_Anchor]
+S = 查曲线(@BASS_G_B_Structure, AnchorDistance)
+D = 查曲线(@BASS_G_B_Depth, target.depth_m)
+L = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1
+Base = T × S × D × L
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)
+Deep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-G&quot;,
+  &quot;binding&quot;: &quot;BASS_G_B&quot;,
+  &quot;template&quot;: &quot;S_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Anchor&quot;: &quot;nest_site&quot;,
+    &quot;AnchorDistance&quot;: 2.5,
+    &quot;Structure&quot;: 0.8,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Depth&quot;: 1.0,
+    &quot;Base&quot;: 0.8
+  },
+  &quot;result&quot;: 0.8000000000000003
+}</pre></details><h4>BASS_G_R</h4><pre>表达 BASS_G_R 用于 LargemouthBass.Guarding / RESPONSE
+模板 R_DEFENSE（固定结构，仅展开便于阅读）
+配置：
+  Defense = @BASS_G_R_Defense
+执行：
+Defense = 查曲线(@BASS_G_R_Defense, response.intrusion_strength)
+返回 响应强度(Defense)
+// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-G&quot;,
+  &quot;binding&quot;: &quot;BASS_G_R&quot;,
+  &quot;template&quot;: &quot;R_DEFENSE&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Defense&quot;: 0.8
+  },
+  &quot;result&quot;: 0.8
+}</pre></details><h4>BASS_G_Q</h4><pre>表达 BASS_G_Q 用于 LargemouthBass.Guarding / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-G&quot;,
+  &quot;binding&quot;: &quot;BASS_G_Q&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 20,
+      &quot;Medium&quot;: 40,
+      &quot;Large&quot;: 45.0,
+      &quot;Rare&quot;: 12.0
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.17094017094017094,
+    &quot;Medium&quot;: 0.3418803418803419,
+    &quot;Large&quot;: 0.38461538461538464,
+    &quot;Rare&quot;: 0.10256410256410256
+  }
+}</pre></details></div></div></section><section class="case" data-search="BASS-N 大口黑鲈 NormalFeeding"><h2>BASS-N 大口黑鲈 NormalFeeding</h2><p>Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。</p><p class="small">8 张作者表 · 61 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 20,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25,
+    &quot;nest_site&quot;: 2.5
+  },
+  &quot;target.depth_m&quot;: 3,
+  &quot;target.cover_distance_m&quot;: 20,
+  &quot;target.adjacent_deep_access&quot;: 0.9,
+  &quot;weather.cold_front_severity&quot;: 0.5,
+  &quot;target.relative_warmth&quot;: 0.8,
+  &quot;target.stability&quot;: 0.9,
+  &quot;target.low_energy_refuge&quot;: 0.75,
+  &quot;target.oxygen_mg_l&quot;: 5,
+  &quot;target.relative_cooling&quot;: 0.8,
+  &quot;target.oxygen_margin&quot;: 0.75,
+  &quot;target.cover_prey_tradeoff&quot;: 0.6,
+  &quot;target.forage_school_intensity&quot;: 0.8,
+  &quot;target.vertical_alignment&quot;: 0.75,
+  &quot;target.open_water_context&quot;: 1,
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.cue_familiarity&quot;: 0.4,
+  &quot;response.intrusion_strength&quot;: 0.8,
+  &quot;response.trigger_salience&quot;: 0.9,
+  &quot;response.sustained_pursuit_demand&quot;: 0.1,
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_N_B</td><td>BAKE</td><td>LargemouthBass.NormalFeeding</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr><tr><td>BASS_N_R</td><td>RESPONSE</td><td>LargemouthBass.NormalFeeding</td><td>R_FEED</td><td>DEMO_WORKING</td></tr><tr><td>BASS_N_Q</td><td>QUALITY</td><td>LargemouthBass.NormalFeeding</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 11 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>BASS_N_B</td><td>Temperature</td><td>True</td><td>PROFILE</td><td>BASS_N_B_Temperature</td></tr><tr><td>BASS_N_B</td><td>Anchor</td><td>True</td><td>PARAMETER</td><td>BASS_N_B_Anchor</td></tr><tr><td>BASS_N_B</td><td>Structure</td><td>True</td><td>PROFILE</td><td>BASS_N_B_Structure</td></tr><tr><td>BASS_N_B</td><td>Depth</td><td>True</td><td>PROFILE</td><td>BASS_N_B_Depth</td></tr><tr><td>BASS_N_B</td><td>Light</td><td>False</td><td>PROFILE</td><td>N/A</td></tr><tr><td>BASS_N_B</td><td>ColdFront</td><td>True</td><td>SWITCH</td><td>N/A</td></tr><tr><td>BASS_N_B</td><td>Cover</td><td>True</td><td>PROFILE</td><td>BASS_N_B_Cover</td></tr><tr><td>BASS_N_B</td><td>Deep</td><td>True</td><td>PROFILE</td><td>BASS_N_B_Deep</td></tr><tr><td>BASS_N_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>BASS_N_R_Match</td></tr><tr><td>BASS_N_R</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>BASS_N_R_Presentation</td></tr><tr><td>BASS_N_R</td><td>Familiarity</td><td>True</td><td>PROFILE</td><td>BASS_N_R_Familiarity</td></tr></tbody></table></div></details><details><summary>Parameter · 6 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>BASS_N_B_Anchor</td><td>string</td><td>stable_cover</td><td>category</td></tr><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 18 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BASS_N_B_Temperature</td><td>0</td><td>0.1</td></tr><tr><td>BASS_N_B_Temperature</td><td>20</td><td>1</td></tr><tr><td>BASS_N_B_Temperature</td><td>35</td><td>0.2</td></tr><tr><td>BASS_N_B_Structure</td><td>0</td><td>1</td></tr><tr><td>BASS_N_B_Structure</td><td>100</td><td>0.2</td></tr><tr><td>BASS_N_B_Depth</td><td>0</td><td>0.2</td></tr><tr><td>BASS_N_B_Depth</td><td>3</td><td>1</td></tr><tr><td>BASS_N_B_Depth</td><td>15</td><td>0.3</td></tr><tr><td>BASS_N_B_Cover</td><td>0</td><td>1</td></tr><tr><td>BASS_N_B_Cover</td><td>100</td><td>0</td></tr><tr><td>BASS_N_B_Deep</td><td>0</td><td>0</td></tr><tr><td>BASS_N_B_Deep</td><td>1</td><td>1</td></tr><tr><td>BASS_N_R_Match</td><td>0</td><td>0</td></tr><tr><td>BASS_N_R_Match</td><td>1</td><td>1</td></tr><tr><td>BASS_N_R_Presentation</td><td>0</td><td>0</td></tr><tr><td>BASS_N_R_Presentation</td><td>1</td><td>1</td></tr><tr><td>BASS_N_R_Familiarity</td><td>0</td><td>1</td></tr><tr><td>BASS_N_R_Familiarity</td><td>1</td><td>0.5</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>BASS_N_Q</td><td>Small</td><td>50</td></tr><tr><td>BASS_N_Q</td><td>Medium</td><td>30</td></tr><tr><td>BASS_N_Q</td><td>Large</td><td>15</td></tr><tr><td>BASS_N_Q</td><td>Rare</td><td>5</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>BASS_N_Q</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>BASS_N_Q</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>BASS_N_Q</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>BASS_N_Q</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>BASS_N_Q</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>BASS_N_Q</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>BASS_N_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>BASS_N_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 14 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>S_FIXED</td><td>1</td><td>查分段线性曲线</td><td>target.temperature_c × @Temperature</td><td>T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>2</td><td>按具名锚点读取距离，再查曲线</td><td>target.anchor_distances_m[@Anchor] × @Structure</td><td>S</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>3</td><td>查分段线性曲线</td><td>target.depth_m × @Depth</td><td>D</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>4</td><td>固定 Light Slot：关=1；开=查曲线</td><td>target.illuminance_lux × @Light</td><td>L</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>5</td><td>独立因子乘积</td><td>T × S × D × L</td><td>BaseSpatialFit</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_FIXED</td><td>6</td><td>固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)</td><td>BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>1</td><td>查匹配曲线</td><td>response.feeding_match × @Match</td><td>F</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>2</td><td>查呈现曲线</td><td>response.presentation_fit × @Presentation</td><td>P</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>3</td><td>固定只读 Familiarity Slot：关闭=1；开启=查曲线</td><td>response.cue_familiarity × @Familiarity</td><td>U</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED</td><td>4</td><td>相乘</td><td>F × P × U</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_N_B</h4><pre>表达 BASS_N_B 用于 LargemouthBass.NormalFeeding / BAKE
+模板 S_FIXED（固定结构，仅展开便于阅读）
+配置：
+  Temperature = @BASS_N_B_Temperature
+  Anchor = @BASS_N_B_Anchor
+  Structure = @BASS_N_B_Structure
+  Depth = @BASS_N_B_Depth
+  Light = 关闭（无引用）
+  ColdFront = 开启
+  Cover = @BASS_N_B_Cover
+  Deep = @BASS_N_B_Deep
+执行：
+T = 查曲线(@BASS_N_B_Temperature, target.temperature_c)
+AnchorDistance = target.anchor_distances_m[@BASS_N_B_Anchor]
+S = 查曲线(@BASS_N_B_Structure, AnchorDistance)
+D = 查曲线(@BASS_N_B_Depth, target.depth_m)
+L = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1
+Base = T × S × D × L
+若 ColdFront 关闭：返回 空间权重(Base)
+Cover = 查曲线(@BASS_N_B_Cover, target.cover_distance_m)
+Deep = 查曲线(@BASS_N_B_Deep, target.adjacent_deep_access)
+Refuge = MAX(Cover, Deep)
+返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-N&quot;,
+  &quot;binding&quot;: &quot;BASS_N_B&quot;,
+  &quot;template&quot;: &quot;S_FIXED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Anchor&quot;: &quot;stable_cover&quot;,
+    &quot;AnchorDistance&quot;: 25,
+    &quot;Structure&quot;: 0.8,
+    &quot;Temperature&quot;: 1.0,
+    &quot;Depth&quot;: 1.0,
+    &quot;Base&quot;: 0.8,
+    &quot;Cover&quot;: 0.8,
+    &quot;Deep&quot;: 0.9,
+    &quot;Refuge&quot;: 0.9
+  },
+  &quot;result&quot;: 0.8500000000000001
+}</pre></details><h4>BASS_N_R</h4><pre>表达 BASS_N_R 用于 LargemouthBass.NormalFeeding / RESPONSE
+模板 R_FEED（固定结构，仅展开便于阅读）
+配置：
+  Match = @BASS_N_R_Match
+  Presentation = @BASS_N_R_Presentation
+  Familiarity = @BASS_N_R_Familiarity
+执行：
+F = 查曲线(@BASS_N_R_Match, response.feeding_match)
+P = 查曲线(@BASS_N_R_Presentation, response.presentation_fit)
+U = 若 Familiarity 开启 则 查曲线(@BASS_N_R_Familiarity, response.cue_familiarity) 否则 1
+返回 响应强度(F × P × U)
+// Familiarity 是只读 Overlay；此处没有压力/记忆写回。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-N&quot;,
+  &quot;binding&quot;: &quot;BASS_N_R&quot;,
+  &quot;template&quot;: &quot;R_FEED&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.8,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Familiarity&quot;: 0.8,
+    &quot;Feeding&quot;: 0.6000000000000001
+  },
+  &quot;result&quot;: 0.4800000000000001
+}</pre></details><h4>BASS_N_Q</h4><pre>表达 BASS_N_Q 用于 LargemouthBass.NormalFeeding / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-N&quot;,
+  &quot;binding&quot;: &quot;BASS_N_Q&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 50,
+      &quot;Medium&quot;: 30,
+      &quot;Large&quot;: 22.5,
+      &quot;Rare&quot;: 6.0
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.4608294930875576,
+    &quot;Medium&quot;: 0.2764976958525346,
+    &quot;Large&quot;: 0.2073732718894009,
+    &quot;Rare&quot;: 0.055299539170506916
+  }
+}</pre></details></div></div></section><section class="case" data-search="BASS-ROUTING 鲈鱼：五群并列 Share"><h2>BASS-ROUTING 鲈鱼：五群并列 Share</h2><p>四项特殊 share 与 normal residual 共5群。为暴露 overlap 验证，此演示快照同时置入冷/夏压力；是合成测试，不声称典型水体会同时如此。</p><p class="small">6 张作者表 · 33 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;slow.day_of_year&quot;: 120,
+  &quot;slow.recent5day_temp_c&quot;: 18,
+  &quot;slow.scene_structures&quot;: [
+    &quot;nest_cover&quot;
+  ],
+  &quot;slow.cold_severity&quot;: 0.5,
+  &quot;slow.oxythermal_compression&quot;: 0.25,
+  &quot;slow.pelagic_forage_state&quot;: true,
+  &quot;slow.open_water_forage_availability&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_G</td><td>GROUP</td><td>LargemouthBass</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 8 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>guard_dates_value</td><td>range&lt;number&gt;</td><td>[100,160]</td><td>day_of_year</td></tr><tr><td>guard_temp_value</td><td>number</td><td>15</td><td>°C</td></tr><tr><td>guard_nest_value</td><td>set&lt;string&gt;</td><td>[&quot;nest_cover&quot;]</td><td>1</td></tr><tr><td>cold_any_value</td><td>number</td><td>0</td><td>1</td></tr><tr><td>summer_any_value</td><td>number</td><td>0</td><td>1</td></tr><tr><td>forage_state_value</td><td>bool</td><td>True</td><td>1</td></tr><tr><td>forage_available_value</td><td>number</td><td>0</td><td>1</td></tr><tr><td>BassGuardShare</td><td>number</td><td>0.2</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 6 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BassColdShare</td><td>0</td><td>0</td></tr><tr><td>BassColdShare</td><td>1</td><td>0.3</td></tr><tr><td>BassSummerShare</td><td>0</td><td>0</td></tr><tr><td>BassSummerShare</td><td>1</td><td>0.4</td></tr><tr><td>BassForageShare</td><td>0</td><td>0</td></tr><tr><td>BassForageShare</td><td>1</td><td>0.2</td></tr></tbody></table></div></details><details><summary>Predicate · 9 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>guard_dates</td><td>ATOM</td><td>slow.day_of_year</td><td>BETWEEN</td><td>guard_dates_value</td></tr><tr><td>guard_temp</td><td>ATOM</td><td>slow.recent5day_temp_c</td><td>GE</td><td>guard_temp_value</td></tr><tr><td>guard_nest</td><td>ATOM</td><td>slow.scene_structures</td><td>CONTAINS_ANY</td><td>guard_nest_value</td></tr><tr><td>guard_all</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>cold_any</td><td>ATOM</td><td>slow.cold_severity</td><td>GT</td><td>cold_any_value</td></tr><tr><td>summer_any</td><td>ATOM</td><td>slow.oxythermal_compression</td><td>GT</td><td>summer_any_value</td></tr><tr><td>forage_state</td><td>ATOM</td><td>slow.pelagic_forage_state</td><td>EQ</td><td>forage_state_value</td></tr><tr><td>forage_available</td><td>ATOM</td><td>slow.open_water_forage_availability</td><td>GT</td><td>forage_available_value</td></tr><tr><td>forage_all</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 5 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>guard_all</td><td>1</td><td>guard_dates</td></tr><tr><td>guard_all</td><td>2</td><td>guard_temp</td></tr><tr><td>guard_all</td><td>3</td><td>guard_nest</td></tr><tr><td>forage_all</td><td>1</td><td>forage_state</td></tr><tr><td>forage_all</td><td>2</td><td>forage_available</td></tr></tbody></table></div></details><details><summary>GroupShare · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>group</th><th>predicate_id</th><th>share_kind</th><th>share_ref</th><th>input_field</th></tr></thead><tbody><tr><td>BASS_G</td><td>Guarding</td><td>guard_all</td><td>PARAMETER</td><td>BassGuardShare</td><td>N/A</td></tr><tr><td>BASS_G</td><td>ColdSlow</td><td>cold_any</td><td>PROFILE</td><td>BassColdShare</td><td>slow.cold_severity</td></tr><tr><td>BASS_G</td><td>SummerStress</td><td>summer_any</td><td>PROFILE</td><td>BassSummerShare</td><td>slow.oxythermal_compression</td></tr><tr><td>BASS_G</td><td>ForageChase</td><td>forage_all</td><td>PROFILE</td><td>BassForageShare</td><td>slow.open_water_forage_availability</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>G_SHARES</td><td>1</td><td>读取同一物种的同一慢速世界快照</td><td>GroupShare + Predicate</td><td>各 special predicate</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>2</td><td>并列评价：不命中=0；命中=标量或曲线</td><td>share_ref / input_field</td><td>special shares</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>3</td><td>验证每项[0,1]且和≤1</td><td>special shares</td><td>有效 share vector</td><td>超限 → ValidationError；不归一化、不顺序扣减</td></tr><tr><td>G_SHARES</td><td>4</td><td>补 Normal residual</td><td>1 − SUM(special)</td><td>FishGroupShareVector</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_G</h4><pre>表达 BASS_G 用于 LargemouthBass / GROUP
+模板 G_SHARES（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+读取 同一份 slow_snapshot
+Guarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0
+ColdSlow = 若 slow.cold_severity GT @cold_any_value 则 查曲线(@BassColdShare, slow.cold_severity) 否则 0
+SummerStress = 若 slow.oxythermal_compression GT @summer_any_value 则 查曲线(@BassSummerShare, slow.oxythermal_compression) 否则 0
+ForageChase = 若 (slow.pelagic_forage_state EQ @forage_state_value AND slow.open_water_forage_availability GT @forage_available_value) 则 查曲线(@BassForageShare, slow.open_water_forage_availability) 否则 0
+验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError
+Normal = 1 - SUM(特殊 Share)
+返回 群体组成(所有特殊 Share, Normal)
+// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-ROUTING&quot;,
+  &quot;binding&quot;: &quot;BASS_G&quot;,
+  &quot;template&quot;: &quot;G_SHARES&quot;,
+  &quot;intermediate&quot;: {
+    &quot;guard_all&quot;: true,
+    &quot;cold_any&quot;: true,
+    &quot;summer_any&quot;: true,
+    &quot;forage_all&quot;: true
+  },
+  &quot;result&quot;: {
+    &quot;Guarding&quot;: 0.2,
+    &quot;ColdSlow&quot;: 0.15,
+    &quot;SummerStress&quot;: 0.1,
+    &quot;ForageChase&quot;: 0.1,
+    &quot;Normal&quot;: 0.45000000000000007
+  }
+}</pre></details></div></div></section><section class="case" data-search="BASS-S 大口黑鲈 SummerStress"><h2>BASS-S 大口黑鲈 SummerStress</h2><p>Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。</p><p class="small">8 张作者表 · 54 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;target.temperature_c&quot;: 20,
+  &quot;target.anchor_distances_m&quot;: {
+    &quot;stable_cover&quot;: 25,
+    &quot;nest_site&quot;: 2.5
+  },
+  &quot;target.depth_m&quot;: 3,
+  &quot;target.cover_distance_m&quot;: 20,
+  &quot;target.adjacent_deep_access&quot;: 0.9,
+  &quot;weather.cold_front_severity&quot;: 0.5,
+  &quot;target.relative_warmth&quot;: 0.8,
+  &quot;target.stability&quot;: 0.9,
+  &quot;target.low_energy_refuge&quot;: 0.75,
+  &quot;target.oxygen_mg_l&quot;: 5,
+  &quot;target.relative_cooling&quot;: 0.8,
+  &quot;target.oxygen_margin&quot;: 0.75,
+  &quot;target.cover_prey_tradeoff&quot;: 0.6,
+  &quot;target.forage_school_intensity&quot;: 0.8,
+  &quot;target.vertical_alignment&quot;: 0.75,
+  &quot;target.open_water_context&quot;: 1,
+  &quot;response.feeding_match&quot;: 0.8,
+  &quot;response.presentation_fit&quot;: 0.75,
+  &quot;response.cue_familiarity&quot;: 0.4,
+  &quot;response.intrusion_strength&quot;: 0.8,
+  &quot;response.trigger_salience&quot;: 0.9,
+  &quot;response.sustained_pursuit_demand&quot;: 0.1,
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 3 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>BASS_S_B</td><td>BAKE</td><td>LargemouthBass.SummerStress</td><td>S_SUMMER</td><td>DEMO_WORKING</td></tr><tr><td>BASS_S_R</td><td>RESPONSE</td><td>LargemouthBass.SummerStress</td><td>R_FEED_REACTION</td><td>DEMO_WORKING</td></tr><tr><td>BASS_S_Q</td><td>QUALITY</td><td>LargemouthBass.SummerStress</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Slot · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>slot</th><th>enabled</th><th>ref_kind</th><th>ref_id</th></tr></thead><tbody><tr><td>BASS_S_B</td><td>OxygenMin</td><td>True</td><td>PARAMETER</td><td>BASS_S_B_OxygenMin</td></tr><tr><td>BASS_S_B</td><td>Cooling</td><td>True</td><td>PROFILE</td><td>BASS_S_B_Cooling</td></tr><tr><td>BASS_S_B</td><td>Oxygen</td><td>True</td><td>PROFILE</td><td>BASS_S_B_Oxygen</td></tr><tr><td>BASS_S_B</td><td>Tradeoff</td><td>True</td><td>PROFILE</td><td>BASS_S_B_Tradeoff</td></tr><tr><td>BASS_S_R</td><td>Match</td><td>True</td><td>PROFILE</td><td>BASS_S_R_Match</td></tr><tr><td>BASS_S_R</td><td>Presentation</td><td>True</td><td>PROFILE</td><td>BASS_S_R_Presentation</td></tr><tr><td>BASS_S_R</td><td>Salience</td><td>True</td><td>PROFILE</td><td>BASS_S_R_Salience</td></tr><tr><td>BASS_S_R</td><td>Pursuit</td><td>True</td><td>PROFILE</td><td>BASS_S_R_Pursuit</td></tr></tbody></table></div></details><details><summary>Parameter · 6 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>BASS_S_B_OxygenMin</td><td>number</td><td>3</td><td>mg/L</td></tr><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>CurvePoint · 14 行</summary><div class="scroll"><table><thead><tr><th>profile_id</th><th>x</th><th>y</th></tr></thead><tbody><tr><td>BASS_S_B_Cooling</td><td>0</td><td>0</td></tr><tr><td>BASS_S_B_Cooling</td><td>1</td><td>1</td></tr><tr><td>BASS_S_B_Oxygen</td><td>0</td><td>0</td></tr><tr><td>BASS_S_B_Oxygen</td><td>1</td><td>1</td></tr><tr><td>BASS_S_B_Tradeoff</td><td>0</td><td>0</td></tr><tr><td>BASS_S_B_Tradeoff</td><td>1</td><td>1</td></tr><tr><td>BASS_S_R_Match</td><td>0</td><td>0</td></tr><tr><td>BASS_S_R_Match</td><td>1</td><td>0.35</td></tr><tr><td>BASS_S_R_Presentation</td><td>0</td><td>0</td></tr><tr><td>BASS_S_R_Presentation</td><td>1</td><td>1</td></tr><tr><td>BASS_S_R_Salience</td><td>0</td><td>0</td></tr><tr><td>BASS_S_R_Salience</td><td>1</td><td>0.7</td></tr><tr><td>BASS_S_R_Pursuit</td><td>0</td><td>1</td></tr><tr><td>BASS_S_R_Pursuit</td><td>1</td><td>0.1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>BASS_S_Q</td><td>Small</td><td>50</td></tr><tr><td>BASS_S_Q</td><td>Medium</td><td>35</td></tr><tr><td>BASS_S_Q</td><td>Large</td><td>12</td></tr><tr><td>BASS_S_Q</td><td>Rare</td><td>3</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>BASS_S_Q</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>BASS_S_Q</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>BASS_S_Q</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>BASS_S_Q</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>BASS_S_Q</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>BASS_S_Q</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>BASS_S_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>BASS_S_Q</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 10 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>R_FEED_REACTION</td><td>1</td><td>同一 Scope 评价 Feeding</td><td>response.feeding_match × @Match；response.presentation_fit × @Presentation</td><td>F=两 Fit 乘积</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED_REACTION</td><td>2</td><td>同一 Scope 评价 Reaction</td><td>response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit</td><td>R=两 Fit 乘积</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>R_FEED_REACTION</td><td>3</td><td>固定聚合 MAX（Working Candidate 的演示实例）</td><td>F,R</td><td>ResponseStrength</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr><tr><td>S_SUMMER</td><td>1</td><td>目标溶氧硬 Gate</td><td>target.oxygen_mg_l ≥ @OxygenMin</td><td>通过目标</td><td>不通过 → 空间权重0并立即返回；不执行后续适宜性</td></tr><tr><td>S_SUMMER</td><td>2</td><td>查相对降温、氧余量、遮蔽/猎物折中</td><td>target.relative_cooling × @Cooling；target.oxygen_margin × @Oxygen；target.cover_prey_tradeoff × @Tradeoff</td><td>C,O,T</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>S_SUMMER</td><td>3</td><td>固定乘积</td><td>C × O × T</td><td>SpatialDistributionWeight</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>BASS_S_B</h4><pre>表达 BASS_S_B 用于 LargemouthBass.SummerStress / BAKE
+模板 S_SUMMER（固定结构，仅展开便于阅读）
+配置：
+  OxygenMin = @BASS_S_B_OxygenMin
+  Cooling = @BASS_S_B_Cooling
+  Oxygen = @BASS_S_B_Oxygen
+  Tradeoff = @BASS_S_B_Tradeoff
+执行：
+若 target.oxygen_mg_l &lt; @BASS_S_B_OxygenMin：返回 空间权重(0)
+C = 查曲线(@BASS_S_B_Cooling, target.relative_cooling)
+O = 查曲线(@BASS_S_B_Oxygen, target.oxygen_margin)
+T = 查曲线(@BASS_S_B_Tradeoff, target.cover_prey_tradeoff)
+返回 空间权重(C × O × T)</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-S&quot;,
+  &quot;binding&quot;: &quot;BASS_S_B&quot;,
+  &quot;template&quot;: &quot;S_SUMMER&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Cooling&quot;: 0.8,
+    &quot;Oxygen&quot;: 0.75,
+    &quot;Tradeoff&quot;: 0.6
+  },
+  &quot;result&quot;: 0.36000000000000004
+}</pre></details><h4>BASS_S_R</h4><pre>表达 BASS_S_R 用于 LargemouthBass.SummerStress / RESPONSE
+模板 R_FEED_REACTION（固定结构，仅展开便于阅读）
+配置：
+  Match = @BASS_S_R_Match
+  Presentation = @BASS_S_R_Presentation
+  Salience = @BASS_S_R_Salience
+  Pursuit = @BASS_S_R_Pursuit
+执行：
+F = 查曲线(@BASS_S_R_Match, response.feeding_match) × 查曲线(@BASS_S_R_Presentation, response.presentation_fit)
+R = 查曲线(@BASS_S_R_Salience, response.trigger_salience) × 查曲线(@BASS_S_R_Pursuit, response.sustained_pursuit_demand)
+返回 响应强度(MAX(F, R))
+// 两通道均评价；强短刺激与持续高速追逐是两个独立输入。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-S&quot;,
+  &quot;binding&quot;: &quot;BASS_S_R&quot;,
+  &quot;template&quot;: &quot;R_FEED_REACTION&quot;,
+  &quot;intermediate&quot;: {
+    &quot;Match&quot;: 0.28,
+    &quot;Presentation&quot;: 0.75,
+    &quot;Salience&quot;: 0.63,
+    &quot;Pursuit&quot;: 0.91,
+    &quot;Feeding&quot;: 0.20999999999999996,
+    &quot;Reaction&quot;: 0.5733
+  },
+  &quot;result&quot;: 0.5733
+}</pre></details><h4>BASS_S_Q</h4><pre>表达 BASS_S_Q 用于 LargemouthBass.SummerStress / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;BASS-S&quot;,
+  &quot;binding&quot;: &quot;BASS_S_Q&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 50,
+      &quot;Medium&quot;: 35,
+      &quot;Large&quot;: 18.0,
+      &quot;Rare&quot;: 3.5999999999999996
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.46904315196998125,
+    &quot;Medium&quot;: 0.3283302063789869,
+    &quot;Large&quot;: 0.16885553470919326,
+    &quot;Rare&quot;: 0.03377110694183865
+  }
+}</pre></details></div></div></section><section class="case" data-search="G1 Group 条件：日期 AND 温度 AND 巢区"><h2>G1 Group 条件：日期 AND 温度 AND 巢区</h2><p>复用同一 guard_all 条件树；不复制 Owner 决策。</p><p class="small">5 张作者表 · 13 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;slow.day_of_year&quot;: 120,
+  &quot;slow.recent5day_temp_c&quot;: 18,
+  &quot;slow.scene_structures&quot;: [
+    &quot;nest_cover&quot;
+  ],
+  &quot;slow.cold_severity&quot;: 0.5,
+  &quot;slow.oxythermal_compression&quot;: 0.25,
+  &quot;slow.pelagic_forage_state&quot;: true,
+  &quot;slow.open_water_forage_availability&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>G1</td><td>GROUP</td><td>G1_GuardNormal</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 4 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>guard_dates_value</td><td>range&lt;number&gt;</td><td>[100,160]</td><td>day_of_year</td></tr><tr><td>guard_temp_value</td><td>number</td><td>15</td><td>°C</td></tr><tr><td>guard_nest_value</td><td>set&lt;string&gt;</td><td>[&quot;nest_cover&quot;]</td><td>1</td></tr><tr><td>BassGuardShare</td><td>number</td><td>0.2</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 4 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>guard_dates</td><td>ATOM</td><td>slow.day_of_year</td><td>BETWEEN</td><td>guard_dates_value</td></tr><tr><td>guard_temp</td><td>ATOM</td><td>slow.recent5day_temp_c</td><td>GE</td><td>guard_temp_value</td></tr><tr><td>guard_nest</td><td>ATOM</td><td>slow.scene_structures</td><td>CONTAINS_ANY</td><td>guard_nest_value</td></tr><tr><td>guard_all</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 3 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>guard_all</td><td>1</td><td>guard_dates</td></tr><tr><td>guard_all</td><td>2</td><td>guard_temp</td></tr><tr><td>guard_all</td><td>3</td><td>guard_nest</td></tr></tbody></table></div></details><details><summary>GroupShare · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>group</th><th>predicate_id</th><th>share_kind</th><th>share_ref</th><th>input_field</th></tr></thead><tbody><tr><td>G1</td><td>Guarding</td><td>guard_all</td><td>PARAMETER</td><td>BassGuardShare</td><td>N/A</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>G_SHARES</td><td>1</td><td>读取同一物种的同一慢速世界快照</td><td>GroupShare + Predicate</td><td>各 special predicate</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>2</td><td>并列评价：不命中=0；命中=标量或曲线</td><td>share_ref / input_field</td><td>special shares</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>3</td><td>验证每项[0,1]且和≤1</td><td>special shares</td><td>有效 share vector</td><td>超限 → ValidationError；不归一化、不顺序扣减</td></tr><tr><td>G_SHARES</td><td>4</td><td>补 Normal residual</td><td>1 − SUM(special)</td><td>FishGroupShareVector</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>G1</h4><pre>表达 G1 用于 G1_GuardNormal / GROUP
+模板 G_SHARES（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+读取 同一份 slow_snapshot
+Guarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0
+验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError
+Normal = 1 - SUM(特殊 Share)
+返回 群体组成(所有特殊 Share, Normal)
+// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;G1&quot;,
+  &quot;binding&quot;: &quot;G1&quot;,
+  &quot;template&quot;: &quot;G_SHARES&quot;,
+  &quot;intermediate&quot;: {
+    &quot;guard_all&quot;: true
+  },
+  &quot;result&quot;: {
+    &quot;Guarding&quot;: 0.2,
+    &quot;Normal&quot;: 0.8
+  }
+}</pre></details></div></div></section><section class="case" data-search="G2 Group 同快照回退：不满足巢区"><h2>G2 Group 同快照回退：不满足巢区</h2><p>Guard share=0；Normal=1。回退是剩余份额，不是 Defense vs Feeding fallback。</p><p class="small">5 张作者表 · 13 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;slow.day_of_year&quot;: 120,
+  &quot;slow.recent5day_temp_c&quot;: 18,
+  &quot;slow.scene_structures&quot;: [
+    &quot;open_water&quot;
+  ],
+  &quot;slow.cold_severity&quot;: 0.5,
+  &quot;slow.oxythermal_compression&quot;: 0.25,
+  &quot;slow.pelagic_forage_state&quot;: true,
+  &quot;slow.open_water_forage_availability&quot;: 0.5
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>G2</td><td>GROUP</td><td>G2_GuardNormal</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 4 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>guard_dates_value</td><td>range&lt;number&gt;</td><td>[100,160]</td><td>day_of_year</td></tr><tr><td>guard_temp_value</td><td>number</td><td>15</td><td>°C</td></tr><tr><td>guard_nest_value</td><td>set&lt;string&gt;</td><td>[&quot;nest_cover&quot;]</td><td>1</td></tr><tr><td>BassGuardShare</td><td>number</td><td>0.2</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 4 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>guard_dates</td><td>ATOM</td><td>slow.day_of_year</td><td>BETWEEN</td><td>guard_dates_value</td></tr><tr><td>guard_temp</td><td>ATOM</td><td>slow.recent5day_temp_c</td><td>GE</td><td>guard_temp_value</td></tr><tr><td>guard_nest</td><td>ATOM</td><td>slow.scene_structures</td><td>CONTAINS_ANY</td><td>guard_nest_value</td></tr><tr><td>guard_all</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 3 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>guard_all</td><td>1</td><td>guard_dates</td></tr><tr><td>guard_all</td><td>2</td><td>guard_temp</td></tr><tr><td>guard_all</td><td>3</td><td>guard_nest</td></tr></tbody></table></div></details><details><summary>GroupShare · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>group</th><th>predicate_id</th><th>share_kind</th><th>share_ref</th><th>input_field</th></tr></thead><tbody><tr><td>G2</td><td>Guarding</td><td>guard_all</td><td>PARAMETER</td><td>BassGuardShare</td><td>N/A</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>G_SHARES</td><td>1</td><td>读取同一物种的同一慢速世界快照</td><td>GroupShare + Predicate</td><td>各 special predicate</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>2</td><td>并列评价：不命中=0；命中=标量或曲线</td><td>share_ref / input_field</td><td>special shares</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>3</td><td>验证每项[0,1]且和≤1</td><td>special shares</td><td>有效 share vector</td><td>超限 → ValidationError；不归一化、不顺序扣减</td></tr><tr><td>G_SHARES</td><td>4</td><td>补 Normal residual</td><td>1 − SUM(special)</td><td>FishGroupShareVector</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>G2</h4><pre>表达 G2 用于 G2_GuardNormal / GROUP
+模板 G_SHARES（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+读取 同一份 slow_snapshot
+Guarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0
+验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError
+Normal = 1 - SUM(特殊 Share)
+返回 群体组成(所有特殊 Share, Normal)
+// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;G2&quot;,
+  &quot;binding&quot;: &quot;G2&quot;,
+  &quot;template&quot;: &quot;G_SHARES&quot;,
+  &quot;intermediate&quot;: {
+    &quot;guard_all&quot;: false
+  },
+  &quot;result&quot;: {
+    &quot;Guarding&quot;: 0,
+    &quot;Normal&quot;: 1
+  }
+}</pre></details></div></div></section><section class="case" data-search="G3 合成压力样本：(春 AND 温) OR (秋 AND 凉)"><h2>G3 合成压力样本：(春 AND 温) OR (秋 AND 凉)</h2><p>用于把嵌套条件的实际存法填出来，不升级为已被鱼类证据确认的深层 Group breaker。</p><p class="small">5 张作者表 · 20 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;slow.day_of_year&quot;: 270,
+  &quot;slow.recent5day_temp_c&quot;: 15
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>G3</td><td>GROUP</td><td>SyntheticSeasonGroup</td><td>G_SHARES</td><td>SYNTHETIC_STRESS_ONLY</td></tr></tbody></table></div></details><details><summary>Parameter · 5 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>g3_spring_date_value</td><td>range&lt;number&gt;</td><td>[80,130]</td><td>day_of_year</td></tr><tr><td>g3_warm_value</td><td>number</td><td>12</td><td>°C</td></tr><tr><td>g3_fall_date_value</td><td>range&lt;number&gt;</td><td>[250,290]</td><td>day_of_year</td></tr><tr><td>g3_cool_value</td><td>number</td><td>18</td><td>°C</td></tr><tr><td>G3Share</td><td>number</td><td>0.25</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>g3_spring_date</td><td>ATOM</td><td>slow.day_of_year</td><td>BETWEEN</td><td>g3_spring_date_value</td></tr><tr><td>g3_warm</td><td>ATOM</td><td>slow.recent5day_temp_c</td><td>GE</td><td>g3_warm_value</td></tr><tr><td>g3_spring</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>g3_fall_date</td><td>ATOM</td><td>slow.day_of_year</td><td>BETWEEN</td><td>g3_fall_date_value</td></tr><tr><td>g3_cool</td><td>ATOM</td><td>slow.recent5day_temp_c</td><td>LE</td><td>g3_cool_value</td></tr><tr><td>g3_fall</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>g3_either</td><td>ANY</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 6 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>g3_spring</td><td>1</td><td>g3_spring_date</td></tr><tr><td>g3_spring</td><td>2</td><td>g3_warm</td></tr><tr><td>g3_fall</td><td>1</td><td>g3_fall_date</td></tr><tr><td>g3_fall</td><td>2</td><td>g3_cool</td></tr><tr><td>g3_either</td><td>1</td><td>g3_spring</td></tr><tr><td>g3_either</td><td>2</td><td>g3_fall</td></tr></tbody></table></div></details><details><summary>GroupShare · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>group</th><th>predicate_id</th><th>share_kind</th><th>share_ref</th><th>input_field</th></tr></thead><tbody><tr><td>G3</td><td>Seasonal</td><td>g3_either</td><td>PARAMETER</td><td>G3Share</td><td>N/A</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>G_SHARES</td><td>1</td><td>读取同一物种的同一慢速世界快照</td><td>GroupShare + Predicate</td><td>各 special predicate</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>2</td><td>并列评价：不命中=0；命中=标量或曲线</td><td>share_ref / input_field</td><td>special shares</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>G_SHARES</td><td>3</td><td>验证每项[0,1]且和≤1</td><td>special shares</td><td>有效 share vector</td><td>超限 → ValidationError；不归一化、不顺序扣减</td></tr><tr><td>G_SHARES</td><td>4</td><td>补 Normal residual</td><td>1 − SUM(special)</td><td>FishGroupShareVector</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>G3</h4><pre>表达 G3 用于 SyntheticSeasonGroup / GROUP
+模板 G_SHARES（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+读取 同一份 slow_snapshot
+Seasonal = 若 ((slow.day_of_year BETWEEN @g3_spring_date_value AND slow.recent5day_temp_c GE @g3_warm_value) OR (slow.day_of_year BETWEEN @g3_fall_date_value AND slow.recent5day_temp_c LE @g3_cool_value)) 则 @G3Share 否则 0
+验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError
+Normal = 1 - SUM(特殊 Share)
+返回 群体组成(所有特殊 Share, Normal)
+// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;G3&quot;,
+  &quot;binding&quot;: &quot;G3&quot;,
+  &quot;template&quot;: &quot;G_SHARES&quot;,
+  &quot;intermediate&quot;: {
+    &quot;g3_either&quot;: true
+  },
+  &quot;result&quot;: {
+    &quot;Seasonal&quot;: 0.25,
+    &quot;Normal&quot;: 0.75
+  }
+}</pre></details></div></div></section><section class="case" data-search="Q1 品质并列修正 Q1"><h2>Q1 品质并列修正 Q1</h2><p>大钩且大饵：Large×1.5、Rare×1.2。</p><p class="small">6 张作者表 · 29 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;active&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>Q1</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 5 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>Q1</td><td>Small</td><td>50</td></tr><tr><td>Q1</td><td>Medium</td><td>30</td></tr><tr><td>Q1</td><td>Large</td><td>15</td></tr><tr><td>Q1</td><td>Rare</td><td>5</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>Q1</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>Q1</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>Q1</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>Q1</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>Q1</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>Q1</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>Q1</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>Q1</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>Q1</h4><pre>表达 Q1 用于 IllustrativeQuality / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;Q1&quot;,
+  &quot;binding&quot;: &quot;Q1&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 50,
+      &quot;Medium&quot;: 30,
+      &quot;Large&quot;: 22.5,
+      &quot;Rare&quot;: 6.0
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.4608294930875576,
+    &quot;Medium&quot;: 0.2764976958525346,
+    &quot;Large&quot;: 0.2073732718894009,
+    &quot;Rare&quot;: 0.055299539170506916
+  }
+}</pre></details></div></div></section><section class="case" data-search="Q2 品质并列修正 Q2"><h2>Q2 品质并列修正 Q2</h2><p>低活性：Small/Medium×1.2，Large/Rare×0.7。桶与成体关系只是演示映射，不声称小=幼体、大=成体的生物同一性。</p><p class="small">6 张作者表 · 29 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;gear.hook_size_index&quot;: 1,
+  &quot;gear.bait_size_cm&quot;: 3,
+  &quot;quality_context.time_band&quot;: &quot;inactive&quot;,
+  &quot;quality_context.water_temp_c&quot;: 20
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>Q2</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 5 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>Q2</td><td>Small</td><td>50</td></tr><tr><td>Q2</td><td>Medium</td><td>30</td></tr><tr><td>Q2</td><td>Large</td><td>15</td></tr><tr><td>Q2</td><td>Rare</td><td>5</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>Q2</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>Q2</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>Q2</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>Q2</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>Q2</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>Q2</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>Q2</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>Q2</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>Q2</h4><pre>表达 Q2 用于 IllustrativeQuality / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;Q2&quot;,
+  &quot;binding&quot;: &quot;Q2&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;LowActivity/Small&quot;,
+      &quot;LowActivity/Medium&quot;,
+      &quot;LowActivity/Large&quot;,
+      &quot;LowActivity/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 60.0,
+      &quot;Medium&quot;: 36.0,
+      &quot;Large&quot;: 10.5,
+      &quot;Rare&quot;: 3.5
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.5454545454545454,
+    &quot;Medium&quot;: 0.32727272727272727,
+    &quot;Large&quot;: 0.09545454545454546,
+    &quot;Rare&quot;: 0.031818181818181815
+  }
+}</pre></details></div></div></section><section class="case" data-search="Q3 品质并列修正 Q3"><h2>Q3 品质并列修正 Q3</h2><p>BigGear 与 ColdNight 同时命中。后者只读原始水温/时段，不读前者改完的分布。</p><p class="small">6 张作者表 · 29 行引用闭包（全局去重另计）</p><details><summary>完整输入快照</summary><pre>{
+  &quot;gear.hook_size_index&quot;: 3,
+  &quot;gear.bait_size_cm&quot;: 10,
+  &quot;quality_context.time_band&quot;: &quot;night&quot;,
+  &quot;quality_context.water_temp_c&quot;: 6
+}</pre></details><div class="pair"><div><h3>A · 实际配置行</h3><details><summary>Binding · 1 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>surface</th><th>subject</th><th>template_id</th><th>status</th></tr></thead><tbody><tr><td>Q3</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr></tbody></table></div></details><details><summary>Parameter · 5 行</summary><div class="scroll"><table><thead><tr><th>parameter_id</th><th>type</th><th>value</th><th>unit</th></tr></thead><tbody><tr><td>q_hook_value</td><td>number</td><td>3</td><td>1</td></tr><tr><td>q_bait_value</td><td>number</td><td>8</td><td>cm</td></tr><tr><td>q_inactive_value</td><td>set&lt;string&gt;</td><td>[&quot;inactive&quot;]</td><td>1</td></tr><tr><td>q_cold_value</td><td>number</td><td>8</td><td>°C</td></tr><tr><td>q_night_value</td><td>set&lt;string&gt;</td><td>[&quot;night&quot;]</td><td>1</td></tr></tbody></table></div></details><details><summary>Predicate · 7 行</summary><div class="scroll"><table><thead><tr><th>node_id</th><th>kind</th><th>field</th><th>operator</th><th>parameter_id</th></tr></thead><tbody><tr><td>q_hook</td><td>ATOM</td><td>gear.hook_size_index</td><td>GE</td><td>q_hook_value</td></tr><tr><td>q_bait</td><td>ATOM</td><td>gear.bait_size_cm</td><td>GE</td><td>q_bait_value</td></tr><tr><td>q_big_gear</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>q_inactive</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_inactive_value</td></tr><tr><td>q_cold</td><td>ATOM</td><td>quality_context.water_temp_c</td><td>LE</td><td>q_cold_value</td></tr><tr><td>q_night</td><td>ATOM</td><td>quality_context.time_band</td><td>IN</td><td>q_night_value</td></tr><tr><td>q_coldnight</td><td>ALL</td><td>N/A</td><td>N/A</td><td>N/A</td></tr></tbody></table></div></details><details><summary>PredicateMember · 4 行</summary><div class="scroll"><table><thead><tr><th>parent_id</th><th>display_index</th><th>child_id</th></tr></thead><tbody><tr><td>q_big_gear</td><td>1</td><td>q_hook</td></tr><tr><td>q_big_gear</td><td>2</td><td>q_bait</td></tr><tr><td>q_coldnight</td><td>1</td><td>q_cold</td></tr><tr><td>q_coldnight</td><td>2</td><td>q_night</td></tr></tbody></table></div></details><details><summary>QualityWeight · 4 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>bucket</th><th>base_weight</th></tr></thead><tbody><tr><td>Q3</td><td>Small</td><td>50</td></tr><tr><td>Q3</td><td>Medium</td><td>30</td></tr><tr><td>Q3</td><td>Large</td><td>15</td></tr><tr><td>Q3</td><td>Rare</td><td>5</td></tr></tbody></table></div></details><details><summary>QualityModifier · 8 行</summary><div class="scroll"><table><thead><tr><th>binding_id</th><th>rule_id</th><th>predicate_id</th><th>bucket</th><th>multiplier</th></tr></thead><tbody><tr><td>Q3</td><td>BigGear</td><td>q_big_gear</td><td>Large</td><td>1.5</td></tr><tr><td>Q3</td><td>BigGear</td><td>q_big_gear</td><td>Rare</td><td>1.2</td></tr><tr><td>Q3</td><td>LowActivity</td><td>q_inactive</td><td>Small</td><td>1.2</td></tr><tr><td>Q3</td><td>LowActivity</td><td>q_inactive</td><td>Medium</td><td>1.2</td></tr><tr><td>Q3</td><td>LowActivity</td><td>q_inactive</td><td>Large</td><td>0.7</td></tr><tr><td>Q3</td><td>LowActivity</td><td>q_inactive</td><td>Rare</td><td>0.7</td></tr><tr><td>Q3</td><td>ColdNight</td><td>q_coldnight</td><td>Large</td><td>0.8</td></tr><tr><td>Q3</td><td>ColdNight</td><td>q_coldnight</td><td>Rare</td><td>0.8</td></tr></tbody></table></div></details><details><summary>TemplateStep · 4 行</summary><div class="scroll"><table><thead><tr><th>template_id</th><th>step</th><th>operation</th><th>input</th><th>output</th><th>failure</th></tr></thead><tbody><tr><td>Q_PARALLEL</td><td>1</td><td>取已经选定的 Group 对应基准分布</td><td>QualityWeight</td><td>base[bucket]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>2</td><td>所有条件只读同一原始 facts</td><td>QualityModifier + Predicate</td><td>并列命中 modifier</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>3</td><td>每桶原始权重乘所有命中乘数</td><td>base[b] × PRODUCT(multipliers[b])</td><td>raw[b]</td><td>输入缺失/类型错 → ValidationError；不抽签、不写状态</td></tr><tr><td>Q_PARALLEL</td><td>4</td><td>一次归一化</td><td>raw / SUM(raw)</td><td>QualityDistribution</td><td>负数/非有限/总和≤0 → ValidationError；本模板不抽签</td></tr></tbody></table></div></details></div><div><h3>B · 等义中文伪脚本</h3><h4>Q3</h4><pre>表达 Q3 用于 IllustrativeQuality / QUALITY
+模板 Q_PARALLEL（固定结构，仅展开便于阅读）
+配置：
+  无 Profile Slot；使用下列具名规则与共享数值表
+执行：
+Base = 当前 Group 的 QualityWeight
+并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5
+并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2
+并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2
+并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2
+并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7
+并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7
+并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8
+并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8
+对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数
+若 SUM(Raw) ≤ 0：ValidationError
+返回 品质分布(Raw / SUM(Raw))
+// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。</pre><details open><summary>中间值与结果</summary><pre>{
+  &quot;case&quot;: &quot;Q3&quot;,
+  &quot;binding&quot;: &quot;Q3&quot;,
+  &quot;template&quot;: &quot;Q_PARALLEL&quot;,
+  &quot;intermediate&quot;: {
+    &quot;hits&quot;: [
+      &quot;BigGear/Large&quot;,
+      &quot;BigGear/Rare&quot;,
+      &quot;ColdNight/Large&quot;,
+      &quot;ColdNight/Rare&quot;
+    ],
+    &quot;raw&quot;: {
+      &quot;Small&quot;: 50,
+      &quot;Medium&quot;: 30,
+      &quot;Large&quot;: 18.0,
+      &quot;Rare&quot;: 4.800000000000001
+    }
+  },
+  &quot;result&quot;: {
+    &quot;Small&quot;: 0.48638132295719844,
+    &quot;Medium&quot;: 0.2918287937743191,
+    &quot;Large&quot;: 0.17509727626459146,
+    &quot;Rare&quot;: 0.04669260700389106
+  }
+}</pre></details></div></div></section><section class="case"><h2>同一修改，改哪里？</h2><p>C06 入侵强度0.5的响应从0.6改0.65：两边都只改共享 CurvePoint 的一格。C08 的 MAX 改平均：两边都要修改聚合逻辑与验证；表格版不能把它伪装成普通 Profile 调参。</p><p>C03 再加一个 AND 子条件：表格增加 Parameter、Predicate 和 PredicateMember 三行；脚本增加 Parameter 并展开条件表达式。两边都要验证输入是否已被准入。</p><p>全量修改定位、身份边界和表统计口径见完整中文文档第6–9节。</p></section></main><footer>本页是同一具名样本包的阅读视图。演示模板目录不等于 L_final；未实现生产 DSL 编译器，未 Promote。独立审查结果见随附 review 文件。</footer><script>const search=document.querySelector("#search"),group=document.querySelector("#group");function filter(){let q=search.value.toLowerCase(),g=group.value;document.querySelectorAll(".case[data-search]").forEach(e=>{let t=e.dataset.search;e.classList.toggle("hide",!t.toLowerCase().includes(q)||(g!=="all"&&!t.startsWith(g)))});}search.oninput=filter;group.onchange=filter;document.querySelector("#mode").onclick=function(){document.body.classList.toggle("single");this.textContent=document.body.classList.contains("single")?"左右对照":"只看脚本"};document.querySelector("#expand").onclick=()=>document.querySelectorAll(".case[data-search]:not(.hide) details").forEach(e=>e.open=true);</script></html>

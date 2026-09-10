@@ -7,6 +7,11 @@ and exercised by the tests in [`tests/test_fcf_v1.py`](tests/test_fcf_v1.py).
 中文入口总览见 [`docs/fcf_v1_overview_cn.md`](docs/fcf_v1_overview_cn.md)，其中包含
 概念、整体机制、配置示例、中文术语和主链路图示。
 
+全仓库机制英文术语的中文对照见 [`docs/glossary_cn.md`](docs/glossary_cn.md)。
+
+Simplified V0 文档治理见 [`docs/fcf_v0_document_governance.md`](docs/fcf_v0_document_governance.md)，
+其中规定 V0 实验、V1 contract 和发布镜像的边界。
+
 Additional review surfaces:
 
 - [`docs/editor_contract.md`](docs/editor_contract.md) — transactional editor and attribute workflow;

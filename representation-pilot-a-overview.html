@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Representation Pilot-A 速览</title>
+<style>
+:root{--bg:#f7f8fa;--ink:#182230;--muted:#637083;--line:#dce2ea;--card:#fff;--blue:#356ae6;--green:#16845b;--amber:#b66b00;--red:#bb3d52;--purple:#7650c7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}main{max-width:1120px;margin:auto;padding:32px 22px 56px}h1{font-size:32px;line-height:1.2;margin:0 0 8px}h2{font-size:21px;margin:30px 0 12px}h3{font-size:16px;margin:0 0 5px}.sub{color:var(--muted);margin:0 0 25px}.hero{background:linear-gradient(135deg,#edf3ff,#fff);border:1px solid #d5e1fa;border-radius:18px;padding:24px}.status{display:inline-block;padding:4px 10px;border-radius:99px;background:#e6f5ee;color:var(--green);font-weight:650;font-size:13px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}.metric{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.metric b{display:block;font-size:25px;line-height:1.15}.metric span{color:var(--muted);font-size:13px}.flow{display:flex;align-items:stretch;gap:8px;margin:14px 0;flex-wrap:wrap}.node{flex:1;min-width:145px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px}.node strong{display:block;font-size:18px}.arrow{align-self:center;color:var(--blue);font-size:24px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px}.card p{margin:7px 0;color:var(--muted)}.tag{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:650;margin:2px 3px 2px 0}.fit{background:#e7f6ef;color:var(--green)}.uncertain{background:#fff1d8;color:var(--amber)}.out{background:#f1edf9;color:var(--purple)}.bar{height:13px;border-radius:8px;background:#edf0f4;overflow:hidden;margin:9px 0}.bar i{display:block;height:100%;float:left}.b1{width:60%;background:var(--blue)}.b2{width:40%;background:var(--green)}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}.table th,.table td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}.table th{background:#f0f3f7;font-size:13px}.table tr:last-child td{border-bottom:0}.note{border-left:4px solid var(--blue);padding:10px 14px;background:#eef3ff;border-radius:0 10px 10px 0}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}.legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.sources a{color:var(--blue);text-decoration:none}.footer{color:var(--muted);font-size:13px;margin-top:28px}@media(max-width:700px){main{padding:22px 14px}.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.flow{display:block}.arrow{display:block;text-align:center;line-height:1.2}.node{margin:6px 0}.table{min-width:680px}}
+.codegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.codepanel{background:#101827;color:#e6edf7;border-radius:10px;padding:15px;overflow:auto}.codepanel h3{color:#fff;margin-bottom:8px}.codepanel pre{margin:0;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.route{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.route .card{padding:13px}.route b{font-size:22px;display:block}.muted{color:var(--muted)}@media(max-width:700px){.codegrid,.route{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<section class="hero"><span class="status">B4：TARGETED_AUDIT_REQUEST</span><h1>Representation Pilot-A 速览</h1><p class="sub">这份页面把 15 个冻结 Mechanism Stories 映射到 PT1–PT4，并记录哪些结论已经能复用、哪些仍需证据或设计裁决。</p>
+<div class="metrics"><div class="metric"><b>15</b><span>冻结故事</span></div><div class="metric"><b>5</b><span>确认适配（FIT）</span></div><div class="metric"><b>8</b><span>未确定（UNCERTAIN）</span></div><div class="metric"><b>2</b><span>范围外（OUT_OF_SCOPE）</span></div></div></section>
+<h2>一眼看懂：系统在验证什么</h2>
+<div class="flow" aria-label="表达验证流程">
+<div class="node"><strong>现实证据</strong><span>鱼种、阶段、环境和行为</span></div><div class="arrow">→</div>
+<div class="node"><strong>输入范围</strong><span>Spatial / Response 等执行面</span></div><div class="arrow">→</div>
+<div class="node"><strong>生产模板</strong><span>低自由度 PT1–PT4</span></div><div class="arrow">→</div>
+<div class="node"><strong>结果</strong><span>FIT、UNCERTAIN 或范围外</span></div>
+</div>
+<p class="note"><b>核心原则：</b>“最佳 PT”只是候选定位，不是通过票；“没有发现 Escape”也不等于 PT1–PT4 已稳定，更不等于所有故事已闭合。</p>
+<h2>五个确认适配故事</h2>
+<div class="card"><div class="bar" aria-label="确认适配模板分布"><i class="b1"></i><i class="b2"></i></div><p><b>PT1 空间模板：</b> C01 大西洋鳕鱼、C02 斑点叉尾鮰、C05 玻璃梭鲈（3 条）。</p><p><b>PT2 响应模板：</b> C03 虹鳟、C04 褐鳟（2 条）。</p><p>这说明有限模板可以复用，支持局部 <b>F = 5 &gt; L_observed = 2</b>；不能外推成全库结论。</p></div>
+<h2>15 条故事的处置地图</h2>
+<div class="table-wrap"><table class="table"><thead><tr><th>范围</th><th>案例</th><th>当前判断</th><th>留下的问题</th></tr></thead><tbody>
+<tr><td><span class="tag fit">确认适配</span></td><td>C01–C05</td><td>PT1 / PT2 足以表达本轮声明的局部故事。</td><td>参数、阈值和具体生产配置仍需校准。</td></tr>
+<tr><td><span class="tag uncertain">护巢压力</span></td><td>C06 蓝鳃太阳鱼<br>C07 小口黑鲈</td><td>护巢与摄食可在同一阶段出现；不能证明固定 Defense-first。</td><td>优先顺序、覆盖和回退是设计策略（DESIGN_POLICY）。</td></tr>
+<tr><td><span class="tag uncertain">食物场 / 连续资源</span></td><td>C08 尼罗罗非鱼<br>C09 鸭嘴鲟<br>C10 大口牛胭脂鱼<br>C11 鲻鱼</td><td>有混合摄食、滤食段或局部底质动作证据；未闭合完整机会过程。</td><td>Opportunity 身份、生命周期、失效、去重和玩家钩饵接口是设计协议（DESIGN_CONTRACT）。</td></tr>
+<tr><td><span class="tag uncertain">生命周期压力</span></td><td>C12 大西洋鲑<br>C13 红鲑</td><td>阶段和摄食差异存在；不自动购买阶段选择器或新通道。</td><td>C12 有种群限定事实修正；C13 阶段—动作映射仍未闭合。</td></tr>
+<tr><td><span class="tag out">边界检查</span></td><td>C14 海七鳃鳗<br>C15 鸭嘴鲟锚钩捕获</td><td>属于实例化后附着或与响应无关的捕获边界。</td><td>不作为本轮 PT1–PT4 覆盖对象。</td></tr>
+</tbody></table></div>
+<h2>PT1–PT4：目前得到的信号</h2>
+<div class="grid"><div class="card"><h3>PT1：空间 / 有限处理链</h3><p>已有 3 条确认 FIT，另有若干候选。空间因素、参数和有限顺序可以复用。</p><span class="tag fit">已观察复用</span></div>
+<div class="card"><h3>PT2：响应 / 类型化规则</h3><p>已有 2 条确认 FIT。比较、条件和类型化 SET 足以表达局部响应。</p><span class="tag fit">已观察复用</span></div>
+<div class="card"><h3>PT3：选择器 → 固定处理链</h3><p>C08、C12 有候选压力，但没有案例证明必须购买更强控制流。</p><span class="tag uncertain">候选，不是确认需求</span></div>
+<div class="card"><h3>PT4：优先级 / 回退</h3><p>护巢冲突尚无稳定现实优先顺序；若游戏要 Defense-first，应作为设计策略决定。</p><span class="tag uncertain">现实未证明必要</span></div></div>
+<h2>下一步由谁负责？</h2>
+<div class="grid"><div class="card"><h3>设计策略（DESIGN_POLICY）</h3><p><b>C06 / C07：</b>护巢与摄食可以重叠，但 Defense-first 不是现实定律。是否优先防御，由产品策略决定。</p></div><div class="card"><h3>设计协议（DESIGN_CONTRACT）</h3><p><b>C09–C11：</b>机会身份、寿命、失效、去重和运行时评估单位由协议负责，继续找鱼不会自动解决。</p></div><div class="card"><h3>表达验证（REPRESENTATION）</h3><p><b>C08：</b>PT3 仍是候选；先比较同一评价器的不同输入、参数配置与选择器方案。</p></div><div class="card"><h3>关卡处理（GATE）</h3><p><b>C12 / C13：</b>阶段差异不直接购买 Selector。C12 种群限定提交 Fish Architecture Decision Gate。</p></div></div>
+<h2>运行时顺序与模板读数</h2>
+<p class="note"><b>读法：</b>只有“运行时顺序 + 拓扑 + Typed Result”都能由当前材料支持，才计入 <b>L_confirmed</b>。示意顺序、Profile 差异和 Predicate 内部排列都不会被偷偷算成新模板。</p>
+<div class="route"><div class="card"><b>1</b><span>已确认模板<br><span class="muted">C03：Predicate → Hit / Default → ResponseBand</span></span></div><div class="card"><b>2</b><span>结构下界<br><span class="muted">Response 条件族 + Spatial Pipeline 候选族</span></span></div><div class="card"><b>12</b><span>未决案例<br><span class="muted">C01、C02、C04–C13</span></span></div></div>
+<div class="table-wrap"><table class="table"><thead><tr><th>模板族</th><th>案例</th><th>共享条件</th><th>当前状态</th><th>空白的真实来源</th></tr></thead><tbody>
+<tr><td>LT-01 条件响应</td><td>C03</td><td>读取 → Predicate → 命中 / 默认 → ResponseBand</td><td><span class="tag fit">CONFIRMED</span></td><td>无结构阻塞，剩余是数值校准。</td></tr>
+<tr><td>LT-02 空间处理链</td><td>C01 / C02 / C05</td><td>读取空间事实 → 固定槽位 → 合并 → SpatialDistributionWeight</td><td><span class="tag uncertain">CANDIDATE</span></td><td>实际 Factor 顺序尚未冻结。</td></tr>
+<tr><td>LT-04 护巢竞争</td><td>C06 / C07</td><td>Guard Predicate → Guard Response</td><td><span class="tag uncertain">UNRESOLVED</span></td><td>Defense 与 Feeding 同时成立时的产品策略未定。</td></tr>
+<tr><td>LT-05 选择器候选</td><td>C08 / C12</td><td>条件读取 → Selector 或连续 Profile → Response</td><td><span class="tag uncertain">UNRESOLVED</span></td><td>是否需要 Selector 仍是表达判断，不是表格语法失败。</td></tr>
+<tr><td>LT-06 机会评价</td><td>C09–C11</td><td>Opportunity 快照 → 有效性 → 资源条件 → Response</td><td><span class="tag uncertain">UNRESOLVED</span></td><td>Opportunity 身份、寿命、失效、预留和去重协议未定。</td></tr>
+<tr><td>暂不聚类</td><td>C13</td><td>阶段许可 + 资源条件 + Profile / fallback</td><td><span class="tag uncertain">GATE_PENDING</span></td><td>允许阶段集合和 miss 路径未闭合。</td></tr>
+</tbody></table></div>
+<h2>同一条规则：中文 DSL 与配置表</h2>
+<p class="sub">下面用已经闭合的 C03 做公平对照。它说明“怎么写”，不代表本轮已经决定所有规则都采用 DSL。</p>
+<div class="codegrid"><div class="codepanel"><h3>中文 DSL 草案</h3><pre>rule R_TroutDrift : ResponseBand {
+  when all {
+    food_match == TARGET_FOOD
+    presentation == NATURAL_DRIFT
+  }
+  then SET_RESPONSE_BAND(HIGH)
+  else DEFAULT_RESPONSE()
+}</pre></div><div class="card"><h3>配置表投影</h3><div class="table-wrap"><table class="table"><thead><tr><th>层级</th><th>字段</th><th>值</th></tr></thead><tbody><tr><td>Atom C1</td><td>food_match</td><td>TARGET_FOOD</td></tr><tr><td>Atom C2</td><td>presentation</td><td>NATURAL_DRIFT</td></tr><tr><td>Group G1</td><td>Combine</td><td>AND(C1, C2)</td></tr><tr><td>Hit</td><td>Typed Result</td><td>SET_RESPONSE_BAND(HIGH)</td></tr><tr><td>Miss</td><td>Fallback</td><td>DEFAULT_RESPONSE()</td></tr></tbody></table></div></div></div>
+<div class="grid"><div class="card"><h3>配置表当前足够</h3><p>C03 的条件、组合、命中结果和回退都能逐行校验。当前没有证据表明必须引入 DSL。</p></div><div class="card"><h3>DSL 的潜在工程价值</h3><p>规则数量上升后，DSL 可能更适合共享条件树、冲突检查、遮蔽告警、编译产物和 Trace；这是工程候选，不是鱼种证据结论。</p></div></div>
+<h2>为什么 B4 没有直接进入最终结论</h2>
+<div class="card"><p>后 8 条故事包含护巢动机重叠、连续食物机会和生命周期阶段差异。它们没有证明新的表达类别，但也没有提供足够证据支持“局部已经饱和”。因此 B4 选择定向审计，而不是直接宣布最终 Representation Verdict。</p><div class="legend"><span><i class="dot" style="background:var(--green)"></i>已确认局部适配</span><span><i class="dot" style="background:var(--amber)"></i>仍需现实或设计处理</span><span><i class="dot" style="background:var(--purple)"></i>范围外边界</span></div></div>
+<h2>当前交接状态</h2>
+<div class="card"><p><b>Representation Worker：</b>已完成 B1 交付，状态为证据不足（INSUFFICIENT EVIDENCE）。</p><p><b>独立 Representation Reviewer：</b>已通过，但结论范围仅覆盖当时的 Representation Package。</p><p><b>Targeted Fish Audit：</b>C06–C13 Addendum 已完成；独立鱼种事实审核已 <b>ARTIFACT_APPROVE</b>，补丁复审 <b>PATCH_APPROVE</b>。</p><p><b>现在：</b>C12 限定事实已登记为待责任方 / Fish Architecture Decision Gate 处理；未自动启动 Representation 回归。</p></div>
+<p class="footer">资料来源：<a href="https://app.notion.com/p/3d6a4137d2368165b064dab4b0db8f60">Representation Review Package</a> · <a href="https://app.notion.com/p/3d6a4137d2368151b762e50bc5ce6dfd">Case Mapping</a> · <a href="https://app.notion.com/p/3d6a4137d23681ac83f6fed813c33dd2">Targeted Audit Addendum</a> · <a href="https://app.notion.com/p/3d6a4137d23681d98ba2ee8f3599dc0f">Independent Review</a></p>
+</main></body></html>

@@ -483,6 +483,8 @@ owner、可持久化 replay identity。
 
 ## 7. 进一步阅读
 
+- [FCF 英文术语—中文 Glossary](glossary_cn.md)
+
 - [Design Closure Index](design_closure_index.md)
 - [Engineering Specification](fcf_v1_engineering_spec.md)
 - [DSL Semantic Design](dsl_semantic_design.md)

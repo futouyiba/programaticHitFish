@@ -1,5 +1,11 @@
 # FCF Simplified V0 calibration experiment
 
+Document status: **RETAINED / GENERATED-EVIDENCE ENTRY**  
+Authority: **V0 experiment only; not an FCF V1 contract**  
+Scope: fixed-seed numeric calibration outputs under this directory.  
+Reproduction: the command in `Reproduce` with the recorded seed.  
+V1 promotion rule: outputs remain evidence until an explicit V1 owner review.
+
 This directory is the executable numeric experiment defined by the Calibration Prototype Experiment Spec R0. It does not add mechanics, fit real fish parameters, or change the FCF design.
 
 ## Reproduce

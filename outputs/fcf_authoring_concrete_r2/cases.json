@@ -1,0 +1,503 @@
+[
+  {
+    "id": "C01",
+    "title": "大西洋鳕：普通觅食空间",
+    "bindings": [
+      "C01_B"
+    ],
+    "facts": {
+      "target.temperature_c": 10,
+      "target.anchor_distances_m": {
+        "stable_cover": 25
+      },
+      "target.depth_m": 20
+    },
+    "note": "T→S→D 是填满样本所选的演示顺序；Owner 的生产空间顺序未冻结。三个独立乘因子交换顺序不改变结果。"
+  },
+  {
+    "id": "C02",
+    "title": "斑点叉尾鮰：近底空间",
+    "bindings": [
+      "C02_B"
+    ],
+    "facts": {
+      "target.temperature_c": 25,
+      "target.anchor_distances_m": {
+        "stable_cover": 50
+      },
+      "target.depth_m": 3
+    },
+    "note": "普通近底觅食样本；气味留在 Exposure Owner，本表不再扣一次 Feeding。生产空间顺序未冻结。"
+  },
+  {
+    "id": "C05",
+    "title": "玻璃梭鲈：低光空间",
+    "bindings": [
+      "C05_B"
+    ],
+    "facts": {
+      "target.temperature_c": 15,
+      "target.anchor_distances_m": {
+        "stable_cover": 0
+      },
+      "target.depth_m": 8,
+      "target.illuminance_lux": 100
+    },
+    "note": "Light 是 S_FIXED 预定义 Slot；本例开启。没有新建昼夜 Runtime Mode，生产空间顺序未冻结。"
+  },
+  {
+    "id": "C03",
+    "title": "虹鳟：自然漂流匹配",
+    "bindings": [
+      "C03_R"
+    ],
+    "facts": {
+      "response.feeding_match": 0.8,
+      "response.natural_drift_fit": 0.7
+    },
+    "note": "明确 FIRST_MATCH + 默认0；结果只到 ResponseStrength，不创建 Follow/Track/Attack 状态或后生成追击。"
+  },
+  {
+    "id": "C04",
+    "title": "褐鳟：普通摄食响应",
+    "bindings": [
+      "C04_R"
+    ],
+    "facts": {
+      "response.feeding_match": 0.8
+    },
+    "note": "明确 FIRST_MATCH + 默认0；结果只到 ResponseStrength，不创建 Follow/Track/Attack 状态或后生成追击。"
+  },
+  {
+    "id": "C06",
+    "title": "护巢蓝鳃太阳鱼",
+    "bindings": [
+      "C06_R"
+    ],
+    "facts": {
+      "response.intrusion_strength": 0.5
+    },
+    "note": "Previous: Defense/Feeding precedence 未决 → Updated: 上游 Guarding 分群，只评价 Defense 并返回。普通 Feeding Slot 不存在；不声称现实绝不摄食。"
+  },
+  {
+    "id": "C07",
+    "title": "亲护小口黑鲈",
+    "bindings": [
+      "C07_R"
+    ],
+    "facts": {
+      "response.intrusion_strength": 0.5
+    },
+    "note": "Previous: Defense/Feeding precedence 未决 → Updated: 上游 Guarding 分群，只评价 Defense 并返回。普通 Feeding Slot 不存在；不声称现实绝不摄食。"
+  },
+  {
+    "id": "C08",
+    "title": "罗非鱼：固定双通道",
+    "bindings": [
+      "C08_R"
+    ],
+    "facts": {
+      "food.grazing_availability": 0.75,
+      "food.suspended_availability": 0.5
+    },
+    "note": "Previous: SELECT Profile candidate/结构未决 → Updated: 单 evaluator + 两固定 Slot 已闭合。MAX 只是本样本固定聚合函数，具体数值/聚合生产标定未完成；不是结构 blocker。"
+  },
+  {
+    "id": "C09",
+    "title": "匙吻鲟：既有 Opportunity 的 FieldFeeding",
+    "bindings": [
+      "C09_R"
+    ],
+    "facts": {
+      "food.density_index": 0.75,
+      "food.suitability": 0.5,
+      "response.feeding_match": 0
+    },
+    "note": "Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。"
+  },
+  {
+    "id": "C10",
+    "title": "大口胭脂鱼：既有 Opportunity 的 FieldFeeding",
+    "bindings": [
+      "C10_R"
+    ],
+    "facts": {
+      "food.density_index": 0.75,
+      "food.suitability": 0.5,
+      "response.feeding_match": 0.5
+    },
+    "note": "Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。"
+  },
+  {
+    "id": "C11",
+    "title": "鲻鱼：既有 Opportunity 的 FieldFeeding",
+    "bindings": [
+      "C11_R"
+    ],
+    "facts": {
+      "food.density_index": 0.75,
+      "food.suitability": 0.5,
+      "response.feeding_match": 0.8
+    },
+    "note": "Previous: 独立 FieldOpportunity 合同未决 → Updated: EXISTING_OPPORTUNITY_CONTRACT_REUSED。数值是呈现适配的演示输入；C09 使用不兼容呈现得到0，不从滤食或锚鱼记录推导钩饵接受。"
+  },
+  {
+    "id": "C12",
+    "title": "大西洋鲑：上游分群后使用两个绑定",
+    "bindings": [
+      "C12_N",
+      "C12_M"
+    ],
+    "facts": {
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.trigger_salience": 0.8,
+      "response.sustained_pursuit_demand": 0.2
+    },
+    "note": "两个 Binding 分别被已分配的 Group 调用，同一鱼不连续执行两个 Binding。Migration 演示选择普通 Feeding 关闭；Reaction 不声称已证明领地攻击或任一单一生物动机。"
+  },
+  {
+    "id": "C13",
+    "title": "红鲑：三个独立情景，先解决范围",
+    "bindings": [
+      "C13_J",
+      "C13_O",
+      "C13_S"
+    ],
+    "facts": {
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75
+    },
+    "note": "J 展示浮游/小型悬浮猎物 feeding；O 的 FeedingMatch 输入可覆盖浮游与较大猎物；S 演示停食取0。三者由上游 lifecycle 情景绑定，未证明 J 是正常可钓场景，不作 breaker、不加 Runtime Selector。"
+  },
+  {
+    "id": "C14",
+    "title": "七鳃鳗寄生附着",
+    "bindings": [],
+    "facts": {},
+    "note": "宿主附着位于本次生成前 Response 表达范围外；没有合法 Binding/输出/运行步骤。 表中用显式 OUT_OF_SCOPE；不使用空字符串或虚构的0响应。"
+  },
+  {
+    "id": "C15",
+    "title": "匙吻鲟锚鱼",
+    "bindings": [],
+    "facts": {},
+    "note": "响应无关的外部捕获机制；不得把锚鱼成功编成 Feeding Response。 表中用显式 OUT_OF_SCOPE；不使用空字符串或虚构的0响应。"
+  },
+  {
+    "id": "BASS-ROUTING",
+    "title": "鲈鱼：五群并列 Share",
+    "bindings": [
+      "BASS_G"
+    ],
+    "facts": {
+      "slow.day_of_year": 120,
+      "slow.recent5day_temp_c": 18,
+      "slow.scene_structures": [
+        "nest_cover"
+      ],
+      "slow.cold_severity": 0.5,
+      "slow.oxythermal_compression": 0.25,
+      "slow.pelagic_forage_state": true,
+      "slow.open_water_forage_availability": 0.5
+    },
+    "note": "四项特殊 share 与 normal residual 共5群。为暴露 overlap 验证，此演示快照同时置入冷/夏压力；是合成测试，不声称典型水体会同时如此。"
+  },
+  {
+    "id": "G1",
+    "title": "Group 条件：日期 AND 温度 AND 巢区",
+    "bindings": [
+      "G1"
+    ],
+    "facts": {
+      "slow.day_of_year": 120,
+      "slow.recent5day_temp_c": 18,
+      "slow.scene_structures": [
+        "nest_cover"
+      ],
+      "slow.cold_severity": 0.5,
+      "slow.oxythermal_compression": 0.25,
+      "slow.pelagic_forage_state": true,
+      "slow.open_water_forage_availability": 0.5
+    },
+    "note": "复用同一 guard_all 条件树；不复制 Owner 决策。"
+  },
+  {
+    "id": "G2",
+    "title": "Group 同快照回退：不满足巢区",
+    "bindings": [
+      "G2"
+    ],
+    "facts": {
+      "slow.day_of_year": 120,
+      "slow.recent5day_temp_c": 18,
+      "slow.scene_structures": [
+        "open_water"
+      ],
+      "slow.cold_severity": 0.5,
+      "slow.oxythermal_compression": 0.25,
+      "slow.pelagic_forage_state": true,
+      "slow.open_water_forage_availability": 0.5
+    },
+    "note": "Guard share=0；Normal=1。回退是剩余份额，不是 Defense vs Feeding fallback。"
+  },
+  {
+    "id": "G3",
+    "title": "合成压力样本：(春 AND 温) OR (秋 AND 凉)",
+    "bindings": [
+      "G3"
+    ],
+    "facts": {
+      "slow.day_of_year": 270,
+      "slow.recent5day_temp_c": 15
+    },
+    "note": "用于把嵌套条件的实际存法填出来，不升级为已被鱼类证据确认的深层 Group breaker。"
+  },
+  {
+    "id": "BASS-N",
+    "title": "大口黑鲈 NormalFeeding",
+    "bindings": [
+      "BASS_N_B",
+      "BASS_N_R",
+      "BASS_N_Q"
+    ],
+    "facts": {
+      "target.temperature_c": 20,
+      "target.anchor_distances_m": {
+        "stable_cover": 25,
+        "nest_site": 2.5
+      },
+      "target.depth_m": 3,
+      "target.cover_distance_m": 20,
+      "target.adjacent_deep_access": 0.9,
+      "weather.cold_front_severity": 0.5,
+      "target.relative_warmth": 0.8,
+      "target.stability": 0.9,
+      "target.low_energy_refuge": 0.75,
+      "target.oxygen_mg_l": 5,
+      "target.relative_cooling": 0.8,
+      "target.oxygen_margin": 0.75,
+      "target.cover_prey_tradeoff": 0.6,
+      "target.forage_school_intensity": 0.8,
+      "target.vertical_alignment": 0.75,
+      "target.open_water_context": 1,
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.cue_familiarity": 0.4,
+      "response.intrusion_strength": 0.8,
+      "response.trigger_salience": 0.9,
+      "response.sustained_pursuit_demand": 0.1,
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。"
+  },
+  {
+    "id": "BASS-G",
+    "title": "大口黑鲈 Guarding",
+    "bindings": [
+      "BASS_G_B",
+      "BASS_G_R",
+      "BASS_G_Q"
+    ],
+    "facts": {
+      "target.temperature_c": 20,
+      "target.anchor_distances_m": {
+        "stable_cover": 25,
+        "nest_site": 2.5
+      },
+      "target.depth_m": 3,
+      "target.cover_distance_m": 20,
+      "target.adjacent_deep_access": 0.9,
+      "weather.cold_front_severity": 0.5,
+      "target.relative_warmth": 0.8,
+      "target.stability": 0.9,
+      "target.low_energy_refuge": 0.75,
+      "target.oxygen_mg_l": 5,
+      "target.relative_cooling": 0.8,
+      "target.oxygen_margin": 0.75,
+      "target.cover_prey_tradeoff": 0.6,
+      "target.forage_school_intensity": 0.8,
+      "target.vertical_alignment": 0.75,
+      "target.open_water_context": 1,
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.cue_familiarity": 0.4,
+      "response.intrusion_strength": 0.8,
+      "response.trigger_salience": 0.9,
+      "response.sustained_pursuit_demand": 0.1,
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。"
+  },
+  {
+    "id": "BASS-C",
+    "title": "大口黑鲈 ColdSlow",
+    "bindings": [
+      "BASS_C_B",
+      "BASS_C_R",
+      "BASS_C_Q"
+    ],
+    "facts": {
+      "target.temperature_c": 20,
+      "target.anchor_distances_m": {
+        "stable_cover": 25,
+        "nest_site": 2.5
+      },
+      "target.depth_m": 3,
+      "target.cover_distance_m": 20,
+      "target.adjacent_deep_access": 0.9,
+      "weather.cold_front_severity": 0.5,
+      "target.relative_warmth": 0.8,
+      "target.stability": 0.9,
+      "target.low_energy_refuge": 0.75,
+      "target.oxygen_mg_l": 5,
+      "target.relative_cooling": 0.8,
+      "target.oxygen_margin": 0.75,
+      "target.cover_prey_tradeoff": 0.6,
+      "target.forage_school_intensity": 0.8,
+      "target.vertical_alignment": 0.75,
+      "target.open_water_context": 1,
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.cue_familiarity": 0.4,
+      "response.intrusion_strength": 0.8,
+      "response.trigger_salience": 0.9,
+      "response.sustained_pursuit_demand": 0.1,
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。"
+  },
+  {
+    "id": "BASS-S",
+    "title": "大口黑鲈 SummerStress",
+    "bindings": [
+      "BASS_S_B",
+      "BASS_S_R",
+      "BASS_S_Q"
+    ],
+    "facts": {
+      "target.temperature_c": 20,
+      "target.anchor_distances_m": {
+        "stable_cover": 25,
+        "nest_site": 2.5
+      },
+      "target.depth_m": 3,
+      "target.cover_distance_m": 20,
+      "target.adjacent_deep_access": 0.9,
+      "weather.cold_front_severity": 0.5,
+      "target.relative_warmth": 0.8,
+      "target.stability": 0.9,
+      "target.low_energy_refuge": 0.75,
+      "target.oxygen_mg_l": 5,
+      "target.relative_cooling": 0.8,
+      "target.oxygen_margin": 0.75,
+      "target.cover_prey_tradeoff": 0.6,
+      "target.forage_school_intensity": 0.8,
+      "target.vertical_alignment": 0.75,
+      "target.open_water_context": 1,
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.cue_familiarity": 0.4,
+      "response.intrusion_strength": 0.8,
+      "response.trigger_salience": 0.9,
+      "response.sustained_pursuit_demand": 0.1,
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。"
+  },
+  {
+    "id": "BASS-F",
+    "title": "大口黑鲈 ForageChase",
+    "bindings": [
+      "BASS_F_B",
+      "BASS_F_R",
+      "BASS_F_Q"
+    ],
+    "facts": {
+      "target.temperature_c": 20,
+      "target.anchor_distances_m": {
+        "stable_cover": 25,
+        "nest_site": 2.5
+      },
+      "target.depth_m": 3,
+      "target.cover_distance_m": 20,
+      "target.adjacent_deep_access": 0.9,
+      "weather.cold_front_severity": 0.5,
+      "target.relative_warmth": 0.8,
+      "target.stability": 0.9,
+      "target.low_energy_refuge": 0.75,
+      "target.oxygen_mg_l": 5,
+      "target.relative_cooling": 0.8,
+      "target.oxygen_margin": 0.75,
+      "target.cover_prey_tradeoff": 0.6,
+      "target.forage_school_intensity": 0.8,
+      "target.vertical_alignment": 0.75,
+      "target.open_water_context": 1,
+      "response.feeding_match": 0.8,
+      "response.presentation_fit": 0.75,
+      "response.cue_familiarity": 0.4,
+      "response.intrusion_strength": 0.8,
+      "response.trigger_salience": 0.9,
+      "response.sustained_pursuit_demand": 0.1,
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "Binding 顺序展示因果位置；品质发生于既定 Group 后，不反向决定 Group。Normal/Forage 的 ColdFront 末端 Slot 在本样本启用，其他群关闭/不提供；MAX/BLEND 与所有数字保持演示/Working Candidate。 Forage 的食物场强度只在 Bake 使用，Response 不再乘同一密度。"
+  },
+  {
+    "id": "Q1",
+    "title": "品质并列修正 Q1",
+    "bindings": [
+      "Q1"
+    ],
+    "facts": {
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "active",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "大钩且大饵：Large×1.5、Rare×1.2。"
+  },
+  {
+    "id": "Q2",
+    "title": "品质并列修正 Q2",
+    "bindings": [
+      "Q2"
+    ],
+    "facts": {
+      "gear.hook_size_index": 1,
+      "gear.bait_size_cm": 3,
+      "quality_context.time_band": "inactive",
+      "quality_context.water_temp_c": 20
+    },
+    "note": "低活性：Small/Medium×1.2，Large/Rare×0.7。桶与成体关系只是演示映射，不声称小=幼体、大=成体的生物同一性。"
+  },
+  {
+    "id": "Q3",
+    "title": "品质并列修正 Q3",
+    "bindings": [
+      "Q3"
+    ],
+    "facts": {
+      "gear.hook_size_index": 3,
+      "gear.bait_size_cm": 10,
+      "quality_context.time_band": "night",
+      "quality_context.water_temp_c": 6
+    },
+    "note": "BigGear 与 ColdNight 同时命中。后者只读原始水温/时段，不读前者改完的分布。"
+  }
+]

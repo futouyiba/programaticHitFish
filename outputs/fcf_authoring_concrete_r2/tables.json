@@ -1,0 +1,3353 @@
+{
+  "Binding": [
+    {
+      "binding_id": "C01_B",
+      "surface": "BAKE",
+      "subject": "AtlanticCod.Normal",
+      "template_id": "S_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C02_B",
+      "surface": "BAKE",
+      "subject": "ChannelCatfish.Normal",
+      "template_id": "S_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C05_B",
+      "surface": "BAKE",
+      "subject": "Walleye.Normal",
+      "template_id": "S_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C03_R",
+      "surface": "RESPONSE",
+      "subject": "RainbowTrout.Normal",
+      "template_id": "R_BANDS",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C04_R",
+      "surface": "RESPONSE",
+      "subject": "BrownTrout.Normal",
+      "template_id": "R_BANDS",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C06_R",
+      "surface": "RESPONSE",
+      "subject": "Bluegill.Guarding",
+      "template_id": "R_DEFENSE",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C07_R",
+      "surface": "RESPONSE",
+      "subject": "Smallmouth.Parental",
+      "template_id": "R_DEFENSE",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C08_R",
+      "surface": "RESPONSE",
+      "subject": "Tilapia.Feeding",
+      "template_id": "R_DUAL_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C09_R",
+      "surface": "RESPONSE",
+      "subject": "Paddlefish.FieldFeeding",
+      "template_id": "R_FIELD",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C10_R",
+      "surface": "RESPONSE",
+      "subject": "BigmouthBuffalo.FieldFeeding",
+      "template_id": "R_FIELD",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C11_R",
+      "surface": "RESPONSE",
+      "subject": "Mullet.FieldFeeding",
+      "template_id": "R_FIELD",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C12_N",
+      "surface": "RESPONSE",
+      "subject": "AtlanticSalmon.NormalFeeding",
+      "template_id": "R_FEED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C12_M",
+      "surface": "RESPONSE",
+      "subject": "AtlanticSalmon.FreshwaterSpawningMigration",
+      "template_id": "R_REACTION",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "C13_J",
+      "surface": "RESPONSE",
+      "subject": "Sockeye.JuvenileSuspended",
+      "template_id": "R_FEED",
+      "status": "SCENARIO_ONLY_NOT_PRODUCTION"
+    },
+    {
+      "binding_id": "C13_O",
+      "surface": "RESPONSE",
+      "subject": "Sockeye.OceanFeedingAdult",
+      "template_id": "R_FEED",
+      "status": "SCENARIO_ONLY_NOT_PRODUCTION"
+    },
+    {
+      "binding_id": "C13_S",
+      "surface": "RESPONSE",
+      "subject": "Sockeye.FreshwaterSpawningAdult",
+      "template_id": "R_FEED",
+      "status": "SCENARIO_ONLY_NOT_PRODUCTION"
+    },
+    {
+      "binding_id": "BASS_G",
+      "surface": "GROUP",
+      "subject": "LargemouthBass",
+      "template_id": "G_SHARES",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "G1",
+      "surface": "GROUP",
+      "subject": "G1_GuardNormal",
+      "template_id": "G_SHARES",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "G2",
+      "surface": "GROUP",
+      "subject": "G2_GuardNormal",
+      "template_id": "G_SHARES",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "G3",
+      "surface": "GROUP",
+      "subject": "SyntheticSeasonGroup",
+      "template_id": "G_SHARES",
+      "status": "SYNTHETIC_STRESS_ONLY"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "surface": "BAKE",
+      "subject": "LargemouthBass.NormalFeeding",
+      "template_id": "S_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "surface": "BAKE",
+      "subject": "LargemouthBass.Guarding",
+      "template_id": "S_FIXED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_C_B",
+      "surface": "BAKE",
+      "subject": "LargemouthBass.ColdSlow",
+      "template_id": "S_COLD",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_S_B",
+      "surface": "BAKE",
+      "subject": "LargemouthBass.SummerStress",
+      "template_id": "S_SUMMER",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "surface": "BAKE",
+      "subject": "LargemouthBass.ForageChase",
+      "template_id": "S_FORAGE",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_N_R",
+      "surface": "RESPONSE",
+      "subject": "LargemouthBass.NormalFeeding",
+      "template_id": "R_FEED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_F_R",
+      "surface": "RESPONSE",
+      "subject": "LargemouthBass.ForageChase",
+      "template_id": "R_FEED",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_G_R",
+      "surface": "RESPONSE",
+      "subject": "LargemouthBass.Guarding",
+      "template_id": "R_DEFENSE",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_C_R",
+      "surface": "RESPONSE",
+      "subject": "LargemouthBass.ColdSlow",
+      "template_id": "R_FEED_REACTION",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_S_R",
+      "surface": "RESPONSE",
+      "subject": "LargemouthBass.SummerStress",
+      "template_id": "R_FEED_REACTION",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "surface": "QUALITY",
+      "subject": "LargemouthBass.NormalFeeding",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "surface": "QUALITY",
+      "subject": "LargemouthBass.Guarding",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "surface": "QUALITY",
+      "subject": "LargemouthBass.ColdSlow",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "surface": "QUALITY",
+      "subject": "LargemouthBass.SummerStress",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "surface": "QUALITY",
+      "subject": "LargemouthBass.ForageChase",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "Q1",
+      "surface": "QUALITY",
+      "subject": "IllustrativeQuality",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "Q2",
+      "surface": "QUALITY",
+      "subject": "IllustrativeQuality",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    },
+    {
+      "binding_id": "Q3",
+      "surface": "QUALITY",
+      "subject": "IllustrativeQuality",
+      "template_id": "Q_PARALLEL",
+      "status": "DEMO_WORKING"
+    }
+  ],
+  "Slot": [
+    {
+      "binding_id": "C01_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C01_B_Temperature"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Anchor",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "C01_B_Anchor"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Structure",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C01_B_Structure"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Depth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C01_B_Depth"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Light",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "ColdFront",
+      "enabled": false,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Cover",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C01_B",
+      "slot": "Deep",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C02_B_Temperature"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Anchor",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "C02_B_Anchor"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Structure",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C02_B_Structure"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Depth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C02_B_Depth"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Light",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "ColdFront",
+      "enabled": false,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Cover",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C02_B",
+      "slot": "Deep",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C05_B_Temperature"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Anchor",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "C05_B_Anchor"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Structure",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C05_B_Structure"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Depth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C05_B_Depth"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Light",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C05_B_Light"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "ColdFront",
+      "enabled": false,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Cover",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C05_B",
+      "slot": "Deep",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C03_R",
+      "slot": "Default",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "C03_R_Default"
+    },
+    {
+      "binding_id": "C04_R",
+      "slot": "Default",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "C04_R_Default"
+    },
+    {
+      "binding_id": "C06_R",
+      "slot": "Defense",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C06_R_Defense"
+    },
+    {
+      "binding_id": "C07_R",
+      "slot": "Defense",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C07_R_Defense"
+    },
+    {
+      "binding_id": "C08_R",
+      "slot": "Grazing",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C08_R_Grazing"
+    },
+    {
+      "binding_id": "C08_R",
+      "slot": "Suspended",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C08_R_Suspended"
+    },
+    {
+      "binding_id": "C09_R",
+      "slot": "Density",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C09_R_Density"
+    },
+    {
+      "binding_id": "C09_R",
+      "slot": "Suitability",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C09_R_Suitability"
+    },
+    {
+      "binding_id": "C09_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C09_R_Match"
+    },
+    {
+      "binding_id": "C10_R",
+      "slot": "Density",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C10_R_Density"
+    },
+    {
+      "binding_id": "C10_R",
+      "slot": "Suitability",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C10_R_Suitability"
+    },
+    {
+      "binding_id": "C10_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C10_R_Match"
+    },
+    {
+      "binding_id": "C11_R",
+      "slot": "Density",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C11_R_Density"
+    },
+    {
+      "binding_id": "C11_R",
+      "slot": "Suitability",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C11_R_Suitability"
+    },
+    {
+      "binding_id": "C11_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C11_R_Match"
+    },
+    {
+      "binding_id": "C12_N",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C12_N_Match"
+    },
+    {
+      "binding_id": "C12_N",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C12_N_Presentation"
+    },
+    {
+      "binding_id": "C12_N",
+      "slot": "Familiarity",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C12_M",
+      "slot": "Salience",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C12_M_Salience"
+    },
+    {
+      "binding_id": "C12_M",
+      "slot": "Pursuit",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C12_M_Pursuit"
+    },
+    {
+      "binding_id": "C13_J",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_J_Match"
+    },
+    {
+      "binding_id": "C13_J",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_J_Presentation"
+    },
+    {
+      "binding_id": "C13_J",
+      "slot": "Familiarity",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C13_O",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_O_Match"
+    },
+    {
+      "binding_id": "C13_O",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_O_Presentation"
+    },
+    {
+      "binding_id": "C13_O",
+      "slot": "Familiarity",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "C13_S",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_S_Match"
+    },
+    {
+      "binding_id": "C13_S",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "C13_S_Presentation"
+    },
+    {
+      "binding_id": "C13_S",
+      "slot": "Familiarity",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_B_Temperature"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Anchor",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "BASS_N_B_Anchor"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Structure",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_B_Structure"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Depth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_B_Depth"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Light",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "ColdFront",
+      "enabled": true,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Cover",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_B_Cover"
+    },
+    {
+      "binding_id": "BASS_N_B",
+      "slot": "Deep",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_B_Deep"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_G_B_Temperature"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Anchor",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "BASS_G_B_Anchor"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Structure",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_G_B_Structure"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Depth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_G_B_Depth"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Light",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "ColdFront",
+      "enabled": false,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Cover",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_G_B",
+      "slot": "Deep",
+      "enabled": false,
+      "ref_kind": "PROFILE",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_C_B",
+      "slot": "Warmth",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_B_Warmth"
+    },
+    {
+      "binding_id": "BASS_C_B",
+      "slot": "Stability",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_B_Stability"
+    },
+    {
+      "binding_id": "BASS_C_B",
+      "slot": "Refuge",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_B_Refuge"
+    },
+    {
+      "binding_id": "BASS_S_B",
+      "slot": "OxygenMin",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "BASS_S_B_OxygenMin"
+    },
+    {
+      "binding_id": "BASS_S_B",
+      "slot": "Cooling",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_B_Cooling"
+    },
+    {
+      "binding_id": "BASS_S_B",
+      "slot": "Oxygen",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_B_Oxygen"
+    },
+    {
+      "binding_id": "BASS_S_B",
+      "slot": "Tradeoff",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_B_Tradeoff"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "ForageMin",
+      "enabled": true,
+      "ref_kind": "PARAMETER",
+      "ref_id": "BASS_F_B_ForageMin"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Forage",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Forage"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Vertical",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Vertical"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "OpenWater",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_OpenWater"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Temperature",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Temperature"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Oxygen",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Oxygen"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "ColdFront",
+      "enabled": true,
+      "ref_kind": "SWITCH",
+      "ref_id": "N/A"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Cover",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Cover"
+    },
+    {
+      "binding_id": "BASS_F_B",
+      "slot": "Deep",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_B_Deep"
+    },
+    {
+      "binding_id": "BASS_N_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_R_Match"
+    },
+    {
+      "binding_id": "BASS_N_R",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_R_Presentation"
+    },
+    {
+      "binding_id": "BASS_N_R",
+      "slot": "Familiarity",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_N_R_Familiarity"
+    },
+    {
+      "binding_id": "BASS_F_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_R_Match"
+    },
+    {
+      "binding_id": "BASS_F_R",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_R_Presentation"
+    },
+    {
+      "binding_id": "BASS_F_R",
+      "slot": "Familiarity",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_F_R_Familiarity"
+    },
+    {
+      "binding_id": "BASS_G_R",
+      "slot": "Defense",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_G_R_Defense"
+    },
+    {
+      "binding_id": "BASS_C_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_R_Match"
+    },
+    {
+      "binding_id": "BASS_C_R",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_R_Presentation"
+    },
+    {
+      "binding_id": "BASS_C_R",
+      "slot": "Salience",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_R_Salience"
+    },
+    {
+      "binding_id": "BASS_C_R",
+      "slot": "Pursuit",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_C_R_Pursuit"
+    },
+    {
+      "binding_id": "BASS_S_R",
+      "slot": "Match",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_R_Match"
+    },
+    {
+      "binding_id": "BASS_S_R",
+      "slot": "Presentation",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_R_Presentation"
+    },
+    {
+      "binding_id": "BASS_S_R",
+      "slot": "Salience",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_R_Salience"
+    },
+    {
+      "binding_id": "BASS_S_R",
+      "slot": "Pursuit",
+      "enabled": true,
+      "ref_kind": "PROFILE",
+      "ref_id": "BASS_S_R_Pursuit"
+    }
+  ],
+  "Parameter": [
+    {
+      "parameter_id": "C01_B_Anchor",
+      "type": "string",
+      "value": "stable_cover",
+      "unit": "category"
+    },
+    {
+      "parameter_id": "C02_B_Anchor",
+      "type": "string",
+      "value": "stable_cover",
+      "unit": "category"
+    },
+    {
+      "parameter_id": "C05_B_Anchor",
+      "type": "string",
+      "value": "stable_cover",
+      "unit": "category"
+    },
+    {
+      "parameter_id": "C03_R_Default",
+      "type": "number",
+      "value": 0,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C03_good_match_value",
+      "type": "number",
+      "value": 0.7,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C03_drift_value",
+      "type": "number",
+      "value": 0.6,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C03_some_match_value",
+      "type": "number",
+      "value": 0.3,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C04_R_Default",
+      "type": "number",
+      "value": 0,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C04_good_match_value",
+      "type": "number",
+      "value": 0.7,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "C04_some_match_value",
+      "type": "number",
+      "value": 0.3,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "guard_dates_value",
+      "type": "range<number>",
+      "value": [
+        100,
+        160
+      ],
+      "unit": "day_of_year"
+    },
+    {
+      "parameter_id": "guard_temp_value",
+      "type": "number",
+      "value": 15,
+      "unit": "°C"
+    },
+    {
+      "parameter_id": "guard_nest_value",
+      "type": "set<string>",
+      "value": [
+        "nest_cover"
+      ],
+      "unit": "1"
+    },
+    {
+      "parameter_id": "cold_any_value",
+      "type": "number",
+      "value": 0,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "summer_any_value",
+      "type": "number",
+      "value": 0,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "forage_state_value",
+      "type": "bool",
+      "value": true,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "forage_available_value",
+      "type": "number",
+      "value": 0,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "BassGuardShare",
+      "type": "number",
+      "value": 0.2,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "g3_spring_date_value",
+      "type": "range<number>",
+      "value": [
+        80,
+        130
+      ],
+      "unit": "day_of_year"
+    },
+    {
+      "parameter_id": "g3_warm_value",
+      "type": "number",
+      "value": 12,
+      "unit": "°C"
+    },
+    {
+      "parameter_id": "g3_fall_date_value",
+      "type": "range<number>",
+      "value": [
+        250,
+        290
+      ],
+      "unit": "day_of_year"
+    },
+    {
+      "parameter_id": "g3_cool_value",
+      "type": "number",
+      "value": 18,
+      "unit": "°C"
+    },
+    {
+      "parameter_id": "G3Share",
+      "type": "number",
+      "value": 0.25,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "BASS_N_B_Anchor",
+      "type": "string",
+      "value": "stable_cover",
+      "unit": "category"
+    },
+    {
+      "parameter_id": "BASS_G_B_Anchor",
+      "type": "string",
+      "value": "nest_site",
+      "unit": "category"
+    },
+    {
+      "parameter_id": "BASS_S_B_OxygenMin",
+      "type": "number",
+      "value": 3,
+      "unit": "mg/L"
+    },
+    {
+      "parameter_id": "BASS_F_B_ForageMin",
+      "type": "number",
+      "value": 0.2,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "q_hook_value",
+      "type": "number",
+      "value": 3,
+      "unit": "1"
+    },
+    {
+      "parameter_id": "q_bait_value",
+      "type": "number",
+      "value": 8,
+      "unit": "cm"
+    },
+    {
+      "parameter_id": "q_inactive_value",
+      "type": "set<string>",
+      "value": [
+        "inactive"
+      ],
+      "unit": "1"
+    },
+    {
+      "parameter_id": "q_cold_value",
+      "type": "number",
+      "value": 8,
+      "unit": "°C"
+    },
+    {
+      "parameter_id": "q_night_value",
+      "type": "set<string>",
+      "value": [
+        "night"
+      ],
+      "unit": "1"
+    }
+  ],
+  "CurvePoint": [
+    {
+      "profile_id": "C01_B_Temperature",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C01_B_Temperature",
+      "x": 10,
+      "y": 1
+    },
+    {
+      "profile_id": "C01_B_Temperature",
+      "x": 20,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C01_B_Structure",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "C01_B_Structure",
+      "x": 100,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C01_B_Depth",
+      "x": 0,
+      "y": 0.1
+    },
+    {
+      "profile_id": "C01_B_Depth",
+      "x": 20,
+      "y": 1
+    },
+    {
+      "profile_id": "C01_B_Depth",
+      "x": 60,
+      "y": 0.3
+    },
+    {
+      "profile_id": "C02_B_Temperature",
+      "x": 5,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C02_B_Temperature",
+      "x": 25,
+      "y": 1
+    },
+    {
+      "profile_id": "C02_B_Temperature",
+      "x": 35,
+      "y": 0.3
+    },
+    {
+      "profile_id": "C02_B_Structure",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "C02_B_Structure",
+      "x": 100,
+      "y": 0.4
+    },
+    {
+      "profile_id": "C02_B_Depth",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C02_B_Depth",
+      "x": 3,
+      "y": 1
+    },
+    {
+      "profile_id": "C02_B_Depth",
+      "x": 15,
+      "y": 0.3
+    },
+    {
+      "profile_id": "C05_B_Temperature",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C05_B_Temperature",
+      "x": 15,
+      "y": 1
+    },
+    {
+      "profile_id": "C05_B_Temperature",
+      "x": 30,
+      "y": 0.1
+    },
+    {
+      "profile_id": "C05_B_Structure",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "C05_B_Structure",
+      "x": 100,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C05_B_Depth",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C05_B_Depth",
+      "x": 8,
+      "y": 1
+    },
+    {
+      "profile_id": "C05_B_Depth",
+      "x": 25,
+      "y": 0.4
+    },
+    {
+      "profile_id": "C05_B_Light",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "C05_B_Light",
+      "x": 100,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C05_B_Light",
+      "x": 1000,
+      "y": 0.2
+    },
+    {
+      "profile_id": "C06_R_Defense",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C06_R_Defense",
+      "x": 0.5,
+      "y": 0.6
+    },
+    {
+      "profile_id": "C06_R_Defense",
+      "x": 1,
+      "y": 0.9
+    },
+    {
+      "profile_id": "C07_R_Defense",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C07_R_Defense",
+      "x": 0.5,
+      "y": 0.7
+    },
+    {
+      "profile_id": "C07_R_Defense",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C08_R_Grazing",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C08_R_Grazing",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C08_R_Suspended",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C08_R_Suspended",
+      "x": 1,
+      "y": 0.9
+    },
+    {
+      "profile_id": "C09_R_Density",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C09_R_Density",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C09_R_Suitability",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C09_R_Suitability",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C09_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C09_R_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C10_R_Density",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C10_R_Density",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C10_R_Suitability",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C10_R_Suitability",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C10_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C10_R_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C11_R_Density",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C11_R_Density",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C11_R_Suitability",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C11_R_Suitability",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C11_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C11_R_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C12_N_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C12_N_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C12_N_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C12_N_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C12_M_Salience",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C12_M_Salience",
+      "x": 1,
+      "y": 0.5
+    },
+    {
+      "profile_id": "C12_M_Pursuit",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "C12_M_Pursuit",
+      "x": 1,
+      "y": 0.1
+    },
+    {
+      "profile_id": "C13_J_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_J_Match",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "C13_J_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_J_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C13_O_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_O_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C13_O_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_O_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "C13_S_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_S_Match",
+      "x": 1,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_S_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "C13_S_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BassColdShare",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BassColdShare",
+      "x": 1,
+      "y": 0.3
+    },
+    {
+      "profile_id": "BassSummerShare",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BassSummerShare",
+      "x": 1,
+      "y": 0.4
+    },
+    {
+      "profile_id": "BassForageShare",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BassForageShare",
+      "x": 1,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_N_B_Temperature",
+      "x": 0,
+      "y": 0.1
+    },
+    {
+      "profile_id": "BASS_N_B_Temperature",
+      "x": 20,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_B_Temperature",
+      "x": 35,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_N_B_Structure",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_B_Structure",
+      "x": 100,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_N_B_Depth",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_N_B_Depth",
+      "x": 3,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_B_Depth",
+      "x": 15,
+      "y": 0.3
+    },
+    {
+      "profile_id": "BASS_G_B_Temperature",
+      "x": 0,
+      "y": 0.1
+    },
+    {
+      "profile_id": "BASS_G_B_Temperature",
+      "x": 20,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_G_B_Temperature",
+      "x": 35,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_G_B_Structure",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_G_B_Structure",
+      "x": 10,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_G_B_Depth",
+      "x": 0,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_G_B_Depth",
+      "x": 3,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_G_B_Depth",
+      "x": 15,
+      "y": 0.3
+    },
+    {
+      "profile_id": "BASS_N_B_Cover",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_B_Cover",
+      "x": 100,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_N_B_Deep",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_N_B_Deep",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_B_Warmth",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_B_Warmth",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_B_Stability",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_B_Stability",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_B_Refuge",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_B_Refuge",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_S_B_Cooling",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_B_Cooling",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_S_B_Oxygen",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_B_Oxygen",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_S_B_Tradeoff",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_B_Tradeoff",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Forage",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_Forage",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Vertical",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_Vertical",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_OpenWater",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_OpenWater",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Temperature",
+      "x": 0,
+      "y": 0.1
+    },
+    {
+      "profile_id": "BASS_F_B_Temperature",
+      "x": 20,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Temperature",
+      "x": 35,
+      "y": 0.2
+    },
+    {
+      "profile_id": "BASS_F_B_Oxygen",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_Oxygen",
+      "x": 5,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Oxygen",
+      "x": 10,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Cover",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_B_Cover",
+      "x": 100,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_Deep",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_B_Deep",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_N_R_Match",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_R_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_N_R_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_R_Match",
+      "x": 1,
+      "y": 0.95
+    },
+    {
+      "profile_id": "BASS_F_R_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_F_R_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_R_Familiarity",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_N_R_Familiarity",
+      "x": 1,
+      "y": 0.5
+    },
+    {
+      "profile_id": "BASS_F_R_Familiarity",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_F_R_Familiarity",
+      "x": 1,
+      "y": 0.5
+    },
+    {
+      "profile_id": "BASS_G_R_Defense",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_G_R_Defense",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_R_Match",
+      "x": 1,
+      "y": 0.25
+    },
+    {
+      "profile_id": "BASS_C_R_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_R_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_R_Salience",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_C_R_Salience",
+      "x": 1,
+      "y": 0.8
+    },
+    {
+      "profile_id": "BASS_C_R_Pursuit",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_C_R_Pursuit",
+      "x": 1,
+      "y": 0.1
+    },
+    {
+      "profile_id": "BASS_S_R_Match",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_R_Match",
+      "x": 1,
+      "y": 0.35
+    },
+    {
+      "profile_id": "BASS_S_R_Presentation",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_R_Presentation",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_S_R_Salience",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "profile_id": "BASS_S_R_Salience",
+      "x": 1,
+      "y": 0.7
+    },
+    {
+      "profile_id": "BASS_S_R_Pursuit",
+      "x": 0,
+      "y": 1
+    },
+    {
+      "profile_id": "BASS_S_R_Pursuit",
+      "x": 1,
+      "y": 0.1
+    }
+  ],
+  "Predicate": [
+    {
+      "node_id": "C03_good_match",
+      "kind": "ATOM",
+      "field": "response.feeding_match",
+      "operator": "GE",
+      "parameter_id": "C03_good_match_value"
+    },
+    {
+      "node_id": "C03_drift",
+      "kind": "ATOM",
+      "field": "response.natural_drift_fit",
+      "operator": "GE",
+      "parameter_id": "C03_drift_value"
+    },
+    {
+      "node_id": "C03_high",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "C03_some_match",
+      "kind": "ATOM",
+      "field": "response.feeding_match",
+      "operator": "GE",
+      "parameter_id": "C03_some_match_value"
+    },
+    {
+      "node_id": "C04_good_match",
+      "kind": "ATOM",
+      "field": "response.feeding_match",
+      "operator": "GE",
+      "parameter_id": "C04_good_match_value"
+    },
+    {
+      "node_id": "C04_some_match",
+      "kind": "ATOM",
+      "field": "response.feeding_match",
+      "operator": "GE",
+      "parameter_id": "C04_some_match_value"
+    },
+    {
+      "node_id": "guard_dates",
+      "kind": "ATOM",
+      "field": "slow.day_of_year",
+      "operator": "BETWEEN",
+      "parameter_id": "guard_dates_value"
+    },
+    {
+      "node_id": "guard_temp",
+      "kind": "ATOM",
+      "field": "slow.recent5day_temp_c",
+      "operator": "GE",
+      "parameter_id": "guard_temp_value"
+    },
+    {
+      "node_id": "guard_nest",
+      "kind": "ATOM",
+      "field": "slow.scene_structures",
+      "operator": "CONTAINS_ANY",
+      "parameter_id": "guard_nest_value"
+    },
+    {
+      "node_id": "guard_all",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "cold_any",
+      "kind": "ATOM",
+      "field": "slow.cold_severity",
+      "operator": "GT",
+      "parameter_id": "cold_any_value"
+    },
+    {
+      "node_id": "summer_any",
+      "kind": "ATOM",
+      "field": "slow.oxythermal_compression",
+      "operator": "GT",
+      "parameter_id": "summer_any_value"
+    },
+    {
+      "node_id": "forage_state",
+      "kind": "ATOM",
+      "field": "slow.pelagic_forage_state",
+      "operator": "EQ",
+      "parameter_id": "forage_state_value"
+    },
+    {
+      "node_id": "forage_available",
+      "kind": "ATOM",
+      "field": "slow.open_water_forage_availability",
+      "operator": "GT",
+      "parameter_id": "forage_available_value"
+    },
+    {
+      "node_id": "forage_all",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "g3_spring_date",
+      "kind": "ATOM",
+      "field": "slow.day_of_year",
+      "operator": "BETWEEN",
+      "parameter_id": "g3_spring_date_value"
+    },
+    {
+      "node_id": "g3_warm",
+      "kind": "ATOM",
+      "field": "slow.recent5day_temp_c",
+      "operator": "GE",
+      "parameter_id": "g3_warm_value"
+    },
+    {
+      "node_id": "g3_spring",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "g3_fall_date",
+      "kind": "ATOM",
+      "field": "slow.day_of_year",
+      "operator": "BETWEEN",
+      "parameter_id": "g3_fall_date_value"
+    },
+    {
+      "node_id": "g3_cool",
+      "kind": "ATOM",
+      "field": "slow.recent5day_temp_c",
+      "operator": "LE",
+      "parameter_id": "g3_cool_value"
+    },
+    {
+      "node_id": "g3_fall",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "g3_either",
+      "kind": "ANY",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "q_hook",
+      "kind": "ATOM",
+      "field": "gear.hook_size_index",
+      "operator": "GE",
+      "parameter_id": "q_hook_value"
+    },
+    {
+      "node_id": "q_bait",
+      "kind": "ATOM",
+      "field": "gear.bait_size_cm",
+      "operator": "GE",
+      "parameter_id": "q_bait_value"
+    },
+    {
+      "node_id": "q_big_gear",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    },
+    {
+      "node_id": "q_inactive",
+      "kind": "ATOM",
+      "field": "quality_context.time_band",
+      "operator": "IN",
+      "parameter_id": "q_inactive_value"
+    },
+    {
+      "node_id": "q_cold",
+      "kind": "ATOM",
+      "field": "quality_context.water_temp_c",
+      "operator": "LE",
+      "parameter_id": "q_cold_value"
+    },
+    {
+      "node_id": "q_night",
+      "kind": "ATOM",
+      "field": "quality_context.time_band",
+      "operator": "IN",
+      "parameter_id": "q_night_value"
+    },
+    {
+      "node_id": "q_coldnight",
+      "kind": "ALL",
+      "field": "N/A",
+      "operator": "N/A",
+      "parameter_id": "N/A"
+    }
+  ],
+  "PredicateMember": [
+    {
+      "parent_id": "C03_high",
+      "display_index": 1,
+      "child_id": "C03_good_match"
+    },
+    {
+      "parent_id": "C03_high",
+      "display_index": 2,
+      "child_id": "C03_drift"
+    },
+    {
+      "parent_id": "guard_all",
+      "display_index": 1,
+      "child_id": "guard_dates"
+    },
+    {
+      "parent_id": "guard_all",
+      "display_index": 2,
+      "child_id": "guard_temp"
+    },
+    {
+      "parent_id": "guard_all",
+      "display_index": 3,
+      "child_id": "guard_nest"
+    },
+    {
+      "parent_id": "forage_all",
+      "display_index": 1,
+      "child_id": "forage_state"
+    },
+    {
+      "parent_id": "forage_all",
+      "display_index": 2,
+      "child_id": "forage_available"
+    },
+    {
+      "parent_id": "g3_spring",
+      "display_index": 1,
+      "child_id": "g3_spring_date"
+    },
+    {
+      "parent_id": "g3_spring",
+      "display_index": 2,
+      "child_id": "g3_warm"
+    },
+    {
+      "parent_id": "g3_fall",
+      "display_index": 1,
+      "child_id": "g3_fall_date"
+    },
+    {
+      "parent_id": "g3_fall",
+      "display_index": 2,
+      "child_id": "g3_cool"
+    },
+    {
+      "parent_id": "g3_either",
+      "display_index": 1,
+      "child_id": "g3_spring"
+    },
+    {
+      "parent_id": "g3_either",
+      "display_index": 2,
+      "child_id": "g3_fall"
+    },
+    {
+      "parent_id": "q_big_gear",
+      "display_index": 1,
+      "child_id": "q_hook"
+    },
+    {
+      "parent_id": "q_big_gear",
+      "display_index": 2,
+      "child_id": "q_bait"
+    },
+    {
+      "parent_id": "q_coldnight",
+      "display_index": 1,
+      "child_id": "q_cold"
+    },
+    {
+      "parent_id": "q_coldnight",
+      "display_index": 2,
+      "child_id": "q_night"
+    }
+  ],
+  "ResponseBand": [
+    {
+      "binding_id": "C03_R",
+      "priority": 10,
+      "predicate_id": "C03_high",
+      "response_strength": 0.8
+    },
+    {
+      "binding_id": "C03_R",
+      "priority": 20,
+      "predicate_id": "C03_some_match",
+      "response_strength": 0.25
+    },
+    {
+      "binding_id": "C04_R",
+      "priority": 10,
+      "predicate_id": "C04_good_match",
+      "response_strength": 0.8
+    },
+    {
+      "binding_id": "C04_R",
+      "priority": 20,
+      "predicate_id": "C04_some_match",
+      "response_strength": 0.25
+    }
+  ],
+  "GroupShare": [
+    {
+      "binding_id": "BASS_G",
+      "group": "Guarding",
+      "predicate_id": "guard_all",
+      "share_kind": "PARAMETER",
+      "share_ref": "BassGuardShare",
+      "input_field": "N/A"
+    },
+    {
+      "binding_id": "BASS_G",
+      "group": "ColdSlow",
+      "predicate_id": "cold_any",
+      "share_kind": "PROFILE",
+      "share_ref": "BassColdShare",
+      "input_field": "slow.cold_severity"
+    },
+    {
+      "binding_id": "BASS_G",
+      "group": "SummerStress",
+      "predicate_id": "summer_any",
+      "share_kind": "PROFILE",
+      "share_ref": "BassSummerShare",
+      "input_field": "slow.oxythermal_compression"
+    },
+    {
+      "binding_id": "BASS_G",
+      "group": "ForageChase",
+      "predicate_id": "forage_all",
+      "share_kind": "PROFILE",
+      "share_ref": "BassForageShare",
+      "input_field": "slow.open_water_forage_availability"
+    },
+    {
+      "binding_id": "G1",
+      "group": "Guarding",
+      "predicate_id": "guard_all",
+      "share_kind": "PARAMETER",
+      "share_ref": "BassGuardShare",
+      "input_field": "N/A"
+    },
+    {
+      "binding_id": "G2",
+      "group": "Guarding",
+      "predicate_id": "guard_all",
+      "share_kind": "PARAMETER",
+      "share_ref": "BassGuardShare",
+      "input_field": "N/A"
+    },
+    {
+      "binding_id": "G3",
+      "group": "Seasonal",
+      "predicate_id": "g3_either",
+      "share_kind": "PARAMETER",
+      "share_ref": "G3Share",
+      "input_field": "N/A"
+    }
+  ],
+  "QualityWeight": [
+    {
+      "binding_id": "BASS_N_Q",
+      "bucket": "Small",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "bucket": "Medium",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "bucket": "Large",
+      "base_weight": 15
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "bucket": "Rare",
+      "base_weight": 5
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "bucket": "Small",
+      "base_weight": 20
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "bucket": "Medium",
+      "base_weight": 40
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "bucket": "Large",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "bucket": "Rare",
+      "base_weight": 10
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "bucket": "Small",
+      "base_weight": 55
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "bucket": "Medium",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "bucket": "Large",
+      "base_weight": 12
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "bucket": "Rare",
+      "base_weight": 3
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "bucket": "Small",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "bucket": "Medium",
+      "base_weight": 35
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "bucket": "Large",
+      "base_weight": 12
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "bucket": "Rare",
+      "base_weight": 3
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "bucket": "Small",
+      "base_weight": 25
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "bucket": "Medium",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "bucket": "Large",
+      "base_weight": 20
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "bucket": "Rare",
+      "base_weight": 5
+    },
+    {
+      "binding_id": "Q1",
+      "bucket": "Small",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "Q1",
+      "bucket": "Medium",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "Q1",
+      "bucket": "Large",
+      "base_weight": 15
+    },
+    {
+      "binding_id": "Q1",
+      "bucket": "Rare",
+      "base_weight": 5
+    },
+    {
+      "binding_id": "Q2",
+      "bucket": "Small",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "Q2",
+      "bucket": "Medium",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "Q2",
+      "bucket": "Large",
+      "base_weight": 15
+    },
+    {
+      "binding_id": "Q2",
+      "bucket": "Rare",
+      "base_weight": 5
+    },
+    {
+      "binding_id": "Q3",
+      "bucket": "Small",
+      "base_weight": 50
+    },
+    {
+      "binding_id": "Q3",
+      "bucket": "Medium",
+      "base_weight": 30
+    },
+    {
+      "binding_id": "Q3",
+      "bucket": "Large",
+      "base_weight": 15
+    },
+    {
+      "binding_id": "Q3",
+      "bucket": "Rare",
+      "base_weight": 5
+    }
+  ],
+  "QualityModifier": [
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_N_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_G_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_C_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_S_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "BASS_F_Q",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q1",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q2",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Large",
+      "multiplier": 1.5
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "BigGear",
+      "predicate_id": "q_big_gear",
+      "bucket": "Rare",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Small",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Medium",
+      "multiplier": 1.2
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Large",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "LowActivity",
+      "predicate_id": "q_inactive",
+      "bucket": "Rare",
+      "multiplier": 0.7
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Large",
+      "multiplier": 0.8
+    },
+    {
+      "binding_id": "Q3",
+      "rule_id": "ColdNight",
+      "predicate_id": "q_coldnight",
+      "bucket": "Rare",
+      "multiplier": 0.8
+    }
+  ],
+  "Boundary": [
+    {
+      "case_id": "C13",
+      "scope": "SCOPE_RESOLUTION",
+      "reason": "juvenile suspended story 不作为可玩成鱼的新 Template 证据；以下仅分别填满三个生命周期情景，排除生产 cluster 计数。"
+    },
+    {
+      "case_id": "C14",
+      "scope": "OUT_OF_SCOPE",
+      "reason": "宿主附着位于本次生成前 Response 表达范围外；没有合法 Binding/输出/运行步骤。"
+    },
+    {
+      "case_id": "C15",
+      "scope": "OUT_OF_SCOPE",
+      "reason": "响应无关的外部捕获机制；不得把锚鱼成功编成 Feeding Response。"
+    }
+  ],
+  "TemplateStep": [
+    {
+      "template_id": "S_FIXED",
+      "step": 1,
+      "operation": "查分段线性曲线",
+      "input": "target.temperature_c × @Temperature",
+      "output": "T",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FIXED",
+      "step": 2,
+      "operation": "按具名锚点读取距离，再查曲线",
+      "input": "target.anchor_distances_m[@Anchor] × @Structure",
+      "output": "S",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FIXED",
+      "step": 3,
+      "operation": "查分段线性曲线",
+      "input": "target.depth_m × @Depth",
+      "output": "D",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FIXED",
+      "step": 4,
+      "operation": "固定 Light Slot：关=1；开=查曲线",
+      "input": "target.illuminance_lux × @Light",
+      "output": "L",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FIXED",
+      "step": 5,
+      "operation": "独立因子乘积",
+      "input": "T × S × D × L",
+      "output": "BaseSpatialFit",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FIXED",
+      "step": 6,
+      "operation": "固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)",
+      "input": "BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity",
+      "output": "SpatialDistributionWeight",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_BANDS",
+      "step": 1,
+      "operation": "只读同一 Opportunity Evaluation Scope",
+      "input": "FeedingMatch / Presentation facts",
+      "output": "facts",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_BANDS",
+      "step": 2,
+      "operation": "按显式 priority 递增测试条件；FIRST_MATCH",
+      "input": "ResponseBand + Predicate",
+      "output": "第一条命中行",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_BANDS",
+      "step": 3,
+      "operation": "SET；无命中使用固定 Default Slot",
+      "input": "response_strength 或 @Default",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_DEFENSE",
+      "step": 1,
+      "operation": "只读已准入的入侵强度",
+      "input": "response.intrusion_strength",
+      "output": "intrusion",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_DEFENSE",
+      "step": 2,
+      "operation": "查 Defense 曲线",
+      "input": "intrusion × @Defense",
+      "output": "ResponseStrength；立即返回",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_DUAL_FIXED",
+      "step": 1,
+      "operation": "从同一快照评价固定 Grazing Slot",
+      "input": "food.grazing_availability × @Grazing",
+      "output": "G",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_DUAL_FIXED",
+      "step": 2,
+      "operation": "从同一快照评价固定 Suspended Slot",
+      "input": "food.suspended_availability × @Suspended",
+      "output": "S",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_DUAL_FIXED",
+      "step": 3,
+      "operation": "固定聚合 MAX（本样本的演示函数）",
+      "input": "G,S",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FIELD",
+      "step": 1,
+      "operation": "使用已有 Session/Root/Opportunity/Scope；本模板不生成身份",
+      "input": "同一 semantic particle 已准入 Scope",
+      "output": "只读 facts",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FIELD",
+      "step": 2,
+      "operation": "查 FoodField 的量级和适宜性",
+      "input": "food.density_index × @Density；food.suitability × @Suitability",
+      "output": "DensityFit, SuitFit",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FIELD",
+      "step": 3,
+      "operation": "读取同一 Active Presentation Channel 的 FeedingMatch",
+      "input": "response.feeding_match × @Match",
+      "output": "PresentationFit",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FIELD",
+      "step": 4,
+      "operation": "乘积（演示函数）；不把帧数当次数",
+      "input": "DensityFit × SuitFit × PresentationFit",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED",
+      "step": 1,
+      "operation": "查匹配曲线",
+      "input": "response.feeding_match × @Match",
+      "output": "F",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED",
+      "step": 2,
+      "operation": "查呈现曲线",
+      "input": "response.presentation_fit × @Presentation",
+      "output": "P",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED",
+      "step": 3,
+      "operation": "固定只读 Familiarity Slot：关闭=1；开启=查曲线",
+      "input": "response.cue_familiarity × @Familiarity",
+      "output": "U",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED",
+      "step": 4,
+      "operation": "相乘",
+      "input": "F × P × U",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_REACTION",
+      "step": 1,
+      "operation": "普通 Feeding 没有 Slot：分群已在上游完成",
+      "input": "Migration FishGroup",
+      "output": "只读刺激/追逐要求",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_REACTION",
+      "step": 2,
+      "operation": "查刺激显著性与持续追逐容忍曲线",
+      "input": "response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit",
+      "output": "R,D",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_REACTION",
+      "step": 3,
+      "operation": "相乘；类型为 Response，不携带已证实动机",
+      "input": "R × D",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED_REACTION",
+      "step": 1,
+      "operation": "同一 Scope 评价 Feeding",
+      "input": "response.feeding_match × @Match；response.presentation_fit × @Presentation",
+      "output": "F=两 Fit 乘积",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED_REACTION",
+      "step": 2,
+      "operation": "同一 Scope 评价 Reaction",
+      "input": "response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit",
+      "output": "R=两 Fit 乘积",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "R_FEED_REACTION",
+      "step": 3,
+      "operation": "固定聚合 MAX（Working Candidate 的演示实例）",
+      "input": "F,R",
+      "output": "ResponseStrength",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "G_SHARES",
+      "step": 1,
+      "operation": "读取同一物种的同一慢速世界快照",
+      "input": "GroupShare + Predicate",
+      "output": "各 special predicate",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "G_SHARES",
+      "step": 2,
+      "operation": "并列评价：不命中=0；命中=标量或曲线",
+      "input": "share_ref / input_field",
+      "output": "special shares",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "G_SHARES",
+      "step": 3,
+      "operation": "验证每项[0,1]且和≤1",
+      "input": "special shares",
+      "output": "有效 share vector",
+      "failure": "超限 → ValidationError；不归一化、不顺序扣减"
+    },
+    {
+      "template_id": "G_SHARES",
+      "step": 4,
+      "operation": "补 Normal residual",
+      "input": "1 − SUM(special)",
+      "output": "FishGroupShareVector",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "Q_PARALLEL",
+      "step": 1,
+      "operation": "取已经选定的 Group 对应基准分布",
+      "input": "QualityWeight",
+      "output": "base[bucket]",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "Q_PARALLEL",
+      "step": 2,
+      "operation": "所有条件只读同一原始 facts",
+      "input": "QualityModifier + Predicate",
+      "output": "并列命中 modifier",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "Q_PARALLEL",
+      "step": 3,
+      "operation": "每桶原始权重乘所有命中乘数",
+      "input": "base[b] × PRODUCT(multipliers[b])",
+      "output": "raw[b]",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "Q_PARALLEL",
+      "step": 4,
+      "operation": "一次归一化",
+      "input": "raw / SUM(raw)",
+      "output": "QualityDistribution",
+      "failure": "负数/非有限/总和≤0 → ValidationError；本模板不抽签"
+    },
+    {
+      "template_id": "S_COLD",
+      "step": 1,
+      "operation": "查相对温暖、稳定、低能耗避难所",
+      "input": "target.relative_warmth × @Warmth；target.stability × @Stability；target.low_energy_refuge × @Refuge",
+      "output": "W,S,R",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_COLD",
+      "step": 2,
+      "operation": "固定乘积",
+      "input": "W × S × R",
+      "output": "SpatialDistributionWeight",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_SUMMER",
+      "step": 1,
+      "operation": "目标溶氧硬 Gate",
+      "input": "target.oxygen_mg_l ≥ @OxygenMin",
+      "output": "通过目标",
+      "failure": "不通过 → 空间权重0并立即返回；不执行后续适宜性"
+    },
+    {
+      "template_id": "S_SUMMER",
+      "step": 2,
+      "operation": "查相对降温、氧余量、遮蔽/猎物折中",
+      "input": "target.relative_cooling × @Cooling；target.oxygen_margin × @Oxygen；target.cover_prey_tradeoff × @Tradeoff",
+      "output": "C,O,T",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_SUMMER",
+      "step": 3,
+      "operation": "固定乘积",
+      "input": "C × O × T",
+      "output": "SpatialDistributionWeight",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FORAGE",
+      "step": 1,
+      "operation": "猎物场准入 Gate",
+      "input": "target.forage_school_intensity ≥ @ForageMin",
+      "output": "通过目标",
+      "failure": "不通过 → 空间权重0并立即返回；Overlay不得复活"
+    },
+    {
+      "template_id": "S_FORAGE",
+      "step": 2,
+      "operation": "猎物主锚点及垂向匹配",
+      "input": "target.forage_school_intensity × @Forage；target.vertical_alignment × @Vertical",
+      "output": "F,V",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FORAGE",
+      "step": 3,
+      "operation": "温度、氧、开放水环境适宜性",
+      "input": "target.temperature_c × @Temperature；target.oxygen_mg_l × @Oxygen；target.open_water_context × @OpenWater",
+      "output": "T,O,W",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FORAGE",
+      "step": 4,
+      "operation": "固定乘积",
+      "input": "F × V × T × O × W",
+      "output": "BaseSpatialFit",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    },
+    {
+      "template_id": "S_FORAGE",
+      "step": 5,
+      "operation": "固定末端 ColdFront Overlay；关=原值",
+      "input": "base / Cover / Deep / severity",
+      "output": "SpatialDistributionWeight",
+      "failure": "输入缺失/类型错 → ValidationError；不抽签、不写状态"
+    }
+  ]
+}

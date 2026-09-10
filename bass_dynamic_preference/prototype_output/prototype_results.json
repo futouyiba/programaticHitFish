@@ -1,0 +1,176 @@
+{
+  "status": "EXECUTABLE PROTOTYPE VALIDATION / TEST FIXTURE / NOT AUTHORITY",
+  "map": {
+    "zones": 3,
+    "habitat_use_classes": 3,
+    "source_groups": 45
+  },
+  "granularity": {
+    "G1": {
+      "authoring_parameter_count": 3,
+      "runtime_bias_entries": 3,
+      "local_pattern_count": 3,
+      "local_pattern_expression": "class-global only",
+      "far_distance_coupled_identities": 10,
+      "same_zone_map_edit_max_existing_bias_delta": 0.0,
+      "map_edit_stability": "STABLE",
+      "debug_identity_count": 3
+    },
+    "G2": {
+      "authoring_parameter_count": 9,
+      "runtime_bias_entries": 9,
+      "local_pattern_count": 9,
+      "local_pattern_expression": "zone x class",
+      "far_distance_coupled_identities": 0,
+      "same_zone_map_edit_max_existing_bias_delta": 0.0,
+      "map_edit_stability": "STABLE",
+      "debug_identity_count": 9
+    },
+    "G3": {
+      "authoring_parameter_count": 45,
+      "runtime_bias_entries": 45,
+      "local_pattern_count": 45,
+      "local_pattern_expression": "individual ecological SourceGroup",
+      "far_distance_coupled_identities": 0,
+      "same_zone_map_edit_max_existing_bias_delta": 0.011325915317993207,
+      "map_edit_stability": "COUPLED_WITHIN_CENTERING_SCOPE",
+      "debug_identity_count": 45
+    }
+  },
+  "fragmentation": {
+    "G1": {
+      "one_object": {
+        "local_intensity": 76.23467790164777,
+        "exposed_intensity": 60.98774232131822
+      },
+      "ten_fragments": {
+        "local_intensity": 76.23467790164776,
+        "exposed_intensity": 60.98774232131821
+      },
+      "max_delta": 1.4210854715202004e-14,
+      "verdict": "PASS"
+    },
+    "G2": {
+      "one_object": {
+        "local_intensity": 77.60384610483517,
+        "exposed_intensity": 62.08307688386814
+      },
+      "ten_fragments": {
+        "local_intensity": 77.60384610483516,
+        "exposed_intensity": 62.08307688386813
+      },
+      "max_delta": 1.4210854715202004e-14,
+      "verdict": "PASS"
+    },
+    "G3": {
+      "one_object": {
+        "local_intensity": 77.17582626143047,
+        "exposed_intensity": 61.74066100914438
+      },
+      "ten_fragments": {
+        "local_intensity": 77.17582626143047,
+        "exposed_intensity": 61.74066100914438
+      },
+      "max_delta": 0.0,
+      "verdict": "PASS"
+    }
+  },
+  "unrelated_source_independence": {
+    "G1": {
+      "existing_source": "NORTH.GRASS.00",
+      "remote_source": "REMOTE.WOOD.00",
+      "before": {
+        "local_intensity": 60.987742321318215,
+        "exposed_intensity": 43.91117447134911
+      },
+      "after": {
+        "local_intensity": 60.987742321318215,
+        "exposed_intensity": 43.91117447134911
+      },
+      "max_delta": 0.0,
+      "verdict": "PASS"
+    },
+    "G2": {
+      "existing_source": "NORTH.GRASS.00",
+      "remote_source": "REMOTE.WOOD.00",
+      "before": {
+        "local_intensity": 62.08307688386813,
+        "exposed_intensity": 44.69981535638505
+      },
+      "after": {
+        "local_intensity": 62.08307688386813,
+        "exposed_intensity": 44.69981535638505
+      },
+      "max_delta": 0.0,
+      "verdict": "PASS"
+    },
+    "G3": {
+      "existing_source": "NORTH.GRASS.00",
+      "remote_source": "REMOTE.WOOD.00",
+      "before": {
+        "local_intensity": 57.29314967924309,
+        "exposed_intensity": 41.25106776905503
+      },
+      "after": {
+        "local_intensity": 57.29314967924309,
+        "exposed_intensity": 41.25106776905503
+      },
+      "max_delta": 0.0,
+      "verdict": "PASS"
+    }
+  },
+  "continuous_resolver": {
+    "samples": 145,
+    "interval_minutes": 10,
+    "max_adjacent_bias_delta": 0.01059373478395842,
+    "fish_condition_epoch_needed": "NO",
+    "conclusion": "NO ADDITIONAL EPOCH TRANSITION STRUCTURE NEEDED"
+  },
+  "feeding_resolver": {
+    "base_preference_bias": {
+      "BAITFISH": 0.7304347826086958,
+      "CRUSTACEAN": 1.3565217391304352,
+      "WORM_LIKE": 0.9391304347826089
+    },
+    "common_mode_activity_uplift_bias": {
+      "BAITFISH": 0.7304347826086958,
+      "CRUSTACEAN": 1.3565217391304352,
+      "WORM_LIKE": 0.9391304347826089
+    },
+    "max_bias_delta": 0.0,
+    "global_feeding_drive_owner": "independent and unchanged by this resolver",
+    "verdict": "PASS"
+  },
+  "observation": {
+    "O0": {
+      "trials": 2000,
+      "mean_probes_best_zone": 23.2255,
+      "mean_probes_best_food": 22.157,
+      "correct_pattern_rate": 0.3695,
+      "presence_as_response_or_inverse_rate": 0.48097780617289587,
+      "misjudge_presence_as_response_rate": 0.5821177610855343,
+      "allowed_observations": [
+        "NO_EVENT",
+        "BITE"
+      ],
+      "mean_total_probes": 45.3825,
+      "probes_per_correct_pattern": 122.82138024357239
+    },
+    "O1": {
+      "trials": 2000,
+      "mean_probes_best_zone": 19.4775,
+      "mean_probes_best_food": 34.262,
+      "correct_pattern_rate": 0.734,
+      "presence_as_response_or_inverse_rate": 0.0,
+      "misjudge_presence_as_response_rate": 0.0,
+      "allowed_observations": [
+        "NO_PRESENCE_SIGNAL",
+        "PRESENCE_SIGNAL",
+        "FOLLOW_OR_REJECT",
+        "ATTACK"
+      ],
+      "mean_total_probes": 53.7395,
+      "probes_per_correct_pattern": 73.21457765667574
+    }
+  }
+}

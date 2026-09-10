@@ -7,11 +7,16 @@ identity 开始，再到解释、状态和终结结算。所有机制先完成�
 中文概念与链路入口：
 
 - [fcf_v1_overview_cn.md](fcf_v1_overview_cn.md) — 概念、整体机制、配置示例、中文术语与主链路图示。
+- [glossary_cn.md](glossary_cn.md) — 全仓库机制英文术语、中文主标签、定义与适用边界。
 - [temperature_profile_configuration.md](temperature_profile_configuration.md) — 温度世界数据的完整字段表、YAML 示例、烘焙和查询输出。
+- [scoped_review_protocol.md](scoped_review_protocol.md) — PATCH / ARTIFACT / MILESTONE 分级审核与禁止结论越权规则（试行）。
+- [fcf_v0_document_governance.md](fcf_v0_document_governance.md) — Simplified V0 文档台账、重复/冲突/过时内容处置规则。
+- [fcf_v0_conflict_register.md](fcf_v0_conflict_register.md) — V0 冲突登记与 V0→V1 delta 分类。
 - [Ogre Lake 使用说明](ogre_lake_visualization_user_guide.md) — 如何阅读逐层空间切块可视化。
-- [Ogre Lake companion experiment](ogre_lake_manual_region_companion_experiment.md) — Manual Region 的作者成本证据；不参与主机制 promotion/reject。
-- [RF4 Old Burg Lake estimate](rf4_old_burg_spatial_authoring_estimate.md) — 用公开地图与截图复测空间交叉切割；明确区分可见事实与 FCF 假设。
+- [Ogre Lake companion experiment](archive/fcf_v0/ogre_lake_manual_region_companion_experiment.md) — 初版历史假设，已由可复核实验替代。
+- [RF4 Old Burg Lake estimate](archive/fcf_v0/rf4_old_burg_spatial_authoring_estimate.md) — 历史外部证据，保留用于追溯，不作为当前测算入口。
 - [Ogre Lake reproducible overlay](ogre_lake_reproducible_overlay_experiment.md) — 以明确 Layer、状态向量与连通分量复算 2D Patch，并单独报告 3D Habitat Volume。
+- [Ogre Lake complete HTML explainer](ogre-lake-spatial-authoring-explainer.html) — 面向评审与投屏的完整图文页面，包含逐层交互演示、RF4 参照和高层讲解脚本。
 
 ## 1. 总体因果图
 

@@ -1,18 +1,16 @@
 # Independent Narrow Review Checklist (RC4)
 
-This checklist is deliberately adversarial. A reviewer should inspect the
-contract and run the fixtures without treating a green test suite as proof of
-semantic correctness.
+本 checklist 是刻意 adversarial 的。Reviewer 应检查 contract 并运行 fixtures，不能把绿色测试当作 semantic correctness 的充分证明。
 
-## Severity
+本 checklist 产生的所有 verdict 必须遵循 [`scoped_review_protocol.md`](scoped_review_protocol.md)。如果请求没有明确指定完整 artifact 或 milestone baseline，本窄审默认使用 `PATCH`。
 
-* **BLOCKER/MAJOR** — conservation break, replay/reroll exploit, contradictory
-  probability placement, two materially different legal implementations,
-  owner double-settlement, or a flagship that needs a hidden bonus.
-* **MINOR** — naming/diagnostic/completeness issue with no gameplay divergence.
-* **NOTE/V1.1** — extra realism or scope expansion.
+## 严重级别（Severity）
 
-## Review matrix
+* **BLOCKER/MAJOR** — conservation break、replay/reroll exploit、矛盾的 probability placement、两种实质不同但都合法的实现、owner double-settlement，或 flagship 需要 hidden bonus。
+* **MINOR** — 不造成 gameplay divergence 的命名、diagnostic 或 completeness 问题。
+* **NOTE/V1.1** — 额外 realism 或 scope expansion。
+
+## Review matrix（审核矩阵）
 
 | Area | Attack | Evidence in reference implementation |
 |---|---|---|
@@ -27,16 +25,11 @@ semantic correctness.
 | Contact/Hook | arbitration stable; Hook consumes only downstream geometry | contact and hook tests |
 | Authoring | invalid q/contact/priority rejected; compiled artifact JSON-safe | DSL compiler tests |
 
-## Required human decisions before V1 Freeze
+## V1 Freeze 前必须有人明确决定的事项
 
-1. Confirm the RC4 owner matrix has no duplicate physical consequence IDs.
-2. Confirm the production scheduler persists the Opportunity Ledger and
-   settlement transaction IDs, rather than keeping them process-local.
-3. Confirm the three flagship traces (Spawn Bass, Trout Drift, Carp Static Bait)
-   are authored as RC4 fixtures with player-action separability.
-4. Confirm Coding Agent replay/concurrency/property runs against the production
-   implementation, not only this reference oracle.
+1. 确认 RC4 owner matrix 没有重复的 physical consequence ID。
+2. 确认 production scheduler 持久化 Opportunity Ledger 和 settlement transaction ID，而不是只保存在 process-local 状态。
+3. 确认三个 flagship trace（Spawn Bass、Trout Drift、Carp Static Bait）已作为 RC4 fixture 编写，并能分离 player action 的影响。
+4. 确认 Coding Agent 的 replay/concurrency/property 测试运行在 production implementation 上，而不只是 reference oracle。
 
-The current repository provides a reference oracle and adversarial unit
-fixtures. It does not claim that an external Independent Reviewer has already
-approved the design.
+当前 repository 提供 reference oracle 和 adversarial unit fixtures；它不因此声称 external Independent Reviewer 已经批准整个设计。

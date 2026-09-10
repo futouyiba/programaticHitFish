@@ -1,0 +1,12 @@
+[
+  {"id":"GRASS_17","type":"GRASS","shape":"circle","cx":55,"cy":70,"r":24},
+  {"id":"GRASS_EDGE_18","type":"GRASS","shape":"circle","cx":70,"cy":78,"r":18},
+  {"id":"WOOD_05","type":"WOOD","shape":"rect","x0":112,"x1":132,"y0":45,"y1":62},
+  {"id":"WOOD_06","type":"WOOD","shape":"rect","x0":145,"x1":162,"y0":118,"y1":140},
+  {"id":"DROP_01","type":"DROP_OFF","shape":"circle","cx":105,"cy":105,"r":32},
+  {"id":"DROP_02","type":"DROP_OFF","shape":"circle","cx":155,"cy":65,"r":25},
+  {"id":"SPAWN_BED_03","type":"SPAWN_BED","shape":"circle","cx":95,"cy":95,"r":10},
+  {"id":"SPAWN_BED_04","type":"SPAWN_BED","shape":"circle","cx":42,"cy":145,"r":8},
+  {"id":"SPAWN_BED_05","type":"SPAWN_BED","shape":"circle","cx":155,"cy":155,"r":9},
+  {"id":"OPEN_FLAT_22","type":"OPEN_FLAT","shape":"rect","x0":20,"x1":180,"y0":20,"y1":180}
+]

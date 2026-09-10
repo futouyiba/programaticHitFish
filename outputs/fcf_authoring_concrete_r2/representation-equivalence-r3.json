@@ -1,0 +1,1789 @@
+{
+  "artifact": "Representation Equivalence R3",
+  "binding_count": 38,
+  "check_count": 297,
+  "checks": [
+    {
+      "check": "C01_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Anchor represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Structure represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Depth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Light represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C01_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Anchor represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Structure represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Depth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Light represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C02_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Anchor represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Structure represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Depth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Light represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C05_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R Slot Default represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R ResponseBand row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R ResponseBand row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R Slot Default represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R ResponseBand row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C04_R ResponseBand row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C06_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C06_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C06_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C06_R Slot Defense represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C07_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C07_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C07_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C07_R Slot Defense represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R Slot Grazing represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R Slot Suspended represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R Slot Density represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R Slot Suitability represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R Slot Density represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R Slot Suitability represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C10_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R Slot Density represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R Slot Suitability represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C11_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M Slot Salience represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M Slot Pursuit represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_J Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_O Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C13_S Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G1 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G1 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G1 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G1 GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G2 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G2 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G2 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G2 GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G3 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G3 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G3 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "G3 GroupShare row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Anchor represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Structure represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Depth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Light represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Anchor represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Structure represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Depth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Light represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B Slot Warmth represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B Slot Stability represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_B Slot Refuge represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B Slot OxygenMin represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B Slot Cooling represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B Slot Oxygen represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_B Slot Tradeoff represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot ForageMin represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Forage represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Vertical represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot OpenWater represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Temperature represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Oxygen represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot ColdFront represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Cover represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_B Slot Deep represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_R Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_R Slot Familiarity represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_R Slot Defense represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R Slot Salience represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_R Slot Pursuit represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R Slot Match represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R Slot Presentation represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R Slot Salience represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_R Slot Pursuit represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_N_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_G_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_C_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_S_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "BASS_F_Q QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q1 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q2 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 script exists",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 binding/template named",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 has no unknown @references",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "Q3 QualityModifier row represented",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C03_R has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C06_R has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C08_R has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C09_R has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_N has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "C12_M has a typed return",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "check": "all bindings have scripts",
+      "actual": 38,
+      "expected": 38,
+      "status": "PASS"
+    },
+    {
+      "check": "all checks pass",
+      "actual": true,
+      "expected": true,
+      "status": "PASS"
+    }
+  ]
+}

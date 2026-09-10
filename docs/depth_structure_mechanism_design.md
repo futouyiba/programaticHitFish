@@ -18,7 +18,7 @@ coordinate frame 和 revision；Species 配置深度/通过能力；Program 配�
 
 **作者成本 companion evidence**：深度/结构边界与草区、阴影、温度和 DO 叠加
 时，静态手工 Region 的交叉切割压力见
-[Ogre Lake experiment](ogre_lake_manual_region_companion_experiment.md)。该实验
+[Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。该实验
 只说明 authoring cost，不改变本机制的 owner 或 closure 结论。
 
 ```mermaid

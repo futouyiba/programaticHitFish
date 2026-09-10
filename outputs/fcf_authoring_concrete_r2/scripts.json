@@ -1,0 +1,192 @@
+[
+  {
+    "binding_id": "C01_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C01_B 用于 AtlanticCod.Normal / BAKE\n模板 S_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Temperature = @C01_B_Temperature\n  Anchor = @C01_B_Anchor\n  Structure = @C01_B_Structure\n  Depth = @C01_B_Depth\n  Light = 关闭（无引用）\n  ColdFront = 关闭（无引用）\n  Cover = 关闭（无引用）\n  Deep = 关闭（无引用）\n执行：\nT = 查曲线(@C01_B_Temperature, target.temperature_c)\nAnchorDistance = target.anchor_distances_m[@C01_B_Anchor]\nS = 查曲线(@C01_B_Structure, AnchorDistance)\nD = 查曲线(@C01_B_Depth, target.depth_m)\nL = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1\nBase = T × S × D × L\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)\nDeep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "C02_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C02_B 用于 ChannelCatfish.Normal / BAKE\n模板 S_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Temperature = @C02_B_Temperature\n  Anchor = @C02_B_Anchor\n  Structure = @C02_B_Structure\n  Depth = @C02_B_Depth\n  Light = 关闭（无引用）\n  ColdFront = 关闭（无引用）\n  Cover = 关闭（无引用）\n  Deep = 关闭（无引用）\n执行：\nT = 查曲线(@C02_B_Temperature, target.temperature_c)\nAnchorDistance = target.anchor_distances_m[@C02_B_Anchor]\nS = 查曲线(@C02_B_Structure, AnchorDistance)\nD = 查曲线(@C02_B_Depth, target.depth_m)\nL = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1\nBase = T × S × D × L\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)\nDeep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "C05_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C05_B 用于 Walleye.Normal / BAKE\n模板 S_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Temperature = @C05_B_Temperature\n  Anchor = @C05_B_Anchor\n  Structure = @C05_B_Structure\n  Depth = @C05_B_Depth\n  Light = @C05_B_Light\n  ColdFront = 关闭（无引用）\n  Cover = 关闭（无引用）\n  Deep = 关闭（无引用）\n执行：\nT = 查曲线(@C05_B_Temperature, target.temperature_c)\nAnchorDistance = target.anchor_distances_m[@C05_B_Anchor]\nS = 查曲线(@C05_B_Structure, AnchorDistance)\nD = 查曲线(@C05_B_Depth, target.depth_m)\nL = 若 Light 开启 则 查曲线(@C05_B_Light, target.illuminance_lux) 否则 1\nBase = T × S × D × L\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)\nDeep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "C03_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C03_R 用于 RainbowTrout.Normal / RESPONSE\n模板 R_BANDS（固定结构，仅展开便于阅读）\n配置：\n  Default = @C03_R_Default\n执行：\n读取 本次 Scope 的只读 facts\n按以下 priority 顺序，第一条满足就返回 指定响应强度\n优先级 10：若 (response.feeding_match GE @C03_good_match_value AND response.natural_drift_fit GE @C03_drift_value)：返回 响应强度(0.8)\n优先级 20：若 response.feeding_match GE @C03_some_match_value：返回 响应强度(0.25)\n否则 返回 响应强度(@C03_R_Default)"
+  },
+  {
+    "binding_id": "C04_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C04_R 用于 BrownTrout.Normal / RESPONSE\n模板 R_BANDS（固定结构，仅展开便于阅读）\n配置：\n  Default = @C04_R_Default\n执行：\n读取 本次 Scope 的只读 facts\n按以下 priority 顺序，第一条满足就返回 指定响应强度\n优先级 10：若 response.feeding_match GE @C04_good_match_value：返回 响应强度(0.8)\n优先级 20：若 response.feeding_match GE @C04_some_match_value：返回 响应强度(0.25)\n否则 返回 响应强度(@C04_R_Default)"
+  },
+  {
+    "binding_id": "C06_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C06_R 用于 Bluegill.Guarding / RESPONSE\n模板 R_DEFENSE（固定结构，仅展开便于阅读）\n配置：\n  Defense = @C06_R_Defense\n执行：\nDefense = 查曲线(@C06_R_Defense, response.intrusion_strength)\n返回 响应强度(Defense)\n// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。"
+  },
+  {
+    "binding_id": "C07_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C07_R 用于 Smallmouth.Parental / RESPONSE\n模板 R_DEFENSE（固定结构，仅展开便于阅读）\n配置：\n  Defense = @C07_R_Defense\n执行：\nDefense = 查曲线(@C07_R_Defense, response.intrusion_strength)\n返回 响应强度(Defense)\n// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。"
+  },
+  {
+    "binding_id": "C08_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C08_R 用于 Tilapia.Feeding / RESPONSE\n模板 R_DUAL_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Grazing = @C08_R_Grazing\n  Suspended = @C08_R_Suspended\n执行：\nG = 查曲线(@C08_R_Grazing, food.grazing_availability)\nS = 查曲线(@C08_R_Suspended, food.suspended_availability)\n返回 响应强度(MAX(G, S))\n// G、S 总是都算。没有按资源条件 SELECT Profile。"
+  },
+  {
+    "binding_id": "C09_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C09_R 用于 Paddlefish.FieldFeeding / RESPONSE\n模板 R_FIELD（固定结构，仅展开便于阅读）\n配置：\n  Density = @C09_R_Density\n  Suitability = @C09_R_Suitability\n  Match = @C09_R_Match\n执行：\n// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。\nD = 查曲线(@C09_R_Density, food.density_index)\nS = 查曲线(@C09_R_Suitability, food.suitability)\nM = 查曲线(@C09_R_Match, response.feeding_match)\n返回 响应强度(D × S × M)\n// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。"
+  },
+  {
+    "binding_id": "C10_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C10_R 用于 BigmouthBuffalo.FieldFeeding / RESPONSE\n模板 R_FIELD（固定结构，仅展开便于阅读）\n配置：\n  Density = @C10_R_Density\n  Suitability = @C10_R_Suitability\n  Match = @C10_R_Match\n执行：\n// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。\nD = 查曲线(@C10_R_Density, food.density_index)\nS = 查曲线(@C10_R_Suitability, food.suitability)\nM = 查曲线(@C10_R_Match, response.feeding_match)\n返回 响应强度(D × S × M)\n// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。"
+  },
+  {
+    "binding_id": "C11_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C11_R 用于 Mullet.FieldFeeding / RESPONSE\n模板 R_FIELD（固定结构，仅展开便于阅读）\n配置：\n  Density = @C11_R_Density\n  Suitability = @C11_R_Suitability\n  Match = @C11_R_Match\n执行：\n// 外层已有 Opportunity；此处不创建 FieldOpportunity 或计时器。\nD = 查曲线(@C11_R_Density, food.density_index)\nS = 查曲线(@C11_R_Suitability, food.suitability)\nM = 查曲线(@C11_R_Match, response.feeding_match)\n返回 响应强度(D × S × M)\n// M 来自同一 Session / Active Presentation Channel，不从“有食物”推导钩饵可接受。"
+  },
+  {
+    "binding_id": "C12_N",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C12_N 用于 AtlanticSalmon.NormalFeeding / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @C12_N_Match\n  Presentation = @C12_N_Presentation\n  Familiarity = 关闭（无引用）\n执行：\nF = 查曲线(@C12_N_Match, response.feeding_match)\nP = 查曲线(@C12_N_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "C12_M",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C12_M 用于 AtlanticSalmon.FreshwaterSpawningMigration / RESPONSE\n模板 R_REACTION（固定结构，仅展开便于阅读）\n配置：\n  Salience = @C12_M_Salience\n  Pursuit = @C12_M_Pursuit\n执行：\nR = 查曲线(@C12_M_Salience, response.trigger_salience)\nD = 查曲线(@C12_M_Pursuit, response.sustained_pursuit_demand)\n返回 响应强度(R × D)\n// 上游 Migration 分群；普通 Feeding 关闭。不读取 Runtime Stage Predicate。"
+  },
+  {
+    "binding_id": "C13_J",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C13_J 用于 Sockeye.JuvenileSuspended / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @C13_J_Match\n  Presentation = @C13_J_Presentation\n  Familiarity = 关闭（无引用）\n执行：\nF = 查曲线(@C13_J_Match, response.feeding_match)\nP = 查曲线(@C13_J_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "C13_O",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C13_O 用于 Sockeye.OceanFeedingAdult / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @C13_O_Match\n  Presentation = @C13_O_Presentation\n  Familiarity = 关闭（无引用）\n执行：\nF = 查曲线(@C13_O_Match, response.feeding_match)\nP = 查曲线(@C13_O_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "C13_S",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 C13_S 用于 Sockeye.FreshwaterSpawningAdult / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @C13_S_Match\n  Presentation = @C13_S_Presentation\n  Familiarity = 关闭（无引用）\n执行：\nF = 查曲线(@C13_S_Match, response.feeding_match)\nP = 查曲线(@C13_S_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(关闭槽位（不可读取）, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "BASS_G",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_G 用于 LargemouthBass / GROUP\n模板 G_SHARES（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\n读取 同一份 slow_snapshot\nGuarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0\nColdSlow = 若 slow.cold_severity GT @cold_any_value 则 查曲线(@BassColdShare, slow.cold_severity) 否则 0\nSummerStress = 若 slow.oxythermal_compression GT @summer_any_value 则 查曲线(@BassSummerShare, slow.oxythermal_compression) 否则 0\nForageChase = 若 (slow.pelagic_forage_state EQ @forage_state_value AND slow.open_water_forage_availability GT @forage_available_value) 则 查曲线(@BassForageShare, slow.open_water_forage_availability) 否则 0\n验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError\nNormal = 1 - SUM(特殊 Share)\n返回 群体组成(所有特殊 Share, Normal)\n// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。"
+  },
+  {
+    "binding_id": "G1",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 G1 用于 G1_GuardNormal / GROUP\n模板 G_SHARES（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\n读取 同一份 slow_snapshot\nGuarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0\n验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError\nNormal = 1 - SUM(特殊 Share)\n返回 群体组成(所有特殊 Share, Normal)\n// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。"
+  },
+  {
+    "binding_id": "G2",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 G2 用于 G2_GuardNormal / GROUP\n模板 G_SHARES（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\n读取 同一份 slow_snapshot\nGuarding = 若 (slow.day_of_year BETWEEN @guard_dates_value AND slow.recent5day_temp_c GE @guard_temp_value AND slow.scene_structures CONTAINS_ANY @guard_nest_value) 则 @BassGuardShare 否则 0\n验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError\nNormal = 1 - SUM(特殊 Share)\n返回 群体组成(所有特殊 Share, Normal)\n// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。"
+  },
+  {
+    "binding_id": "G3",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 G3 用于 SyntheticSeasonGroup / GROUP\n模板 G_SHARES（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\n读取 同一份 slow_snapshot\nSeasonal = 若 ((slow.day_of_year BETWEEN @g3_spring_date_value AND slow.recent5day_temp_c GE @g3_warm_value) OR (slow.day_of_year BETWEEN @g3_fall_date_value AND slow.recent5day_temp_c LE @g3_cool_value)) 则 @G3Share 否则 0\n验证 所有 Share ∈ [0,1] 且 SUM(特殊 Share) ≤ 1，否则 ValidationError\nNormal = 1 - SUM(特殊 Share)\n返回 群体组成(所有特殊 Share, Normal)\n// 输出在已选物种内的组成，不是咬口概率；不在此执行抽签。"
+  },
+  {
+    "binding_id": "BASS_N_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_N_B 用于 LargemouthBass.NormalFeeding / BAKE\n模板 S_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Temperature = @BASS_N_B_Temperature\n  Anchor = @BASS_N_B_Anchor\n  Structure = @BASS_N_B_Structure\n  Depth = @BASS_N_B_Depth\n  Light = 关闭（无引用）\n  ColdFront = 开启\n  Cover = @BASS_N_B_Cover\n  Deep = @BASS_N_B_Deep\n执行：\nT = 查曲线(@BASS_N_B_Temperature, target.temperature_c)\nAnchorDistance = target.anchor_distances_m[@BASS_N_B_Anchor]\nS = 查曲线(@BASS_N_B_Structure, AnchorDistance)\nD = 查曲线(@BASS_N_B_Depth, target.depth_m)\nL = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1\nBase = T × S × D × L\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(@BASS_N_B_Cover, target.cover_distance_m)\nDeep = 查曲线(@BASS_N_B_Deep, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "BASS_G_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_G_B 用于 LargemouthBass.Guarding / BAKE\n模板 S_FIXED（固定结构，仅展开便于阅读）\n配置：\n  Temperature = @BASS_G_B_Temperature\n  Anchor = @BASS_G_B_Anchor\n  Structure = @BASS_G_B_Structure\n  Depth = @BASS_G_B_Depth\n  Light = 关闭（无引用）\n  ColdFront = 关闭（无引用）\n  Cover = 关闭（无引用）\n  Deep = 关闭（无引用）\n执行：\nT = 查曲线(@BASS_G_B_Temperature, target.temperature_c)\nAnchorDistance = target.anchor_distances_m[@BASS_G_B_Anchor]\nS = 查曲线(@BASS_G_B_Structure, AnchorDistance)\nD = 查曲线(@BASS_G_B_Depth, target.depth_m)\nL = 若 Light 开启 则 查曲线(关闭槽位（不可读取）, target.illuminance_lux) 否则 1\nBase = T × S × D × L\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(关闭槽位（不可读取）, target.cover_distance_m)\nDeep = 查曲线(关闭槽位（不可读取）, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "BASS_C_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_C_B 用于 LargemouthBass.ColdSlow / BAKE\n模板 S_COLD（固定结构，仅展开便于阅读）\n配置：\n  Warmth = @BASS_C_B_Warmth\n  Stability = @BASS_C_B_Stability\n  Refuge = @BASS_C_B_Refuge\n执行：\nW = 查曲线(@BASS_C_B_Warmth, target.relative_warmth)\nS = 查曲线(@BASS_C_B_Stability, target.stability)\nR = 查曲线(@BASS_C_B_Refuge, target.low_energy_refuge)\n返回 空间权重(W × S × R)"
+  },
+  {
+    "binding_id": "BASS_S_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_S_B 用于 LargemouthBass.SummerStress / BAKE\n模板 S_SUMMER（固定结构，仅展开便于阅读）\n配置：\n  OxygenMin = @BASS_S_B_OxygenMin\n  Cooling = @BASS_S_B_Cooling\n  Oxygen = @BASS_S_B_Oxygen\n  Tradeoff = @BASS_S_B_Tradeoff\n执行：\n若 target.oxygen_mg_l < @BASS_S_B_OxygenMin：返回 空间权重(0)\nC = 查曲线(@BASS_S_B_Cooling, target.relative_cooling)\nO = 查曲线(@BASS_S_B_Oxygen, target.oxygen_margin)\nT = 查曲线(@BASS_S_B_Tradeoff, target.cover_prey_tradeoff)\n返回 空间权重(C × O × T)"
+  },
+  {
+    "binding_id": "BASS_F_B",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_F_B 用于 LargemouthBass.ForageChase / BAKE\n模板 S_FORAGE（固定结构，仅展开便于阅读）\n配置：\n  ForageMin = @BASS_F_B_ForageMin\n  Forage = @BASS_F_B_Forage\n  Vertical = @BASS_F_B_Vertical\n  OpenWater = @BASS_F_B_OpenWater\n  Temperature = @BASS_F_B_Temperature\n  Oxygen = @BASS_F_B_Oxygen\n  ColdFront = 开启\n  Cover = @BASS_F_B_Cover\n  Deep = @BASS_F_B_Deep\n执行：\n若 target.forage_school_intensity < @BASS_F_B_ForageMin：返回 空间权重(0)\nF = 查曲线(@BASS_F_B_Forage, target.forage_school_intensity)\nV = 查曲线(@BASS_F_B_Vertical, target.vertical_alignment)\nT = 查曲线(@BASS_F_B_Temperature, target.temperature_c)\nO = 查曲线(@BASS_F_B_Oxygen, target.oxygen_mg_l)\nW = 查曲线(@BASS_F_B_OpenWater, target.open_water_context)\nBase = F × V × T × O × W\n若 ColdFront 关闭：返回 空间权重(Base)\nCover = 查曲线(@BASS_F_B_Cover, target.cover_distance_m)\nDeep = 查曲线(@BASS_F_B_Deep, target.adjacent_deep_access)\nRefuge = MAX(Cover, Deep)\n返回 空间权重((1-weather.cold_front_severity) × Base + weather.cold_front_severity × Refuge)"
+  },
+  {
+    "binding_id": "BASS_N_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_N_R 用于 LargemouthBass.NormalFeeding / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @BASS_N_R_Match\n  Presentation = @BASS_N_R_Presentation\n  Familiarity = @BASS_N_R_Familiarity\n执行：\nF = 查曲线(@BASS_N_R_Match, response.feeding_match)\nP = 查曲线(@BASS_N_R_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(@BASS_N_R_Familiarity, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "BASS_F_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_F_R 用于 LargemouthBass.ForageChase / RESPONSE\n模板 R_FEED（固定结构，仅展开便于阅读）\n配置：\n  Match = @BASS_F_R_Match\n  Presentation = @BASS_F_R_Presentation\n  Familiarity = @BASS_F_R_Familiarity\n执行：\nF = 查曲线(@BASS_F_R_Match, response.feeding_match)\nP = 查曲线(@BASS_F_R_Presentation, response.presentation_fit)\nU = 若 Familiarity 开启 则 查曲线(@BASS_F_R_Familiarity, response.cue_familiarity) 否则 1\n返回 响应强度(F × P × U)\n// Familiarity 是只读 Overlay；此处没有压力/记忆写回。"
+  },
+  {
+    "binding_id": "BASS_G_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_G_R 用于 LargemouthBass.Guarding / RESPONSE\n模板 R_DEFENSE（固定结构，仅展开便于阅读）\n配置：\n  Defense = @BASS_G_R_Defense\n执行：\nDefense = 查曲线(@BASS_G_R_Defense, response.intrusion_strength)\n返回 响应强度(Defense)\n// 此模板没有普通 Feeding Slot，也没有 Defense/Feeding 优先级。"
+  },
+  {
+    "binding_id": "BASS_C_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_C_R 用于 LargemouthBass.ColdSlow / RESPONSE\n模板 R_FEED_REACTION（固定结构，仅展开便于阅读）\n配置：\n  Match = @BASS_C_R_Match\n  Presentation = @BASS_C_R_Presentation\n  Salience = @BASS_C_R_Salience\n  Pursuit = @BASS_C_R_Pursuit\n执行：\nF = 查曲线(@BASS_C_R_Match, response.feeding_match) × 查曲线(@BASS_C_R_Presentation, response.presentation_fit)\nR = 查曲线(@BASS_C_R_Salience, response.trigger_salience) × 查曲线(@BASS_C_R_Pursuit, response.sustained_pursuit_demand)\n返回 响应强度(MAX(F, R))\n// 两通道均评价；强短刺激与持续高速追逐是两个独立输入。"
+  },
+  {
+    "binding_id": "BASS_S_R",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_S_R 用于 LargemouthBass.SummerStress / RESPONSE\n模板 R_FEED_REACTION（固定结构，仅展开便于阅读）\n配置：\n  Match = @BASS_S_R_Match\n  Presentation = @BASS_S_R_Presentation\n  Salience = @BASS_S_R_Salience\n  Pursuit = @BASS_S_R_Pursuit\n执行：\nF = 查曲线(@BASS_S_R_Match, response.feeding_match) × 查曲线(@BASS_S_R_Presentation, response.presentation_fit)\nR = 查曲线(@BASS_S_R_Salience, response.trigger_salience) × 查曲线(@BASS_S_R_Pursuit, response.sustained_pursuit_demand)\n返回 响应强度(MAX(F, R))\n// 两通道均评价；强短刺激与持续高速追逐是两个独立输入。"
+  },
+  {
+    "binding_id": "BASS_N_Q",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_N_Q 用于 LargemouthBass.NormalFeeding / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "BASS_G_Q",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_G_Q 用于 LargemouthBass.Guarding / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "BASS_C_Q",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_C_Q 用于 LargemouthBass.ColdSlow / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "BASS_S_Q",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_S_Q 用于 LargemouthBass.SummerStress / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "BASS_F_Q",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 BASS_F_Q 用于 LargemouthBass.ForageChase / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "Q1",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 Q1 用于 IllustrativeQuality / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "Q2",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 Q2 用于 IllustrativeQuality / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  },
+  {
+    "binding_id": "Q3",
+    "dialect_version": "CN_PSEUDO_R2",
+    "source": "表达 Q3 用于 IllustrativeQuality / QUALITY\n模板 Q_PARALLEL（固定结构，仅展开便于阅读）\n配置：\n  无 Profile Slot；使用下列具名规则与共享数值表\n执行：\nBase = 当前 Group 的 QualityWeight\n并列修正 BigGear/Large：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Large 乘 1.5\n并列修正 BigGear/Rare：若 (gear.hook_size_index GE @q_hook_value AND gear.bait_size_cm GE @q_bait_value)，则 Rare 乘 1.2\n并列修正 LowActivity/Small：若 quality_context.time_band IN @q_inactive_value，则 Small 乘 1.2\n并列修正 LowActivity/Medium：若 quality_context.time_band IN @q_inactive_value，则 Medium 乘 1.2\n并列修正 LowActivity/Large：若 quality_context.time_band IN @q_inactive_value，则 Large 乘 0.7\n并列修正 LowActivity/Rare：若 quality_context.time_band IN @q_inactive_value，则 Rare 乘 0.7\n并列修正 ColdNight/Large：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Large 乘 0.8\n并列修正 ColdNight/Rare：若 (quality_context.water_temp_c LE @q_cold_value AND quality_context.time_band IN @q_night_value)，则 Rare 乘 0.8\n对每个有限枚举桶：Raw[桶] = Base[桶] × 所有命中 Modifier 在该桶的乘数\n若 SUM(Raw) ≤ 0：ValidationError\n返回 品质分布(Raw / SUM(Raw))\n// Modifier 不读取修改后的分布；固定桶展开不构成任意循环 DSL；后续抽签由既有 Owner 执行。"
+  }
+]

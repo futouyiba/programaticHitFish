@@ -1,0 +1,5 @@
+﻿binding_id,priority,predicate_id,response_strength
+C03_R,10,C03_high,0.8
+C03_R,20,C03_some_match,0.25
+C04_R,10,C04_good_match,0.8
+C04_R,20,C04_some_match,0.25

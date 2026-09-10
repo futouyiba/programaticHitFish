@@ -1,0 +1,317 @@
+[
+  {
+    "source_group_id": "NORTH.GRASS.00",
+    "zone": "NORTH",
+    "habitat_class": "GRASS",
+    "weight": 0.8,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "NORTH.GRASS.01",
+    "zone": "NORTH",
+    "habitat_class": "GRASS",
+    "weight": 0.85,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "NORTH.GRASS.02",
+    "zone": "NORTH",
+    "habitat_class": "GRASS",
+    "weight": 0.9,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "NORTH.GRASS.03",
+    "zone": "NORTH",
+    "habitat_class": "GRASS",
+    "weight": 0.95,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "NORTH.GRASS.04",
+    "zone": "NORTH",
+    "habitat_class": "GRASS",
+    "weight": 1.0,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "NORTH.WOOD.00",
+    "zone": "NORTH",
+    "habitat_class": "WOOD",
+    "weight": 0.8,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "NORTH.WOOD.01",
+    "zone": "NORTH",
+    "habitat_class": "WOOD",
+    "weight": 0.85,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "NORTH.WOOD.02",
+    "zone": "NORTH",
+    "habitat_class": "WOOD",
+    "weight": 0.9,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "NORTH.WOOD.03",
+    "zone": "NORTH",
+    "habitat_class": "WOOD",
+    "weight": 0.95,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "NORTH.WOOD.04",
+    "zone": "NORTH",
+    "habitat_class": "WOOD",
+    "weight": 1.0,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "NORTH.DEEP_EDGE.00",
+    "zone": "NORTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.8,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "NORTH.DEEP_EDGE.01",
+    "zone": "NORTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.85,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "NORTH.DEEP_EDGE.02",
+    "zone": "NORTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.9,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "NORTH.DEEP_EDGE.03",
+    "zone": "NORTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.95,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "NORTH.DEEP_EDGE.04",
+    "zone": "NORTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 1.0,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "CENTRAL.GRASS.00",
+    "zone": "CENTRAL",
+    "habitat_class": "GRASS",
+    "weight": 0.8,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "CENTRAL.GRASS.01",
+    "zone": "CENTRAL",
+    "habitat_class": "GRASS",
+    "weight": 0.85,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "CENTRAL.GRASS.02",
+    "zone": "CENTRAL",
+    "habitat_class": "GRASS",
+    "weight": 0.9,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "CENTRAL.GRASS.03",
+    "zone": "CENTRAL",
+    "habitat_class": "GRASS",
+    "weight": 0.95,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "CENTRAL.GRASS.04",
+    "zone": "CENTRAL",
+    "habitat_class": "GRASS",
+    "weight": 1.0,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "CENTRAL.WOOD.00",
+    "zone": "CENTRAL",
+    "habitat_class": "WOOD",
+    "weight": 0.8,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "CENTRAL.WOOD.01",
+    "zone": "CENTRAL",
+    "habitat_class": "WOOD",
+    "weight": 0.85,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "CENTRAL.WOOD.02",
+    "zone": "CENTRAL",
+    "habitat_class": "WOOD",
+    "weight": 0.9,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "CENTRAL.WOOD.03",
+    "zone": "CENTRAL",
+    "habitat_class": "WOOD",
+    "weight": 0.95,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "CENTRAL.WOOD.04",
+    "zone": "CENTRAL",
+    "habitat_class": "WOOD",
+    "weight": 1.0,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "CENTRAL.DEEP_EDGE.00",
+    "zone": "CENTRAL",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.8,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "CENTRAL.DEEP_EDGE.01",
+    "zone": "CENTRAL",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.85,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "CENTRAL.DEEP_EDGE.02",
+    "zone": "CENTRAL",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.9,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "CENTRAL.DEEP_EDGE.03",
+    "zone": "CENTRAL",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.95,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "CENTRAL.DEEP_EDGE.04",
+    "zone": "CENTRAL",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 1.0,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "SOUTH.GRASS.00",
+    "zone": "SOUTH",
+    "habitat_class": "GRASS",
+    "weight": 0.8,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "SOUTH.GRASS.01",
+    "zone": "SOUTH",
+    "habitat_class": "GRASS",
+    "weight": 0.85,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "SOUTH.GRASS.02",
+    "zone": "SOUTH",
+    "habitat_class": "GRASS",
+    "weight": 0.9,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "SOUTH.GRASS.03",
+    "zone": "SOUTH",
+    "habitat_class": "GRASS",
+    "weight": 0.95,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "SOUTH.GRASS.04",
+    "zone": "SOUTH",
+    "habitat_class": "GRASS",
+    "weight": 1.0,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "SOUTH.WOOD.00",
+    "zone": "SOUTH",
+    "habitat_class": "WOOD",
+    "weight": 0.8,
+    "reach": 0.78
+  },
+  {
+    "source_group_id": "SOUTH.WOOD.01",
+    "zone": "SOUTH",
+    "habitat_class": "WOOD",
+    "weight": 0.85,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "SOUTH.WOOD.02",
+    "zone": "SOUTH",
+    "habitat_class": "WOOD",
+    "weight": 0.9,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "SOUTH.WOOD.03",
+    "zone": "SOUTH",
+    "habitat_class": "WOOD",
+    "weight": 0.95,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "SOUTH.WOOD.04",
+    "zone": "SOUTH",
+    "habitat_class": "WOOD",
+    "weight": 1.0,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "SOUTH.DEEP_EDGE.00",
+    "zone": "SOUTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.8,
+    "reach": 0.8
+  },
+  {
+    "source_group_id": "SOUTH.DEEP_EDGE.01",
+    "zone": "SOUTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.85,
+    "reach": 0.72
+  },
+  {
+    "source_group_id": "SOUTH.DEEP_EDGE.02",
+    "zone": "SOUTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.9,
+    "reach": 0.74
+  },
+  {
+    "source_group_id": "SOUTH.DEEP_EDGE.03",
+    "zone": "SOUTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 0.95,
+    "reach": 0.76
+  },
+  {
+    "source_group_id": "SOUTH.DEEP_EDGE.04",
+    "zone": "SOUTH",
+    "habitat_class": "DEEP_EDGE",
+    "weight": 1.0,
+    "reach": 0.78
+  }
+]

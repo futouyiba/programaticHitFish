@@ -2,7 +2,7 @@
 
 > 作者成本旁证：DO 阈值轮廓与 Depth、Temperature 等边界不完全重合时，
 > 静态手工 Region 的进一步切分见
-> [Ogre Lake companion experiment](ogre_lake_manual_region_companion_experiment.md)。
+> [Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。
 > 该实验不改变本机制的 owner、safety 或计算契约。
 
 DO 是水体事实，不是“鱼活跃度”或“咬口率”。V1 先把它拆成数据事实、

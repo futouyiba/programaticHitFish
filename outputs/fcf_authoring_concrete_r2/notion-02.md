@@ -1,0 +1,43 @@
+### R2-A / Binding
+PK binding_id；surface=GROUP/BAKE/RESPONSE/QUALITY；template_id FK→只读模板目录。subject 是上游已选择的群/情景；不以字符串匹配在 Runtime 路由。status 区分演示 Working、情景及合成压力。
+<table header-row="true" fit-page-width="true">
+<tr><td>binding_id</td><td>surface</td><td>subject</td><td>template_id</td><td>status</td></tr>
+<tr><td>C01_B</td><td>BAKE</td><td>AtlanticCod.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>C02_B</td><td>BAKE</td><td>ChannelCatfish.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>C05_B</td><td>BAKE</td><td>Walleye.Normal</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>C03_R</td><td>RESPONSE</td><td>RainbowTrout.Normal</td><td>R_BANDS</td><td>DEMO_WORKING</td></tr>
+<tr><td>C04_R</td><td>RESPONSE</td><td>BrownTrout.Normal</td><td>R_BANDS</td><td>DEMO_WORKING</td></tr>
+<tr><td>C06_R</td><td>RESPONSE</td><td>Bluegill.Guarding</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr>
+<tr><td>C07_R</td><td>RESPONSE</td><td>Smallmouth.Parental</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr>
+<tr><td>C08_R</td><td>RESPONSE</td><td>Tilapia.Feeding</td><td>R_DUAL_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>C09_R</td><td>RESPONSE</td><td>Paddlefish.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr>
+<tr><td>C10_R</td><td>RESPONSE</td><td>BigmouthBuffalo.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr>
+<tr><td>C11_R</td><td>RESPONSE</td><td>Mullet.FieldFeeding</td><td>R_FIELD</td><td>DEMO_WORKING</td></tr>
+<tr><td>C12_N</td><td>RESPONSE</td><td>AtlanticSalmon.NormalFeeding</td><td>R_FEED</td><td>DEMO_WORKING</td></tr>
+<tr><td>C12_M</td><td>RESPONSE</td><td>AtlanticSalmon.FreshwaterSpawningMigration</td><td>R_REACTION</td><td>DEMO_WORKING</td></tr>
+<tr><td>C13_J</td><td>RESPONSE</td><td>Sockeye.JuvenileSuspended</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr>
+<tr><td>C13_O</td><td>RESPONSE</td><td>Sockeye.OceanFeedingAdult</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr>
+<tr><td>C13_S</td><td>RESPONSE</td><td>Sockeye.FreshwaterSpawningAdult</td><td>R_FEED</td><td>SCENARIO_ONLY_NOT_PRODUCTION</td></tr>
+<tr><td>BASS_G</td><td>GROUP</td><td>LargemouthBass</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr>
+<tr><td>G1</td><td>GROUP</td><td>G1_GuardNormal</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr>
+<tr><td>G2</td><td>GROUP</td><td>G2_GuardNormal</td><td>G_SHARES</td><td>DEMO_WORKING</td></tr>
+<tr><td>G3</td><td>GROUP</td><td>SyntheticSeasonGroup</td><td>G_SHARES</td><td>SYNTHETIC_STRESS_ONLY</td></tr>
+<tr><td>BASS_N_B</td><td>BAKE</td><td>LargemouthBass.NormalFeeding</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_G_B</td><td>BAKE</td><td>LargemouthBass.Guarding</td><td>S_FIXED</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_C_B</td><td>BAKE</td><td>LargemouthBass.ColdSlow</td><td>S_COLD</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_S_B</td><td>BAKE</td><td>LargemouthBass.SummerStress</td><td>S_SUMMER</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_F_B</td><td>BAKE</td><td>LargemouthBass.ForageChase</td><td>S_FORAGE</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_N_R</td><td>RESPONSE</td><td>LargemouthBass.NormalFeeding</td><td>R_FEED</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_F_R</td><td>RESPONSE</td><td>LargemouthBass.ForageChase</td><td>R_FEED</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_G_R</td><td>RESPONSE</td><td>LargemouthBass.Guarding</td><td>R_DEFENSE</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_C_R</td><td>RESPONSE</td><td>LargemouthBass.ColdSlow</td><td>R_FEED_REACTION</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_S_R</td><td>RESPONSE</td><td>LargemouthBass.SummerStress</td><td>R_FEED_REACTION</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_N_Q</td><td>QUALITY</td><td>LargemouthBass.NormalFeeding</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_G_Q</td><td>QUALITY</td><td>LargemouthBass.Guarding</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_C_Q</td><td>QUALITY</td><td>LargemouthBass.ColdSlow</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_S_Q</td><td>QUALITY</td><td>LargemouthBass.SummerStress</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>BASS_F_Q</td><td>QUALITY</td><td>LargemouthBass.ForageChase</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>Q1</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>Q2</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+<tr><td>Q3</td><td>QUALITY</td><td>IllustrativeQuality</td><td>Q_PARALLEL</td><td>DEMO_WORKING</td></tr>
+</table>

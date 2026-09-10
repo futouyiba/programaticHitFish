@@ -1,0 +1,11 @@
+{
+  "case_count": 15,
+  "surface_count": 4,
+  "cell_count": 60,
+  "present_cells": 60,
+  "missing_cells": [],
+  "malformed_cells": [],
+  "has_minimum_binding_rule": true,
+  "has_script_section": true,
+  "pass": true
+}

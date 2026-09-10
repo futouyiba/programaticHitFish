@@ -1,0 +1,292 @@
+[
+  {
+    "check": "C01_B",
+    "actual": 0.8,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "C02_B",
+    "actual": 0.7000000000000001,
+    "expected": 0.7,
+    "status": "PASS"
+  },
+  {
+    "check": "C03_R",
+    "actual": 0.8,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "C04_R",
+    "actual": 0.8,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "C05_B",
+    "actual": 0.8,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "C06_R",
+    "actual": 0.6,
+    "expected": 0.6,
+    "status": "PASS"
+  },
+  {
+    "check": "C07_R",
+    "actual": 0.7,
+    "expected": 0.7,
+    "status": "PASS"
+  },
+  {
+    "check": "C08_R",
+    "actual": 0.6000000000000001,
+    "expected": 0.6,
+    "status": "PASS"
+  },
+  {
+    "check": "C09_R",
+    "actual": 0.0,
+    "expected": 0,
+    "status": "PASS"
+  },
+  {
+    "check": "C10_R",
+    "actual": 0.15000000000000002,
+    "expected": 0.15,
+    "status": "PASS"
+  },
+  {
+    "check": "C11_R",
+    "actual": 0.24000000000000005,
+    "expected": 0.24,
+    "status": "PASS"
+  },
+  {
+    "check": "C12_N",
+    "actual": 0.6000000000000001,
+    "expected": 0.6,
+    "status": "PASS"
+  },
+  {
+    "check": "C12_M",
+    "actual": 0.328,
+    "expected": 0.328,
+    "status": "PASS"
+  },
+  {
+    "check": "C13_J",
+    "actual": 0.4800000000000001,
+    "expected": 0.48,
+    "status": "PASS"
+  },
+  {
+    "check": "C13_O",
+    "actual": 0.6000000000000001,
+    "expected": 0.6,
+    "status": "PASS"
+  },
+  {
+    "check": "C13_S",
+    "actual": 0.0,
+    "expected": 0,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_N_B",
+    "actual": 0.8500000000000001,
+    "expected": 0.85,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_G_B",
+    "actual": 0.8000000000000003,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_C_B",
+    "actual": 0.54,
+    "expected": 0.54,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_S_B",
+    "actual": 0.36000000000000004,
+    "expected": 0.36,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_F_B",
+    "actual": 0.75,
+    "expected": 0.75,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_C_R",
+    "actual": 0.6552000000000001,
+    "expected": 0.6552,
+    "status": "PASS"
+  },
+  {
+    "check": "BASS_S_R",
+    "actual": 0.5733,
+    "expected": 0.5733,
+    "status": "PASS"
+  },
+  {
+    "check": "五群同快照剩余份额",
+    "actual": {
+      "Guarding": 0.2,
+      "ColdSlow": 0.15,
+      "SummerStress": 0.1,
+      "ForageChase": 0.1,
+      "Normal": 0.45000000000000007
+    },
+    "expected": {
+      "Guarding": 0.2,
+      "ColdSlow": 0.15,
+      "SummerStress": 0.1,
+      "ForageChase": 0.1,
+      "Normal": 0.45
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "Q1",
+    "actual": {
+      "Small": 0.4608294930875576,
+      "Medium": 0.2764976958525346,
+      "Large": 0.2073732718894009,
+      "Rare": 0.055299539170506916
+    },
+    "expected": {
+      "Small": 0.4608294930875576,
+      "Medium": 0.2764976958525346,
+      "Large": 0.2073732718894009,
+      "Rare": 0.055299539170506916
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "Q2",
+    "actual": {
+      "Small": 0.5454545454545454,
+      "Medium": 0.32727272727272727,
+      "Large": 0.09545454545454546,
+      "Rare": 0.031818181818181815
+    },
+    "expected": {
+      "Small": 0.5454545454545454,
+      "Medium": 0.32727272727272727,
+      "Large": 0.09545454545454546,
+      "Rare": 0.031818181818181815
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "Q3",
+    "actual": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389106
+    },
+    "expected": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389105
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "Q3 交换 Modifier 行仍等义",
+    "actual": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389106
+    },
+    "expected": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389106
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "Q3 反转 Modifier 后",
+    "actual": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389105
+    },
+    "expected": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389106
+    },
+    "status": "PASS"
+  },
+  {
+    "check": "夏季硬 Gate 零",
+    "actual": 0,
+    "expected": 0,
+    "status": "PASS"
+  },
+  {
+    "check": "Forage Gate 不被 Overlay 复活",
+    "actual": 0,
+    "expected": 0,
+    "status": "PASS"
+  },
+  {
+    "check": "低 salience 仍计算另一 Channel",
+    "actual": 0.9,
+    "expected": 0.9,
+    "status": "PASS"
+  },
+  {
+    "check": "双阈值无命中使用 default",
+    "actual": 0,
+    "expected": 0,
+    "status": "PASS"
+  },
+  {
+    "check": "缺失必需输入拒绝",
+    "status": "PASS",
+    "actual": "KeyError (specimen ValidationError boundary)",
+    "expected": "error"
+  },
+  {
+    "check": "Group Share 超1拒绝",
+    "status": "PASS",
+    "actual": "ShareOverflow",
+    "expected": "error"
+  },
+  {
+    "check": "27个案例ID唯一",
+    "status": "PASS",
+    "actual": 27,
+    "expected": 27
+  },
+  {
+    "check": "ColdFront纯开关关闭返回Base",
+    "actual": 0.8000000000000003,
+    "expected": 0.8,
+    "status": "PASS"
+  },
+  {
+    "check": "未执行通道不伪造0值Trace",
+    "status": "PASS",
+    "actual": "absent",
+    "expected": "absent"
+  }
+]

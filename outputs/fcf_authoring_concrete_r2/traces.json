@@ -1,0 +1,552 @@
+[
+  {
+    "case": "C01",
+    "binding": "C01_B",
+    "template": "S_FIXED",
+    "intermediate": {
+      "Anchor": "stable_cover",
+      "AnchorDistance": 25,
+      "Structure": 0.8,
+      "Temperature": 1.0,
+      "Depth": 1.0,
+      "Base": 0.8
+    },
+    "result": 0.8
+  },
+  {
+    "case": "C02",
+    "binding": "C02_B",
+    "template": "S_FIXED",
+    "intermediate": {
+      "Anchor": "stable_cover",
+      "AnchorDistance": 50,
+      "Structure": 0.7,
+      "Temperature": 1.0,
+      "Depth": 1.0,
+      "Base": 0.7
+    },
+    "result": 0.7000000000000001
+  },
+  {
+    "case": "C05",
+    "binding": "C05_B",
+    "template": "S_FIXED",
+    "intermediate": {
+      "Anchor": "stable_cover",
+      "AnchorDistance": 0,
+      "Structure": 1,
+      "Temperature": 1.0,
+      "Depth": 1.0,
+      "Light": 0.8,
+      "Base": 0.8
+    },
+    "result": 0.8
+  },
+  {
+    "case": "C03",
+    "binding": "C03_R",
+    "template": "R_BANDS",
+    "intermediate": {
+      "C03_high": true
+    },
+    "result": 0.8
+  },
+  {
+    "case": "C04",
+    "binding": "C04_R",
+    "template": "R_BANDS",
+    "intermediate": {
+      "C04_good_match": true
+    },
+    "result": 0.8
+  },
+  {
+    "case": "C06",
+    "binding": "C06_R",
+    "template": "R_DEFENSE",
+    "intermediate": {
+      "Defense": 0.6
+    },
+    "result": 0.6
+  },
+  {
+    "case": "C07",
+    "binding": "C07_R",
+    "template": "R_DEFENSE",
+    "intermediate": {
+      "Defense": 0.7
+    },
+    "result": 0.7
+  },
+  {
+    "case": "C08",
+    "binding": "C08_R",
+    "template": "R_DUAL_FIXED",
+    "intermediate": {
+      "Grazing": 0.6,
+      "Suspended": 0.45
+    },
+    "result": 0.6000000000000001
+  },
+  {
+    "case": "C09",
+    "binding": "C09_R",
+    "template": "R_FIELD",
+    "intermediate": {
+      "Density": 0.6,
+      "Suitability": 0.5,
+      "Match": 0
+    },
+    "result": 0.0
+  },
+  {
+    "case": "C10",
+    "binding": "C10_R",
+    "template": "R_FIELD",
+    "intermediate": {
+      "Density": 0.6,
+      "Suitability": 0.5,
+      "Match": 0.5
+    },
+    "result": 0.15000000000000002
+  },
+  {
+    "case": "C11",
+    "binding": "C11_R",
+    "template": "R_FIELD",
+    "intermediate": {
+      "Density": 0.6,
+      "Suitability": 0.5,
+      "Match": 0.8
+    },
+    "result": 0.24000000000000005
+  },
+  {
+    "case": "C12",
+    "binding": "C12_N",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.8,
+      "Presentation": 0.75,
+      "Feeding": 0.6000000000000001
+    },
+    "result": 0.6000000000000001
+  },
+  {
+    "case": "C12",
+    "binding": "C12_M",
+    "template": "R_REACTION",
+    "intermediate": {
+      "Salience": 0.4,
+      "Pursuit": 0.82,
+      "Reaction": 0.328
+    },
+    "result": 0.328
+  },
+  {
+    "case": "C13",
+    "binding": "C13_J",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.64,
+      "Presentation": 0.75,
+      "Feeding": 0.4800000000000001
+    },
+    "result": 0.4800000000000001
+  },
+  {
+    "case": "C13",
+    "binding": "C13_O",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.8,
+      "Presentation": 0.75,
+      "Feeding": 0.6000000000000001
+    },
+    "result": 0.6000000000000001
+  },
+  {
+    "case": "C13",
+    "binding": "C13_S",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.0,
+      "Presentation": 0.75,
+      "Feeding": 0.0
+    },
+    "result": 0.0
+  },
+  {
+    "case": "BASS-ROUTING",
+    "binding": "BASS_G",
+    "template": "G_SHARES",
+    "intermediate": {
+      "guard_all": true,
+      "cold_any": true,
+      "summer_any": true,
+      "forage_all": true
+    },
+    "result": {
+      "Guarding": 0.2,
+      "ColdSlow": 0.15,
+      "SummerStress": 0.1,
+      "ForageChase": 0.1,
+      "Normal": 0.45000000000000007
+    }
+  },
+  {
+    "case": "G1",
+    "binding": "G1",
+    "template": "G_SHARES",
+    "intermediate": {
+      "guard_all": true
+    },
+    "result": {
+      "Guarding": 0.2,
+      "Normal": 0.8
+    }
+  },
+  {
+    "case": "G2",
+    "binding": "G2",
+    "template": "G_SHARES",
+    "intermediate": {
+      "guard_all": false
+    },
+    "result": {
+      "Guarding": 0,
+      "Normal": 1
+    }
+  },
+  {
+    "case": "G3",
+    "binding": "G3",
+    "template": "G_SHARES",
+    "intermediate": {
+      "g3_either": true
+    },
+    "result": {
+      "Seasonal": 0.25,
+      "Normal": 0.75
+    }
+  },
+  {
+    "case": "BASS-N",
+    "binding": "BASS_N_B",
+    "template": "S_FIXED",
+    "intermediate": {
+      "Anchor": "stable_cover",
+      "AnchorDistance": 25,
+      "Structure": 0.8,
+      "Temperature": 1.0,
+      "Depth": 1.0,
+      "Base": 0.8,
+      "Cover": 0.8,
+      "Deep": 0.9,
+      "Refuge": 0.9
+    },
+    "result": 0.8500000000000001
+  },
+  {
+    "case": "BASS-N",
+    "binding": "BASS_N_R",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.8,
+      "Presentation": 0.75,
+      "Familiarity": 0.8,
+      "Feeding": 0.6000000000000001
+    },
+    "result": 0.4800000000000001
+  },
+  {
+    "case": "BASS-N",
+    "binding": "BASS_N_Q",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 50,
+        "Medium": 30,
+        "Large": 22.5,
+        "Rare": 6.0
+      }
+    },
+    "result": {
+      "Small": 0.4608294930875576,
+      "Medium": 0.2764976958525346,
+      "Large": 0.2073732718894009,
+      "Rare": 0.055299539170506916
+    }
+  },
+  {
+    "case": "BASS-G",
+    "binding": "BASS_G_B",
+    "template": "S_FIXED",
+    "intermediate": {
+      "Anchor": "nest_site",
+      "AnchorDistance": 2.5,
+      "Structure": 0.8,
+      "Temperature": 1.0,
+      "Depth": 1.0,
+      "Base": 0.8
+    },
+    "result": 0.8000000000000003
+  },
+  {
+    "case": "BASS-G",
+    "binding": "BASS_G_R",
+    "template": "R_DEFENSE",
+    "intermediate": {
+      "Defense": 0.8
+    },
+    "result": 0.8
+  },
+  {
+    "case": "BASS-G",
+    "binding": "BASS_G_Q",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 20,
+        "Medium": 40,
+        "Large": 45.0,
+        "Rare": 12.0
+      }
+    },
+    "result": {
+      "Small": 0.17094017094017094,
+      "Medium": 0.3418803418803419,
+      "Large": 0.38461538461538464,
+      "Rare": 0.10256410256410256
+    }
+  },
+  {
+    "case": "BASS-C",
+    "binding": "BASS_C_B",
+    "template": "S_COLD",
+    "intermediate": {
+      "Warmth": 0.8,
+      "Stability": 0.9,
+      "Refuge": 0.75
+    },
+    "result": 0.54
+  },
+  {
+    "case": "BASS-C",
+    "binding": "BASS_C_R",
+    "template": "R_FEED_REACTION",
+    "intermediate": {
+      "Match": 0.2,
+      "Presentation": 0.75,
+      "Salience": 0.72,
+      "Pursuit": 0.91,
+      "Feeding": 0.15000000000000002,
+      "Reaction": 0.6552000000000001
+    },
+    "result": 0.6552000000000001
+  },
+  {
+    "case": "BASS-C",
+    "binding": "BASS_C_Q",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 55,
+        "Medium": 30,
+        "Large": 18.0,
+        "Rare": 3.5999999999999996
+      }
+    },
+    "result": {
+      "Small": 0.5159474671669794,
+      "Medium": 0.28142589118198874,
+      "Large": 0.16885553470919326,
+      "Rare": 0.03377110694183865
+    }
+  },
+  {
+    "case": "BASS-S",
+    "binding": "BASS_S_B",
+    "template": "S_SUMMER",
+    "intermediate": {
+      "Cooling": 0.8,
+      "Oxygen": 0.75,
+      "Tradeoff": 0.6
+    },
+    "result": 0.36000000000000004
+  },
+  {
+    "case": "BASS-S",
+    "binding": "BASS_S_R",
+    "template": "R_FEED_REACTION",
+    "intermediate": {
+      "Match": 0.28,
+      "Presentation": 0.75,
+      "Salience": 0.63,
+      "Pursuit": 0.91,
+      "Feeding": 0.20999999999999996,
+      "Reaction": 0.5733
+    },
+    "result": 0.5733
+  },
+  {
+    "case": "BASS-S",
+    "binding": "BASS_S_Q",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 50,
+        "Medium": 35,
+        "Large": 18.0,
+        "Rare": 3.5999999999999996
+      }
+    },
+    "result": {
+      "Small": 0.46904315196998125,
+      "Medium": 0.3283302063789869,
+      "Large": 0.16885553470919326,
+      "Rare": 0.03377110694183865
+    }
+  },
+  {
+    "case": "BASS-F",
+    "binding": "BASS_F_B",
+    "template": "S_FORAGE",
+    "intermediate": {
+      "Forage": 0.8,
+      "Vertical": 0.75,
+      "Temperature": 1.0,
+      "Oxygen": 1.0,
+      "OpenWater": 1,
+      "Base": 0.6,
+      "Cover": 0.8,
+      "Deep": 0.9,
+      "Refuge": 0.9
+    },
+    "result": 0.75
+  },
+  {
+    "case": "BASS-F",
+    "binding": "BASS_F_R",
+    "template": "R_FEED",
+    "intermediate": {
+      "Match": 0.76,
+      "Presentation": 0.75,
+      "Familiarity": 0.8,
+      "Feeding": 0.5700000000000001
+    },
+    "result": 0.45600000000000007
+  },
+  {
+    "case": "BASS-F",
+    "binding": "BASS_F_Q",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 25,
+        "Medium": 50,
+        "Large": 30.0,
+        "Rare": 6.0
+      }
+    },
+    "result": {
+      "Small": 0.22522522522522523,
+      "Medium": 0.45045045045045046,
+      "Large": 0.2702702702702703,
+      "Rare": 0.05405405405405406
+    }
+  },
+  {
+    "case": "Q1",
+    "binding": "Q1",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare"
+      ],
+      "raw": {
+        "Small": 50,
+        "Medium": 30,
+        "Large": 22.5,
+        "Rare": 6.0
+      }
+    },
+    "result": {
+      "Small": 0.4608294930875576,
+      "Medium": 0.2764976958525346,
+      "Large": 0.2073732718894009,
+      "Rare": 0.055299539170506916
+    }
+  },
+  {
+    "case": "Q2",
+    "binding": "Q2",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "LowActivity/Small",
+        "LowActivity/Medium",
+        "LowActivity/Large",
+        "LowActivity/Rare"
+      ],
+      "raw": {
+        "Small": 60.0,
+        "Medium": 36.0,
+        "Large": 10.5,
+        "Rare": 3.5
+      }
+    },
+    "result": {
+      "Small": 0.5454545454545454,
+      "Medium": 0.32727272727272727,
+      "Large": 0.09545454545454546,
+      "Rare": 0.031818181818181815
+    }
+  },
+  {
+    "case": "Q3",
+    "binding": "Q3",
+    "template": "Q_PARALLEL",
+    "intermediate": {
+      "hits": [
+        "BigGear/Large",
+        "BigGear/Rare",
+        "ColdNight/Large",
+        "ColdNight/Rare"
+      ],
+      "raw": {
+        "Small": 50,
+        "Medium": 30,
+        "Large": 18.0,
+        "Rare": 4.800000000000001
+      }
+    },
+    "result": {
+      "Small": 0.48638132295719844,
+      "Medium": 0.2918287937743191,
+      "Large": 0.17509727626459146,
+      "Rare": 0.04669260700389106
+    }
+  }
+]

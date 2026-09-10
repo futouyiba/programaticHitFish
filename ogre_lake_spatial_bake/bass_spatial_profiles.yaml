@@ -1,0 +1,3 @@
+base_prob_weight: 100000
+cohort_share: {ordinary_normal: 0.55, active_spawning: 0.25, guard: 0.20}
+note: All values are tuning placeholders for this experiment fixture.

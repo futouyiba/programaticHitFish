@@ -1,7 +1,7 @@
 # FCF V1 流速/流向机制设计（Design-only）
 
 > 作者成本旁证：局部窄流带与桥墩、开放水面等既有区域相交时的静态切分压力，
-> 见 [Ogre Lake companion experiment](ogre_lake_manual_region_companion_experiment.md)。
+> 见 [Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。
 > 该实验不改变本机制的 owner、arrival 或 safety 契约。
 
 流速不是一个“鱼更活跃/更难咬”的总系数。它描述水动力边界条件，必须

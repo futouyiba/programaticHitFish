@@ -2,7 +2,7 @@
 
 > 作者成本旁证：温度连续场被阈值化为静态手工 Region 后，与已有空间边界
 > 错位所产生的切分与重编压力，见
-> [Ogre Lake companion experiment](ogre_lake_manual_region_companion_experiment.md)。
+> [Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。
 > 该实验不改变本机制的 owner、snapshot 或计算契约。
 
 本文件先定义语义和因果边界，不要求立刻改动运行时代码。温度不是一个

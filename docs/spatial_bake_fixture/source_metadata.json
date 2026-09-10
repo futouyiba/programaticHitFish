@@ -1,0 +1,35 @@
+{
+  "schema_version": "spatial-bake-fixture.v1",
+  "source_count": 13,
+  "source_group_count": 9,
+  "grid_cell_count": 10000,
+  "wet_cell_count": 6190,
+  "outside_cell_count": 3810,
+  "connected_patch_count_2d": 285,
+  "unique_state_vector_count_2d": 224,
+  "habitat_volume_count_3d": 1033,
+  "source_type_counts": {
+    "GRASS": 2,
+    "GRASS_EDGE": 2,
+    "WOOD": 2,
+    "DROP_OFF": 1,
+    "SPAWN_BED": 1,
+    "OPEN_FLAT": 1,
+    "ROCK": 1,
+    "PADS": 1,
+    "BRIDGE_DOCK": 2
+  },
+  "source_overlap_cell_count": 1039,
+  "source_overlap_cardinality_counts": {
+    "2_sources": 984,
+    "3_sources": 55
+  },
+  "all_values_are_fixture": true,
+  "provenance": {
+    "generated_by": "experiments/export_spatial_bake_fixture.js",
+    "model": "experiments/ogre_lake_overlay_model.js",
+    "model_grid": "100x100 at 2m",
+    "source_data": "deterministic fixture functions; no RF4 or production telemetry",
+    "dynamic_fish_state": "omitted by design"
+  }
+}

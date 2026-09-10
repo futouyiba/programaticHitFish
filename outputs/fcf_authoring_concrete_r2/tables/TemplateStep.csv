@@ -1,0 +1,47 @@
+﻿template_id,step,operation,input,output,failure
+S_FIXED,1,查分段线性曲线,target.temperature_c × @Temperature,T,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FIXED,2,按具名锚点读取距离，再查曲线,target.anchor_distances_m[@Anchor] × @Structure,S,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FIXED,3,查分段线性曲线,target.depth_m × @Depth,D,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FIXED,4,固定 Light Slot：关=1；开=查曲线,target.illuminance_lux × @Light,L,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FIXED,5,独立因子乘积,T × S × D × L,BaseSpatialFit,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FIXED,6,"固定末端 Overlay：关=原值；开=BLEND(base,MAX(cover,deep),severity)",BaseSpatialFit / @Cover / @Deep / weather.cold_front_severity,SpatialDistributionWeight,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_BANDS,1,只读同一 Opportunity Evaluation Scope,FeedingMatch / Presentation facts,facts,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_BANDS,2,按显式 priority 递增测试条件；FIRST_MATCH,ResponseBand + Predicate,第一条命中行,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_BANDS,3,SET；无命中使用固定 Default Slot,response_strength 或 @Default,ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_DEFENSE,1,只读已准入的入侵强度,response.intrusion_strength,intrusion,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_DEFENSE,2,查 Defense 曲线,intrusion × @Defense,ResponseStrength；立即返回,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_DUAL_FIXED,1,从同一快照评价固定 Grazing Slot,food.grazing_availability × @Grazing,G,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_DUAL_FIXED,2,从同一快照评价固定 Suspended Slot,food.suspended_availability × @Suspended,S,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_DUAL_FIXED,3,固定聚合 MAX（本样本的演示函数）,"G,S",ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FIELD,1,使用已有 Session/Root/Opportunity/Scope；本模板不生成身份,同一 semantic particle 已准入 Scope,只读 facts,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FIELD,2,查 FoodField 的量级和适宜性,food.density_index × @Density；food.suitability × @Suitability,"DensityFit, SuitFit",输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FIELD,3,读取同一 Active Presentation Channel 的 FeedingMatch,response.feeding_match × @Match,PresentationFit,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FIELD,4,乘积（演示函数）；不把帧数当次数,DensityFit × SuitFit × PresentationFit,ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED,1,查匹配曲线,response.feeding_match × @Match,F,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED,2,查呈现曲线,response.presentation_fit × @Presentation,P,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED,3,固定只读 Familiarity Slot：关闭=1；开启=查曲线,response.cue_familiarity × @Familiarity,U,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED,4,相乘,F × P × U,ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_REACTION,1,普通 Feeding 没有 Slot：分群已在上游完成,Migration FishGroup,只读刺激/追逐要求,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_REACTION,2,查刺激显著性与持续追逐容忍曲线,response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit,"R,D",输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_REACTION,3,相乘；类型为 Response，不携带已证实动机,R × D,ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED_REACTION,1,同一 Scope 评价 Feeding,response.feeding_match × @Match；response.presentation_fit × @Presentation,F=两 Fit 乘积,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED_REACTION,2,同一 Scope 评价 Reaction,response.trigger_salience × @Salience；response.sustained_pursuit_demand × @Pursuit,R=两 Fit 乘积,输入缺失/类型错 → ValidationError；不抽签、不写状态
+R_FEED_REACTION,3,固定聚合 MAX（Working Candidate 的演示实例）,"F,R",ResponseStrength,输入缺失/类型错 → ValidationError；不抽签、不写状态
+G_SHARES,1,读取同一物种的同一慢速世界快照,GroupShare + Predicate,各 special predicate,输入缺失/类型错 → ValidationError；不抽签、不写状态
+G_SHARES,2,并列评价：不命中=0；命中=标量或曲线,share_ref / input_field,special shares,输入缺失/类型错 → ValidationError；不抽签、不写状态
+G_SHARES,3,"验证每项[0,1]且和≤1",special shares,有效 share vector,超限 → ValidationError；不归一化、不顺序扣减
+G_SHARES,4,补 Normal residual,1 − SUM(special),FishGroupShareVector,输入缺失/类型错 → ValidationError；不抽签、不写状态
+Q_PARALLEL,1,取已经选定的 Group 对应基准分布,QualityWeight,base[bucket],输入缺失/类型错 → ValidationError；不抽签、不写状态
+Q_PARALLEL,2,所有条件只读同一原始 facts,QualityModifier + Predicate,并列命中 modifier,输入缺失/类型错 → ValidationError；不抽签、不写状态
+Q_PARALLEL,3,每桶原始权重乘所有命中乘数,base[b] × PRODUCT(multipliers[b]),raw[b],输入缺失/类型错 → ValidationError；不抽签、不写状态
+Q_PARALLEL,4,一次归一化,raw / SUM(raw),QualityDistribution,负数/非有限/总和≤0 → ValidationError；本模板不抽签
+S_COLD,1,查相对温暖、稳定、低能耗避难所,target.relative_warmth × @Warmth；target.stability × @Stability；target.low_energy_refuge × @Refuge,"W,S,R",输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_COLD,2,固定乘积,W × S × R,SpatialDistributionWeight,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_SUMMER,1,目标溶氧硬 Gate,target.oxygen_mg_l ≥ @OxygenMin,通过目标,不通过 → 空间权重0并立即返回；不执行后续适宜性
+S_SUMMER,2,查相对降温、氧余量、遮蔽/猎物折中,target.relative_cooling × @Cooling；target.oxygen_margin × @Oxygen；target.cover_prey_tradeoff × @Tradeoff,"C,O,T",输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_SUMMER,3,固定乘积,C × O × T,SpatialDistributionWeight,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FORAGE,1,猎物场准入 Gate,target.forage_school_intensity ≥ @ForageMin,通过目标,不通过 → 空间权重0并立即返回；Overlay不得复活
+S_FORAGE,2,猎物主锚点及垂向匹配,target.forage_school_intensity × @Forage；target.vertical_alignment × @Vertical,"F,V",输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FORAGE,3,温度、氧、开放水环境适宜性,target.temperature_c × @Temperature；target.oxygen_mg_l × @Oxygen；target.open_water_context × @OpenWater,"T,O,W",输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FORAGE,4,固定乘积,F × V × T × O × W,BaseSpatialFit,输入缺失/类型错 → ValidationError；不抽签、不写状态
+S_FORAGE,5,固定末端 ColdFront Overlay；关=原值,base / Cover / Deep / severity,SpatialDistributionWeight,输入缺失/类型错 → ValidationError；不抽签、不写状态

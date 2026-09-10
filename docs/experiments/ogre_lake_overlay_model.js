@@ -85,5 +85,5 @@ function volumeCount(model){
 }
 const model=build();
 const output={grid:`${N}×${N}`,cell_m:CELL_M,wet_cells:model.wetCells.length,stages:model.stages.map(({componentId,...s})=>s),volume:volumeCount(model)};
-if(typeof module!=='undefined')module.exports={...output,model,layers,depthM};
+if(typeof module!=='undefined')module.exports={...output,model,layers,depthM,wet,vegetation,structure,substrate,shadeMorning,shadeAfternoon,shadeDusk,temperature,dissolvedOxygen,flow,functional,insideEllipse,distSeg};
 if(require.main===module)console.log(JSON.stringify(output,null,2));

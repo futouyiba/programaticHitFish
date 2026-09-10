@@ -1,5 +1,11 @@
 # Ogre Lake 可复核空间 Overlay 实验
 
+Document status：**RETAINED / canonical evidence**  
+Authority：**可复核 authoring-cost evidence；非 FCF V1 mechanism contract**  
+Scope：Ogre Lake spatial overlay counts and 2D/2.5D/3D extensions.  
+Reproduction：`docs/experiments/ogre_lake_overlay_model.js` and the reproduction entry in §9.  
+V1 promotion rule：结果只能作为 authoring evidence，不能自行升级为 V1 policy 或参数。
+
 ## 0. 结论先行
 
 第一版 Ogre Lake 的 `96` 是人工设定的二维示意参数，不是几何计算结果。本轮
@@ -224,4 +230,3 @@ Patch。因此 `connected patches > unique state vectors`。
 - 交互页面：`ogre-lake-exact-overlay-standalone.html`
 - 确定性模型：`experiments/ogre_lake_overlay_model.js`
 - 执行：`node docs/experiments/ogre_lake_overlay_model.js`
-

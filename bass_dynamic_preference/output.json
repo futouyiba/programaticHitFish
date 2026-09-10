@@ -1,0 +1,176 @@
+{
+  "status": "TEST FIXTURE / TUNING PLACEHOLDER / NOT AUTHORITY",
+  "conditions": {
+    "satiation": "NORMAL",
+    "cue_familiarity": "LOW",
+    "fish_mode": "NORMAL",
+    "lifecycle_cohort": "ORDINARY_NORMAL",
+    "reach": 0.8,
+    "local_scale": 100.0
+  },
+  "spatial": {
+    "Morning": {
+      "Grass Edge": {
+        "static_preference": 0.9,
+        "dynamic_bias": 1.3,
+        "local_intensity": 117.0,
+        "exposed_intensity": 93.6
+      },
+      "Shaded Wood": {
+        "static_preference": 0.8,
+        "dynamic_bias": 0.9,
+        "local_intensity": 72.0,
+        "exposed_intensity": 57.6
+      },
+      "Drop-off": {
+        "static_preference": 0.7,
+        "dynamic_bias": 0.7285714286,
+        "local_intensity": 51.0,
+        "exposed_intensity": 40.8
+      }
+    },
+    "Midday": {
+      "Grass Edge": {
+        "static_preference": 0.9,
+        "dynamic_bias": 0.7,
+        "local_intensity": 63.0,
+        "exposed_intensity": 50.4
+      },
+      "Shaded Wood": {
+        "static_preference": 0.8,
+        "dynamic_bias": 1.2,
+        "local_intensity": 96.0,
+        "exposed_intensity": 76.8
+      },
+      "Drop-off": {
+        "static_preference": 0.7,
+        "dynamic_bias": 1.1571428571,
+        "local_intensity": 81.0,
+        "exposed_intensity": 64.8
+      }
+    },
+    "Evening": {
+      "Grass Edge": {
+        "static_preference": 0.9,
+        "dynamic_bias": 0.9,
+        "local_intensity": 81.0,
+        "exposed_intensity": 64.8
+      },
+      "Shaded Wood": {
+        "static_preference": 0.8,
+        "dynamic_bias": 0.8,
+        "local_intensity": 64.0,
+        "exposed_intensity": 51.2
+      },
+      "Drop-off": {
+        "static_preference": 0.7,
+        "dynamic_bias": 1.3571428571,
+        "local_intensity": 95.0,
+        "exposed_intensity": 76.0
+      }
+    }
+  },
+  "feeding": {
+    "Morning": {
+      "BAITFISH": {
+        "static_diet_fit": 0.9,
+        "dynamic_bias": 1.3,
+        "presentation_match": 0.95,
+        "raw_feeding_match": 1.1115,
+        "feeding_match": 1.0,
+        "meaning": "STRONG",
+        "response_grade": "HIGH"
+      },
+      "CRUSTACEAN": {
+        "static_diet_fit": 0.8,
+        "dynamic_bias": 0.9,
+        "presentation_match": 0.9,
+        "raw_feeding_match": 0.648,
+        "feeding_match": 0.648,
+        "meaning": "MARGINAL",
+        "response_grade": "LOW"
+      },
+      "WORM_LIKE": {
+        "static_diet_fit": 0.7,
+        "dynamic_bias": 0.7285714286,
+        "presentation_match": 0.85,
+        "raw_feeding_match": 0.4335,
+        "feeding_match": 0.4335,
+        "meaning": "MARGINAL",
+        "response_grade": "LOW"
+      }
+    },
+    "Midday": {
+      "BAITFISH": {
+        "static_diet_fit": 0.9,
+        "dynamic_bias": 0.7,
+        "presentation_match": 0.95,
+        "raw_feeding_match": 0.5985,
+        "feeding_match": 0.5985,
+        "meaning": "MARGINAL",
+        "response_grade": "LOW"
+      },
+      "CRUSTACEAN": {
+        "static_diet_fit": 0.8,
+        "dynamic_bias": 1.3,
+        "presentation_match": 0.9,
+        "raw_feeding_match": 0.936,
+        "feeding_match": 0.936,
+        "meaning": "STRONG",
+        "response_grade": "HIGH"
+      },
+      "WORM_LIKE": {
+        "static_diet_fit": 0.7,
+        "dynamic_bias": 1.0428571429,
+        "presentation_match": 0.85,
+        "raw_feeding_match": 0.6205,
+        "feeding_match": 0.6205,
+        "meaning": "MARGINAL",
+        "response_grade": "LOW"
+      }
+    },
+    "Evening": {
+      "BAITFISH": {
+        "static_diet_fit": 0.9,
+        "dynamic_bias": 0.9,
+        "presentation_match": 0.95,
+        "raw_feeding_match": 0.7695,
+        "feeding_match": 0.7695,
+        "meaning": "VALID",
+        "response_grade": "NORMAL"
+      },
+      "CRUSTACEAN": {
+        "static_diet_fit": 0.8,
+        "dynamic_bias": 0.8,
+        "presentation_match": 0.9,
+        "raw_feeding_match": 0.576,
+        "feeding_match": 0.576,
+        "meaning": "MARGINAL",
+        "response_grade": "LOW"
+      },
+      "WORM_LIKE": {
+        "static_diet_fit": 0.7,
+        "dynamic_bias": 1.3571428571,
+        "presentation_match": 0.85,
+        "raw_feeding_match": 0.8075,
+        "feeding_match": 0.8075,
+        "meaning": "STRONG",
+        "response_grade": "HIGH"
+      }
+    }
+  },
+  "centered_checks": {
+    "spatial_local_totals": {
+      "Morning": 240.0,
+      "Midday": 240.0,
+      "Evening": 240.0
+    },
+    "feeding_weighted_totals": {
+      "Morning": 2.4,
+      "Midday": 2.4,
+      "Evening": 2.4
+    },
+    "expected_spatial_total": 240.0,
+    "expected_feeding_total": 2.4
+  }
+}

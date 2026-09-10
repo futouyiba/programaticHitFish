@@ -18,7 +18,7 @@ Species 配置 sensory capability；Program 只能选择已声明的感知/task 
 
 **作者成本 companion evidence**：Morning / Afternoon 阴影边界移动时，静态
 手工 Region 为何需要预拆稳定子区，见
-[Ogre Lake experiment](ogre_lake_manual_region_companion_experiment.md)。该实验
+[Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。该实验
 不改变 `A_visual`、Occupancy 或 TaskCapability 的语义边界。
 
 ```mermaid

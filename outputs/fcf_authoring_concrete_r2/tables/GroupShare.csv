@@ -1,0 +1,8 @@
+﻿binding_id,group,predicate_id,share_kind,share_ref,input_field
+BASS_G,Guarding,guard_all,PARAMETER,BassGuardShare,N/A
+BASS_G,ColdSlow,cold_any,PROFILE,BassColdShare,slow.cold_severity
+BASS_G,SummerStress,summer_any,PROFILE,BassSummerShare,slow.oxythermal_compression
+BASS_G,ForageChase,forage_all,PROFILE,BassForageShare,slow.open_water_forage_availability
+G1,Guarding,guard_all,PARAMETER,BassGuardShare,N/A
+G2,Guarding,guard_all,PARAMETER,BassGuardShare,N/A
+G3,Seasonal,g3_either,PARAMETER,G3Share,N/A

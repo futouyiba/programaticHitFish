@@ -1,5 +1,11 @@
 # Ogre Lake 手工空间切块成本实验：使用说明
 
+Document status：**RETAINED / explanatory guide**  
+Authority：**可视化说明；非 FCF V1 mechanism contract**  
+Scope：Ogre Lake overlay visualization and reader guidance.  
+Reproduction：配套 HTML 与 `ogre_lake_reproducible_overlay_experiment.md`。  
+V1 promotion rule：仅解释 evidence，不产生或升级机制参数。
+
 > 本说明对应第一版教学图。第一版 `96` 是示意参数。用于评审和对外演示时，
 > 请优先使用 [可复核 Overlay 实验](ogre_lake_reproducible_overlay_experiment.md)
 > 及 `ogre-lake-exact-overlay-standalone.html`。
@@ -186,4 +192,4 @@ Ogre Lake 的 `96` 远低于所有 Layer 完整相乘的理论上限，但仍足
 手工碎片化压力。
 
 完整假设、逐层数量和证据边界见
-[Ogre Lake companion experiment](ogre_lake_manual_region_companion_experiment.md)。
+[Ogre Lake reproducible overlay experiment](ogre_lake_reproducible_overlay_experiment.md)。

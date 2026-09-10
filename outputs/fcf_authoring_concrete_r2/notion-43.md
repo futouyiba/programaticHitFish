@@ -1,0 +1,2 @@
+### R2-C｜Self-QA 与 Worker Cold Review
+样本静态校验与 38 项手算/边界复算通过。Worker Cold Review 检查：没有把演示值提升为 Authority；没有恢复 C06/C07 Feeding fallback；C08 仍为固定双通道；C09–C11 没有新建身份合同；C12 无单一动机断言；C13 情景未计作生产新模板；中文文本没有省略 Profile 实际曲线或表格端的固定聚合。独立审核结论另行写入，不以 Self-QA 代替独立 Reviewer。
