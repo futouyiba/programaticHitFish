@@ -1,0 +1,48 @@
+batch_id: CENSUS-B2
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0/B1 固化范式
+created: 2026-09-10
+input:
+  selection_rule: >-
+    CRR 首考优先（coordinator envelope）：B01 thermal/季节类存量 3 条 +
+    R02 冷水/季节/水层/Field 类 6 条 + R03 thermal 类 1 条（状态存疑，见下）。
+    库内无 Pike Winter Relative Refuge Story（方法源头的 Pike/Bass 深挖产物未入
+    Story DB——CRR 首考以 thermal 类替代样本进行）。R06/R07/R08 批未在 envelope
+    授权范围，未消费。鲢鱼 R02-S07 与鳙鱼同型（coverage #19「食场同#18」），
+    对照注记不建体。
+  frozen_stories:
+    - PIK19: https://app.notion.com/p/3d6a4137d23681c0bc32c9542d458b54   # B01-S19 白斑狗鱼
+    - WAL: https://app.notion.com/p/3d6a4137d23681c5ac98fd6e4982c846     # B01-S02 玻璃梭鲈
+    - BRT12: https://app.notion.com/p/3d6a4137d23681e59906c90017cd6aea   # B01-S12 褐鳟
+    - ARC: https://app.notion.com/p/3d6a4137d23681a1bfe0f18abd8436c4     # R02-S25 北极红点鲑
+    - VEN: https://app.notion.com/p/3d6a4137d23681b282d3e08c885d8a71     # R02-S04 欧白鲑
+    - FGA: https://app.notion.com/p/3d6a4137d236817891fed67a8f77c477     # R02-S17 佛罗里达雀鳝
+    - SWO: https://app.notion.com/p/3d6a4137d23681c787cffee3652033e2     # R02-S23 剑旗鱼（2D 定向样本）
+    - BHC: https://app.notion.com/p/3d6a4137d236815cbb26ff16d2b2e05a     # R02-S09 鳙鱼（P03 Food Field）
+    - HER: https://app.notion.com/p/3d6a4137d2368155b1cefba3ab182dd9     # R02-S02 大西洋鲱（P03；GroupPressure=Strong）
+    - MDF: https://app.notion.com/p/3d6a4137d2368170b944ebc5e7ad2c11     # FISH-R03 鳜鱼（状态存疑）
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987
+    - P02: https://app.notion.com/p/3d6a4137d2368111a1bbf2139e8b61a1
+    - P03: https://app.notion.com/p/3d6a4137d236810696fbdb25e854c094   # 本批新增输入（Food Field）
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b
+input_status_notes:
+  - "MDF（鳜鱼）frozen_status_disputed：页属性 ReviewStatus=Independent PASS 与正文 Verdict 段 ReviewStatus=REVISE 矛盾；R03 批 Package=ARTIFACT_REVISE（Completion Claims Withdrawn，FISH-R03-RECON-001）。盲骨架已建（P-B2-MDF-BAKE/RESP 带 input_status 标注）——判同产物将标 pending coordinator 裁决；若 R03 冻结被拒，本批该 2 程序悬置不计入计数。B0 教训：不静默丢弃，也不冒用未冻结输入。"
+blind_freeze:
+  n_blind_programs: 20
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-10T14:10:54Z"   # coordinator commit 锚点
+  registry_reads_before_freeze: false
+  registry_version_before: 3
+fixture_gate: {status: PASSED_BY_COORDINATOR}
+coverage_discipline:
+  no_surface_exclusions:
+    - "HER Group：FR 层 FCFVerdict=Group-only/GroupPressure=Strong（库内首个）——census 层无 routing body 证据（摄食群与产卵群重叠非同态、无统一触发器——Story 自述）；P05 判例 census 不买；语义层判定与 census 正交，报告详述"
+    - "各 Story Quality 面：无 Quality Selection 程序证据（同 B0/B1 基线）"
+  out_of_scope: []
+  comparison_not_duplicated: "鲢鱼 R02-S07（与鳙鱼 S09 同型，coverage #19）对照注记不建体"
+execution_mode: 分段（coordinator 批准：上下文吃紧时盲重建可分段）——本段=选样+fetch+盲冻结；判同段待 commit 确认后继续
+status: RUNNING_BLIND_FROZEN
