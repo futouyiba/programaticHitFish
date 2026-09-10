@@ -11,5 +11,8 @@ requires-python = ">=3.9"
 [project.optional-dependencies]
 calibration = ["numpy>=1.20", "matplotlib>=3.5"]
 
+[tool.setuptools.packages.find]
+include = ["fcf_v1*", "harness*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

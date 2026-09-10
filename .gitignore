@@ -21,3 +21,4 @@ dist/
 
 # Local scratch material
 tmp/
+.claude/settings.local.json
