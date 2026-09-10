@@ -187,6 +187,7 @@ templates:
       - {batch: CENSUS-B2, program_id: [P-B2-PIK19-RESP, P-B2-WAL-RESP, P-B2-BRT12-RESP, P-B2-ARC-RESP, P-B2-VEN-RESP, P-B2-FGA-RESP, P-B2-SWO-RESP, P-B2-MDF-RESP], note: "8 标准成员（MDF=motion-triggered 强实例：静止不触发/移动触发追捕）"}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: CUE_GUIDED_APPROACH_AVOID, reason: evaluand=环境梯度场+RETURN=Approach|Avoid（真结构差异立新族）}
+      - {batch: CENSUS-B2, template_id: FOOD_FIELD_FEEDING_RESPONSE, reason: "反向互记（B2-FIX-001 F-1）：evaluand=食物场+RETURN=FieldFeeding（真结构差异立新族）"}
   - template_id: GUARD_CONFLICT_DUAL_PATH_RESPONSE
     surface: Response
     status: CANDIDATE
@@ -268,6 +269,7 @@ templates:
       - {batch: CENSUS-B1, program_id: P-B1-LAM-RESP-APPROACH, blind_hash: e6963e25c39f0bd4}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: TYPED_TARGET_RESPONSE, reason: "OPERATOR+RETURN 真差异（环境梯度场 evaluand + Approach|Avoid 返回 vs 离散目标 + TargetFeeding）"}
+      - {batch: CENSUS-B2, template_id: FOOD_FIELD_FEEDING_RESPONSE, reason: "反向互记（B2-FIX-001 F-1）：同为场 evaluand 但程序目的（趋向/避让 vs 摄入）与 RETURN 不同"}
     provisional_note: 单成员 PROVISIONAL_CASE_SPECIFIC + product_deferred（TAR-06：产品不纳诱捕/化学趋向则候选冻结归档）
   - template_id: FOOD_FIELD_FEEDING_RESPONSE
     surface: Response

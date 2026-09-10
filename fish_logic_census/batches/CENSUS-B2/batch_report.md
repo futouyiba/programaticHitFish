@@ -15,7 +15,7 @@ B01 thermal/季节 ×3（狗鱼 S19 产卵深水回流/玻璃梭鲈 S02 季节�
 
 | 族 | B2 变化 |
 |---|---|
-| CRR | +10 non-match，**仍 0 成员**——三批累计 25 non-match；**真首考输入通道问题转人类裁决（HRQ-B2-02）**：Pike/Bass 深挖产物是方法页非 Story，wild 库 thermal 类全部 premise 绑定切换形态，无 FeasibleSet→RelativeRank 形 |
+| CRR | +10 non-match，**仍 0 成员**——三批累计 24 non-match + 1 AMBIGUOUS（B0 LUN-AESTIVATION，不计——B0-FIX-001/F-3 分类先例）；**真首考输入通道问题转人类裁决（HRQ-B2-02）**：Pike/Bass 深挖产物是方法页非 Story，wild 库 thermal 类全部 premise 绑定切换形态，无 FeasibleSet→RelativeRank 形 |
 | SINGLE | +8（habitat 因子多型 + **food_field 场实例**继 B1 chemical_gradient） |
 | PLAIN | +2（WAL、MDF；槽位数 2 在轴内） |
 | TYPED | +8（MDF=motion-triggered 强实例：静止不触发/移动触发追捕） |
