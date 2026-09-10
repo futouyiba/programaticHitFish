@@ -6,7 +6,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 | 项 | 值 |
 |---|---|
 | 批次 | REP-FULL-FIELD-001（品系 L1 等效层——锦鲤系+白化系+无鳞/人面/鳞白化） |
-| 身份锚 | fish-reference-20260908：白化高首鲟行（Acipenser transmontanus；俄4映射类型=同物种 → 小头睡鲨（映射列）——CSV 备注行「高首鲟白化色型，按括号/基型物种归并」；行级 AI 审核状态=待人工审核——仅作身份锚） |
+| 身份锚 | fish-reference-20260908：白化高首鲟行（Acipenser transmontanus；俄4映射类型=近似种类比 → 小头睡鲨（CSV L251；REV-001 MINOR-1 修正）[需核对]——CSV 备注行「高首鲟白化色型，按括号/基型物种归并」；行级 AI 审核状态=待人工审核——仅作身份锚） |
 | 本体 | 高首鲟（Acipenser transmontanus）——本体四面已建（migration 批 species/white_sturgeon.md） |
 | 基线 | SNAPSHOT_ONLY（census registry v4 快照；live Stress Test R1 主页转录 tmp/live_stress_main_after.md，2026-09-10 版） |
 | 证据档 | L1 等效（CSV 行级「同物种」标注——R10 品系行 L1 等效判例：品系/色型行不分裂独立四面，色型行为 Identity-Deferred 侧实体，本体行是独立四面 owner） |

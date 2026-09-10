@@ -214,3 +214,10 @@ PASS (24 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-FIELD-001
+
+---
+
+## REP-FULL-FIELD-REV-001 验收记录（2026-09-11）
+
+- verdict: **ARTIFACT_APPROVE**（3 minor 均文本级已修）。
+- giant_barb 重建三步全过；品系 L1-EQUIV 合理；R-T1 Field 型双 live 锚支撑。
