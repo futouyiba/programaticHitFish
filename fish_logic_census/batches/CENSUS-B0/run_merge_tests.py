@@ -134,6 +134,9 @@ FAMILY_TESTS = [
     ("P-LUN-RESP-GUARD", "GUARD_CONFLICT_DUAL_PATH_RESPONSE"),
     ("P-LUN-BAKE-AESTIVATION", "PLAIN_FACTOR_COMBINE"),   # ambiguous 程序的 raw 记录
     ("P-LUN-BAKE-AESTIVATION", "HARD_GATED_FACTOR_COMBINE"),
+    # FIX-001 补录两条（R2 顺带项：engine_report 重生成到 25 条）
+    ("P-EEL-RESP-GUARD", "GUARD_CONFLICT_DUAL_PATH_RESPONSE"),
+    ("P-EEL-RESP-FEEDING", "TYPED_TARGET_RESPONSE"),
 ]
 
 
@@ -142,6 +145,11 @@ def main():
                 (json.loads(line) for line in
                  (BATCH / "blind_programs.jsonl").read_text(encoding="utf-8").splitlines()
                  if line.strip())}
+    # FIX-001 补录程序 body（非盲，provenance 见 programs.jsonl）
+    sys.path.insert(0, str(BATCH))
+    from apply_fix_001 import EEL_GUARD, EEL_FEEDING  # noqa: E402
+    programs[EEL_GUARD["program_id"]] = EEL_GUARD
+    programs[EEL_FEEDING["program_id"]] = EEL_FEEDING
     report = {"vs_CRR": [], "family": []}
     for pid in PLAN_VS_CRR:
         p = programs[pid]

@@ -17,7 +17,7 @@ from census_engine import structural_diff  # noqa: E402
 
 BATCH = Path(__file__).parent
 EEL_STORY = "FISH-R05-电鳗-Electrogenic-Remote-Prey-Control"
-EEL_URL = "https://app.notion.com/p/3d7a4137d23681c9a5a3dcc1c7ddd4fc4"
+EEL_URL = "https://app.notion.com/p/3d7a4137d23681c9a5a3dcc1c7ddd4fc"  # R2 勘误：envelope 原文尾部多一个"4"（33 位无效 ID），此为 32 位规范 ID（与 blind_programs/stories.jsonl 一致）
 FIX = "CENSUS-B0-FIX-001"
 
 BIAS_DECL = ("修复轮非盲补录：创建时 registry 与族 canonical 已知（F-1 目标即覆盖缺口，"

@@ -1,5 +1,9 @@
 # CENSUS-B0 Worker Self-QA
 
+> **计数标注（R2 顺带，2026-09-10）**：本表写于盲批时点（13 程序/23 判同）；
+> FIX-001 后实际为 **15 程序 / 25 判同**（+2 非盲补录），见 manifest.fix_rounds 与
+> batch_report 修复轮附录。表内结论不受计数变化影响。
+
 按 Orchestrator Prompt R2 §12 Final Self-Attack 清单逐项自检。Self-QA 不冒充
 Independent Review（status 仍为 INDEPENDENT_REVIEW_REQUIRED）。
 

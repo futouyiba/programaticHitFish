@@ -1,0 +1,320 @@
+{
+ "vs_CRR": [
+  {
+   "program_id": "P-B1-GRB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BRT-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-DRU-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-COD-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PAD34-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BLU-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-SMA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-LAM-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-ONS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "family": [
+  {
+   "program_id": "P-B1-GRB-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-DRU-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PAD34-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-SMA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-COD-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BLU-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-LAM-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-ONS-BAKE",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-GRB-BAKE",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-DRU-BAKE",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PAD34-BAKE",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-SMA-BAKE",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BRT-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_structural_diff": [
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-GRB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BRT-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-TIL-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PAD35-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-DRU-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-COD-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PAD34-RESP-SENSE",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-PIK-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-GAR-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-BLU-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-SMA-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-RAI-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-ONS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-DIS-RESP-GUARD",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B1-LAM-RESP-APPROACH",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-B1-LAM-RESP-APPROACH",
+   "family": "CUE_GUIDED_APPROACH_AVOID",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  }
+ ]
+}

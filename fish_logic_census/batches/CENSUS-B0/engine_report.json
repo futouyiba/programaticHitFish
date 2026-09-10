@@ -411,6 +411,30 @@
     "OPERATOR",
     "PREMISE"
    ]
+  },
+  {
+   "program_id": "P-EEL-RESP-GUARD",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-EEL-RESP-FEEDING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
   }
  ]
 }
