@@ -1,0 +1,416 @@
+{
+ "vs_CRR": [
+  {
+   "program_id": "P-MGC-BAKE-ADULT",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-WET",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-AESTIVATION",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-OSC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-EEL-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-CHB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "family": [
+  {
+   "program_id": "P-OSC-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-OSC-BAKE",
+     "same": false,
+     "structural_diffs": [
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-CHB-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-CHB-BAKE",
+     "same": false,
+     "structural_diffs": [
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-WET",
+   "family": "HARD_GATED_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-LUN-BAKE-WET",
+     "same": false,
+     "structural_diffs": [
+      "BRANCH",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "BRANCH",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-EEL-BAKE",
+   "family": "HARD_GATED_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-EEL-BAKE",
+     "same": false,
+     "structural_diffs": [
+      "BRANCH",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "BRANCH",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-WET",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-LUN-BAKE-WET",
+     "same": false,
+     "structural_diffs": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-EEL-BAKE",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-EEL-BAKE",
+     "same": false,
+     "structural_diffs": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-MGC-BAKE-ADULT",
+   "family": "PATCH_RESOURCE_FOLLOWING",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-MGC-BAKE-ADULT",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-MGC-BAKE-ADULT",
+     "same": false,
+     "structural_diffs": [
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-MGC-RESP-FEEDING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-RESP-FEEDING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-OSC-RESP-FEEDING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-CHB-RESP-FEEDING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-EEL-RESP-SENSE",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-EEL-RESP-SENSE",
+     "same": false,
+     "structural_diffs": [
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-OSC-RESP-GUARD",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-RESP-GUARD",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_family_admit": {
+    "admitted": true,
+    "canonical_version": 1,
+    "regression_recheck_required": false
+   },
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-AESTIVATION",
+   "family": "PLAIN_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-LUN-BAKE-AESTIVATION",
+     "same": false,
+     "structural_diffs": [
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-LUN-BAKE-AESTIVATION",
+   "family": "HARD_GATED_FACTOR_COMBINE",
+   "engine_family_admit": {
+    "admitted": false,
+    "direct_test": {
+     "program_id": "P-LUN-BAKE-AESTIVATION",
+     "same": false,
+     "structural_diffs": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR"
+     ],
+     "axis_demand": [],
+     "verdict": "NEW_TEMPLATE_CANDIDATE",
+     "param_only": false
+    },
+    "canonical_version_next": 2,
+    "regression_recheck_required": true,
+    "verdict": "NEW_TEMPLATE_CANDIDATE"
+   },
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ]
+}

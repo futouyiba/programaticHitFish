@@ -1,0 +1,33 @@
+batch_id: CENSUS-B0
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator Prompt R2 §5 (CENSUS); Method R0 §11
+created: 2026-09-10
+input:
+  frozen_stories:   # Story DB 只读，全部 FISH-R05 批 FR3-passed
+    - MGC: https://app.notion.com/p/3d7a4137d23681309e29fd03798c1214
+    - LUN: https://app.notion.com/p/3d7a4137d23681f9b62bdd65f610ffb4
+    - OSC: https://app.notion.com/p/3d7a4137d2368196abfff3130d97773c
+    - EEL: https://app.notion.com/p/3d7a4137d23681c9a5a3dcc1c7ddd4fc   # 仅感知段授权
+    - CHB: https://app.notion.com/p/3d7a4137d236817c8f4ee128d2269970   # 阴性对照
+  frozen_semantic_patterns:   # Frozen Input，语义层输入（非 census LogicTemplate）
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b
+    - P06: https://app.notion.com/p/3d6a4137d23681d6a527eef7c9f42d7d
+blind_freeze:
+  n_blind_programs: 13
+  frozen_before_registry_open: true   # build_blind_programs.py 于开 registry 前运行
+  registry_reads_before_freeze: false
+  registry_version_before: 0
+  note: >-
+    初始化阶段对 registry v0 种子的暴露已声明于 role_memory（种子内容 = Method R0
+    §6 方法合同本身）；本批盲骨架自冻结 Story + P0x 语义独立重建，未做任何
+    registry-fit 修正（program_revisions.jsonl 为空即证据）。
+fixture_gate:
+  status: PASSED_BY_COORDINATOR   # F01–F17 自动核 12/12，coordinator main suite 绿
+scope_exclusions:
+  - "EEL 攻击段（doublet/volley/taser→attack）与捕获边界：post-instantiation owner，OUT_OF_SCOPE（envelope 限定）"
+status: INDEPENDENT_REVIEW_REQUIRED
