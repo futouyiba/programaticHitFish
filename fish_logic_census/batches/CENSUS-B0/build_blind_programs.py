@@ -9,7 +9,8 @@ blind_programs.jsonl（内容 sha256 + registry_seen=false）。
 盲纪律声明：此时 Worker 尚未读取本批 template_registry.yaml（初始化时对
 v0 种子的暴露已记录于 role_memory，种子内容=Method R0 §6 方法合同本身）。
 
-hash 算法：sha256(canonical_json(record minus blind_hash minus generated_at))[:16]
+hash 算法：sha256(canonical_json(record minus blind_hash))[:16]
+（F-8 勘误：原 docstring 误写 "minus generated_at"——记录并无该字段，实际仅剔除 blind_hash。）
 """
 import hashlib
 import json

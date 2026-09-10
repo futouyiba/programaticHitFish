@@ -21,7 +21,7 @@ validate_batch: **PASS**（programs=13 stories=5 merge_tests=23）
 
 | 族（surface） | 成员 | 状态 |
 |---|---|---|
-| CONSTRAINED_RELATIVE_REFUGE（Bake，v0 种子） | +0；B0 六 Bake 程序全部 non-match（判别结构 RelativeRank(reference_set=FeasibleSet) 缺失）→ 反向增强其判别力 | CANDIDATE 不变 |
+| CONSTRAINED_RELATIVE_REFUGE（Bake，v0 种子） | +0；B0 Bake 程序判同 = 5 non-match + 1 AMBIGUOUS（LUN-AESTIVATION playable 未决，不计 non-match；F-3 勘误）；non-match 判别结构 RelativeRank(reference_set=FeasibleSet) 缺失 → 反向增强其判别力 | CANDIDATE 不变 |
 | PLAIN_FACTOR_COMBINE（Bake）新 | OSC、CHB | CANDIDATE（HRQ-01） |
 | HARD_GATED_FACTOR_COMBINE（Bake）新 | LUN-WET、EEL（gate 均为专性气呼吸的水面可达） | CANDIDATE（HRQ-02） |
 | PATCH_RESOURCE_FOLLOWING（Bake）新 | MGC-ADULT（单成员 PROVISIONAL，与 P06 压缩测试联动） | CANDIDATE（HRQ-04） |
@@ -49,7 +49,21 @@ n_case_specific_resolvers=0；COMPLEXITY_LAUNDERING_RISK=NO（gate 留在 Bake b
 
 ## 产物清单（fish_logic_census/batches/CENSUS-B0/）
 
-manifest.yaml｜stories.jsonl｜blind_programs.jsonl（13，hash 冻结）｜programs.jsonl（13）｜merge_tests.jsonl（23）｜resolver_tests.jsonl｜absence_claims.jsonl｜human_review_queue.jsonl（7）｜coverage.jsonl（空：FR3 已冻结，census 不重做）｜program_revisions.jsonl（空）｜engine_report.json｜build_blind_programs.py｜run_merge_tests.py｜build_census_outputs.py｜worker_self_qa.md｜batch_report.md
-仓库级：template_registry.yaml v1｜discovery_curve.csv +B0 行。git 未 commit（按 envelope，coordinator 收尾）。
+manifest.yaml｜stories.jsonl｜blind_programs.jsonl（13，hash 冻结）｜programs.jsonl（15）｜merge_tests.jsonl（25）｜resolver_tests.jsonl｜absence_claims.jsonl｜human_review_queue.jsonl（7）｜coverage.jsonl（空：FR3 已冻结，census 不重做）｜program_revisions.jsonl（2：FIX-001 补录留痕）｜engine_report.json｜build_blind_programs.py｜run_merge_tests.py｜build_census_outputs.py｜apply_fix_001.py｜worker_self_qa.md｜batch_report.md
+仓库级：template_registry.yaml v2｜discovery_curve.csv +B0 行。git 未 commit（按 envelope，coordinator 收尾）。
 
-BATCH_ID: CENSUS-B0
+## 修复轮附录｜CENSUS-B0-FIX-001（2026-09-10）
+
+驱动：独立审 CENSUS-B0-REV-001 REVISE。修复后 validate_batch PASS（programs=15 stories=5 merge_tests=25）。
+
+- **F-1（blocker，选 a 补 sketch）**：EEL S6 泡沫巢雄护 → P-EEL-RESP-GUARD（DUAL_PATH 第三成员，engine 直验无字面差异，intruder_evaluator_context=foam_nest 入轴）；S9 幼成切换 → P-EEL-RESP-FEEDING（TYPED 族 evaluator_binding 第二 premise 实例，首个=MGC）。两程序为修复轮**非盲**补录（registry_seen_at_creation=true，程序形状自冻结 Story 证据重建、fit 风险由 provenance 声明并交 reviewer 复检）；program_revisions.jsonl 留痕。
+- **F-2（blocker）**：MGC ResponseChannel FieldFeeding（幼体肉食期）按 TYPED 族 evaluator_channel/binding 轴 premise 实例处理（语义层 P0x 对应指针待确认——coordinator 修复信中「P03 轴」未核实，census 侧不引用未读 pattern）；potamodromous 洄游照 CHB 先例按 P05 配置级处理。
+- **F-3**：计数勘误「六个 non-match」→「5 non-match + 1 AMBIGUOUS」（LUN-AESTIVATION 不得被散文升格）。
+- **F-4**：六族补 helper_dependencies / resolver_dependencies 显式字段（PATCH 带 SubstrateResourcePatchEvaluator，余为空列表）。
+- **F-5**：HRQ-06 补双路径槽间顺序 unordered 提案（与 HRQ-07 同判例族）。
+- **F-6**：README 补 discovery_curve 列语义与计数基。
+- **F-8**：build_blind_programs.py docstring generated_at 笔误勘误。
+- **F-9**：HRQ-06 补 caveat：LUN/EEL→P04 对应为 census 新增跨层映射（FR 冻结 patterns 分别仅 P05 / 空），未经 FR3 语义侧确认。
+- 计数更新：n_sketches 13→15、n_merge_confident 12→14；族数不变（DUAL 3 成员、TYPED 6 成员）；registry v1→v2。
+
+BATCH_ID: CENSUS-B0-FIX-001

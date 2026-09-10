@@ -30,4 +30,19 @@ fixture_gate:
   status: PASSED_BY_COORDINATOR   # F01–F17 自动核 12/12，coordinator main suite 绿
 scope_exclusions:
   - "EEL 攻击段（doublet/volley/taser→attack）与捕获边界：post-instantiation owner，OUT_OF_SCOPE（envelope 限定）"
+fix_rounds:
+  - id: CENSUS-B0-FIX-001
+    date: 2026-09-10
+    driver: CENSUS-B0-REV-001 (independent review REVISE)
+    items:
+      - "F-1(blocker): EEL S6 泡沫巢雄护 + S9 幼成切换补 sketch（选 a 路径）→ P-EEL-RESP-GUARD（DUAL 第三成员）+ P-EEL-RESP-FEEDING（TYPED evaluator_binding 第二 premise 实例）；修复轮非盲补录，registry_seen_at_creation=true，bias 声明在 programs/merge_tests provenance"
+      - "F-2(blocker): MGC FieldFeeding channel → TYPED 轴 premise 实例；potamodromous 洄游 → 照 CHB 先例 P05 配置级"
+      - "F-3: registry 头注/b0_note/batch_report 计数改『5 non-match + 1 AMBIGUOUS』"
+      - "F-4: 六族补 helper_dependencies/resolver_dependencies 显式字段"
+      - "F-5: HRQ-06 补双路径槽间顺序 unordered 提案"
+      - "F-6: README 补 discovery_curve 列语义（计数基）"
+      - "F-8: build_blind_programs.py docstring generated_at 笔误勘误"
+      - "F-9: HRQ-06 补 LUN/EEL→P04 映射为 census 新增的 caveat"
+    sketches_total: 15   # 13 blind + 2 fix-round（非盲）
+    registry_version_after_fix: 2
 status: INDEPENDENT_REVIEW_REQUIRED

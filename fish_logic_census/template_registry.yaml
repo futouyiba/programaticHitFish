@@ -1,13 +1,18 @@
 # FCF LogicTemplate Registry（Census 权威文件）
 # 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
-# v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 六个 Bake 程序（非匹配证据）；
+# v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 五个 Bake 程序（非匹配证据；第 6 个 P-LUN-BAKE-AESTIVATION 为 AMBIGUOUS 不入 non-match）；
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
-version: 1
+version: 2
 mutation_provenance:
   batch: CENSUS-B0
   date: 2026-09-10
   previous_version: 0
   previous_state: "v0 = 单种子 CONSTRAINED_RELATIVE_REFUGE（Method R0 §6）"
+  fix_round:
+    id: CENSUS-B0-FIX-001
+    date: 2026-09-10
+    driver: CENSUS-B0-REV-001 (independent review REVISE)
+    items: "F-3 勘误（5 non-match + 1 AMBIGUOUS）；F-4 六族补 helper_dependencies/resolver_dependencies；F-1 补录 EEL S6/S9 → DUAL 第三成员 + TYPED evaluator_binding 第二 premise 实例"
 templates:
   - template_id: CONSTRAINED_RELATIVE_REFUGE
     surface: Bake
@@ -15,7 +20,7 @@ templates:
     provenance:
       source: https://app.notion.com/p/3d7a4137d23681aa9640f14a997a9f23 (Method R0 §6)
       seeded: 2026-09-10
-      b0_note: CENSUS-B0 六个 Bake 程序全部非匹配（判别结构 RelativeRank(reference_set=FeasibleSet) 缺失），本批无新成员
+      b0_note: CENSUS-B0 Bake 程序判同结果 = 5 non-match + 1 AMBIGUOUS（P-LUN-BAKE-AESTIVATION playable 未决，不得按 non-match 计；F-3 勘误）；non-match 判别结构 = RelativeRank(reference_set=FeasibleSet) 缺失；本批无新成员
     canonical_program_body: |
       AccessibleSet
       -> Apply Hard Viability Constraint(s)
@@ -27,6 +32,8 @@ templates:
     allowed_parameter_axes:
       - RelativeRank.objective = WARMER | COOLER
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
+    helper_dependencies: []
+    resolver_dependencies: []
     known_instances: []
     known_non_matches:
       - batch: CENSUS-B0
@@ -66,6 +73,8 @@ templates:
       - factor_set(typed, bounded：每个因子为具名 typed evaluator，2–6 槽；轴合法性待 HRQ-01 批准)
       - factor_weights
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 无 combine 语义的链]
+    helper_dependencies: []
+    resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-B0, program_id: P-OSC-BAKE, blind_hash: 49c23a9d14d8205f}
       - {batch: CENSUS-B0, program_id: P-CHB-BAKE, blind_hash: 7a45a474788ede01}
@@ -94,6 +103,8 @@ templates:
       - factor_set(typed, bounded)
       - factor_weights
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, gate 后相对寻优（那是 CRR 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-B0, program_id: P-LUN-BAKE-WET, blind_hash: f752b5fe225edd86}
       - {batch: CENSUS-B0, program_id: P-EEL-BAKE, blind_hash: 611e70f2cd5fd260}
@@ -116,10 +127,13 @@ templates:
       - patch_resource_type(typed)
       - zone(typed)
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
+    helper_dependencies:
+      - SubstrateResourcePatchEvaluator
+    resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-B0, program_id: P-MGC-BAKE-ADULT, blind_hash: 2b560452df77643f}
     known_non_matches: []
-    provisional_note: 单成员 PROVISIONAL_CASE_SPECIFIC；与 P06 Compression Candidate（FR 线压回 P02 测试）联动，族稳定性待后续 P06 成员
+    provisional_note: 单成员 PROVISIONAL_CASE_SPECIFIC；与 P06 Compression Candidate（FR 线压回 P02 测试）联动，族稳定性待后续 P06 成员；helper 同为 PROVISIONAL 待第二跨 case 实例（resolver_tests.jsonl）
   - template_id: TYPED_TARGET_RESPONSE
     surface: Response
     status: CANDIDATE
@@ -137,12 +151,15 @@ templates:
       - evaluator_channel(typed：FOOD_PALATABILITY | EXPOSURE_ACCESS | 其它具名通道)
       - evaluator_binding(随 lifecycle premise 切换的实例绑定)
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
+    helper_dependencies: []
+    resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-B0, program_id: P-MGC-RESP-FEEDING, blind_hash: 5d949637c3ba69e4}
       - {batch: CENSUS-B0, program_id: P-LUN-RESP-FEEDING, blind_hash: 74d633a7d32a9ec9}
       - {batch: CENSUS-B0, program_id: P-OSC-RESP-FEEDING, blind_hash: cf65274f6ff1fe5f}
       - {batch: CENSUS-B0, program_id: P-EEL-RESP-SENSE, blind_hash: 842f6dd355542bff}
       - {batch: CENSUS-B0, program_id: P-CHB-RESP-FEEDING, blind_hash: 240ec4a2568612f2}
+      - {batch: CENSUS-B0-FIX-001, program_id: P-EEL-RESP-FEEDING, blind_hash: null, note: "修复轮非盲补录（EEL S9 幼成切换）：evaluator_binding 轴第二 premise 实例（首个=P-MGC-RESP-FEEDING）"}
     known_non_matches: []
   - template_id: GUARD_CONFLICT_DUAL_PATH_RESPONSE
     surface: Response
@@ -162,8 +179,11 @@ templates:
       - intruder_evaluator_context(typed：nest_anchor | fry_anchor)
       - path_strength_weights
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
+    helper_dependencies: []
+    resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-B0, program_id: P-OSC-RESP-GUARD, blind_hash: 50945342e27abd5c, role: canonical_source}
       - {batch: CENSUS-B0, program_id: P-LUN-RESP-GUARD, blind_hash: b2594d9e1eefa015}
+      - {batch: CENSUS-B0-FIX-001, program_id: P-EEL-RESP-GUARD, blind_hash: null, note: "修复轮非盲补录（EEL S6 泡沫巢雄护）：第三成员，engine 直验与 canonical 无字面差异；intruder_evaluator_context=foam_nest"}
     known_non_matches:
       - {batch: CENSUS-B0, template_id: TYPED_TARGET_RESPONSE, reason: 单路径 vs 双路径并行+combine}
