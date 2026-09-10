@@ -371,3 +371,11 @@ PASS
 - 未 commit（提交由 Coordinator / 用户决定）。参数化生成器脚手架 `_gen/` 用后已删除；`closure_replay.py` 为正式工件保留（闭合声明的自证工具，非脚手架）。
 
 BATCH_ID: REP-FULL-NORM2-001
+
+---
+
+## REP-FULL-NORM2-REV-001 验收记录（2026-09-11）
+
+- verdict: **ARTIFACT_APPROVE**（reviewer 独立人工全量回放 267 CSV 行确认闭合：220=59+36+72+53 零未处理；19+1 类排除判据封闭无未声明步）。
+- F1 修正：README 类 0 名单 2 个非 CSV 行名（金草鱼/溪鲦）漏列 2 个实际 SIB 行（大西洋大海鲢/米达斯慈鲷）——数字巧合掩盖构成差；closure_replay.py 常量闭合账不受影响。
+- F2 修正：排除类 2/3/7 中 5 行（鳙鱼/鲱/毛鳞鱼/竹荚鱼/湖白鲑）排除标签沿用 R1 时点——field 批已承载其 P03 面；行级处置正确。
