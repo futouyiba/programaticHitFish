@@ -1,0 +1,88 @@
+{
+  "schema_version": "cue_axis.config.r1",
+  "instance": {
+    "instance_of": "Presentation Cue axis modal expansion (chemical scent + electric field) semantic contract, representation r1",
+    "example_instances": [
+      "sea_lamprey_migratory_spring — scent axis example (story B01-S49, spawning-chemical-cue taxis)",
+      "electric_eel_sensing — electro axis example (story R05 #47, sensing segment only)"
+    ],
+    "note": "Illustrative instances. All numeric values in the example lookup tables are placeholders (not final, not binding); only the representation boundary is delivered."
+  },
+  "contract": {
+    "name": "PresentationCueAxisModalExpansion",
+    "surface": "Response",
+    "output_facts": ["ScentCueFit", "ElectroFieldCueFit"],
+    "grain": "population x current presentation (lure or bait state)",
+    "semantics": "per population and current presentation: each cue axis reads ONE presentation-side computed fact and does a unary profile lookup; the resulting Fit is one parallel input into the fixed combine of the existing Feeding / Reaction channel",
+    "input_scope": "presentation_side_computed_facts_only",
+    "axis_semantics": "unary_profile_lookup_only",
+    "modality_boundary": "sensing and trigger adaptation only"
+  },
+  "profile_slots": [
+    {
+      "slot": "@ScentCueProfile",
+      "meaning": "味型/信息素强度→触发适配",
+      "axis_modality": "chemical_scent",
+      "arity": "unary",
+      "fact_atom": "BaitScentIntensity",
+      "ladder_stage": "P0_unary_profile_lookup",
+      "combine_into": "existing RR-T1 channel FIXED_COMBINE"
+    },
+    {
+      "slot": "@ElectroFieldProfile",
+      "meaning": "拟饵/环境电场特征→触发适配",
+      "axis_modality": "electric_field_sensing",
+      "arity": "unary",
+      "fact_atom": "LureElectricField",
+      "ladder_stage": "P0_unary_profile_lookup",
+      "combine_into": "existing RR-T1 channel FIXED_COMBINE"
+    }
+  ],
+  "fact_atoms": [
+    {
+      "fact_atom": "BaitScentIntensity",
+      "grammar_form": "Grammar 5.1 V2/V3 reuse",
+      "columns_added": 0,
+      "fact_semantics": "当前呈现的味型/信息素强度（上游呈现侧计算事实）",
+      "computed_by": "presentation_side_computed_fact"
+    },
+    {
+      "fact_atom": "LureElectricField",
+      "grammar_form": "Grammar 5.1 V2/V3 reuse",
+      "columns_added": 0,
+      "fact_semantics": "拟饵电场特征（上游呈现侧计算事实）",
+      "computed_by": "presentation_side_computed_fact"
+    }
+  ],
+  "instances": [
+    {
+      "population_id": "sea_lamprey_migratory_spring",
+      "bound_slot": "@ScentCueProfile",
+      "profile_instance": "@SeaLampreyMigratoryScentCue",
+      "example_lookup_table": [
+        {"input": "none", "fit": 0.0},
+        {"input": "faint_bait_scent", "fit": 0.2},
+        {"input": "moderate_bait_scent", "fit": 0.5},
+        {"input": "strong_spawning_pheromone", "fit": 1.0}
+      ]
+    },
+    {
+      "population_id": "electric_eel_sensing",
+      "bound_slot": "@ElectroFieldProfile",
+      "profile_instance": "@ElectricEelElectroSense",
+      "example_lookup_table": [
+        {"input": "no_field", "fit": 0.0},
+        {"input": "weak_field", "fit": 0.3},
+        {"input": "distinct_field", "fit": 0.7},
+        {"input": "strong_field", "fit": 1.0}
+      ]
+    }
+  ],
+  "combine": {
+    "operator": "FIXED_COMBINE",
+    "operator_math": "UNDEFINED",
+    "joins": "each axis Fit enters the existing RR-T1 Feeding / Reaction channel fixed combine as one parallel input; no new channel and no new combine topology",
+    "author_selectable": false,
+    "rule": "per presentation: lookup(BaitScentIntensity, @ScentCueProfile) -> ScentCueFit; lookup(LureElectricField, @ElectroFieldProfile) -> ElectroFieldCueFit; each Fit joins the channel result by the template-fixed rule of the existing RR-T1 channel; the combine math itself is UNDEFINED on the mechanism side and this artifact delivers the boundary only"
+  }
+}

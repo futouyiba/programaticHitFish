@@ -1,0 +1,67 @@
+# =====================================================================
+# 呈现 Cue 轴模态扩充（化学 scent + 电场 electro）— Narrow DSL 对照表达
+# Status: NOT ADMITTED — comparison / L_observed only
+# =====================================================================
+#
+# 本文件是什么：同一份已立项的 Cue 轴模态扩充语义契约（立项规格 =
+# REP-COVERAGE-DELTA-001 report §2.3 列级规格，含 FR3 前提闭合
+# CD-R05-01），渲染成 Narrow Expression Layer（Summer Knife R0 页
+# Option C）的形状。它没有被 Expression Gate 准入（准入判据：作者必须
+# 编辑中间结果之间的依赖结构；本扩充不存在任何作者可编辑的中间依赖
+# ——两轴都是 Primitive Admission Ladder P0 阶的 Unary Profile
+# lookup，Fit 作为并列输入并入既有 Feeding/Reaction 通道的
+# FIXED_COMBINE）。它存在的唯一目的是让 Config 主路径与 DSL 两种
+# 表达可以对比表达开销（L_observed）。
+#
+# 本文件不是契约输入：它不声明任何键、绑定或新语义。README 边界表中
+# 列出的被排除语义（各归其 owner）不得在本表达式中作为因子、乘项或
+# 注释语义出现。
+#
+# 对照的 Config 主路径表达见 ../config/cue_axis.config.json。
+# ---------------------------------------------------------------------
+
+ScentCueFit(presentation) =
+    lookup(BaitScentIntensity(presentation), @ScentCueProfile)
+
+ElectroFieldCueFit(presentation) =
+    lookup(LureElectricField(presentation), @ElectroFieldProfile)
+
+FeedingChannelResult(presentation) =
+    fixed_combine(
+        FeedingResponse(presentation),
+        ScentCueFit(presentation),
+        ElectroFieldCueFit(presentation)
+    )
+    // fixed_combine 的数学 UNDEFINED（机制侧待定，循 live 主页 §17.2
+    // 算子标注先例）；此处只表达「Fit 并列输入 + 合并结构固定」，
+    // 不定义合并公式
+
+# ---------------------------------------------------------------------
+# L_observed（对比观察，非 Verdict）
+#
+# 1. 表达长度：DSL 版与 Config 版几乎等长。两轴的全部内容是
+#    「读一个呈现侧计算事实 → 查一张一维 Profile → 得到 Fit →
+#    并列进既有通道的固定合并」，没有任何需要作者编辑的中间依赖
+#    结构，DSL 没有可压缩的冗余。
+#
+# 2. DSL 会额外买进什么自由度（本扩充明确要拒绝的自由度）：
+#    - 可把 lookup 换成任意算子（product / max / weighted_mix …）；
+#    - 可嵌套第二层表达式、把一个 Fit 内联为另一个轴的乘项；
+#    - 可按实例改写整棵算子树。
+#    这些自由度正是 Expression Gate 的准入对象；在本扩充上放开了
+#    它们，等于为两条 unary lookup 购买完整 Expression AST
+#    （Operator Node / Profile Call / 嵌套 / Trace / Editor / 报错路径）。
+#
+# 3. 耦合陷阱（本对照里 DSL 不只是「不必要」、而是会主动打开表达
+#    缺口的点）：DSL 形状最容易顺手写出「味型强度 × 水流输运」或
+#    「电场特征 × 水体传导衰减」的嵌套乘项——按规格，输运/传导耦合
+#    归感知/环境 Resolver owner，本扩充不开 2D（Knife §16.5 不可
+#    分离判据未命中，且 §10.3 已裁定 2D Profile 不用于替代稳定
+#    Resolver 的物理计算）。Config 主路径的封闭事实枚举（FACT 检查）
+#    与 unary-only 轴准入（AXIS 检查）在表达层就杜绝了这个走法；
+#    DSL 形状则会把它合法化。
+#
+# 4. 结论（L_observed）：同一语义下 DSL 表达开销 >= Config 表达开销，
+#    且 DSL 引入的作者自由度与规格的收窄意图直接冲突。本扩充不构成
+#    Expression Gate 的正证据；Config 主路径表达占优。
+# =====================================================================
