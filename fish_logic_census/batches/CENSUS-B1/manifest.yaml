@@ -1,0 +1,54 @@
+batch_id: CENSUS-B1
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator Prompt R2 §5 (CENSUS); Method R0 §11; B0 教训 + FIX-001 范式
+created: 2026-09-10
+input:
+  selection_rule: >-
+    coordinator envelope 建议清单：R01/B01 的 13 条 CoverageDelta Candidate
+    （outputs/coverage_delta_r1/report.md §3 #1-13）+ R02 的 2 条 Compression
+    Candidate（七彩神仙 S11/S12 色型判例 + 准白甲鱼 S22）。按 Story 粒度取样；
+    S12（白色型）与 S11 机制同构（色型不分裂），作对照注记不重复建体。
+  frozen_stories:   # Story DB 只读
+    - GRB: https://app.notion.com/p/3d6a4137d23681168a18f10342e09a94
+    - BRT: https://app.notion.com/p/3d6a4137d236812dadf2c2e5d3260f47
+    - TIL: https://app.notion.com/p/3d6a4137d23681389292e770ce06dd9a
+    - PAD35: https://app.notion.com/p/3d6a4137d236813d915ae220f5ed8006
+    - DRU: https://app.notion.com/p/3d6a4137d236815b9313c3005b469749
+    - COD: https://app.notion.com/p/3d6a4137d23681879692c6ae73dd9798
+    - PAD34: https://app.notion.com/p/3d6a4137d23681949995d729af6a28be
+    - PIK: https://app.notion.com/p/3d6a4137d23681ba89cad88103708867
+    - GAR: https://app.notion.com/p/3d6a4137d23681bf8977cc4ce1233b4a
+    - BLU: https://app.notion.com/p/3d6a4137d23681db8441f33ca9ee08a5
+    - SMA: https://app.notion.com/p/3d6a4137d23681deb3a9c69b5ed3d5ad
+    - RAI: https://app.notion.com/p/3d6a4137d23681df9b7ed2edfaf0dab9
+    - LAM: https://app.notion.com/p/3d6a4137d23681e18ed7f7d2d1a1ecb7
+    - DIS: https://app.notion.com/p/3d6a4137d236811f9304e20d4ae4cbd3
+    - ONS: https://app.notion.com/p/3d6a4137d23681e7a651c3b1b67ae84f
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987
+    - P02: https://app.notion.com/p/3d6a4137d2368111a1bbf2139e8b61a1
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b
+    - P06: https://app.notion.com/p/3d6a4137d23681d6a527eef7c9f42d7d
+  semantic_review_context: https://app.notion.com/p/3d6a4137d23681b08dd8d7f04f951ab4  # §2/§9 判例（owner 边界参考，B0 后已读）
+blind_freeze:
+  n_blind_programs: 24
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-10T13:32:49Z"   # 时序锚点：coordinator 可在此节点插入 commit
+  registry_reads_before_freeze: false
+  registry_version_before: 2
+fixture_gate:
+  status: PASSED_BY_COORDINATOR   # 金样本 12/12（B0 轮已过，harness 未变更）
+coverage_discipline:   # B0 教训：机制面逐项过，program/排除/OUT_OF_SCOPE 三选一
+  no_surface_exclusions:
+    - "TIL Bake：口孵期空间分布无证据（FAO 繁殖行为资料不含空间程序），口孵是 condition 影响 Response 率"
+    - "DIS Bake：育幼空间锚定仅为策略推论（观赏缸证据不推广野外空间分布），关系与守护归 Response"
+    - "RAI/PIK/GAR/S20 类 Bake：StoryDomain 无空间新证据（Static Habitat），不建体"
+  out_of_scope:
+    - "PIK/GAR：取饵后处理/携行/吞咽/吐饵/Hook 阶段（post-instantiation，交互实例 owner）"
+    - "BLU：接触后阻力/吐饵（Contact/interaction owner）"
+    - "LAM：陷阱/诱捕捕获（装备侧 owner）；引导-捕获二分按 Story 保持"
+status: INDEPENDENT_REVIEW_REQUIRED
