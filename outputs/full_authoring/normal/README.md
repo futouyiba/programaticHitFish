@@ -17,10 +17,10 @@ P01＝Discrete Target→TargetFeeding（census registry semantic_pattern_corresp
 
 ### 名单声明（本批最重要的诚实边界）
 
-本地无 Story DB P01 逐行名单（Story DB live 不可访问；tmp/triage_r05 的 Pattern 关系表已散佚——仅 guarding 批工件固化其残段）。第一轮名单由三层锚构造，全部可机械复验：
+本地无 Story DB P01 逐行名单（Story DB live 不可访问；tmp/triage_r05 的 Pattern 关系表已散佚——仅 guarding 批工件固化其残段）。第一轮名单由三层锚构造，**分组规则可机械复验（CSV 逐行回放已通过独立审 REV-001 校验），但组内选择步含未声明判据（配额平衡/身份置信/同科样板相邻等）**——满足分组规则却排在已取行之前的合格跳行实例见排除表末尾「NORM-REV-001 F1 跳行记录」段（花骨鱼/大西洋鳕鱼/欧洲巨鲶/玻璃梭鲈/公牛鲨/江鳕/牛头鲦/白亚口鱼/黄金鲫/鲢鱼等约 17 行）。第二轮名单需 Story DB P01 导出或点名，不应以本批构造法冒充全覆盖。（REV-001 F1 修正）
 
 1. **Tier A（census 快照全文在案）×8 文件**：本地有全四面判定快照的 P01-labeled Story（census B1/B2 stories.jsonl）。
-2. **Tier B+（批内互指/摘要点名）×6 文件**：批内互指标定（白斑狗鱼 S18 双源互指；笋壳鱼 P01 面 guarding 批退回档+SRCHECK 引文）+ R07/R08/R10 摘要点名（白斑角鲨/棘背钝头鳐/虎纹狗鱼/彩虹镖鲈）。
+2. **Tier B+（批内互指/摘要点名）×4 文件**：批内互指标定（白斑狗鱼 S18 双源互指；笋壳鱼 P01 面 guarding 批退回档+SRCHECK 引文）+ R07/R08/R10 摘要点名（白斑角鲨/棘背钝头鳐/虎纹狗鱼/彩虹镖鲈）。
 3. **Tier B（CSV 方向锚机械分组）×46 文件**：按 fish-reference-20260908.csv 习性列的**机械规则**分组挑选（规则：伏击组＝性格∈{孤僻,躲藏}∧食性=肉食性∧时段≠夜间；追击组＝性格=追猎∧食性=肉食性∧时段≠夜间；夜行组＝时段=夜间活跃∧食性∈{肉食,杂食}；机会组＝性格∈{活泼,温和,撕鳍,好斗,警惕}∧未被前三组收；组内按 CSV 行序取前 N；排除项见排除表）。**该 46 文件名单是表达层构造，不是 Story DB 名单**——每文件行级 Pattern 标签 [需核对]，Story DB 名单到达后增删（§4 登记项 1/2）。
 
 证据档：A＝census 全四面判定快照；B+＝批内互指或摘要点名锚；B＝CSV 方向锚（条件值全 @ 化，行级标签标 [需核对]）。
@@ -302,3 +302,14 @@ PASS (60 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-NORM-001
+
+---
+
+## REP-FULL-NORM-REV-001 验收记录（2026-09-11）
+
+- verdict: ARTIFACT_REVISE（60 文件本体零改动；修复面全在 README——名单声明/Tier 计数/文本瑕疵）。
+- F1 修正：名单「全部可机械复验」改为「分组规则可机械复验+选择步含未声明判据」——约 17 行合格跳行记录于 §1（花骨鱼/大西洋鳕鱼/欧洲巨鲶/玻璃梭鲈/公牛鲨/江鳕/牛头鲦/白亚口鱼/黄金鲫/鲢鱼等）。
+- F2 修正：Tier B+ ×6→×4、Tier B ×46→×48（tiger_musky/rainbow_darter 自标 B 但 README 授 B+；保守方向簿记修正）。
+- F3 修正：channel_catfish 登记项编号、tiger_musky 名映射注记。
+- F4 external：reviewer Notion 接入 Stephen Song's Workspace（产品 Story 页 404）——Story DB 行级对照保持 OPEN 由有权限者补做。R-T2/scent 轴/身份五项维持 OPEN。
+- BOUNDARY-DECL 四处判语逐字核实=声明属实；R-T1/R-T2 与 RR-T1/RR-T2 为两套 taxonomy（非标签错乱）。

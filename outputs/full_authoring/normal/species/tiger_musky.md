@@ -1,11 +1,11 @@
-# 虎纹狗鱼（Tiger Muskellunge｜E. lucius × E. masquinongy）｜追击型四面生产级表达
+# 虎纹梭鱼（tiger musky；REV-001 F3 更正：CSV 名为虎纹梭鱼）（Tiger Muskellunge｜E. lucius × E. masquinongy）｜追击型四面生产级表达
 
 Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 
 | 项 | 值 |
 |---|---|
 | 批次 | REP-FULL-NORM-001（P01 普通层＝全库最大 Pattern 群 第 4 批：追击组） |
-| Story | FISH-R08 批成员（R08 摘要点名「虎纹梭鱼 Identity-Deferred+P01 区分」——本行按 CSV 虎纹狗鱼杂交行承载 [需核对]） |
+| Story | FISH-R08 批成员（R08 摘要点名「虎纹梭鱼 Identity-Deferred+P01 区分」——本行按 CSV 虎纹梭鱼（tiger musky；REV-001 F3 更正：CSV 名为虎纹梭鱼）杂交行承载 [需核对]） |
 | 冻结 Pattern | P01 [需核对]（R08 点名锚 Identity-Deferred——身份与标签双待核） |
 | 物种属性锚 | fish-reference-20260908：活泼、早晨活跃、肉食性（行级 AI 审核状态=待人工审核；仅作方向锚；杂交行） |
 | 基线 | SNAPSHOT_ONLY（live Stress Test R1 主页转录 tmp/live_stress_main_after.md，2026-09-10 版；census registry v4 快照） |
@@ -16,7 +16,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 
 ## 0. 上游语义与摄食形态
 
-- 摄食形态：虎纹狗鱼（杂交系追击）。
+- 摄食形态：虎纹梭鱼（tiger musky；REV-001 F3 更正：CSV 名为虎纹梭鱼）（杂交系追击）。
 - 证据边界：Story 行级 Pattern 标签不在本地 [需核对]；本文件结构为追击组样板（Tier A 样板骨架）的表达层选择——Story 正文到达后 census 判同可能改判（换组/换 BakeTemplate/换 Response 拓扑＝**结构变更需重审**，validator 族边界拦截静默改写），不是 Profile 重绑定。
 - R08 点名注记：Identity-Deferred＝杂交行身份待裁；census 判同未做。本文件为表达层骨架。
 - Response 面：TYPED 族参数差异（快速呈现/逃窜触发——组样板语义，参数级无新拓扑）。
