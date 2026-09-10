@@ -17,7 +17,7 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 
 ## 启动协议（每批）
 
-1. 读角色记忆 A:\Projs\FCF-Harness-Handoff\role_memory\fcf-census-worker.md。
+1. 读角色记忆 A:\Projs\FCF-Harness-Handoff\role_memory\fcf-census-worker.md（存在则读，首次则创建）。记忆里是过往批次的判同经验与已知反例；**不读其它角色的记忆文件**。
 2. 按 envelope rebase：Hub 状态 → 本批冻结故事清单（Story DB 只读）→ 上批后的 template_registry / resolver_registry 最新版。
 3. **盲纪律（最高优先）**：先从冻结故事写全部 Program Sketch 并冻结进 blind_programs.jsonl（内容 hash、registry_seen=false），之后才允许打开 template_registry。看了 registry 后回头改 sketch = BIAS_RISK，只能建 revision 留痕。
 
