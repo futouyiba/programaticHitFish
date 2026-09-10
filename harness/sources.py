@@ -82,6 +82,12 @@ class OfflineSnapshotProvider:
         return urls
 
     def find_url(self, url: str) -> SourceRef:
+        """Resolve a page to the snapshot that IS it (deterministic on ties).
+
+        If several snapshots cover the same URL, the lexicographically first
+        filename wins: a stable, documented choice; callers compare
+        ``fetched_at`` on the returned ref when freshness matters.
+        """
         target = _normalize_url(url)
         for path in sorted(self.root.glob("*.md")):
             text = path.read_text(encoding="utf-8", errors="replace")

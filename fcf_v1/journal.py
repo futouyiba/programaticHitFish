@@ -72,8 +72,19 @@ class DurableJournal:
             # itself would block this process's own "a+" reads. Guard with a
             # sidecar lock file instead; the journal stays freely readable.
             lock_fd = os.open(self.path + ".lock", os.O_RDWR | os.O_CREAT)
-            os.lseek(lock_fd, 0, os.SEEK_SET)
-            msvcrt.locking(lock_fd, msvcrt.LK_LOCK, 1)
+            try:
+                os.lseek(lock_fd, 0, os.SEEK_SET)
+                # LK_LOCK gives up after 10 retries; poll LK_NBLCK instead so
+                # the guard blocks like flock does, and never leaks the fd.
+                while True:
+                    try:
+                        msvcrt.locking(lock_fd, msvcrt.LK_NBLCK, 1)
+                        break
+                    except OSError:
+                        time.sleep(0.05)
+            except BaseException:
+                os.close(lock_fd)
+                raise
             return lock_fd
         raise OSError("no inter-process file locking available on this platform")
 

@@ -90,6 +90,8 @@ def test_handoff_round_trip_and_semantic_validation():
         lambda e: {**e.to_dict(), "BATCH_ID": ""},
         lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": "maybe"},
         lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": "see http://x and notes"},
+        lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": ""},
+        lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": "   "},
     ],
 )
 def test_envelope_semantic_rejections(mutate):

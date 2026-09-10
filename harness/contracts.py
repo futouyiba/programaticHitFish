@@ -72,6 +72,8 @@ def validate_envelope(envelope: HandoffEnvelope) -> HandoffEnvelope:
     if not envelope.BATCH_ID:
         raise EnvelopeContractError("BATCH_ID must be explicit")
     blocking = envelope.BLOCKING_FINDINGS
-    if blocking != "NONE" and not all(token.startswith(("http://", "https://")) for token in blocking.split()):
-        raise EnvelopeContractError("BLOCKING_FINDINGS must be NONE or whitespace-separated URLs")
+    if blocking != "NONE":
+        tokens = blocking.split()
+        if not tokens or not all(token.startswith(("http://", "https://")) for token in tokens):
+            raise EnvelopeContractError("BLOCKING_FINDINGS must be NONE or whitespace-separated URLs")
     return envelope
