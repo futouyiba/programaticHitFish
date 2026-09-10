@@ -66,7 +66,7 @@ P05＝Lifecycle/Migration/State 系（handoff 指定口径）。本批收录 han
 ## 2. 表达读数（对模板计数的影响）
 
 - **Group Routing**：双形态并存（本批核心读数）。**MigrationReaction share-vector 路由 ×5**（停食洄游 multi-path 组——G2 live 样板原样形态：条件原子 V2（洄游阶段 IN + 水体类型 IN）+ 规则集 R2 AND + @share 分流 + 默认行；P05 系首次出现洄游相位路由的生产级表达）+ **无路由显式声明 ×16**（其余全部——census P05 Group 面 NO_SURFACE_EFFECT 判语原样）。两形态都在 G-T1 DECLARATIVE ROUTING VECTOR 内（非退化形/退化形），**L_group 无增长**。
-- **Bake**：21/21 落在 census registry v4 三个既有 Bake 族的投影：**BA-MIGRATION-SINGLE ×17**（census SINGLE 族 15 成员族的位置/水层/diel 因子型扩展骨架——Tier A 在案成员 4（ARC/VEN/SWO/PIK19/COD B1 共 5）+ Tier B 骨架 12）、**BA-MIGRATION-PLAIN ×2**（WAL Tier A 第 4 成员 + CHB census B0 在案成员 4 槽）、**BA-MIGRATION-GATED ×1**（肺鱼 WET=census HARD_GATED 在案成员）。**投影标签封闭枚举**（validator BAKEFAM 钉死，新值=规格动作）；**族边界进校验**（FAMCTX：SINGLE=单因子+NORMALIZE_WEIGHT 禁 gate/combine；PLAIN=Factor1..4+CombineRule OPERATOR UNDEFINED 禁 Normalization；GATED=SurfaceGate+FactorSet 禁 Normalization/SpatialSlot）；**PREMBIND：每文件 FactorBinding 行强制 premise 引用**（P05 批核心不变量——阶段切换永远 premise 配置级，不进 body 分支）。**census 侧 ΔL_bake=0（本批零新族）；live 侧无新句型（BA-T7 ROUTE/TRANSITION 依 §11.6 判 NEW_TEMPLATE_NOT_PROVEN 不购买——洄游空间重排全部由 BA-T1 底板+DynamicSpatialSlot 或阶段因子集切换承载）。**
+- **Bake**：21/21 落在 census registry v4 三个既有 Bake 族的投影：**BA-MIGRATION-SINGLE ×17**（census SINGLE 族 15 成员族的位置/水层/diel 因子型扩展骨架——Tier A 在案成员 5（ARC/VEN/SWO/PIK19/COD B1）+ Tier B 骨架 12）、**BA-MIGRATION-PLAIN ×2**（WAL Tier A 第 4 成员 + CHB census B0 在案成员 4 槽）、**BA-MIGRATION-GATED ×1**（肺鱼 WET=census HARD_GATED 在案成员）。**投影标签封闭枚举**（validator BAKEFAM 钉死，新值=规格动作）；**族边界进校验**（FAMCTX：SINGLE=单因子+NORMALIZE_WEIGHT 禁 gate/combine；PLAIN=Factor1..4+CombineRule OPERATOR UNDEFINED 禁 Normalization；GATED=SurfaceGate+FactorSet 禁 Normalization/SpatialSlot）；**PREMBIND：每文件 FactorBinding 行强制 premise 引用**（P05 批核心不变量——阶段切换永远 premise 配置级，不进 body 分支）。**census 侧 ΔL_bake=0（本批零新族）；live 侧无新句型（BA-T7 ROUTE/TRANSITION 依 §11.6 判 NEW_TEMPLATE_NOT_PROVEN 不购买——洄游空间重排全部由 BA-T1 底板+DynamicSpatialSlot 或阶段因子集切换承载）。**
 - **Response**：**双 Path（P05×multi-path）×5**——停食洄游组（R06/R08/R09/R10 FR3 分支化判例洄游侧）：NormalFeeding=R-T1 Feeding（Reaction 槽 OFF）+ MigrationReaction=R-T1 单通道 Channel=Reaction（Feeding 强抑制或关闭=Typed Result 档位语义 + 「不再评价普通 Feeding」结构性关闭——§8.8 修复先例）；伪脚本双 Path 完全展开。其余 ×16=R-T1 单通道。**L_response 无增长（结构族仍=R-T1/R-T2 两个；multi-path=两 Group 各 R-T1 的 G2 分群读法，R-T2 折叠候选 OPEN——§3 登记 3）。**
 - **Quality**：21/21=QT-1 绑定表形态；0 个 W1–W3 物种级品质调整表（census P05 域 Quality 面全样本 NO_SURFACE_EFFECT）；停食组 MigrationReaction 行带 Eligibility（洄游期成熟个体组成方向）。**L_quality 无增长。**
 - **新列结构**：零（V2 六列条件原子/R2 三列规则集/ROUTING 5 列/BAKE 字段-值/RESP 5 列/绑定表 5 列/META 2 列——全部 live §5.1 已声明变体；bake 配置行键封闭枚举防行内键注入，由 validate_migration.py STRUCT/FAMCTX 族强制）。
@@ -189,3 +189,11 @@ PASS (21 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-MIGRA-001
+
+---
+
+## REP-FULL-MIGRA-REV-001 验收记录（2026-09-11）
+
+- verdict: **ARTIFACT_APPROVE**（全批首次直接通过）。
+- minor-1：行级 Pattern 抽核 2/2=P01+P05 复合——文件 R-T1 Feeding Path 覆盖 P01 面无 false fit；live 可批量核 [需核对]。
+- minor-2：ide.md 批次归属 live 闭合。minor-3：数字修正。minor-4：停食族 Reaction 通道来源=FR3 triage 判例层非 Story 行级标签。

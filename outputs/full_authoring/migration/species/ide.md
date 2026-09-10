@@ -5,7 +5,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 | 项 | 值 |
 |---|---|
 | 批次 | REP-FULL-MIGRA-001（Migration/生活史系＝P05 全样本 第 3 批：个体发生切换组） |
-| Story | handoff 分批名单点名（Ide 鱼食性随龄——个体发生切换型）；Story 行未在本地快照 [需正文]；批次归属待核对（R05–R10 摘要无 Ide per-fish 明细） |
+| Story | handoff 分批名单点名（Ide 鱼食性随龄——个体发生切换型）；Story 行未在本地快照 [需正文]；live FISH-R05 Ide 页在案（REV-001 minor-2 闭合）（R05–R10 摘要无 Ide per-fish 明细） |
 | 冻结 Pattern | P05（handoff 点名个体发生切换型；行级 Pattern 标签 [需核对]） |
 | 物种属性锚 | fish-reference-20260908：水温 4–20℃、最适 12℃、benthopelagic、早晨活跃、杂食性（variable）、撕鳍性格标注、potamodromous、淡水/半咸水（行级 AI 审核状态=待人工审核；仅作身份与习性方向锚，数值不做阈值） |
 | 基线 | SNAPSHOT_ONLY（live Stress Test R1 主页转录 tmp/live_stress_main_after.md，2026-09-10 版；census registry v4 快照） |
