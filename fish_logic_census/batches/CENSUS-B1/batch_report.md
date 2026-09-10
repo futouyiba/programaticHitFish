@@ -29,8 +29,8 @@ validate_batch: **PASS**（programs=24 stories=15 merge_tests=38）
 - **LAM 边界判例**（本批最重要）：同形两步（evaluator→decide）不构成合并证据——evaluand 对象类型（离散目标 vs 环境梯度场）与 RETURN 语义是结构判据（R2 §6 精神的执行）。
 - **SINGLE↔PATCH 族间边界**（HRQ-B1-02）：typed context 中间步的存在是业务结构（2 步 vs 3 步真 DEPENDENCY 差异）；extend（optional_context 槽）vs split 交 review，worker 倾向 SPLIT（与 B0 HRQ-03 gate 轴同型，可合并裁决）。
 - **阴性样本（虹鳟 RAI）成立**：纯 Profile/参数重绑定，TYPED 标准成员 engine 无字面差异；absence=NO_NEW_PROGRAM_CURRENT_EVIDENCE（scope 限定）。
-- Discovery Curve B1：stories=15, sketches=24, merge_confident=23, extension=4, new_template=**2**, ambiguous=0；**ΔL_group=0, ΔL_bake=+1, ΔL_response=+1, ΔL_quality=0**；resolver 0 新族、case_specific=0、full_expansion=0；COMPLEXITY_LAUNDERING_RISK=NO。
-- 族谱现况：Bake 5 族（CRR/PLAIN/HARD_GATED/PATCH/SINGLE），Response 3 族（TYPED/DUAL/CUE_GUIDED）；成员 3+4（rank 待批）+2+2+7 / 19+4+1。
+- Discovery Curve B1：stories=15, sketches=24, merge_confident=**24**（F-1 勘误：含 canonical 源自测条，B0 基线口径；初报 23 漏计 LAM vs CUE_GUIDED 一条）, extension=4, new_template=**2**, ambiguous=0；**ΔL_group=0, ΔL_bake=+1, ΔL_response=+1, ΔL_quality=0**；resolver 0 新族、case_specific=0、full_expansion=0；COMPLEXITY_LAUNDERING_RISK=NO。
+- 族谱现况（F-2 勘误）：Bake 5 族成员 0+3+2+2+7（CRR=0 / PLAIN=3[rank 待批] / HARD_GATED=2 / PATCH=2 / SINGLE=7），Response 3 族成员 19+4+1（TYPED / DUAL / CUE_GUIDED）。
 
 ### 待 Human Review（human_review_queue.jsonl）
 
@@ -41,6 +41,15 @@ HRQ-B1-01 SINGLE 族（factor_type 轴宽度：资源场/habitat 因子/化学�
 - **TAR-05**（褐鳗 BRT）：rank fact（优势等级）是否产品化持久写回？影响 BRT Bake 族归属（不实现则退化为 SINGLE 形）与 PLAIN 因子轴。
 - **TAR-06**（海七鳃鳗）：诱捕/化学趋向是否进 playable scope？若不进，CUE_GUIDED_APPROACH_AVOID 候选冻结归档（SINGLE 族 LAM-BAKE 的梯度场因子同此裁决）。
 - **TAR-07**（鸭嘴鲟 S34/S35）：电呈现输入的产品契约（由谁提供/是否纳入）与 cue_history 状态契约（键/写入/保持；Input Contract Open）。
+- **TAR-08**（草鱼 GRB，FIX-001 补）：实际投饵玩法范围待产品决定（Story Open Question 原文；照 TAR-06 同型）——若产品不纳预投饵，GRB-BAKE 的 factor_type 实例收窄为自然植食 patch（族归属不变，实例语义收窄）。
+
+### 修复轮附录｜CENSUS-B1-FIX-001（2026-09-10）
+
+驱动：独立审 REVISE（计数对账双漏；判同语义/判例/纪律面全部站住）。
+- F-1：discovery_curve B1 行 n_merge_confident 23→**24**（canonical 源自测条按 B0 基线计入；本段上方已同步）。
+- F-2：族谱行 Bake 计数 0+3+2+2+7（CRR=0；初报字面合计 18 错误）。
+- F-3：GRB 预投饵补 TAR-08（上）。
+- F-4（挂账）：PATCH context_type 轴（zone|current）回写 registry allowed_parameter_axes——挂 HRQ-B1-02/05 落定时执行（见 human_review_queue 注记；当前 registry PATCH axes 仍为 patch_resource_type/zone）。
 
 ### R2 顺带项（REV-002，并入本批收尾）
 

@@ -1,3 +1,3 @@
 batch_id,n_stories_consumed,n_sketches,n_merge_confident,n_extension_candidate,n_new_template_candidate,n_ambiguous,dL_group,dL_bake,dL_response,dL_quality,dN_resolver_families,n_case_specific_resolvers,n_full_expansion
 CENSUS-B0,5,15,14,2,5,1,0,3,2,0,0,0,0
-CENSUS-B1,15,24,23,4,2,0,0,1,1,0,0,0,0
+CENSUS-B1,15,24,24,4,2,0,0,1,1,0,0,0,0

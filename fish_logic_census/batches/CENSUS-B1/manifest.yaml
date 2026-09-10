@@ -51,4 +51,10 @@ coverage_discipline:   # B0 教训：机制面逐项过，program/排除/OUT_OF_
     - "PIK/GAR：取饵后处理/携行/吞咽/吐饵/Hook 阶段（post-instantiation，交互实例 owner）"
     - "BLU：接触后阻力/吐饵（Contact/interaction owner）"
     - "LAM：陷阱/诱捕捕获（装备侧 owner）；引导-捕获二分按 Story 保持"
+fix_rounds:
+  - id: CENSUS-B1-FIX-001
+    date: 2026-09-10
+    driver: CENSUS-B1 independent review REVISE（计数对账；语义/判例/纪律面全部站住）
+    items: "F-1 n_merge_confident 23→24（canonical 源自测条，B0 基线口径）；F-2 族谱 Bake 计数 0+3+2+2+7；F-3 TAR-08（GRB 预投饵产品范围）；F-4 PATCH context_type 轴回写挂账（HRQ-B1-05 注记）"
+    registry_version_unchanged: 3
 status: INDEPENDENT_REVIEW_REQUIRED
