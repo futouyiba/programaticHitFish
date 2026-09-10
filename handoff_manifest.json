@@ -25,7 +25,7 @@
       "responsibility": "已审核 Mechanism Story 到 Config/Table/Step Table/Narrow DSL"
     }
   ],
-  "generated_at_utc": "2026-09-10T03:45:01.514320Z",
+  "generated_at_utc": "2026-09-10T03:56:09.661495Z",
   "handoff_protocol": {
     "bootstrap": [
       "Read HARNESS_HANDOFF.md and AGENTS.md",
@@ -86,10 +86,10 @@
         "sha256": "05c3cdf1dddfc088632e7dfec67f3254882dd6a2d37861d89779a7103058b14f"
       },
       {
-        "bytes": 18933,
+        "bytes": 19121,
         "category": "canonical",
         "path": "HARNESS_HANDOFF.md",
-        "sha256": "a9dc6a4acd2d2aabbabc735401dc28ec5b6b7049a3105d4c6b14c5dd6b14e71d"
+        "sha256": "92fca8bafa9052ee1d1da3c148b239ad4c53da32660002de47717418ebe33373"
       },
       {
         "bytes": 2754,
@@ -2340,8 +2340,8 @@
         "docs/ogre_lake_manual_region_companion_experiment.md",
         "docs/rf4_old_burg_spatial_authoring_estimate.md"
       ],
-      "head": "eb39175050ea063d3e342cf2d6a4e1089ca3d647",
-      "head_short": "eb39175",
+      "head": "60429db05e5f2c08547a02b43c9fc96aef432614",
+      "head_short": "60429db",
       "head_subject": "chore: add harness handoff package",
       "modified_tracked": [
         "README.md",
@@ -2633,7 +2633,7 @@
   },
   "validation": {
     "command": "python3 -m pytest -q",
-    "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.46s",
+    "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.58s",
     "passed": true,
     "returncode": 0
   }
