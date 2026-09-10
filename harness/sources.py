@@ -71,12 +71,22 @@ class OfflineSnapshotProvider:
     def _identity_header(text: str) -> str:
         return "\n".join(text.splitlines()[:5])
 
+    @staticmethod
+    def _identity_urls(header: str) -> set:
+        """Exact URLs this snapshot is *of*, extracted symmetrically and normalized."""
+        urls = set()
+        for match in re.finditer(r"Page with URL (\S+) as of", header):
+            urls.add(_normalize_url(match.group(1)))
+        for match in re.finditer(r'<page url="([^"]+)"', header):
+            urls.add(_normalize_url(match.group(1)))
+        return urls
+
     def find_url(self, url: str) -> SourceRef:
         target = _normalize_url(url)
         for path in sorted(self.root.glob("*.md")):
             text = path.read_text(encoding="utf-8", errors="replace")
             header = self._identity_header(text)
-            if f"Page with URL {target}" not in header and f'<page url="{target}"' not in header:
+            if target not in self._identity_urls(header):
                 continue
             fetched = re.search(r"as of (\S+):", header)
             return SourceRef(url, str(path), self.mode, "SNAPSHOT_UNVERIFIED", fetched.group(1) if fetched else None)

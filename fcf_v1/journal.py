@@ -15,8 +15,12 @@ from typing import Any, Dict, List, Optional, Protocol
 
 try:
     import fcntl
-except ImportError:  # pragma: no cover - non-POSIX production adapter may replace this
+except ImportError:  # pragma: no cover - Windows uses msvcrt byte-range locks below
     fcntl = None
+try:
+    import msvcrt
+except ImportError:  # pragma: no cover - POSIX uses fcntl.flock above
+    msvcrt = None
 
 
 class JournalConflict(ValueError):
@@ -58,6 +62,29 @@ class DurableJournal:
             raise JournalConflict("event_id reused with different payload")
         self._records[record["event_id"]] = deepcopy(record)
 
+    def _acquire_os_lock(self, stream) -> Optional[int]:
+        """Serialize cross-process appenders; no silent unlocked fallback."""
+        if fcntl is not None:
+            fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+            return None
+        if msvcrt is not None:
+            # Windows byte-range locks are mandatory: locking the journal file
+            # itself would block this process's own "a+" reads. Guard with a
+            # sidecar lock file instead; the journal stays freely readable.
+            lock_fd = os.open(self.path + ".lock", os.O_RDWR | os.O_CREAT)
+            os.lseek(lock_fd, 0, os.SEEK_SET)
+            msvcrt.locking(lock_fd, msvcrt.LK_LOCK, 1)
+            return lock_fd
+        raise OSError("no inter-process file locking available on this platform")
+
+    def _release_os_lock(self, stream, lock_fd: Optional[int]) -> None:
+        if fcntl is not None:
+            fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+        elif lock_fd is not None:
+            os.lseek(lock_fd, 0, os.SEEK_SET)
+            msvcrt.locking(lock_fd, msvcrt.LK_UNLCK, 1)
+            os.close(lock_fd)
+
     def append_once(self, event_id: str, event_type: str, payload: Dict[str, Any]) -> bool:
         """Append exactly once; return False for an identical replay."""
         record = {"event_id": event_id, "event_type": event_type, "payload": deepcopy(payload)}
@@ -68,8 +95,7 @@ class DurableJournal:
             # Re-index the file while holding the OS lock, then decide exactly
             # once whether this event ID is new, identical, or conflicting.
             with open(self.path, "a+", encoding="utf-8") as stream:
-                if fcntl is not None:
-                    fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+                lock_fd = self._acquire_os_lock(stream)
                 try:
                     disk_records: Dict[str, Dict[str, Any]] = {}
                     stream.seek(0)
@@ -103,8 +129,7 @@ class DurableJournal:
                     os.fsync(stream.fileno())
                     disk_records[event_id] = deepcopy(record)
                 finally:
-                    if fcntl is not None:
-                        fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+                    self._release_os_lock(stream, lock_fd)
             self._records = disk_records
             return True
 

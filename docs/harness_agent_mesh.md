@@ -56,6 +56,9 @@ artifact / evidence 进本 repo，本机另有 run journal。对话只是执行�
 - 只读角色的记忆写回：当前为 **Coordinator 代写机制**——角色以「记忆增量提案」
   附于报告末尾，Coordinator 逐字转写入 `role_memory/<role>.md` 并标注来源批次
   （各章程已声明）。后续若引入受限写工具再升级。
+- **代写可验证性锚点**：每个批次的 agent 报告由 Coordinator **逐字归档**到
+  `outputs/batches/<BATCH_ID>.md`（append-only，不改写）；角色记忆中的转写内容
+  可与对应批次文件 diff 核验「逐字」。
 - 新会话启动时加载 agent 定义；改完文件需要重启会话（或新开 tab）生效。
 
 ## 3. 通讯模式

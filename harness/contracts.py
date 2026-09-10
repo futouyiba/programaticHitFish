@@ -36,7 +36,8 @@ class EnvelopeContractError(ValueError):
 
 
 def validate_verdict(verdict: Dict[str, Any]) -> Dict[str, Any]:
-    missing = [field for field in ("level", "scope", "baseline", "proves", "does_not_prove", "open_findings", "verdict") if field not in verdict]
+    required = ("level", "scope", "baseline", "proves", "does_not_prove", "open_findings", "verdict")
+    missing = [field for field in required if field not in verdict]
     if missing:
         raise ReviewContractError(f"missing review fields: {', '.join(missing)}")
     level = verdict["level"]
@@ -45,10 +46,9 @@ def validate_verdict(verdict: Dict[str, Any]) -> Dict[str, Any]:
     expected = [f"{level}_{outcome}" for outcome in _OUTCOMES]
     if verdict["verdict"] not in expected:
         raise ReviewContractError(f"verdict {verdict['verdict']!r} must match level {level!r}: expected one of {', '.join(expected)}")
-    if not verdict["scope"]:
-        raise ReviewContractError("review scope must be explicit")
-    if not verdict["does_not_prove"]:
-        raise ReviewContractError("does_not_prove must preserve review boundaries")
+    for field in ("scope", "baseline", "proves", "does_not_prove"):
+        if not verdict[field]:
+            raise ReviewContractError(f"{field} must be explicit and non-empty")
     return dict(verdict)
 
 
@@ -59,13 +59,19 @@ def validate_envelope(envelope: HandoffEnvelope) -> HandoffEnvelope:
         if role not in ROLE_REGISTRY:
             raise EnvelopeContractError(f"{field} {role!r} is not in ROLE_REGISTRY")
     # Handoff convention writes CURRENT_STATE as "<code> <STATE_NAME>" (e.g.
-    # "FR1 RESEARCH_PACKAGE_READY"); match the declared state token.
-    state_tokens = {state.value for state in HarnessState}
-    if not (set(envelope.CURRENT_STATE.split()) & state_tokens):
+    # "FR1 RESEARCH_PACKAGE_READY"); code and value must name the same state.
+    tokens = envelope.CURRENT_STATE.split()
+    by_name = {state.name: state.value for state in HarnessState}
+    by_value = {state.value for state in HarnessState}
+    if len(tokens) == 1:
+        valid = tokens[0] in by_value
+    else:
+        valid = len(tokens) == 2 and tokens[0] in by_name and by_name.get(tokens[0]) == tokens[1]
+    if not valid:
         raise EnvelopeContractError(f"CURRENT_STATE {envelope.CURRENT_STATE!r} is not a declared harness state")
     if not envelope.BATCH_ID:
         raise EnvelopeContractError("BATCH_ID must be explicit")
     blocking = envelope.BLOCKING_FINDINGS
-    if blocking != "NONE" and "http" not in blocking:
-        raise EnvelopeContractError("BLOCKING_FINDINGS must be NONE or reference URLs")
+    if blocking != "NONE" and not all(token.startswith(("http://", "https://")) for token in blocking.split()):
+        raise EnvelopeContractError("BLOCKING_FINDINGS must be NONE or whitespace-separated URLs")
     return envelope

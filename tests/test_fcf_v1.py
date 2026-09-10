@@ -695,7 +695,7 @@ def test_sqlite_journal_is_exactly_once_across_processes(tmp_path):
 
 def test_durable_journal_is_integrity_safe_across_processes(tmp_path):
     path = str(tmp_path / "multi.jsonl")
-    context = multiprocessing.get_context("fork")
+    context = multiprocessing.get_context("spawn")  # fork unavailable on Windows; workers are module-level so spawn is cross-platform
     processes = [context.Process(target=_journal_process_worker, args=(path, f"p{n}")) for n in range(4)]
     for process in processes:
         process.start()
@@ -708,7 +708,7 @@ def test_durable_journal_is_integrity_safe_across_processes(tmp_path):
 
 def test_durable_journal_is_exactly_once_for_same_id_across_processes(tmp_path):
     path = str(tmp_path / "same-id.jsonl")
-    context = multiprocessing.get_context("fork")
+    context = multiprocessing.get_context("spawn")  # fork unavailable on Windows; workers are module-level so spawn is cross-platform
     barrier = context.Barrier(2)
     queue = context.Queue()
     processes = [context.Process(target=_journal_same_id_worker, args=(path, barrier, queue)) for _ in range(2)]
@@ -724,7 +724,7 @@ def test_durable_journal_is_exactly_once_for_same_id_across_processes(tmp_path):
 
 def test_durable_journal_rejects_conflicting_same_id_across_processes(tmp_path):
     path = str(tmp_path / "conflict-id.jsonl")
-    context = multiprocessing.get_context("fork")
+    context = multiprocessing.get_context("spawn")  # fork unavailable on Windows; workers are module-level so spawn is cross-platform
     barrier = context.Barrier(2)
     queue = context.Queue()
     processes = [context.Process(target=_journal_conflict_worker, args=(path, barrier, queue, value))

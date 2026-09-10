@@ -51,12 +51,16 @@ def test_scoped_verdict_requires_boundary():
         lambda v: v.pop("does_not_prove"),
         lambda v: v.update(scope=""),
         lambda v: v.update(does_not_prove=[]),
+        lambda v: v.update(baseline=[]),
+        lambda v: v.update(proves=[]),
     ],
 )
 def test_scoped_verdict_rejects_invalid(mutate):
+    from harness.contracts import ReviewContractError
+
     verdict = _valid_verdict()
     mutate(verdict)
-    with pytest.raises(Exception):
+    with pytest.raises(ReviewContractError):
         validate_verdict(verdict)
 
 
@@ -80,8 +84,12 @@ def test_handoff_round_trip_and_semantic_validation():
         lambda e: {**e.to_dict(), "TO_ROLE": "NOT-A-ROLE"},
         lambda e: {**e.to_dict(), "FROM_ROLE": "who"},
         lambda e: {**e.to_dict(), "CURRENT_STATE": "SOMETHING_ELSE"},
+        # code and value must name the SAME state (A1 pairs with AUDIT_PACKAGE_READY)
+        lambda e: {**e.to_dict(), "CURRENT_STATE": "A1 RESEARCH_PACKAGE_READY"},
+        lambda e: {**e.to_dict(), "CURRENT_STATE": "FR1 AUDIT_PACKAGE_READY"},
         lambda e: {**e.to_dict(), "BATCH_ID": ""},
         lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": "maybe"},
+        lambda e: {**e.to_dict(), "BLOCKING_FINDINGS": "see http://x and notes"},
     ],
 )
 def test_envelope_semantic_rejections(mutate):
@@ -164,3 +172,23 @@ def test_page_mentioned_in_other_snapshot_body_is_missing(tmp_path):
     with pytest.raises(FileNotFoundError) as exc:
         OfflineSnapshotProvider(str(tmp_path)).find_url(target)
     assert "SNAPSHOT_MISSING" in str(exc.value)
+
+
+def test_snapshot_prefix_url_does_not_match(tmp_path):
+    """A snapshot of url X must not satisfy a lookup for a url X is a prefix of."""
+    longer = "https://app.notion.com/p/55555555555555555555555555555555"
+    _write_snapshot(tmp_path, "notion-04.md", longer)
+    with pytest.raises(FileNotFoundError):
+        OfflineSnapshotProvider(str(tmp_path)).find_url(longer[:-1])
+
+
+def test_snapshot_header_with_query_suffix_matches_clean_url(tmp_path):
+    """Normalization is symmetric: snapshot-side query suffixes don't break identity."""
+    url = "https://app.notion.com/p/66666666666666666666666666666666"
+    tmp_path.joinpath("notion-05.md").write_text(
+        f'Here is the result of "fetch" for the Page with URL {url}?pvs=204 as of 2026-09-09T10:00:00Z:\n'
+        f'<page url="{url}?pvs=204">\ncontent\n</page>\n',
+        encoding="utf-8",
+    )
+    ref = OfflineSnapshotProvider(str(tmp_path)).find_url(url)
+    assert ref.local_path.endswith("notion-05.md")
