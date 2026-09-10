@@ -1,0 +1,678 @@
+{
+ "vs_CRR": [
+  {
+   "program_id": "P-B3-CHU-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-CHN-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-COH-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PIN-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BRO-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SHA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-ALE-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-AST-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SNS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAR-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAI-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-ARA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-RBP-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BLP-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-WEL-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-FLA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BUR-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GW-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SGA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-RFP-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-DS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PBF-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GT-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-HAL-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GG-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "family": [
+  {
+   "program_id": "P-B3-CHU-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-CHN-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-COH-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PIN-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BRO-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SHA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-ALE-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-AST-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SNS-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAR-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAI-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-ARA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PB-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-RBP-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BLP-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-WEL-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-FLA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BUR-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GW-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SGA-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-RFP-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-DS-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PBF-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GT-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-HAL-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GG-BAKE",
+   "family": "SINGLE_FACTOR_NORMALIZED_WEIGHT",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-CHN-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-COH-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-PIN-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-BRO-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-ALE-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-AST-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SNS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAR-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-TAI-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-PB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-BLP-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-FLA-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-BUR-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-GW-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-PAY-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-SGA-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-SHO-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-RFP-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-DS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-PBF-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-GT-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-HAL-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-GG-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-B3-ARA-RESP",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-RBP-RESP",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-WEL-RESP",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B3-CHU-RESP-FASTING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-B3-CHU-RESP-FASTING",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-B3-SHA-RESP-FASTING",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-B3-SHA-RESP-FASTING",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  }
+ ]
+}

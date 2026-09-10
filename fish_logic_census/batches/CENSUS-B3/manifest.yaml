@@ -1,0 +1,82 @@
+batch_id: CENSUS-B3
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0/B1/B2 固化范式（role_memory v4）
+created: "2026-09-11 (local time zone)"
+blind_freeze_frozen_at_utc: "2026-09-10T20:43:53Z"
+input:
+  selection_rule: >-
+    coordinator envelope CENSUS-B3：R06 洄游/掠食批 28 Story 全量（鲑系洄游 10 +
+    淡水掠食 14 含 P04 护巢组 3 + 海水掠食 4）。FISH-R06 FR2 两轮 REVISE 后闭轮 +
+    FR3 CLOSED（AUTO_CONTINUE_RESEARCH，ARTIFACT_APPROVE）。
+  frozen_stories:
+    - CHU: https://app.notion.com/p/3d7a4137d2368119a9f5d989bdc45d69   # 大马哈鱼（停食洄游判例①源例）
+    - CHN: https://app.notion.com/p/3d7a4137d23681118c8ef343364842cc   # 帝王鲑
+    - COH: https://app.notion.com/p/3d7a4137d23681f69852d289431b5b4e   # 银鲑
+    - PIN: https://app.notion.com/p/3d7a4137d23681079adade547927f727   # 粉鲑
+    - BRO: https://app.notion.com/p/3d7a4137d23681c4bf59e84d346dfc1f   # 美洲红点鲑
+    - SHA: https://app.notion.com/p/3d7a4137d23681b69e47fbebf2cc32c8   # 美洲西鲱（停食洄游判例①重复例）
+    - ALE: https://app.notion.com/p/3d7a4137d23681c5aa6ccca76f36194f   # 灰西鲱
+    - AST: https://app.notion.com/p/3d7a4137d23681ec8d9cee1b18f94433   # 尖吻鲟
+    - SNS: https://app.notion.com/p/3d7a4137d236816d87aed91103e57d08   # 短吻鲟
+    - TAR: https://app.notion.com/p/3d7a4137d2368117b633ca9489deba5a   # 大西洋大海鲢
+    - TAI: https://app.notion.com/p/3d7a4137d2368116b10bd6a57cda0918   # 哲罗鲑
+    - ARA: https://app.notion.com/p/3d7a4137d2368143bac4e90316a3d30a   # 巨骨舌鱼（P04 组①）
+    - PB:  https://app.notion.com/p/3d7a4137d23681d689a0cad9c01238f3   # 奥里诺科孔雀鲈
+    - RBP: https://app.notion.com/p/3d7a4137d236810aa17cc50b9a8a82e7   # 红腹食人鱼（P04 组②；frenzy 负知识）
+    - BLP: https://app.notion.com/p/3d7a4137d23681158d19c15e89293ffe   # 黑食人鱼
+    - WEL: https://app.notion.com/p/3d7a4137d23681efb57bfddbb6244c95   # 欧洲巨鲶（P04 组③）
+    - FLA: https://app.notion.com/p/3d7a4137d236817498bde36dddb7c010   # 铲鮰
+    - BUR: https://app.notion.com/p/3d7a4137d23681c6a586fed7f45ec901   # 江鳕
+    - GW:  https://app.notion.com/p/3d7a4137d2368169aad0cf9a77ee983f   # 巨狼鱼
+    - PAY: https://app.notion.com/p/3d7a4137d23681afa38dff9f6996823a   # 巴亚拉鱼
+    - SGA: https://app.notion.com/p/3d7a4137d236819cad80e83f734f570e   # 斑点雀鳝
+    - SHO: https://app.notion.com/p/3d7a4137d23681ec8becdfb49235454d   # 浅滩鲈鱼
+    - RFP: https://app.notion.com/p/3d7a4137d2368186bcb9c28aaeae987a   # 红鳍狗鱼
+    - DS:  https://app.notion.com/p/3d7a4137d2368149a3d2ff515b130aa6   # 沙塘鳢
+    - PBF: https://app.notion.com/p/3d7a4137d236815ea656c9eba32e0668   # 太平洋蓝鳍金枪鱼
+    - GT:  https://app.notion.com/p/3d7a4137d23681528208fa95cfd9445e   # 牛港鲹
+    - HAL: https://app.notion.com/p/3d7a4137d23681d181acc21a51b448e4   # 大西洋大比目鱼
+    - GG:  https://app.notion.com/p/3d7a4137d23681bc84b4fcbce9ac8c6a   # 鞍带石斑鱼
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701   # 本批新增输入（Persistent Guard）
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b
+  fr3_adjudications_consumed:
+    - 判例①停食洄游双例: "停食→P05 状态抑制 Feeding Path；非摄食可钓性→Response multi-path（§9.2）；拒 P04（False FIT）；动机归因 open（升级三条件）"
+    - 判例②食人鱼 frenzy: "Negative Knowledge 入 Registry note——不得以 frenzy 购 Group Mode（B3 已执行：RBP S3 排除映射+Group 面 NO_SURFACE 理由）"
+input_channel_note: >-
+  本机 census worker agent 工具白名单无 Notion MCP；经 coordinator 已配置的
+  claude CLI headless（读已授权 notion MCP fetch）只读获取 Story/pattern/包页快照，
+  存 input_snapshots/（fetch_notion.sh + 35 份快照）。快照为 headless 转写：21 份
+  完整包裹（page/properties/content），4 份正文完整但省略 properties 头（ALE/RBP
+  另 2 份空输出已重抓完整），3 份 properties 标点转写差异（SNS/GG）；十节正文
+  +Sweep Log 全部完整，标题/BatchID 已逐份核验（28/28 FISH-R06 + 鱼名一致；story
+  ↔URL 对位来自 R06 包页 Coverage/Story Links 表顺序）。Snapshot 模式
+  SNAPSHOT_UNVERIFIED-by-headless（CLAUDE.md 快照标注纪律）；判同/复核以
+  input_snapshots/ 为数据。
+blind_freeze:
+  n_blind_programs: 54
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-10T20:42:21Z"   # blind_programs.jsonl 文件系统写入时刻（精确）
+  registry_reads_before_freeze: false
+  registry_version_before: 4
+  registry_opened_at_utc: "~2026-09-10T20:45Z（Read v4，无 FS 痕迹；判同产物 engine_report/merge_tests/v5 写入=20:46-20:47:31Z，均晚于 blind 冻结——VCS 时序复核基础）"
+  composition: "Bake 26（PAY/SHO 栖息面 EO 不建体）+ Response 28（TYPED 标准形 23 + 停食洄游双 Path 2[CHU/SHA] + P04 guard 双 Path 3[ARA/RBP/WEL]）"
+execution_mode_note: >-
+  fresh spawn 单轮执行：B2 的「冻结→回执→coordinator commit 锚定→判同」分段在
+  单轮内不可插入 commit。时序自证改为：frozen_at_utc（盲冻结完成）与
+  registry_opened_at_utc（判同段开始）双时间戳 + blind_programs.jsonl 逐条
+  registry_seen=false + 内容 hash；coordinator/reviewer 可验 blind 文件先于
+  registry 打开且判同段零改动（program_revisions 为空即证）。偏差记 B3 流程注。
+coverage_discipline:
+  no_surface_exclusions:
+    - "PAY/SHO Bake 面：栖息/洄游 FishBase EO（Story 明言），不建体不冒用——NO_SURFACE_EFFECT 显式理由"
+    - "28/28 Group 面：洄游/产卵/繁殖集群≠互斥 FishGroup（P05/§6）；RBP 群游=防御负知识（FR3 判例②）；BUR 产卵球非摄食群"
+    - "28/28 Quality 面：无 Quality Selection 程序证据（B0-B2 基线）"
+  out_of_scope: []
+  sweep_mapping: "每 Story S1-S11 逐项 program/premise/param/excluded/eo/sn/tar 三选一映射（stories.jsonl sweep_log_mapping）"
+fixture_gate: {status: PASSED_BY_COORDINATOR}
+status: INDEPENDENT_REVIEW_REQUIRED
