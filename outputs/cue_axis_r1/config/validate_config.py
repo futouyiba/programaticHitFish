@@ -139,6 +139,9 @@ EXCLUDED_SEMANTIC_STEMS = (
     "bit",
     # attack family
     "attack", "strike", "kill",
+    # active-discharge family (self-named exclusion from README §2; #47
+    # boundary — the eel's own discharge is Encounter/Conversion owner)
+    "discharg", "electrogen",
     # incapacitation family. Note freez AND froz are BOTH needed:
     # freeze/freezing = freez+..., frozen/froze = froz+... (single-stem
     # morphology misses one of the two forms).
@@ -160,6 +163,8 @@ EXCLUDED_SEMANTIC_ZH = (
     "攻击", "袭击", "扑", "杀",
     # incapacitation family
     "麻痹", "冻结", "电击", "击晕", "眩晕", "麻木", "制服",
+    # active-discharge family（主动放电——#47 边界）
+    "放电",
 )
 
 # Key shapes that suggest a second / pairing input axis inside a slot row.
@@ -227,19 +232,23 @@ def _walk_strings(obj):
 
 
 def guard_violations(config, raw_text):
-    """English stems: token-level prefix match over the raw text.
+    """English stems: token-level prefix match over the raw text AND over the
+    \\uXXXX-unescaped raw text (escaped ASCII cannot smuggle past the stem
+    scan either — mirrors the zh three-surface defense).
     Chinese keywords: substring match over walked keys/values, over the raw
     text, and over the \\uXXXX-unescaped raw text (three surfaces so JSON
     escaping cannot smuggle)."""
     hits, seen = [], set()
-    for token in letter_tokens(raw_text):
-        for stem in EXCLUDED_SEMANTIC_STEMS:
-            if token.startswith(stem) and (token, stem) not in seen:
-                seen.add((token, stem))
-                hits.append(
-                    "GUARD: token '%s' matches excluded semantic stem '%s'"
-                    % (token, stem))
-    zh_surfaces = list(_walk_strings(config)) + [raw_text, _unescape_u(raw_text)]
+    en_surfaces = [raw_text, _unescape_u(raw_text)]
+    for surface in en_surfaces:
+        for token in letter_tokens(surface):
+            for stem in EXCLUDED_SEMANTIC_STEMS:
+                if token.startswith(stem) and (token, stem) not in seen:
+                    seen.add((token, stem))
+                    hits.append(
+                        "GUARD: token '%s' matches excluded semantic stem '%s'"
+                        % (token, stem))
+    zh_surfaces = list(_walk_strings(config)) + en_surfaces
     for kw in EXCLUDED_SEMANTIC_ZH:
         if any(kw in surface for surface in zh_surfaces):
             hits.append(
@@ -401,6 +410,14 @@ def validate(config, raw_text):
                 v.append("FACT: fact atom '%s' is outside the closed enum %s "
                          "(new cue facts are a spec action, not an author "
                          "action)" % (fact, list(FACT_ENUM)))
+        expected_fact_semantics = {
+            "BaitScentIntensity": "当前呈现的味型/信息素强度（上游呈现侧计算事实）",
+            "LureElectricField": "拟饵电场特征（上游呈现侧计算事实）",
+        }
+        if isinstance(fact, str) and row.get("fact_semantics") != \
+                expected_fact_semantics.get(fact):
+            v.append("STRUCT: %s.fact_semantics deviates from the pinned "
+                     "口径 semantic (forage R1 F2 precedent)" % path)
         if row.get("grammar_form") != EXPECTED["grammar_form"]:
             v.append("FACT: %s.grammar_form must be %r (Grammar 5.1 column "
                      "structure reuse, no new column structure)"
@@ -682,8 +699,8 @@ def _selftest():
              {"note": "plus AttackWindowProfile modifier"}),
          "GUARD")
     case("GUARD fires on zh keyword in a fact_semantics value",
-         lambda c: c["fact_atoms"][1].update(
-             {"fact_semantics": "含麻痹语义的走私值"}),
+         lambda c: c["instance"].update(
+             {"note": "含麻痹语义的走私值"}),
          "GUARD")
 
     # -- STRUCT: fixed row schemas -------------------------------------------
@@ -772,9 +789,11 @@ def _selftest():
     case("FACT fires on fact atom outside the closed enum "
          "(slot + table mutated consistently)",
          lambda c: (
-             c["fact_atoms"][1].update({"fact_atom": "LureVoltageTrace"}),
+             c["fact_atoms"][1].update({
+                 "fact_atom": "LureVoltageTrace",
+                 "fact_semantics": "拟饵电压轨迹（上游呈现侧计算事实）"}),
              c["profile_slots"][1].update({"fact_atom": "LureVoltageTrace"})),
-         "FACT")
+         {"FACT", "STRUCT"})  # STRUCT co-fires: pin covers unknown fact's semantics
     case("FACT fires on columns_added drift (a new column would be a new "
          "column structure)",
          lambda c: c["fact_atoms"][0].update({"columns_added": 1}),
