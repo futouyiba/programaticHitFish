@@ -1,14 +1,15 @@
-# 暹罗巨鲤（Giant Barb｜Catlocarpio siamensis）｜Grazing 系四面生产级表达
+# 暹罗巨鲤（Giant Barb｜Catlocarpio siamensis）｜Grazing 系四面生产级表达｜⚠️ REV-001 B1 撤回
 
-Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
+Status：**WITHDRAWN（REV-001 B1）** / WORKING / NOT AUTHORITY / NOT PROMOTED
 
 | 项 | 值 |
 |---|---|
+| 撤回状态 | **REP-FULL-GRAZE-REV-001 BLOCKER B1**：live Story 页行级证据（ResponseChannels=FieldFeeding / PrimaryEvaluand=Resource Patch / Semantic Pattern=P05+P06 双 relation）与本文件 R-T1 TargetFeeding+离散目标+常年绑定方向**结构反向**；本文件自身条款「结构变更需重审」已被触发。正文在 live 已存在（非 SNAPSHOT 缺席），SNAPSHOT_ONLY 不能替代。**本文件骨架不适用，待 live 正文读取后重建或移交 FieldFeeding 表达线**。 |
 | 批次 | REP-FULL-GRAZE-001（Grazing/底质系＝P06 全样本 第 2 批） |
-| Story | FISH-R05 暹罗巨鲤（coordinator 分批名单：R05 P06 六条之一；Story 页未在本地快照——身份锚为 fish-reference-20260908 行及其 Notion 资料页 3d5a4137d23681e69a96e09e1ea7b9a8；Story 正文 [需正文]） |
-| 冻结 Pattern | P06（coordinator 分批名单归类；R05 FR3 摘要记 P06 存在 merge 建议（压回 P02，四元组 key，归 Cross-Batch）；行级 Pattern 标签未在本地快照 [需核对]） |
-| 物种属性锚 | fish-reference-20260908：水温 20–32℃、最适 26℃、benthopelagic、早晨活跃、杂食性、摄食类型=variable、potamodromous、撕鳍（性格）、温水（行级 AI 审核状态=待人工审核；仅作身份与习性方向锚，数值不做阈值） |
-| 基线 | SNAPSHOT_ONLY（live Stress Test R1 主页转录 tmp/live_stress_main_after.md，2026-09-10 版；census registry v4 快照 fish_logic_census/template_registry.yaml） |
+| Story | FISH-R05 暹罗巨鲤（live 实测（REV-001）：ResponseChannels=[FieldFeeding]、PrimaryEvaluand=[Resource Patch]、Semantic Pattern=P05+P06 双 relation——**非本文件假设的 P06 单值+TargetFeeding**） |
+| 冻结 Pattern | P05+P06 双 relation（live 实测，REV-001 B1——文件原假设 P06 单值不成立） |
+| 物种属性锚 | fish-reference-20260908：水温 20–32℃、最适 26℃、benthopelagic、早晨活跃、杂食性、摄食类型=variable、potamodromous、撕鳍（性格） |
+| 基线 | SNAPSHOT_ONLY（live 转录）——**REV-001 裁定本鱼 Tier B [需正文] 门已开（R05 Story 正文在 DB），SNAPSHOT_ONLY 不再免除 live 对照义务** |
 | 证据档 | Tier B（coordinator 分批名单 + CSV 方向锚；Story 正文 [需正文]，条件值全 @ 化） |
 | 变体声明 | 条件原子：无路由条件原子（§1.1 显式无路由程序声明）；分群结果＝5 列固定；品质表＝绑定表（live §12.2 形态），本鱼无物种级品质调整表 |
 | Response 拓扑 | NormalFeeding=R-T1 单通道（Feeding；Reaction 槽 OFF） |

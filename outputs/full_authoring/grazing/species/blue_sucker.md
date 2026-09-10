@@ -5,8 +5,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 | 项 | 值 |
 |---|---|
 | 批次 | REP-FULL-GRAZE-001（Grazing/底质系＝P06 全样本 第 2 批） |
-| Story | FISH-R06 长背亚口鱼（coordinator 分批名单：R06 亚口科四条之一；Story 页未在本地快照——身份锚为 fish-reference-20260908 行及其 Notion 资料页 3d5a4137d23681b28aa4ceeb922c4f0c；Story 正文 [需正文]） |
-| 冻结 Pattern | P06（coordinator 分批名单按 Grazing/底质机制族归类；行级 Pattern 标签未在本地快照 [需核对]——与 R06 FR3 摘要「P06 零新样本」存在口径张力，README §4 登记） |
+| Story | FISH-R07 长背亚口鱼（coordinator 分批名单：R07 亚口科四条之一（REV-001 M1 修正：原名单误标 R06）；Story 页未在本地快照——身份锚为 fish-reference-20260908 行及其 Notion 资料页 3d5a4137d23681b28aa4ceeb922c4f0c；Story 正文 [需正文]） |
+| 冻结 Pattern | P01 行级主 relation（live 实测，REV-001 M1）+ P06 merge-key pending（R07 FR3 DiscoveryBatch 附标签层——Cross-Batch 执行未落地） |
 | 物种属性锚 | fish-reference-20260908：水温 17–27℃、最适 22℃、benthopelagic、早晨活跃、躲藏（性格）、温水（行级 AI 审核状态=待人工审核；仅作身份与习性方向锚，数值不做阈值） |
 | 基线 | SNAPSHOT_ONLY（live Stress Test R1 主页转录 tmp/live_stress_main_after.md，2026-09-10 版；census registry v4 快照 fish_logic_census/template_registry.yaml） |
 | 证据档 | Tier B（coordinator 分批名单 + CSV 方向锚；Story 正文 [需正文]，条件值全 @ 化） |

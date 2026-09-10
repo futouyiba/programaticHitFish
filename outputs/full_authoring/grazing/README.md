@@ -148,3 +148,14 @@ PASS (11 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-GRAZE-001
+
+---
+
+## REP-FULL-GRAZE-REV-001 验收记录与修复（2026-09-11）
+
+- verdict: ARTIFACT_REVISE（B1 giant_barb 行级反向/M1 四亚口元数据/M2 Response 通道分歧未登记/m1-m2 minor）。
+- **B1 处置：giant_barb.md 撤回**（WITHDRAWN 标注+live 行级证据记录+待 live 正文重建或移交 FieldFeeding 线）。
+- **M1 处置**：四亚口文件批次 R06→R07、冻结 Pattern 改「P01 行级主 relation+P06 merge-key pending（附标签层）」——双层身份不再压缩。
+- **M2 处置**：本节即补登记——**Response 面两层 reconciliation OPEN**：P06 行级 Story 的 ResponseChannels=FieldFeeding（rohu/giant_barb live 实测），本批 11/11 统一 TYPED 投影 TargetFeeding——Tier A 有 census「待检验」判语保护、Tier B 统一骨架在 giant_barb 已证反向（→B1 撤回）。rohu 的「常年绑定」注记应对照 Story 正文「季风 S4/S5 MSF 季节窗」更新为配置级切换（骨架不必翻）。
+- 登记项 1 闭合：口径张力裁决=两口径各自为真分属不同层次（R06 批内零新样本 vs R07 triage 附标签 merge-key 命中）。登记项 3：+4 大概率=四亚口文件已承载（coordinator 以 FR3 六字段核实后改写）。
+- m1：湄公鲶 premise guard 与 body 分支区分建议加注释（保留骨架判定）。m2：Tier B [需正文] 门 live 已开——reviewer 已代测 4 条；剩余 5 文件 B1 gate 前应做一轮 live 对照。
