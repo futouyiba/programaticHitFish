@@ -23,6 +23,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面：无供给拆分（census Group consequence=NO_SURFACE_EFFECT 原样）。
 - Quality 面：无 Quality 程序证据（census Quality consequence=NO_SURFACE_EFFECT 原样）。
 - 表达超集说明：无（未超出 census 冻结程序语义范围；confidence LOW 状态全程可见）。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原）**：判断链按 census 行为链原文「急流—石底—附着—刮食」四环顺序还原＝流速档 → 石底档 → 附着资源档 → 归一化。census context 常量 fast_flow_stone（单绑定）拆为流速档＋石底档两步——拆步即结构差异（登记 README §7）。分级命中：每步三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结；行为链 Evidence Open（confidence LOW）原样携带——档位成员待正文/证据闭合。
 
 Profile 引用清单：@OnychostomaSubstratePatchProfile @OnychostomaCurrentConstraintProfile @OnychostomaSubstrateSpatialProfile @OnychostomaSubstratePreyFields @OnychostomaDietClasses @OnychostomaSizeWindow @OnychostomaScrapeFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -63,7 +64,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-PATCH（本批投影标签＝census PATCH_RESOURCE_FOLLOWING，registry v4，双成员 PROVISIONAL——HRQ-04/HRQ-B1-02 PENDING；3 步带 typed context） |
+| BakeTemplate | BA-SUBSTRATE-PATCH（本批投影标签＝census PATCH_RESOURCE_FOLLOWING，registry v4，双成员 PROVISIONAL——HRQ-04/HRQ-B1-02 PENDING；3 步带 typed context；**§2.2 已顺序还原（REP-ORDER-FIX-001）：行为链四环原序+early return 链+分级命中，分歧登记 README §7**） |
 | PatchResourceType(typed) | 石底附着藻/碎屑资源（attached_algae_detritus；census P-B1-ONS-BAKE 实例常量，confidence LOW） |
 | ContextConstraint(typed) | current=fast_flow_stone 急流石底绑定（census context_type 轴 current 侧；轴宽度 zone/current 两值待批；行为链 Evidence Open） |
 | CurrentContextProfile | @OnychostomaCurrentConstraintProfile |
@@ -76,27 +77,58 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
-读取 当前格子的底质类型（石底/非石底）
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝census 行为链原文「急流—石底—附着—刮食」四环原序＝流速档 → 石底档 →
+附着资源档 → 归一化；每步分级命中（全额/削减/出局），出局即 EARLY_RETURN。
+census context 常量 fast_flow_stone（单绑定）拆为流速档＋石底档两步——
+顺序与拆步差异本身=LogicTemplate 判据，与 census canonical body
+（EVAL_RESOURCE_PATCH → APPLY_CURRENT_CONTEXT → NORMALIZE_WEIGHT，无 gate 判语）的
+拓扑分歧登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的流速事实（current_context，上游 fact）
+读取 当前格子的底质类型
 读取 当前格子的附着资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@OnychostomaSubstratePreyFields 绑定的附着藻/碎屑 prey class 生物量，
       经 diet_classes=@OnychostomaDietClasses 食性过滤
       与 size_window=@OnychostomaSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前格子的流速事实（current_context，上游 fact）
 
-第 1 步 EVAL_RESOURCE_PATCH：
+第 1 步 流速档（GATE_CURRENT——census op APPLY_CURRENT_CONTEXT 的顺序还原形）：
+    用流速事实查询 @OnychostomaCurrentConstraintProfile
+    （急流石底绑定方向，census 实例常量；档位成员=Profile 值域不冻结 [需正文]）
+    如果 流速 ∈ 急流档（preferred 槽）：
+        进入第 2 步
+    否则如果 流速 ∈ 过渡档（tolerated 槽）：
+        CurrentTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（缓流/静水档）：
+        返回 0（EARLY_RETURN：急流种不入缓静水分布）
+
+第 2 步 石底档（分级命中）：
+    用底质类型查询 @OnychostomaSubstratePatchProfile 的基质分档槽
+    如果 底质 ∈ 石底档（preferred 槽——附着面可得）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 硬质非石档（tolerated 槽——附着面有限）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（软底无附着面档）：
+        返回 0（EARLY_RETURN：无附着面底质出局）
+
+第 3 步 附着资源档（EVAL_RESOURCE_PATCH，分级命中）：
     用附着资源事实查询 @OnychostomaSubstratePatchProfile
-    得到 SubstratePatchIntensity
+    （typed substrate evaluator 实例；三档分档槽=Profile 值域不冻结）
+    如果 附着生物量 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 附着生物量 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无附着资源档）：
+        返回 0（EARLY_RETURN：无附着资源的格子出局）
 
-第 2 步 APPLY_CURRENT_CONTEXT（CONSTRAIN_ZONE 的 current 实例）：
-    用当前流速事实应用 @OnychostomaCurrentConstraintProfile（fast_flow_stone 绑定）
-    得到 CurrentConstrainedWeight
+第 4 步 NORMALIZE_WEIGHT：
+    对 CurrentTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
 
-第 3 步 NORMALIZE_WEIGHT：
-    对 CurrentConstrainedWeight 执行模板固定归一化（族常量，非作者可选）
-
-返回 SpatialDistributionWeight（单资源链结束：无 gate、无 early return、无 combine
-——族 forbidden_freedoms 边界；行为链 Evidence Open，confidence LOW）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census PATCH 族
+canonical 三步的分歧登记 README §7；行为链 Evidence Open，confidence LOW 全程可见）
 ```
 
 ### 2.3 live 层投影声明
@@ -122,8 +154,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     （刮食取向 typed food evaluator：mouth_gape_window 口径窗）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@OnychostomaScrapeFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -172,8 +210,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census PATCH 族投影标签与 typed 轴实例值（attached_algae_detritus / current=fast_flow_stone——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 三步固定）；Bake 输入契约字段复用。
-- 放弃的自由度：(1) BakeTemplate 晋升（同湄公鲶——投影标签非 live 句型）；(2) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(3) 行为链闭合（Evidence Open 状态原样携带——本文件不假装急流—石底—附着—刮食链已证实）；(4) P06 压缩裁决（压回 P02 与否归 FR/Cross-Batch，不改本面结构）；(5) 数值与 Profile 值域不冻结。
+- 使用的自由度：census PATCH 族投影标签与 typed 轴实例值（attached_algae_detritus / current=fast_flow_stone——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：行为链四环原序、fast_flow_stone 单绑定拆两步、三档分级命中、early return 链——推导依据 §0 判断顺序行）**；Bake 输入契约字段复用。
+- 放弃的自由度：(1) BakeTemplate 晋升（同湄公鲶——投影标签非 live 句型）；(2) census canonical 步序与单 context 绑定的服从（顺序还原后链与 canonical 三步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(4) 行为链闭合（Evidence Open 状态原样携带——本文件不假装急流—石底—附着—刮食链已证实；档位成员 [需正文]）；(5) P06 压缩裁决（压回 P02 与否归 FR/Cross-Batch，不改本面结构）；(6) 数值与 Profile 值域不冻结（含三档档位成员与阈值）。
 - 跨层登记：P-B1-ONS-RESP 的刮食口径窗参数属 census「标准成员+参数实例」（engine 无字面差异）；confidence LOW 全程可见。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本行为链四环原序+early return 链+分级命中，Response 档位展开）

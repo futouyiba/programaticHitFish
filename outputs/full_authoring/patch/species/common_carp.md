@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - **翻拱扰动事实族义务（世界侧登记项——coverage delta #23 原文）**：同 #5/#11——鲤自身是扰动产生者（翻拱泥云/凹痕同黑鼓鱼 feeding_traces 读法：痕迹=环境 owner 保存的可见性事实，玩家搜索信息，不改鱼程序）；它鱼扰动暴露猎物（同小口黑鲈 disturbance_events 读法）为上游事实供给义务。
 - Group 面：按 coverage delta #23 吸收判定无供给拆分（单一 NormalFeeding Group）；若正文出现互斥供给证据则升级重审（结构变更非 Profile 重绑定）。
 - 表达超集说明：Tier B 骨架按 P02 资源斑块单因子形（census SINGLE 族）给出，仅容纳 CSV 方向+吸收判定；Story 正文到达后若判 PATCH（带 typed context）/PLAIN（多因子）/P06（连续基质）＝换 BakeTemplate 值 + 增/删行＝结构变更需重审，不是静默改写；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原，CSV+coverage delta 方向级推导 [需正文]）**：判断链＝近底带水层定位 → 底质可拱性档位 → 底栖猎物斑块丰度档位 → 归一化。推导来源：CSV 栖息带 benthopelagic（软定位三档）＋底质翻拱形态（coverage delta #23：底泥中离散底栖猎物斑块追随——**翻拱取食对底质可拱性有物理依赖：可拱性先于斑块丰度评估**）。分级命中：各步三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结 [需正文]。CSV 时段（早晨活跃）/水温锚未入链。
 
 Profile 引用清单：@CcpBenthicPatchProfile @CcpPreyFields @CcpDietClasses @CcpSizeWindow @CcpNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -62,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——Tier B 骨架，归族裁决移交 README §3 登记 2） |
+| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——Tier B 骨架，归族裁决移交 README §3 登记 2；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：底质翻拱底栖猎物 patch 轴 [需正文]（benthic prey class 绑定 + 基质/结构 Factor——coverage delta #23 吸收读法；猎物构成与基质偏好参数 [需正文]） |
 | FactorBinding | 常年绑定 [需正文]（无 premise 切换证据；potamodromous 若正文证实洄游期切换，照 MGC/CHB 先例按 lifecycle premise 配置级处理） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
@@ -72,6 +73,15 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝近底带水层定位 → 底质可拱性档位 → 底栖猎物斑块丰度档位 → 归一化；
+每步分级命中（全额/削减/出局），出局即 EARLY_RETURN。翻拱取食对底质可拱性有
+物理依赖——可拱性先于斑块丰度评估。顺序为 CSV+coverage delta 方向级推导
+（[需正文]），顺序/档位差异本身=LogicTemplate 判据（census 侧 SINGLE 族重跑=
+work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
+读取 当前格子的底质类型
 读取 当前格子的底栖猎物 patch 轴事实
     （底泥中离散底栖无脊椎分布——benthic prey class；
       基质/结构轴作为 Factor 侧读取 [需正文]）
@@ -81,17 +91,48 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@CcpDietClasses 食性过滤
       与 size_window=@CcpSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
+第 1 步 近底带水层定位（分级命中，软定位——CSV benthopelagic 底中两层）：
+    用水层带位置查询 @CcpBenthicPatchProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 近底带档（preferred 槽——翻拱取食位）：
+        LayerTier = 全额保留
+    否则如果 水层 ∈ 中下水层档（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远离底带档）：
+        返回 0（EARLY_RETURN：底质翻拱定位不在远底水层分布——
+        硬定位与否 [需正文]，正文证实可离底则档位化=结构变更需重审）
+
+第 2 步 底质可拱性档位（分级命中——翻拱物理依赖）：
+    用底质类型查询 @CcpBenthicPatchProfile 的可拱性分档槽
+    （档位成员=Profile 值域不冻结 [需正文]；方向示例：可拱软泥=preferred/
+      砂质=tolerated/硬底=excluded——成员由 Profile 定值）
+    如果 底质 ∈ 可拱档（preferred 槽）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 难拱档（tolerated 槽）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（不可拱档）：
+        返回 0（EARLY_RETURN：不可拱底质无翻取意义，出局）
+
+第 3 步 底栖猎物斑块丰度档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用底栖猎物 patch 轴事实查询 @CcpBenthicPatchProfile
-    得到 BenthicPatchFit（单 typed 因子评估；
-      本步为 Tier B 骨架投影——census 判同未做，EVAL_RESOURCE_PATCH
-      实例化名按同批 Tier A 三成员同构预留）
+    （本步为 Tier B 骨架投影——census 判同未做，EVAL_RESOURCE_PATCH
+      实例化名按同批 Tier A 三成员同构预留；单 typed 因子评估展开为
+      三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 斑块猎物可得性 ∈ 丰档（preferred 槽）：
+        BenthicPatchFit = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        BenthicPatchFit = 削减强度（削减但不清零）
+    否则（无斑块猎物档）：
+        返回 0（EARLY_RETURN：无底栖猎物斑块的格子出局）
 
-NORMALIZE_WEIGHT：
-    对 BenthicPatchFit 执行模板固定归一化（族常量，非作者可选）
+第 4 步 NORMALIZE_WEIGHT：
+    对 LayerTier × SubstrateTier × BenthicPatchFit 执行模板固定归一化
+    （族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 中间步属 PATCH 族域，多因子组合属 PLAIN 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 
 翻拱痕迹边界：本鱼翻拱产生的泥云/凹痕由环境 owner 保存并呈现给玩家——
 不进入本分布程序的读取集（同黑鼓鱼读法：痕迹≠必有鱼，鱼对局部实际猎物响应）
@@ -120,8 +161,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     （底栖取向接受窗参数 [需正文]——Tier B 骨架，参数级无新拓扑）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@CcpNormalFeedingProfile 值域不冻结 [需正文]）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -169,8 +216,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族骨架投影与 typed 因子实例语义（benthic prey class 绑定——coverage delta #23 吸收读法）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 归族裁决权移交（无 census 快照——Story 正文到达后 census 判同可能改判 PATCH/PLAIN/P06 翻案，结构变更需重审；正文判无程序语义即撤回本文件）；(2) 翻拱痕迹的鱼侧程序化（世界侧可见性事实——同黑鼓鱼读法）；(3) 数值与 Profile 值域不冻结；(4) 行级 Pattern relation 的确认权（live 不可达——[需核对]，README §4 登记）。
+- 使用的自由度：SINGLE 族骨架投影与 typed 因子实例语义（benthic prey class 绑定——coverage delta #23 吸收读法）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：近底带软定位先行、可拱性档三档分级命中、early return 链——CSV+coverage delta 方向级推导 [需正文]）**；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 归族裁决权移交（无 census 快照——Story 正文到达后 census 判同可能改判 PATCH/PLAIN/P06 翻案，结构变更需重审；正文判无程序语义即撤回本文件）；(2) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 翻拱痕迹的鱼侧程序化（世界侧可见性事实——同黑鼓鱼读法）；(4) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(5) 数值与 Profile 值域不冻结（含档位成员与阈值）；(6) 行级 Pattern relation 的确认权（live 不可达——[需核对]，README §4 登记）。
 - 品系边界：field 批鲤复合体品系文件（L1 等效层）以本文件为本体单向从属——品系不新增空间程序、不新增 typed 因子；本文件结构变更时品系重绑定清单连带更新（该批先例）。
 
 BATCH_ID: REP-FULL-P02-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

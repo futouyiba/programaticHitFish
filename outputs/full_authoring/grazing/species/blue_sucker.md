@@ -20,6 +20,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - CSV 食性列为空：食性构成（底栖无脊椎/有机碎屑比例）[需正文]——本文件 typed factor 值按体构方向给骨架占位。
 - Group 面：按分批口径无供给拆分；若正文出现互斥供给证据则升级重审（结构变更非 Profile 重绑定）。
 - 表达超集说明：Tier B 骨架按 P06 底质单因子形（census SINGLE 族）给出，仅容纳 CSV+体构方向；归族改判（PATCH/PLAIN）＝结构变更需重审；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原，CSV+体构方向级推导 [需正文]）**：判断链＝近底带水层定位 → 底质栖境档位 → 无脊椎资源档位 → 归一化。推导来源：CSV 栖息带 benthopelagic＋亚口科吸口型底栖取食体构（软定位三档但近底为全额档——体构注记；硬定位与否 [需正文]）＋CSV 食性空列（资源构成 [需正文]）。分级命中：各步三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结 [需正文]。CSV 时段（早晨活跃）/水温锚未入链。
 
 Profile 引用清单：@BlueSuckerSubstratePatchProfile @BlueSuckerSubstrateSpatialProfile @BlueSuckerSubstratePreyFields @BlueSuckerDietClasses @BlueSuckerSizeWindow @BlueSuckerNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -60,7 +61,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同） |
+| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：底质表面/间隙无脊椎资源（亚口科吸口底栖取食体构方向——CSV 食性空列 [需正文]；急流砾石 vs 缓流软底偏好 [需正文]） |
 | FactorBinding | 常年绑定 [需正文]（CSV 无迁徙注记——若正文证实季节/阶段切换则由上游 premise 配置处理） |
 | SubstratePatchProfile | @BlueSuckerSubstratePatchProfile |
@@ -71,6 +72,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝近底带水层定位 → 底质栖境档位 → 无脊椎资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。顺序为 CSV+体构方向级推导
+（benthopelagic 软定位＋亚口科吸口底栖取食体构，[需正文]）——Story 正文到达后校准，
+顺序/档位差异本身=LogicTemplate 判据（census 侧 SINGLE 族重跑=work standards
+§5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
 读取 当前格子的底质类型（砾石/砂/泥）
 读取 当前格子的基质资源原始事实
     （UsableForageAvailability 契约输出：
@@ -80,16 +89,45 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
     不在本 body 内设分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
+第 1 步 近底带水层定位（分级命中，软定位——CSV benthopelagic＋吸口底栖体构注记）：
+    用水层带位置查询 @BlueSuckerSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 近底带档（preferred 槽——吸食取食位）：
+        LayerTier = 全额保留
+    否则如果 水层 ∈ 中下水层档（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远离底带档）：
+        返回 0（EARLY_RETURN：吸食底栖取食定位不在远底水层分布——
+        硬定位与否 [需正文]，正文证实可离底则档位化=结构变更需重审）
+
+第 2 步 底质栖境档位（分级命中——表面/间隙无脊椎栖境可得性）：
+    用底质类型查询 @BlueSuckerSubstratePatchProfile 的底质分档槽
+    （急流砾石 vs 缓流软底偏好 [需正文]；档位成员=Profile 值域不冻结）
+    如果 底质 ∈ 无脊椎栖境档（preferred 槽——表面/间隙栖境充分）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（无栖境档——无脊椎不可栖底质）：
+        返回 0（EARLY_RETURN：无可吸食栖境的底质出局）
+
+第 3 步 无脊椎资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @BlueSuckerSubstratePatchProfile
-    得到 SubstratePatchFit（单 typed 因子评估）
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底栖无脊椎的格子出局）
 
-NORMALIZE_WEIGHT：
-    对 SubstratePatchFit 执行模板固定归一化（族常量，非作者可选）
+第 4 步 NORMALIZE_WEIGHT：
+    对 LayerTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 约束属 PATCH 族域，硬约束属 HARD_GATED 族域，
-多因子组合属 PLAIN 族域，均非本骨架）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +151,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @BlueSuckerNormalFeedingProfile（底栖吸食取向接受窗——体构方向锚）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@BlueSuckerNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,8 +207,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（底栖无脊椎资源方向，取自亚口科体构方向）；Profile 命名；伪脚本步序（canonical 两步固定）；Bake 输入契约字段复用。
-- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(3) CSV 空食性列的补值（不做领域知识补写，typed factor 语义标 [需正文]）；(4) 数值与 Profile 值域不冻结。
-- [需正文] 食性构成（无脊椎/碎屑）、底质类型偏好（急流砾石/缓流软底）、premise 切换（若有）、Response 接受窗参数方向。
+- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（底栖无脊椎资源方向，取自亚口科体构方向）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：近底带软定位先行、栖境档三档分级命中、early return 链——CSV+体构方向级推导 [需正文]）**；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(4) CSV 空食性列的补值（不做领域知识补写，typed factor 语义标 [需正文]）；(5) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(6) 数值与 Profile 值域不冻结（含档位成员与阈值）。
+- [需正文] 食性构成（无脊椎/碎屑）、底质类型偏好（急流砾石/缓流软底）、判断顺序与档位成员校准、premise 切换（若有）、Response 接受窗参数方向。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

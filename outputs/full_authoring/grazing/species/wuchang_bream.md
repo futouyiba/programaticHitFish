@@ -21,6 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 「躲藏」性格注记（CSV）：档案方向值，无 Story 证据映射到行为程序——不表达，仅记录（Cover/结构偏好若正文证实属 BA-T1 StructureProfile 值域，非本 Story 程序）。
 - Group 面：按分批口径无供给拆分；若正文出现互斥供给证据则升级重审（结构变更非 Profile 重绑定）。
 - 表达超集说明：Tier B 骨架按 P06 底质单因子形（census SINGLE 族）给出，仅容纳 CSV+SRCHECK 方向；归族改判（PATCH/PLAIN）＝结构变更需重审；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原，CSV/SRCHECK 方向级推导 [需正文]）**：判断链＝近底带水层定位 → 水草床构成档位 → 啃食资源档位 → 归一化。推导来源：CSV 栖息带 benthopelagic（软定位三档）＋深 5–20m＋SRCHECK「不毁草」条件化（Hydrilla 抑制/Vallisneria 选择性放过——**草床构成三档有 SRCHECK 直接证据**：Hydrilla 占优=全额啃食/ Vallisneria 占优=削减（选择性放过致可得资源低）/无草床=出局）。档位成员与阈值全 Profile 值域不冻结（构成比例阈值 [需正文]）。CSV 时段（早晨活跃）/水温锚未入链。
 
 Profile 引用清单：@WuchangBreamSubstratePatchProfile @WuchangBreamSubstrateSpatialProfile @WuchangBreamSubstratePreyFields @WuchangBreamDietClasses @WuchangBreamSizeWindow @WuchangBreamNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -61,7 +62,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同） |
+| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：沉水植物资源（SRCHECK 方向：Hydrilla 抑制/Vallisneria 选择性——植物种类选择性由 Profile 值域承载；CSV benthopelagic 深水层方向） |
 | FactorBinding | 常年绑定 [需正文]（CSV 无迁徙注记——若正文证实季节/阶段切换则由上游 premise 配置处理） |
 | SubstratePatchProfile | @WuchangBreamSubstratePatchProfile |
@@ -72,7 +73,15 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
-读取 当前格子的底质类型与水草床构成
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝近底带水层定位 → 水草床构成档位 → 啃食资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。水草床构成三档有 SRCHECK 直接证据
+（Hydrilla 抑制/Vallisneria 选择性放过——「不毁草」条件化）；顺序为 CSV/SRCHECK
+方向级推导（[需正文]），顺序/档位差异本身=LogicTemplate 判据
+（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
+读取 当前格子的水草床构成（Hydrilla/Vallisneria 分 class——种类选择性在 Profile 值域）
 读取 当前格子的基质资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@WuchangBreamSubstratePreyFields 绑定的沉水植物 prey class 生物量
@@ -82,16 +91,44 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
     不在本 body 内设分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
+第 1 步 近底带水层定位（分级命中，软定位——CSV benthopelagic 底中两层）：
+    用水层带位置查询 @WuchangBreamSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]；深 5–20m CSV 方向锚）
+    如果 水层 ∈ 近底带档（preferred 槽）：
+        LayerTier = 全额保留
+    否则如果 水层 ∈ 中下水层档（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远离底带档）：
+        返回 0（EARLY_RETURN：沉水植物啃食定位不在远底水层分布）
+
+第 2 步 水草床构成档位（分级命中——SRCHECK「不毁草」条件化直接支持）：
+    用水草床构成查询 @WuchangBreamSubstratePatchProfile 的草床构成分档槽
+    （构成比例阈值=Profile 值域不冻结 [需正文]）
+    如果 草床 ∈ Hydrilla 占优档（preferred 槽——抑制对象，啃食可得性高）：
+        WeedBedTier = 全额保留
+    否则如果 草床 ∈ Vallisneria 占优档（tolerated 槽——选择性放过，可得资源低）：
+        WeedBedTier = 削减（削减但不清零）
+    否则（无草床档）：
+        返回 0（EARLY_RETURN：无沉水植物草床的格子出局）
+
+第 3 步 啃食资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @WuchangBreamSubstratePatchProfile
-    得到 SubstratePatchFit（单 typed 因子评估）
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 可啃食生物量 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无可啃食资源档）：
+        返回 0（EARLY_RETURN：无啃食资源的格子出局）
 
-NORMALIZE_WEIGHT：
-    对 SubstratePatchFit 执行模板固定归一化（族常量，非作者可选）
+第 4 步 NORMALIZE_WEIGHT：
+    对 LayerTier × WeedBedTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 约束属 PATCH 族域，硬约束属 HARD_GATED 族域，
-多因子组合属 PLAIN 族域，均非本骨架）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -115,8 +152,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @WuchangBreamNormalFeedingProfile（草食取向接受窗——SRCHECK+CSV 方向锚）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@WuchangBreamNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -165,8 +208,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（沉水植物资源方向，取自 SRCHECK+CSV）；Profile 命名；伪脚本步序（canonical 两步固定）；Bake 输入契约字段复用（水草 prey class 分 class 绑定）。
-- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(3) 「躲藏」性格与 Cover 偏好的程序化（档案字段无 Story 证据映射；若正文证实属 BA-T1 StructureProfile 值域非本 Story 程序）；(4) 200cm 体长疑源错值不引用（行标待人工确认）；(5) 数值与 Profile 值域不冻结。
-- [需正文] 水草 prey class 构成（Hydrilla/Vallisneria 分 class 与数值）、premise 切换（若有）、Response 接受窗参数方向。
+- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（沉水植物资源方向，取自 SRCHECK+CSV）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：近底带软定位、SRCHECK 草床构成三档分级命中（全额/选择性削减/无草出局）、early return 链——CSV/SRCHECK 方向级推导 [需正文]）**；Bake 输入契约字段复用（水草 prey class 分 class 绑定）。
+- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(4) 「躲藏」性格与 Cover 偏好的程序化（档案字段无 Story 证据映射；若正文证实属 BA-T1 StructureProfile 值域非本 Story 程序）；(5) 200cm 体长疑源错值不引用（行标待人工确认）；(6) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(7) 数值与 Profile 值域不冻结（含草床构成比例阈值与档位成员）。
+- [需正文] 水草 prey class 构成（Hydrilla/Vallisneria 分 class 与数值）、草床构成比例阈值、判断顺序校准、premise 切换（若有）、Response 接受窗参数方向。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

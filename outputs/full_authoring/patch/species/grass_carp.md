@@ -24,6 +24,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 标准成员（P02 语义=patch 背景下离散 TargetFeeding；面包/玉米取向参数——参数级，无新拓扑）。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原）**：判断链＝斑块存在性 → 斑块质量档位 → 归一化。顺序推导来源：census 盲体 sketch「分布跟随植食资源与预投饵斑块」＋P02 判别轴（食物载体=离散资源斑块——**斑块追随程序的先验是斑块存在**：无斑块格不产生追随分布，存在性先行）；质量评估展开为三档分级命中（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结。斑块双构成（水生植物/预投饵）同源评估——来源差异在世界侧事实供给层（§0 关键判别），不购买档位分叉。CSV 时段（早晨活跃）锚未入链（无 Story 空间程序证据）。
 
 Profile 引用清单：@GrbHerbivorePatchProfile @GrbPreyFields @GrbDietClasses @GrbSizeWindow @GrbNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -64,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一） |
+| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：植食资源+预投饵斑块轴（census P-B1-GRB-BAKE 实例常量 resource="aquatic_plant+bait_patch"；预投饵斑块 prebait_patches=世界侧事实供给义务，resolver_tests 登记非鱼程序结构） |
 | FactorBinding | 常年绑定（无 lifecycle/season premise 切换证据） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
@@ -74,25 +75,49 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝斑块存在性 → 斑块质量档位 → 归一化；分级命中（全额/削减/出局），
+出局即 EARLY_RETURN。P02 斑块追随程序的先验=斑块存在（无斑块格不产生追随分布）；
+存在性先行是 census sketch「分布跟随植食资源与预投饵斑块」的行为判断序还原
+（canonical 计算序 EVAL_TYPED_FIELD_OR_FACTOR 单步在此展开为存在门+质量档两步）。
+顺序差异本身=LogicTemplate 判据，与 census canonical body（无 gate 判语）的拓扑分歧
+登记 README §7（census 侧 SINGLE 族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的植食资源+预投饵斑块轴事实
     （双构成：水生植物资源事实 + prebait_patches 玩家预投饵斑块事实——
-      两者同为世界侧上游事实；预投饵斑块的保存与衰减归环境资源 owner）
+      两者同为世界侧上游事实；预投饵斑块的保存与衰减归环境资源 owner；
+      双构成同源评估——来源差异在世界侧事实供给层，不购买档位分叉）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@GrbPreyFields 绑定的 prey class 生物量，
       经 diet_classes=@GrbDietClasses 食性过滤
       与 size_window=@GrbSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用植食资源+预投饵斑块轴事实查询 @GrbHerbivorePatchProfile
-    得到 HerbivorePatchFit（单 typed 因子评估；
-      census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构）
+第 1 步 斑块存在性（GATE_PATCH_PRESENCE）：
+    用斑块轴事实查询 @GrbHerbivorePatchProfile 的存在分档槽
+    如果 本格无植食资源斑块且无预投饵斑块（excluded 槽——零斑块）：
+        返回 0（EARLY_RETURN：无斑块格不参与斑块追随分布）
+    否则：
+        进入第 2 步
 
-NORMALIZE_WEIGHT：
+第 2 步 斑块质量档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用斑块质量事实查询 @GrbHerbivorePatchProfile
+    （census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构；
+      单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 斑块质量 ∈ 最适应档（preferred 槽）：
+        HerbivorePatchFit = 全额强度
+    否则如果 斑块质量 ∈ 可接受档（tolerated 槽）：
+        HerbivorePatchFit = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（斑块存在但质量近零档）：
+        返回 0（EARLY_RETURN：质量排除档出局）
+
+第 3 步 NORMALIZE_WEIGHT：
     对 HerbivorePatchFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 中间步属 PATCH 族域，多因子组合属 PLAIN 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，BakeTemplate 投影标签
+不因此静默改写——换标签/改结构=census 族重跑裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -119,8 +144,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
       P02 语义：patch 背景下的离散目标食物评价，参数级无新拓扑）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@GrbNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -168,8 +199,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（resource_patch(plant+prebait)——census 冻结实例常量原样）；Profile 命名；伪脚本步序（canonical 两步固定）；预投饵资源的世界侧归属层选择（census 判语照录——事实供给义务非鱼程序结构）。
-- 放弃的自由度：(1) 饵区聚集的 Group 化（census 判语：饵区鱼多不证明必须 Group，Patch 不自动购买 Mode/Group）；(2) 预投饵斑块的鱼侧程序化（世界侧事实供给义务——玩家投放语义不进鱼 Bake/Response 结构；live §11.4 槽位归属两层 reconciliation OPEN）；(3) 数值与 Profile 值域不冻结；(4) PATCH↔SINGLE optional_context 边界（HRQ-B1-02）与 census↔live 两层 reconciliation 的裁决权（归机制侧）。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（resource_patch(plant+prebait)——census 冻结实例常量原样）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：斑块存在性先行、质量三档分级命中、early return 链——推导依据 §0 判断顺序行）**；预投饵资源的世界侧归属层选择（census 判语照录——事实供给义务非鱼程序结构）；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 饵区聚集的 Group 化（census 判语：饵区鱼多不证明必须 Group，Patch 不自动购买 Mode/Group）；(2) 预投饵斑块的鱼侧程序化（世界侧事实供给义务——玩家投放语义不进鱼 Bake/Response 结构；live §11.4 槽位归属两层 reconciliation OPEN）；(3) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(4) 双构成（水草/预投饵）的档位分叉（同源评估——来源差异在世界侧事实供给层）；(5) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(6) 数值与 Profile 值域不冻结（含档位成员与阈值）；(7) PATCH↔SINGLE optional_context 边界（HRQ-B1-02）与 census↔live 两层 reconciliation 的裁决权（归机制侧）。
 - CSV 习性锚（早晨活跃/温和/potamodromous）仅方向锚；potamodromous 若 Story 正文证实洄游期因子切换，照 MGC/CHB 先例按 lifecycle premise 配置级处理，不购买 Migration Group。
 
 BATCH_ID: REP-FULL-P02-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

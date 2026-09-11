@@ -152,3 +152,55 @@ BATCH_ID: REP-FULL-P02-001
 ## REP-FULL-P02-REV-001 验收记录（2026-09-11）
 
 - verdict: **ARTIFACT_APPROVE**（第四批直接通过）。核心声明经 census B1 冻结快照第一手证据独立成立。MINOR-1 计数修正。
+
+---
+
+## 7. REP-ORDER-FIX-001 顺序还原修复批次记录（2026-09-11）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级——B 系列伪脚本顺序缺陷：平铺结构丢失真实判断顺序）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8）。**修复对象**：本批全部 5 文件。修复方法与 grazing 批（REP-ORDER-FIX-001 同批姊妹面）一致：判断链从证据推导（Tier A=census 盲体 sketch 行为提取；Tier B=CSV/coverage delta 方向级推导标 [需正文]）、平铺改 early return 链、单一 Fit 展开为三档分级命中（preferred 全额/tolerated 削减不清零/excluded 出局）。
+
+### 每文件修复内容（顺序变化 + 新增 early return + 分级命中展开）
+
+| 文件 | 修复前（平铺） | 修复后（顺序还原链） | 新增 early return | 分级命中展开 |
+|---|---|---|---|---|
+| grass_carp.md | 读事实→EVAL→归一化 | 斑块存在性 → 斑块质量档位 → 归一化（P02 判别轴推论：斑块追随程序先验=斑块存在；canonical 单步展开为存在门+质量档） | 无斑块格（EARLY_RETURN）；质量排除档（EARLY_RETURN） | 斑块质量三档；双构成（水草/预投饵）同源评估不分叉（§0 关键判别维持） |
+| brown_trout_position.md | 读事实→槽1→槽2→组合 | patch 存在性 → patch 强度档位 → rank 位置档位 → 加权组合（无 patch 格无竞争占位语义，存在性先行） | 无食物 patch（EARLY_RETURN）；强度排除档（EARLY_RETURN） | patch 强度三档 + **rank 档三档由 census 实例常量 core-vs-edge 直接支持**（优势=中心全额/中间=中间带/次级=边缘带削减不清零）；COMBINE_WEIGHTED 与 OPERATOR UNDEFINED 保留；退化条款（TAR-05）保留 |
+| black_drum.md | 读事实→EVAL→归一化 | 底层水层定位 → 底质可翻性档位 → 底栖猎物丰度档位 → 归一化（demersal 硬定位＋翻底物理依赖：可翻性先于猎物丰度） | 非底层（EARLY_RETURN）；不可翻底质（EARLY_RETURN）；无底栖猎物（EARLY_RETURN） | 可翻性/猎物丰度各三档（档位成员 [需正文]，方向示例泥/泥沙/岩盘由 Profile 定值）；痕迹边界声明保留 |
+| smallmouth_follow.md | 读事实→EVAL→归一化 | 扰动机会存在性 → 暴露猎物机会档位 → 归一化（**动态机会语义=事件驱动：无扰动事件即无机会斑块，存在门先行**；常态分布归该鱼其它程序面，非本 Story 程序） | 扰动窗口内无事件（EARLY_RETURN）；残余暴露档（EARLY_RETURN） | 暴露猎物三档 |
+| common_carp.md | 读事实→EVAL→归一化 | 近底带水层定位（软定位） → 底质可拱性档位 → 底栖猎物斑块丰度档位 → 归一化（benthopelagic 软定位＋翻拱物理依赖：可拱性先于斑块丰度；Tier B 方向级 [需正文]） | 远离底带（EARLY_RETURN，硬定位与否 [需正文]）；不可拱底质（EARLY_RETURN）；无斑块猎物（EARLY_RETURN） | 水层/可拱性/斑块丰度各三档；翻拱痕迹边界声明保留 |
+
+共性：每文件 §2.2 头部加【顺序还原声明】、§2.1 BakeTemplate 值单元格加尾注、§0 加「判断顺序」语义行、§5 自由度记录同步更新；Response 面 §3.2「DECIDE_RESPONSE」未展开占位一并修为三档分级命中（接受/边际低响应/无响应——与 §3.1 配置表两列语义对齐）。
+
+### 不修面与理由
+
+- **Group 面（§1）**：任务边界明示条件原子/组合/分群表不变——零改动。
+- **Quality 面（§4）**：既有伪脚本已是完整程序（循环乘因子→汇总→条件归一化/无候选分支），无平铺问题。
+- **褐鳟 PLAIN 族配置行**：Factor1/Factor2/CombineRule 行结构不动（FAMCTX 族边界维持——槽序在伪脚本内重排为判断序，配置表零改动）。
+
+### 顺序差异与 census 的分歧登记（UPSTREAM 级，本批不闭合）
+
+顺序还原后链与 census registry v4 canonical body 判语（SINGLE 两步/PLAIN 组合，「无 gate、无 early return」）**拓扑分歧**。处置同 grazing 批 README §7：本批不改 census 文件、BakeTemplate 投影标签不静默改写；**census 侧受影响族重跑（SINGLE 族成员数可能低估）为 work standards §5.4 行动项归 census/coordinator 侧**；Tier A 4 文件顺序=census 盲体行为提取的判断序还原、Tier B（鲤）=方向级推导 [需正文] 校准；水温/光照/时段未入任何链（无 Story 空间程序证据，不冒充 work standards §5.1 通用模板的因子）。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/patch/validate_patch.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/patch/validate_patch.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/patch"
+[PASS] black_drum.md
+[PASS] brown_trout_position.md
+[PASS] common_carp.md
+[PASS] grass_carp.md
+[PASS] smallmouth_follow.md
+== result ==
+PASS (5 species files, 0 violations)
+```
+
+本批首轮即 PASS（grazing 批 @Profile 伪 token 教训先吸收——§0 文案直接写「Profile 值域」不带 @）。validator 零改动。
+
+BATCH_ID: REP-ORDER-FIX-001（P02 面）

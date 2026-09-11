@@ -24,6 +24,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 标准成员（位置背景影响可及食物——position_context premise，参数级无新拓扑）。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原）**：判断链＝patch 存在性 → patch 强度档位 → rank 位置档位 → 加权组合。顺序推导来源：census 盲体 sketch「食物 patch 强度评估 + 个体 rank 位置偏好因子加权组合」——位置竞争以食物 patch 为竞争对象（**无 patch 格无竞争占位语义，存在性先行**）；rank 因子展开为三档分级命中（**core-vs-edge census 实例常量直接支持**：优势档=patch 中心全额/中间档=中间带削减/次级档=边缘带更低削减但不清零——「优势个体偏向 patch 中心，次级个体边缘化」）。档位成员与阈值全 Profile 值域不冻结。conflict path 不建判语维持。
 
 Profile 引用清单：@BrtPatchCompetitorProfile @BrtRankPositionProfile @BrtPreyFields @BrtDietClasses @BrtSizeWindow @BrtNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -64,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P02-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→组合——本标签本批唯一使用文件＝census 在案 PLAIN 第 3 成员） |
+| BakeTemplate | BA-P02-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→组合——本标签本批唯一使用文件＝census 在案 PLAIN 第 3 成员；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | Factor1Type(typed) | resource_patch：食物位置分布轴（census premise resource_patch=食物位置分布；盲体槽1 op=EVAL_RESOURCE_PATCH——族判同实例化名） |
 | Factor2Type(typed) | individual_rank：优势等级→patch 中心-边缘位置偏好轴（census 盲体槽2 op=EVAL_RANK_POSITION_PREFERENCE——新具名 typed 因子类型，首个个体属性调制因子，**准入待批 HRQ-B1-04**；rank fact 产品持久写回未定 TAR-05） |
 | FactorBinding | 常年绑定（rank premise 为个体 Condition/Relation 上游 fact，非 lifecycle/season 切换） |
@@ -75,6 +76,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝patch 存在性 → patch 强度档位 → rank 位置档位 → 加权组合；分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。位置竞争以食物 patch 为竞争对象——
+无 patch 格无竞争占位语义，存在性先行；rank 档位三档由 census 实例常量
+core-vs-edge（优势=中心/次级=边缘化）直接支持。顺序差异本身=LogicTemplate
+判据，与 census canonical body（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧 PLAIN 族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的食物位置分布轴事实（食物 patch 强度）
 读取 当前个体 rank premise（individual_rank=优势等级——上游个体 Condition/Relation fact）
 读取 当前格子的可食资源原始事实
@@ -83,22 +92,42 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@BrtDietClasses 食性过滤
       与 size_window=@BrtSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR（槽1）：
+第 1 步 patch 存在性（GATE_PATCH_PRESENCE）：
+    用食物位置分布轴事实查询 @BrtPatchCompetitorProfile 的存在分档槽
+    如果 本格无食物 patch（excluded 槽——零 patch 强度）：
+        返回 0（EARLY_RETURN：无 patch 格无竞争占位对象，不参与本分布）
+    否则：
+        进入第 2 步
+
+第 2 步 patch 强度档位（EVAL_TYPED_FIELD_OR_FACTOR 槽1，分级命中）：
     用食物 patch 强度事实查询 @BrtPatchCompetitorProfile
-    得到 PatchFit
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 patch 强度 ∈ 强档（preferred 槽）：
+        PatchFit = 全额强度
+    否则如果 patch 强度 ∈ 中档（tolerated 槽）：
+        PatchFit = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（patch 存在但强度近零档）：
+        返回 0（EARLY_RETURN：强度排除档出局）
 
-EVAL_RANK_POSITION_PREFERENCE（槽2）：
+第 3 步 rank 位置档位（EVAL_RANK_POSITION_PREFERENCE 槽2，分级命中——core-vs-edge）：
     用个体 rank premise 查询 @BrtRankPositionProfile
-    得到 RankPositionFit
-    （优势个体偏向 patch 中心、次级个体边缘化——core-vs-edge；
-      具名 op 待批 HRQ-B1-04：首个个体属性调制因子，factor 轴语义边界扩展）
+    （优势个体偏向 patch 中心、次级个体边缘化——census 实例常量 core-vs-edge
+      直接支持三档；具名 op 待批 HRQ-B1-04：首个个体属性调制因子）
+    如果 rank ∈ 优势档（preferred 槽）：
+        RankPositionFit = 中心占位（全额）
+    否则如果 rank ∈ 中间档（tolerated 槽）：
+        RankPositionFit = 中间带占位（削减）
+    否则（次级档）：
+        RankPositionFit = 边缘带占位（更低削减——边缘化但不清零）
 
-COMBINE_WEIGHTED：
+第 4 步 COMBINE_WEIGHTED：
     合并 PatchFit 与 RankPositionFit
 算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明）
 
-返回 SpatialDistributionWeight（因子集链结束：无 gate、无归一化步——族边界）
-退化条款：若产品不实现 rank 状态（TAR-05 未定），槽2 退化为常量——
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、双槽分级命中；
+无归一化步——族边界维持。本链与 census PLAIN 族 canonical
+（无 gate 判语）的分歧登记 README §7）
+退化条款：若产品不实现 rank 状态（TAR-05 未定），槽3 退化为常量——
 程序体退化为纯 patch 形，族归属翻案（census open_semantics 原样，结构变更需重审）
 ```
 
@@ -125,8 +154,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     （位置背景并入评价参数——census 盲体 sketch 原样，参数级无新拓扑）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@BrtNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -176,8 +211,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census PLAIN 族投影标签与双槽 typed 因子实例语义（resource_patch + individual_rank——census 冻结槽序与实例常量原样）；Profile 命名；伪脚本步序（canonical 槽1→槽2→组合固定）。
-- 放弃的自由度：(1) 争食 Mode 的 Group 化（census 判语：个体 Condition/Relation 而非独立争食 Mode，GroupPressure=None——Group 侧 share-vector 替代读法两层裁决 OPEN）；(2) conflict 路径（「明显攻击并不多」证据不足不建——census 判语原样）；(3) 合并算子数学（OPERATOR UNDEFINED）；(4) rank fact 持久写回（TAR-05 未定——退化条款见 §2.2，翻案=结构变更需重审）；(5) 数值与 Profile 值域不冻结。
+- 使用的自由度：census PLAIN 族投影标签与双槽 typed 因子实例语义（resource_patch + individual_rank——census 冻结槽序与实例常量原样）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：patch 存在性先行、双槽三档分级命中（rank 档=core-vs-edge 直接支持）、early return 链——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) 争食 Mode 的 Group 化（census 判语：个体 Condition/Relation 而非独立争食 Mode，GroupPressure=None——Group 侧 share-vector 替代读法两层裁决 OPEN）；(2) conflict 路径（「明显攻击并不多」证据不足不建——census 判语原样）；(3) 合并算子数学（OPERATOR UNDEFINED）；(4) census canonical 步序的服从（顺序还原后链与 canonical「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(5) rank fact 持久写回（TAR-05 未定——退化条款见 §2.2，翻案=结构变更需重审）；(6) 数值与 Profile 值域不冻结（含 rank 档位成员与阈值）。
 - HRQ-B1-04 双轴待批（槽位数伸缩 2 槽 vs canonical 4 槽轴声明 2–6 + rank 因子类型准入）——本文件按 census 判定表达；裁决翻案=换 BakeTemplate 值+增/删行=结构变更需重审（validator 族边界拦截静默改写）。
 
 BATCH_ID: REP-FULL-P02-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+双槽分级命中，Response 档位展开）

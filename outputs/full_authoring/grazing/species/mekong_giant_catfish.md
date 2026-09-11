@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 幼体（肉食期）：Bake 程序无空间行为证据，未建体（TAR-02）；其 Response 面 FieldFeeding 通道按 TYPED 族 evaluator_binding 轴 premise 实例处理。
 - Quality 面：齿系重塑改变 prey 处理能力与食性偏好＝encounter/conversion 层 typed 参数，无 Quality Selection 程序体结构差异证据（census Quality 面判语原样携带）。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原）**：成体判断链＝底带定位 → 底质资源档位 → 归一化。顺序推导来源：census 盲体行为提取（成体底部碎屑/藻取食＋zone=bottom 实例常量）——底带定位从「patch 评估后的约束乘法步」（CONSTRAIN_ZONE，计算序）还原为「首道定位判定」（行为判断序：底栖取食鱼先确定在不在底带，再评估该格底质资源）。CSV 时段（夜间活跃）/水温（20–32℃）锚未入链——Story 空间程序证据无水温/光照因子，入链=正文证实后扩链（结构变更需重审）。分级命中：底质资源评估展开为三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结。
 
 Profile 引用清单：@MekongCatfishSubstratePatchProfile @MekongCatfishZoneConstraintProfile @MekongCatfishSubstrateSpatialProfile @MekongCatfishSubstratePreyFields @MekongCatfishDietClasses @MekongCatfishSizeWindow @MekongCatfishAdultFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -63,7 +64,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-PATCH（本批投影标签＝census PATCH_RESOURCE_FOLLOWING，registry v4，双成员 PROVISIONAL——HRQ-04/HRQ-B1-02 PENDING；3 步带 typed context） |
+| BakeTemplate | BA-SUBSTRATE-PATCH（本批投影标签＝census PATCH_RESOURCE_FOLLOWING，registry v4，双成员 PROVISIONAL——HRQ-04/HRQ-B1-02 PENDING；3 步带 typed context；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，与 census canonical 步序的分歧登记 README §7**） |
 | PatchResourceType(typed) | 底部碎屑+藻资源（detritus+algae；census P-MGC-BAKE-ADULT 实例常量，registry patch_resource_type 轴） |
 | ContextConstraint(typed) | zone=bottom 底带约束（census context_type 轴 zone 侧；轴宽度 zone/current 两值待批） |
 | ZoneConstraintProfile | @MekongCatfishZoneConstraintProfile |
@@ -76,33 +77,51 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底带定位 → 底质资源档位 → 归一化；每步分级命中（全额/削减/出局），
+出局即 EARLY_RETURN、不做后续评估。zone=bottom（census 实例常量）从 census canonical
+计算序（EVAL_RESOURCE_PATCH → CONSTRAIN_ZONE → NORMALIZE_WEIGHT 的约束乘法步）还原为
+首道定位判定——顺序差异本身=LogicTemplate 判据，与 census canonical body 的拓扑分歧
+登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项，非本批动作）。
+
 读取 当前 lifecycle premise（JUVENILE | ADULT——上游 lifecycle trait，体型/年龄驱动，缓慢单向）
 如果 premise = JUVENILE：
     幼体 Bake 程序无空间行为证据，不建体（TAR-02）——不进入本程序
 否则（premise = ADULT，本程序绑定实例）：
 
-读取 当前格子的底质组成
+读取 当前格子的水层带位置（zone 轴事实）
 读取 当前格子的底部资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@MekongCatfishSubstratePreyFields 绑定的碎屑/藻类 prey class 生物量，
       经 diet_classes=@MekongCatfishDietClasses 食性过滤
       与 size_window=@MekongCatfishSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前格子的底带位置（zone 轴事实）
 
-第 1 步 EVAL_RESOURCE_PATCH：
+第 1 步 底带定位（GATE_ZONE——census op CONSTRAIN_ZONE 的顺序还原形）：
+    用当前格子的水层带位置查询 @MekongCatfishZoneConstraintProfile
+    （成体底部取食定位，zone=bottom census 实例常量；底带成员集=Profile 值域不冻结）
+    如果 当前格子位于底带（zone=bottom）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：非底带格不参与成体底质分布——底栖取食定位先行）
+
+第 2 步 底质资源档位（EVAL_RESOURCE_PATCH，分级命中）：
     用底部碎屑/藻资源事实查询 @MekongCatfishSubstratePatchProfile
-    （SubstrateResourcePatchEvaluator 实例，typed substrate evaluator）
-    得到 SubstratePatchIntensity
-
-第 2 步 CONSTRAIN_ZONE：
-    用当前格子的底带位置应用 @MekongCatfishZoneConstraintProfile（zone=bottom）
-    得到 ZoneConstrainedWeight
+    （SubstrateResourcePatchEvaluator 实例，typed substrate evaluator；
+      三档分档槽=Profile 值域——档位成员与阈值不冻结）
+    如果 资源可得性 ∈ 最适应档（@MekongCatfishSubstratePatchProfile preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 资源可得性 ∈ 可接受档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（资源可得性 ∈ 排除档）：
+        返回 0（EARLY_RETURN：无可得碎屑/藻资源的格子出局）
 
 第 3 步 NORMALIZE_WEIGHT：
-    对 ZoneConstrainedWeight 执行模板固定归一化（族常量，非作者可选）
+    对 SubstratePatchIntensity 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单资源链结束：无 gate、无 early return、无 combine、
-无相对排序——族 forbidden_freedoms 边界；硬约束证据若出现属 HARD_GATED 族域另立）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census PATCH 族
+canonical 三步（无 gate 判语）的分歧登记 README §7，BakeTemplate 投影标签
+不因此静默改写——换标签/改结构=census 族重跑裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -129,8 +148,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @MekongCatfishAdultFeedingProfile（成体绑定实例）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@MekongCatfishAdultFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -179,8 +204,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census PATCH 族投影标签与 typed 轴实例值（detritus+algae / zone=bottom——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 三步固定，不可重排）；Bake 输入契约字段复用（UsableForageAvailability 的 prey_fields/diet_classes/size_window）。
-- 放弃的自由度：(1) BakeTemplate 晋升——BA-SUBSTRATE-PATCH 是 census 族投影标签，不是 live 句型晋升（两层 reconciliation OPEN）；(2) 合并算子——本程序无 combine 步（族域边界），live 层 DynamicSpatialSlot 与 BA-T1 底板的组合算子 OPERATOR UNDEFINED 待机制侧；(3) 幼体 Bake 建体（无空间证据，TAR-02）；(4) potamodromous spawn 因子集展开（细节少知，CHB 先例配置级处理）；(5) 数值与 Profile 值域不冻结。
+- 使用的自由度：census PATCH 族投影标签与 typed 轴实例值（detritus+algae / zone=bottom——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：底带定位先行、底质资源三档分级命中、early return 链——推导依据 §0 判断顺序行）**；Bake 输入契约字段复用（UsableForageAvailability 的 prey_fields/diet_classes/size_window）。
+- 放弃的自由度：(1) BakeTemplate 晋升——BA-SUBSTRATE-PATCH 是 census 族投影标签，不是 live 句型晋升（两层 reconciliation OPEN）；(2) census canonical 步序的服从（顺序还原后链与 canonical 三步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑，非本批静默改写）；(3) 合并算子——本程序无 combine 步（族域边界），live 层 DynamicSpatialSlot 与 BA-T1 底板的组合算子 OPERATOR UNDEFINED 待机制侧；(4) 幼体 Bake 建体（无空间证据，TAR-02）；(5) potamodromous spawn 因子集展开（细节少知，CHB 先例配置级处理）；(6) 水温/光照因子入链（CSV 锚无 Story 空间程序证据——正文证实后扩链=结构变更需重审）；(7) 数值与 Profile 值域不冻结（含三档档位成员与阈值）。
 - 跨层登记：幼体 Response FieldFeeding 通道的 P0x 语义层对应指针待 coordinator 确认（census fix_notes 原样携带——coordinator 修复信中「P03 轴」引用未核实，表达侧不引用未读 pattern）。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

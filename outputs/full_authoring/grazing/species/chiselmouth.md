@@ -20,6 +20,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 体温带注记：CSV 资料水温 11–19℃ 而候选水温带=温水——方向锚仅供 Profile 值域参考，本文件不做任何温度阈值表达（数值不冻结）。
 - Group 面：按分批口径无供给拆分；若正文出现互斥供给证据则升级重审（结构变更非 Profile 重绑定）。
 - 表达超集说明：Tier B 骨架按 P06 底质单因子形（census SINGLE 族）给出，仅容纳 CSV 方向；归族改判（PATCH/PLAIN）＝结构变更需重审；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原，CSV 方向级推导 [需正文]）**：判断链＝底层水层定位 → 硬基质档位 → 附着资源档位 → 归一化。推导来源：CSV 栖息带 demersal（底栖特化——硬定位：非底层=出局而非削减）＋植食性 grazing＋demersal 表面刮取体构（附着面可得性先于附着生物量评估）。分级命中：基质档与资源档各三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结 [需正文]。CSV 时段（早晨活跃）/水温锚未入链（无 Story 空间程序证据；体温带注记维持仅方向锚）。
 
 Profile 引用清单：@ChiselmouthSubstratePatchProfile @ChiselmouthSubstrateSpatialProfile @ChiselmouthSubstratePreyFields @ChiselmouthDietClasses @ChiselmouthSizeWindow @ChiselmouthNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -60,7 +61,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同） |
+| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：硬基质表面附着生物膜/藻资源（CSV 方向：demersal 植食性刮取；英文名 Chiselmouth 凿口形态与刮食方向一致；刮取基质类型 [需正文]） |
 | FactorBinding | 常年绑定 [需正文]（CSV 无迁徙注记——若正文证实季节/阶段切换则由上游 premise 配置处理） |
 | SubstratePatchProfile | @ChiselmouthSubstratePatchProfile |
@@ -71,6 +72,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 硬基质档位 → 附着资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。顺序为 CSV 方向级推导
+（demersal 硬定位＋表面刮取体构，[需正文]）——Story 正文到达后校准，
+顺序/档位差异本身=LogicTemplate 判据（census 侧 SINGLE 族重跑=work standards
+§5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
 读取 当前格子的底质类型（硬基质/软底）
 读取 当前格子的基质资源原始事实
     （UsableForageAvailability 契约输出：
@@ -80,16 +89,43 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
     不在本 body 内设分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位）：
+    用水层带位置查询 @ChiselmouthSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 表面刮食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底刮食则档位化=结构变更需重审）
+
+第 2 步 硬基质档位（分级命中——附着面可得性）：
+    用底质类型查询 @ChiselmouthSubstratePatchProfile 的基质分档槽
+    （硬基质表面附着方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 底质 ∈ 硬基质表面档（preferred 槽——附着面充分）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限硬质档（tolerated 槽——附着面零散）：
+        SubstrateTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（软底无附着面档）：
+        返回 0（EARLY_RETURN：无附着刮取面的底质出局）
+
+第 3 步 附着资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @ChiselmouthSubstratePatchProfile
-    得到 SubstratePatchFit（单 typed 因子评估）
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 附着生物膜/藻可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无附着资源档）：
+        返回 0（EARLY_RETURN：无附着资源的格子出局）
 
-NORMALIZE_WEIGHT：
-    对 SubstratePatchFit 执行模板固定归一化（族常量，非作者可选）
+第 4 步 NORMALIZE_WEIGHT：
+    对 SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 约束属 PATCH 族域，硬约束属 HARD_GATED 族域，
-多因子组合属 PLAIN 族域，均非本骨架）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +149,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @ChiselmouthNormalFeedingProfile（附着生物膜/植食取向接受窗——CSV 方向锚）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@ChiselmouthNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,8 +205,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（硬基质附着刮取方向，取自 CSV+英文名形态方向）；Profile 命名；伪脚本步序（canonical 两步固定）；Bake 输入契约字段复用。
-- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(3) 温度阈值表达（CSV 体温带注记仅方向锚）；(4) 数值与 Profile 值域不冻结。
-- [需正文] 刮取基质类型（岩石/植物表面）、premise 切换（若有）、Response 接受窗参数方向。
+- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（硬基质附着刮取方向，取自 CSV+英文名形态方向）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：demersal 硬定位先行、基质档三档分级命中、early return 链——CSV 方向级推导 [需正文]）**；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(4) 温度阈值表达（CSV 体温带注记仅方向锚）；(5) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(6) 数值与 Profile 值域不冻结（含档位成员与阈值）。
+- [需正文] 刮取基质类型（岩石/植物表面）、判断顺序与档位成员校准、premise 切换（若有）、Response 接受窗参数方向。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

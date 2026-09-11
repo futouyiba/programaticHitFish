@@ -24,6 +24,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 标准成员（被惊出猎物取向——参数级，无新拓扑）。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围；Reaction 通道读法作为 live 层投影登记，未程序化）。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原）**：判断链＝扰动机会存在性 → 暴露猎物机会档位 → 归一化。顺序推导来源：census 盲体 sketch「动态机会 patch 评估（扰动暴露的猎物区）」——**动态机会语义=事件驱动：无扰动事件即无机会斑块，存在性是本程序的第一道门**（EARLY_RETURN 后不做机会评估；常态分布由该鱼其它程序面承载，非本 Story 程序）。暴露猎物评估展开为三档分级命中（大量暴露=全额/有限暴露=削减不清零/残余=出局），档位成员与阈值全 Profile 值域不冻结。CSV 时段（晨昏活跃）锚未入链。
 
 Profile 引用清单：@SmaDisturbanceFollowerProfile @SmaPreyFields @SmaDietClasses @SmaSizeWindow @SmaNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -64,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一） |
+| BakeTemplate | BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：扰动暴露猎物动态机会 patch 轴（census P-B1-SMA-BAKE 实例常量 resource="disturbance_revealed_prey"；disturbance_events=世界侧事实供给义务，resolver_tests 登记） |
 | FactorBinding | 常年绑定（无 lifecycle/season premise 切换证据） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
@@ -74,6 +75,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝扰动机会存在性 → 暴露猎物机会档位 → 归一化；分级命中（全额/削减/出局），
+出局即 EARLY_RETURN。动态机会语义=事件驱动——无扰动事件即无机会斑块，
+存在性是第一道门（EARLY_RETURN 后不做机会评估；常态分布由该鱼其它程序面承载，
+非本 Story 程序——本程序只表达机会追随面）。顺序差异本身=LogicTemplate 判据，
+与 census canonical body（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧 SINGLE 族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的扰动暴露猎物动态机会 patch 轴事实
     （disturbance_events——它鱼/它动物翻底扰动事件与暴露猎物区；
       世界侧 fact，环境 owner 产生：扰动者改变局部猎物可达性）
@@ -83,16 +92,32 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@SmaDietClasses 食性过滤
       与 size_window=@SmaSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用扰动暴露猎物机会轴事实查询 @SmaDisturbanceFollowerProfile
-    得到 DisturbanceFollowerFit（单 typed 因子评估；
-      census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构）
+第 1 步 扰动机会存在性（GATE_DISTURBANCE_WINDOW）：
+    用扰动事件事实查询 @SmaDisturbanceFollowerProfile 的存在分档槽
+    如果 当前扰动窗口内无扰动事件（excluded 槽——零事件）：
+        返回 0（EARLY_RETURN：无扰动=无动态机会斑块，本面零权重——
+        常态分布由该鱼其它程序面承载，非本 Story 程序）
+    否则：
+        进入第 2 步
 
-NORMALIZE_WEIGHT：
+第 2 步 暴露猎物机会档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用扰动暴露猎物机会轴事实查询 @SmaDisturbanceFollowerProfile
+    （census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构；
+      单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 暴露猎物可得性 ∈ 大量暴露档（preferred 槽）：
+        DisturbanceFollowerFit = 全额强度
+    否则如果 ∈ 有限暴露档（tolerated 槽）：
+        DisturbanceFollowerFit = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（残余暴露档）：
+        返回 0（EARLY_RETURN：残余暴露出局）
+
+第 3 步 NORMALIZE_WEIGHT：
     对 DisturbanceFollowerFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 中间步属 PATCH 族域，多因子组合属 PLAIN 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -119,8 +144,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
       被惊出猎物的暴露/逃窜呈现特征并入食物评价输入，参数级无新拓扑）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@SmaNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -171,8 +202,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（resource_patch(disturbance_revealed)——census 冻结实例常量原样）；Profile 命名；伪脚本步序（canonical 两步固定）；扰动事件的世界侧归属（census owner 推论照录）。
-- 放弃的自由度：(1) 跟随的 RelationalConflict 化与 Field Mode 购买（census 判语：跟随≠RelationalConflict、动物翻底不自动购买 Field Mode）；(2) Reaction 通道的程序化（census 程序体无 Reaction 步——coverage delta #11 的 live 层 erratic 读法两层 reconciliation OPEN，不在本文件闭合）；(3) 数值与 Profile 值域不冻结；(4) PATCH↔SINGLE optional_context 边界（HRQ-B1-02）与两层 reconciliation 的裁决权（归机制侧）。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（resource_patch(disturbance_revealed)——census 冻结实例常量原样）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：扰动事件存在门先行、暴露猎物三档分级命中、early return 链——动态机会语义推导，依据 §0 判断顺序行）**；扰动事件的世界侧归属（census owner 推论照录）；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 跟随的 RelationalConflict 化与 Field Mode 购买（census 判语：跟随≠RelationalConflict、动物翻底不自动购买 Field Mode）；(2) Reaction 通道的程序化（census 程序体无 Reaction 步——coverage delta #11 的 live 层 erratic 读法两层 reconciliation OPEN，不在本文件闭合）；(3) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(4) 无扰动时常态分布的程序化（常态归该鱼其它程序面，非本 Story 程序——本面只表达机会追随）；(5) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(6) 数值与 Profile 值域不冻结（含档位成员与阈值）；(7) PATCH↔SINGLE optional_context 边界（HRQ-B1-02）与两层 reconciliation 的裁决权（归机制侧）。
 - 与 guarding 批 smallmouth.md（C07 护巢，P04 GUARD 族域）零耦合：本文件只表达 B01-S32 摄食面（P02），Group/Response 程序不共享；两文件判定不互推。
 
 BATCH_ID: REP-FULL-P02-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）

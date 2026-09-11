@@ -20,6 +20,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 「hunting macrofauna (predator)」在亚口科语境＝底栖大型无脊椎摄取（吸食式）——底泥无脊椎/碎屑构成 [需正文]。
 - Group 面：按分批口径无供给拆分；若正文出现互斥供给证据则升级重审（结构变更非 Profile 重绑定）。
 - 表达超集说明：Tier B 骨架按 P06 底质单因子形（census SINGLE 族）给出，仅容纳 CSV+体构方向；归族改判（PATCH/PLAIN）＝结构变更需重审；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-001 顺序还原，CSV 方向级推导 [需正文]）**：判断链＝底层水层定位 → 深度带档位 → 底泥栖境档位 → 底泥资源档位 → 归一化。推导来源：CSV 栖息带 demersal（硬定位：非底层=出局）＋**深≥4m（本鱼独有的深度带档步——四亚口中仅本鱼 CSV 有深度注记，链形因此与同批三鱼不同）**＋肉食性 hunting macrofauna（亚口科语境=底栖大型无脊椎吸食摄取）。分级命中：各步三档（最适应=全额/可接受=削减不清零/排除=出局），档位成员与阈值全 Profile 值域不冻结 [需正文]。CSV 时段（早晨活跃）/水温锚未入链。
 
 Profile 引用清单：@BuffaloSubstratePatchProfile @BuffaloSubstrateSpatialProfile @BuffaloSubstratePreyFields @BuffaloDietClasses @BuffaloSizeWindow @BuffaloNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -60,7 +61,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同） |
+| BakeTemplate | BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
 | FactorType(typed) | resource_patch：底泥/底质表面无脊椎资源（CSV 方向：demersal + hunting macrofauna + 深≥4m——吸食式底栖摄取；底泥无脊椎/有机碎屑构成 [需正文]） |
 | FactorBinding | 常年绑定 [需正文]（CSV 无迁徙注记——若正文证实季节/阶段切换则由上游 premise 配置处理） |
 | SubstratePatchProfile | @BuffaloSubstratePatchProfile |
@@ -71,6 +72,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 深度带档位 → 底泥栖境档位 → 底泥资源档位 → 归一化；
+每步分级命中（全额/削减/出局），出局即 EARLY_RETURN。深度带档步为本鱼独有
+（CSV 深≥4m 注记——四亚口中仅本鱼有深度锚，链形与同批三鱼不同：
+顺序差异本身=LogicTemplate 判据）。顺序为 CSV 方向级推导（[需正文]），
+census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7。
+
+读取 当前格子的水层带位置与深度事实
 读取 当前格子的底质类型（泥/砂/淤）
 读取 当前格子的基质资源原始事实
     （UsableForageAvailability 契约输出：
@@ -80,16 +89,53 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
     不在本 body 内设分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位）：
+    用水层带位置查询 @BuffaloSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 底泥吸食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
+
+第 2 步 深度带档位（分级命中——CSV 深≥4m 方向锚，本鱼独有步）：
+    用深度事实查询 @BuffaloSubstrateSpatialProfile 的深度分档槽
+    （偏好深度带成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 深度 ∈ 偏好深带档（preferred 槽）：
+        DepthTier = 全额保留
+    否则如果 深度 ∈ 过渡深度档（tolerated 槽）：
+        DepthTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（过浅带档）：
+        返回 0（EARLY_RETURN：浅带格出局——深水底泥取食定位）
+
+第 3 步 底泥栖境档位（分级命中——底泥无脊椎栖境可得性）：
+    用底质类型查询 @BuffaloSubstratePatchProfile 的底质分档槽
+    （底泥/淤泥承载方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 底质 ∈ 底泥栖境档（preferred 槽——有机泥/淤泥栖境充分）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽——如砂质混泥）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（无栖境档——如硬砾无底泥）：
+        返回 0（EARLY_RETURN：无底泥栖境的底质出局）
+
+第 4 步 底泥资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @BuffaloSubstratePatchProfile
-    得到 SubstratePatchFit（单 typed 因子评估）
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 底泥无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底泥无脊椎的格子出局）
 
-NORMALIZE_WEIGHT：
-    对 SubstratePatchFit 执行模板固定归一化（族常量，非作者可选）
+第 5 步 NORMALIZE_WEIGHT：
+    对 DepthTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 约束属 PATCH 族域，硬约束属 HARD_GATED 族域，
-多因子组合属 PLAIN 族域，均非本骨架）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +159,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @BuffaloNormalFeedingProfile（底泥无脊椎取向接受窗——CSV 方向锚）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-001 展开）：
+    按三档判定 FoodEvaluation（档位成员=@BuffaloNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,8 +215,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（底泥无脊椎方向，取自 CSV）；Profile 命名；伪脚本步序（canonical 两步固定）；Bake 输入契约字段复用。
-- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(3) 与大口水牛鱼（C10 FieldFeeding）的合并表达（种级区分：Ictiobus bubalus ≠ I. cyprinellus，机制域 P06 底质吸食 ≠ P03 滤食场）；(4) 「孤僻」性格程序化（档案字段无 Story 证据映射，不表达）；(5) 数值与 Profile 值域不冻结。
-- [需正文] 底泥无脊椎构成、深度带偏好（CSV 深≥4m 方向）、premise 切换（若有）、Response 接受窗参数方向。
+- 使用的自由度：SINGLE 族投影标签；typed factor 实例语义（底泥无脊椎方向，取自 CSV）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-001：demersal 硬定位先行、深度带档步（本鱼独有，CSV 深≥4m 锚）、栖境/资源三档分级命中、early return 链——CSV 方向级推导 [需正文]）**；Bake 输入契约字段复用。
+- 放弃的自由度：(1) 归族裁决权（同泰鲮）；(2) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(3) 合并算子（本程序无 combine 步；live 层组合算子 OPERATOR UNDEFINED 待机制侧）；(4) 与大口水牛鱼（C10 FieldFeeding）的合并表达（种级区分：Ictiobus bubalus ≠ I. cyprinellus，机制域 P06 底质吸食 ≠ P03 滤食场）；(5) 「孤僻」性格程序化（档案字段无 Story 证据映射，不表达）；(6) 水温/时段因子入链（CSV 锚无 Story 空间程序证据）；(7) 数值与 Profile 值域不冻结（含深度带与档位成员、阈值）。
+- [需正文] 底泥无脊椎构成、深度带偏好参数（CSV 深≥4m 方向）、判断顺序与档位成员校准、premise 切换（若有）、Response 接受窗参数方向。
 
 BATCH_ID: REP-FULL-GRAZE-001
+顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中（含深度带档步），Response 档位展开）

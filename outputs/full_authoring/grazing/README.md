@@ -159,3 +159,75 @@ BATCH_ID: REP-FULL-GRAZE-001
 - **M2 处置**：本节即补登记——**Response 面两层 reconciliation OPEN**：P06 行级 Story 的 ResponseChannels=FieldFeeding（rohu/giant_barb live 实测），本批 11/11 统一 TYPED 投影 TargetFeeding——Tier A 有 census「待检验」判语保护、Tier B 统一骨架在 giant_barb 已证反向（→B1 撤回）。rohu 的「常年绑定」注记应对照 Story 正文「季风 S4/S5 MSF 季节窗」更新为配置级切换（骨架不必翻）。
 - 登记项 1 闭合：口径张力裁决=两口径各自为真分属不同层次（R06 批内零新样本 vs R07 triage 附标签 merge-key 命中）。登记项 3：+4 大概率=四亚口文件已承载（coordinator 以 FR3 六字段核实后改写）。
 - m1：湄公鲶 premise guard 与 body 分支区分建议加注释（保留骨架判定）。m2：Tier B [需正文] 门 live 已开——reviewer 已代测 4 条；剩余 5 文件 B1 gate 前应做一轮 live 对照。
+
+---
+
+## 7. REP-ORDER-FIX-001 顺序还原修复批次记录（2026-09-11）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级——B 系列伪脚本顺序缺陷：平铺结构丢失真实判断顺序）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8：伪脚本判断顺序最高优先级，从 Story 正文推导，不默认平铺）。**修复对象**：本批 10 个有效文件（giant_barb.md 为 REV-001 B1 WITHDRAWN 撤回件，不修——其骨架已被裁定不适用，顺序还原不适用于撤回件）。
+
+### 每文件修复内容（顺序变化 + 新增 early return + 分级命中展开）
+
+| 文件 | 修复前（平铺） | 修复后（顺序还原链） | 新增 early return | 分级命中展开 |
+|---|---|---|---|---|
+| mekong_giant_catfish.md | 读事实→EVAL_RESOURCE_PATCH→CONSTRAIN_ZONE（乘法约束）→归一化 | 底带定位 → 底质资源档位 → 归一化（zone=bottom 从约束乘法步还原为首道定位判定——census 实例常量语义不变，步序前置） | 非底带格（EARLY_RETURN）；资源排除档（EARLY_RETURN） | 底质资源三档（preferred 全额/tolerated 削减不清零/excluded 出局） |
+| onychostoma.md | 读事实→EVAL_RESOURCE_PATCH→APPLY_CURRENT_CONTEXT→归一化 | 流速档 → 石底档 → 附着资源档 → 归一化（**census 行为链原文「急流—石底—附着—刮食」四环原序**；fast_flow_stone 单绑定拆两步=结构差异已登记） | 缓流静水（EARLY_RETURN）；软底无附着面（EARLY_RETURN）；无附着资源（EARLY_RETURN） | 流速/石底/附着资源各三档（confidence LOW 原样，档位成员 [需正文]） |
+| rohu.md | 读事实→EVAL→归一化 | 近底带水层定位（软定位） → 底质资源档位 → 归一化 | 远离底带（EARLY_RETURN）；资源排除档（EARLY_RETURN） | 水层三档（benthopelagic 软定位）+资源三档 |
+| streaked_prochilod.md | 同上 | 近底带水层定位 → 底泥底质档位（碎屑承载） → 碎屑资源档位 → 归一化 | 远离底带（EARLY_RETURN）；不可承载底质（EARLY_RETURN）；无沉积资源（EARLY_RETURN） | 水层/底泥承载/碎屑资源各三档（SRCHECK 优势碎屑食性方向） |
+| chiselmouth.md | 同上 | 底层水层定位（硬定位） → 硬基质档位 → 附着资源档位 → 归一化 | 非底层（EARLY_RETURN——demersal 硬判定）；软底无附着面（EARLY_RETURN）；无附着资源（EARLY_RETURN） | 基质/资源各三档 |
+| wuchang_bream.md | 同上 | 近底带水层定位 → 水草床构成档位 → 啃食资源档位 → 归一化 | 远离底带（EARLY_RETURN）；无草床（EARLY_RETURN）；无可啃食资源（EARLY_RETURN） | **草床构成三档有 SRCHECK 直接证据**：Hydrilla 占优=全额/Vallisneria 占优=削减（选择性放过）/无草床=出局 |
+| blue_sucker.md | 同上 | 近底带水层定位（软定位+吸口体构注记） → 底质栖境档位 → 无脊椎资源档位 → 归一化 | 远离底带（EARLY_RETURN，硬定位与否 [需正文]）；无栖境（EARLY_RETURN）；无资源（EARLY_RETURN） | 水层/栖境/资源各三档 |
+| river_redhorse.md | 同上 | 底层水层定位（硬定位） → 底质栖境档位 → 大型无脊椎资源档位 → 归一化 | 非底层（EARLY_RETURN）；无栖境（EARLY_RETURN）；无资源（EARLY_RETURN） | 栖境/资源各三档 |
+| golden_redhorse.md | 同上 | 同河红马链形（同属同构——构成区分走 Profile 值域，§0 判语维持） | 同河红马 | 同河红马（档位成员 [需正文] 与河红马区分归 Profile） |
+| buffalo.md | 同上 | 底层水层定位 → **深度带档位（本鱼独有步，CSV 深≥4m 锚——四亚口中仅本鱼有深度注记）** → 底泥栖境档位 → 底泥资源档位 → 归一化 | 非底层（EARLY_RETURN）；过浅带（EARLY_RETURN）；无栖境（EARLY_RETURN）；无资源（EARLY_RETURN） | 深度带/栖境/资源各三档 |
+
+共性：每步「查询 Profile 得单一 Fit」展开为「Profile 三档分档槽判定」（preferred=全额/tolerated=削减×衰减参数不清零/excluded=出局）；每文件 §2.2 头部加【顺序还原声明】（含顺序推导来源与 census 分歧登记指引）、§2.1 BakeTemplate 值单元格加尾注、§0 加「判断顺序」语义行、§5 自由度记录同步更新（修复三步清单：修复→重加总→同步表格）。
+
+### Response 面修复（10/10）
+
+§3.2 的「DECIDE_RESPONSE：按 FoodEvaluation 决定响应档位」为未展开占位（标准 1.4 禁止项）——展开为三档分级命中（接受档=全额 TargetFeeding/边际档=低响应削减不清零/无响应=出局），与 §3.1 配置表「命中=FeedingResponse/未命中=低 / 无响应」两列语义对齐；档位成员=@Profile 值域不冻结。
+
+### 不修面与理由
+
+- **Group 面（§1）**：任务边界明示条件原子/组合/分群表不变——无路由程序声明/分群表/Share 契约伪脚本零改动。
+- **Quality 面（§4）**：既有伪脚本已是完整程序（循环乘因子→汇总→条件归一化/无候选分支），有顺序有分支，无平铺问题。
+- **giant_barb.md**：REV-001 B1 撤回件（WITHDRAWN），骨架已裁定不适用——顺序还原不适用于撤回件，待 live 正文重建。
+
+### 顺序差异与 census 的分歧登记（UPSTREAM 级，本批不闭合）
+
+顺序还原后链（early return + 分级命中）与 census registry v4 canonical body 判语（SINGLE 族两步/PATCH 族三步，「无 gate、无 early return」——forbidden_freedoms）**拓扑分歧**。处置：
+
+1. 本批不改 census 侧任何文件（registry/blind_programs 判语冻结维持）；BakeTemplate 投影标签（BA-SUBSTRATE-SINGLE/PATCH）不静默改写——换标签/改结构=census 判同裁决后结构变更需重审（原 §3 登记 2 通道）。
+2. 顺序差异本身=LogicTemplate 判据（work standards §5.1 三关键特征之一）——**census 侧受影响族重跑（SINGLE 族 41 成员可能低估）为 §5.4 行动项，归 census/coordinator 侧，非本批动作**。本批 10 文件的顺序还原链即 census 重跑的表达侧输入。
+3. 每文件顺序推导来源分档：Tier A（湄公鲶/准白甲鱼）=census 盲体 sketch 行为提取（fast_flow_stone 拆步/zone 前置已逐文件登记）；Tier B（其余 8 文件）=CSV/SRCHECK 方向级推导，全部标 [需正文]，Story 正文到达后校准（顺序/档位变化=census 判同输入，结构变更需重审）。
+4. 水温/光照/时段未入任何链——CSV 锚无 Story 空间程序证据，入链=正文证实后扩链（结构变更需重审）。work standards §5.1 例序中的水温/光照步是通用底栖鱼模板示例，非本批各鱼证据——本批不冒充。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/grazing/validate_grazing.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/grazing/validate_grazing.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/grazing"
+[PASS] blue_sucker.md
+[PASS] buffalo.md
+[PASS] chiselmouth.md
+[PASS] giant_barb.md
+[PASS] golden_redhorse.md
+[PASS] mekong_giant_catfish.md
+[PASS] onychostoma.md
+[PASS] river_redhorse.md
+[PASS] rohu.md
+[PASS] streaked_prochilod.md
+[PASS] wuchang_bream.md
+== result ==
+PASS (11 species files, 0 violations)
+```
+
+修复过程中真实校验抓出 1 类真实工件缺陷（10 文件各 1 处）：§0 判断顺序行误写「全 @Profile 值域」——裸 @Profile token 被 PROFILES 机械闭包命中（forage/grazing 批「伪 token」教训第 4 击变体），修复工件（去 @）而非改校验器。validator 零改动（顺序还原链在 fence 自由文本内，全部检查族原样拦截力不变）。
+
+BATCH_ID: REP-ORDER-FIX-001（grazing 面）
