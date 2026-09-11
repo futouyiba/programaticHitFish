@@ -618,7 +618,7 @@ def main():
              "重审（MGC-RESP-FEEDING 是否应重指派 FOOD_FIELD——B2 立族后"
              "的追溯一致性问题）",
              "MEDIUM 4 例（LWF1 身份隔离推算/SBS1/SBH1 Evidence Open 推算/"
-             "LJB 薄资料）+ Low 6 例（品系 5+TNS 稀疏占位+DIS2 色型）证据"
+             "LJB 薄资料）+ Low 7 例（品系 5+TNS 稀疏占位+DIS2 色型）证据——[PATCH 复审 F-7R-01 补正：原记 6 与括号枚举 7 不符；身份层清单（品系 5+DIS2）+TNS=7]"
              "分层——全部入族 or 部分降 EO 待 FR 线引文",
              "身份层处理（品系/杂交 6 例 RTL/WRC/KOI/MIR/GCR/DIS2+野生边界 "
              "WCR2+身份隔离 LWF1）：机制复用推算承载（B5-⑤/B6-⑥ 判例），"
