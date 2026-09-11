@@ -20,6 +20,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 停食判例对齐：帝王鲑未列入停食判例族（R06/R08/R09/R10 摘要停食五例=大马哈/美洲西鲱/白北鲑/高首鲟/狼鱼——无本鱼）；本骨架按非停食洄游表达（Normal 摄食维持）。若正文证实洄游期停食→照 G2/C12 判例升级 MigrationReaction 双 Path 结构（结构变更需重审，validator 族边界拦截静默改写）。
 - 空间重排：海洋觅食区↔河口↔深河产卵段位置轴——premise 配置级因子集切换（CHB/MGC 先例）。
 - 表达超集说明：Tier B 骨架按 P05 洄游单因子形（census SINGLE 族）给出，仅容纳 handoff 点名+CSV 方向；正文到达后换族=结构变更需重审；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，CSV 方向级推导 [需正文]）**：判断链＝premise 读取（OCEAN/MIGRATION/SPAWN 配置级）→ 阶段绑定轴段归属三档 → 归一化。推导来源＝G2/C12 样板空间重排语义+CSV anadromous 方向锚（Tier B 无行级证据，链序为样板语义方向级还原，段成员 [需正文]）。分级命中：轴段三档（当前阶段偏好轴段=全额——海洋觅食区↔河口↔深河产卵段随 premise 取段/过渡带=削减不清零/轴段外=出局 EARLY_RETURN）；early return 的对象=格子，不是阶段（PREMBIND 不变量维持；非洄游阶段程序仍运行、按海洋段轴取值）。CSV benthopelagic 锚未入链（样板链优先）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@ChinookSalmonMigrationSpatialProfile @ChinookSalmonPreyFields @ChinookSalmonDietClasses @ChinookSalmonSizeWindow @ChinookSalmonNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -62,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：洄游阶段位置轴（海洋觅食区↔河口↔深河产卵段；typed 实例，随 premise 取轴段） |
 | FactorBinding | lifecycle premise：OCEAN/MIGRATION/SPAWN 配置级切换（值域由 Profile 层定值；不建 body 分支——CHB/MGC 先例） |
 | SpatialSlotProfile | @ChinookSalmonMigrationSpatialProfile |
@@ -73,23 +74,40 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 阶段绑定轴段归属三档 → 归一化；轴段判定分级命中
+（当前阶段偏好轴段=全额/过渡带=削减不清零/轴段外=出局 EARLY_RETURN）。阶段切换本身
+不进 body 分支（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游
+阶段程序仍运行、按海洋段轴取值）。推导来源=G2/C12 样板空间重排语义+CSV anadromous
+方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
 读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@ChinookSalmonPreyFields 绑定的鱼类 prey class 生物量，
       经 diet_classes=@ChinookSalmonDietClasses 食性过滤
       与 size_window=@ChinookSalmonSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用位置轴事实查询 @ChinookSalmonMigrationSpatialProfile
-    得到 MigrationSpatialFit（单 typed 因子评估）
+第 1 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @ChinookSalmonMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔深河产卵段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，硬约束属 HARD_GATED 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +131,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @ChinookSalmonNormalFeedingProfile（大型鲑取向参数——CSV 方向锚）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@ChinookSalmonNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,9 +187,10 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed 因子实例语义（洄游位置轴，取自 handoff 点名+CSV）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 归族裁决权（SINGLE 骨架是表达层选择，census 侧判同可能改判 PLAIN/GATED——结构变更需重审）；(2) MigrationReaction 双 Path（停食未证实——若正文证实，升级=结构变更需重审）；(3) BA-T7 ROUTE/TRANSITION 洄游句型（NEW_TEMPLATE_NOT_PROVEN）；(4) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(5) 数值与 Profile 值域不冻结。
+- 使用的自由度：SINGLE 族投影标签；typed 因子实例语义（洄游位置轴，取自 handoff 点名+CSV）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：轴段归属三档+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) 归族裁决权（SINGLE 骨架是表达层选择，census 侧判同可能改判 PLAIN/GATED——结构变更需重审）；(3) MigrationReaction 双 Path（停食未证实——若正文证实，升级=结构变更需重审）；(4) BA-T7 ROUTE/TRANSITION 洄游句型（NEW_TEMPLATE_NOT_PROVEN）；(5) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(6) 数值与 Profile 值域不冻结（含轴段/档位成员）。
 - [需正文] 洄游阶段枚举、空间轴构成、Response 接受窗参数方向、洄游期摄食是否维持（停食证实即升级）。
 - [需核对] Story DB 行级 Pattern 标签（「鲑科四」名单读法——本文件按 handoff 字面收录，粉鲑/硬头鳟/细鳞鲑等未入批登记 README §4）。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 轴段归属三档+early return 链，Response 档位展开）

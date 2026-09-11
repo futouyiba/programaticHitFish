@@ -21,6 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 族标准成员（离散钩饵 target）；CSV 滤食性（浮游选择摄食）与 Story 判定「水层切换」共存——摄食取向参数归 @VendaceNormalFeedingProfile 值域；若后续 Story 证实场摄食（滤食浮游场语义），Response 族判定需 P03 域复核（census FOOD_FIELD_FEEDING_RESPONSE 族先例：鳙鱼/大西洋鲱），本文件不预购买。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，census 冻结语义层推导）**：判断链＝premise 读取（temp/season 配置级）→ 季节绑定水层归属三档 → 归一化。推导来源＝census P-B2-VEN-BAKE 冻结实例常量（水层因子 temp/season 绑定，与 B1 蓝鳃季节水层同型——盲体 sketch 语义的档位化还原；Tier A 骨架在案，档位成员不在快照——段成员 [需正文]）。与北极红点鲑链同构但轴类型不同（垂直水层轴 vs 水平近岸↔深水轴——同族成员同构正常，轴语义差异归 Profile 值域）。分级命中：水层三档（当前季节偏好水层=全额——冷水期底层↔暖季水层随 premise 取段/过渡层=削减不清零/对侧水层=出局 EARLY_RETURN）；early return 的对象=格子，不是季节（PREMBIND 不变量维持）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@VendaceLayerSpatialProfile @VendacePreyFields @VendaceDietClasses @VendaceSizeWindow @VendaceNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -61,7 +62,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：水层归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：水层因子（底层↔水层；typed 实例，temp/season 驱动——census P-B2-VEN-BAKE 实例常量；与 B1 蓝鳃季节水层同型） |
 | FactorBinding | lifecycle premise：temp/season 配置级切换（冷水期底层↔暖季水层；值域由 Profile 层定值；不建 body 分支） |
 | SpatialSlotProfile | @VendaceLayerSpatialProfile |
@@ -72,23 +73,40 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（季节配置级）→ 季节绑定水层归属三档 → 归一化；水层判定分级命中
+（当前季节偏好水层=全额/过渡层=削减不清零/对侧水层=出局 EARLY_RETURN）。季节切换本身
+不进 body 分支（PREMBIND 不变量维持：temp/season=上游 premise，配置级切换因子集）；
+early return 的对象是格子，不是季节。推导来源=census P-B2-VEN-BAKE 冻结实例常量
+（盲体 sketch 语义的档位化还原——Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）；
+档位成员=Profile 值域不冻结。与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑
+分歧登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的水层事实（底层↔水层冷水季节轴）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@VendacePreyFields 绑定的浮游/无脊椎 prey class 生物量，
       经 diet_classes=@VendaceDietClasses 食性过滤
       与 size_window=@VendaceSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（temp/season——上游事实，配置级切换因子集）
+读取 当前 premise（temp/season——上游事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 水层段值，不含季节分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用水层事实查询 @VendaceLayerSpatialProfile
-    得到 LayerSpatialFit（单 typed 因子评估）
+第 1 步 季节绑定水层归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用水层事实查询 @VendaceLayerSpatialProfile 的季节水层分档槽
+    （垂直水层轴=底层↔水层两态随季节取段；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 当前季节偏好水层（preferred 槽——冷水期底层/暖季水层方向）：
+        LayerSpatialFit = 全额
+    否则如果 ∈ 过渡层（tolerated 槽）：
+        LayerSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧水层——当前季节不取的水层）：
+        返回 0（EARLY_RETURN：格子不在当前季节水层范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 LayerSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，硬约束属 HARD_GATED 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -112,8 +130,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @VendaceNormalFeedingProfile（摄食取向参数——滤食性方向的接受窗值域由 Profile 层定值）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@VendaceNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,8 +187,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（水层 temp/season 绑定——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 场摄食 Response 族（FOOD_FIELD）——census 判 TYPED 标准，滤食语义若升级=族判定变更需重审；(2) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（水层 temp/season 绑定——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：水层归属三档+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) 场摄食 Response 族（FOOD_FIELD）——census 判 TYPED 标准，滤食语义若升级=族判定变更需重审；(3) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(4) 数值与 Profile 值域不冻结（含水层/档位成员）。
 - [需核对] CSV 迁徙类型=anadromous 名义行与本 Story 湖泊水层切换语义的口径（湖封种群 vs 溯河种群——行级标签待人工核对；Whitefish 通名系行级区分见 inconnu.md §0）。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 水层归属三档+early return 链，Response 档位展开）

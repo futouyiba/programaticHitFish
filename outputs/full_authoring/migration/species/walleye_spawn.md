@@ -21,6 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 族标准成员（产卵聚集不证明更强取食——census 判语原样）。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，受限形态——链序不还原）**：本鱼 Bake 属 census PLAIN 族（温度+食物 2 因子），census open_semantics 冻结判语=「因子间顺序 unordered，Factor 展示顺序不改变结果」——**无证据支持因子间判断顺序主张，把 unordered 因子集改成 early return 链=结构变更需重审**。顺序还原受限为：premise 读取前置明示（spawning_stage 配置级）+ 每槽因子评估的「查询 Profile 得单一 Fit」展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/excluded=槽值出局——PLAIN 族域内 excluded 档落槽值出局而非 EARLY_RETURN：槽无 gate 语义，出槽值仍进 COMBINE——与 SINGLE 族 EARLY_RETURN 的差异本身=族域边界判据）。Response 面 DECIDE_RESPONSE 档位展开（全批统一）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@WalleyeSpawnTemperatureProfile @WalleyeSpawnPreyFactorProfile @WalleyePreyFields @WalleyeDietClasses @WalleyeSizeWindow @WalleyeNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -61,7 +62,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→固定组合；本鱼为族第 4 成员温度+食物 2 槽） |
+| BakeTemplate | BA-MIGRATION-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→固定组合；本鱼为族第 4 成员温度+食物 2 槽；**§2.2 已顺序还原（REP-ORDER-FIX-003）：槽内三档分级命中——链序按 unordered 族契约不还原，登记 README §7**） |
 | Factor1Type(typed) | habitat_factor：温度（繁殖浅滩↔深水温度梯度；typed 实例——census P-B2-WAL-BAKE 因子 1） |
 | Factor2Type(typed) | resource_factor：食物（猎物可得性；typed 实例——census P-B2-WAL-BAKE 因子 2） |
 | FactorBinding | lifecycle premise：spawning_stage 配置级切换（繁殖浅滩期↔散后深水结构期因子值域切换；值域由 Profile 层定值；不建 body 分支） |
@@ -74,29 +75,53 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 冻结判语=因子间顺序 unordered（证据未裁决因子间
+顺序）——不把 unordered 因子集改成 early return 链（改链序=结构变更需重审）。还原内容
+＝premise 读取前置明示 + 每槽因子评估展开为三档分档槽判定（preferred=全额/
+tolerated=削减不清零/excluded=槽值出局）。**族域边界注意：PLAIN 槽的 excluded 档落
+槽值出局而非 EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE；
+与 SINGLE 族 EARLY_RETURN 的差异本身=族域判据。档位成员=Profile 值域不冻结 [需正文]。
+
 读取 当前格子的温度事实
 读取 当前格子的猎物资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@WalleyePreyFields 绑定的鱼类 prey class 生物量，
       经 diet_classes=@WalleyeDietClasses 食性过滤
       与 size_window=@WalleyeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（spawning_stage——上游繁殖事实，配置级切换因子值域）
+读取 当前 premise（spawning_stage——上游繁殖事实，配置级切换因子值域；
+    本 body 只按 premise 取 Profile 因子值域，不含阶段分支——繁殖浅滩期↔散后
+    深水结构期的因子值域切换在配置层完成）
 
-第 1 槽 EVAL_HABITAT_FACTOR_TYPED：
-    用温度事实查询 @WalleyeSpawnTemperatureProfile
-    得到 TemperatureFit
+槽 1 EVAL_HABITAT_FACTOR_TYPED（温度，分级命中）：
+    用温度事实查询 @WalleyeSpawnTemperatureProfile 的温度分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 温度 ∈ 当前 premise 偏好温度档（preferred 槽）：
+        TemperatureFit = 全额
+    否则如果 ∈ 过渡温度档（tolerated 槽）：
+        TemperatureFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除温度档）：
+        TemperatureFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
 
-第 2 槽 EVAL_RESOURCE_FACTOR_TYPED：
-    用猎物资源事实查询 @WalleyeSpawnPreyFactorProfile
-    得到 PreyFit
+槽 2 EVAL_RESOURCE_FACTOR_TYPED（食物，分级命中）：
+    用猎物资源事实查询 @WalleyeSpawnPreyFactorProfile 的资源分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物可得性 ∈ 丰档（preferred 槽）：
+        PreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        PreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无资源档）：
+        PreyFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
 
 COMBINE_WEIGHTED：
     按模板固定组合规则合并 TemperatureFit 与 PreyFit
     算子标注：OPERATOR UNDEFINED — 待机制侧（census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
     因子间顺序 unordered，Factor 展示顺序不改变结果）
 
-返回 SpatialDistributionWeight（因子集结束：无 gate、无 early return、无相对寻优
-——族 forbidden_freedoms 边界；单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语
+维持）；单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
 ```
 
 ### 2.3 live 层投影声明
@@ -120,8 +145,15 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @WalleyeNormalFeedingProfile（产卵聚集不证明更强取食——census 判语原样；夜间活跃=时段参数方向）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@WalleyeNormalFeedingProfile 值域不冻结；
+    产卵聚集不改变档位结构——census 判语在档位层的读法）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -169,7 +201,8 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census PLAIN 族投影标签与 typed 因子实例语义（温度+食物 2 槽——census 冻结实例常量）；Profile 命名；伪脚本步序（槽序 unordered、Combine 拓扑族固定）。
-- 放弃的自由度：(1) 合并算子数学（COMBINE_WEIGHTED 数学 OPERATOR UNDEFINED 待机制侧）；(2) 鱼群聚集 Group 化（census 判语：聚集≠互斥 FishGroup）；(3) 数值与 Profile 值域不冻结。
+- 使用的自由度：census PLAIN 族投影标签与 typed 因子实例语义（温度+食物 2 槽——census 冻结实例常量）；Profile 命名；**顺序还原的受限形态（REP-ORDER-FIX-003：premise 前置明示+槽内三档分级命中+excluded 槽值出局的族域边界显式化；链序按 unordered 族契约不还原——推导依据 §0 判断顺序行）**；槽序 unordered、Combine 拓扑族固定。
+- 放弃的自由度：(1) 因子间判断顺序主张（census open_semantics unordered 冻结判语——把因子集改成 early return 链=结构变更需重审，本批不发明顺序）；(2) 槽内 gate 语义（PLAIN 族域禁 gate——excluded 档落槽值出局进 COMBINE）；(3) 合并算子数学（COMBINE_WEIGHTED 数学 OPERATOR UNDEFINED 待机制侧）；(4) 鱼群聚集 Group 化（census 判语：聚集≠互斥 FishGroup）；(5) 数值与 Profile 值域不冻结（含档位成员）。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 槽内三档分级命中+excluded 槽值出局族域边界显式化（链序按 unordered 族契约不还原），Response 档位展开）

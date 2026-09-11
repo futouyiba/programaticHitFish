@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 标准成员（机会主义宽谱 evaluator——多种饵/拟饵可钓 FishBase 原文佐证；size_class premise 决定参数宽度：小=宽谱、大=偏窄鱼食）。
 - Quality 面：census NO_SURFACE_EFFECT（S3=EO 不影响结构判断）。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围；本鱼是 P05×multi-path 判例链的阴性对照——洄游不停食、无 Reaction 路径）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，受限形态——链序不还原）**：本鱼 Bake 属 census PLAIN 族（4 槽流速/深潭结构/猎物/水面机会），census open_semantics 冻结判语=「因子间顺序 unordered（Factor 展示顺序不改变结果）」+「若 review 判需 body 内 IF，本面结构结论需复核」——**无证据支持因子间判断顺序主张，把 unordered 因子集改成 early return 链=结构变更需重审**。顺序还原受限为：premise 读取前置明示（spawn_run 与 size_class 配置级——产卵洄游期因子集切换为快水/砾石繁殖因子集 {fast_water, gravel} 冻结常量，配置层完成）+ 每槽因子评估的「查询 Profile 得单一 Fit」展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/excluded=槽值出局——PLAIN 族域内 excluded 档落槽值出局而非 EARLY_RETURN：槽无 gate 语义，出槽值仍进 COMBINE——与 SINGLE 族 EARLY_RETURN 的差异本身=族域边界判据）。Response 面 DECIDE_RESPONSE 档位展开（全批统一）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@CommonChubFlowFactorProfile @CommonChubPoolStructureProfile @CommonChubPreyFactorProfile @CommonChubSurfaceFilmProfile @CommonChubPreyFields @CommonChubDietClasses @CommonChubSizeWindow @CommonChubNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -64,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→固定组合；本鱼为族早期成员 4 槽——与地图鱼 P-OSC-BAKE factor_set 轴内直验同构，census 阴性对照） |
+| BakeTemplate | BA-MIGRATION-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；typed 因子集→固定组合；本鱼为族早期成员 4 槽——与地图鱼 P-OSC-BAKE factor_set 轴内直验同构，census 阴性对照；**§2.2 已顺序还原（REP-ORDER-FIX-003）：槽内三档分级命中——链序按 unordered 族契约不还原，登记 README §7**） |
 | Factor1Type(typed) | habitat_factor：流速（急流-深潭 mosaic 轴；typed 实例——census P-CHB-BAKE 槽 1 EVAL_HABITAT_FACTOR_FLOW） |
 | Factor2Type(typed) | habitat_factor：深潭结构（typed 实例——census P-CHB-BAKE 槽 2） |
 | Factor3Type(typed) | resource_factor：猎物资源（杂食宽谱，大个体鱼食权重升——size_class premise 落本槽参数；census 槽 3） |
@@ -77,6 +78,15 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 冻结判语=因子间顺序 unordered——不把 unordered
+因子集改成 early return 链（改链序=结构变更需重审；「若 review 判需 body 内 IF，本面
+结构结论需复核」判语原样携带）。还原内容＝premise 读取前置明示（spawn_run 因子集切换
+与 size_class 参数切换均在配置层完成）+ 每槽因子评估展开为三档分档槽判定（preferred=
+全额/tolerated=削减不清零/excluded=槽值出局）。**族域边界注意：PLAIN 槽的 excluded 档
+落槽值出局而非 EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE；
+与 SINGLE 族 EARLY_RETURN 的差异本身=族域判据。档位成员=Profile 值域不冻结 [需正文]。
+
 读取 当前格子的流速事实
 读取 当前格子的深潭结构事实
 读取 当前格子的猎物资源原始事实
@@ -86,32 +96,60 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       与 size_window=@CommonChubSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 读取 当前格子的陆生猎物水面机会事实
 读取 当前 premise（spawn_run 与 size_class——上游 lifecycle trait/体型 trait，
-    配置级切换因子集与参数，body 不分支）
+    配置级切换因子集与参数，body 不分支；spawn_run=ACTIVE 时因子集切换为
+    快水+砾石繁殖因子集 {fast_water, gravel} 冻结常量——切换在配置层完成，
+    本 body 只按当前 premise 的因子集取 Profile 值域）
 
-第 1 槽 EVAL_HABITAT_FACTOR_FLOW：
-    用流速事实查询 @CommonChubFlowFactorProfile
-    得到 FlowFit
+槽 1 EVAL_HABITAT_FACTOR_FLOW（流速，分级命中）：
+    用流速事实查询 @CommonChubFlowFactorProfile 的流速分档槽
+    （急流-深潭 mosaic 轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 流速 ∈ 偏好流速档（preferred 槽）：
+        FlowFit = 全额
+    否则如果 ∈ 过渡流速档（tolerated 槽）：
+        FlowFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除流速档）：
+        FlowFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
 
-第 2 槽 EVAL_HABITAT_FACTOR_POOL_STRUCTURE：
-    用深潭结构事实查询 @CommonChubPoolStructureProfile
-    得到 PoolStructureFit
+槽 2 EVAL_HABITAT_FACTOR_POOL_STRUCTURE（深潭结构，分级命中）：
+    用深潭结构事实查询 @CommonChubPoolStructureProfile 的结构分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 深潭结构 ∈ 充分档（preferred 槽）：
+        PoolStructureFit = 全额
+    否则如果 ∈ 有限档（tolerated 槽）：
+        PoolStructureFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无结构档）：
+        PoolStructureFit = 出局槽值（excluded——同上族域边界）
 
-第 3 槽 EVAL_RESOURCE_FACTOR_PREY：
-    用猎物资源事实查询 @CommonChubPreyFactorProfile（size_class premise：大个体鱼食权重升——参数）
-    得到 PreyFit
+槽 3 EVAL_RESOURCE_FACTOR_PREY（猎物资源，分级命中）：
+    用猎物资源事实查询 @CommonChubPreyFactorProfile 的资源分档槽
+    （size_class premise：大个体鱼食权重升——参数；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物可得性 ∈ 丰档（preferred 槽）：
+        PreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        PreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无资源档）：
+        PreyFit = 出局槽值（excluded——同上族域边界）
 
-第 4 槽 EVAL_RESOURCE_FACTOR_SURFACE_FILM：
-    用水面机会事实查询 @CommonChubSurfaceFilmProfile
-    得到 SurfaceFilmFit
+槽 4 EVAL_RESOURCE_FACTOR_SURFACE_FILM（水面机会，分级命中）：
+    用水面机会事实查询 @CommonChubSurfaceFilmProfile 的机会分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 陆生猎物水面机会 ∈ 常现档（preferred 槽）：
+        SurfaceFilmFit = 全额
+    否则如果 ∈ 偶现档（tolerated 槽）：
+        SurfaceFilmFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无机会档）：
+        SurfaceFilmFit = 出局槽值（excluded——同上族域边界）
 
 COMBINE_WEIGHTED：
     按模板固定组合规则合并 FlowFit / PoolStructureFit / PreyFit / SurfaceFilmFit
     算子标注：OPERATOR UNDEFINED — 待机制侧（census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
     因子间顺序未由证据裁决，unordered 处理——open_semantics 原样携带）
 
-返回 SpatialDistributionWeight（因子集结束：无 gate、无 early return、无相对寻优
-——族 forbidden_freedoms 边界；产卵洄游期因子集切换在 premise 配置层完成，本 body 不含 IF 分支
-——若 review 判需 body 内 IF，结构结论需复核，census open_semantics 原样）
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界；产卵洄游期因子集切换在 premise 配置层
+完成，本 body 不含 IF 分支——若 review 判需 body 内 IF，结构结论需复核，
+census open_semantics 原样）
 ```
 
 ### 2.3 live 层投影声明
@@ -139,8 +177,16 @@ EVAL_TARGET_AS_FOOD_TYPED：
     多种饵/拟饵可钓，FishBase 原文佐证；diet_breadth=wide_opportunist 冻结常量）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@CommonChubNormalFeedingProfile 值域不冻结；
+    size_class premise 决定接受窗宽度：SMALL=宽谱/LARGE=鱼食收窄——参数级，
+    档位结构不随 size_class 切换）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -190,8 +236,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census PLAIN 族投影标签与 4 槽 typed 因子实例语义（census 冻结槽序/常量 spawn_factors/diet_breadth）；Profile 命名；伪脚本步序（槽序 unordered、Combine 拓扑族固定）。
-- 放弃的自由度：(1) 产卵洄游 body 内分支（P05 判例配置级——若 review 改判需 IF，结构结论复核，census open_semantics 原样）；(2) 体型分级 Group 化（trait/condition 不拆供给）；(3) 合并算子数学（OPERATOR UNDEFINED 待机制侧）；(4) 数值与 Profile 值域不冻结。
+- 使用的自由度：census PLAIN 族投影标签与 4 槽 typed 因子实例语义（census 冻结槽序/常量 spawn_factors/diet_breadth）；Profile 命名；**顺序还原的受限形态（REP-ORDER-FIX-003：premise 前置明示+槽内三档分级命中+excluded 槽值出局的族域边界显式化；链序按 unordered 族契约不还原——推导依据 §0 判断顺序行）**；槽序 unordered、Combine 拓扑族固定。
+- 放弃的自由度：(1) 因子间判断顺序主张（census open_semantics unordered 冻结判语——把因子集改成 early return 链=结构变更需重审，本批不发明顺序）；(2) 产卵洄游 body 内分支（P05 判例配置级——若 review 改判需 IF，结构结论复核，census open_semantics 原样）；(3) 槽内 gate 语义（PLAIN 族域禁 gate——excluded 档落槽值出局进 COMBINE）；(4) 体型分级 Group 化（trait/condition 不拆供给）；(5) 合并算子数学（OPERATOR UNDEFINED 待机制侧）；(6) 数值与 Profile 值域不冻结（含档位成员）。
 - 跨批关系：本鱼 P01+P05 双 Pattern——P01 侧（机会主义宽谱）与 P05 侧（体型分级+洄游配置切换）已在本文件一体表达（census 单 Story 快照承载四面，不拆两文件）；本鱼 potamodromous 配置级处理是湄公鲶（MGC）/grazing 批引用的 CHB 先例源，两批读法一致。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 槽内三档分级命中+excluded 槽值出局族域边界显式化（链序按 unordered 族契约不还原），Response 档位展开）

@@ -20,6 +20,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 判例对齐：个体发生切换属 **lifecycle premise 层**（P05 判例不购买 FishGroup；切换既非 Group 路由程序亦非 Bake body 内分支——湄公鲶 MGC/欧鲢 CHB/电鳗 S9 先例链）。本鱼与欧鲢同科（Leuciscidae）同 potamodromous 方向——配置级处理先例直接适用。
 - Group 面：按分批口径无供给拆分（单一 NormalFeeding Group）；若正文出现互斥供给证据则升级重审。
 - 表达超集说明：Tier B 骨架按 P05 个体发生单因子形（census SINGLE 族）给出，仅容纳 handoff 点名方向；Story 正文到达后若判 PLAIN（多因子）/GATED（硬约束）＝换 BakeTemplate 值 + 增/删行＝结构变更需重审，不是静默改写；正文判无程序语义即撤回本文件。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，handoff 点名方向级推导 [需正文]）**：判断链＝premise 读取（JUVENILE/ADULT 配置级）→ 阶段绑定空间轴段归属三档 → 归一化。推导来源＝handoff 点名「食性随龄」方向+CSV benthopelagic 方向锚（Tier B 无行级证据，链序为样板语义方向级还原，段成员 [需正文]）。分级命中：轴段三档（当前阶段偏好带=全额——幼体沿岸浅水带↔成体开阔深水带随 premise 取段/过渡带=削减不清零/对侧带=出局 EARLY_RETURN）；early return 的对象=格子，不是发育阶段（PREMBIND 不变量维持——个体发生切换属 premise 层，MGC/CHB/S9 先例链）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@IdeOntogeneticSpatialProfile @IdePreyFields @IdeDietClasses @IdeSizeWindow @IdeNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -62,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：生活史阶段空间轴（幼体沿岸浅水↔成体开阔深水方向——CSV benthopelagic+杂食方向锚；具体轴构成 [需正文]） |
 | FactorBinding | lifecycle premise：JUVENILE/ADULT 配置级切换（值域由 Profile 层定值；不建 body 分支——MGC/CHB 先例） |
 | SpatialSlotProfile | @IdeOntogeneticSpatialProfile |
@@ -73,24 +74,42 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（发育阶段配置级）→ 阶段绑定空间轴段归属三档 → 归一化；
+轴段判定分级命中（当前阶段偏好带=全额/过渡带=削减不清零/对侧带=出局
+EARLY_RETURN）。发育阶段切换本身不进 body 分支（PREMBIND 不变量维持：
+JUVENILE/ADULT=上游体型/年龄 trait，配置级切换因子集——MGC/CHB 先例）；
+early return 的对象是格子，不是发育阶段。推导来源=handoff 点名方向+CSV
+benthopelagic 方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。
+与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧受影响族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的位置轴事实（生活史阶段空间轴）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@IdePreyFields 绑定的杂食/鱼类 prey class 生物量，
       经 diet_classes=@IdeDietClasses 食性过滤
       与 size_window=@IdeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（JUVENILE/ADULT——上游体型/年龄 trait，配置级切换因子集）
+读取 当前 premise（JUVENILE/ADULT——上游体型/年龄 trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含发育阶段分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用位置轴事实查询 @IdeOntogeneticSpatialProfile
-    得到 OntogeneticSpatialFit（单 typed 因子评估）
+第 1 步 阶段绑定空间轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @IdeOntogeneticSpatialProfile 的阶段轴段分档槽
+    （轴=幼体沿岸浅水带↔成体开阔深水带（方向——具体构成 [需正文]）；
+    段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好带（preferred 槽——幼体沿岸带/成体深水带方向）：
+        OntogeneticSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽）：
+        OntogeneticSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧带——当前阶段不取的轴段）：
+        返回 0（EARLY_RETURN：格子不在当前发育阶段空间范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 OntogeneticSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；typed context 属 PATCH 族域，硬约束属 HARD_GATED 族域，
-多因子组合属 PLAIN 族域，均非本骨架）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -117,8 +136,16 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @IdeNormalFeedingProfile
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@IdeNormalFeedingProfile 值域不冻结；
+    幼体=无脊椎/杂食取向接受窗、成体=宽谱/鱼食取向——参数随 premise 切换，
+    档位结构不随 premise 切换）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -166,9 +193,10 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签；typed 因子实例语义（个体发生方向，取自 handoff 点名+CSV）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 归族裁决权（SINGLE 骨架是表达层选择，census 侧判同可能改判 PLAIN/GATED——结构变更需重审）；(2) 个体发生切换 Group 化/Response 分支（P05 判例 premise 层，MGC/CHB/S9 先例链）；(3) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(4) 数值与 Profile 值域不冻结。
+- 使用的自由度：SINGLE 族投影标签；typed 因子实例语义（个体发生方向，取自 handoff 点名+CSV）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：轴段归属三档+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) 归族裁决权（SINGLE 骨架是表达层选择，census 侧判同可能改判 PLAIN/GATED——结构变更需重审）；(3) 个体发生切换 Group 化/Response 分支（P05 判例 premise 层，MGC/CHB/S9 先例链）；(4) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(5) 数值与 Profile 值域不冻结（含轴段/档位成员）。
 - [需正文] 食性切换轴（幼→成 prey 谱具体构成）、空间轴构成、Response 接受窗参数方向、批次归属（R05–R10 摘要无 per-fish 明细）。
 - [需核对] Story DB 行级 Pattern 标签。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 轴段归属三档+early return 链，Response 档位展开）

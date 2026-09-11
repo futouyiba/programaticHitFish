@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Quality 面：census NO_SURFACE_EFFECT。
 - 与 Active Spawning 投影先例的关系：live「Active Spawning Representation Projection R0」给出产卵 Group 的 R-T1 Cap Slot（live 先例的 ActiveSpawningFeedingCap 槽）形态——**该投影的大口黑鲈产卵语义（Active Spawning Group+摄食 Cap）与本 Story 的白斑狗鱼判定（无 Group，位置因子 premise 切换）不同判定层**；census 侧判本 Story 无供给拆分，本文件按 census 判定表达，Active Spawning Group 形态作为表达层替代读法登记（§2.3），不冒充本 Story 判定。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，census 冻结语义层推导）**：判断链＝premise 读取（spawning_stage 配置级）→ 繁殖阶段绑定位置轴段归属三档 → 归一化。推导来源＝census P-B2-PIK19-BAKE 冻结实例常量（位置因子随 spawning_stage premise 配置切换——盲体 sketch 语义的档位化还原；Tier A 骨架在案，档位成员不在快照——段成员 [需正文]）。分级命中：轴段三档（当前阶段偏好带=全额——PRESPAWN 淹水草地浅滩带↔POSTSPAWN 深水结构带随 premise 取段/近岸过渡带=削减不清零/对侧带=出局 EARLY_RETURN）；early return 的对象=格子，不是繁殖阶段（PREMBIND 不变量维持——产卵聚集语义不购买供给拆分，census Group 面判语原样）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@PikeSpawnStageSpatialProfile @PikePreyFields @PikeDietClasses @PikeSizeWindow @PikeNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -62,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：繁殖轴段归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：繁殖位置轴（淹水草地浅滩↔深水；typed 实例，spawning_stage 驱动——census P-B2-PIK19-BAKE 实例常量） |
 | FactorBinding | lifecycle premise：spawning_stage 配置级切换（PRESPAWN 淹水草地↔POSTSPAWN 回深水；值域由 Profile 层定值；不建 body 分支） |
 | SpatialSlotProfile | @PikeSpawnStageSpatialProfile |
@@ -73,23 +74,42 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（繁殖阶段配置级）→ 繁殖阶段绑定位置轴段归属三档 → 归一化；
+轴段判定分级命中（当前阶段偏好带=全额/近岸过渡带=削减不清零/对侧带=出局
+EARLY_RETURN）。繁殖阶段切换本身不进 body 分支（PREMBIND 不变量维持：
+spawning_stage=上游繁殖事实，配置级切换因子集）；early return 的对象是格子，
+不是繁殖阶段。推导来源=census P-B2-PIK19-BAKE 冻结实例常量（盲体 sketch 语义的
+档位化还原——Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）；档位成员=
+Profile 值域不冻结。与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑分歧
+登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项）。
+
 读取 当前格子的位置轴事实（淹水草地浅滩↔深水繁殖轴）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@PikePreyFields 绑定的鱼类 prey class 生物量，
       经 diet_classes=@PikeDietClasses 食性过滤
       与 size_window=@PikeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（spawning_stage——上游繁殖事实，配置级切换因子集）
+读取 当前 premise（spawning_stage——上游繁殖事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含繁殖阶段分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用位置轴事实查询 @PikeSpawnStageSpatialProfile
-    得到 SpawnStageSpatialFit（单 typed 因子评估）
+第 1 步 繁殖阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @PikeSpawnStageSpatialProfile 的阶段轴段分档槽
+    （轴=淹水草地浅滩↔深水两态随 spawning_stage 取段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前阶段偏好带（preferred 槽——PRESPAWN 淹水草地浅滩带/
+        POSTSPAWN 深水结构带方向）：
+        SpawnStageSpatialFit = 全额
+    否则如果 ∈ 近岸过渡带（tolerated 槽）：
+        SpawnStageSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧带——当前阶段不取的轴段）：
+        返回 0（EARLY_RETURN：格子不在当前繁殖阶段空间范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 SpawnStageSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，硬约束属 HARD_GATED 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +133,15 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @PikeNormalFeedingProfile（产卵聚集不证明更强取食——census 判语原样；档位参数级）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@PikeNormalFeedingProfile 值域不冻结；
+    产卵聚集不改变档位结构——census 判语在档位层的读法）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -162,8 +189,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（繁殖位置轴 spawning_stage 绑定——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) Active Spawning Group+Cap 表达层选择（census 判无供给拆分；替代读法登记 §2.3，取舍归两层 reconciliation）；(2) Spawning aggregation Group 化（census 判语：≠Guard≠互斥 Group）；(3) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(4) 数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（繁殖位置轴 spawning_stage 绑定——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：繁殖轴段归属三档+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) Active Spawning Group+Cap 表达层选择（census 判无供给拆分；替代读法登记 §2.3，取舍归两层 reconciliation）；(3) Spawning aggregation Group 化（census 判语：≠Guard≠互斥 Group）；(4) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(5) 数值与 Profile 值域不冻结（含轴段/档位成员）。
 - Story 限定：本文件只表达 S19；S20 横咬捕获段（P01，post-instantiation OUT_OF_SCOPE）与 S18 植被伏击（另 Story）不在此承载。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 繁殖轴段归属三档+early return 链，Response 档位展开）

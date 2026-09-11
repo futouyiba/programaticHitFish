@@ -197,3 +197,101 @@ BATCH_ID: REP-FULL-MIGRA-001
 - verdict: **ARTIFACT_APPROVE**（全批首次直接通过）。
 - minor-1：行级 Pattern 抽核 2/2=P01+P05 复合——文件 R-T1 Feeding Path 覆盖 P01 面无 false fit；live 可批量核 [需核对]。
 - minor-2：ide.md 批次归属 live 闭合。minor-3：数字修正。minor-4：停食族 Reaction 通道来源=FR3 triage 判例层非 Story 行级标签。
+
+---
+
+## 7. REP-ORDER-FIX-003 顺序还原修复批次记录（2026-09-11）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8）——方法照 REP-ORDER-FIX-001（grazing+patch 批先例）。**修复对象**：本批 21 文件全部（无撤回件——giant_barb 式撤回件不适用，本批无）。
+
+### 每文件 Bake 修复内容（链形差异=LogicTemplate 判据）
+
+| 文件 | 修复前（平铺） | 修复后（顺序还原链） | early return | 分级命中 |
+|---|---|---|---|---|
+| atlantic_salmon.md | 读事实→EVAL 单一 Fit→归一化 | premise 读取 → 轴段归属三档 → 归一化（**样板基准链两步**——A- 档 G2/C12 样板语义层推导；本批停食组链形基准） | 轴段外格（EARLY_RETURN） | 轴段三档（偏好段/过渡带/出局） |
+| chum_salmon.md | 同上 | premise 读取 → **近底水层软定位（CSV benthopelagic）** → 轴段归属三档 → 归一化 | 远带格+轴段外格（EARLY_RETURN×2） | 近底定位三档+轴段三档 |
+| american_shad.md | 同上 | premise 读取 → **中上层水层定位（CSV pelagic-neritic）** → 轴段归属三档 → 归一化 | 非中上层带格+轴段外格 | 中上层定位三档+轴段三档 |
+| inconnu.md | 同上 | premise 读取 → **底层水层硬定位（CSV demersal——非底层=出局）** → 轴段归属三档 → 归一化 | 非底层格（硬判定）+轴段外格 | 底层定位三档（硬）+轴段三档 |
+| white_sturgeon.md | 同上 | premise 读取 → 底层硬定位 → 轴段归属三档 → **产卵段深潭终段档（本鱼独有终段步——§0 深潭轴语义）** → 归一化 | 非底层格+轴段外格+产卵段非深潭格 | 定位/轴段/深潭各三档 |
+| arctic_char.md | 同上 | premise 读取 → 季节轴段归属三档 → 归一化（Tier A=census P-B2-ARC-BAKE 冻结语义档位化还原；水平位置轴） | 对侧季节带格 | 季节轴段三档 |
+| vendace.md | 同上 | premise 读取 → 季节水层归属三档 → 归一化（Tier A=census P-B2-VEN-BAKE；**垂直水层轴**——与 ARC 链同构轴类型不同，同族成员同构正常） | 对侧水层格 | 水层三档 |
+| swordfish_diel.md | 同上 | premise 读取 → 相位水层归属三档 → 归一化（Tier A=census P-B2-SWO-BAKE；**tolerated 档有独立语义：垂直迁移过渡带**——DVM 晨昏穿越水柱，不同于季节位移型的沿岸中间带容忍） | 对侧相位水层格 | 相位水层三档（迁移过渡带 tolerated） |
+| northern_pike_spawn.md | 同上 | premise 读取 → 繁殖轴段归属三档 → 归一化（Tier A=census P-B2-PIK19-BAKE；PRESPAWN 淹水草地浅滩↔POSTSPAWN 深水随段取值） | 对侧带格 | 繁殖轴段三档 |
+| atlantic_cod.md | 同上 | premise 读取 → 性别阶段深度带归属三档 → 归一化（Tier A=census P-B1-COD-BAKE；sex/stage 取段不构成路由输入） | 远深度带格 | 深度带三档 |
+| walleye_spawn.md | 读事实→槽 1 Fit+槽 2 Fit→COMBINE | **受限还原（链序不还原）**：premise 前置明示+槽内三档分级命中+COMBINE 原样——PLAIN 族 unordered 契约 | 无（槽 excluded=出局槽值进 COMBINE，非 EARLY_RETURN） | 温度/食物各槽三档 |
+| common_chub.md | 读事实→4 槽 Fit→COMBINE | **受限还原（链序不还原）**：spawn_run 因子集切换前置明示（配置层）+4 槽各三档+COMBINE 原样——PLAIN 族 unordered 契约+body 不分支判语原样 | 无（同上族域边界） | 流速/深潭/猎物/水面机会各槽三档 |
+| lungfish_aestivation.md | premise 门+硬门剔除+3 槽 Fit+COMBINE | **GATED 链序保留形**：DRY/WET premise 门显式程序级 EARLY_RETURN 化+硬门判定显式 EARLY_RETURN 化（拓扑不变）+3 槽各三档 | DRY=程序级（不进入本程序）；水面不可达=硬门 EARLY_RETURN | 静水/结构/猎物各槽三档（excluded=槽值出局） |
+| chinook_salmon.md | 读事实→EVAL→归一化 | premise 读取 → 轴段归属三档 → 归一化（Tier B 样板语义基准链；轴=海洋↔河口↔深河产卵段） | 轴段外格 | 轴段三档 |
+| sockeye_salmon.md | 同上 | premise 读取（湖沼五段枚举——落值域不改链形）→ 轴段归属三档 → 归一化 | 轴段外格 | 轴段三档 |
+| coho_salmon.md | 同上 | premise 读取 → 轴段归属三档 → 归一化（轴=海洋↔河口↔产卵支流） | 轴段外格 | 轴段三档 |
+| alewife.md | 同上 | premise 读取（种群形态落值域）→ 轴段归属三档 → 归一化 | 轴段外格 | 轴段三档 |
+| brook_trout.md | 同上 | premise 读取（RIVER/ESTUARY/OCEAN 季节相位）→ 轴段归属三档 → 归一化（同属先例 ARC 读法一致性） | 轴段外格 | 轴段三档 |
+| atlantic_tarpon.md | 同上 | premise 读取（amphidromous 发育枚举——非繁殖阶段）→ 轴段归属三档 → 归一化 | 轴段外格 | 轴段三档 |
+| ide.md | 同上 | premise 读取（JUVENILE/ADULT）→ 空间轴段归属三档 → 归一化（个体发生轴） | 对侧带格 | 轴段三档 |
+| prussian_carp.md | 同上 | premise 读取（繁殖状态——非持久性落值域）→ 植食资源带档位归属三档 → 归一化 | 无草带格 | 资源带三档 |
+
+链形五类（停食组内部即有五种链形）：基准两步（salmon 样板）/软定位三步（chum）/中上定位三步（shad）/底层硬定位三步（inconnu）/底层+深潭四步（white_sturgeon）——**顺序差异来源=推导证据层不同**（A- 档样板链优先 vs Tier B CSV 栖息带锚入链），差异本身=census 侧 LogicTemplate 判据输入。
+
+### Response 面修复（21/21）
+
+1. **DECIDE_RESPONSE 未展开占位修复（21/21）**：全批「DECIDE_RESPONSE：按 FoodEvaluation/ProvocationEvaluation 决定响应档位」为未展开占位（标准 1.4 禁止项）——展开为三档分级命中（接受/激惹档=全额/边际档=低响应削减不清零/无响应=出局），与 §3.1 配置表「命中/未命中」两列语义对齐；档位成员=Profile 值域不冻结。各鱼判语差异入档位层读法（ARC 入口条件较强=接受档收窄；COD 遥测深度不进档位判定；CHB size_class 决定接受窗宽度=参数级；PIK/WAL 产卵聚集不改档位结构）。
+2. **停食族双 Path 状态门控显式化（×5——handoff NOTES 关注点 2）**：MigrationReaction Program 头部加**第 0 步程序级门**（阶段事实∉@MigrationStages 或水体类型∉@WaterTypes → 本 Group 不成立 → 本 Program 整体不激活——程序级 EARLY_RETURN；阶段判定在 §1 路由层完成，body 不含阶段分支）+ **第 1 步状态门控 STATE_GATE_FEEDING**（停食成立 → 普通 Feeding 评价在本 Program 出局 EARLY_RETURN——停食成立时 Feeding 通道最先关闭，后续步骤不再评价任何摄食响应）；「不再评价普通 Feeding」结构性关闭行保留并标注与状态门控的同义关系（拓扑语义 vs 判断链位置两读法）。停食触点差异逐文件入注：大马哈=入淡水（R06 原文）/美洲西鲱=溯河全程（R06 原文）/白北鲑、高首鲟=触点未细读 [需正文]/大西洋鲑=C12 Case 语义实证 [需正文]——触点窗口成员全部落 @MigrationStages 值域 Profile 层定值。
+
+### handoff NOTES 两问的显式回答
+
+- **问 1（洄游空间重排是否需要「非洄游阶段→EARLY RETURN 不进入洄游程序」的 early return 链）**：分层回答。**阶段级出局=程序级，由 §1 路由承载**（阶段∉枚举→不生成 MigrationReaction Group→该 Group 的 Response 程序整体不激活——已在停食组第 0 步程序级门显式化）；**不进 Bake body 加阶段分支**（那是 G2 明确不购买的阶段选择器反模式，违反 PREMBIND 不变量「阶段切换永远 premise 配置级」）。Bake 链内的 EARLY_RETURN 对象是**格子**（不在当前阶段绑定轴段内的格子出局）——非洄游阶段下鱼不出局、程序仍运行（按海洋段轴取值）。肺鱼 WET/DRY 为同构先例（DRY=程序级不进入，premise 配置级选择程序绑定实例非 body 分支——census state switch 冻结判语原样）。
+- **问 2（停食族双 Path 状态门控 IF 的 early return 语义是否清晰）**：原文本停食声明为散文块夹在读取与 EVAL 之间（无 IF 形态、无 early return 语义）；修复后=第 1 步状态门控显式 EARLY_RETURN（停食成立→普通 Feeding 评价最先出局），结构性关闭行与状态门控标注同义关系。REACTPATH validator 关键句（强抑制或关闭/不再评价普通 Feeding）保留，语义归位。
+
+### PLAIN/GATED 链序不还原的理由（2+1 文件）
+
+census PLAIN 族 open_semantics 冻结判语=「因子间顺序 unordered（Factor 展示顺序不改变结果）」+ 欧鲢「若 review 判需 body 内 IF，本面结构结论需复核」——**无证据支持因子间判断顺序主张**，把 unordered 因子集改成 early return 链=结构变更需重审，本批不发明顺序。受限还原内容：premise 读取前置明示+槽内三档分级命中+**excluded 档族域边界显式化**（PLAIN/GATED 槽无 gate 语义，excluded 档落出局槽值仍进 COMBINE——与 SINGLE 族 EARLY_RETURN 的差异本身=族域判据，validator FAMCTX 族边界对应）。GATED（肺鱼）族 canonical 本身有顺序（硬门前置），gate 前置原样、硬门判定显式 EARLY_RETURN 化（拓扑不变——census 冻结判语「水面可达是绝对约束而非相对寻优」原样携带）。
+
+### 顺序差异与 census 的分歧登记（UPSTREAM 级，本批不闭合）
+
+处置照 REP-ORDER-FIX-001 模式（教训 22）：
+
+1. 本批不改 census 侧任何文件（registry/blind_programs 判语冻结维持）；BakeTemplate 投影标签（BA-MIGRATION-SINGLE/PLAIN/GATED）不静默改写——换标签/改结构=census 判同裁决后结构变更需重审（原 §3 登记 2 通道）。
+2. SINGLE 系 18 文件顺序还原链（early return+分级命中）与 census SINGLE 族 canonical 两步「无 gate、无 early return」判语**拓扑分歧**——**census 侧受影响族重跑=work standards §5.4 行动项，归 census/coordinator 侧**（SINGLE 族 15 registry 成员+41 表达层成员的计数口径可能低估）；本批 21 文件的顺序还原链即 census 重跑的表达侧输入。
+3. 顺序推导来源分档逐文件写明（教训 23）：Tier A 6 文件=census 冻结实例常量的档位化还原（骨架在案、档位成员不在快照——段成员 [需正文]）；Tier B 15 文件=CSV/handoff 点名方向级推导全标 [需正文]，Story 正文到达后校准（顺序/档位变化=census 判同输入，结构变更需重审）。
+4. 通用因子（水温/光照/时段）未入任何链——CSV 锚无 Story 空间程序证据；work standards §5.1 例序是模板示例非本批证据。
+5. **Group 面（§1）与 Quality 面（§4）不修**（任务边界+既有程序有顺序有分支，无平铺问题——照 REP-ORDER-FIX-001 不修面先例）。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/migration/validate_migration.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/migration/validate_migration.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/migration"
+[PASS] alewife.md
+[PASS] american_shad.md
+[PASS] arctic_char.md
+[PASS] atlantic_cod.md
+[PASS] atlantic_salmon.md
+[PASS] atlantic_tarpon.md
+[PASS] brook_trout.md
+[PASS] chinook_salmon.md
+[PASS] chum_salmon.md
+[PASS] coho_salmon.md
+[PASS] common_chub.md
+[PASS] ide.md
+[PASS] inconnu.md
+[PASS] lungfish_aestivation.md
+[PASS] northern_pike_spawn.md
+[PASS] prussian_carp.md
+[PASS] sockeye_salmon.md
+[PASS] swordfish_diel.md
+[PASS] vendace.md
+[PASS] walleye_spawn.md
+[PASS] white_sturgeon.md
+== result ==
+PASS (21 species files, 0 violations)
+```
+
+validator 零改动（顺序链在 fence 自由文本内；REACTPATH 关键句保留）。机械复查：21/21 文件含【顺序还原声明】+§0 判断顺序行+尾部批次行；旧「无 gate、无 early return」尾注零残留；裸 @Profile 形态零命中（REP-ORDER-FIX-001 教训 21 防御）。
+
+BATCH_ID: REP-ORDER-FIX-003

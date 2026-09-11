@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - MigrationReaction Group 无独立 Bake 程序（C12/§17.1 先例）。
 - 表达超集说明：Tier B 骨架照 G2/C12 样板 + census SINGLE 族投影给出；正文到达后换族=结构变更需重审。
 - 种级区分：CSV 英文名 Whitefish 为白鲑通名；本鱼=Stenodus（北鲑属，inconnu）。欧白鲑（Vendace，Coregonus albula，本批 vendace.md）、湖白鲑（Lake Whitefish，Coregonus clupeaformas，不在本批）等 Whitefish 通名行与本鱼行级不同——身份核对以学名为准。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，CSV 方向级推导 [需正文]）**：判断链＝premise 读取（RIVER/MIGRATION/SPAWN 配置级）→ 底层水层定位（CSV demersal 硬定位——非底层=出局）→ 阶段绑定轴段归属三档 → 归一化。与样板基准链（atlantic_salmon 两步）的差异＝底层定位步（Tier B CSV 栖息带锚入链；A- 档样板鱼样板链优先——差异来源=推导证据层不同）。停食触点差异（Response 面）：R08 证据仅「第 3 例跨科」一行——停食触点未细读，窗口成员 [需正文]。分级命中：各步三档（全额/削减不清零/出局 EARLY_RETURN）；early return 的对象=格子，不是阶段（PREMBIND 不变量维持；非洄游阶段程序仍运行；「非洄游阶段不进入洄游 Response 程序」由 §1 路由承载）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@InconnuMigrationReactionEligible @InconnuMigrationStages @InconnuMigrationWaterTypes @InconnuMigrationReactionShare @InconnuMigrationSpatialProfile @InconnuPreyFields @InconnuDietClasses @InconnuSizeWindow @InconnuNormalFeedingProfile @InconnuMigrationReactionProfile @InconnuMigrationEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -82,7 +83,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；照 census B2 北极红点鲑位置因子先例投影） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：底层硬定位+轴段归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：洄游阶段位置轴（河口/下游觅食区↔产卵河段；typed 实例，随 premise 取轴段） |
 | FactorBinding | lifecycle premise：RIVER/MIGRATION/SPAWN 配置级切换（值域由 Profile 层定值；不建 body 分支——CHB/MGC 先例） |
 | SpatialSlotProfile | @InconnuMigrationSpatialProfile |
@@ -93,23 +94,53 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 底层水层定位（硬判定）→ 阶段绑定轴段归属三档
+→ 归一化；各步分级命中（全额/削减不清零/出局 EARLY_RETURN）。阶段切换本身不进 body
+分支（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游阶段程序仍
+运行、按河口/下游段轴取值）。推导来源=CSV demersal 栖息带锚+G2/C12 样板空间重排语义
+（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的水层带位置事实
 读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@InconnuPreyFields 绑定的鱼类 prey class 生物量，
       经 diet_classes=@InconnuDietClasses 食性过滤
       与 size_window=@InconnuSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（RIVER/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集）
+读取 当前 premise（RIVER/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用位置轴事实查询 @InconnuMigrationSpatialProfile
-    得到 MigrationSpatialFit（单 typed 因子评估）
+第 1 步 底层水层定位（CSV demersal 底栖特化硬定位）：
+    用水层带位置查询 @InconnuMigrationSpatialProfile 的水层分档槽
+    （底层带=CSV 栖息带锚；档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带（preferred 槽）：
+        LayerTier = 全额保留
+    否则如果 ∈ 近底过渡带（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（中上远带）：
+        返回 0（EARLY_RETURN：demersal 底栖特化不在非底层分布——
+        硬判定；CSV 锚方向级推导 [需正文]，若正文证实离底取食
+        则档位化=结构变更需重审）
 
-NORMALIZE_WEIGHT：
-    对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+第 2 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @InconnuMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=河口/下游觅食区↔产卵河段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，硬约束属 HARD_GATED 族域）
+第 3 步 NORMALIZE_WEIGHT：
+    对 LayerTier × MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 MigrationReaction Group｜无独立 Bake 程序（显式声明）
@@ -140,8 +171,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @InconnuNormalFeedingProfile
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@InconnuNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -151,23 +188,43 @@ Reaction 槽 OFF
 MigrationReaction Group：
 
 ```plain text
+第 0 步 程序级门（非洄游阶段不进入本 Program——§1 路由承载）：
+    阶段事实 ∉ @InconnuMigrationStages 或 水体类型 ∉ @InconnuMigrationWaterTypes
+    时本 Group 不成立（§1.4 分群），本 Program 整体不激活——
+    程序级出局（EARLY_RETURN：非洄游阶段的鱼不进入洄游 Response 程序，
+    归 NormalFeeding Path 处理；阶段判定在路由层完成，本 body 不含阶段分支——
+    PREMBIND 不变量维持）
+
+第 1 步 状态门控（STATE_GATE_FEEDING，停食判例族第 3 例——判断链最先）：
+    本 Group 停食语义成立——普通 Feeding 强抑制或关闭
+    （停食判例族第 3 例证据：R08 摘要「白北鲑停食第 3 例跨科」+
+    R08-FR3「3rd 重复确认」——停食语义跨科重复确认；停食触点未细读
+    （证据仅一行——触点窗口成员=@InconnuMigrationStages 值域内 Profile 层
+    定值 [需正文]）；Typed Result=档位关闭而非数值归零。若产品要求保留残值则
+    Cap 形态，档位与残值由 Profile 层定值；行级停食细节 [需正文]）：
+    普通 Feeding 评价 在本 Program 出局（EARLY_RETURN——停食成立时 Feeding 通道
+    最先关闭，后续步骤不再评价任何摄食响应）
+
 读取 当前离散目标的非摄食 Provocation 事实（入侵/挑衅 Cue：突然性、贴近度、侵扰持续性、产卵地侵扰语义）
 
-普通 Feeding 强抑制或关闭（停食判例族第 3 例证据：R08 摘要
-「白北鲑停食第 3 例跨科」+ R08-FR3「3rd 重复确认」；
-Typed Result=档位关闭而非数值归零。若产品要求保留残值则 Cap 形态，
-档位与残值由 Profile 层定值；行级停食细节 [需正文]）
-
-EVAL_TARGET_AS_INTRUDER_TYPED：
+第 2 步 EVAL_TARGET_AS_INTRUDER_TYPED：
     用 Provocation 事实评价 @InconnuMigrationReactionProfile
     得到 ProvocationEvaluation
 
-DECIDE_RESPONSE：
-    按 ProvocationEvaluation 决定响应档位
+第 3 步 DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 ProvocationEvaluation（档位成员=@InconnuMigrationReactionProfile 值域不冻结）：
+    如果 ProvocationEvaluation ∈ 激惹档（preferred 槽）：
+        返回 Response(Reaction)（全额响应）
+    否则如果 ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(Reaction)
 
-不再评价普通 Feeding（结构性关闭：Feeding evaluator 不进入该 Group Program——live §8.8 Typed Result 先例）
+不再评价普通 Feeding（结构性关闭：Feeding evaluator 不进入该 Group Program——
+live §8.8 Typed Result 先例；本行=第 1 步状态门控的拓扑语义，状态门控=其在
+判断链中的位置，两读法同义）
 ```
 
 ## 4. Quality Selection
@@ -212,9 +269,10 @@ DECIDE_RESPONSE：
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：G2 MigrationReaction share-vector 路由样板；SINGLE 族投影标签与 typed 因子实例语义；Profile 命名；伪脚本步序（canonical 两步固定）；停食判例双 Path Response 结构。
-- 放弃的自由度：(1) R-T2 折叠候选（归机制侧）；(2) BA-T7 ROUTE/TRANSITION 洄游句型（NEW_TEMPLATE_NOT_PROVEN）；(3) 阶段选择器；(4) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(5) 数值与 Profile 值域不冻结。
+- 使用的自由度：G2 MigrationReaction share-vector 路由样板；SINGLE 族投影标签与 typed 因子实例语义；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：底层硬定位步（CSV 锚）、轴段归属三档+early return 链、Response 状态门控显式化+程序级门+档位展开——推导依据 §0 判断顺序行）**；停食判例双 Path Response 结构。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) R-T2 折叠候选（归机制侧）；(3) BA-T7 ROUTE/TRANSITION 洄游句型（NEW_TEMPLATE_NOT_PROVEN）；(4) 阶段选择器（程序级门/状态门控不构成 body 内阶段分支）；(5) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(6) 数值与 Profile 值域不冻结（含水层/轴段/档位成员）。
 - [需正文] 洄游阶段枚举成员、水体类型集合、MigrationShare 档位、Provocation Cue 构成、停食行级细节（跨科第 3 例的正文级确认）。
 - [需核对] Story DB 行级 Pattern 标签；Whitefish 通名种行级区分（湖白鲑/驼背白鲑/高白鲑不在本批，README §4 登记 4）。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 底层硬定位+轴段归属三档+early return 链，Response 状态门控显式化+程序级门+双 Path 档位展开）

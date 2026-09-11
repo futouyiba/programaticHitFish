@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 族标准成员（水层匹配=呈现参数——census 判语原样）。
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围；2D 回归登记为 OPEN 不在本批闭合）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，census 冻结语义层推导）**：判断链＝premise 读取（diel 配置级）→ 相位绑定水层归属三档 → 归一化。推导来源＝census P-B2-SWO-BAKE 冻结实例常量（昼夜垂直迁移水层因子 diel 绑定——盲体 sketch 语义的档位化还原；Tier A 骨架在案，档位成员不在快照——段成员 [需正文]）。**本鱼 tolerated 档有独立语义：垂直迁移过渡带**（晨昏相位切换时鱼穿越整个水柱——DVM 型独有 tolerated 档，不同于季节位移型的「沿岸中间带」容忍语义；档位成员 [需正文]）。分级命中：水层三档（当前相位偏好水层=全额——夜间表层↔昼间深层随 diel 取段/垂直迁移过渡带=削减不清零/对侧相位水层=出局 EARLY_RETURN）；early return 的对象=格子，不是相位（PREMBIND 不变量维持）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@SwordfishDielSpatialProfile @SwordfishPreyFields @SwordfishDietClasses @SwordfishSizeWindow @SwordfishNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -62,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：相位水层归属三档（迁移过渡带 tolerated 档）+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：昼夜垂直迁移水层因子（表层↔深层；typed 实例，diel 驱动——census P-B2-SWO-BAKE 实例常量） |
 | FactorBinding | lifecycle premise：diel 配置级切换（夜间表层↔昼间深层；值域由 Profile 层定值；不建 body 分支——迁移驱动语义未闭合，coverage #24 登记） |
 | SpatialSlotProfile | @SwordfishDielSpatialProfile |
@@ -73,23 +74,42 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（diel 配置级）→ 相位绑定水层归属三档 → 归一化；水层判定分级命中
+（当前相位偏好水层=全额/垂直迁移过渡带=削减不清零——DVM 型独有 tolerated 档/
+对侧相位水层=出局 EARLY_RETURN）。相位切换本身不进 body 分支（PREMBIND 不变量维持：
+diel=上游昼夜事实，配置级切换因子集）；early return 的对象是格子，不是相位。推导来源=
+census P-B2-SWO-BAKE 冻结实例常量（盲体 sketch 语义的档位化还原——Tier A 骨架在案、
+档位成员不在快照，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
 读取 当前格子的水层事实（昼夜垂直迁移轴）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@SwordfishPreyFields 绑定的头足类/深海鱼类 prey class 生物量，
       经 diet_classes=@SwordfishDietClasses 食性过滤
       与 size_window=@SwordfishSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（diel——上游昼夜事实，配置级切换因子集）
+读取 当前 premise（diel——上游昼夜事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 水层段值，不含相位分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用水层事实查询 @SwordfishDielSpatialProfile
-    得到 DielSpatialFit（单 typed 因子评估）
+第 1 步 相位绑定水层归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用水层事实查询 @SwordfishDielSpatialProfile 的相位水层分档槽
+    （垂直水层轴=表层↔深层两态随 diel 相位取段；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 当前相位偏好水层（preferred 槽——夜间表层/昼间深层方向）：
+        DielSpatialFit = 全额
+    否则如果 ∈ 垂直迁移过渡带（tolerated 槽——晨昏相位切换穿越水柱方向；
+        DVM 型独有 tolerated 语义——档位成员 [需正文]）：
+        DielSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧相位水层——当前相位不取的水层）：
+        返回 0（EARLY_RETURN：格子不在当前相位水层范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 DielSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；迁移驱动 2D 判据=coverage #24 回归登记，本批不闭合）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。迁移驱动 2D 判据=coverage #24
+回归登记本批不闭合；本链与 census SINGLE 族 canonical 两步的分歧登记 README §7）
 ```
 
 ### 2.3 live 层投影声明
@@ -113,8 +133,15 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @SwordfishNormalFeedingProfile（水层匹配=呈现参数——census 判语原样）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@SwordfishNormalFeedingProfile 值域不冻结；
+    水层匹配=接受档的水层成员方向——census 判语在档位层的读法）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -162,8 +189,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（昼夜垂直迁移水层 diel 绑定——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 2D 定向表达能力（coverage #24 NEEDS_REGRESSION_SAMPLE——迁移驱动未闭合，回归样本归 representation 线，本批按 premise 绑定骨架表达）；(2) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（昼夜垂直迁移水层 diel 绑定——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：相位水层归属三档+迁移过渡带 tolerated 档（DVM 独有语义）+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) 2D 定向表达能力（coverage #24 NEEDS_REGRESSION_SAMPLE——迁移驱动未闭合，回归样本归 representation 线，本批按 premise 绑定骨架表达）；(3) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(4) 数值与 Profile 值域不冻结（含水层/档位成员）。
 - 跨层登记：R08 摘要「旗鱼喙击打保守降 Open 留 FR3」＝旗鱼科喙击打捕获段判例（Capture Boundary 域）——与剑旗鱼 S23 昼夜垂直迁移面不同面别（post-instantiation owner），不在本文件承载。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 相位水层归属三档+迁移过渡带 tolerated 档+early return 链，Response 档位展开）

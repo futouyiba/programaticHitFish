@@ -21,6 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Response 面：TYPED 族标准成员；「入口条件较强」＝evaluator 参数（census 判语原样），非新拓扑。
 - Quality 面：census NO_SURFACE_EFFECT（无程序证据）。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
+- **判断顺序（REP-ORDER-FIX-003 顺序还原，census 冻结语义层推导）**：判断链＝premise 读取（temp/season 配置级）→ 季节绑定轴段归属三档 → 归一化。推导来源＝census P-B2-ARC-BAKE 冻结实例常量（近岸↔深水位置因子 temp/season 绑定——盲体 sketch 语义的档位化还原；Tier A 骨架在案，档位成员不在快照——段成员 [需正文]）。分级命中：轴段三档（当前季节偏好带=全额——暖季近岸带↔冷水季深水带随 premise 取段/季节过渡带=削减不清零/对侧季节带=出局 EARLY_RETURN）；early return 的对象=格子，不是季节——季节切换永远 premise 配置级（PREMBIND 不变量维持）。CSV benthopelagic 锚未入链（census 冻结单因子形优先）。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@ArcticCharSeasonSpatialProfile @ArcticCharPreyFields @ArcticCharDietClasses @ArcticCharSizeWindow @ArcticCharNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -61,7 +62,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化） |
+| BakeTemplate | BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：季节轴段归属三档+early return 链，分歧登记 README §7**） |
 | FactorType(typed) | habitat_factor：冷水季节位置轴（近岸↔深水；typed 实例，temp/season 驱动——census P-B2-ARC-BAKE 实例常量） |
 | FactorBinding | lifecycle premise：temp/season 配置级切换（冷水季深水↔暖季近岸；值域由 Profile 层定值；不建 body 分支） |
 | SpatialSlotProfile | @ArcticCharSeasonSpatialProfile |
@@ -72,23 +73,41 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（季节配置级）→ 季节绑定轴段归属三档 → 归一化；轴段判定分级命中
+（当前季节偏好带=全额/季节过渡带=削减不清零/对侧季节带=出局 EARLY_RETURN）。季节切换
+本身不进 body 分支（PREMBIND 不变量维持：temp/season=上游 premise，配置级切换因子集）；
+early return 的对象是格子（不在当前季节绑定轴段内的格子出局），不是季节。推导来源=
+census P-B2-ARC-BAKE 冻结实例常量（盲体 sketch 语义的档位化还原——Tier A 骨架在案、
+档位成员不在快照，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
 读取 当前格子的位置轴事实（近岸↔深水冷水季节轴）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
       prey_fields=@ArcticCharPreyFields 绑定的鱼类/无脊椎 prey class 生物量，
       经 diet_classes=@ArcticCharDietClasses 食性过滤
       与 size_window=@ArcticCharSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
-读取 当前 premise（temp/season——上游事实，配置级切换因子集）
+读取 当前 premise（temp/season——上游事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含季节分支）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用位置轴事实查询 @ArcticCharSeasonSpatialProfile
-    得到 SeasonSpatialFit（单 typed 因子评估）
+第 1 步 季节绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @ArcticCharSeasonSpatialProfile 的季节轴段分档槽
+    （轴=近岸↔深水两态随季节取段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前季节偏好带（preferred 槽——暖季近岸带/冷水季深水带方向）：
+        SeasonSpatialFit = 全额
+    否则如果 ∈ 季节过渡带（tolerated 槽——沿岸中间带方向）：
+        SeasonSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧季节带——当前季节不取的轴段）：
+        返回 0（EARLY_RETURN：格子不在当前季节空间范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 SeasonSpatialFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，硬约束属 HARD_GATED 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -112,8 +131,15 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @ArcticCharNormalFeedingProfile（入口条件较强＝evaluator 参数——census 判语原样）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-003 展开）：
+    按三档判定 FoodEvaluation（档位成员=@ArcticCharNormalFeedingProfile 值域不冻结；
+    入口条件较强=接受档成员收窄方向——census 判语在档位层的读法）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -161,8 +187,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（近岸↔深水 temp/season 绑定——census 冻结实例常量）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 洄游/湖居种群 FishMode 合并或分裂（census 判语：不合并，判语义归 census 侧）；(2) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族投影标签与 typed 因子实例语义（近岸↔深水 temp/season 绑定——census 冻结实例常量）；Profile 命名；**顺序还原链序与档位结构（REP-ORDER-FIX-003：季节轴段归属三档+early return 链、Response 档位展开——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate 判语」拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(2) 洄游/湖居种群 FishMode 合并或分裂（census 判语：不合并，判语义归 census 侧）；(3) 合并算子（SINGLE 链无 combine 步；OPERATOR UNDEFINED）；(4) 数值与 Profile 值域不冻结（含轴段/档位成员）。
 - 跨层登记：anadromous 种群的海湖洄游相位（若有 Story 侧停食/阶段证据）不在本 Story 范围（S25=冷水季节位移与近底摄食）；洄游停食判例族未含本鱼（R06/R08/R09/R10 摘要零提及），不冒充覆盖。
 
 BATCH_ID: REP-FULL-MIGRA-001
+顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 季节轴段归属三档+early return 链，Response 档位展开）
