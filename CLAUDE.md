@@ -9,3 +9,7 @@
 5. Notion 默认只读；离线快照必须标注 snapshot，MCP 不可用不得冒充 live Authority。
 
 角色、状态机、handoff envelope 和来源优先级以 `HARNESS_HANDOFF.md` 为准。任何独立审核都必须声明 `level/scope/baseline/proves/does_not_prove/open_findings/verdict`。
+
+## B 系列与 LT 系列工作标准
+
+创建/修改/审查 Representation 表达或 LogicTemplate Census 时，先读 [docs/authoring_work_standards.md](docs/authoring_work_standards.md)——含条件原子化标准、伪脚本完全展开要求、盲纪律、判同四态、计数对账等。
