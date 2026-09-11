@@ -22,6 +22,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面 / Quality 面：组样板 NO_SURFACE_EFFECT。
 - 表达超集说明：骨架参数化表达；未超出组样板族域。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原，Tier B）**：判断链＝受限还原——因子槽间顺序按 census PLAIN 族 unordered 契约不主张（改槽序=结构变更需重审）；每槽三档分级命中（excluded=出局槽值进 COMBINE 非 EARLY_RETURN——族域边界）。槽间先后不在本文件主张（HRQ-07 unordered 提案维持）；水温/时段等通用因子未入链。
+
 Profile 引用清单：@GTVForageProfile @GTVHabitatProfile @GTVPreyFields @GTVDietClasses @GTVSizeWindow @GTVNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -61,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族） |
+| BakeTemplate | BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
 | Factor1Type(typed) | forage_factor：礁缘鱼群猎物场轴 |
 | Factor2Type(typed) | habitat_factor：礁盘/开放水结构轴 |
 | CombineRule | Template-fixed COMBINE_WEIGHTED（数学 OPERATOR UNDEFINED 待机制侧） |
@@ -71,6 +73,16 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
 读取 当前格子的forage_factor事实（礁缘鱼群猎物场轴）
 读取 当前格子的habitat_factor事实（礁盘/开放水结构轴）
 读取 当前格子的可食资源原始事实
@@ -79,19 +91,35 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@GTVDietClasses 食性过滤
       与 size_window=@GTVSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR（槽1）：
-    用forage_factor事实查询 @GTVForageProfile
-    得到 ReefPreyFit
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @GTVForageProfile 的猎物场分档槽
+    （礁缘鱼群猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        ReefPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        ReefPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        ReefPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
 
-EVAL_TYPED_FIELD_OR_FACTOR（槽2）：
-    用habitat_factor事实查询 @GTVHabitatProfile
-    得到 ReefEdgeWaterHabitatFit
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @GTVHabitatProfile 的栖息分档槽
+    （礁盘/开放水结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        ReefEdgeWaterHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        ReefEdgeWaterHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        ReefEdgeWaterHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
 
 COMBINE_WEIGHTED：
     合并两个 FactorFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明）
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
 
-返回 SpatialDistributionWeight（因子集链结束：无归一化步、无 gate——族边界）
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
 ```
 
 ### 2.3 live 层投影声明
@@ -115,8 +143,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实（大饵快速呈现/水面炸水呈现——组样板参数）评价 @GTVNormalFeedingProfile
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@GTVNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -164,7 +198,10 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE/PLAIN 族投影标签与 typed 因子实例语义；Profile 命名；伪脚本步序（canonical 固定）。
+- 使用的自由度：SINGLE/PLAIN 族投影标签与 typed 因子实例语义；Profile 命名；顺序还原链序与档位结构（REP-ORDER-FIX-004：槽内三档分级命中——槽间顺序按族契约 unordered 不还原）。
 - 放弃的自由度：(1) 归族裁决权移交（无 census 快照——Story 正文到达后判同可能改判，结构变更需重审）；(2) 合并算子（无 combine 步或 OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM2-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 槽内三档分级命中——槽间顺序按族契约 unordered 不还原，Response DECIDE 档位展开）

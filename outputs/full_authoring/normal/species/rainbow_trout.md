@@ -22,6 +22,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面 / Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原）**：顺序还原不适用（无程序面）——本面为 BOUNDARY-DECL 显式声明形态，无 Story 派生程序可排序；顺序还原只作用于有程序面的 Bake 伪脚本（见 §2.2 显式声明）。Response 面档位展开照常适用。
+
 Profile 引用清单：@RaiSurfaceMouseContextProfile @RaiRegionalVariantProfile @RaiNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -61,7 +63,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-BOUNDARY-DECL（本批无 Story 派生空间程序显式声明标签；census Bake 面判语原样：Static Habitat；地域变体=Profile 重绑定非空间程序） |
+| BakeTemplate | BA-P01-BOUNDARY-DECL（本批无 Story 派生空间程序显式声明标签；census Bake 面判语原样：Static Habitat；地域变体=Profile 重绑定非空间程序；**顺序还原不适用（无程序面——REP-ORDER-FIX-004）**） |
 | LiveLayerProjection | Static Habitat——鱼的空间分布由 Species 基础空间程序（BA-T1 底板，Species 层资产）承载；地域变体由 @RaiRegionalVariantProfile 重绑定承载，不添加派生空间因子 |
 
 ### 2.2 中文伪脚本（完全展开）
@@ -74,6 +76,9 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 鱼的空间分布由 Species 基础空间程序（BA-T1 底板，Species 层资产）承载——
 地域策略变体＝Profile 重绑定（@RaiRegionalVariantProfile 值域差异），非空间程序
 （census 判语原样：地域变体=Profile 重绑定非空间程序）
+
+顺序还原不适用（无程序面）——REP-ORDER-FIX-004：本面无 Story 派生程序可排序
+（BOUNDARY-DECL 显式声明形态；顺序还原只作用于有程序面的 Bake 伪脚本）
 ```
 
 ### 2.3 live 层投影声明
@@ -101,8 +106,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
       engine 无字面差异，无新结构——census absence claim 原样）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@RaiNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -154,4 +165,7 @@ Reaction 槽 OFF
 - 放弃的自由度：(1) 地域变体的结构化（新模板/新通道——census absence claim 判语：engine 无字面差异，地域差异全部 Profile 值域）；(2) 硬头鳟异行文件（同种异行不分裂——migration 批登记项照录）；(3) 数值与 Profile 值域不冻结。
 - 阴性样本定位：本文件是「地域策略变体≠新结构」判例的四面固化，供后续同型 Story（地域/亚种变体类）归族引用。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 顺序还原不适用（无程序面），Response DECIDE 档位展开）

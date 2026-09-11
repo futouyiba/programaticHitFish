@@ -24,6 +24,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围；P02 侧不在本文件表达）。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原，Tier A）**：判断链＝受限还原——因子槽间顺序按 census PLAIN 族 unordered 契约不主张（改槽序=结构变更需重审）；每槽三档分级命中（excluded=出局槽值进 COMBINE 非 EARLY_RETURN——族域边界）。槽间先后不在本文件主张（HRQ-07 unordered 提案维持）；水温/时段等通用因子未入链。
+
 Profile 引用清单：@MdfStructureFactorProfile @MdfDepthColdFactorProfile @MdfPreyFields @MdfDietClasses @MdfSizeWindow @MdfNightActivityProfile @MdfNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -63,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合；本标签本批唯一使用文件＝census 在案 PLAIN 第 5 成员） |
+| BakeTemplate | BA-P01-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合；本标签本批唯一使用文件＝census 在案 PLAIN 第 5 成员；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
 | Factor1Type(typed) | structure_factor：结构掩体轴（岩礁/沉木/结构贴近；typed 实例——census P-B2-MDF-BAKE 实例常量） |
 | Factor2Type(typed) | habitat_factor：深度轴·低温绑定（census 实例常量：深度因子带低温 premise 绑定；值域由 Profile 层定值） |
 | FactorBinding | season premise：低温期深度偏好偏移（premise 配置级；不建 body 分支） |
@@ -74,6 +76,16 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
 读取 当前格子的结构掩体轴事实（岩礁/沉木/结构贴近）
 读取 当前格子的深度轴事实（低温 premise 绑定的深度偏好）
 读取 当前格子的可食资源原始事实
@@ -83,19 +95,35 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       与 size_window=@MdfSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 读取 当前 premise（低温期——深度因子绑定的 premise，配置级）
 
-EVAL_TYPED_FIELD_OR_FACTOR（槽1）：
-    用结构掩体轴事实查询 @MdfStructureFactorProfile
-    得到 StructureFit
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（structure_factor，分级命中）：
+    用structure_factor事实查询 @MdfStructureFactorProfile 的结构分档槽
+    （结构掩体轴·岩礁/沉木/结构贴近；typed 实例——census P-B2-MDF-BAKE 实例常量；档位成员=Profile 值域不冻结 [需正文]）
+    如果 结构 ∈ 最适档（preferred 槽）：
+        StructureFit = 全额
+    否则如果 ∈ 次级档（tolerated 槽）：
+        StructureFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        StructureFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
 
-EVAL_TYPED_FIELD_OR_FACTOR（槽2）：
-    用深度轴事实查询 @MdfDepthColdFactorProfile
-    得到 DepthColdFit
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @MdfDepthColdFactorProfile 的栖息分档槽
+    （深度轴·低温绑定·census 实例常量：深度因子带低温 premise 绑定；值域由 Profile 层定值；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        DepthColdFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        DepthColdFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        DepthColdFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
 
 COMBINE_WEIGHTED：
-    合并 StructureFit / DepthColdFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明）
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
 
-返回 SpatialDistributionWeight（因子集链结束：无归一化步、无 gate——族边界）
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
 ```
 
 ### 2.3 live 层投影声明
@@ -123,8 +151,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
       FAO 实证，census 判语原样；作为 evaluator 参数宽度，不是新通道）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@MdfNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -176,4 +210,7 @@ Reaction 槽 OFF
 - 放弃的自由度：(1) 夜间摄食的空间槽化（census 判语：活性 condition 非空间分支——低光槽形态归 NOCTURNAL 组族域，本文件不使用）；(2) 合并算子数学（OPERATOR UNDEFINED）；(3) P02 侧场摄食面（归后续场摄食批，本文件不冒充）；(4) 数值与 Profile 值域不冻结。
 - CSV 性格锚「追猎」与本组（伏击）归属的张力已登记：census 冻结程序（结构+深度伏击因子、motion-triggered 追捕）优先于 CSV 习性行（README §4 登记项 5）。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 槽内三档分级命中——槽间顺序按族契约 unordered 不还原，Response DECIDE 档位展开）

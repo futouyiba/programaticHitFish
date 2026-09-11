@@ -23,6 +23,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 表达超集说明：骨架参数化表达；未超出组样板族域。
 
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原，Tier B）**：判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位（丰=全额/贫=削减/枯=EARLY_RETURN）→ 归一化。结构安全/水流等次级因子未入链（CSV 活泼/温和锚无 Story 空间证据，不冒充）。
+
 Profile 引用清单：@JsbEstuaryPulsePatchProfile @JsbPreyFields @JsbDietClasses @JsbSizeWindow @JsbNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -63,7 +65,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化） |
+| BakeTemplate | BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
 | FactorType(typed) | resource_patch：河口猎物脉冲场轴（潮汐/晨昏脉冲方向） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@JsbPreyFields；diet_classes=@JsbDietClasses；size_window=@JsbSizeWindow） |
@@ -72,6 +74,13 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位 → 归一化。机会型
+第一判断＝食物丰度（跟着食物走：丰档=全额/贫档=削减不清零/枯档=出局
+EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息双槽）、夜行型
+（底板+光照槽）的顺序差异本身=LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文
+到达后校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
 读取 当前格子的resource_patch事实（河口猎物脉冲场轴（潮汐/晨昏脉冲方向））
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
@@ -79,15 +88,24 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@JsbDietClasses 食性过滤
       与 size_window=@JsbSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用该轴事实查询 @JsbEstuaryPulsePatchProfile
-    得到 EstuaryPulseFit（单 typed 因子评估）
+第 1 步 机会场食物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  机会型第一判断：食物丰度先行）：
+    用resource_patch事实查询 @JsbEstuaryPulsePatchProfile 的机会场丰度分档槽
+    （河口猎物脉冲场轴·潮汐/晨昏脉冲方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 机会场 ∈ 丰档（preferred 槽）：
+        EstuaryPulseFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        EstuaryPulseFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（枯竭档——无可食机会）：
+        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 EstuaryPulseFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -112,8 +130,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实（晨昏窗口/逃窜触发呈现——组样板参数）评价 @JsbNormalFeedingProfile
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@JsbNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -163,8 +187,11 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE 族投影标签与 typed 因子实例语义；Profile 命名；伪脚本步序（canonical 两步固定）。
+- 使用的自由度：SINGLE 族投影标签与 typed 因子实例语义；Profile 命名；顺序还原链序与档位结构（REP-ORDER-FIX-004：食物丰度档三档分级命中 EARLY_RETURN）。
 - 放弃的自由度：(1) 归族裁决权移交（无 census 快照——Story 正文到达后判同可能改判，结构变更需重审）；(2) 合并算子（无 combine 步；OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。- [需核对] 海鲈/海鲈鱼 CSV 双行的种复合体关系（一行承载另一行登记，README §4 登记项 4）。
 
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 食物丰度档三档分级命中 EARLY_RETURN，Response DECIDE 档位展开）

@@ -374,6 +374,68 @@ BATCH_ID: REP-FULL-NORM2-001
 
 ---
 
+## 7. REP-ORDER-FIX-004 顺序还原修复批次记录（2026-09-11，第二批 72 文件）
+
+**依据**：docs/authoring_work_standards.md §5.1 + fcf-representation-worker 章程产出规则第一条（commit 66713d8）+ REP-ORDER-FIX-001/002/003 已定型方法 + 第一批 normal README §7（组级链形设计同批复用）。**修复对象**：本批全部 72 文件的 Bake §2.2 伪脚本 + Response §3.2 DECIDE 占位；就地修改五处+文件尾修复批次行。
+
+### 组级链形（承第一批判型，零新组形）
+
+| 组（文件数） | 顺序还原链 | 组级第一判断 | early return | 分级命中 |
+|---|---|---|---|---|
+| 伏击 AMBUSH-SINGLE（11） | 门（存在性/定位）→ 掩体结构档位 → 归一化 | 结构掩体（无掩体不伏击） | 门不成立=EARLY_RETURN；暴露档=EARLY_RETURN | 掩体三档 |
+| 追击 PURSUIT-PLAIN（37） | 受限还原：每槽三档分档槽判定+COMBINE 维持（census PLAIN unordered/HRQ-07——槽间顺序不主张，改槽序=结构变更需重审） | 猎物场+栖息双槽（vs 伏击掩体先行/机会丰度先行） | 无（槽 excluded=出局槽值进 COMBINE≠EARLY_RETURN——族域边界） | 每槽三档 |
+| 夜行 NOCTURNAL-SINGLE（9） | 夜行底板栖息档位 → 低光/夜相槽档位（槽位置=§11.5 判例原位） → 归一化 | 光照+时段+底板 | 无底板=EARLY_RETURN；槽亮水档=极低削减不清零（槽=调整器非 gate） | 底板三档+槽内三档 |
+| 机会 OPPORTUNE-SINGLE（15） | （premise 读取——配置级）→ 机会场食物丰度档位 → 归一化 | 食物丰度（跟着食物走） | 枯竭档=EARLY_RETURN | 丰/贫/枯三档 |
+
+本批零 BOUNDARY-DECL/SENSE-SINGLE/PLAIN/R-T2 文件（第一轮已承载）；组间顺序差异与张力登记（夜行槽位置/追击槽间序）见第一批 README §7——两批同判型不重复登记。
+
+### 伏击组每鱼门类型清单（11 文件——两批合计 26 门形）
+
+| 门类型 | 文件 | 门语义（第一判断） |
+|---|---|---|
+| GATE_ZONE（底层定位 3+表层 1） | white_sucker / stellate_sturgeon / atlantic_sturgeon / shortnose_sturgeon；silver_arowana（表层定位——表层掠食特化） | 底层（或表层）水层定位——非定位水层=出局 |
+| GATE_BURYABLE_SUBSTRATE（3） | grass_puffer / northern_whiting / yellowtail_flounder | 可埋沙泥/沙底/软泥底质（掩埋伏击特化——不可埋=出局） |
+| GATE_EDGE_COVER（1） | bullhead_minnow | 缓流沙泥/植被缘掩体存在（小型底栖伏击） |
+| GATE_REEF_EDGE / RIFFLE_GRAVEL（2） | blackhead_seabream / arctic_grayling | 岩礁沙缘过渡/急流砾石结构存在 |
+
+### Response 面修复（72/72）
+
+DECIDE_RESPONSE 占位全部展开三档分级命中（接受档=全额/边际档=低响应/无响应=出局）；本批零 R-T2，全 R-T1（承批口径）。
+
+### 顺序推导来源分级
+
+本批全部 Tier B+/Tier B（无 census 快照成员——第一轮 Tier A 已全承载）：F1 点名 9/R06 遗留点名 3/R08 点名 5/R08 互指 1=批内互指/点名锚方向级推导（[需正文]）；CSV 行 N 其余 54=CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（结构变更需重审）。
+
+### 分歧登记（UPSTREAM 级——承第一批判型）
+
+顺序还原链与 census SINGLE 族 canonical 两步「无 gate」判语拓扑分歧：census 侧零改动、标签不静默改写；SINGLE 族受影响成员重跑=work standards §5.4 行动项归 census/coordinator（本批 35 个 SINGLE 链形=重跑表达侧输入第二批）。Tier B 归族裁决权移交（§3 登记 2）对顺序链同样适用——Story 正文到达后换组/换链形=结构变更需重审。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal2/validate_normal2.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal2/validate_normal2.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal2"
+== result ==
+PASS (72 species files, 0 violations)
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal2/closure_replay.py"
+== closure replay ==
+PASS
+```
+
+（72 文件逐 PASS 行与首轮验证记录同形，此处不重复粘贴。）缺陷史：本批修复零缺陷（第一轮 BAN 词撞车的教训 3/7 变体在批前已内化为模板措辞）——首轮即 72/72 全绿，校验器零改动，closure_replay 复验同版 PASS（闭合账不受顺序修复影响）。
+
+顺序还原修复批次：REP-ORDER-FIX-004（第二批 normal2 72 文件；第一批 normal 60 文件见该批 README §7）
+
+---
+
 ## REP-FULL-NORM2-REV-001 验收记录（2026-09-11）
 
 - verdict: **ARTIFACT_APPROVE**（reviewer 独立人工全量回放 267 CSV 行确认闭合：220=59+36+72+53 零未处理；19+1 类排除判据封闭无未声明步）。

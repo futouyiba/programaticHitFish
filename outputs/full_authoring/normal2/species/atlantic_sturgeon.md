@@ -23,6 +23,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面 / Quality 面：组样板 NO_SURFACE_EFFECT。
 - 表达超集说明：骨架参数化表达；未超出组样板族域。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原，Tier B+）**：判断链＝GATE_ZONE 门（河口河底底层定位——溯河鲟底栖触须特化，不成立=EARLY_RETURN） → 掩体结构档位（三档分级命中） → 归一化。水温/光照/时段等通用因子未入链（CSV 锚无 Story 空间程序证据——§5.1 例序是模板示例不是证据，不冒充）。
+
 Profile 引用清单：@ATSEstuaryBottomProfile @ATSPreyFields @ATSDietClasses @ATSSizeWindow @ATSNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -62,7 +64,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族） |
+| BakeTemplate | BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
 | FactorType(typed) | structure_factor：河口河底触须贴近轴（溯河鲟底栖方向） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@ATSPreyFields；diet_classes=@ATSDietClasses；size_window=@ATSSizeWindow） |
@@ -71,6 +73,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_ZONE 门（河口河底底层定位——溯河鲟底栖触须特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝批内互指/点名锚方向级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
 读取 当前格子的structure_factor事实（河口河底触须贴近轴（溯河鲟底栖方向））
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
@@ -78,15 +88,31 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       经 diet_classes=@ATSDietClasses 食性过滤
       与 size_window=@ATSSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用该轴事实查询 @ATSEstuaryBottomProfile
-    得到 EstuaryBottomFit（单 typed 因子评估）
+第 1 步 GATE_ZONE（河口河底底层定位——溯河鲟底栖触须特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @ATSEstuaryBottomProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子位于河口底层水层带（河底水层）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子不在底层水层带——伏击型结构掩体先行判据）
 
-NORMALIZE_WEIGHT：
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @ATSEstuaryBottomProfile 的掩体伏击分档槽
+    （河底触须贴近质量：河床槽/底起伏；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        EstuaryBottomFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        EstuaryBottomFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
     对 EstuaryBottomFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -110,8 +136,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实（底栖贴近/触须接触呈现——组样板参数）评价 @ATSNormalFeedingProfile
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@ATSNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -159,8 +191,11 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：SINGLE/PLAIN 族投影标签与 typed 因子实例语义；Profile 命名；伪脚本步序（canonical 固定）。
+- 使用的自由度：SINGLE/PLAIN 族投影标签与 typed 因子实例语义；Profile 命名；顺序还原链序与档位结构（REP-ORDER-FIX-004：门先行 EARLY_RETURN+掩体档三档分级命中）。
 - 放弃的自由度：(1) 归族裁决权移交（无 census 快照——Story 正文到达后判同可能改判，结构变更需重审）；(2) 合并算子（无 combine 步或 OPERATOR UNDEFINED）；(3) 数值与 Profile 值域不冻结。
 - 放弃的自由度：(4) 名单身份/口径张力项的裁决权（见 §0 附加注记与 README 排除表——登记在案不冒充）。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM2-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 门先行 EARLY_RETURN+掩体档三档分级命中，Response DECIDE 档位展开）

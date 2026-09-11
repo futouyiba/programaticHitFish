@@ -23,6 +23,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面 / Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原）**：顺序还原不适用（无程序面）——本面为 BOUNDARY-DECL 显式声明形态，无 Story 派生程序可排序；顺序还原只作用于有程序面的 Bake 伪脚本（见 §2.2 显式声明）。Response 面档位展开照常适用。
+
 Profile 引用清单：@PikNormalFeedingProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -62,7 +64,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-BOUNDARY-DECL（本批无 Story 派生空间程序显式声明标签；census Bake 面判语原样：S20 无空间新证据——植被伏击属 S18 另一条 Story） |
+| BakeTemplate | BA-P01-BOUNDARY-DECL（本批无 Story 派生空间程序显式声明标签；census Bake 面判语原样：S20 无空间新证据——植被伏击属 S18 另一条 Story；**顺序还原不适用（无程序面——REP-ORDER-FIX-004）**） |
 | LiveLayerProjection | Static Habitat——鱼的空间分布由 Species 基础空间程序（BA-T1 底板，Species 层资产）承载，本 Story 不添加派生因子 |
 
 ### 2.2 中文伪脚本（完全展开）
@@ -75,6 +77,9 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 鱼的空间分布由 Species 基础空间程序（BA-T1 底板，Species 层资产）承载——
 本 Story（横咬捕获阶段类）的空间语义＝Static Habitat，无新增证据行
 （植被伏击空间语义属 S18——由本批 northern_pike_ambush.md 承载，两文件不重复）
+
+顺序还原不适用（无程序面）——REP-ORDER-FIX-004：本面无 Story 派生程序可排序
+（BOUNDARY-DECL 显式声明形态；顺序还原只作用于有程序面的 Bake 伪脚本）
 ```
 
 ### 2.3 live 层投影声明
@@ -98,8 +103,14 @@ EVAL_TARGET_AS_FOOD_TYPED：
     用目标事实评价 @PikNormalFeedingProfile
     得到 FoodEvaluation（TargetFeeding 只解释最初接受）
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位（仅初次接受：横咬取饵成立即本面结束）
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@PikNormalFeedingProfile 值域不冻结——（仅初次接受：横咬取饵成立即本面结束））：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -154,4 +165,7 @@ Reaction 槽 OFF
 - 放弃的自由度：(1) 横咬后阶段程序化（post-instantiation owner=交互实例侧，census out_of_scope 原样）；(2) 植被伏击空间语义（属 S18——同种异 Story 分文件先例，与 migration 批 northern_pike_spawn.md 三文件互指不重复）；(3) 数值与 Profile 值域不冻结。
 - 同种三 Story 分工（S18/S19/S20 三文件三批）在 README §3 登记 6 互指闭合。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 顺序还原不适用（无程序面），Response DECIDE 档位展开）

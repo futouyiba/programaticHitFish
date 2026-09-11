@@ -305,6 +305,76 @@ BATCH_ID: REP-FULL-NORM-001
 
 ---
 
+## 7. REP-ORDER-FIX-004 顺序还原修复批次记录（2026-09-11，第一批 60 文件）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级——B 系列伪脚本顺序缺陷：平铺结构丢失真实判断顺序）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8）+ REP-ORDER-FIX-001/002/003 已定型方法。**修复对象**：本批全部 60 文件的 Bake §2.2 伪脚本 + Response §3.2 DECIDE 占位；修复方式=就地修改（每文件 §0/§2/§3/§5 五处 + 文件尾修复批次行）。
+
+### P01 普通层的组级判断顺序（本批核心设计——顺序差异本身=LogicTemplate 判据）
+
+P01 handoff 方向锚：**伏击型先判结构掩体；追击型先判猎物场+开放水；夜行型先判光照+时段；机会型先判食物丰度**。四个亚结构组（+感官组/BOUNDARY）的链形各不相同：
+
+| 组（文件数） | 修复前（平铺） | 修复后（顺序还原链） | 组级第一判断 | early return | 分级命中 |
+|---|---|---|---|---|---|
+| 伏击 AMBUSH-SINGLE（15） | 读事实→EVAL 得单一 Fit→归一化 | **门（存在性/定位，二值）→ 掩体结构档位 → 归一化** | 结构掩体（无掩体不伏击） | 门不成立=EARLY_RETURN；暴露档=EARLY_RETURN | 掩体档三档（最适伏击=全额/次级掩体=削减不清零/暴露=出局） |
+| 追击 PURSUIT-PLAIN（16） | 读事实→槽1 EVAL→槽2 EVAL→COMBINE | **受限还原**（见下）：每槽展开三档分档槽判定，COMBINE 维持 | 猎物场+栖息双槽（组判断主体 vs 伏击掩体先行） | **无**（族域：槽 excluded=出局槽值仍进 COMBINE≠EARLY_RETURN） | 每槽三档（丰/贫/无猎物；适配/过渡/排除） |
+| 夜行 NOCTURNAL-SINGLE（10） | 读事实→EVAL→槽步→归一化 | **夜行底板栖息档位 → 低光/夜相槽档位 → 归一化** | 光照+时段（环境判据）+底板（栖息判据） | 无夜行底板=EARLY_RETURN；**槽亮水档=极低削减不清零（槽=调整器非 gate）** | 底板三档+槽内三档（夜相低光=全额合入/晨昏过渡=削减/亮水日间=极低削减） |
+| 机会 OPPORTUNE-SINGLE（11） | 读事实→EVAL→归一化 | **（premise 读取——配置级）→ 机会场食物丰度档位 → 归一化** | 食物丰度（跟着食物走） | 枯竭档=EARLY_RETURN | 丰=全额/贫=削减/枯=出局 |
+| 感官 SENSE-SINGLE（3） | 读事实→EVAL→归一化 | **感官信号场档位 → 归一化** | 猎物信号场可探测性 | 无信号档=EARLY_RETURN | 可探测丰=全额/弱信号=削减/无信号=出局 |
+| PLAIN 直投 mandarin_fish（1） | 读事实→槽1/槽2 EVAL→COMBINE | 受限还原（同追击形——槽1 结构掩体/槽2 低温绑定深度） | 双槽（census P-B2-MDF-BAKE 实例常量） | 无（同 PLAIN 族域） | 每槽三档 |
+| BOUNDARY-DECL（4） | 无程序显式声明 | **顺序还原不适用声明**（Bake 面无 Story 派生程序可排序——显式记录，非跳过）；Response 面照常展开 | — | — | — |
+
+**追击/PLAIN 受限还原的理由（承 REP-ORDER-FIX-003 migration PLAIN 先例）**：census PLAIN_FACTOR_COMBINE open_semantics＝因子槽间顺序 unordered（HRQ-07 提案）——无证据支持槽间顺序主张，改 early return 链＝结构变更需重审，不发明。还原内容＝槽内三档+**excluded 档族域边界显式化**（槽值出局进 COMBINE≠EARLY_RETURN，与 SINGLE 族差异=族域判据）。handoff「追击型先判猎物场+开放水」的读法＝双槽即判断主体（vs 伏击掩体先行/机会丰度先行）——组间差异保留，槽间先后不主张。
+
+**夜行组槽位置张力（登记不闭合）**：光照+时段为夜行型第一环境判据，但低光槽位置＝live §11.5 判例固定（DynamicSpatialSlot 按模板固定位置合入，非作者可选）——光照先行语义由**槽内三档+Response 面 LightAvailability cue 双承载**；槽位置提前＝改判例结构需重审。槽＝调整器非 gate：亮水档落极低削减不清零，出局语义落 typed 因子（无夜行底板=EARLY_RETURN）。
+
+### 伏击组每鱼门类型清单（15 文件——门的类型即每鱼判断顺序差异）
+
+| 门类型 | 文件 | 门语义（第一判断） |
+|---|---|---|
+| GATE_VEGETATION_EDGE / VEGETATION_COVER / SWAMP_VEGETATION / SURFACE_VEGETATION / WEEDY_SLACK（植被系 5） | florida_gar / northern_pike_ambush / bowfin / giant_snakehead / spotted_gar | 植被/草丛/水面植被掩体存在——无植被掩体不伏击 |
+| GATE_ZONE（底层定位 2） | rainbow_darter / russian_sturgeon | 底层水层定位（底栖特化——非底层=出局） |
+| GATE_BURYABLE_SUBSTRATE（1） | witch_flounder | 可埋软泥底质（底埋伏击特化——不可埋=出局） |
+| GATE_HOLE_COVER / BURROW（洞隙系 2） | marble_goby_ambush / yellow_catfish | 洞隙/泥底洞穴掩体存在（日间藏匿→伏击） |
+| GATE_SHADE_EDGE（2） | topmouth_culter / mongolian_redfin | 明暗交界带定位（中上层伏击位——不在交界带=出局；组间张力行维持原登记） |
+| GATE_ROCK_STRUCTURE / ROCK_CREVICE / POOL_STRUCTURE（结构系 3） | spotted_mandarin / spinibarbus / freshwater_drum | 岩礁/石隙/深潭结构存在 |
+
+（normal2 批 11 个伏击文件的门类型清单见 normal2 README §7——两批合计 26 门形，门类型差异=伏击组内顺序判据。）
+
+### Response 面修复（60/60）
+
+§3.2 的「DECIDE_RESPONSE：按 FoodEvaluation 决定响应档位」未展开占位（标准 1.4 禁止项）全部展开为三档分级命中（接受档=全额 TargetFeeding/边际档=低响应削减不清零/无响应=出局），与 §3.1 配置表两列语义对齐；既有语义尾注逐文件保留（如 northern_pike_strike「仅初次接受：取饵成立即本面结束」并入档位行）。R-T2 载体 ×2（pumpkinseed/striped_bass）：Feeding 通道展开三档（snakehead 先例形态），Reaction 通道维持值域承载声明（加控制流=走私——guarding 批判例），MAX 汇总+算子标注结构零改动。
+
+### 顺序推导来源分级（逐文件 §0/§2.2 声明内）
+
+- **Tier A ×8**（florida_gar/mandarin_fish/brown_trout/paddlefish_electro + BOUNDARY 4）：census 冻结全四面判定快照（Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）。
+- **Tier B+ ×6**（northern_pike_ambush/marble_goby_ambush/rainbow_darter/tiger_musky/spiny_dogfish/thorny_skate）：批内互指/点名锚方向级推导（[需正文]）。
+- **Tier B ×46**：CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（顺序/档位变化=census 判同输入，结构变更需重审）。
+
+### 分歧登记（UPSTREAM 级，本批不闭合——承 FIX-001 登记）
+
+顺序还原链与 census SINGLE 族 canonical 两步判语（「无 gate、无 early return」——forbidden_freedoms）**拓扑分歧**：census 侧文件零改动、投影标签不静默改写；**SINGLE 族受影响成员重跑=work standards §5.4 行动项归 census/coordinator**（本批 46 个 SINGLE 链形+normal2 批 35 个即重跑的表达侧输入）。水温/光照/时段等通用因子未入伏击/追击/机会链（CSV 锚无 Story 空间程序证据——§5.1 例序是模板示例不是证据）；夜行组光照经 §11.5 判例槽承载（见上张力登记）。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal/validate_normal.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal/validate_normal.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/normal"
+== result ==
+PASS (60 species files, 0 violations)
+```
+
+（60 文件逐 PASS 行与首轮验证记录同形，此处不重复粘贴。）缺陷史：修复首轮 validator 抓出 BAN 命中 2 处真实工件缺陷——夜行组槽动作行「按模板固定位置合入」（live §11.5 判例原文引用）撞 MERGE_PHRASES 而夜行 fence 无算子标注（教训 7 引用变体）——改工件措辞为「槽位＝判例固定」/「槽位由判例固定合入」（教训 3：守卫词撞车改工件措辞、不改词表放行），涉 10 文件；修后 60/60 全绿零改动校验器。
+
+顺序还原修复批次：REP-ORDER-FIX-004（第一批 normal 60 文件；第二批 normal2 72 文件见该批 README §7）
+
+---
+
 ## REP-FULL-NORM-REV-001 验收记录（2026-09-11）
 
 - verdict: ARTIFACT_REVISE（60 文件本体零改动；修复面全在 README——名单声明/Tier 计数/文本瑕疵）。

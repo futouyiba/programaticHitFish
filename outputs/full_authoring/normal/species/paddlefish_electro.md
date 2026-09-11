@@ -25,6 +25,8 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Quality 面：census NO_SURFACE_EFFECT。
 - 表达超集说明：无（本文件未超出 census 冻结程序语义范围）。
 
+- **判断顺序（REP-ORDER-FIX-004 顺序还原，Tier A）**：判断链＝感官信号场档位（可探测=全额/弱信号=削减/无信号=EARLY_RETURN）→ 归一化。感官通道绑定 premise（若有）保持配置级。
+
 Profile 引用清单：@PadElectroZooplanktonPatchProfile @PadPreyFields @PadDietClasses @PadSizeWindow @PadLarvalStageProfile @PadElectroFeedingProfile @ElectroFieldProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
 ## 1. Group Routing
@@ -64,7 +66,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P01-SENSE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——感官梯度/感官 patch 轴实例） |
+| BakeTemplate | BA-P01-SENSE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——感官梯度/感官 patch 轴实例；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
 | FactorType(typed) | resource_patch：浮游猎物 patch 轴（幼体限定——census P-B1-PAD34-BAKE 实例常量） |
 | FactorBinding | lifecycle premise：幼体阶段限定（成体滤食口径不属本 Story；值域由 Profile 层定值；不建 body 分支） |
 | Normalization | NORMALIZE_WEIGHT（族常量；非作者可选算子） |
@@ -74,6 +76,12 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝感官信号场档位 → 归一化。感官型第一判断＝猎物信号场可探测性
+（可探测丰档=全额/弱信号=削减不清零/无信号=出局 EARLY_RETURN）——感官梯度
+先行是本组与机会型（丰度先行）的判据差异。顺序来源＝census 冻结全四面判定快照（Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）——Story 正文到达后
+校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
 读取 当前格子的浮游猎物 patch 轴事实（幼体口径）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
@@ -82,15 +90,24 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       与 size_window=@PadSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 读取 当前 premise（幼体阶段——lifecycle premise，配置级限定）
 
-EVAL_TYPED_FIELD_OR_FACTOR：
-    用浮游猎物 patch 轴事实查询 @PadElectroZooplanktonPatchProfile
-    得到 ZooplanktonPatchFit（单 typed 因子评估）
+第 1 步 感官信号场档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  感官型第一判断：信号场可探测性先行）：
+    用该轴事实查询 @PadElectroZooplanktonPatchProfile 的信号场分档槽
+    （幼体口径；档位成员=Profile 值域不冻结 [需正文]）
+    如果 信号场 ∈ 可探测丰档（preferred 槽）：
+        ZooplanktonPatchFit = 全额
+    否则如果 ∈ 弱信号档（tolerated 槽）：
+        ZooplanktonPatchFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无信号档）：
+        返回 0（EARLY_RETURN：无可探测猎物信号的格子出局——感官型信号先行判据）
 
-NORMALIZE_WEIGHT：
+第 2 步 NORMALIZE_WEIGHT：
     对 ZooplanktonPatchFit 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -120,8 +137,14 @@ EVAL_TARGET_AS_FOOD_TYPED（PASSIVE_ELECTROSENSE 通道——被动电感受 typ
     算子标注：OPERATOR UNDEFINED — 待机制侧（FIXED_COMBINE 数学；REP-CUE-AXIS-001 §1 同款声明）
     得到 FoodEvaluation
 
-DECIDE_RESPONSE：
-    按 FoodEvaluation 决定响应档位
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-004 展开）：
+    按三档判定 FoodEvaluation（档位成员=@PadElectroFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档（preferred 槽）：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 FoodEvaluation ∈ 边际档（tolerated 槽）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(TargetFeeding)
 
@@ -173,4 +196,7 @@ Reaction 槽 OFF
 - 放弃的自由度：(1) 幼体阶段的 Group 路由化（census 判语：lifecycle premise 阶段路由上层——premise 配置级）；(2) 产品电呈现输入契约定义（TAR-07 待裁——只占位消费不定义）；(3) 成体滤食面（CSV 滤食列口径——归 P03 场摄食批，不属本文件）；(4) 合并算子数学（OPERATOR UNDEFINED ×2）；(5) 数值与 Profile 值域不冻结。
 - 电场轴边界（REP-CUE-AXIS-001 §2 排除表随批携带）：主动放电攻击/远程捕获归 Encounter/Conversion owner；本文件只表达被动感知通道。
 
+- 放弃的自由度（REP-ORDER-FIX-004 追加）：census canonical 步序的服从（顺序还原后链与 canonical「无 gate、无 early return」判语拓扑分歧——链序/档位结构为 authoring_work_standards §5.1 顺序还原产物，登记 README §7；重跑裁决归 census 侧=§5.4 行动项）。
+
 BATCH_ID: REP-FULL-NORM-001
+顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 信号场可探测档三档分级命中 EARLY_RETURN，Response DECIDE 档位展开）
