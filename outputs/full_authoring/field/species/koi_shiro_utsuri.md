@@ -40,5 +40,6 @@ Profile 重绑定清单：@KsuVisualProfile @KsuQualityProfile @SpeciesBaseQuali
 - 使用的自由度：L1 等效声明形态（R10 品系行判例 + CSV 同物种子行标注）；Profile 重绑定占位命名。
 - 放弃的自由度：独立四面展开（同物种 L1 等效——独立展开＝变体行分裂四面，违反 normal 批先例）；视觉层程序化（L2 视觉资产不在 FCF 四面内）；品系级品质 Modifier 编造（无 Story 证据不表达）；数值不冻结。
 - 本文件与本体四面文件的从属关系单向：本体到达/变更时本文件重绑定清单随之更新（本体结构变更需重审的连带面）；本文件自身不产生结构变更。
+- 顺序还原（REP-ORDER-FIX-005）不适用：L1 短形引用本体——本体修复时连带更新（本文件无独立伪脚本，无平铺缺陷可修）。
 
 BATCH_ID: REP-FULL-FIELD-001

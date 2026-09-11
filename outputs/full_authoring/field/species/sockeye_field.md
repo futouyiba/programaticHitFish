@@ -23,6 +23,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面：无路由（无供给拆分证据；handoff「鱼群供给路由候选」仅点名鲢/鳙系——本鱼不在其中）。
 - Quality 面：无程序证据。
 - 表达超集说明：骨架参数化表达；未超出 BHC canonical 族域。
+- **判断顺序（REP-ORDER-FIX-005 顺序还原，handoff 判序+CSV 方向锚推导）**：判断链＝滤食水层定位（海洋表层/中上层滤食带三档——pelagic-oceanic 方向锚；湖沼幼体期/海洋成体期水层随生命周期 premise 取段 [需正文]）→ 场浓度判定（浮游浓度三档——浮游/幼鱼混合构成 [需正文]；水流输送调制并入 Profile 值域）→ 个体大小口径判定（鳃耙口径三档）→ 归一化（族常量终点步——SINGLE 族域无 combine 步）。推导来源＝handoff 判序指令（滤食型：先判水层位置（上层/中层）→水流/食物场密度→个体大小口径→合并）+ BHC canonical 同型骨架参数差异化（链形照 bighead_carp.md 顺序还原链，水层锚换海洋表层）；与 census canonical 两步判语的拓扑分歧登记 README §7。分级命中：每步三档（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；early return 的对象=格子。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@SckPlanktonFieldEvaluatorProfile @SckPlanktonPreyFields @SckDietClasses @SckSizeWindow @SckFieldIntakeProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -63,7 +64,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化；bighead_carp.md Tier A 样板骨架） |
+| BakeTemplate | BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化；bighead_carp.md Tier A 样板骨架；**§2.2 已顺序还原（REP-ORDER-FIX-005）：水层定位→场浓度→口径链+early return，分歧登记 README §7**） |
 | FieldType(typed) | food_field：plankton 场（场 evaluand——浮游浓度场，海洋期表层水柱分布（CSV selective plankton feeding 方向锚；浮游/幼鱼混合构成 [需正文]）） |
 | FieldEvaluatorProfile | @SckPlanktonFieldEvaluatorProfile（场评估器：场事实→场评估器→场适应性） |
 | FactorBinding | lifecycle premise：溯河洄游相位配置级切换（摄食期海域因子集 ↔ 溯河产卵期因子集由上游 premise 配置切换，不建 body 分支——MGC/CHB 先例） |
@@ -74,6 +75,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-005】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝滤食水层定位 → 场浓度判定 → 个体大小口径判定 → 归一化（族常量终点步）；
+三步均为同一场评估（FieldSuitability）的顺序判定（非多因子并联——SINGLE 族域），
+每步分级命中（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；
+early return 的对象=格子。推导来源与 census 判语分歧登记 README §7
+（census 侧族重跑=work standards §5.4 行动项）；档位成员=Profile 值域不冻结。
+
+读取 当前格子的水层/深度带事实（滤食水层判定输入——顺序还原链第一判定步的事实读取）
 读取 当前格子的食物场事实（浮游浓度场——水柱分布的浓度事实）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
@@ -82,15 +91,52 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
       与 size_window=@SckSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
 读取 当前 premise（溯河洄游相位——lifecycle premise 配置级切换；不在本 body 内分支）
 
-EVAL_FOOD_FIELD_CONCENTRATION：
-    用食物场浓度事实查询 @SckPlanktonFieldEvaluatorProfile
-    得到 FieldSuitability（场适应性——场浓度评估，非离散 patch、非结构因子）
+第 1 步 滤食水层定位（场评估的前置顺序判定，分级命中）：
+    用水层/深度带事实查询 @SckPlanktonFieldEvaluatorProfile 的水层分档槽
+    （海洋表层/中上层滤食带——pelagic-oceanic 方向锚；湖沼幼体期/海洋成体期
+      水层随生命周期 premise 取段 [需正文]；滤食型先判水层位置（上层/中层）；
+      档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 ∈ 偏好滤食水层（preferred 槽——当前生命期海洋表层浮游富集带）：
+        不折减，进入第 2 步
+    否则如果 ∈ 可接受邻层（tolerated 槽）：
+        携削减标记进入第 2 步（× Profile 衰减参数——削减但不清零）
+    否则（远离滤食水层，滤食位不在场）：
+        返回 0（EARLY_RETURN：格子不在滤食水层范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 EVAL_FOOD_FIELD_CONCENTRATION（canonical 步的档位化展开——场浓度三档）：
+    用食物场浓度事实查询 @SckPlanktonFieldEvaluatorProfile
+    （水流对浮游分布的输送调制并入 Profile 值域；
+      场适应性——场浓度评估，非离散 patch、非结构因子）
+    如果 ∈ 高浓度带（preferred 槽——场浓度在偏好带）：
+        FieldSuitability = 全额
+    否则如果 ∈ 边际浓度带（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——削减但不清零）
+    否则（空场/浓度低于起始阈值）：
+        返回 0（EARLY_RETURN：场不可用，格子出局）
+
+第 3 步 个体大小口径判定（口径三档——契约口径过滤维度的链位化）：
+    用口径过滤前后的构成对比（食物场浓度事实 vs diet_classes=@SckDietClasses
+      与 size_window=@SckSizeWindow 过滤后的在场可食构成）查询 @SckPlanktonFieldEvaluatorProfile
+      的口径分档槽（口径=个体大小决定的鳃耙间距/口裂——浮游/幼鱼混合构成 [需正文]；
+      @SckSizeWindow 值域）
+    如果 口径内构成为主（preferred 槽——场构成与本鱼口径匹配）：
+        FieldSuitability 保持（本步不折减）
+    否则如果 仅部分构成在口径内（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——部分可食）
+    否则（场构成全部超出本鱼口径——浓度高亦不可食）：
+        返回 0（EARLY_RETURN：口径不匹配，格子出局）
+
+    多步命中档的折减合成算子标注：OPERATOR UNDEFINED —— 待机制侧
+    （SINGLE 族 forbidden_freedoms 无 combine 步；三步为同一场评估的顺序判定非并联，
+     步间折减合成=族重跑后的规格动作，本文件不静默定义）
+
+第 4 步 NORMALIZE_WEIGHT（canonical；链终点步——handoff 判序「合并」的族域读法：
+    SINGLE 族域单场因子链的合并=归一化终点，非多因子 COMBINE）：
     对 FieldSuitability 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单场因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，typed context 属 PATCH 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族 canonical
+两步「无 gate 判语」的拓扑分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -116,8 +162,14 @@ EVAL_FOOD_FIELD_INTAKE：
       intake_semantics=持续滤食——FOOD_FIELD_FEEDING_RESPONSE 族参数轴实例）
     得到 FieldIntakeEvaluation
 
-DECIDE_FIELD_FEEDING：
-    按 FieldIntakeEvaluation 决定场摄食响应档位
+DECIDE_FIELD_FEEDING（分级命中，REP-ORDER-FIX-005 展开）：
+    按三档判定 FieldIntakeEvaluation（档位成员=@SckFieldIntakeProfile 值域不冻结）：
+    如果 FieldIntakeEvaluation ∈ 接受档（preferred 槽——场浓度足够启动摄入）：
+        返回 Response(FieldFeeding)（全额响应）
+    否则如果 ∈ 边际档（tolerated 槽——低浓度场仍维持低摄入）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(FieldFeeding)
 
@@ -167,8 +219,9 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族 food_field 轴投影标签与场实例语义；FOOD_FIELD 族投影（intake_semantics=持续滤食）；Profile 命名；伪脚本步序（canonical 两步固定）；双批分工面划分。
-- 放弃的自由度：P05 洄游面/停食面表达（归 migration 批资产；停食判例族不默认继承）；离散钩饵捕获通道表达（产品捕获方式 TAR-09 Open——不预购买）；合并算子（单场因子链无 combine 步；OPERATOR UNDEFINED）；数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族 food_field 轴投影标签与场实例语义；FOOD_FIELD 族投影（intake_semantics=持续滤食）；Profile 命名；伪脚本步序（canonical 两步固定；**§2.2/§3.2 已顺序还原（REP-ORDER-FIX-005）：链序与档位结构（照 BHC 样板链，水层锚换海洋表层）——推导依据 §0 判断顺序行**）；双批分工面划分。
+- 放弃的自由度：census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate」判语拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；P05 洄游面/停食面表达（归 migration 批资产；停食判例族不默认继承）；离散钩饵捕获通道表达（产品捕获方式 TAR-09 Open——不预购买）；合并算子（单场因子链无 combine 步；步间折减合成 OPERATOR UNDEFINED）；数值与 Profile 值域不冻结。
 - [需正文] P03 主 relation 行级标签、海洋期场构成、溯河停食与否。
 
 BATCH_ID: REP-FULL-FIELD-001
+顺序还原修复批次：REP-ORDER-FIX-005（§0/§2/§3/§5 修改；Bake 水层定位→场浓度→口径链+early return，Response 档位展开）

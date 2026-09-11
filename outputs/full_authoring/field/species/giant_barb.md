@@ -26,6 +26,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - Group 面：无路由（无供给拆分证据；handoff「鱼群供给路由候选」仅点名鲢/鳙系——本鱼不在其中）。
 - Quality 面：无程序证据（撤回档同款）。
 - 表达超集说明：本文件为 live 行级证据的表达层重建；Story 正文到达后若判语与本投影冲突＝结构变更需重审（同撤回触发条款）。
+- **判断顺序（REP-ORDER-FIX-005 顺序还原，handoff 判序+live 行级证据推导）**：判断链＝场层位定位（resource patch 所在中下层/底层资源带三档——底质/附着资源的层位归属，live 实测 PrimaryEvaluand=Resource Patch 的层位读法 [需正文]）→ 场密度判定（patch 可食资源密度三档；水流输送/富集调制并入 Profile 值域）→ 个体大小口径判定（口裂/鳃耙口径三档——杂食 variable 构成 [需正文]）→ 归一化（族常量终点步——SINGLE 族域无 combine 步）。推导来源＝handoff 判序指令（滤食/场跟随型：先判水层位置→水流/食物场密度→个体大小口径→合并——本鱼「水层位置」=资源 patch 所在层位非滤食水层）+ live 行级 evaluand 场化读法；与 census canonical 两步判语的拓扑分歧登记 README §7。分级命中：每步三档（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；early return 的对象=格子。档位成员与阈值全 Profile 值域不冻结 [需正文]。
 
 Profile 引用清单：@GrbResourcePatchFieldEvaluatorProfile @GrbResourcePatchPreyFields @GrbDietClasses @GrbSizeWindow @GrbFieldIntakeProfile @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -66,7 +67,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化） |
+| BakeTemplate | BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-005）：场层位定位→场密度→口径链+early return，分歧登记 README §7**） |
 | FieldType(typed) | food_field：resource patch 场（底质/附着混合资源场——藻+碎屑+底栖小生物的可食资源浓度场；live 实测 PrimaryEvaluand=Resource Patch 的场化读法。构成主次 [需正文]） |
 | FieldEvaluatorProfile | @GrbResourcePatchFieldEvaluatorProfile（场评估器：场事实→场评估器→场适应性；底质粒度/附着类型差异进值域） |
 | FactorBinding | lifecycle premise：potamodromous 洄游配置级切换（MGC/CHB 先例——因子集随上游 premise 配置切换，不建 body 分支；洄游期切换细节 [需正文]） |
@@ -77,6 +78,14 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 ### 2.2 中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-005】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝场层位定位 → 场密度判定 → 个体大小口径判定 → 归一化（族常量终点步）；
+三步均为同一场评估（FieldSuitability）的顺序判定（非多因子并联——SINGLE 族域），
+每步分级命中（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；
+early return 的对象=格子。推导来源与 census 判语分歧登记 README §7
+（census 侧族重跑=work standards §5.4 行动项）；档位成员=Profile 值域不冻结。
+
+读取 当前格子的水层/深度带事实（场层位判定输入——顺序还原链第一判定步的事实读取）
 读取 当前格子的食物场事实（资源 patch 浓度场——底质/附着混合可食资源的空间分布浓度）
 读取 当前格子的可食资源原始事实
     （UsableForageAvailability 契约输出：
@@ -86,15 +95,51 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 读取 当前 premise（potamodromous 洄游——lifecycle premise 配置级切换；
     洄游期因子集切换由上游 premise 配置承载，不在本 body 内设分支）
 
-EVAL_FOOD_FIELD_CONCENTRATION：
-    用资源 patch 场浓度事实查询 @GrbResourcePatchFieldEvaluatorProfile
-    得到 FieldSuitability（场适应性——资源 patch 场评估，非离散目标、非底质单因子）
+第 1 步 场层位定位（场评估的前置顺序判定，分级命中）：
+    用水层/深度带事实查询 @GrbResourcePatchFieldEvaluatorProfile 的层位分档槽
+    （resource patch 所在中下层/底层资源带——本鱼「水层位置」判定=资源 patch 层位归属
+      （live 实测 PrimaryEvaluand=Resource Patch 的层位读法 [需正文]）；
+      档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 ∈ 偏好资源层位（preferred 槽——patch 富集的中下层/底层带）：
+        不折减，进入第 2 步
+    否则如果 ∈ 可接受邻层（tolerated 槽）：
+        携削减标记进入第 2 步（× Profile 衰减参数——削减但不清零）
+    否则（远离资源 patch 层位，场不在位）：
+        返回 0（EARLY_RETURN：格子不在资源 patch 层位范围，出局）
 
-NORMALIZE_WEIGHT：
+第 2 步 EVAL_FOOD_FIELD_CONCENTRATION（canonical 步的档位化展开——patch 密度三档）：
+    用资源 patch 场浓度事实查询 @GrbResourcePatchFieldEvaluatorProfile
+    （水流对 patch 分布的输送/富集调制与底质粒度/附着类型差异并入 Profile 值域；
+      场适应性——资源 patch 场评估，非离散目标、非底质单因子）
+    如果 ∈ 高密度 patch 带（preferred 槽——patch 密度在偏好带）：
+        FieldSuitability = 全额
+    否则如果 ∈ 边际密度带（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——削减但不清零）
+    否则（无 patch/密度低于起始阈值）：
+        返回 0（EARLY_RETURN：场不可用，格子出局）
+
+第 3 步 个体大小口径判定（口径三档——契约口径过滤维度的链位化）：
+    用口径过滤前后的构成对比（patch 场浓度事实 vs diet_classes=@GrbDietClasses
+      与 size_window=@GrbSizeWindow 过滤后的在场可食构成）查询 @GrbResourcePatchFieldEvaluatorProfile
+      的口径分档槽（口径=个体大小决定的口裂/鳃耙——杂食 variable 构成 [需正文]；@GrbSizeWindow 值域）
+    如果 口径内构成为主（preferred 槽——patch 构成与本鱼口径匹配）：
+        FieldSuitability 保持（本步不折减）
+    否则如果 仅部分构成在口径内（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——部分可食）
+    否则（patch 构成全部超出本鱼口径——密度高亦不可食）：
+        返回 0（EARLY_RETURN：口径不匹配，格子出局）
+
+    多步命中档的折减合成算子标注：OPERATOR UNDEFINED —— 待机制侧
+    （SINGLE 族 forbidden_freedoms 无 combine 步；三步为同一场评估的顺序判定非并联，
+     步间折减合成=族重跑后的规格动作，本文件不静默定义）
+
+第 4 步 NORMALIZE_WEIGHT（canonical；链终点步——handoff 判序「合并」的族域读法：
+    SINGLE 族域单场因子链的合并=归一化终点，非多因子 COMBINE）：
     对 FieldSuitability 执行模板固定归一化（族常量，非作者可选）
 
-返回 SpatialDistributionWeight（单场因子链结束：无 gate、无 early return、无 combine 步
-——族 forbidden_freedoms 边界；多因子组合属 PLAIN 族域，typed context 属 PATCH 族域）
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族 canonical
+两步「无 gate 判语」的拓扑分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
 ```
 
 ### 2.3 live 层投影声明
@@ -121,8 +166,14 @@ EVAL_FOOD_FIELD_INTAKE：
       intake_semantics=脉冲摄入——FOOD_FIELD_FEEDING_RESPONSE 族参数轴实例）
     得到 FieldIntakeEvaluation
 
-DECIDE_FIELD_FEEDING：
-    按 FieldIntakeEvaluation 决定场摄食响应档位
+DECIDE_FIELD_FEEDING（分级命中，REP-ORDER-FIX-005 展开）：
+    按三档判定 FieldIntakeEvaluation（档位成员=@GrbFieldIntakeProfile 值域不冻结）：
+    如果 FieldIntakeEvaluation ∈ 接受档（preferred 槽——patch 密度足够启动脉冲摄取）：
+        返回 Response(FieldFeeding)（全额响应）
+    否则如果 ∈ 边际档（tolerated 槽——低密度 patch 仍维持机会性摄取）：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 Response(FieldFeeding)
 
@@ -173,9 +224,10 @@ Reaction 槽 OFF
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：census SINGLE 族 food_field 轴投影标签与场实例语义（resource patch 场——live 实测 evaluand 的场化读法）；FOOD_FIELD_FEEDING_RESPONSE 语义层投影（intake_semantics=脉冲摄入）；premise 归层（potamodromous 配置级——MGC/CHB 先例）；Profile 命名；伪脚本步序（canonical 两步固定）。
-- 放弃的自由度：(1) 底质单因子 Bake + TargetFeeding 原撤回骨架（live 实测反向——随撤回档废弃，不复活）；(2) TargetFeeding 通道并联（live 实测 ResponseChannels 单值 FieldFeeding）；(3) 洄游期 Group（potamodromous premise 配置级）；(4) 「撕鳍」性格的程序化（档案字段无 Story 证据映射，不表达）；(5) 合并算子（OPERATOR UNDEFINED）；(6) 数值与 Profile 值域不冻结。
+- 使用的自由度：census SINGLE 族 food_field 轴投影标签与场实例语义（resource patch 场——live 实测 evaluand 的场化读法）；FOOD_FIELD_FEEDING_RESPONSE 语义层投影（intake_semantics=脉冲摄入）；premise 归层（potamodromous 配置级——MGC/CHB 先例）；Profile 命名；伪脚本步序（canonical 两步固定；**§2.2/§3.2 已顺序还原（REP-ORDER-FIX-005）：链序与档位结构——推导依据 §0 判断顺序行**）。
+- 放弃的自由度：(1) 底质单因子 Bake + TargetFeeding 原撤回骨架（live 实测反向——随撤回档废弃，不复活）；(2) TargetFeeding 通道并联（live 实测 ResponseChannels 单值 FieldFeeding）；(3) census canonical 步序的服从（顺序还原后链与 canonical 两步「无 gate」判语拓扑分歧——登记 README §7，裁决归 census 侧族重跑）；(4) 洄游期 Group（potamodromous premise 配置级）；(5) 「撕鳍」性格的程序化（档案字段无 Story 证据映射，不表达）；(6) 合并算子（单场因子链无 combine 步；步间折减合成 OPERATOR UNDEFINED）；(7) 数值与 Profile 值域不冻结。
 - [需正文] 资源构成主次、premise 切换细节（若有）、Response 接受窗参数方向、P05+P06 双 relation 的行级 Story 正文逐句核对（REV-001 B1 门已开——live 对照义务）。
 - 与 rohu 的关系：grazing 批 M2 登记记录 rohu live 实测同为 ResponseChannels=FieldFeeding（rohu 骨架未翻、注记待对照更新）——本批不重写 rohu（grazing 批资产），登记其 P03 场化复核线（README §4 登记项 2）。
 
 BATCH_ID: REP-FULL-FIELD-001
+顺序还原修复批次：REP-ORDER-FIX-005（§0/§2/§3/§5 修改；Bake 场层位定位→场密度→口径链+early return，Response 档位展开——重建件修复适用，WITHDRAWN 状态已被 REV-001 B1 重建取代）

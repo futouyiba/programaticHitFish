@@ -221,3 +221,70 @@ BATCH_ID: REP-FULL-FIELD-001
 
 - verdict: **ARTIFACT_APPROVE**（3 minor 均文本级已修）。
 - giant_barb 重建三步全过；品系 L1-EQUIV 合理；R-T1 Field 型双 live 锚支撑。
+
+---
+
+## 7. REP-ORDER-FIX-005 顺序还原修复批次记录（2026-09-11）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8）——方法照 REP-ORDER-FIX-001（grazing+patch 批先例，FIX-002/003 连续复用）。**修复对象**：P03 主批 12 文件全部（含 giant_barb 重建件——教训 24「撤回件跳过」的 WITHDRAWN 前提已被 REV-001 B1 重建取代，重建件=有效件，修复适用，handoff 明确点名）；品系 L1-EQUIV 12 文件加一行「顺序还原不适用」声明（L1 短形引用本体——本体修复时连带更新，无独立伪脚本无平铺缺陷可修；2 本体已建文件带本体状态括注：albino_white_sturgeon 本体已由 FIX-003 修复连带生效、albino_channel_catfish 本体 normal 批修复待后续批指令）。
+
+### 每文件 Bake 修复内容（链形差异=LogicTemplate 判据）
+
+判断链统一骨架（handoff NOTES 判序）：**水层/场层位定位 → 场浓度/密度判定 → 个体大小口径判定 → 归一化（族常量终点步）**。三步均为同一场评估（FieldSuitability）的顺序判定（非多因子并联——SINGLE 族域）；「合并」=SINGLE 族域归一化终点步的族域读法（无 combine 步，步间折减合成算子 OPERATOR UNDEFINED 显式标注）。canonical 步名保留（EVAL_FOOD_FIELD_CONCENTRATION 落第 2 步标题、NORMALIZE_WEIGHT 落第 4 步——validator FAMCTX fence 检查维持）。
+
+| 文件 | 修复前（平铺） | 修复后（顺序还原链） | early return | 分级命中 |
+|---|---|---|---|---|
+| bighead_carp.md | 读事实→EVAL 单一 Fit→归一化 | 水层定位（**中上层滤食带**——Tier A 样板）→ 场浓度 → 口径 → 归一化 | 远离滤食水层/空场/口径全超（×3） | 三步各三档 |
+| atlantic_herring.md | 同上 | 水层定位（**中上层群游滤食带——群游集聚并入分档槽值域，coverage #17 判**）→ 场浓度 → 口径 → 归一化 | 同上 ×3 | 三步各三档（集聚=值域承载） |
+| silver_carp.md | 同上 | 水层定位（**上层滤食带——浮游植物主向=上层光合带，CSV 营养级锚**）→ 场浓度 → 口径（细密鳃耙）→ 归一化 | 同上 ×3 | 三步各三档 |
+| vendace_field.md | 同上 | 水层定位（**晨昏垂直迁移水层带——DVM 方向，随相位取段；migration 批 P05 面水层 premise 同款参数方向**）→ 场浓度 → 口径 → 归一化 | 同上 ×3 | 三步各三档（迁移过渡带 tolerated 独立语义） |
+| sockeye_field.md | 同上 | 水层定位（**海洋表层带——湖沼幼体期/海洋成体期随生命周期 premise 取段**）→ 场浓度（浮游/幼鱼混合）→ 口径 → 归一化 | 同上 ×3 | 三步各三档 |
+| american_shad_field.md | 同上 | 水层定位（**海域沿岸中上层带**）→ 场浓度 → 口径（CSV 矛盾构成 [需正文]）→ 归一化 | 同上 ×3 | 三步各三档 |
+| alewife_field.md | 同上 | 水层定位（**海域沿岸中上层带——湖封种群亦滤食 [需正文]**）→ 场浓度 → 口径 → 归一化 | 同上 ×3 | 三步各三档 |
+| capelin.md | 同上 | 水层定位（**北极/亚北极表层带**）→ 场浓度 → 口径 → 归一化 | 同上 ×3 | 三步各三档 |
+| jack_mackerel.md | 同上 | 水层定位（**沿岸表层带——混合食性张力归第 3 步构成判定**）→ 场浓度 → 口径（鳃耙/口裂——鲹科 piscivore 张力 [需正文]）→ 归一化 | 同上 ×3 | 三步各三档 |
+| lake_whitefish_field.md | 同上 | 水层定位（**冷水湖泊中下层-水柱带——白鲑湖栖深水带**）→ 场浓度 → 口径（湖底双壳/端足构成 [需正文]）→ 归一化 | 同上 ×3 | 三步各三档 |
+| giant_barb.md | 同上 | **场层位定位（resource patch 所在中下层/底层资源带——「水层位置」=patch 层位非滤食水层）→ patch 密度 → 口径（口裂/鳃耙）→ 归一化**（重建件修复——live 实测 evaluand 的层位读法） | 远离资源层位/无 patch/口径全超（×3） | 三步各三档 |
+| piraiba.md | 同上 | **场层位定位（饵鱼群所在层位——深槽/河道结构调制并入值域）→ 饵鱼场密度 → 口径（piscivore 口裂）→ 归一化** | 远离饵鱼场层位/无饵鱼群/口径全超（×3） | 三步各三档 |
+
+链形两型（差异本身=census 侧 LogicTemplate 判据输入）：**滤食水层型 ×10**（水层判定=滤食位归属：中层/上层/表层/沿岸/湖泊带/DVM 相位带——逐鱼水层锚不同）与**场层位型 ×2**（giant_barb/piraiba——「水层位置」判定=具名场所在层位归属非滤食水层，场实例类型（resource patch/饵鱼场）决定层位语义）。
+
+### Response 面修复（12/12）
+
+DECIDE_FIELD_FEEDING「按 FieldIntakeEvaluation 决定场摄食响应档位」未展开占位（标准 1.4 禁止项）——展开为三档分级命中（接受档=Response(FieldFeeding) 全额/边际档=低响应削减不清零/无响应=出局），与 §3.1 配置表「命中/未命中」两列语义对齐；档位成员=Profile 值域不冻结。逐鱼边际档括注差异：giant_barb（低密度 patch 仍维持机会性摄取）/piraiba（稀薄饵鱼场仍维持低频跟随）/其余（低浓度场仍维持低摄入）；canonical 步名（EVAL_FOOD_FIELD_INTAKE/DECIDE_FIELD_FEEDING/Response(FieldFeeding)）与 Reaction 槽 OFF 行全部保留（validator FIELDRESP 检查维持）。
+
+### handoff NOTES 关注点的显式回答
+
+- **P03 判断顺序**：按 handoff 判序（先判水层位置（滤食型在上层/中层）→水流/食物场密度→个体大小口径→合并）逐鱼落链。水流不设独立判定步——水流对场分布的输送调制按本批既有读法并入场评估器 Profile 值域（piraiba 深槽/河道结构调制同款先例），不发明新事实读取。
+- **giant_barb（重建件）**：修复适用。教训 24 的「撤回件跳过」针对 grazing 批 WITHDRAWN 档；本批 giant_barb.md 是 REV-001 B1 重建后的有效件（REP-FULL-FIELD-REV-001 ARTIFACT_APPROVE），修复撤回件才是复活——修复重建件是维护有效件。
+- **品系 L1-EQUIV**：12 文件各加一行声明（§5 从属关系行后）；不展开伪脚本（L1 短形无平铺缺陷），修复连带义务由「本体到达/变更时重绑定清单随之更新」的单向从属条款承载。
+
+### 与 census 的分歧登记（UPSTREAM 级，本批不闭合）
+
+处置照 REP-ORDER-FIX-001 模式（教训 22）：
+
+1. **census 侧零改动**（registry/blind_programs 判语冻结维持）；BakeTemplate 投影标签（BA-P03-FIELD-SINGLE）不静默改写——换标签/改结构=census 判同裁决后结构变更需重审（§3 登记 4 通道维持）。
+2. 12 文件顺序还原链（early return+分级命中）与 census SINGLE 族 canonical 两步「无 gate、无 early return、无 combine 步」（forbidden_freedoms）判语**拓扑分歧**——**census 侧受影响族重跑=work standards §5.4 行动项，归 census/coordinator 侧**（FOOD_FIELD_FEEDING_RESPONSE 族 2 registry 成员 BHC/HER 是链形最直接的受影响族）；本批 12 文件的顺序还原链即 census 重跑的表达侧输入。
+3. **BHC sketch 读法差异（本批特有登记点）**：census sketch 判语「高生产力水层定位＝场评估的自然输出」（定位=场评估输出）与顺序还原链（定位=第一判定步）承载关系不同——bighead_carp §0 已登记该读法差异，两层是否等价归 census 侧族重跑裁决，本批不静默改 census 判语也不撤回链形。
+4. 顺序推导来源分档逐文件写明（教训 23）：Tier A ×2（BHC/HER census 快照语义层推导——骨架在案、档位成员不在快照 [需正文]）；B+ ×4（silver_carp 同型对照判语/giant_barb live 实测 evaluand/vendace_field+american_shad_field 复核线互指）；Tier B ×6（CSV/handoff 方向锚推导全标 [需核对]/[需正文]——Story 正文到达后校准，顺序/档位变化=census 判同输入，结构变更需重审）。
+5. **口径判定步的证据边界**：个体大小口径判定（第 3 步）以契约既有参数（diet_classes/size_window）的「过滤前后构成对比」为评价输入——不发明新事实读取；档位成员全部 Profile 值域不冻结 [需正文]。
+6. **Group 面（§1）与 Quality 面（§4）不修**（任务边界+既有程序有顺序有分支——照 FIX-001/003 不修面先例）。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/field/validate_field.py" --selftest
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/field/validate_field.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/field"
+== result ==
+PASS (24 species files, 0 violations)
+```
+
+validator 零改动（顺序链在 fence 自由文本内；canonical 步名与 FIELDRESP 关键句保留在改写文本内）。机械复查：12/12 主批文件含【顺序还原声明｜REP-ORDER-FIX-005】+§0 判断顺序行+§2.1 尾注+尾部批次行；12/12 品系文件含不适用声明行；旧「无 gate、无 early return、无 combine 步——族 forbidden_freedoms 边界」平铺尾注零残留（全部改写为顺序还原链尾注）；BAN 词表/MERGE_PHRASES 零命中。
+
+BATCH_ID: REP-ORDER-FIX-005
