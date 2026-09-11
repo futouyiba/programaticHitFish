@@ -2,8 +2,12 @@
 # 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
 # v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 五个 Bake 程序（非匹配证据；第 6 个 P-LUN-BAKE-AESTIVATION 为 AMBIGUOUS 不入 non-match）；
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
-version: 6
+version: 7
 mutation_provenance:
+  batch: CENSUS-RERUN-SINGLE-001
+  date: 2026-09-11
+  previous_version: 6
+  rerun_summary: "SINGLE 族受影响成员重跑（用户反馈 §5.4 行动项；顺序还原后 B 系列表达文件为盲重建输入）：61/66 成员 vs v1 canonical 全 body 结构差异（最小集 BRANCH；SINGLE forbidden_freedoms 禁 gate/多因子佐证）→ 拆分提案：+9 新 Bake 候选族（TIERED_SINGLE 17/LAYER_AXIS_DUAL_TIER 2/GATED_COVER_TIER 12/NOCTURNAL_LIGHTSLOT 5/ZONE_SUBSTRATE_RESOURCE 3/SOFT_TRIPLE_TIER 1 PROV/ZONE_DEPTH_SUBSTRATE_RESOURCE 1 PROV/FILTER_FIELD_ACCUMULATE 2/GUARD_ANCHOR_TIERED_COMBINE 4）+14 追击型 PLAIN 重归族提案（slot_tiering 轴 extension HRQ-RS1-03）；5 无文件成员留 SINGLE pending（LAM/PIN/ASR/RVS/RDS）；拆分待 HRQ-RS1-01 人类裁决——61 成员在 SINGLE known_instances 标注 moved_pending_review 不删除；CRR non-match 不重复登记（原程序 B1-B4 已录）；dL_bake=+9"
   batch: CENSUS-B4
   date: 2026-09-11
   previous_version: 5
@@ -120,7 +124,8 @@ templates:
     known_non_matches:
       - {batch: CENSUS-B0, program_id: P-MGC-BAKE-ADULT, reason: 单链无 combine/依赖扇入（merge_tests 确证）}
       - {batch: CENSUS-B0, program_id: P-LUN-BAKE-WET, reason: 前置 hard gate（extend-vs-split 见 HRQ-03）}
-    open_precedents: [HRQ-07（因子槽间顺序 unordered 提案）, HRQ-03（gate 轴 extend-vs-split）, HRQ-B1-04（槽位数伸缩+rank 因子类型）]
+    open_precedents: [HRQ-07（因子槽间顺序 unordered 提案）, HRQ-03（gate 轴 extend-vs-split）, HRQ-B1-04（槽位数伸缩+rank 因子类型）, HRQ-RS1-03（slot_tiering 轴+14 重归族挂账）]
+    rerun_2026_09_11_pending_members: "CENSUS-RERUN-SINGLE-001：14 追击型成员（TAI/BLP/GW/RFP/DS/PBF/GT/HAL/GG/POR/RKB/WIN/SMF/SAI——P-RS1-*-BAKE）表达文件自投影 PLAIN 双槽+槽内三档受限还原；slot_tiering(FLAT|IF3_SLOT_VALUE) 轴提案 pending HRQ-RS1-03——批准前不计正式成员（HNC extension 挂账先例）；证据分层（表达文件 Tier B vs story 单因子）待裁决"
   - template_id: HARD_GATED_FACTOR_COMBINE
     surface: Bake
     status: CANDIDATE
@@ -276,7 +281,12 @@ templates:
     known_non_matches:
       - {batch: CENSUS-B1, template_id: PATCH_RESOURCE_FOLLOWING, reason: 缺 typed context 步（optional_context 边界 HRQ-B1-02）}
       - {batch: CENSUS-B1, template_id: CONSTRAINED_RELATIVE_REFUGE, reason: 无 RelativeRank 结构}
-    open_precedents: [HRQ-B1-01（factor_type 轴宽度）, HRQ-B1-02（与 PATCH 的 optional_context 边界）]
+    open_precedents: [HRQ-B1-01（factor_type 轴宽度）, HRQ-B1-02（与 PATCH 的 optional_context 边界）, HRQ-RS1-01（族拆分总裁决）]
+    rerun_2026_09_11:
+      batch: CENSUS-RERUN-SINGLE-001
+      outcome: "61/66 有输入成员 vs v1 canonical 全 body 结构差异（0 匹配）；5 无文件成员（LAM/PIN/ASR/RVS/RDS）维持原归族 pending_restored_input"
+      split_proposal: "61 成员 moved_pending_review：C1 17→TIERED_SINGLE_FACTOR_CHAIN / C2 2→LAYER_AXIS_DUAL_TIER_CHAIN / C3 12→GATED_COVER_TIER_CHAIN / C4 5→NOCTURNAL_LIGHTSLOT_CHAIN / C5a 3→ZONE_SUBSTRATE_RESOURCE_CHAIN / C5b 1→SOFT_TRIPLE_TIER_CHAIN / C5c 1→ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN / C6 2→FILTER_FIELD_ACCUMULATE_CHAIN / C7 4→GUARD_ANCHOR_TIERED_COMBINE_CHAIN / C8 14→PLAIN_FACTOR_COMBINE 重归族提案（slot_tiering extension）——批准后 SINGLE 名义成员=5 pending 或 0（视 v1 canonical 最终态裁决）"
+      review: HRQ-RS1-01
   - template_id: CUE_GUIDED_APPROACH_AVOID
     surface: Response
     status: CANDIDATE
@@ -357,3 +367,232 @@ templates:
       - {batch: CENSUS-B3, template_id: GUARD_CONFLICT_DUAL_PATH_RESPONSE, reason: "IF 状态门互斥 vs ∥ 同刻并行；NonFeedingStrike vs RelationalConflict"}
     open_precedents: [HRQ-B3-01（strike 动机归因引文=升级三条件之①；TAR-10 同源；条件③触发时与 FishGroup 边界重开）]
     provisional_note: 双成员（跨科独立重复——FR3 判例①）；strike Path 语义为最小骨架（动机归因 open）
+
+  - template_id: TIERED_SINGLE_FACTOR_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族顺序还原重跑拆分（用户反馈 §5.4）；canonical=源成员 P-RS1-COD-BAKE 冻结体
+    canonical_program_body: |
+      EVAL_TYPED_FIELD_OR_FACTOR(typed 因子三档分级命中：preferred=全额/tolerated=削减不清零/excluded=出局 EARLY_RETURN)
+      -> NORMALIZE_WEIGHT
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.TIERED_SINGLE_FACTOR_CHAIN
+    allowed_parameter_axes:
+      - factor_type(typed: premise_bound_axis | opportunity_field | sensory_signal | …；HRQ-B1-01 轴延续)
+      - factor_binding(随 lifecycle/season/sex/diel premise 切换)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 多因子 combine（PLAIN 域）, 前置 gate（GATED_COVER/HARD_GATED 域）, 第二判定步（LAYER_AXIS_DUAL_TIER 域）, 无档位平铺（那是 SINGLE v1 域——BRANCH 真差异）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-COD-BAKE, role: canonical_source, note: "premise 轴段亚群（10）之一：sex/stage 深度带"}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-PIK19-BAKE, P-RS1-ARC-BAKE, P-RS1-VEN-BAKE, P-RS1-SWO-BAKE, P-RS1-CHN-BAKE, P-RS1-COH-BAKE, P-RS1-BRO-BAKE, P-RS1-ALE-BAKE, P-RS1-TAR-BAKE], note: "premise 轴段亚群其余 9（繁殖轴段/季节轴/季节水层/DVM 相位/洄游轴段×4/发育轴段）"}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-BRT12-BAKE, P-RS1-PB-BAKE, P-RS1-BST-BAKE, P-RS1-CBM-BAKE], note: "机会亚群（4）：食物丰度先行"}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-PAD34-BAKE, P-RS1-SDG-BAKE, P-RS1-TSK-BAKE], note: "感官亚群（3）：信号场可探测性先行"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: SINGLE_FACTOR_NORMALIZED_WEIGHT, reason: "BRANCH 真差异（三档分级命中+early return 为 v1 平铺 canonical 无有的控制流；档位化=canonical 结构变更非轴内）"}
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: LAYER_AXIS_DUAL_TIER_CHAIN, reason: "OPERATOR/DEPENDENCY（前置水层定位步）"}
+  - template_id: LAYER_AXIS_DUAL_TIER_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分；canonical=P-RS1-CHU-BAKE（大马哈鱼 benthopelagic 锚）+美洲西鲱（pelagic-neritic 锚）跨科独立重复
+    canonical_program_body: |
+      EVAL_TYPED_FIELD_OR_FACTOR(水层带软三档定位)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(premise 绑定轴段归属三档)
+      -> NORMALIZE_WEIGHT(LayerTier × AxisFit 积内归一化)
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.LAYER_AXIS_DUAL_TIER_CHAIN
+    allowed_parameter_axes:
+      - layer_anchor(typed: benthopelagic | pelagic_neritic | …)
+      - premise_axis_binding(lifecycle/阶段轴段)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 单档链（TIERED_SINGLE 域）, 三档链（C5 域）, 硬门首步（GATED_COVER/C5a 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-CHU-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-SHA-BAKE}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: TIERED_SINGLE_FACTOR_CHAIN, reason: "前置水层定位步（OPERATOR/DEPENDENCY 真差异）——双判断序 vs 单判断序，顺序有业务意义不 MERGE"}
+  - template_id: GATED_COVER_TIER_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分（envelope『伏击门形』承载族）；canonical=P-RS1-FGA-BAKE
+    canonical_program_body: |
+      GATE_STRUCTURE_COVER_PRESENT(结构掩体存在门：不成立直接 EARLY_RETURN)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(掩体/质量档三档)
+      -> NORMALIZE_WEIGHT
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.GATED_COVER_TIER_CHAIN
+    allowed_parameter_axes:
+      - gate_axis(typed: vegetation_edge | weedy_slack | bottom_zone | buryable_substrate | pool_structure | reef_edge | patch_presence | disturbance_window；HRQ-RS1-02 待批)
+      - factor_type(typed)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 无门单档（TIERED_SINGLE 域）, 多槽 combine（PLAIN/HARD_GATED 域）, BUILD_ACCESSIBLE_SET 前置（HARD_GATED 域）, 评估先行的 zone 约束（PATCH 域——门先行=ORDER 真差异）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-FGA-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-SGA-BAKE, P-RS1-AST-BAKE, P-RS1-SNS-BAKE, P-RS1-GPF-BAKE, P-RS1-SSL-BAKE, P-RS1-WIT-BAKE, P-RS1-YTF-BAKE, P-RS1-FDR-BAKE, P-RS1-BSB-BAKE], note: "伏击门 9 例（engine raw=gate_axis 字面，语义 MC——GUARD anchor 判例同型）"}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-GRB-BAKE, P-RS1-SMA-BAKE], note: "patch/扰动门 2 例（vs PATCH 族 ORDER 真差异——门先行 vs 评估先行；merge_tests 边界证据）"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: HARD_GATED_FACTOR_COMBINE, reason: "无 accessible-set 构建/多槽合并；门语义=结构掩体存在非硬生存约束（OPERATOR/DEPENDENCY/COMBINE 真差异）"}
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: PATCH_RESOURCE_FOLLOWING, reason: "门先行 vs 评估先行（ORDER）+无 typed context 中间步（OPERATOR）"}
+  - template_id: NOCTURNAL_LIGHTSLOT_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分（live §11.5 判例槽位原位维持）；canonical=P-RS1-WEL-BAKE
+    canonical_program_body: |
+      EVAL_TYPED_FIELD_OR_FACTOR(夜行底板栖息档三档：无夜行底板=出局 EARLY_RETURN)
+      -> APPLY_DYNAMIC_SPATIAL_SLOT(低光/夜相槽三档：调整器语义——亮水=极低削减不清零，出局语义不落槽内；槽位=live §11.5 判例固定)
+      -> NORMALIZE_WEIGHT
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.NOCTURNAL_LIGHTSLOT_CHAIN
+    allowed_parameter_axes:
+      - night_habitat_axis(typed: 洞穴深潭 | 木石结构 | 石底深潭 | 开阔水面 | …)
+      - lowlight_slot(live §11.5 判例原位——槽位置非作者可选)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 槽内出局语义（出局落 typed 因子步非槽——族域边界）, 单档无槽（TIERED_SINGLE 域）, 槽位置提前（改 §11.5 判例结构需重审）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-WEL-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-FLA-BAKE, P-RS1-BUR-BAKE, P-RS1-GDE-BAKE, P-RS1-MOO-BAKE], note: "engine 零差异（含 PREMISE raw）"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: TIERED_SINGLE_FACTOR_CHAIN, reason: "第二槽步+槽无出局语义（branch kind 真差异）"}
+  - template_id: ZONE_SUBSTRATE_RESOURCE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分（grazing 底质链形）；canonical=P-RS1-GRH-BAKE
+    canonical_program_body: |
+      GATE_ZONE(底层水层硬定位：非底层=EARLY_RETURN)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(底质栖境档三档)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(底栖资源档三档)
+      -> NORMALIZE_WEIGHT(SubstrateTier × ResourceIntensity 积内归一化)
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.ZONE_SUBSTRATE_RESOURCE_CHAIN
+    allowed_parameter_axes:
+      - substrate_tier_axis(typed: 无脊椎栖境 | 大型无脊椎 | 可翻性 | 底泥)
+      - factor_binding(常年绑定/随 premise 切换)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 单/双档链（TIERED_SINGLE/DUAL_TIER 域）, 软首档无门（SOFT_TRIPLE 域）, 深度档步（ZONE_DEPTH 域）, 多槽 combine（PLAIN 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-GRH-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-RRH-BAKE, P-RS1-DRU-BAKE], note: "engine 零差异（同属同构+翻底可翻性轴值）"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: SOFT_TRIPLE_TIER_CHAIN, reason: "首步 GATE 硬门 vs 软三档（OPERATOR/BRANCH 真差异）"}
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN, reason: "深度档步有无（OPERATOR 真差异——步数 4 vs 5）"}
+  - template_id: SOFT_TRIPLE_TIER_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-02
+      origin: SINGLE 族拆分（BSK 独有链形）
+    canonical_program_body: |
+      EVAL_TYPED_FIELD_OR_FACTOR(近底带水层软三档——无硬门)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(底质栖境档三档)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(资源档三档)
+      -> NORMALIZE_WEIGHT(三档积内归一化)
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.SOFT_TRIPLE_TIER_CHAIN
+    allowed_parameter_axes:
+      - layer_tier_axis(typed)
+      - substrate_tier_axis(typed)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 硬门首步（ZONE_SUBSTRATE 域）, 二步链]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-BSK-BAKE, role: canonical_source}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: ZONE_SUBSTRATE_RESOURCE_CHAIN, reason: "首步软档 vs GATE（结构差异）；extend-vs-split 见 HRQ-RS1-02"}
+    provisional_note: 单成员 PROVISIONAL（Tier B CSV benthopelagic 软定位推导，硬定位与否 [需正文]——正文证实硬定位则并入 ZONE_SUBSTRATE 族）
+  - template_id: ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-02
+      origin: SINGLE 族拆分（SMB 独有五步链——CSV 深≥4m 锚）
+    canonical_program_body: |
+      GATE_ZONE(底层水层硬定位)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(深度带档三档——本鱼独有步)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(底泥栖境档三档)
+      -> EVAL_TYPED_FIELD_OR_FACTOR(底泥资源档三档)
+      -> NORMALIZE_WEIGHT(三档积内归一化)
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN
+    allowed_parameter_axes:
+      - depth_tier_axis(typed)
+      - substrate_tier_axis(typed)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 无深度档步（ZONE_SUBSTRATE 域——步数=ORDER/OPERATOR 真差异非轴内）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-SMB-BAKE, role: canonical_source}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: ZONE_SUBSTRATE_RESOURCE_CHAIN, reason: "深度档步有无（步数 5 vs 4——链长差异=真结构差异）；extend-vs-split 见 HRQ-RS1-02"}
+    provisional_note: 单成员 PROVISIONAL（Tier B CSV 深度锚推导 [需正文]）
+  - template_id: FILTER_FIELD_ACCUMULATE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分（滤食场链形）；canonical=P-RS1-BHC-BAKE；与 Response 面 FOOD_FIELD_FEEDING_RESPONSE 不同 surface（Bake 分布 vs Response 摄入）
+    canonical_program_body: |
+      EVAL_TYPED_FIELD_OR_FACTOR(滤食水层定位三档——携削减标记)
+      -> EVAL_FOOD_FIELD_CONCENTRATION(场浓度三档：FieldSuitability 叠加衰减)
+      -> EVAL_SIZE_GAUGE_MATCH(个体口径三档：口径不匹配=出局)
+      -> NORMALIZE_WEIGHT(步间折减合成算子 OPERATOR UNDEFINED 待机制侧)
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.FILTER_FIELD_ACCUMULATE_CHAIN
+    allowed_parameter_axes:
+      - field_type(typed: plankton_field | …；P03 轴 Bake 侧对应)
+      - gauge_semantics(个体大小口径——鱼侧状态评估步)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 并联多因子（PLAIN 域——本族=同一场评估顺序判定线性累积）, 二步场链（TIERED_SINGLE 域）, 扇入积拓扑（C5 域——deps 线性 vs 扇入）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-BHC-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-HER-BAKE, note: "engine 零差异；群游集聚并入槽值域（coverage #17）"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: SOFT_TRIPLE_TIER_CHAIN, reason: "op 语义（场浓度/口径 vs 底质/资源）+deps 线性累积 vs 扇入积（OPERATOR/DEPENDENCY 真差异）"}
+  - template_id: GUARD_ANCHOR_TIERED_COMBINE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-SINGLE-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RS1-01/02
+      origin: SINGLE 族拆分（护巢 Bake 面分布程序）；canonical=P-RS1-BLU-BAKE；与 GUARD_CONFLICT_DUAL_PATH_RESPONSE（Response 面 ∥ 双 evaluand）不同 surface 不同拓扑
+    canonical_program_body: |
+      GATE_ANCHOR_EXISTENCE(锚存在门：锚域外=EARLY_RETURN 非「算出低值」)
+      -> EVAL_ANCHOR_SUITABILITY(锚适配三档)
+      -> EVAL_ANCHOR_RELATION(守卫关系三档)
+      -> EVAL_LOCAL_TEMPERATURE(局部温度三档)
+      -> COMBINE_GUARD_FACTORS(算子 OPERATOR UNDEFINED 待机制侧)
+      -> Guarding SpatialDistributionWeight
+    ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.GUARD_ANCHOR_TIERED_COMBINE_CHAIN
+    allowed_parameter_axes:
+      - anchor_type(typed: colony_nest | floodplain_fry_school | root_spawn_eggs | pebble_mound——与 Response 面 GUARD anchor 轴同源第 4-7 值；HRQ-RS1-02 待批)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 分布权重返回类型外的 return（其余 Bake 域）, BUILD_ACCESSIBLE_SET/hard_viability（HARD_GATED 域）, ∥ 并行双 evaluand（Response 面 GUARD 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-BLU-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-ARA-BAKE, P-RS1-RBP-BAKE, P-RS1-HNC-BAKE], note: "engine 零差异（4 锚型）；HNC pebble_mound 与 HRQ-B4-01 Response 面提案同值"}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-SINGLE-001, template_id: PLAIN_FACTOR_COMBINE, reason: "RETURN（Guarding vs 分布）+COMBINE（UNDEFINED 多评估合并 vs WEIGHTED 终合并）+前置锚门——真差异"}

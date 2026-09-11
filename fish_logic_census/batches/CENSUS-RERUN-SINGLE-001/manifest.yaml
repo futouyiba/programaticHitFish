@@ -1,0 +1,40 @@
+batch_id: CENSUS-RERUN-SINGLE-001
+role: FCF-CENSUS-WORKER
+status: INDEPENDENT_REVIEW_REQUIRED
+trigger: 用户 2026-09-11 反馈 §5.4 行动项（B 系列顺序还原 211/213 完成后，census 受影响族重跑）
+scope:
+  family: SINGLE_FACTOR_NORMALIZED_WEIGHT（66 成员）
+  rerun_with_input: 61（B1:6 B2:8 B3:25 B4:22）
+  rerun_input_unavailable: 5（LAM/PIN/ASR/RVS/RDS——absence_claims 登记）
+  input_layer: 顺序还原后 B 系列表达文件 §2.2（REP-ORDER-FIX-001..005；WORKING/NOT AUTHORITY）
+  input_dirs: 7（grazing/migration/normal/normal2/field/guarding/patch——envelope 列 5，
+    guarding/patch 经全库 FIX 标记扫描确认纳入，HRQ-RS1-04 记档）
+execution_mode: B3-F-0（fresh spawn 单轮，双时间戳+内容 hash 自证；program_revisions 空）
+blind_discipline:
+  blind_programs_frozen_at: "2026-09-11T04:39:22Z"   # 文件系统精确时刻（本地 12:39:22+0800）
+  n_programs: 61
+  registry_opened_at: ">=2026-09-11T04:39:22Z（冻结后；权威锚=blind 文件 mtime"
+    # + 本 manifest 生成时刻 git 工作树差异——opened_at 为声明性下界，不作精确时序主张）"
+  post_registry_mutations: 0
+  bias_declaration: |
+    事前暴露：SINGLE v1 canonical 两步形在角色记忆与 B4 批档（run_merge_tests.py
+    CANONICALS——流程范式恢复时读取）中已知；本批骨架不从 canonical 反推，全部
+    61 条为各文件 §2.2 顺序还原伪脚本的机械 IR 转写（文件自身即声明与 canonical
+    的分歧并要求 census 侧重跑裁决——work standards §5.4）。盲重建顺序：读 61 份
+    §2.2 → 转写冻结 → 开 registry。重跑语义：输入为表达文件（非 Story DB 快照），
+    与 B0-B4 批的 Story 输入层不同——envelope 明示授权（ARTIFACT_URL=顺序还原后
+    表达文件）。
+order_discipline: 全 61 链形按 §5.1 顺序还原形转写（ordered_steps 顺序=文件判断链顺序；
+  early return/分级命中/槽语义=branches+return topology；分级命中展开为 IF3 非
+  单一布尔——2026-09-11 用户新标准）
+verdict_counts:
+  merge_confident: 61          # 簇内直验（含 10 canonical 源自测；语义层）
+  extension_candidate: 14      # C8 × PLAIN（slot_tiering 轴）
+  new_template_candidate_families: 9   # distinct 新候选族（registry template 级）
+  ambiguous: 0
+deltas:
+  dL_group: 0
+  dL_bake: 9
+  dL_response: 0
+  dL_quality: 0
+registry: v6 -> v7（SINGLE 拆分注记 + 9 新候选族 + PLAIN 重归族挂账）

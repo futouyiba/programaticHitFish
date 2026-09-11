@@ -1,0 +1,3028 @@
+@@@ GRB (B1) patch/species/grass_carp.md
+TITLE: # 草鱼（Grass Carp｜Ctenopharyngodon idella）｜Resource Patch 系四面生产级表达
+BAKETPL:BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝斑块存在性 → 斑块质量档位 → 归一化；分级命中（全额/削减/出局），
+出局即 EARLY_RETURN。P02 斑块追随程序的先验=斑块存在（无斑块格不产生追随分布）；
+存在性先行是 census sketch「分布跟随植食资源与预投饵斑块」的行为判断序还原
+（canonical 计算序 EVAL_TYPED_FIELD_OR_FACTOR 单步在此展开为存在门+质量档两步）。
+顺序差异本身=LogicTemplate 判据，与 census canonical body（无 gate 判语）的拓扑分歧
+登记 README §7（census 侧 SINGLE 族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的植食资源+预投饵斑块轴事实
+    （双构成：水生植物资源事实 + prebait_patches 玩家预投饵斑块事实——
+      两者同为世界侧上游事实；预投饵斑块的保存与衰减归环境资源 owner；
+      双构成同源评估——来源差异在世界侧事实供给层，不购买档位分叉）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GrbPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GrbDietClasses 食性过滤
+      与 size_window=@GrbSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 斑块存在性（GATE_PATCH_PRESENCE）：
+    用斑块轴事实查询 @GrbHerbivorePatchProfile 的存在分档槽
+    如果 本格无植食资源斑块且无预投饵斑块（excluded 槽——零斑块）：
+        返回 0（EARLY_RETURN：无斑块格不参与斑块追随分布）
+    否则：
+        进入第 2 步
+
+第 2 步 斑块质量档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用斑块质量事实查询 @GrbHerbivorePatchProfile
+    （census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构；
+      单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 斑块质量 ∈ 最适应档（preferred 槽）：
+        HerbivorePatchFit = 全额强度
+    否则如果 斑块质量 ∈ 可接受档（tolerated 槽）：
+        HerbivorePatchFit = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（斑块存在但质量近零档）：
+        返回 0（EARLY_RETURN：质量排除档出局）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 HerbivorePatchFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，BakeTemplate 投影标签
+不因此静默改写——换标签/改结构=census 族重跑裁决后结构变更需重审）
+```
+
+@@@ DRU (B1) patch/species/black_drum.md
+TITLE: # 黑鼓鱼（Black Drum｜Pogonias cromis）｜Resource Patch 系四面生产级表达
+BAKETPL:BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 底质可翻性档位 → 底栖猎物丰度档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。翻底取食（census sketch）对底质可翻性有
+物理依赖——可翻性先于猎物丰度评估；demersal 硬定位先行。顺序差异本身=LogicTemplate
+判据，与 census canonical body（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧 SINGLE 族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的水层带位置
+读取 当前格子的底质类型
+读取 当前格子的底栖猎物 patch 轴事实（底栖无脊椎分布——benthic_prey_field 上游 fact）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@DruPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@DruDietClasses 食性过滤
+      与 size_window=@DruSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位，CSV 栖息带锚）：
+    用水层带位置查询 @DruBottomForagerProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 翻底取食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
+
+第 2 步 底质可翻性档位（分级命中——翻底物理依赖）：
+    用底质类型查询 @DruBottomForagerProfile 的可翻性分档槽
+    （档位成员=Profile 值域不冻结 [需正文]；方向示例：可翻软泥=preferred/
+      难翻硬底=tolerated/不可翻岩盘=excluded——成员由 Profile 定值）
+    如果 底质 ∈ 可翻档（preferred 槽）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 难翻档（tolerated 槽）：
+        SubstrateTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（不可翻档）：
+        返回 0（EARLY_RETURN：不可翻底质无翻取意义，出局）
+
+第 3 步 底栖猎物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用底栖猎物 patch 轴事实查询 @DruBottomForagerProfile
+    （census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构；
+      单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 底栖猎物可得性 ∈ 丰档（preferred 槽）：
+        BottomForagerFit = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        BottomForagerFit = 削减强度（削减但不清零）
+    否则（无底栖猎物档）：
+        返回 0（EARLY_RETURN：无底栖猎物的格子出局）
+
+第 4 步 NORMALIZE_WEIGHT：
+    对 SubstrateTier × BottomForagerFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+
+痕迹边界：翻底凹痕/泥云（feeding_traces）由环境 owner 保存并呈现给玩家——
+不进入本分布程序的读取集（鱼对局部实际猎物响应，痕迹≠必有鱼）
+```
+
+@@@ COD (B1) migration/species/atlantic_cod.md
+TITLE: # 大西洋鳕（Atlantic Cod｜Gadus morhua）｜繁殖期性别相关水深四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：深度带归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（性别阶段配置级）→ 性别阶段绑定深度带归属三档 → 归一化；
+深度带判定分级命中（当前偏好深度带=全额/相邻深度带=削减不清零/远带=出局
+EARLY_RETURN）。性别阶段切换本身不进 body 分支（PREMBIND 不变量维持：
+sex/stage=上游个体事实，配置级切换因子集——不构成路由输入，§1.3 判语原样）；
+early return 的对象是格子，不是性别阶段。推导来源=census P-B1-COD-BAKE 冻结实例
+常量（盲体 sketch 语义的档位化还原——Tier A 骨架在案、档位成员不在快照，
+段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族 canonical
+两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的深度带事实（繁殖期性别相关水深轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@CodPreyFields 绑定的鱼类/无脊椎 prey class 生物量，
+      经 diet_classes=@CodDietClasses 食性过滤
+      与 size_window=@CodSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（sex/stage——上游个体事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 深度带值，不含性别阶段分支）
+
+第 1 步 性别阶段绑定深度带归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用深度带事实查询 @CodSexStageDepthProfile 的阶段深度分档槽
+    （轴=繁殖期雄/雌/未繁殖个体深度带随 sex/stage 取段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子深度 ∈ 当前 sex/stage 偏好深度带（preferred 槽）：
+        SexStageDepthFit = 全额
+    否则如果 ∈ 相邻深度带（tolerated 槽）：
+        SexStageDepthFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远带——当前 sex/stage 不取的深度带）：
+        返回 0（EARLY_RETURN：格子不在当前性别阶段深度范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 SexStageDepthFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ PAD34 (B1) normal/species/paddlefish_electro.md
+TITLE: # 鸭嘴鲟（Paddlefish｜Polyodon spathula）｜幼体电感受定位四面生产级表达
+BAKETPL:BA-P01-SENSE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——感官梯度/感官 patch 轴实例；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝感官信号场档位 → 归一化。感官型第一判断＝猎物信号场可探测性
+（可探测丰档=全额/弱信号=削减不清零/无信号=出局 EARLY_RETURN）——感官梯度
+先行是本组与机会型（丰度先行）的判据差异。顺序来源＝census 冻结全四面判定快照（Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）——Story 正文到达后
+校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的浮游猎物 patch 轴事实（幼体口径）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@PadPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@PadDietClasses 食性过滤
+      与 size_window=@PadSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（幼体阶段——lifecycle premise，配置级限定）
+
+第 1 步 感官信号场档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  感官型第一判断：信号场可探测性先行）：
+    用该轴事实查询 @PadElectroZooplanktonPatchProfile 的信号场分档槽
+    （幼体口径；档位成员=Profile 值域不冻结 [需正文]）
+    如果 信号场 ∈ 可探测丰档（preferred 槽）：
+        ZooplanktonPatchFit = 全额
+    否则如果 ∈ 弱信号档（tolerated 槽）：
+        ZooplanktonPatchFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无信号档）：
+        返回 0（EARLY_RETURN：无可探测猎物信号的格子出局——感官型信号先行判据）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 ZooplanktonPatchFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ BLU (B1) guarding/species/bluegill.md
+TITLE: # 蓝鳃太阳鱼（Bluegill Sunfish｜Lepomis macrochirus）｜Guarding 系四面生产级表达
+BAKETPL:BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0，
+不进入后续评估），不做「先全算再减」。推导来源（Tier A）：C06「预先建立并持续照护巢区」——
+建立期选址（锚适配先行）→ 照护期占位（关系评估在后）。步序与档位成员的正文级校准 [需正文]。
+与 live BA-T2 模板平铺读法（读关系→查 Profile 得单一 Fit→合并）的分歧登记 README §7。
+
+读取 当前目标的结构 / 底质 / 深度
+读取 当前目标与最近殖民地巢群锚点的关系（距离 / 朝向）
+读取 当前点局部温度
+
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @BluegillLocalGuardAnchorEligibility
+    （锚=殖民地巢群；巢群的繁殖资格已在路由面判定，本步不重复结算 premise，
+      只判「当前目标是否处于合法护巢锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        锚域外格子不参与护巢分布评价，非「算出低值」）
+
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
+    用当前目标的巢床结构查询 @BluegillColonyNestSuitabilityProfile
+    （三档分档槽=Profile 值域——档位成员与阈值不冻结）
+    如果 巢床结构 ∈ 最适应档（preferred 锚面）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 锚面）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除锚面）：
+        返回 0（EARLY_RETURN：不可守巢结构出局——殖民地巢群选址适配先行）
+
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
+    用当前目标与巢群锚点的关系（距离 / 朝向）查询 @BluegillGuardRelationProfile
+    （守卫位三档=Profile 值域不冻结）
+    如果 关系 ∈ 守卫核档：
+        RelationFit = 全额（守卫占位）
+    否则如果 ∈ 守卫缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @BluegillGuardLocalTemperatureProfile
+    （护巢期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+
+返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
+```
+
+@@@ SMA (B1) patch/species/smallmouth_follow.md
+TITLE: # 小口黑鲈·跟随翻底觅食（Smallmouth Bass｜Micropterus dolomieu）｜Resource Patch 系四面生产级表达
+BAKETPL:BA-P02-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——本标签本批 4 文件之一；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝扰动机会存在性 → 暴露猎物机会档位 → 归一化；分级命中（全额/削减/出局），
+出局即 EARLY_RETURN。动态机会语义=事件驱动——无扰动事件即无机会斑块，
+存在性是第一道门（EARLY_RETURN 后不做机会评估；常态分布由该鱼其它程序面承载，
+非本 Story 程序——本程序只表达机会追随面）。顺序差异本身=LogicTemplate 判据，
+与 census canonical body（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧 SINGLE 族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的扰动暴露猎物动态机会 patch 轴事实
+    （disturbance_events——它鱼/它动物翻底扰动事件与暴露猎物区；
+      世界侧 fact，环境 owner 产生：扰动者改变局部猎物可达性）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SmaPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SmaDietClasses 食性过滤
+      与 size_window=@SmaSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 扰动机会存在性（GATE_DISTURBANCE_WINDOW）：
+    用扰动事件事实查询 @SmaDisturbanceFollowerProfile 的存在分档槽
+    如果 当前扰动窗口内无扰动事件（excluded 槽——零事件）：
+        返回 0（EARLY_RETURN：无扰动=无动态机会斑块，本面零权重——
+        常态分布由该鱼其它程序面承载，非本 Story 程序）
+    否则：
+        进入第 2 步
+
+第 2 步 暴露猎物机会档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用扰动暴露猎物机会轴事实查询 @SmaDisturbanceFollowerProfile
+    （census 盲体首步 op=EVAL_RESOURCE_PATCH——族判同的实例化名，同构；
+      单 typed 因子评估展开为三档分档槽=Profile 值域不冻结）
+    如果 暴露猎物可得性 ∈ 大量暴露档（preferred 槽）：
+        DisturbanceFollowerFit = 全额强度
+    否则如果 ∈ 有限暴露档（tolerated 槽）：
+        DisturbanceFollowerFit = 削减强度（× Profile 衰减参数——削减但不清零）
+    否则（残余暴露档）：
+        返回 0（EARLY_RETURN：残余暴露出局）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 DisturbanceFollowerFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ PIK19 (B2) migration/species/northern_pike_spawn.md
+TITLE: # 白斑狗鱼（Northern Pike｜Esox lucius）｜淹水草地繁殖位移四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：繁殖轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（繁殖阶段配置级）→ 繁殖阶段绑定位置轴段归属三档 → 归一化；
+轴段判定分级命中（当前阶段偏好带=全额/近岸过渡带=削减不清零/对侧带=出局
+EARLY_RETURN）。繁殖阶段切换本身不进 body 分支（PREMBIND 不变量维持：
+spawning_stage=上游繁殖事实，配置级切换因子集）；early return 的对象是格子，
+不是繁殖阶段。推导来源=census P-B2-PIK19-BAKE 冻结实例常量（盲体 sketch 语义的
+档位化还原——Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）；档位成员=
+Profile 值域不冻结。与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑分歧
+登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（淹水草地浅滩↔深水繁殖轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@PikePreyFields 绑定的鱼类 prey class 生物量，
+      经 diet_classes=@PikeDietClasses 食性过滤
+      与 size_window=@PikeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（spawning_stage——上游繁殖事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含繁殖阶段分支）
+
+第 1 步 繁殖阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @PikeSpawnStageSpatialProfile 的阶段轴段分档槽
+    （轴=淹水草地浅滩↔深水两态随 spawning_stage 取段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前阶段偏好带（preferred 槽——PRESPAWN 淹水草地浅滩带/
+        POSTSPAWN 深水结构带方向）：
+        SpawnStageSpatialFit = 全额
+    否则如果 ∈ 近岸过渡带（tolerated 槽）：
+        SpawnStageSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧带——当前阶段不取的轴段）：
+        返回 0（EARLY_RETURN：格子不在当前繁殖阶段空间范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 SpawnStageSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ BRT12 (B2) normal/species/brown_trout.md
+TITLE: # 褐鳟（Brown Trout｜Salmo trutta）｜普通摄食季节脉冲四面生产级表达
+BAKETPL:BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；机会组 Tier A 样板文件；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位 → 归一化。机会型
+第一判断＝食物丰度（跟着食物走：丰档=全额/贫档=削减不清零/枯档=出局
+EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息双槽）、夜行型
+（底板+光照槽）的顺序差异本身=LogicTemplate 判据。顺序来源＝census 冻结全四面判定快照（Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）——Story 正文
+到达后校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的季节脉冲猎物 patch 轴事实（猎物丰度脉冲）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BrtPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@BrtDietClasses 食性过滤
+      与 size_window=@BrtSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（季节脉冲窗口——配置级切换因子）
+
+第 1 步 机会场食物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  机会型第一判断：食物丰度先行）：
+    用resource_patch事实查询 @BrtSeasonalPulsePatchProfile 的机会场丰度分档槽
+    （猎物丰度脉冲；档位成员=Profile 值域不冻结 [需正文]）
+    如果 机会场 ∈ 丰档（preferred 槽）：
+        SeasonalPulseFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SeasonalPulseFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（枯竭档——无可食机会）：
+        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 SeasonalPulseFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ ARC (B2) migration/species/arctic_char.md
+TITLE: # 北极红点鲑（Arctic Char｜Salvelinus alpinus）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：季节轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（季节配置级）→ 季节绑定轴段归属三档 → 归一化；轴段判定分级命中
+（当前季节偏好带=全额/季节过渡带=削减不清零/对侧季节带=出局 EARLY_RETURN）。季节切换
+本身不进 body 分支（PREMBIND 不变量维持：temp/season=上游 premise，配置级切换因子集）；
+early return 的对象是格子（不在当前季节绑定轴段内的格子出局），不是季节。推导来源=
+census P-B2-ARC-BAKE 冻结实例常量（盲体 sketch 语义的档位化还原——Tier A 骨架在案、
+档位成员不在快照，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（近岸↔深水冷水季节轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@ArcticCharPreyFields 绑定的鱼类/无脊椎 prey class 生物量，
+      经 diet_classes=@ArcticCharDietClasses 食性过滤
+      与 size_window=@ArcticCharSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（temp/season——上游事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含季节分支）
+
+第 1 步 季节绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @ArcticCharSeasonSpatialProfile 的季节轴段分档槽
+    （轴=近岸↔深水两态随季节取段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前季节偏好带（preferred 槽——暖季近岸带/冷水季深水带方向）：
+        SeasonSpatialFit = 全额
+    否则如果 ∈ 季节过渡带（tolerated 槽——沿岸中间带方向）：
+        SeasonSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧季节带——当前季节不取的轴段）：
+        返回 0（EARLY_RETURN：格子不在当前季节空间范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 SeasonSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ VEN (B2) migration/species/vendace.md
+TITLE: # 欧白鲑（Vendace｜Coregonus albula）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：水层归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（季节配置级）→ 季节绑定水层归属三档 → 归一化；水层判定分级命中
+（当前季节偏好水层=全额/过渡层=削减不清零/对侧水层=出局 EARLY_RETURN）。季节切换本身
+不进 body 分支（PREMBIND 不变量维持：temp/season=上游 premise，配置级切换因子集）；
+early return 的对象是格子，不是季节。推导来源=census P-B2-VEN-BAKE 冻结实例常量
+（盲体 sketch 语义的档位化还原——Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）；
+档位成员=Profile 值域不冻结。与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑
+分歧登记 README §7（census 侧受影响族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的水层事实（底层↔水层冷水季节轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@VendacePreyFields 绑定的浮游/无脊椎 prey class 生物量，
+      经 diet_classes=@VendaceDietClasses 食性过滤
+      与 size_window=@VendaceSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（temp/season——上游事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 水层段值，不含季节分支）
+
+第 1 步 季节绑定水层归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用水层事实查询 @VendaceLayerSpatialProfile 的季节水层分档槽
+    （垂直水层轴=底层↔水层两态随季节取段；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 当前季节偏好水层（preferred 槽——冷水期底层/暖季水层方向）：
+        LayerSpatialFit = 全额
+    否则如果 ∈ 过渡层（tolerated 槽）：
+        LayerSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧水层——当前季节不取的水层）：
+        返回 0（EARLY_RETURN：格子不在当前季节水层范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 LayerSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ FGA (B2) normal/species/florida_gar.md
+TITLE: # 佛罗里达雀鳝（Florida Gar｜Lepisosteus platyrhincus）｜植被边缘伏击四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；本组 Tier A 样板文件；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_VEGETATION_EDGE 门（植被缘掩体存在） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝census 冻结全四面判定快照（Tier A 骨架在案、档位成员不在快照，段成员 [需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的植被结构轴事实（植被缘/掩体贴近）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@FgaPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@FgaDietClasses 食性过滤
+      与 size_window=@FgaSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（浅水季节窗口——活性 condition premise，非空间分支）
+
+第 1 步 GATE_VEGETATION_EDGE（植被缘掩体存在——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @FgaVegetationStructureProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子存在植被缘/掩体结构（植被线/草缘贴近）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子无植被掩体结构——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @FgaVegetationStructureProfile 的掩体伏击分档槽
+    （植被缘伏击质量：掩体内侧/植被缘/结构边缘；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        VegetationEdgeFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        VegetationEdgeFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 VegetationEdgeFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ SWO (B2) migration/species/swordfish_diel.md
+TITLE: # 剑旗鱼（Swordfish｜Xiphias gladius）｜昼夜垂直迁移四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-003）：相位水层归属三档（迁移过渡带 tolerated 档）+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（diel 配置级）→ 相位绑定水层归属三档 → 归一化；水层判定分级命中
+（当前相位偏好水层=全额/垂直迁移过渡带=削减不清零——DVM 型独有 tolerated 档/
+对侧相位水层=出局 EARLY_RETURN）。相位切换本身不进 body 分支（PREMBIND 不变量维持：
+diel=上游昼夜事实，配置级切换因子集）；early return 的对象是格子，不是相位。推导来源=
+census P-B2-SWO-BAKE 冻结实例常量（盲体 sketch 语义的档位化还原——Tier A 骨架在案、
+档位成员不在快照，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的水层事实（昼夜垂直迁移轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SwordfishPreyFields 绑定的头足类/深海鱼类 prey class 生物量，
+      经 diet_classes=@SwordfishDietClasses 食性过滤
+      与 size_window=@SwordfishSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（diel——上游昼夜事实，配置级切换因子集；
+    本 body 只按 premise 取 Profile 水层段值，不含相位分支）
+
+第 1 步 相位绑定水层归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用水层事实查询 @SwordfishDielSpatialProfile 的相位水层分档槽
+    （垂直水层轴=表层↔深层两态随 diel 相位取段；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 当前相位偏好水层（preferred 槽——夜间表层/昼间深层方向）：
+        DielSpatialFit = 全额
+    否则如果 ∈ 垂直迁移过渡带（tolerated 槽——晨昏相位切换穿越水柱方向；
+        DVM 型独有 tolerated 语义——档位成员 [需正文]）：
+        DielSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（对侧相位水层——当前相位不取的水层）：
+        返回 0（EARLY_RETURN：格子不在当前相位水层范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 DielSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。迁移驱动 2D 判据=coverage #24
+回归登记本批不闭合；本链与 census SINGLE 族 canonical 两步的分歧登记 README §7）
+```
+
+@@@ BHC (B2) field/species/bighead_carp.md
+TITLE: # 鳙鱼（Bighead Carp｜Hypophthalmichthys nobilis）｜滤食浮游场系四面生产级表达
+BAKETPL:BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化；本组 Tier A 样板文件；**§2.2 已顺序还原（REP-ORDER-FIX-005）：水层定位→场浓度→口径链+early return，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-005】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝滤食水层定位 → 场浓度判定 → 个体大小口径判定 → 归一化（族常量终点步）；
+三步均为同一场评估（FieldSuitability）的顺序判定（非多因子并联——SINGLE 族域），
+每步分级命中（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；
+early return 的对象=格子。推导来源与 census 判语分歧登记 README §7
+（census 侧族重跑=work standards §5.4 行动项）；档位成员=Profile 值域不冻结。
+
+读取 当前格子的水层/深度带事实（滤食水层判定输入——顺序还原链第一判定步的事实读取）
+读取 当前格子的食物场事实（浮游浓度场——水柱分布的浓度事实）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BhcPlanktonPreyFields 绑定的 plankton prey class 生物量，
+      经 diet_classes=@BhcDietClasses 食性过滤
+      与 size_window=@BhcSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 滤食水层定位（场评估的前置顺序判定，分级命中）：
+    用水层/深度带事实查询 @BhcPlanktonFieldEvaluatorProfile 的水层分档槽
+    （中上层滤食带——滤食型先判水层位置（上层/中层）；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 ∈ 偏好滤食水层（preferred 槽——中上层富生产力带）：
+        不折减，进入第 2 步
+    否则如果 ∈ 可接受邻层（tolerated 槽）：
+        携削减标记进入第 2 步（× Profile 衰减参数——削减但不清零）
+    否则（远离滤食水层，滤食位不在场）：
+        返回 0（EARLY_RETURN：格子不在滤食水层范围，出局）
+
+第 2 步 EVAL_FOOD_FIELD_CONCENTRATION（canonical 步的档位化展开——场浓度三档）：
+    用食物场浓度事实查询 @BhcPlanktonFieldEvaluatorProfile
+    （水流对浮游分布的输送调制并入 Profile 值域；
+      场适应性——场浓度评估，非离散 patch、非结构因子）
+    如果 ∈ 高浓度带（preferred 槽——场浓度在偏好带）：
+        FieldSuitability = 全额
+    否则如果 ∈ 边际浓度带（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——削减但不清零）
+    否则（空场/浓度低于起始阈值）：
+        返回 0（EARLY_RETURN：场不可用，格子出局）
+
+第 3 步 个体大小口径判定（口径三档——契约口径过滤维度的链位化）：
+    用口径过滤前后的构成对比（食物场浓度事实 vs diet_classes=@BhcDietClasses
+      与 size_window=@BhcSizeWindow 过滤后的在场可食构成）查询 @BhcPlanktonFieldEvaluatorProfile
+      的口径分档槽（口径=个体大小决定的鳃耙间距/口裂——@BhcSizeWindow 值域 [需正文]）
+    如果 口径内构成为主（preferred 槽——场构成与本鱼口径匹配）：
+        FieldSuitability 保持（本步不折减）
+    否则如果 仅部分构成在口径内（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——部分可食）
+    否则（场构成全部超出本鱼口径——浓度高亦不可食）：
+        返回 0（EARLY_RETURN：口径不匹配，格子出局）
+
+    多步命中档的折减合成算子标注：OPERATOR UNDEFINED —— 待机制侧
+    （SINGLE 族 forbidden_freedoms 无 combine 步；三步为同一场评估的顺序判定非并联，
+     步间折减合成=族重跑后的规格动作，本文件不静默定义）
+
+第 4 步 NORMALIZE_WEIGHT（canonical；链终点步——handoff 判序「合并」的族域读法：
+    SINGLE 族域单场因子链的合并=归一化终点，非多因子 COMBINE）：
+    对 FieldSuitability 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族 canonical
+两步「无 gate 判语」的拓扑分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ HER (B2) field/species/atlantic_herring.md
+TITLE: # 大西洋鲱（Atlantic Herring｜Clupea harengus）｜浮游食场系四面生产级表达
+BAKETPL:BA-P03-FIELD-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT factor_type 轴 food_field 场实例，registry v4；2 步场评估→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-005）：水层定位→场浓度→口径链+early return，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-005】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝滤食水层定位 → 场浓度判定 → 个体大小口径判定 → 归一化（族常量终点步）；
+三步均为同一场评估（FieldSuitability）的顺序判定（非多因子并联——SINGLE 族域），
+每步分级命中（偏好=全额/可接受=削减×衰减不清零/不接受=出局 EARLY_RETURN）；
+early return 的对象=格子。推导来源与 census 判语分歧登记 README §7
+（census 侧族重跑=work standards §5.4 行动项）；档位成员=Profile 值域不冻结。
+
+读取 当前格子的水层/深度带事实（滤食水层判定输入——顺序还原链第一判定步的事实读取）
+读取 当前格子的食物场事实（浮游食场浓度——水柱分布的浓度事实）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@HerPlanktonPreyFields 绑定的 plankton prey class 生物量，
+      经 diet_classes=@HerDietClasses 食性过滤
+      与 size_window=@HerSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（季节产卵迁移——lifecycle premise，配置级切换因子集；不在本 body 内分支）
+
+第 1 步 滤食水层定位（场评估的前置顺序判定，分级命中）：
+    用水层/深度带事实查询 @HerPlanktonFieldEvaluatorProfile 的水层分档槽
+    （中上层群游滤食带——滤食型先判水层位置（上层/中层）；群游集聚并入分档槽值域
+      （coverage #17 判——非独立程序步）；档位成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 ∈ 偏好滤食水层（preferred 槽——群游滤食水层带）：
+        不折减，进入第 2 步
+    否则如果 ∈ 可接受邻层（tolerated 槽）：
+        携削减标记进入第 2 步（× Profile 衰减参数——削减但不清零）
+    否则（远离滤食水层，滤食位不在场）：
+        返回 0（EARLY_RETURN：格子不在滤食水层范围，出局）
+
+第 2 步 EVAL_FOOD_FIELD_CONCENTRATION（canonical 步的档位化展开——场浓度三档）：
+    用食物场浓度事实查询 @HerPlanktonFieldEvaluatorProfile
+    （水流对浮游食场分布的输送调制并入 Profile 值域；
+      场适应性——含群游集聚值域承载，非独立程序步）
+    如果 ∈ 高浓度带（preferred 槽——食场浓度在偏好带）：
+        FieldSuitability = 全额
+    否则如果 ∈ 边际浓度带（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——削减但不清零）
+    否则（空场/浓度低于起始阈值）：
+        返回 0（EARLY_RETURN：场不可用，格子出局）
+
+第 3 步 个体大小口径判定（口径三档——契约口径过滤维度的链位化）：
+    用口径过滤前后的构成对比（食物场浓度事实 vs diet_classes=@HerDietClasses
+      与 size_window=@HerSizeWindow 过滤后的在场可食构成）查询 @HerPlanktonFieldEvaluatorProfile
+      的口径分档槽（口径=个体大小决定的鳃耙间距/口裂——@HerSizeWindow 值域 [需正文]）
+    如果 口径内构成为主（preferred 槽——场构成与本鱼口径匹配）：
+        FieldSuitability 保持（本步不折减）
+    否则如果 仅部分构成在口径内（tolerated 槽）：
+        FieldSuitability = 削减（× Profile 衰减参数叠加——部分可食）
+    否则（场构成全部超出本鱼口径——浓度高亦不可食）：
+        返回 0（EARLY_RETURN：口径不匹配，格子出局）
+
+    多步命中档的折减合成算子标注：OPERATOR UNDEFINED —— 待机制侧
+    （SINGLE 族 forbidden_freedoms 无 combine 步；三步为同一场评估的顺序判定非并联，
+     步间折减合成=族重跑后的规格动作，本文件不静默定义）
+
+第 4 步 NORMALIZE_WEIGHT（canonical；链终点步——handoff 判序「合并」的族域读法：
+    SINGLE 族域单场因子链的合并=归一化终点，非多因子 COMBINE）：
+    对 FieldSuitability 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族 canonical
+两步「无 gate 判语」的拓扑分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ CHU (B3) migration/species/chum_salmon.md
+TITLE: # 大马哈鱼（Chum Salmon｜Oncorhynchus keta）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：近底软定位+轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 近底水层带定位（软三档）→ 阶段绑定轴段归属三档
+→ 归一化；各步分级命中（全额/削减不清零/出局 EARLY_RETURN）。阶段切换本身不进 body
+分支（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游阶段程序仍
+运行、按海洋段轴取值）。推导来源=CSV benthopelagic 栖息带锚+G2/C12 样板空间重排语义
+（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族 canonical
+两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=work standards
+§5.4 行动项）。
+
+读取 当前格子的水层带位置事实
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@ChumSalmonPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@ChumSalmonDietClasses 食性过滤
+      与 size_window=@ChumSalmonSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
+
+第 1 步 近底水层带定位（CSV benthopelagic 软定位，分级命中）：
+    用水层带位置查询 @ChumSalmonMigrationSpatialProfile 的水层分档槽
+    （近底中上带=CSV 栖息带锚；档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 近底中上带（preferred 槽）：
+        LayerTier = 全额保留
+    否则如果 ∈ 过渡带（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远带）：
+        返回 0（EARLY_RETURN：远离近底带的格子出局——CSV 锚方向级推导 [需正文]，
+        若正文证实深层/底层带活动则档位成员调整，结构变更需重审）
+
+第 2 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @ChumSalmonMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔产卵河段三段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 LayerTier × MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ CHN (B3) migration/species/chinook_salmon.md
+TITLE: # 帝王鲑（Chinook Salmon｜Oncorhynchus tshawytscha）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 阶段绑定轴段归属三档 → 归一化；轴段判定分级命中
+（当前阶段偏好轴段=全额/过渡带=削减不清零/轴段外=出局 EARLY_RETURN）。阶段切换本身
+不进 body 分支（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游
+阶段程序仍运行、按海洋段轴取值）。推导来源=G2/C12 样板空间重排语义+CSV anadromous
+方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@ChinookSalmonPreyFields 绑定的鱼类 prey class 生物量，
+      经 diet_classes=@ChinookSalmonDietClasses 食性过滤
+      与 size_window=@ChinookSalmonSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
+
+第 1 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @ChinookSalmonMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔深河产卵段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ COH (B3) migration/species/coho_salmon.md
+TITLE: # 银鲑（Coho Salmon｜Oncorhynchus kisutch）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 阶段绑定轴段归属三档 → 归一化；轴段判定分级命中
+（当前阶段偏好轴段=全额/过渡带=削减不清零/轴段外=出局 EARLY_RETURN）。阶段切换本身
+不进 body 分支（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游
+阶段程序仍运行、按海洋段轴取值）。推导来源=G2/C12 样板空间重排语义+CSV anadromous
+方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@CohoSalmonPreyFields 绑定的鱼类/无脊椎 prey class 生物量，
+      经 diet_classes=@CohoSalmonDietClasses 食性过滤
+      与 size_window=@CohoSalmonSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
+
+第 1 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @CohoSalmonMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔产卵支流；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ BRO (B3) migration/species/brook_trout.md
+TITLE: # 美洲红点鲑（Brook Trout｜Salvelinus fontinalis）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照同属先例 census P-B2-ARC-BAKE 投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（季节相位配置级——湖封种群形态落 Profile 值域）→ 阶段绑定
+轴段归属三档 → 归一化；轴段判定分级命中（当前阶段偏好轴段=全额/过渡带=削减不清零/
+轴段外=出局 EARLY_RETURN）。季节相位切换本身不进 body 分支（PREMBIND 不变量维持）；
+early return 的对象是格子，不是季节相位（非洄游季节程序仍运行、按河段轴取值）。
+推导来源=同属先例北极红点鲑 census 冻结语义+CSV anadromous 方向锚（方向级，
+段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族 canonical
+两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=work
+standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BrookTroutPreyFields 绑定的无脊椎/鱼类 prey class 生物量，
+      经 diet_classes=@BrookTroutDietClasses 食性过滤
+      与 size_window=@BrookTroutSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（RIVER/ESTUARY/OCEAN——上游 lifecycle trait，配置级切换因子集；
+    湖封种群值域落 Profile 层；本 body 只按 premise 取 Profile 轴段值，不含季节分支）
+
+第 1 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @BrookTroutMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋沿岸肥育带↔河口↔河段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽——降海期沿岸带/回河期河段方向）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前季节相位空间范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ SHA (B3) migration/species/american_shad.md
+TITLE: # 美洲西鲱（American Shad｜Alosa sapidissima）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：中上层定位+轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级）→ 中上层水层带定位 → 阶段绑定轴段归属三档 → 归一化；
+各步分级命中（全额/削减不清零/出局 EARLY_RETURN）。阶段切换本身不进 body 分支
+（PREMBIND 不变量维持）；early return 的对象是格子，不是阶段（非洄游阶段程序仍
+运行、按海洋段轴取值）。推导来源=CSV pelagic-neritic 栖息带锚+G2/C12 样板空间重排
+语义（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。与 census SINGLE 族
+canonical 两步（无 gate 判语）的拓扑分歧登记 README §7（census 侧受影响族重跑=
+work standards §5.4 行动项）。
+
+读取 当前格子的水层带位置事实
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@AmericanShadPreyFields 绑定的浮游/小鱼 prey class 生物量，
+      经 diet_classes=@AmericanShadDietClasses 食性过滤
+      与 size_window=@AmericanShadSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
+
+第 1 步 中上层水层带定位（CSV pelagic-neritic 中上层特化，分级命中）：
+    用水层带位置查询 @AmericanShadMigrationSpatialProfile 的水层分档槽
+    （中上层带=CSV 栖息带锚；档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 中上层带（preferred 槽）：
+        LayerTier = 全额保留
+    否则如果 ∈ 过渡带（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（底带/远带）：
+        返回 0（EARLY_RETURN：非中上层带格子出局——CSV 锚方向级推导 [需正文]，
+        若正文证实河段底层活动则档位成员调整，结构变更需重审）
+
+第 2 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @AmericanShadMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔产卵河段三段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 LayerTier × MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本程序。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ ALE (B3) migration/species/alewife.md
+TITLE: # 灰西鲱（Alewife｜Alosa pseudoharengus）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（阶段配置级——种群形态落 Profile 值域）→ 阶段绑定轴段归属三档
+→ 归一化；轴段判定分级命中（当前阶段偏好轴段=全额/过渡带=削减不清零/轴段外=出局
+EARLY_RETURN）。阶段切换本身不进 body 分支（PREMBIND 不变量维持）；early return 的
+对象是格子，不是阶段（非洄游阶段程序仍运行、按海洋段轴取值）。推导来源=G2/C12 样板
+空间重排语义+CSV anadromous 方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域
+不冻结。与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧受影响族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（洄游阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@AlewifePreyFields 绑定的浮游/小鱼 prey class 生物量，
+      经 diet_classes=@AlewifeDietClasses 食性过滤
+      与 size_window=@AlewifeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（OCEAN/MIGRATION/SPAWN——上游 lifecycle trait，配置级切换因子集；
+    陆封/溯河种群形态落 Profile 值域；本 body 只按 premise 取 Profile 轴段值，不含阶段分支）
+
+第 1 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @AlewifeMigrationSpatialProfile 的阶段轴段分档槽
+    （轴=海洋觅食区↔河口↔产卵河段；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        MigrationSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
+        MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ AST (B3) normal2/species/atlantic_sturgeon.md
+TITLE: # 尖吻鲟（Atlantic Sturgeon｜Acipenser oxyrinchus）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_ZONE 门（河口河底底层定位——溯河鲟底栖触须特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝批内互指/点名锚方向级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（河口河底触须贴近轴（溯河鲟底栖方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@ATSPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@ATSDietClasses 食性过滤
+      与 size_window=@ATSSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_ZONE（河口河底底层定位——溯河鲟底栖触须特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @ATSEstuaryBottomProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子位于河口底层水层带（河底水层）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子不在底层水层带——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @ATSEstuaryBottomProfile 的掩体伏击分档槽
+    （河底触须贴近质量：河床槽/底起伏；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        EstuaryBottomFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        EstuaryBottomFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 EstuaryBottomFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ SNS (B3) normal2/species/shortnose_sturgeon.md
+TITLE: # 短吻鲟（Shortnose Sturgeon｜Acipenser brevirostrum）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_ZONE 门（底层水层定位——小型鲟贴底特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝批内互指/点名锚方向级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（河底深槽/砾石贴近轴（小型鲟贴底方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SNSPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SNSDietClasses 食性过滤
+      与 size_window=@SNSSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_ZONE（底层水层定位——小型鲟贴底特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @SNSRiverDeepBedProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子位于底层水层带（河底深槽水层）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子不在底层水层带——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @SNSRiverDeepBedProfile 的掩体伏击分档槽
+    （深槽/砾石贴近质量：槽底/砾石缘；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        RiverDeepBedFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        RiverDeepBedFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 RiverDeepBedFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ TAR (B3) migration/species/atlantic_tarpon.md
+TITLE: # 大西洋大海鲢（Atlantic Tarpon｜Megalops atlanticus）｜Migration/生活史系四面生产级表达
+BAKETPL:BA-MIGRATION-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——照 census B2 北极红点鲑位置因子先例投影；**§2.2 已顺序还原（REP-ORDER-FIX-003）：轴段归属三档+early return 链，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-003】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝premise 读取（发育阶段配置级——amphidromous 发育枚举落 Profile 值域，非繁殖
+阶段枚举）→ 发育阶段绑定轴段归属三档 → 归一化；轴段判定分级命中（当前阶段偏好
+轴段=全额/过渡带=削减不清零/轴段外=出局 EARLY_RETURN）。发育阶段切换本身不进 body
+分支（PREMBIND 不变量维持）；early return 的对象是格子，不是发育阶段（非洄游阶段
+程序仍运行、按成体沿岸礁带轴取值）。推导来源=G2/C12 样板空间重排语义+CSV
+amphidromous 方向锚（方向级，段成员 [需正文]）；档位成员=Profile 值域不冻结。
+与 census SINGLE 族 canonical 两步（无 gate 判语）的拓扑分歧登记 README §7
+（census 侧受影响族重跑=work standards §5.4 行动项）。
+
+读取 当前格子的位置轴事实（发育阶段绑定的空间轴段）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@TarponPreyFields 绑定的鱼类/无脊椎 prey class 生物量，
+      经 diet_classes=@TarponDietClasses 食性过滤
+      与 size_window=@TarponSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（发育阶段——上游 lifecycle trait，配置级切换因子集；
+    LARVA/JUVENILE_RIVER/SUBADULT_SEA/ADULT_COASTAL 方向枚举落 Profile 值域；
+    本 body 只按 premise 取 Profile 轴段值，不含发育阶段分支）
+
+第 1 步 发育阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用位置轴事实查询 @TarponAmphidromousSpatialProfile 的阶段轴段分档槽
+    （轴=沿岸礁带↔河口↔河沼幼体带；段成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 格子位置 ∈ 当前 premise 偏好轴段（preferred 槽）：
+        AmphidromousSpatialFit = 全额
+    否则如果 ∈ 过渡带（tolerated 槽——河口混交带方向）：
+        AmphidromousSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（当前发育阶段绑定轴段外——非本阶段空间）：
+        返回 0（EARLY_RETURN：格子不在当前发育阶段空间范围，出局）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 AmphidromousSpatialFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步的分歧登记 README §7；换标签/改结构=census 判同裁决后结构变更需重审）
+```
+
+@@@ TAI (B3) normal/species/taimen.md
+TITLE: # 哲罗鲑（Siberian Taimen｜Hucho taimen）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（鱼类猎物场轴（大型饵鱼方向））
+读取 当前格子的habitat_factor事实（深潭/激流结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@TmnPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@TmnDietClasses 食性过滤
+      与 size_window=@TmnSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @TmnLargeForageProfile 的猎物场分档槽
+    （鱼类猎物场轴·大型饵鱼方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        LargeForageFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        LargeForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        LargeForageFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @TmnDeepRunHabitatProfile 的栖息分档槽
+    （深潭/激流结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        DeepRunHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        DeepRunHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        DeepRunHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ ARA (B3) guarding/species/arapaima.md
+TITLE: # 巨骨舌鱼（Arapaima｜Arapaima gigas）｜Guarding 系四面生产级表达
+BAKETPL:BA-GUARD-ANCHOR-GATE + DynamicSpatialSlot（洪泛漫滩）（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链（含漫滩可及性）＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定（含洪泛漫滩可及性） → 锚适配（漫滩掩体群栖境） → 关系评估（环护） →
+局部温度 → 合并；出局即 EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。
+推导来源（Tier B）：R06 FR3 抽验名单一句「洪水护幼」——高水位期雄鱼环护稚鱼群（锚型方向级）；
+步序与档位成员 [需正文] 校准（顺序/档位变化=census 判同输入，结构变更需重审）。
+洪水位相事实只在 Group 面结算一次（§8.5 anti-double-counting）；漫滩**可及性**是空间事实
+（DynamicSpatialSlot 消费上游洪泛事实），与位相不重复结算。与 live BA-T2 模板平铺读法的分歧
+登记 README §7。
+
+读取 当前目标的结构 / 水深 / 漫滩可及性事实（上游洪泛事实）
+读取 当前稚鱼群锚点位置（上游 Fry / Brood Field Resolver 产出）
+读取 当前目标与稚鱼群锚点的关系（距离 / 朝向）
+读取 当前点局部温度
+
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE——含漫滩可及性）：
+    用锚域事实与漫滩可及性事实查询 @ArapaimaLocalGuardAnchorEligibility
+    （锚=洪泛漫滩稚鱼群移动锚；稚鱼群存在与洪水位相已在路由面判定（C1/C5），本步不重复结算
+      premise，只判「当前目标是否处于洪泛可及的稚鱼群合法护卫锚域」——漫滩不可及格出局）
+    如果 当前目标处于合法锚域（稚鱼群锚域 ∧ 洪泛可及）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在/漫滩不可及格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的
+        判断序形态；锚域外与不可及格不参与育幼分布评价，非「算出低值」）
+
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中——漫滩掩体群栖境语义）：
+    用当前目标的漫滩掩体查询 @ArapaimaBroodHabitatSuitabilityProfile
+    （稚鱼群所在漫滩栖境的适配三档分档槽=Profile 值域——档位成员与阈值不冻结 [需正文]）
+    如果 群栖境 ∈ 最适应档（preferred 漫滩掩体栖境）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 栖境）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除栖境档）：
+        返回 0（EARLY_RETURN：排除栖境出局——稚鱼群不驻留的栖境无育幼分布）
+
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中——环护语义）：
+    用当前目标与稚鱼群的关系（距离 / 朝向）查询 @ArapaimaGuardRelationProfile
+    （环护位三档=Profile 值域不冻结）
+    如果 关系 ∈ 环护核档：
+        RelationFit = 全额（环护占位）
+    否则如果 ∈ 环护缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：环护圈外无育幼占位）
+
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @ArapaimaGuardLocalTemperatureProfile
+    （育幼期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：育幼期排除温度带出局）
+
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+
+返回 BroodCare SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
+```
+
+@@@ PB (B3) normal2/species/orinoco_peacock.md
+TITLE: # 奥里诺科孔雀鲈（Orinoco Peacock Bass｜Cichla orinocensis）｜机会组四面生产级表达
+BAKETPL:BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位 → 归一化。机会型
+第一判断＝食物丰度（跟着食物走：丰档=全额/贫档=削减不清零/枯档=出局
+EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息双槽）、夜行型
+（底板+光照槽）的顺序差异本身=LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文
+到达后校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的resource_patch事实（静水支流鱼群机会场轴（好斗方向锚——同批统一 R-T1））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@ORPPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@ORPDietClasses 食性过滤
+      与 size_window=@ORPSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 机会场食物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  机会型第一判断：食物丰度先行）：
+    用resource_patch事实查询 @ORPPatchProfile 的机会场丰度分档槽
+    （静水支流鱼群机会场轴·好斗方向锚——同批统一 R-T1；档位成员=Profile 值域不冻结 [需正文]）
+    如果 机会场 ∈ 丰档（preferred 槽）：
+        BackwaterPatchFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        BackwaterPatchFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（枯竭档——无可食机会）：
+        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 BackwaterPatchFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ RBP (B3) guarding/species/red_bellied_piranha.md
+TITLE: # 红腹食人鱼（Red-bellied Piranha｜Pygocentrus nattereri）｜Guarding 系四面生产级表达
+BAKETPL:BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0，
+不进入后续评估），不做「先全算再减」。推导来源（Tier B）：R06 FR3 抽验名单一句「树根护卵」
+（沉水树根/水草丛间卵体守护——锚型方向级）；步序与档位成员 [需正文] 校准（顺序/档位变化=
+census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读法的分歧登记 README §7。
+
+读取 当前目标的结构 / 水深 / 沉水植被关系
+读取 当前目标与树根卵体锚点的关系（距离 / 朝向）
+读取 当前点局部温度
+
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @PiranhaLocalGuardAnchorEligibility
+    （锚=root_spawn 树根卵体；护巢资格已在路由面判定，本步不重复结算 premise，
+      只判「当前目标是否处于卵体锚的合法护巢锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        锚域外格子不参与护巢分布评价，非「算出低值」）
+
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
+    用当前目标的沉水结构查询 @PiranhaNestSuitabilityProfile
+    （树根/水草丛附着面三档分档槽=Profile 值域——档位成员与阈值不冻结 [需正文]）
+    如果 锚面 ∈ 最适应档（preferred 附着面）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 附着面）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除锚面）：
+        返回 0（EARLY_RETURN：排除附着面出局）
+
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
+    用当前目标与卵体锚点的关系（距离 / 朝向）查询 @PiranhaGuardRelationProfile
+    （守卫位三档=Profile 值域不冻结）
+    如果 关系 ∈ 守卫核档：
+        RelationFit = 全额（守卫占位）
+    否则如果 ∈ 守卫缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @PiranhaGuardLocalTemperatureProfile
+    （护巢期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+
+返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
+```
+
+@@@ BLP (B3) normal2/species/black_piranha.md
+TITLE: # 黑食人鱼（Black Piranha｜Serrasalmus rhombeus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（静水小鱼猎物场轴）
+读取 当前格子的habitat_factor事实（浊水植被河道结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BKPPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@BKPDietClasses 食性过滤
+      与 size_window=@BKPSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @BKPForageProfile 的猎物场分档槽
+    （静水小鱼猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        StillPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        StillPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        StillPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @BKPHabitatProfile 的栖息分档槽
+    （浊水植被河道结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        TurbidChannelHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        TurbidChannelHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        TurbidChannelHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ WEL (B3) normal2/species/wels_catfish_feeding.md
+TITLE: # 欧洲巨鲶（Wels Catfish｜Silurus glanis）｜夜行低光四面生产级表达
+BAKETPL:BA-P01-NOCTURNAL-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT 低光侧；live §11.5 判例：MERGE_SUPPORTED → BA-T1 + 低光空间槽，BakeTemplate +0——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：底板档三档+低光槽内三档（槽位置按 §11.5 判例原位），登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝夜行底板栖息档位 → 低光/夜相槽档位 → 归一化。光照+时段＝夜行型第一
+环境判据（夜行组方向锚）；表达层槽位置＝live §11.5 判例固定（DynamicSpatialSlot
+槽位由判例固定合入，非作者可选）——光照先行语义由槽内三档与 Response 面
+LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（张力登记 README §7）。
+族域边界：槽＝调整器非 gate——亮水档落极低削减不清零，出局语义落 typed 因子
+（无夜行底板=EARLY_RETURN）。推导来源＝批内互指/点名锚方向级推导（[需正文]）；档位成员=Profile 值域不冻结 [需正文]。
+
+读取 当前格子的habitat_factor事实（洞穴/深潭夜行底板轴（大型伏击鲶方向））
+读取 当前格子的低光空间事实（低光/夜相空间槽——DynamicSpatialSlot）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@WCFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@WCFDietClasses 食性过滤
+      与 size_window=@WCFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 夜行底板栖息档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用habitat_factor事实查询 @WCFNightHabitatProfile 的夜行底板分档槽
+    （洞穴/深潭夜行底板轴·大型伏击鲶方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 夜行底板档（preferred 槽）：
+        BurrowNightHabitatFit = 全额
+    否则如果 ∈ 次级夜栖档（tolerated 槽）：
+        BurrowNightHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无夜行底板档）：
+        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+
+第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
+  槽位置=live §11.5 判例固定原位，非作者可选）：
+    用低光空间事实查询 @WCFLowLightSpatialProfile 的低光分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 光照/时段 ∈ 夜相低光档（preferred 槽）：
+        低光槽全额合入（槽位＝判例固定）
+    否则如果 ∈ 晨昏过渡档（tolerated 槽）：
+        低光槽削减合入（× Profile 衰减参数——削减但不清零）
+    否则（亮水日间档）：
+        低光槽极低削减合入（削减但不清零——槽=调整器非 gate，
+        出局语义不落槽内）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 BurrowNightHabitatFit（含低光槽合入调整）执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ FLA (B3) normal2/species/flathead_catfish.md
+TITLE: # 铲鮰（Flathead Catfish｜Pylodictis olivaris）｜夜行低光四面生产级表达
+BAKETPL:BA-P01-NOCTURNAL-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT 低光侧；live §11.5 判例：MERGE_SUPPORTED → BA-T1 + 低光空间槽，BakeTemplate +0——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：底板档三档+低光槽内三档（槽位置按 §11.5 判例原位），登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝夜行底板栖息档位 → 低光/夜相槽档位 → 归一化。光照+时段＝夜行型第一
+环境判据（夜行组方向锚）；表达层槽位置＝live §11.5 判例固定（DynamicSpatialSlot
+槽位由判例固定合入，非作者可选）——光照先行语义由槽内三档与 Response 面
+LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（张力登记 README §7）。
+族域边界：槽＝调整器非 gate——亮水档落极低削减不清零，出局语义落 typed 因子
+（无夜行底板=EARLY_RETURN）。推导来源＝CSV 方向锚级推导（[需正文]）；档位成员=Profile 值域不冻结 [需正文]。
+
+读取 当前格子的habitat_factor事实（深潭/木石结构夜行底板轴（铲头底栖大型掠食方向））
+读取 当前格子的低光空间事实（低光/夜相空间槽——DynamicSpatialSlot）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@FHCPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@FHCDietClasses 食性过滤
+      与 size_window=@FHCSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 夜行底板栖息档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用habitat_factor事实查询 @FHCNightHabitatProfile 的夜行底板分档槽
+    （深潭/木石结构夜行底板轴·铲头底栖大型掠食方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 夜行底板档（preferred 槽）：
+        DeepStructureNightHabitatFit = 全额
+    否则如果 ∈ 次级夜栖档（tolerated 槽）：
+        DeepStructureNightHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无夜行底板档）：
+        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+
+第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
+  槽位置=live §11.5 判例固定原位，非作者可选）：
+    用低光空间事实查询 @FHCLowLightSpatialProfile 的低光分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 光照/时段 ∈ 夜相低光档（preferred 槽）：
+        低光槽全额合入（槽位＝判例固定）
+    否则如果 ∈ 晨昏过渡档（tolerated 槽）：
+        低光槽削减合入（× Profile 衰减参数——削减但不清零）
+    否则（亮水日间档）：
+        低光槽极低削减合入（削减但不清零——槽=调整器非 gate，
+        出局语义不落槽内）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 DeepStructureNightHabitatFit（含低光槽合入调整）执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ BUR (B3) normal2/species/burbot.md
+TITLE: # 江鳕（Burbot｜Lota lota）｜夜行低光四面生产级表达
+BAKETPL:BA-P01-NOCTURNAL-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT 低光侧；live §11.5 判例：MERGE_SUPPORTED → BA-T1 + 低光空间槽，BakeTemplate +0——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：底板档三档+低光槽内三档（槽位置按 §11.5 判例原位），登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝夜行底板栖息档位 → 低光/夜相槽档位 → 归一化。光照+时段＝夜行型第一
+环境判据（夜行组方向锚）；表达层槽位置＝live §11.5 判例固定（DynamicSpatialSlot
+槽位由判例固定合入，非作者可选）——光照先行语义由槽内三档与 Response 面
+LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（张力登记 README §7）。
+族域边界：槽＝调整器非 gate——亮水档落极低削减不清零，出局语义落 typed 因子
+（无夜行底板=EARLY_RETURN）。推导来源＝批内互指/点名锚方向级推导（[需正文]）；档位成员=Profile 值域不冻结 [需正文]。
+
+读取 当前格子的habitat_factor事实（石底深潭冬夜底板轴（鳕科淡水低温夜行方向））
+读取 当前格子的低光空间事实（低光/夜相空间槽——DynamicSpatialSlot）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BRBPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@BRBDietClasses 食性过滤
+      与 size_window=@BRBSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 夜行底板栖息档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用habitat_factor事实查询 @BRBNightHabitatProfile 的夜行底板分档槽
+    （石底深潭冬夜底板轴·鳕科淡水低温夜行方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 夜行底板档（preferred 槽）：
+        RockNightDeepPoolFit = 全额
+    否则如果 ∈ 次级夜栖档（tolerated 槽）：
+        RockNightDeepPoolFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无夜行底板档）：
+        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+
+第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
+  槽位置=live §11.5 判例固定原位，非作者可选）：
+    用低光空间事实查询 @BRBLowLightSpatialProfile 的低光分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 光照/时段 ∈ 夜相低光档（preferred 槽）：
+        低光槽全额合入（槽位＝判例固定）
+    否则如果 ∈ 晨昏过渡档（tolerated 槽）：
+        低光槽削减合入（× Profile 衰减参数——削减但不清零）
+    否则（亮水日间档）：
+        低光槽极低削减合入（削减但不清零——槽=调整器非 gate，
+        出局语义不落槽内）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 RockNightDeepPoolFit（含低光槽合入调整）执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ GW (B3) normal2/species/giant_wolffish.md
+TITLE: # 巨狼鱼（Giant Wolffish｜Hoplias aimara）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（小鱼/无脊椎猎物场轴）
+读取 当前格子的habitat_factor事实（急流岩礁河道结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GWFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GWFDietClasses 食性过滤
+      与 size_window=@GWFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @GWFForageProfile 的猎物场分档槽
+    （小鱼/无脊椎猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        PreyFieldFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        PreyFieldFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        PreyFieldFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @GWFHabitatProfile 的栖息分档槽
+    （急流岩礁河道结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        RapidRockHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        RapidRockHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        RapidRockHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ SGA (B3) normal/species/spotted_gar.md
+TITLE: # 斑点雀鳝（Spotted Gar｜Lepisosteus oculatus）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_WEEDY_SLACK 门（缓流植被掩体存在） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（植被缓流掩体轴（同科佛罗里达雀鳝 Tier A 样板相邻方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SpgPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SpgDietClasses 食性过滤
+      与 size_window=@SpgSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_WEEDY_SLACK（缓流植被掩体存在——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @SpgWeedySlackStructureProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子存在缓流植被掩体结构（植被缘/草线）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子无植被掩体——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @SpgWeedySlackStructureProfile 的掩体伏击分档槽
+    （植被缓流掩体质量：掩体内/植被缘；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        WeedySlackFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        WeedySlackFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 WeedySlackFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ RFP (B3) normal2/species/redfin_pickerel.md
+TITLE: # 红鳍狗鱼（Redfin Pickerel｜Esox americanus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（小型鱼群猎物场轴）
+读取 当前格子的habitat_factor事实（植被缓流结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@RFPPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@RFPDietClasses 食性过滤
+      与 size_window=@RFPSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @RFPForageProfile 的猎物场分档槽
+    （小型鱼群猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        SmallSchoolFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SmallSchoolFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        SmallSchoolFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @RFPHabitatProfile 的栖息分档槽
+    （植被缓流结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        WeedySlowHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        WeedySlowHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        WeedySlowHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ DS (B3) normal2/species/chinese_sleeper.md
+TITLE: # 葛氏鲈塘鳢（Chinese Sleeper｜Perccottus glenii）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（静水小鱼/无脊椎猎物场轴）
+读取 当前格子的habitat_factor事实（植被泥底池塘结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@CHSPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@CHSDietClasses 食性过滤
+      与 size_window=@CHSSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @CHSForageProfile 的猎物场分档槽
+    （静水小鱼/无脊椎猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        PondPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        PondPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        PondPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @CHSHabitatProfile 的栖息分档槽
+    （植被泥底池塘结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        WeedyPondBedHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        WeedyPondBedHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        WeedyPondBedHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ PBF (B3) normal2/species/pacific_bluefin.md
+TITLE: # 太平洋蓝鳍金枪鱼（Pacific Bluefin Tuna｜Thunnus orientalis）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（跨洋鱼群猎物场轴）
+读取 当前格子的habitat_factor事实（温带开阔洋结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@PBFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@PBFDietClasses 食性过滤
+      与 size_window=@PBFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @PBFForageProfile 的猎物场分档槽
+    （跨洋鱼群猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        OceanSchoolFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        OceanSchoolFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        OceanSchoolFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @PBFHabitatProfile 的栖息分档槽
+    （温带开阔洋结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        TemperateOceanHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        TemperateOceanHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        TemperateOceanHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ GT (B3) normal2/species/giant_trevally.md
+TITLE: # 牛港鲹（Giant Trevally｜Caranx ignobilis）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（礁缘鱼群猎物场轴）
+读取 当前格子的habitat_factor事实（礁盘/开放水结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GTVPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GTVDietClasses 食性过滤
+      与 size_window=@GTVSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @GTVForageProfile 的猎物场分档槽
+    （礁缘鱼群猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        ReefPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        ReefPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        ReefPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @GTVHabitatProfile 的栖息分档槽
+    （礁盘/开放水结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        ReefEdgeWaterHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        ReefEdgeWaterHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        ReefEdgeWaterHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ HAL (B3) normal/species/atlantic_halibut.md
+TITLE: # 大西洋大比目鱼（Atlantic Halibut｜Hippoglossus hippoglossus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（底层鱼类猎物场轴）
+读取 当前格子的habitat_factor事实（砂底/深水大陆架轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@AthPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@AthDietClasses 食性过滤
+      与 size_window=@AthSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @AthDemersalForageProfile 的猎物场分档槽
+    （底层鱼类猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        DemersalForageFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        DemersalForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        DemersalForageFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @AthShelfDeepHabitatProfile 的栖息分档槽
+    （砂底/深水大陆架轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        ShelfDeepHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        ShelfDeepHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        ShelfDeepHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ GG (B3) normal2/species/giant_grouper.md
+TITLE: # 鞍带石斑鱼（Giant Grouper｜Epinephelus lanceolatus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（礁区猎物场轴（鱼类/龙虾方向））
+读取 当前格子的habitat_factor事实（岩礁洞穴结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GGPPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GGPDietClasses 食性过滤
+      与 size_window=@GGPSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @GGPForageProfile 的猎物场分档槽
+    （礁区猎物场轴·鱼类/龙虾方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        ReefPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        ReefPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        ReefPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @GGPHabitatProfile 的栖息分档槽
+    （岩礁洞穴结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        CaveReefHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        CaveReefHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        CaveReefHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ POR (B4) normal/species/porbeagle.md
+TITLE: # 鼠鲨（Porbeagle｜Lamna nasus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（鱼群猎物场轴（鲱形类群游方向））
+读取 当前格子的habitat_factor事实（开放水/温跃层轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@PblPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@PblDietClasses 食性过滤
+      与 size_window=@PblSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @PblSchoolingForageProfile 的猎物场分档槽
+    （鱼群猎物场轴·鲱形类群游方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        SchoolingForageFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SchoolingForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        SchoolingForageFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @PblOpenThermoclineHabitatProfile 的栖息分档槽
+    （开放水/温跃层轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        OpenThermoclineHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        OpenThermoclineHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        OpenThermoclineHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ SDG (B4) normal/species/spiny_dogfish.md
+TITLE: # 白斑角鲨（Spiny Dogfish｜Squalus acanthias）｜被动电感受摄食四面生产级表达
+BAKETPL:BA-P01-SENSE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——感官 patch 轴实例；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝感官信号场档位 → 归一化。感官型第一判断＝猎物信号场可探测性
+（可探测丰档=全额/弱信号=削减不清零/无信号=出局 EARLY_RETURN）——感官梯度
+先行是本组与机会型（丰度先行）的判据差异。顺序来源＝批内互指/点名锚方向级推导（[需正文]）——Story 正文到达后
+校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的底层猎物 patch 轴事实
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@DogPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@DogDietClasses 食性过滤
+      与 size_window=@DogSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 感官信号场档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  感官型第一判断：信号场可探测性先行）：
+    用该轴事实查询 @DogBenthicForagePatchProfile 的信号场分档槽
+    （底层猎物 patch 轴·底层鱼类/无脊椎猎物场——方向锚 [需正文]；档位成员=Profile 值域不冻结 [需正文]）
+    如果 信号场 ∈ 可探测丰档（preferred 槽）：
+        BenthicForageFit = 全额
+    否则如果 ∈ 弱信号档（tolerated 槽）：
+        BenthicForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无信号档）：
+        返回 0（EARLY_RETURN：无可探测猎物信号的格子出局——感官型信号先行判据）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 BenthicForageFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ TSK (B4) normal/species/thorny_skate.md
+TITLE: # 棘背钝头鳐（Thorny Skate｜Amblyraja radiata）｜被动电感受摄食四面生产级表达
+BAKETPL:BA-P01-SENSE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——感官 patch 轴实例；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝感官信号场档位 → 归一化。感官型第一判断＝猎物信号场可探测性
+（可探测丰档=全额/弱信号=削减不清零/无信号=出局 EARLY_RETURN）——感官梯度
+先行是本组与机会型（丰度先行）的判据差异。顺序来源＝批内互指/点名锚方向级推导（[需正文]）——Story 正文到达后
+校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的底栖猎物 patch 轴事实
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SkatePreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SkateDietClasses 食性过滤
+      与 size_window=@SkateSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 感官信号场档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  感官型第一判断：信号场可探测性先行）：
+    用该轴事实查询 @SkateBenthicForagePatchProfile 的信号场分档槽
+    （底栖猎物 patch 轴·底栖无脊椎/底层鱼猎物场——方向锚 [需正文]；档位成员=Profile 值域不冻结 [需正文]）
+    如果 信号场 ∈ 可探测丰档（preferred 槽）：
+        BenthicForageFit = 全额
+    否则如果 ∈ 弱信号档（tolerated 槽）：
+        BenthicForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无信号档）：
+        返回 0（EARLY_RETURN：无可探测猎物信号的格子出局——感官型信号先行判据）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 BenthicForageFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ GPF (B4) normal2/species/grass_puffer.md
+TITLE: # 星点东方鲀（Grass Puffer｜Takifugu niphobles）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_BURYABLE_SUBSTRATE 门（可埋沙泥底质——潮间带掩埋伏击特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（沙泥潮间带掩埋轴（贝类/底栖无脊椎伏击方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GRPPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GRPDietClasses 食性过滤
+      与 size_window=@GRPSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_BURYABLE_SUBSTRATE（可埋沙泥底质——潮间带掩埋伏击特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @GRPTidalSandBurrowProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子底质为可埋沙泥（潮间带细沙/泥沙）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子底质不可埋（硬底/岩礁底）——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @GRPTidalSandBurrowProfile 的掩体伏击分档槽
+    （潮间带掩埋质量：埋栖位/沙面过渡；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        TidalSandBurrowFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        TidalSandBurrowFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 TidalSandBurrowFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ RKB (B4) normal2/species/rock_bream.md
+TITLE: # 条石鲷（Rock Bream｜Oplegnathus fasciatus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（底栖硬壳猎物场轴（贝类/海胆方向））
+读取 当前格子的habitat_factor事实（岩礁结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@RCBPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@RCBDietClasses 食性过滤
+      与 size_window=@RCBSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @RCBForageProfile 的猎物场分档槽
+    （底栖硬壳猎物场轴·贝类/海胆方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        HardPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        HardPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        HardPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @RCBHabitatProfile 的栖息分档槽
+    （岩礁结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        RockReefHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        RockReefHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        RockReefHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ SSL (B4) normal2/species/northern_whiting.md
+TITLE: # 沙鮻（Northern Whiting｜Sillago sihama）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_BURYABLE_SUBSTRATE 门（可埋沙底——半埋伏击特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（沙底半埋掩体轴（底栖无脊椎/小鱼突袭方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@NWGPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@NWGDietClasses 食性过滤
+      与 size_window=@NWGSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_BURYABLE_SUBSTRATE（可埋沙底——半埋伏击特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @NWGSandHalfBuriedProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子底质为可埋细沙（沙底/沙脊）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子底质不可埋（硬底/泥砾底）——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @NWGSandHalfBuriedProfile 的掩体伏击分档槽
+    （沙底半埋掩体质量：半埋位/沙面；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        SandHalfBuriedFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        SandHalfBuriedFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 SandHalfBuriedFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ BSK (B4) grazing/species/blue_sucker.md
+TITLE: # 长背亚口鱼（Blue Sucker｜Cycleptus elongatus）｜Grazing 系四面生产级表达
+BAKETPL:BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝近底带水层定位 → 底质栖境档位 → 无脊椎资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。顺序为 CSV+体构方向级推导
+（benthopelagic 软定位＋亚口科吸口底栖取食体构，[需正文]）——Story 正文到达后校准，
+顺序/档位差异本身=LogicTemplate 判据（census 侧 SINGLE 族重跑=work standards
+§5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
+读取 当前格子的底质类型（砾石/砂/泥）
+读取 当前格子的基质资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BlueSuckerSubstratePreyFields 绑定的底栖无脊椎 prey class 生物量，
+      经 diet_classes=@BlueSuckerDietClasses 食性过滤
+      与 size_window=@BlueSuckerSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
+    不在本 body 内设分支）
+
+第 1 步 近底带水层定位（分级命中，软定位——CSV benthopelagic＋吸口底栖体构注记）：
+    用水层带位置查询 @BlueSuckerSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 近底带档（preferred 槽——吸食取食位）：
+        LayerTier = 全额保留
+    否则如果 水层 ∈ 中下水层档（tolerated 槽）：
+        LayerTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（远离底带档）：
+        返回 0（EARLY_RETURN：吸食底栖取食定位不在远底水层分布——
+        硬定位与否 [需正文]，正文证实可离底则档位化=结构变更需重审）
+
+第 2 步 底质栖境档位（分级命中——表面/间隙无脊椎栖境可得性）：
+    用底质类型查询 @BlueSuckerSubstratePatchProfile 的底质分档槽
+    （急流砾石 vs 缓流软底偏好 [需正文]；档位成员=Profile 值域不冻结）
+    如果 底质 ∈ 无脊椎栖境档（preferred 槽——表面/间隙栖境充分）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（无栖境档——无脊椎不可栖底质）：
+        返回 0（EARLY_RETURN：无可吸食栖境的底质出局）
+
+第 3 步 无脊椎资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用基质资源事实查询 @BlueSuckerSubstratePatchProfile
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底栖无脊椎的格子出局）
+
+第 4 步 NORMALIZE_WEIGHT：
+    对 LayerTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ RRH (B4) grazing/species/river_redhorse.md
+TITLE: # 河红马鱼（River Redhorse｜Moxostoma carinatum）｜Grazing 系四面生产级表达
+BAKETPL:BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 底质栖境档位 → 大型无脊椎资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。顺序为 CSV 方向级推导
+（demersal 硬定位＋底栖大型无脊椎吸食摄取，[需正文]）——Story 正文到达后校准，
+顺序/档位差异本身=LogicTemplate 判据（census 侧 SINGLE 族重跑=work standards
+§5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
+读取 当前格子的底质类型（砾/砂/泥）
+读取 当前格子的基质资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@RiverRedhorseSubstratePreyFields 绑定的底栖大型无脊椎 prey class 生物量，
+      经 diet_classes=@RiverRedhorseDietClasses 食性过滤
+      与 size_window=@RiverRedhorseSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
+    不在本 body 内设分支）
+
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位）：
+    用水层带位置查询 @RiverRedhorseSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 底质吸食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
+
+第 2 步 底质栖境档位（分级命中——大型无脊椎栖境可得性）：
+    用底质类型查询 @RiverRedhorseSubstratePatchProfile 的底质分档槽
+    （软体动物/底栖昆虫栖境方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 底质 ∈ 大型无脊椎栖境档（preferred 槽）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽）：
+        SubstrateTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无栖境档）：
+        返回 0（EARLY_RETURN：无大型无脊椎栖境的底质出局）
+
+第 3 步 大型无脊椎资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用基质资源事实查询 @RiverRedhorseSubstratePatchProfile
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 大型无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底栖大型无脊椎的格子出局）
+
+第 4 步 NORMALIZE_WEIGHT：
+    对 SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ GRH (B4) grazing/species/golden_redhorse.md
+TITLE: # 金红马鱼（Golden Redhorse｜Moxostoma erythrurum）｜Grazing 系四面生产级表达
+BAKETPL:BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 底质栖境档位 → 底栖无脊椎资源档位 → 归一化；每步分级命中
+（全额/削减/出局），出局即 EARLY_RETURN。链形与河红马（同属 Moxostoma）同构——
+资源构成与档位成员区分走 Profile 值域非结构。顺序为 CSV 方向级推导
+（demersal 硬定位＋亚口科吸食体构，[需正文]），顺序/档位差异本身=LogicTemplate
+判据（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的水层带位置
+读取 当前格子的底质类型（砾/砂/泥）
+读取 当前格子的基质资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GoldenRedhorseSubstratePreyFields 绑定的底栖无脊椎 prey class 生物量，
+      经 diet_classes=@GoldenRedhorseDietClasses 食性过滤
+      与 size_window=@GoldenRedhorseSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
+    不在本 body 内设分支）
+
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位）：
+    用水层带位置查询 @GoldenRedhorseSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 底质吸食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
+
+第 2 步 底质栖境档位（分级命中——底栖无脊椎栖境可得性）：
+    用底质类型查询 @GoldenRedhorseSubstratePatchProfile 的底质分档槽
+    （与河红马的栖境档位成员区分=Profile 值域（同属不同种），[需正文]）
+    如果 底质 ∈ 无脊椎栖境档（preferred 槽）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽）：
+        SubstrateTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无栖境档）：
+        返回 0（EARLY_RETURN：无无脊椎栖境的底质出局）
+
+第 3 步 底栖无脊椎资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用基质资源事实查询 @GoldenRedhorseSubstratePatchProfile
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底栖无脊椎的格子出局）
+
+第 4 步 NORMALIZE_WEIGHT：
+    对 SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ SMB (B4) grazing/species/buffalo.md
+TITLE: # 水牛鱼（Buffalo｜Ictiobus bubalus）｜Grazing 系四面生产级表达
+BAKETPL:BA-SUBSTRATE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；Tier B 骨架——归族裁决归 census 侧判同；**§2.2 已顺序还原（REP-ORDER-FIX-001）：early return 链+分级命中，分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-001】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝底层水层定位 → 深度带档位 → 底泥栖境档位 → 底泥资源档位 → 归一化；
+每步分级命中（全额/削减/出局），出局即 EARLY_RETURN。深度带档步为本鱼独有
+（CSV 深≥4m 注记——四亚口中仅本鱼有深度锚，链形与同批三鱼不同：
+顺序差异本身=LogicTemplate 判据）。顺序为 CSV 方向级推导（[需正文]），
+census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7。
+
+读取 当前格子的水层带位置与深度事实
+读取 当前格子的底质类型（泥/砂/淤）
+读取 当前格子的基质资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BuffaloSubstratePreyFields 绑定的底泥无脊椎 prey class 生物量，
+      经 diet_classes=@BuffaloDietClasses 食性过滤
+      与 size_window=@BuffaloSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+读取 当前 premise（常年绑定；切换若正文证实则由上游 premise 配置切换，
+    不在本 body 内设分支）
+
+第 1 步 底层水层定位（GATE_ZONE——demersal 底栖特化硬定位）：
+    用水层带位置查询 @BuffaloSubstrateSpatialProfile 的水层分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 水层 ∈ 底层带档：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：demersal 底泥吸食定位不在非底层分布——
+        底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
+
+第 2 步 深度带档位（分级命中——CSV 深≥4m 方向锚，本鱼独有步）：
+    用深度事实查询 @BuffaloSubstrateSpatialProfile 的深度分档槽
+    （偏好深度带成员与阈值=Profile 值域不冻结 [需正文]）
+    如果 深度 ∈ 偏好深带档（preferred 槽）：
+        DepthTier = 全额保留
+    否则如果 深度 ∈ 过渡深度档（tolerated 槽）：
+        DepthTier = 削减（× Profile 衰减参数——削减但不清零）
+    否则（过浅带档）：
+        返回 0（EARLY_RETURN：浅带格出局——深水底泥取食定位）
+
+第 3 步 底泥栖境档位（分级命中——底泥无脊椎栖境可得性）：
+    用底质类型查询 @BuffaloSubstratePatchProfile 的底质分档槽
+    （底泥/淤泥承载方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 底质 ∈ 底泥栖境档（preferred 槽——有机泥/淤泥栖境充分）：
+        SubstrateTier = 全额保留
+    否则如果 底质 ∈ 有限栖境档（tolerated 槽——如砂质混泥）：
+        SubstrateTier = 削减（削减但不清零）
+    否则（无栖境档——如硬砾无底泥）：
+        返回 0（EARLY_RETURN：无底泥栖境的底质出局）
+
+第 4 步 底泥资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
+    用基质资源事实查询 @BuffaloSubstratePatchProfile
+    （单 typed 因子评估展开为三档分档槽=Profile 值域不冻结 [需正文]）
+    如果 底泥无脊椎可得性 ∈ 丰档（preferred 槽）：
+        SubstratePatchIntensity = 全额强度
+    否则如果 ∈ 贫档（tolerated 槽）：
+        SubstratePatchIntensity = 削减强度（削减但不清零）
+    否则（无资源档）：
+        返回 0（EARLY_RETURN：无底泥无脊椎的格子出局）
+
+第 5 步 NORMALIZE_WEIGHT：
+    对 DepthTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
+    （族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ GDE (B4) normal/species/goldeye.md
+TITLE: # 金眼鱼（Goldeye｜Hiodon alosoides）｜夜行低光四面生产级表达
+BAKETPL:BA-P01-NOCTURNAL-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT 低光侧；live §11.5 判例：MERGE_SUPPORTED → BA-T1 + 低光空间槽，新增 BakeTemplate = +0；**§2.2 已顺序还原（REP-ORDER-FIX-004）：底板档三档+低光槽内三档（槽位置按 §11.5 判例原位），登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝夜行底板栖息档位 → 低光/夜相槽档位 → 归一化。光照+时段＝夜行型第一
+环境判据（夜行组方向锚）；表达层槽位置＝live §11.5 判例固定（DynamicSpatialSlot
+槽位由判例固定合入，非作者可选）——光照先行语义由槽内三档与 Response 面
+LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（张力登记 README §7）。
+族域边界：槽＝调整器非 gate——亮水档落极低削减不清零，出局语义落 typed 因子
+（无夜行底板=EARLY_RETURN）。推导来源＝CSV 方向锚级推导（[需正文]）；档位成员=Profile 值域不冻结 [需正文]。
+
+读取 当前格子的habitat_factor事实（中上层开阔水面夜行底板轴）
+读取 当前格子的低光空间事实（低光/夜相空间槽——DynamicSpatialSlot）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@GdePreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@GdeDietClasses 食性过滤
+      与 size_window=@GdeSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 夜行底板栖息档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用habitat_factor事实查询 @GdeOpenWaterNightHabitatProfile 的夜行底板分档槽
+    （中上层开阔水面夜行底板轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 夜行底板档（preferred 槽）：
+        OpenWaterNightHabitatFit = 全额
+    否则如果 ∈ 次级夜栖档（tolerated 槽）：
+        OpenWaterNightHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无夜行底板档）：
+        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+
+第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
+  槽位置=live §11.5 判例固定原位，非作者可选）：
+    用低光空间事实查询 @GdeLowLightSpatialProfile 的低光分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 光照/时段 ∈ 夜相低光档（preferred 槽）：
+        低光槽全额合入（槽位＝判例固定）
+    否则如果 ∈ 晨昏过渡档（tolerated 槽）：
+        低光槽削减合入（× Profile 衰减参数——削减但不清零）
+    否则（亮水日间档）：
+        低光槽极低削减合入（削减但不清零——槽=调整器非 gate，
+        出局语义不落槽内）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 OpenWaterNightHabitatFit（含低光槽合入调整）执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ WIT (B4) normal/species/witch_flounder.md
+TITLE: # 女巫鲽（Witch Flounder｜Glyptocephalus cynoglossus）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_BURYABLE_SUBSTRATE 门（可埋软泥底质——底埋伏击特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（软泥底质掩埋轴（底埋贴近——鲽形目伏击方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@WcfPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@WcfDietClasses 食性过滤
+      与 size_window=@WcfSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_BURYABLE_SUBSTRATE（可埋软泥底质——底埋伏击特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @WcfMudBedStructureProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子底质为可埋软泥（细颗粒沉积底）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子底质不可埋（硬底/粗砾底）——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @WcfMudBedStructureProfile 的掩体伏击分档槽
+    （软泥掩埋伏击质量：埋栖位/泥面过渡；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        MudBedFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        MudBedFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 MudBedFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ WIN (B4) normal2/species/winter_flounder.md
+TITLE: # 美洲拟鲽（Winter Flounder｜Pseudopleuronectes americanus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（底栖无脊椎/小鱼猎物场轴）
+读取 当前格子的habitat_factor事实（砂泥底近岸结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@WNFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@WNFDietClasses 食性过滤
+      与 size_window=@WNFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @WNFForageProfile 的猎物场分档槽
+    （底栖无脊椎/小鱼猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        InvertPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        InvertPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        InvertPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @WNFHabitatProfile 的栖息分档槽
+    （砂泥底近岸结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        NearshoreBedHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        NearshoreBedHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        NearshoreBedHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ YTF (B4) normal2/species/yellowtail_flounder.md
+TITLE: # 大西洋黄盖鲽（Yellowtail Flounder｜Myzopsetta ferruginea）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_BURYABLE_SUBSTRATE 门（可埋软泥底质——鲽形目贴底伏击特化） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（软泥底掩埋伏击轴（鲽形目贴底方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@YTFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@YTFDietClasses 食性过滤
+      与 size_window=@YTFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_BURYABLE_SUBSTRATE（可埋软泥底质——鲽形目贴底伏击特化——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @YTFSoftMudBuryProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子底质为可埋软泥（细颗粒沉积底）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子底质不可埋（硬底/粗砂底）——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @YTFSoftMudBuryProfile 的掩体伏击分档槽
+    （软泥掩埋伏击质量：埋栖位/泥面过渡；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        SoftMudBuryFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        SoftMudBuryFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 SoftMudBuryFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ SMF (B4) normal2/species/summer_flounder.md
+TITLE: # 大西洋牙鲆（Summer Flounder｜Paralichthys dentatus）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（底层小鱼猎物场轴）
+读取 当前格子的habitat_factor事实（砂底大陆架结构轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SMFPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SMFDietClasses 食性过滤
+      与 size_window=@SMFSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @SMFForageProfile 的猎物场分档槽
+    （底层小鱼猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        BottomPreyFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        BottomPreyFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        BottomPreyFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @SMFHabitatProfile 的栖息分档槽
+    （砂底大陆架结构轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        SandyShelfHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        SandyShelfHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        SandyShelfHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ BST (B4) normal/species/labeo_barbel.md
+TITLE: # 唇䱻（Labeo Barbel｜Hemibarbus labeo）｜机会组四面生产级表达
+BAKETPL:BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位 → 归一化。机会型
+第一判断＝食物丰度（跟着食物走：丰档=全额/贫档=削减不清零/枯档=出局
+EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息双槽）、夜行型
+（底板+光照槽）的顺序差异本身=LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文
+到达后校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的resource_patch事实（底栖无脊椎机会场轴（触须底觅方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@LbbPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@LbbDietClasses 食性过滤
+      与 size_window=@LbbSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 机会场食物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  机会型第一判断：食物丰度先行）：
+    用resource_patch事实查询 @LbbBenthicInvertPatchProfile 的机会场丰度分档槽
+    （底栖无脊椎机会场轴·触须底觅方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 机会场 ∈ 丰档（preferred 槽）：
+        BenthicInvertFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        BenthicInvertFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（枯竭档——无可食机会）：
+        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 BenthicInvertFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ FDR (B4) normal/species/freshwater_drum.md
+TITLE: # 淡水石首鱼（Freshwater Drum｜Aplodinotus grunniens）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_POOL_STRUCTURE 门（深潭结构存在） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（砂砾底/深潭结构轴（底栖贴近方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@FwdPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@FwdDietClasses 食性过滤
+      与 size_window=@FwdSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_POOL_STRUCTURE（深潭结构存在——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @FwdSandPoolStructureProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子存在砂砾底/深潭结构（潭底/潭缘）：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子无深潭结构——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @FwdSandPoolStructureProfile 的掩体伏击分档槽
+    （潭底结构贴近质量：潭底坑洼/潭缘砾石；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        SandPoolFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        SandPoolFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 SandPoolFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ BSB (B4) normal2/species/blackhead_seabream.md
+TITLE: # 黑鲷（Blackhead Seabream｜Acanthopagrus schlegelii）｜伏击型四面生产级表达
+BAKETPL:BA-P01-AMBUSH-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝GATE_REEF_EDGE 门（岩礁/沙泥交错结构存在——礁缘伏击） → 掩体结构档位 → 归一化；掩体档分级命中
+（最适伏击=全额/次级掩体=削减不清零/暴露=出局 EARLY_RETURN），门不成立直接
+EARLY_RETURN。伏击型第一判断＝结构掩体（无掩体不伏击），与追击型（猎物场+
+栖息双槽）、机会型（食物丰度先行）、夜行型（底板+光照槽）的顺序差异本身=
+LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文到达后校准（census 侧 SINGLE
+族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的structure_factor事实（岩礁/沙泥交错结构轴（礁缘伏击方向））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@BSBPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@BSBDietClasses 食性过滤
+      与 size_window=@BSBSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 GATE_REEF_EDGE（岩礁/沙泥交错结构存在——礁缘伏击——伏击型第一判断：无可用掩体不伏击）：
+    用该 typed 因子轴事实查询 @BSBReefSandEdgeProfile 的掩体存在分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 格子存在岩礁/沙泥交错过渡结构：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：格子无礁缘过渡结构——伏击型结构掩体先行判据）
+
+第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用该 typed 因子轴事实查询 @BSBReefSandEdgeProfile 的掩体伏击分档槽
+    （礁缘结构质量：礁体贴附/礁沙过渡带；档位成员=Profile 值域不冻结 [需正文]）
+    如果 掩体结构 ∈ 最适伏击档（preferred 槽）：
+        ReefSandEdgeFit = 全额
+    否则如果 ∈ 次级掩体档（tolerated 槽）：
+        ReefSandEdgeFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（暴露无掩体档）：
+        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 ReefSandEdgeFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ CBM (B4) normal2/species/chub_mackerel.md
+TITLE: # 日本鲭（Chub Mackerel｜Scomber japonicus）｜机会组四面生产级表达
+BAKETPL:BA-P01-OPPORTUNE-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT，registry v4；2 步单 typed 因子→归一化——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：early return 链+分级命中，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝（premise 读取——若有，配置级）→ 机会场食物丰度档位 → 归一化。机会型
+第一判断＝食物丰度（跟着食物走：丰档=全额/贫档=削减不清零/枯档=出局
+EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息双槽）、夜行型
+（底板+光照槽）的顺序差异本身=LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）——Story 正文
+到达后校准（census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README §7）。
+
+读取 当前格子的resource_patch事实（上层浮游/小鱼机会场轴（撕鳍口径 [需核对]））
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@CBMPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@CBMDietClasses 食性过滤
+      与 size_window=@CBMSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 机会场食物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中——
+  机会型第一判断：食物丰度先行）：
+    用resource_patch事实查询 @CBMPatchProfile 的机会场丰度分档槽
+    （上层浮游/小鱼机会场轴·撕鳍口径 [需核对]；档位成员=Profile 值域不冻结 [需正文]）
+    如果 机会场 ∈ 丰档（preferred 槽）：
+        PlanktonPatchFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        PlanktonPatchFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（枯竭档——无可食机会）：
+        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
+
+第 2 步 NORMALIZE_WEIGHT：
+    对 PlanktonPatchFit 执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
+
+@@@ SAI (B4) normal/species/saithe.md
+TITLE: # 绿青鳕（Saithe｜Pollachius virens）｜追击型四面生产级表达
+BAKETPL:BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按 authoring_work_standards §5.1 做受限顺序
+还原：census PLAIN 族 open_semantics 判语＝因子槽间顺序 unordered（HRQ-07 提案）——
+不把双槽改成 early return 链（改槽间顺序＝结构变更需重审，不发明）。还原内容＝
+每槽因子评估展开为三档分档槽判定（preferred=全额/tolerated=削减不清零/
+excluded=出局槽值）。**族域边界：PLAIN 槽的 excluded 档落槽值出局而非
+EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 COMBINE。
+追击型判断主体＝猎物场+栖息双槽（vs 伏击型掩体先行/机会型食物丰度先行/
+夜行型底板+光照槽——组间顺序差异本身=LogicTemplate 判据）。档位成员=Profile
+值域不冻结 [需正文]。
+
+读取 当前格子的forage_factor事实（中上层鱼群猎物场轴）
+读取 当前格子的habitat_factor事实（开放水/岩礁缘轴）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@SthPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@SthDietClasses 食性过滤
+      与 size_window=@SthSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+槽 1 EVAL_TYPED_FIELD_OR_FACTOR（forage_factor，分级命中）：
+    用forage_factor事实查询 @SthMidwaterForageProfile 的猎物场分档槽
+    （中上层鱼群猎物场轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 猎物场 ∈ 丰档（preferred 槽）：
+        MidwaterForageFit = 全额
+    否则如果 ∈ 贫档（tolerated 槽）：
+        MidwaterForageFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无猎物档）：
+        MidwaterForageFit = 出局槽值（excluded——非 EARLY_RETURN，出槽值仍进 COMBINE；
+        PLAIN 族域内槽无 gate 语义）
+
+槽 2 EVAL_TYPED_FIELD_OR_FACTOR（habitat_factor，分级命中）：
+    用habitat_factor事实查询 @SthOpenRockHabitatProfile 的栖息分档槽
+    （开放水/岩礁缘轴；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 适配档（preferred 槽）：
+        OpenRockHabitatFit = 全额
+    否则如果 ∈ 过渡档（tolerated 槽）：
+        OpenRockHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        OpenRockHabitatFit = 出局槽值（excluded——非 EARLY_RETURN，同上族域边界）
+
+COMBINE_WEIGHTED：
+    合并两个 FactorFit
+算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
+
+返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
+无 early return——族 forbidden_freedoms 边界（census open_semantics unordered 判语维持）；
+单因子属 SINGLE 族域，硬约束属 HARD_GATED 族域）
+```
+
+@@@ HNC (B4) guarding/species/hornyhead_chub.md
+TITLE: # 双点美鱥（Hornyhead Chub｜Nocomis biguttatus）｜Guarding 系四面生产级表达
+BAKETPL:BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 锚适配（构建型选址） → 关系评估 → 局部温度 → 合并；出局即
+EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。推导来源（Tier B）：R07 FR3
+「石巢筑造+守护」——雄鱼筑砾石巢（构筑型锚：选址适配先于守位）；巢体存在事实已在路由面
+判定（C4），本程序不重复结算该 premise；步序与档位成员 [需正文] 校准（顺序/档位变化=
+census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读法的分歧登记 README §7。
+
+读取 当前目标的底质 / 砾石滩结构 / 水深
+读取 当前目标与石巢锚点的关系（距离 / 朝向）
+读取 当前点局部温度
+
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @HornyheadLocalGuardAnchorEligibility
+    （锚=雄鱼所筑石巢；巢体存在已在路由面判定（C4），本步不重复结算 premise，
+      只判「当前目标是否处于石巢锚的合法护巢锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        锚域外格子不参与护巢分布评价，非「算出低值」）
+
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中——构建型选址语义）：
+    用当前目标的砾石底质查询 @HornyheadStoneNestSuitabilityProfile
+    （筑巢基质三档分档槽=Profile 值域——档位成员与阈值不冻结 [需正文]）
+    如果 基质 ∈ 最适应档（preferred 筑巢基质）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 基质）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除基质档）：
+        返回 0（EARLY_RETURN：排除基质出局——不可筑巢底质无石巢分布，构建型选址先行）
+
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
+    用当前目标与石巢锚点的关系（距离 / 朝向）查询 @HornyheadGuardRelationProfile
+    （守卫位三档=Profile 值域不冻结）
+    如果 关系 ∈ 守卫核档：
+        RelationFit = 全额（守卫占位）
+    否则如果 ∈ 守卫缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @HornyheadGuardLocalTemperatureProfile
+    （护巢期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+
+返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
+```
+
+@@@ MOO (B4) normal2/species/mooneye.md
+TITLE: # 月眼鱼（Mooneye｜Hiodon tergisus）｜夜行低光四面生产级表达
+BAKETPL:BA-P01-NOCTURNAL-SINGLE（本批投影标签＝census SINGLE_FACTOR_NORMALIZED_WEIGHT 低光侧；live §11.5 判例：MERGE_SUPPORTED → BA-T1 + 低光空间槽，BakeTemplate +0——第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：底板档三档+低光槽内三档（槽位置按 §11.5 判例原位），登记 README §7**） |
+```plain text
+【顺序还原声明｜REP-ORDER-FIX-004】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝夜行底板栖息档位 → 低光/夜相槽档位 → 归一化。光照+时段＝夜行型第一
+环境判据（夜行组方向锚）；表达层槽位置＝live §11.5 判例固定（DynamicSpatialSlot
+槽位由判例固定合入，非作者可选）——光照先行语义由槽内三档与 Response 面
+LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（张力登记 README §7）。
+族域边界：槽＝调整器非 gate——亮水档落极低削减不清零，出局语义落 typed 因子
+（无夜行底板=EARLY_RETURN）。推导来源＝CSV 方向锚级推导（[需正文]）；档位成员=Profile 值域不冻结 [需正文]。
+
+读取 当前格子的habitat_factor事实（开阔水面夜行底板轴（表层昆虫/小鱼方向））
+读取 当前格子的低光空间事实（低光/夜相空间槽——DynamicSpatialSlot）
+读取 当前格子的可食资源原始事实
+    （UsableForageAvailability 契约输出：
+      prey_fields=@MNYPreyFields 绑定的 prey class 生物量，
+      经 diet_classes=@MNYDietClasses 食性过滤
+      与 size_window=@MNYSizeWindow 口径过滤——在场可食生物量，未经感知/捕获修正）
+
+第 1 步 夜行底板栖息档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
+    用habitat_factor事实查询 @MNYNightHabitatProfile 的夜行底板分档槽
+    （开阔水面夜行底板轴·表层昆虫/小鱼方向；档位成员=Profile 值域不冻结 [需正文]）
+    如果 栖息 ∈ 夜行底板档（preferred 槽）：
+        OpenNightHabitatFit = 全额
+    否则如果 ∈ 次级夜栖档（tolerated 槽）：
+        OpenNightHabitatFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（无夜行底板档）：
+        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+
+第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
+  槽位置=live §11.5 判例固定原位，非作者可选）：
+    用低光空间事实查询 @MNYLowLightSpatialProfile 的低光分档槽
+    （档位成员=Profile 值域不冻结 [需正文]）
+    如果 光照/时段 ∈ 夜相低光档（preferred 槽）：
+        低光槽全额合入（槽位＝判例固定）
+    否则如果 ∈ 晨昏过渡档（tolerated 槽）：
+        低光槽削减合入（× Profile 衰减参数——削减但不清零）
+    否则（亮水日间档）：
+        低光槽极低削减合入（削减但不清零——槽=调整器非 gate，
+        出局语义不落槽内）
+
+第 3 步 NORMALIZE_WEIGHT：
+    对 OpenNightHabitatFit（含低光槽合入调整）执行模板固定归一化（族常量，非作者可选）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中；
+无 combine 步——多因子组合属 PLAIN 族域非本骨架。本链与 census SINGLE 族
+canonical 两步（无 gate 判语）的分歧登记 README §7，换标签/改结构=census
+判同裁决后结构变更需重审）
+```
