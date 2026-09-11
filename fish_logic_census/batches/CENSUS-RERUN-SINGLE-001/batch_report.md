@@ -36,6 +36,7 @@ TAI/BLP/GW/RFP/DS/PBF/GT/HAL/GG/POR/RKB/WIN/SMF/SAI 表达文件自投影=PLAIN 
 - 本批 **ΔL_bake=+9**（B2 以来首个正增长；templates 10→19 candidate 级）。
 - **B4 LOCAL_SATURATION_CANDIDATE 前提证伪**：B2+B3+B4 三连续 ΔL_bake=0 的根因=平铺输入抹平结构差异（66 Bake 全 SINGLE 吸收是伪吸收）；同 61 程序顺序还原后拆出 9 形。建议 review 撤销/降档该 candidate（HRQ-RS1-01 附带项）。
 - **名义程序 162 + 4 = 166 pending HRQ（REV-001 修正）**：原「162 不变（重指派非新增）」对 C7 的 4 条不成立——护巢面 4 程序为异面新程序被记作重指派（守恒破坏，独立审 B1 实证）；修正后 4 个栖息面原程序的正确重指派由 §2.4 补录体承载（批准后 SINGLE 66→5、PLAIN 5→19、9 新族 47 不变、GUARD_ANCHOR +4 新增成员、C9 4 成员）。C9 候选族 dL_bake +1 的计入位置按修复指令冻结（本批维持 +9），挂 HRQ-RS1-05 裁决。
+- **story 计数口径（PATCH-001 F1 修正）**：curve 行 `n_stories_consumed=61`（去重 story 数）+ `n_sketches=65`（61 原冻 + 4 HAB 面级补录）——修复轮曾把 65 记入 story 列，与 B5 行 52/104 口径不同构，已恢复；65 在本批语境=合成重跑单元数（4 物种双面），非去重 story 数。
 
 ### 边界证据（non-match 互记）
 
@@ -49,7 +50,7 @@ GATED_COVER vs HARD_GATED（无 accessible-set/多槽合并；门语义=掩体�
 
 1. **补正确面重跑**：4 个物种从表达文件 §2.4（栖息面）盲推补录 P-RS1-{BLU,ARA,RBP,HNC}-HAB-BAKE（FIX 非盲补录范式 CENSUS-B0-FIX-001：registry_seen_at_creation=true + program_revisions 留痕 + manifest bias_declaration 补段全 disclosure）。判同实测（engine 实跑 engine_report_rev001.json）：四成员互证 engine 零差异（跨科独立重复四科四属）；vs registry v8 相关族全部 body 结构差异 → **C9 ORDERED_QUAD_TIER_COMBINE_CHAIN 新候选族（第 10 个，worker 裁 NEW——不预设、以实测为准；extend-vs-split 复杂度对比入 merge_tests）**；vs SINGLE v1 差异与原 57 例同向 → 61/61 论断经补录后成立。
 2. **§2.2 护巢面 4 程序改记新增**：P-RS1-BLU/ARA/RBP/HNC-BAKE 的 rerun_of=null（program_revisions PROVENANCE_REWRITTEN ×4），GUARD_ANCHOR 族成员仍 4 个=这 4 条护巢面程序（+4 名义，registry 入册挂 HRQ 批准后另批）；B1-B4 的 4 个栖息面原程序保持 SINGLE moved_pending_review 不变（归宿=§2.4 重跑结果联动 HRQ-RS1-01/05）。
-3. **数字与名单修正**：名义 162+4=166 pending HRQ；HRQ-RS1-01 拆分名单补正（4/61 原栖息面成员归宿改「§2.4 重跑结果联动」）；curve RS1 行 n_stories/n_sketches/n_merge_confident 61→65（dL_bake=+9 按修复指令冻结——C9 +1 计入位置挂 HRQ-RS1-05 开放问题）；registry **v8 零改动**（章程：mutation 由独立审另批）。
+3. **数字与名单修正**：名义 162+4=166 pending HRQ；HRQ-RS1-01 拆分名单补正（4/61 原栖息面成员归宿改「§2.4 重跑结果联动」）；curve RS1 行 61→65（修复轮动作；**PATCH-001 F1 后 n_stories 恢复 61、n_sketches/n_merge_confident 维持 65**——口径见 Discovery Curve 节注，dL_bake=+9 按修复指令冻结——C9 +1 计入位置挂 HRQ-RS1-05 开放问题）；registry **v8 零改动**（章程：mutation 由独立审另批）。
 4. **披露与 M2**：manifest bias_declaration 补「C7 面错配修复轮」全段（含四行对照表）；M2 同步——build_census_outputs.py 内嵌 manifest 模板 registry_opened_at 由精确版（04:41:30Z）改为磁盘声明性弱化版，并加 REV-001 守卫（修复已应用即拒绝执行）+ registry v6→v7 历史段幂等守卫，防幂等重跑回退。
 
 ## 待审/待办
@@ -58,6 +59,6 @@ HRQ-RS1-01（族拆分总裁决：61 成员去向[REV-001 补正：4 席由 C7 �
 
 ## 产物
 
-batches/CENSUS-RERUN-SINGLE-001/：manifest（含 REV-001 fix_round 节+bias_declaration 补段）/stories(65)/blind_programs(65——61 原冻 append-only + 4 HAB 补录)/programs(65)/merge_tests(224=211+13)/resolver_tests(空)/absence(5 RERUN_INPUT_UNAVAILABLE)/coverage(空)/program_revisions(8)/human_review_queue(5——RS1-01/02/04 补正+RS1-05)/engine_report+engine_report_rev001/build×2 脚本+run 脚本+**apply_fix_rev001.py**（修复轮脚本，幂等）/worker_self_qa/batch_report + tmp_chain_dump.txt（盲输入提取留档——REV-001 面错配佐证原样保留）。仓库级：registry v7（原批）——REV-001 修复轮 **v8 零改动**、discovery_curve RS1 行修正（65/65/65/14/9，dL_bake=+9 冻结）。
+batches/CENSUS-RERUN-SINGLE-001/：manifest（含 REV-001 fix_round 节+bias_declaration 补段）/stories(65)/blind_programs(65——61 原冻 append-only + 4 HAB 补录)/programs(65)/merge_tests(224=211+13)/resolver_tests(空)/absence(5 RERUN_INPUT_UNAVAILABLE)/coverage(空)/program_revisions(8)/human_review_queue(5——RS1-01/02/04 补正+RS1-05)/engine_report+engine_report_rev001/build×2 脚本+run 脚本+**apply_fix_rev001.py**（修复轮脚本，幂等）/worker_self_qa/batch_report + tmp_chain_dump.txt（盲输入提取留档——REV-001 面错配佐证原样保留）。仓库级：registry v7（原批）——REV-001 修复轮 **v8 零改动**、discovery_curve RS1 行修正（PATCH-001 F1 后：61 story / 65 sketch / 65 MC / 14 EXT / 9 NEW，dL_bake=+9 冻结）。
 
 BATCH_ID: CENSUS-RERUN-SINGLE-001
