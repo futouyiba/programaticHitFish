@@ -112,8 +112,9 @@ TYPED_NOTES = {
     "ASC": "鳞鲤白化品系复用推算（Identity Deferred，Low）",
     "WCC": "叉尾鮰品系复用推算（Identity Deferred，Low）",
     "AGC": "草鱼品系复用推算+P02 grazing 背景（Identity Deferred，Low）",
-    "WS2": "高首鲟白化品系复用（Identity Deferred，Low；与 B5 WST 同种"
-           "同 URL——Cross-Batch 去重联动）",
+    "WS2": "高首鲟白化品系复用（Identity Deferred，Low；与 B5 WST 同 FishBase 源"
+           " URL（Acipenser-transmontanus 页），Story 页与 Species 条目各自独立"
+           "——同种 Cross-Batch 去重联动）",
     "WAG": "鳄雀鳝白化品系复用推算（Identity Deferred，Low）",
     "HYS": "杂交飼系复用推算（Identity Deferred，High——库锚即杂交式学名，"
            "判例第 3 例）",
@@ -133,7 +134,8 @@ TYPED_NOTES = {
            "OPS 注记",
     "DBC": "黄颡鱼系同属推算（MEDIUM——S1/S8 双 EO）",
     "JSB": "花鲈属同属参照（MEDIUM——maculatus 专项数据薄+历史同物异名；"
-           "与 ASB 同 URL 同源——批内去重联动注记）",
+           "与 ASB 同 FishBase 源 URL（Lateolabrax-japonicus 页），Story 页与"
+           " Species 条目各自独立——同属批内参照去重注记）",
     "ASB": "掠食标准（幼浮游→成鱼虾 ontogeny premise）+P05 降海+雄先熟"
            "性转换=繁殖系统变量 premise（降海型首例——洄游方向对照）",
     "DCL": "同唇䱌系同属推算（MEDIUM——薄资料同属替代，FishBase 公开版无页）",
@@ -499,14 +501,15 @@ def main():
                      "AMBIGUOUS 挂账（HRQ-B6-01）；ΔL 全零"
                      "（group/bake/response/quality）",
          "pending_review_questions": [
-             "TYPED 14 例 MEDIUM 成员证据分层（GDB/DBC/JSB/DCL/PCC/PKC/BLT/"
-             "AMN=同属推算或 P01 承载；BHM/BTS/RSC=story 字段 Medium；LFB "
-             "guard MEDIUM）——是否全部入族 or 部分降 EO 待 FR 线引文",
+             "MEDIUM 14（TYPED 13+guard 1）成员证据分层（GDB/DBC/JSB/DCL/PCC/PKC/BLT/"
+             "AMN=同属推算或 P01 承载；BHM/BTS/RSC/PRB/SLM=story 字段 Medium；"
+             "LFB=guard MEDIUM）——是否全部入族 or 部分降 EO 待 FR 线引文",
              "身份层 13 例处理（品系 12 Low+杂交鲟 1 High，Verdict 全 Deferred）："
              "机制复用推算承载（B5-⑤ 判例——TMU/TGT/HYC 先例），身份裁决归 FR "
-             "线；WS2 与 B5 WST 同种同 URL（Acipenser transmontanus）——"
-             "Cross-Batch 去重联动（CMR/LKR 同型第 2 例）；JSB 与 ASB 同 URL "
-             "同源（Lateolabrax japonicus 页）——批内去重联动注记",
+             "线；WS2 与 B5 WST 同 FishBase 源 URL（Acipenser-transmontanus 页，"
+             "Story 页与 Species 条目各自独立）——同种 Cross-Batch 去重联动"
+             "（CMR/LKR 同型第 2 例）；JSB 与 ASB 同 FishBase 源 URL（"
+             "Lateolabrax-japonicus 页）——同属批内参照去重注记",
              "R10 强实例注记：ASB 降海+雄先熟首例（洄游方向对照——P05 premise "
              "值差异非结构）；EUP 日升日落峰+12cm ontogeny（premise 配置级）；"
              "RBD 镖鲈科首例（卵埋底质 P04 假说不预立——story FR 层明言）",

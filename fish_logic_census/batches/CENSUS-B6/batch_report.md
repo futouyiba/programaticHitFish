@@ -15,14 +15,14 @@ FISH-R10 全库收官批（V3 267 distinct 全覆盖终批）：12 品系行（�
 
 | 面 | 裁决 |
 |---|---|
-| **Bake 47** | **AMBIGUOUS_NEEDS_EXPANSION 47**（vs SINGLE v1）：engine raw 仅 op 名字面（骨架同构平链）——v1 canonical 已被 RS1 61/61 证伪（HRQ-RS1-01 pending；B5 52 AMB 同态先例）。本批输入层与 B1-B5 同源且更薄（压缩模板四节形）。不 MC 不 NEW 单独立族；双分支预案入 **HRQ-B6-01**（v1 保留→按 B4 先例升 MC 名义 66→217 累计三批；拆分批准→对新族全 non-match+真形待 B 表达顺序还原另批——R10 收官批无后续普通层输入，重跑为唯一补证通道）。vs CRR：non-match 47（累计 174，连续第 6 批 0 成员——HRQ-B2-02 维持）。vs 11 新族：分组 non-match（每族 47 程序 diff 一致 distinct_diff_sets=1）。**vs C9（envelope 联动）**：ORDERED_QUAD_TIER_COMBINE_CHAIN=HRQ-RS1-05 pending 候选族**不在 registry**——分组 non-match+条目显式标注（template_status/related_review），47 对为 C9 立族裁决第 6 批素材 |
+| **Bake 47** | **AMBIGUOUS_NEEDS_EXPANSION 47**（vs SINGLE v1）：engine raw 仅 op 名字面（骨架同构平链）——v1 canonical 已被 RS1 61/61 证伪（HRQ-RS1-01 pending；B5 52 AMB 同态先例）。本批输入层与 B1-B5 同源且更薄（压缩模板四节形）。不 MC 不 NEW 单独立族；双分支预案入 **HRQ-B6-01**（v1 保留→按 B4 先例升 MC 名义 66→66+52+47=165 累计三批[REV-001 F2 修正：原 217 系 118 已含 B5 52 再显式双计]；拆分批准→对新族全 non-match+真形待 B 表达顺序还原另批——R10 收官批无后续普通层输入，重跑为唯一补证通道）。vs CRR：non-match 47（累计 174，连续第 6 批 0 成员——HRQ-B2-02 维持）。vs 11 新族：分组 non-match（每族 47 程序 diff 一致 distinct_diff_sets=1）。**vs C9（envelope 联动）**：ORDERED_QUAD_TIER_COMBINE_CHAIN=HRQ-RS1-05 pending 候选族**不在 registry**——分组 non-match+条目显式标注（template_status/related_review），47 对为 C9 立族裁决第 6 批素材 |
 | **Response 45 typed** | **MERGE_CONFIDENT 45**（TYPED 117→162 名义 pending review）：品系复用 11（Low——story 字段如实携带）+杂交鲟 1（High，Deferred 复用飼系）+普通层 33。强实例=ASB 降海+雄先熟首例（P05 premise 值差异非结构）/EUP 日升日落峰+12cm ontogeny（premise 配置级）/RBD 镖鲈科首例（卵埋底质 P04 假说不预立——story FR 层明言）/BTS 水面昆虫（B5 ARG 同型）/SLM Serrasalmid 植食第 3 例（P02 背景）；MEDIUM 14（同属推算/P01 承载/story 字段）。**HRQ-B6-03** |
 | **Response 2 guard** | **TEMPLATE_EXTENSION_CANDIDATE 2**（GUARD 17→19 名义 pending review）：2/2 骨架同构直验（deps 位形/branches/RETURN 与 canonical 一致；engine raw 仅槽名/合并步标名字面——B4-HNC/B5-② 同型）。anchor 第 16-17 值候选：**wolf_egg_mass_fasting_guard**（AWF 雄护卵块+护卵期停食——停食判例第 5 例·护卵型首例，FR3 R10 relation 证实分支=P04 语境，与 P05 洄游停食 4 例判例族关系留 review）+ **mussel_brood**（LFB 贝内产卵+幼贝发育——鳑鲏 R03 先例第 2 例跨属重复；贝=Relation Object 语义，隐蔽载体型 vs 巢/穴/附着/携带型轴内一致性 open）。与 **HRQ-B5-02 合并裁决联动**（anchor 轴累计 11 候选值）。跨族互证：vs STATE_GATED（§9.2 两拓扑边界再证+护卵/洄游停食语境对照注记）+ vs TYPED（单路径边界）双 non-match 维持。**HRQ-B6-02** |
 | Group/Quality | ΔL_group=0 / ΔL_quality=0（群游 2 例群结构事实排除[CGD/RSC]——47/47 显式；无 Quality 证据 B0-B5 基线） |
 
 - **ΔL 全零**（group/bake/response/quality）——47 AMBIGUOUS 是归族挂起（blocked by HRQ-RS1-01+B5 同态）非饱和证据；absence_claims 记 BAKE_MEMBERSHIP_PENDING_SPLIT_RULING（非强宣称；收官批特殊性注记——真形补证唯一通道=B 表达顺序还原重跑）。
 - **顺序推导纪律执行**（§5.1）：47 Story 逐条顺序扫描，无一面内 early-return 判断链（压缩模板正文均为静态食性/栖息陈述+引文）；时序均为 lifecycle/洄游/昼夜/ontogeny/guard 期 premise 配置级。每条骨架含顺序推导注记。
-- 身份层 13 例（品系 12 Low+杂交鲟 1 High，Verdict Deferred）按 B5-⑤ 判例机制复用推算承载，身份裁决归 FR 线；**去重联动 2 例**：WS2↔B5 WST 同种同 URL（Acipenser transmontanus——Cross-Batch，CMR/LKR 同型第 2 例）、JSB↔ASB 同 URL 同源（Lateolabrax japonicus 页——批内）；名实分离 3 例（PSH/EUP/BLT）=库锚学名从非 Identity Deferred 分型处理。
+- 身份层 13 例（品系 12 Low+杂交鲟 1 High，Verdict Deferred）按 B5-⑤ 判例机制复用推算承载，身份裁决归 FR 线；**去重联动 2 例**（REV-001 F1 措辞修正——同源声明限 FishBase 源 URL 层，非 Notion 页面层）：WS2↔B5 WST 同 FishBase 源 URL（Acipenser-transmontanus 页），Story 页与 Species 条目各自独立——同种 Cross-Batch（CMR/LKR 同型第 2 例）；JSB↔ASB 同 FishBase 源 URL（Lateolabrax-japonicus 页）——同属批内参照（maculatus vs japonicus 历史同物异名，非同种）；名实分离 3 例（PSH/EUP/BLT）=库锚学名从非 Identity Deferred 分型处理。
 
 ### 待审/待办
 

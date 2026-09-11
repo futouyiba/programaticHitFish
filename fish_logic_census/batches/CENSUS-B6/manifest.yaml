@@ -26,7 +26,7 @@ input:
     - ASC: https://app.notion.com/p/3d7a4137d23681cf900cddc64a083bba   # 鳞鲤白化
     - WCC: https://app.notion.com/p/3d7a4137d23681b8b0f8e4e1fc824257   # 白化叉尾鮰
     - AGC: https://app.notion.com/p/3d7a4137d23681bf8602d799373dddd6   # 白化草鱼（P01+P02 复用）
-    - WS2: https://app.notion.com/p/3d7a4137d236811b8160d0dfb297f56e   # 白化高首鲟（WST 同种 Cross-Batch 去重联动）
+    - WS2: https://app.notion.com/p/3d7a4137d236811b8160d0dfb297f56e   # 白化高首鲟（与 B5 WST 同 FishBase 源 URL（Acipenser-transmontanus 页）——Story 页与 Species 条目各自独立；同种 Cross-Batch 去重联动）
     - WAG: https://app.notion.com/p/3d7a4137d23681c39446dde48c078624   # 白金火箭（鳄雀鳝白化）
     - HYS: https://app.notion.com/p/3d7a4137d236814999ecf8b16a4ed86b   # 杂交飼（判例第 3 例）
     # 普通层 34（ROW14-47）
@@ -43,7 +43,7 @@ input:
     - RBD: https://app.notion.com/p/3d7a4137d23681fca30dedac6ddd2856   # 彩虹镖鲈（镖鲈科首例）
     - RUF: https://app.notion.com/p/3d7a4137d2368184808aee1ee2529b3c   # 梅花鲈（富营湖入侵）
     - DBC: https://app.notion.com/p/3d7a4137d2368125831fc171a2e93c58   # 江黄颡（黄颡鱼系同属）
-    - JSB: https://app.notion.com/p/3d7a4137d2368171bc75ef7259f75789   # 海鲈（同属参照；与 ASB 同 URL 同源）
+    - JSB: https://app.notion.com/p/3d7a4137d2368171bc75ef7259f75789   # 海鲈（同属参照；与 ASB 同 FishBase 源 URL（Lateolabrax-japonicus 页）——Story 页与 Species 条目各自独立，批内参照去重注记）
     - ASB: https://app.notion.com/p/3d7a4137d2368123b84bdfcad0c1fd77   # 海鲈鱼（降海+雄先熟首例）
     - DCL: https://app.notion.com/p/3d7a4137d2368131a6bff4842e29faa8   # 湘华鮈（薄资料同属推算）
     - BHM: https://app.notion.com/p/3d7a4137d23681c684c8dc87df817137   # 牛头鲦（静潭）
@@ -80,6 +80,10 @@ input:
     DB Semantic Pattern 字段（properties）多数只登记 P01 单值（P05/P04 组合
     仅部分行有）——压缩批字段登记简化的表现，frozen_patterns 以正文 FCF
     Interpretation/Semantic Pattern Fit 节为准，DB 字段差异记档供 review。
+    【REV-001 F4 补注】FCF Interpretation 节实际 **28 份有 / 19 份省略**——
+    省略行的 P05 等语义经 Sweep Surface Log / properties / 盲体 premise 回落
+    承载（PRB/BLT 实证，reviewer 核验通过）；原「部分行省略」未给规模，此处
+    补数并显式声明回落规则。
 input_channel_note: >-
   headless 通道只读 fetch（claude -p + notion MCP fetch，B5 模式复制）：
   packet_R10.md（16:53Z fetch 时间戳内嵌）+ 47 份 story_*.md + story_urls_
