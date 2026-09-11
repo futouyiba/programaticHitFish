@@ -29,8 +29,10 @@ registry 不动（章程：registry mutation 由独立审通过后另批处理�
 8) guard 9 vs GUARD → TEMPLATE_EXTENSION_CANDIDATE：骨架同构（deps 位形
    [ [],[],[0,1],[2] ]/branches 空/RETURN 同）；raw 仅槽名/合并步标名
    字面（B4-HNC/B5-②/B6 同型）。新内容=7 个 anchor 新值候选（第 18-24）
-   + 2 个已提案候选值跨批复现实证（DIS2 discus_mucus[vs B5 MDC]/
-   RSB mussel_brood[vs B6 LFB]）→ HRQ-B7-02。
+   + 1 个已提案候选值跨批复现实证（RSB mussel_brood[vs B6 LFB]）+ 1 个
+   canonical 既有值色型复用对照（DIS2 discus_mucus_brood[vs B1-DIS
+   canonical 成员既有值 fry_anchor——registry 行 255 色型不分裂注记；
+   覆盖关系待 HRQ 对账不预判]）→ HRQ-B7-02。
 9) guard 9 vs STATE_GATED/TYPED → NEW 分组互证（§9.2 两拓扑边界）。
 10) SOK2 vs STATE_GATED → NEW 单条互证（P05 洄游停食状态门 vs 动机未定
     typed 占位——本批无 STATE_GATED 新成员记录）。
@@ -38,7 +40,7 @@ registry 不动（章程：registry mutation 由独立审通过后另批处理�
 计数声明（self-QA 对账基）：merge_tests 条目数 345 = MC 100[typed 86 +
 field 14] + EXT 9 + NEW 126[CRR 110 单条 + 新族分组 11 + C9 分组 1 +
 field-vs-typed 分组 1 + guard 跨族分组 2 + SOK2 1 条] + AMB 110；
-程序×族对数 1683 = 110[CRR] + 110[SINGLE] + 110×11[新族] + 110[C9] +
+程序×族对数 1682 = 110[CRR] + 110[SINGLE] + 110×11[新族] + 110[C9] +
 86[TYPED] + 9[GUARD] + 14[FOOD_FIELD] + 14[field-vs-typed] + 9×2[guard
 cross] + 1[SOK2]。
 """
@@ -165,9 +167,12 @@ GUARD_DETAIL = {
         "note": "云斑鮰夜间底栖嗅觉与洞巢护卵"},
     "DIS2": {
         "anchor": "discus_mucus_brood（亲鱼护幼+幼鱼体表黏液摄食）——"
-                  "**B5 MDC（橙型）已提案 anchor 候选值的跨批复现实证**",
+                  "B1-DIS canonical 成员既有值（fry_anchor，registry 行 255）"
+                  "的色型复用对照",
         "extra": "色型不分裂（story FR 层 Compression Candidate：白橙同语义"
-                 "两物种关联）——同 anchor 值复现为 B5 提案值提供第 2 实证",
+                 "两物种关联）——DIS2 提案 discus_mucus_brood 与 B1-DIS 既有"
+                 " fry_anchor（registry 行 255「色型不分裂[S12 对照不建体]」"
+                 "注记）的覆盖关系待 HRQ-B7-02 对账，不预判",
         "note": "七彩神仙鱼（白）亲鱼护幼（色型不分裂）"},
     "RSB": {
         "anchor": "bitterling_mussel_brood（卵产入活蚌鳃腔+贝内发育）——"
@@ -354,22 +359,29 @@ for pid in GUARD_PIDS:
               "param_only": True, "structural_diffs": [],
               "engine_raw_diffs": RAW_FAM[(pid, "GUARD_CONFLICT_DUAL_PATH_RESPONSE")],
               "extension_complexity_cost":
-                  "+anchor 轴新值候选（第 18-24 值——B4 +1→B5 +9→B6 +2 后"
-                  f"本批 +7）挂既有 intruder evaluator 槽；2 例为已提案候选值"
-                  "跨批复现实证（DIS2=discus_mucus vs B5 MDC / RSB="
-                  "mussel_brood vs B6 LFB）；canonical body 零改动（deps 位形 "
-                  "[ [],[],[0,1],[2] ]/branches 空/RETURN 同）；Semantic Open "
-                  "置信 3 例如实携带",
+                  "+anchor 轴新值候选（轴值序第 18-24 值——B4 +1→B5 +9→B6 +2 "
+                  f"后本批 +7；轴值序不计 pending HRQ-B4-01 的 pebble_mound）"
+                  "挂既有 intruder evaluator 槽；1 例为已提案候选值跨批复现"
+                  "实证（RSB=mussel_brood vs B6 LFB）+1 例为 canonical 既有值"
+                  "色型复用对照（DIS2=discus_mucus_brood vs B1-DIS 既有 "
+                  "fry_anchor——覆盖关系待 HRQ-B7-02 对账不预判）；canonical "
+                  "body 零改动（deps 位形 [ [],[],[0,1],[2] ]/branches 空/"
+                  "RETURN 同）；Semantic Open 置信 3 例如实携带",
               "new_template_complexity_cost":
                   "为守护对象/语境差异复制整条 ∥ 并行双路径拓扑为独立族——与 "
                   "GUARD 既有 7+1+B5 候选 9+B6 候选 2 成员全部骨架同构（仅"
                   "守护对象/语境 typed 不同），各自立族=家族数爆炸，违反 "
                   "F10/F14 节俭",
               "recommended_shape":
-                  "扩展 GUARD：9 例入族（7 新值候选为第 18-24 名义成员提案+"
-                  "2 复现实证并入既有候选值）——HRQ-B7-02 与 HRQ-B5-02/"
-                  "HRQ-B6-02 轴系合并裁决联动（anchor 轴累计 18 候选值）；"
-                  "批前按 extension 候选挂账（HNC 第 8 名义先例）",
+                  "扩展 GUARD：9 例入族为第 20-28 名义成员候选（成员序：既有 "
+                  "8 名义[含 HNC 第 8 挂账]+B5 候选 9[第 9-17]+B6 候选 2"
+                  "[第 18-19] 之后——轴值序与成员序分轨：7 新值候选为 "
+                  "anchor 轴值序第 18-24 值提案；RSB 复现并入 B6 已提案 mussel_brood；"
+                  "DIS2 与 B1-DIS 既有 fry_anchor 的覆盖关系待裁决落位）——"
+                  "HRQ-B7-02 与 HRQ-B5-02/HRQ-B6-02 轴系合并裁决联动（anchor "
+                  "轴累计候选值 18[工件口径 B5 9+B6 2+B7 7；pebble_mound 计入"
+                  "则 19——HRQ 裁决项]）；批前按 extension 候选挂账（HNC 第 8 "
+                  "名义先例）",
               "proposed_parameter_axis":
                   f"intruder_evaluator_context：7 新值候选（{d['anchor']}）"
                   "——与 HRQ-B5-02 已提案 9 值+HRQ-B6-02 已提案 2 值合并裁决；"
@@ -541,13 +553,19 @@ def main():
                      "B4-HNC/B5-②/B6 同型）。7 个 anchor 新值候选（黑斑刺盖"
                      "巢守卫/小口黑鲈巢幼+营养竞争/蓝鳃护巢+食卵并存/斑点"
                      "叉尾鮰洞巢+受扰食卵/罗非鱼领地/乌鳢护幼/云斑鮰洞巢护卵）"
-                     "+2 个已提案候选值跨批复现实证（白神仙鱼黏液喂养 vs B5 "
-                     "MDC 橙型——色型不分裂；高体鳑鲏贝宿主 vs B6 LFB——鳑鲏"
-                     "科跨属）。",
+                     "+1 个已提案候选值跨批复现实证（高体鳑鲏贝宿主 vs B6 "
+                     "LFB——鳑鲏科跨属）+1 个 canonical 既有值色型复用对照"
+                     "（白神仙鱼黏液喂养——B1-DIS canonical 成员既有值 "
+                     "fry_anchor[registry 行 255，色型不分裂 S12 对照不建体"
+                     "注记]；DIS2 提案 discus_mucus_brood 与 fry_anchor 的"
+                     "覆盖关系待本 HRQ 对账）。",
          "proposed_axes": [
-             "intruder_evaluator_context 第 18-24 值候选（7 新值）+2 复现实证"
-             "——与 HRQ-B5-02 已提案 9 值+HRQ-B6-02 已提案 2 值合并裁决"
-             "（anchor 轴累计 18 候选值）",
+             "intruder_evaluator_context 轴值序第 18-24 值候选（7 新值；轴值"
+             "序不计 pending HRQ-B4-01 的 pebble_mound）——RSB 复现实证并入 "
+             "B6 已提案 mussel_brood；DIS2 vs B1-DIS 既有值 fry_anchor 的"
+             "覆盖关系待对账（discus_mucus_brood 新值提案保留不预判）——与 "
+             "HRQ-B5-02 已提案 9 值+HRQ-B6-02 已提案 2 值合并裁决（anchor 轴"
+             "累计候选值 18[工件口径 B5 9+B6 2+B7 7]）",
              "TIL3 领地型 anchor（territory vs 护巢/护幼）的轴内一致性：story "
              "FR 层明言『先区分领地与护卵』——Semantic Open 置信如实携带，"
              "领地驱逐与守巢防御的关系路径同构性留 review",
@@ -557,17 +575,27 @@ def main():
              "BLU2 父本食卵语境（filial cannibalism）：『外部食物+守护』并发"
              "的证明边界（story 竞争解释）——双意义结算政策未定"],
          "complexity_comparison": {
-             "extension": "+anchor 轴 7 值候选+2 复现实证挂既有 evaluator 槽；"
-                          "canonical 零改动；不触发全族回归复检（F15）",
+             "extension": "+anchor 轴 7 值候选+1 复现实证（RSB 并入 B6 已"
+                          "提案 mussel_brood）+1 既有值色型对照（DIS2——覆盖"
+                          "关系待对账）挂既有 evaluator 槽；canonical 零改动；"
+                          "不触发全族回归复检（F15）",
              "new_template": "9 例按守护对象/语境差异各自立族——与既有 7+1+"
                              "B5 候选 9+B6 候选 2 成员全部骨架同构，家族数"
                              "爆炸违反节俭（F10/F14）",
              "recommended": "extension（worker 裁定；与 HRQ-B5-02/HRQ-B6-02 "
                             "合并批准后 anchor 轴值正式入声明，9 例入族为"
-                            "第 18-26 名义成员[含 2 复现并入]）"},
+                            "第 20-28 名义成员[成员序：既有 8 名义+B5 候选 9"
+                            "=第 9-17+B6 候选 2=第 18-19 之后；含 RSB 复现"
+                            "并入；DIS2 按覆盖关系裁决落位——与轴值序第 "
+                            "18-24 值分轨表述]）"},
          "pending_review_questions": [
-             "与 HRQ-B5-02+HRQ-B6-02 的合并裁决（anchor 轴 9+2+7=18 候选值+"
-             "participant 轴+fan 语义一并批）还是分批批",
+             "与 HRQ-B5-02+HRQ-B6-02 的合并裁决（anchor 轴累计候选值 18"
+             "[工件口径 9+2+7]+participant 轴+fan 语义一并批）还是分批批",
+             "【显式裁决项】B4 pebble_mound（pending HRQ-B4-01）是否计入 "
+             "anchor 轴累计候选值：18（不计——工件现行口径，亦为轴值序"
+             "「第 18-24 值」的底数）vs 19（计入）两读法钉死；envelope 计数"
+             "「20」为信封口径（把 DIS2/RSB 复现实证另计为新值）不采信，"
+             "以工件 18 为准",
              "R01/R02 守巢系 7 例与 B5 9 例+B6 2 例的 anchor 值去重合并清单",
              "P04 pattern 页 Mechanism Stories 索引是否已含本批 9 例 URL"
              "（FR 层索引先于 census——无盲纪律影响）"],
@@ -632,7 +660,7 @@ def main():
           f"programs={len(out)}")
     print("note: NEW records = 110 CRR singles + 11 grouped new-family + 1 "
           "grouped C9-candidate + 1 grouped field-vs-typed + 2 grouped "
-          "guard-cross + 1 SOK2; program-family pairs total 1683 = "
+          "guard-cross + 1 SOK2; program-family pairs total 1682 = "
           "110[CRR]+110[SINGLE]+110*11[newfam]+110[C9]+86[TYPED]+9[GUARD]"
           "+14[FOOD_FIELD]+14[field-vs-typed]+9*2[guard-cross]+1[SOK2]")
 

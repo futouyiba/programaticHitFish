@@ -67,6 +67,7 @@ input:
     - SAL1: https://app.notion.com/p/3d6a4137d23681bb926cd970f229f7a8   # B01-S30 大西洋鲑生长返河（褐鳟共享 story）
     - SMA1: https://app.notion.com/p/3d6a4137d236815ca0e2cfc0a3d60484   # B01-S31 小口黑鲈巢守护（P04）
     - PAD1: https://app.notion.com/p/3d6a4137d236810893cccde48dedd880   # B01-S33 鸭嘴鲟滤食输入边界
+    - PAD4: https://app.notion.com/p/3d6a4137d23681c288bcc12b5a18fcef   # B01-S36 鸭嘴鲟锚挂捕获与主动摄食分离（0 程序 story——B02 边界）
     - PAD5: https://app.notion.com/p/3d6a4137d236813f8caded5d51b52d39   # B01-S37 鸭嘴鲟上游繁殖
     - BLU2: https://app.notion.com/p/3d6a4137d23681159182c03c8bf67b17   # B01-S38 蓝鳃护巢觅食食卵（P04）
     - CCF1: https://app.notion.com/p/3d6a4137d23681e2be24d0fa957526e3   # B01-S40 斑点叉尾鮰嗅味触觉
@@ -74,6 +75,7 @@ input:
     - TIL2: https://app.notion.com/p/3d6a4137d236813fa889e6102f4ee6ca   # B01-S42 罗非鱼刮食悬浮
     - TIL3: https://app.notion.com/p/3d6a4137d2368154b78fd3fec19b1459   # B01-S43 罗非鱼巢区领地（Semantic Open）
     - BDR2: https://app.notion.com/p/3d6a4137d236818cae92f8532fbe027a   # B01-S45 黑鼓触须找底
+    - SEA1: https://app.notion.com/p/3d6a4137d23681909daed442e94da0dc   # B01-S47 海七鳃鳗附着宿主后的持续寄生（0 程序 story——B01 实例化后边界）
     - SEA2: https://app.notion.com/p/3d6a4137d236817382c4de6449e19120   # B01-S48 七鳃鳗三阶段
     - COD1: https://app.notion.com/p/3d6a4137d23681c38bb0f7caab986286   # B01-S50 鳕鱼普通离散
     - COD2: https://app.notion.com/p/3d6a4137d2368152afffcdf456261a43   # B01-S51 鳕鱼繁殖发声（Semantic Open）
@@ -105,15 +107,31 @@ input_channel_note: >-
   + B7 加固：HTML 转义标记容忍+unescape）：packet_R01/R02/R03_draft/
   R04/R05 + library_R2 + packet_R02_fr3/packet_R03_fr3 + 112 份
   story_XXX.md + fetch_pairs.tsv（行号→URL→标题台账）+ fetch_all.log
-  （首轮 109 saved+4 空文件[0 字节间歇失败]+retry pass 补 4/4 成功——
-  B6 判例⑦模式）。输入统计脚本实测对账：112 story 中 26 份完整包裹
-  （<page url= + <properties>）+ 73 份 fetch 前导句+page 包裹 + 13 份
-  纯正文转写（B5 CSL 同型——十节正文完整为准）；Reality Baseline/FCF
+  （首轮 107 saved+5 FAILED[story_014/028/033/041/110——其中 story_033
+  另伴一条 FETCH_FAILED URL 行]+retry 5/5 全成功——B6 判例⑦模式；
+  尾行孤儿计数「113」差异注记：系脚本收尾 glob story_*.md 把非输入的
+  story_db.md[Story DB 台账页]计入=112+1，历史日志内容不改，对账以
+  输入 story_XXX.md 与 fetch_pairs.tsv 112 行为准）。输入统计三标记
+  判定实测对账（判定定义——行首标记 ^<page url= / ^<properties> /
+  ^</page> 三种；分桶规则：[a] 纯正文=三标记全无；[b] 前导+包裹=文件
+  以标准英文 headless 前导句「Here is the result of "fetch"…」开头、
+  后接行首 <page url= 包裹；[c] 完整包裹=不以该英文前导句开头且
+  <page url=/</page> 开闭行首标记均在）：112 story = 32 完整包裹
+  （26 份首行即 <page 包裹+6 份中文总结性前导句后接完整包裹
+  [story_041/045/054/055/070/107]）+ 73 前导+包裹（含 story_078 闭
+  标记 ^</page> 缺失/截断——开包裹+属性节在，形态归本桶）+ 7 份
+  纯正文转写（story_002/024/029/059/080/081/086——B5 CSL 同型，十节
+  正文完整为准）；Reality Baseline/FCF
   Interpretation/Evidence 核心节 112/112 逐份核验；R01/R02/R04 story
   十节无 Sweep Surface Log 节（B1/B2 消费同源同范式——sweep_log_
   mapping 省略不编造），R03 逐行 11 面 Sweep + R05 压缩单行 Sweep
   （34/34 解析映射）。Snapshot 模式 SNAPSHOT_UNVERIFIED-by-headless
   （CLAUDE.md 快照标注纪律）；判同/复核以 input_snapshots/ 为数据。
+  【ARTIFACT_REVISE 修复轮 F3/F4 改述：原登记 26/73/13 系 13 桶误含
+  6 份中文前导+包裹文件（实测归完整包裹桶）且分桶定义未公布；原
+  fetch retry 记录「109 saved+4 空文件[0 字节]」无日志形态支撑，按
+  fetch_all.log 实测改记 107+5 FAILED+retry 5/5；判定与分桶以本节
+  公布定义可复现】
 blind_freeze:
   n_blind_programs: 219
   frozen_before_registry_open: true

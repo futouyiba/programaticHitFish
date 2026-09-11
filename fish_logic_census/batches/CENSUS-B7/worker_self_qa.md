@@ -9,7 +9,7 @@
 | merge_tests 条目 | 345 = MC 100 + EXT 9 + NEW 126 + AMB 110 | merge_tests.jsonl 实测 |
 | MC 分解 | typed 86 + field 14 | 逐条 verdict 计数 |
 | NEW 分解 | CRR 110 单条 + 新族分组 11 + C9 分组 1 + field-vs-typed 分组 1 + guard 跨族分组 2 + SOK2 1 | 同上 |
-| 程序×族对 | 1683 = 110+110+110×11+110+86+9+14+14+18+1 | engine_report 各节行数求和 |
+| 程序×族对 | 1682 = 110+110+110×11+110+86+9+14+14+18+1 | engine_report 各节行数求和 |
 | programs | 219（= blind_programs 219，零补录） | programs.jsonl / blind_programs.jsonl |
 | stories | 112（= fetch_pairs.tsv 112 行；110 双面 + WBL 仅 Bake + PAD4/SEA1 零程序） | stories.jsonl |
 | discovery_curve 行 | `CENSUS-B7,112,219,100,9,0,110,0,0,0,0,0,0,0` | CSV 追加实测 |
@@ -24,7 +24,12 @@
 
 - TYPED：162 + 86 = 248 pending（B6 后 162）
 - FOOD_FIELD_FEEDING_RESPONSE：2 + 14 = 16 pending（B2 立族后首批扩容）
-- GUARD：9 EXT 候选（anchor 第 18-24 新值 + 2 复现实证并入 B5/B6 候选值）
+- GUARD：9 EXT 候选（anchor 轴值序第 18-24 新值 7 例 + RSB 复现实证并入
+  B6 已提案 mussel_brood + DIS2 与 B1-DIS canonical 既有值 fry_anchor
+  [registry 行 255]的色型复用对照——覆盖关系待 HRQ-B7-02 对账；成员序
+  =第 20-28 名义成员候选[修复轮 F1/F6 改述：原「vs B5 MDC 跨批复现实证」
+  失实，B5 MDC 提案值为 cave_ceiling 非 discus；GUARD 第 4 成员即 B1-DIS
+  色型不分裂先例]）
 - SINGLE：+110 AMB（四层联动第 4 层：B4 25 + B5 52 + B6 47 + B7 110 = 234）
 - registry v8 本体零改动（mutation 归独立审另批——章程）
 
@@ -46,7 +51,9 @@
   PAD4/SEA1 零程序顶层 no_surface_reason）✓
 - R03/R05 34 story Sweep Log 全解析（S1-S11 各 11 项）；R01/R02/R04 78
   story 无 Sweep Log 节（FR 线该三批无此节——不编造，B1/B2 同范式）✓
-- 输入统计三标记实测（26 完整包裹 + 73 前导+包裹 + 13 纯正文 = 112）✓
+- 输入统计三标记实测（32 完整包裹 + 73 前导+包裹 + 7 纯正文 = 112；
+  判定定义与分桶规则见 manifest input_channel_note——修复轮 F3 改述，
+  原登记 26/73/13 的 13 桶误含 6 份中文前导+包裹文件）✓
 
 ## 5. 判同四态纪律
 
@@ -70,8 +77,11 @@
   联动注记（story 级输入口径）。
 - B0 MGC『FieldFeeding 按 TYPED evaluator_channel 轴』旧处理 vs B7『field
   Response 进 FOOD_FIELD』新口径的追溯一致性——挂 HRQ-B7-03。
-- 本批 docstring/print 计数初稿笔误（345 记 346、1683 记 1463）已修正并
-  重跑产物——最终产物为修正后版本。
+- 本批 docstring/print 计数初稿笔误（345 记 346、程序×族对 1463 初稿）
+  已修正并重跑产物。【ARTIFACT_REVISE 修复轮 F2 补正：批内自查曾改记
+  1683，独立审复核公式求和 110+110+1210+110+86+9+14+14+18+1=1682
+  （engine_report 各节行数求和实测一致）——修复轮已全链改 1682（self-QA
+  /批报告/生成脚本三处）】
 
 ## 7. 验证结果
 
