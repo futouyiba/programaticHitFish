@@ -5,7 +5,7 @@ worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
 coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
 contract: Orchestrator R2 §5; Method R0 §11; B0/B1/B2 固化范式（role_memory v4）
 created: "2026-09-11 (local time zone)"
-blind_freeze_frozen_at_utc: "2026-09-10T20:43:53Z"
+blind_freeze_frozen_at_utc: "2026-09-10T20:42:21Z"   # B3-F-1 修正（2026-09-11，CENSUS-B4 批内执行）：原值 20:43:53Z 与 blind_freeze.frozen_at_utc 20:42:21Z 矛盾；权威值=blind_programs.jsonl 文件系统 mtime 2026-09-11 04:42:21.49 +0800（=20:42:21Z），两处现已一致
 input:
   selection_rule: >-
     coordinator envelope CENSUS-B3：R06 洄游/掠食批 28 Story 全量（鲑系洄游 10 +

@@ -2,8 +2,14 @@
 # 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
 # v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 五个 Bake 程序（非匹配证据；第 6 个 P-LUN-BAKE-AESTIVATION 为 AMBIGUOUS 不入 non-match）；
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
-version: 5
+version: 6
 mutation_provenance:
+  batch: CENSUS-B4
+  date: 2026-09-11
+  previous_version: 5
+  b4_summary: "R07 边界层批 26 Story 50 程序：SINGLE +25（66，premise 绑定切换 14+静态结构 11）；TYPED +24（74，PASSIVE_ELECTROSENSE 第 2/3 例+温血第 2 例）；GUARD +1 extension 候选（8 名义，guard_target_specificity 新轴提案 HRQ-B4-01）；CRR +25 non-match（累计 75 仍 0 成员）——ΔL 全零+LOCAL_SATURATION_CANDIDATE 首立案；B3-F-2（STATE_GATED canonical 物化）+B3-F-3（GUARD 轴声明对齐）修正落库；HRQ-B4-01..03"
+
+v5_provenance:
   batch: CENSUS-B3
   date: 2026-09-11
   previous_version: 4
@@ -78,6 +84,9 @@ templates:
       - batch: CENSUS-B3
         program_id: [P-B3-CHU-BAKE, P-B3-CHN-BAKE, P-B3-COH-BAKE, P-B3-PIN-BAKE, P-B3-BRO-BAKE, P-B3-SHA-BAKE, P-B3-ALE-BAKE, P-B3-AST-BAKE, P-B3-SNS-BAKE, P-B3-TAR-BAKE, P-B3-TAI-BAKE, P-B3-ARA-BAKE, P-B3-PB-BAKE, P-B3-RBP-BAKE, P-B3-BLP-BAKE, P-B3-WEL-BAKE, P-B3-FLA-BAKE, P-B3-BUR-BAKE, P-B3-GW-BAKE, P-B3-SGA-BAKE, P-B3-RFP-BAKE, P-B3-DS-BAKE, P-B3-PBF-BAKE, P-B3-GT-BAKE, P-B3-HAL-BAKE, P-B3-GG-BAKE]
         reason: B3 洄游/掠食层 26 程序全部非匹配（premise 绑定切换/静态结构因子形态，无 RelativeRank）；CRR 仍 0 成员（HRQ-B2-02 维持）
+      - batch: CENSUS-B4
+        program_id: [P-B4-POR-BAKE, P-B4-SDG-BAKE, P-B4-TSK-BAKE, P-B4-ASR-BAKE, P-B4-RVS-BAKE, P-B4-GPF-BAKE, P-B4-RKB-BAKE, P-B4-SSL-BAKE, P-B4-BSK-BAKE, P-B4-RRH-BAKE, P-B4-GRH-BAKE, P-B4-SMB-BAKE, P-B4-GDE-BAKE, P-B4-WIT-BAKE, P-B4-WIN-BAKE, P-B4-YTF-BAKE, P-B4-SMF-BAKE, P-B4-BST-BAKE, P-B4-FDR-BAKE, P-B4-BSB-BAKE, P-B4-CBM-BAKE, P-B4-SAI-BAKE, P-B4-HNC-BAKE, P-B4-MOO-BAKE, P-B4-RDS-BAKE]
+        reason: B4 边界层 25 程序全部非匹配（premise 绑定切换[洄游/季节/潮汐/盐度/阶段]与静态结构/因子绑定形态，无 RelativeRank）；CRR 连续第 4 批 0 成员（HRQ-B2-02 维持）
     merge_candidate_status:
       pike_winter_vs_pike_summer: STRONG_MERGE_CANDIDATE
       bass_coldslow_vs_pike: PLAUSIBLE_MERGE_CANDIDATE
@@ -140,7 +149,7 @@ templates:
       - {batch: CENSUS-B0, program_id: P-EEL-BAKE, blind_hash: 611e70f2cd5fd260}
     known_non_matches:
       - {batch: CENSUS-B0, template_id: CONSTRAINED_RELATIVE_REFUGE, reason: gate 后无 RelativeRank/secondary refuge}
-    open_precedents: [HRQ-03（与 PLAIN 的 extend-vs-split）]
+    open_precedents: [HRQ-03（与 PLAIN 的 extend-vs-split）, HRQ-B4-01（guard_target_specificity 新轴+anchor pebble_mound 提案）]
   - template_id: PATCH_RESOURCE_FOLLOWING
     surface: Bake
     status: CANDIDATE
@@ -195,6 +204,7 @@ templates:
       - {batch: CENSUS-B1, program_id: P-B1-PAD34-RESP-SENSE, blind_hash: 448a1b0d61629f96, note: "evaluator_channel 新实例 PASSIVE_ELECTROSENSE（被动电感受；对照 B0 电鳗 ACTIVE_ELECTROLOCATION）；产品电呈现契约未定（TAR-07）"}
       - {batch: CENSUS-B2, program_id: [P-B2-PIK19-RESP, P-B2-WAL-RESP, P-B2-BRT12-RESP, P-B2-ARC-RESP, P-B2-VEN-RESP, P-B2-FGA-RESP, P-B2-SWO-RESP, P-B2-MDF-RESP], note: "8 标准成员（MDF=motion-triggered 强实例：静止不触发/移动触发追捕）"}
       - {batch: CENSUS-B3, program_id: [P-B3-CHN-RESP, P-B3-COH-RESP, P-B3-PIN-RESP, P-B3-BRO-RESP, P-B3-ALE-RESP, P-B3-AST-RESP, P-B3-SNS-RESP, P-B3-TAR-RESP, P-B3-TAI-RESP, P-B3-PB-RESP, P-B3-BLP-RESP, P-B3-FLA-RESP, P-B3-BUR-RESP, P-B3-GW-RESP, P-B3-PAY-RESP, P-B3-SGA-RESP, P-B3-SHO-RESP, P-B3-RFP-RESP, P-B3-DS-RESP, P-B3-PBF-RESP, P-B3-GT-RESP, P-B3-HAL-RESP, P-B3-GG-RESP], note: "23 标准成员；强实例：TAR 水面取向+气呼吸 runtime premise / TAI+GW 陆生猎物水面呈现 / PBF 温血 typed fact（FR3 §7）/ AST 鲟科须探第 3 例 / GT 夜礁缘（不买 Night Mode——R03 教训）；PAY/SHO/DS 为形态/同属/同科推算（Confidence MEDIUM）"}
+      - {batch: CENSUS-B4, program_id: [P-B4-POR-RESP, P-B4-SDG-RESP, P-B4-TSK-RESP, P-B4-ASR-RESP, P-B4-RVS-RESP, P-B4-GPF-RESP, P-B4-RKB-RESP, P-B4-SSL-RESP, P-B4-BSK-RESP, P-B4-RRH-RESP, P-B4-GRH-RESP, P-B4-SMB-RESP, P-B4-GDE-RESP, P-B4-WIT-RESP, P-B4-WIN-RESP, P-B4-YTF-RESP, P-B4-SMF-RESP, P-B4-BST-RESP, P-B4-FDR-RESP, P-B4-BSB-RESP, P-B4-CBM-RESP, P-B4-SAI-RESP, P-B4-MOO-RESP, P-B4-RDS-RESP], note: "24 标准成员；强实例：SDG+TSK evaluator_channel=PASSIVE_ELECTROSENSE 第 2/3 例（FR3 判例① K8 感知端）/ POR 温血第 2 例 / GDE+CBM 夜行+WIN 日间低光 typed context（R03 教训不买 Mode）/ SMB 咽喉骨板磿碎机制 typed 事实（草鱼 R02 先例）/ RDS 贝食偏好原文；MEDIUM 推算 6 例（RVS+MOO=P01 冻结主张承载 / GPF+RKB=齿板喙齿形态 / BSK=吸口形态 / SMF=掘穴栖息）"}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: CUE_GUIDED_APPROACH_AVOID, reason: evaluand=环境梯度场+RETURN=Approach|Avoid（真结构差异立新族）}
       - {batch: CENSUS-B2, template_id: FOOD_FIELD_FEEDING_RESPONSE, reason: "反向互记（B2-FIX-001 F-1）：evaluand=食物场+RETURN=FieldFeeding（真结构差异立新族）"}
@@ -214,7 +224,8 @@ templates:
       -> Response(TargetFeeding | RelationalConflict)
     ir_pointer: batches/CENSUS-B0/run_merge_tests.py::CANONICALS.GUARD_CONFLICT_DUAL_PATH_RESPONSE
     allowed_parameter_axes:
-      - intruder_evaluator_context(typed：nest_anchor | fry_anchor)
+      - intruder_evaluator_context(typed：nest_anchor | fry_anchor | foam_nest[B0-FIX] | sand_nest[B3, pending HRQ-B3-02] | tree_root_eggs[B3, pending HRQ-B3-02] | male_built_nest[B3, pending HRQ-B3-02] | pebble_mound[B4 提案, pending HRQ-B4-01])   # B3-F-3 修正（CENSUS-B4）：原声明仅 2 值与 known_instances 6 anchor 实例漂移，现对齐并标注审批态
+      - guard_target_specificity(typed：species_typed_intruder[B4 提案, pending HRQ-B4-01] | any_intruder[B0-B3 默认未显式分型])   # NEW 轴提案（HRQ-B4-01）
       - path_strength_weights
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next]
     helper_dependencies: []
@@ -227,6 +238,7 @@ templates:
       - {batch: CENSUS-B3, program_id: P-B3-ARA-RESP, blind_hash: 5f3f40e142fffa81, note: "第 5 成员（巨骨舌鱼洪水护巢）：anchor=沙巢+护卵护幼；换气暴露 runtime premise（TAR-11）；engine raw 仅槽名/合并步标名字面差异"}
       - {batch: CENSUS-B3, program_id: P-B3-RBP-RESP, blind_hash: cf001f79596b2729, note: "第 6 成员（红腹食人鱼树根护卵）：anchor=tree_root_eggs；群游=防御 Negative Knowledge（FR3 判例②）已排除 Group"}
       - {batch: CENSUS-B3, program_id: P-B3-WEL-RESP, blind_hash: 2b938a5ca14665e4, note: "第 7 成员（欧洲巨鲶雄巢守护）：anchor=male_built_nest；听嗅主导+夜行 typed context premise"}
+      - {batch: CENSUS-B4, program_id: P-B4-HNC-RESP, blind_hash: fb17fdf2f57dbadf, note: "第 8 成员（双点美鱥石巢守护）extension 候选挂账：anchor=pebble_mound（轴值提案）+guard_target_specificity=species_typed_intruder（NEW 轴提案——『defend…from other N. biguttatus males but not other species』逐字；异种借巢被容忍）；骨架同构（engine raw 仅槽名/合并步标名字面）；TEMPLATE_EXTENSION_CANDIDATE pending HRQ-B4-01——批准前不计正式成员"}
     known_non_matches:
       - {batch: CENSUS-B0, template_id: TYPED_TARGET_RESPONSE, reason: 单路径 vs 双路径并行+combine}
       - {batch: CENSUS-B3, template_id: STATE_GATED_MULTI_PATH_RESPONSE, reason: "反向互记：∥ 同刻并行竞争 vs IF 状态门互斥；RelationalConflict vs NonFeedingStrike——同为 §9.2 multi-path 但拓扑不同"}
@@ -259,6 +271,8 @@ templates:
       - {batch: CENSUS-B2, program_id: [P-B2-BHC-BAKE, P-B2-HER-BAKE], note: "factor_type 轴 +food_field（场实例第 2/3 个，继 LAM chemical_gradient）"}
       - {batch: CENSUS-B3, program_id: [P-B3-CHU-BAKE, P-B3-CHN-BAKE, P-B3-COH-BAKE, P-B3-PIN-BAKE, P-B3-BRO-BAKE, P-B3-SHA-BAKE, P-B3-ALE-BAKE, P-B3-AST-BAKE, P-B3-SNS-BAKE, P-B3-TAR-BAKE, P-B3-ARA-BAKE, P-B3-BUR-BAKE, P-B3-PBF-BAKE, P-B3-GT-BAKE, P-B3-HAL-BAKE], note: "factor_type=habitat_factor(position/layer/depth)：P05 阶段/周期/季节绑定 15 例（洄游系+洪水周期+季节重排）；factor_binding 轴批量实例"}
       - {batch: CENSUS-B3, program_id: [P-B3-TAI-BAKE, P-B3-PB-BAKE, P-B3-RBP-BAKE, P-B3-BLP-BAKE, P-B3-WEL-BAKE, P-B3-FLA-BAKE, P-B3-GW-BAKE, P-B3-SGA-BAKE, P-B3-RFP-BAKE, P-B3-DS-BAKE, P-B3-GG-BAKE], note: "factor_type=habitat_factor(structure)：静态结构 anchor 11 例（深潭/植被/急流/洞穴/倒木/逆流/洄湾/底栖/礁洞——B2 FGA 同型）"}
+      - {batch: CENSUS-B4, program_id: [P-B4-POR-BAKE, P-B4-SDG-BAKE, P-B4-ASR-BAKE, P-B4-GPF-BAKE, P-B4-RKB-BAKE, P-B4-SSL-BAKE, P-B4-GDE-BAKE, P-B4-CBM-BAKE, P-B4-SAI-BAKE, P-B4-BSK-BAKE, P-B4-RRH-BAKE, P-B4-GRH-BAKE, P-B4-BST-BAKE, P-B4-MOO-BAKE], note: "factor_type=habitat_factor(position/binding)：premise 绑定切换 14 例（产仔洄游[POR]/高洄游+温度[SDG]/咸淡水 runtime 上溯[ASR]/潮汐窗周期[GPF——洪水周期同型]/幼流藻[RKB]/幼浮游[SSL]/季节洄游[GDE]/冬深水[CBM]/春岸冬深[SAI]/potamodromous×5）；顺序推导纪律执行（§5.1）——无面内判断链"}
+      - {batch: CENSUS-B4, program_id: [P-B4-TSK-BAKE, P-B4-RVS-BAKE, P-B4-SMB-BAKE, P-B4-WIT-BAKE, P-B4-WIN-BAKE, P-B4-YTF-BAKE, P-B4-SMF-BAKE, P-B4-FDR-BAKE, P-B4-BSB-BAKE, P-B4-HNC-BAKE, P-B4-RDS-BAKE], note: "factor_type=habitat_factor(structure/substrate/depth)：静态结构/底质/深度 11 例（深冷泥底×2/河底/河湾/近岸/中深/掘穴底质/河湖底/湾礁/岩池/温水植被——B3 structure 同型第 12-22 例）"}
     known_non_matches:
       - {batch: CENSUS-B1, template_id: PATCH_RESOURCE_FOLLOWING, reason: 缺 typed context 步（optional_context 边界 HRQ-B1-02）}
       - {batch: CENSUS-B1, template_id: CONSTRAINED_RELATIVE_REFUGE, reason: 无 RelativeRank 结构}
@@ -328,7 +342,7 @@ templates:
       -> IF (migration_stage==FASTING_RUN) { EVAL_STRIKE_NON_FEEDING } ELSE { EVAL_TARGET_AS_FOOD_TYPED }
       -> DECIDE_MULTI_PATH_RESPONSE
       -> Response(TargetFeeding | NonFeedingStrike)
-    ir_pointer: batches/CENSUS-B3/build_blind_programs.py::P-B3-CHU-RESP-FASTING
+    ir_pointer: batches/CENSUS-B4/run_merge_tests.py::CANONICALS.STATE_GATED_MULTI_PATH_RESPONSE（B3-F-2 修正物化：IR 逐字转写自 origin batches/CENSUS-B3/build_blind_programs.py::P-B3-CHU-RESP-FASTING；物化自测+SHA 成员回归复检双 PASS 留痕 CENSUS-B4/merge_tests.jsonl）
     allowed_parameter_axes:
       - fasting_state_binding(typed: migration_stage premise)
       - strike_path_semantics(动机归因 open——FR3 判例①升级三条件之①闭合前为最小骨架)

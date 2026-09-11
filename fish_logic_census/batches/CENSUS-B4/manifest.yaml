@@ -1,0 +1,91 @@
+batch_id: CENSUS-B4
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0-B3 固化范式（role_memory v3）; authoring_work_standards §2/§5（顺序推导纪律）
+created: "2026-09-11 (local time zone)"
+blind_freeze_frozen_at_utc: "2026-09-11T03:13:29Z"   # blind_programs.jsonl 文件系统 mtime 2026-09-11 11:13:29.036707 +0800（精确）
+input:
+  selection_rule: >-
+    coordinator envelope CENSUS-B4：R07 边界层批 26 Story 全量（包页
+    3d7a4137d23681e8b9f2c532513b81a4 Representative Links；鲨/鳐/魟电感知系 +
+    头足类非鱼边界 + 河鲀高潮产卵/TTX + 鲽鲆形态对照系 4 例 + 亚口科磿螺系 +
+    普通补齐）。FISH-R07 FR3 CLOSED（ARTIFACT_APPROVE，EMIT_COVERAGE_DELTA）。
+  frozen_stories:
+    - POR: https://app.notion.com/p/3d7a4137d23681248a12ca0c07aa0147   # 鼠鲨（温血洄游）
+    - SDG: https://app.notion.com/p/3d7a4137d236813987e8e5adaffe482f   # 白斑角鲨（被动电感知①）
+    - TSK: https://app.notion.com/p/3d7a4137d23681c4bba0e651f58c29fc   # 棘背钝头鳐（被动电感知②）
+    - ASR: https://app.notion.com/p/3d7a4137d236813bb4ddc091e4732e0f   # 大西洋黄貂鱼（咸淡水广适）
+    - RVS: https://app.notion.com/p/3d7a4137d23681768a31c8e1a247c668   # 眼斑河魟（毒刺 CB）
+    - BFS: https://app.notion.com/p/3d7a4137d23681138057c6270bcbdf5a   # 莱氏拟乌贼（头足类边界 Deferred）
+    - GPF: https://app.notion.com/p/3d7a4137d23681838c4bec5c5353659a   # 星点东方鲀（潮汐窗+TTX）
+    - RKB: https://app.notion.com/p/3d7a4137d23681b3b45fcd8e68ade468   # 条石鲷（喙齿磯食）
+    - SSL: https://app.notion.com/p/3d7a4137d2368139a400f025268c20b6   # 沙鮻（潜沙反捕食）
+    - BSK: https://app.notion.com/p/3d7a4137d23681b9921dcad805a00e41   # 长背亚口鱼（急流吸口）
+    - RRH: https://app.notion.com/p/3d7a4137d2368158850bd6a92a93970a   # 河红马鱼（贝食专食）
+    - GRH: https://app.notion.com/p/3d7a4137d236816a9256c990073eacf8   # 金红马鱼（昆虫幼生）
+    - SMB: https://app.notion.com/p/3d7a4137d236817cacbdd7c70d8bdafa   # 水牛鱼（咽喉骨板磿碎）
+    - GDE: https://app.notion.com/p/3d7a4137d23681a68501d8a0868160ba   # 金眼鱼（夜行浊河）
+    - WIT: https://app.notion.com/p/3d7a4137d23681b29b49da80beef6f31   # 女巫鲽（深冷泥底）
+    - WIN: https://app.notion.com/p/3d7a4137d2368131bed9f3f0c7f7a9db   # 美洲拟鲽（日间底食右鲽）
+    - YTF: https://app.notion.com/p/3d7a4137d23681aa883bd78444277315   # 大西洋黄盖鲽（多毛主）
+    - SMF: https://app.notion.com/p/3d7a4137d23681ea964ef147f5413ce8   # 大西洋牙鲆（掘穴左鲆）
+    - BST: https://app.notion.com/p/3d7a4137d236817fb981e316c8c683d4   # 唇䱻（颏须底食）
+    - FDR: https://app.notion.com/p/3d7a4137d236819bb8bee26d21b3e0d3   # 淡水石首鱼（产声）
+    - BSB: https://app.notion.com/p/3d7a4137d23681ef9f22ce9fd16a66f6   # 黑鲷（湾礁贝食）
+    - CBM: https://app.notion.com/p/3d7a4137d2368104ac0dc5037c9e75c4   # 日本鲭（体型分级夜捕）
+    - SAI: https://app.notion.com/p/3d7a4137d23681f5b8e3e7d59f8d57ff   # 绿青鳕（季节岸深）
+    - HNC: https://app.notion.com/p/3d7a4137d236812a955dcf18edc3cf39   # 双点美鱥（P04 石巢+物种型 guard）
+    - MOO: https://app.notion.com/p/3d7a4137d23681e49bdfda910800fd58   # 月眼鱼（深潭 pelagic）
+    - RDS: https://app.notion.com/p/3d7a4137d23681aea3d1c107ba0c3f9e   # 小冠太阳鱼（贝食偏好）
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701   # HNC 已在其 Mechanism Stories 清单（FR 冻结）
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b
+  fr3_adjudications_consumed:
+    - 判例①被动电感知双例: "角鲨+鳐感知端→P01+电感知 typed evaluator 并入 K8（CD-R07-01，与 CD-R05-01 发电端同轴双向）；不建新轴不改机会生成结构（B4 已执行：SDG/TSK S7 param→RESP typed evaluator input）"
+    - 判例②光轴拆分: "轴语义 provisional 挂 K8（0 鱼样本）；拟乌贼产品边界留 Deferred 桶不进 pack（B4 已执行：BFS 0 程序全 S 项 excluded）"
+    - 判例③CB 轴: "Encounter lane 统一 + typed 子类（人类侧食物安全[TTX]/捕获路径[无饵 jig]/鱼侧反捕食[潜沙、毒刺防御]）；异质复核归 Cross-Batch（B4 已执行：GPF TTX/RVS 毒刺/SSL 潜沙 S11 excluded + typed 子类注记）"
+input_channel_note: >-
+  本机 census worker 工具白名单无 Notion MCP；经 coordinator 已配置的 claude CLI
+  headless（读已授权 notion MCP fetch）只读获取快照 30 份入 input_snapshots/
+  （fetch_notion.sh + 包页/FR3 包/26 Story；P01/P04/P05 pattern 快照复用 B3
+  input_snapshots 同 URL 冻结版）。快照为 headless 转写：23 份完整包裹
+  （page/properties/content），2 份正文完整但省略页面信封（BFS/MOO——B3 同型
+  转写省略），RRH 首抓空输出已重抓完整（本会话）；26/26 十节正文+Sweep Log
+  完整，标题/BatchID= FISH-R07/鱼名逐份核验（story↔URL 对位来自包页
+  Representative Links 表顺序）。Snapshot 模式 SNAPSHOT_UNVERIFIED-by-headless
+  （CLAUDE.md 快照标注纪律）；判同/复核以 input_snapshots/ 为数据。
+blind_freeze:
+  n_blind_programs: 50
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-11T03:13:29Z"   # blind_programs.jsonl mtime 精确值
+  registry_reads_before_freeze: false
+  registry_version_before: 5
+  registry_opened_at_utc: "~2026-09-11T03:2xZ（Read v5，本 manifest 写入后打开；判同产物时间戳均晚于盲冻结——VCS 时序复核基础）"
+  composition: "Bake 25 + Response 25（TYPED 标准形 24[6 例 MEDIUM 形态/栖息推断] + P04 guard 双 Path 1[HNC]）；BFS 头足类边界 0 程序"
+bias_declaration:
+  b4_f0_class: >-
+    盲段加载流程管线时读过 B3 run_merge_tests.py（内嵌 registry v4 canonical IR
+    指针：CRR/SINGLE/TYPED/GUARD 的 op 名层面）；角色记忆 v3 亦含各族散文描述与
+    B3 判例。缓解：本批 50 条 sketch 严格从 26 份 Story 十节正文 + P01/P04/P05
+    冻结 pattern 页独立推写，每条含顺序推导注记（正文有判断顺序的反映顺序；
+    R07 扫描结论=无面内 early-return 链，时序均为 lifecycle/季节/潮汐 premise
+    配置级——B3 判例④）；未按 registry 形状定制。偏差与缓解记档供 reviewer 裁决。
+execution_mode_note: >-
+  fresh spawn 单轮执行（B3-B3-F-0 范式沿用）：双时间戳（盲冻结精确 mtime +
+  registry 读取估计）+ 逐条 registry_seen=false + 内容 hash + program_revisions
+  空即证判同段零改动。本批为续接执行：前一会话完成快照抓取与 build 脚本残段
+  （PROGRAMS 空），本会话补抓 RRH、核验 26/26、推写全部 50 条并冻结。
+coverage_discipline:
+  no_surface_exclusions:
+    - "BFS 全四面：头足类非鱼 Product Scope Deferred（FR3 判例②）——0 程序显式记录"
+    - "25/25 Group 面：体型/性别分级群游/觅食群/gregarious=群结构事实≠互斥 FishGroup（SDG 同型判例）；高潮产卵集群=繁殖集群（BUR 同型）"
+    - "25/25 Quality 面：无 Quality Selection 程序证据（B0-B3 基线）"
+    - "S11 CB 轴四例 excluded + typed 子类注记（GPF TTX 人类侧/RVS 毒刺防御/SSL 潜沙鱼侧/BFS jig 捕获路径——FR3 判例③）"
+  sweep_mapping: "每 Story S1-S11 逐项 program/premise/param/excluded/eo/sn/tar 映射（stories.jsonl sweep_log_mapping；S1-EO 且程序由 P01 冻结主张承载的 6 例显式注记）"
+  order_discipline: "authoring_work_standards §5.1：逐 Story 顺序扫描，无平铺默认（注记入每条 human_readable_sketch）；受影响族重跑（SINGLE 41 复检）为后续独立 envelope，本批不执行"
+fixture_gate: {status: PASSED_BY_COORDINATOR}
+pre_batch_fixes: "B3 遗留三项顺带修：F-1 已修（B3 manifest 时间戳统一为 20:42:21Z 权威值，见其行内注）；F-2/F-3 在本批判同段执行后落（STATE_GATED canonical 物化进 run_merge_tests；GUARD anchor 轴声明对齐——见 batch_report）"
+status: INDEPENDENT_REVIEW_REQUIRED
