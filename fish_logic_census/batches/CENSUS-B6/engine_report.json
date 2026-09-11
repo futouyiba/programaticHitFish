@@ -1,0 +1,6570 @@
+{
+ "vs_CRR": [
+  {
+   "program_id": "P-B6-SUK-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GRK-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-KHK-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-OGK-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LCP-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HFC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WCC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AGC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WS2-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WAG-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HYS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ACA-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ATC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AWF-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PSH-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LFB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BMB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PLC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SSM-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-CGD-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RBD-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RUF-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DBC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-JSB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DCL-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BHM-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WHC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PRB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PCC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-STS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BCF-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-TGS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-EUP-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BTS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SLM-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKS-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BLT-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSC-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BBH-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMN-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "vs_SINGLE": [
+  {
+   "program_id": "P-B6-SUK-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GRK-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-KHK-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-OGK-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LCP-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HFC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WCC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AGC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WS2-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WAG-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HYS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ACA-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ATC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AWF-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PSH-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LFB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BMB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PLC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SSM-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-CGD-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RBD-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RUF-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DBC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-JSB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DCL-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BHM-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WHC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PRB-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PCC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-STS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BCF-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-TGS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-EUP-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BTS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SLM-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKS-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BLT-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSC-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BBH-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMN-BAKE",
+   "engine_structural_diff": [
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "vs_new_families": [
+  {
+   "family": "TIERED_SINGLE_FACTOR_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "LAYER_AXIS_DUAL_TIER_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "GATED_COVER_TIER_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "NOCTURNAL_LIGHTSLOT_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "ZONE_SUBSTRATE_RESOURCE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "SOFT_TRIPLE_TIER_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "FILTER_FIELD_ACCUMULATE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "GUARD_ANCHOR_TIERED_COMBINE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ]
+  }
+ ],
+ "vs_c9_candidate": [
+  {
+   "family": "ORDERED_QUAD_TIER_COMBINE_CHAIN",
+   "rows": [
+    {
+     "program_id": "P-B6-SUK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GRK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-KHK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-OGK-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LCP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HFC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AGC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WS2-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WAG-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-HYS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ACA-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ATC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AWF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PSH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BMB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PLC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SSM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-CGD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RBD-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RUF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DBC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-JSB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-ASB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-DCL-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BHM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-WHC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PRB-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PCC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-STS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BCF-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-TGS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-EUP-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BTS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-GDS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-SLM-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-PKS-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BLT-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-RSC-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-BBH-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    },
+    {
+     "program_id": "P-B6-AMN-BAKE",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE"
+     ]
+    }
+   ],
+   "note": "pending candidate family (HRQ-RS1-05) not in registry v8"
+  }
+ ],
+ "family": [
+  {
+   "program_id": "P-B6-SUK-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GRK-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-KHK-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-OGK-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LCP-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HFC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WCC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AGC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WS2-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WAG-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-HYS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ACA-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ATC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PSH-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BMB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PLC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SSM-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-CGD-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RBD-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RUF-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DBC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-JSB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-ASB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-DCL-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BHM-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-WHC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PRB-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PCC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-STS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BCF-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-TGS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-EUP-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BTS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-GDS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-SLM-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-PKS-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BLT-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-RSC-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-BBH-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AMN-RESP",
+   "family": "TYPED_TARGET_RESPONSE",
+   "engine_structural_diff": [
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-AWF-RESP",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-B6-LFB-RESP",
+   "family": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "engine_structural_diff": [
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "guard_cross": [
+  {
+   "family": "STATE_GATED_MULTI_PATH_RESPONSE",
+   "rows": [
+    {
+     "program_id": "P-B6-AWF-RESP",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-RESP",
+     "engine_structural_diff": [
+      "BRANCH",
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    }
+   ]
+  },
+  {
+   "family": "TYPED_TARGET_RESPONSE",
+   "rows": [
+    {
+     "program_id": "P-B6-AWF-RESP",
+     "engine_structural_diff": [
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    },
+    {
+     "program_id": "P-B6-LFB-RESP",
+     "engine_structural_diff": [
+      "COMBINE",
+      "DEPENDENCY",
+      "OPERATOR",
+      "PREMISE",
+      "RETURN"
+     ]
+    }
+   ]
+  }
+ ]
+}

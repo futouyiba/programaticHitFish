@@ -1,0 +1,137 @@
+batch_id: CENSUS-B6
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0-B4+RS1+RP1+B5 固化范式（role_memory v5）; authoring_work_standards §2/§5（顺序推导纪律）
+created: "2026-09-11 (local time zone)"
+blind_freeze_frozen_at_utc: "2026-09-11T18:10:11Z"   # blind_programs.jsonl 文件系统 mtime（精确）
+input:
+  selection_rule: >-
+    coordinator envelope CENSUS-B6：FISH-R10 全库收官批 47 Story（12 品系 +
+    1 杂交鲟 + 34 普通层新种；FR3 CLOSED——FISH-R10-FR3-001 AUTO_CONTINUE →
+    FR CAMPAIGN 终态；包页+逐鱼 story 快照存 input_snapshots/，headless 通道
+    只读 fetch）。R09 packet 预估 49 行 vs R10 实际收官 50 行（47 Complete +
+    3 Blocked by Identity 无 Story）——以实际拉取为准，与 packet 声明一致。
+  frozen_stories_count: 47   # input_snapshots story_*.md 实际计数；packet 声明 STORY_COUNT=47（另有 38 个 FISH-R10-VOID 重复页已隔离——Incident Disclosure，不在本批输入）
+  frozen_stories:
+    # 品系/杂交身份层 13（ROW01-13，顺序=packet Representative Coverage/Story Links 行序）
+    - SUK: https://app.notion.com/p/3d7a4137d236815bb5e3d2ec6c3b2869   # 四白锦鲤（锦鲤品系）
+    - GRK: https://app.notion.com/p/3d7a4137d236814cb047ec23773a0918   # 圆点五色锦鲤
+    - KHK: https://app.notion.com/p/3d7a4137d236816b9ba1da26d9c78d6e   # 红白锦鲤
+    - OGK: https://app.notion.com/p/3d7a4137d236811c99f6c347abaaef5c   # 橙黄金锦鲤
+    - LCP: https://app.notion.com/p/3d7a4137d236815b80c2e23dac3be7eb   # 无鳞鲤（镜鲤品系）
+    - AMC: https://app.notion.com/p/3d7a4137d236818892c9c5f1c0e4533e   # 镜鲤白化
+    - HFC: https://app.notion.com/p/3d7a4137d2368106b433ff866961c095   # 鳞鲤人面鲤
+    - ASC: https://app.notion.com/p/3d7a4137d23681cf900cddc64a083bba   # 鳞鲤白化
+    - WCC: https://app.notion.com/p/3d7a4137d23681b8b0f8e4e1fc824257   # 白化叉尾鮰
+    - AGC: https://app.notion.com/p/3d7a4137d23681bf8602d799373dddd6   # 白化草鱼（P01+P02 复用）
+    - WS2: https://app.notion.com/p/3d7a4137d236811b8160d0dfb297f56e   # 白化高首鲟（WST 同种 Cross-Batch 去重联动）
+    - WAG: https://app.notion.com/p/3d7a4137d23681c39446dde48c078624   # 白金火箭（鳄雀鳝白化）
+    - HYS: https://app.notion.com/p/3d7a4137d236814999ecf8b16a4ed86b   # 杂交飼（判例第 3 例）
+    # 普通层 34（ROW14-47）
+    - ACA: https://app.notion.com/p/3d7a4137d236811c82e5d1d02f4e8a22   # 土鲶（Silurus 同属第 2 例）
+    - ATC: https://app.notion.com/p/3d7a4137d23681739eaed37a4668f426   # 大西洋小鳕（微型溯河鳕）
+    - AWF: https://app.notion.com/p/3d7a4137d23681c096bed186d4eb6ee7   # 大西洋狼鱼（硬壳碾压+雄护卵块+护卵停食第 5 例）
+    - PSH: https://app.notion.com/p/3d7a4137d23681c4a80ac9828df1bb19   # 大青鲨（名实分离巨型鲶）
+    - LFB: https://app.notion.com/p/3d7a4137d23681468d6df2df98d42556   # 大鳍𫚪（贝内产卵第 2 例）
+    - BMB: https://app.notion.com/p/3d7a4137d23681a09856e09c85eaa548   # 大鳞鲃（半溯河鲃）
+    - PLC: https://app.notion.com/p/3d7a4137d2368170847be36f0c3a2da9   # 宽鳍𫚭（急流杂食）
+    - SSM: https://app.notion.com/p/3d7a4137d23681e892d4d8a4c4cfc9bb   # 巴西马鲛（马鲛系第 3 例）
+    - CGD: https://app.notion.com/p/3d7a4137d23681cd95fbe74a22d1d9db   # 常见鮈鱼（沙底急流）
+    - GDB: https://app.notion.com/p/3d7a4137d236819f9475d1766007ccc8   # 广东鲂（鲂系第 2 例）
+    - RBD: https://app.notion.com/p/3d7a4137d23681fca30dedac6ddd2856   # 彩虹镖鲈（镖鲈科首例）
+    - RUF: https://app.notion.com/p/3d7a4137d2368184808aee1ee2529b3c   # 梅花鲈（富营湖入侵）
+    - DBC: https://app.notion.com/p/3d7a4137d2368125831fc171a2e93c58   # 江黄颡（黄颡鱼系同属）
+    - JSB: https://app.notion.com/p/3d7a4137d2368171bc75ef7259f75789   # 海鲈（同属参照；与 ASB 同 URL 同源）
+    - ASB: https://app.notion.com/p/3d7a4137d2368123b84bdfcad0c1fd77   # 海鲈鱼（降海+雄先熟首例）
+    - DCL: https://app.notion.com/p/3d7a4137d2368131a6bff4842e29faa8   # 湘华鮈（薄资料同属推算）
+    - BHM: https://app.notion.com/p/3d7a4137d23681c684c8dc87df817137   # 牛头鲦（静潭）
+    - WHC: https://app.notion.com/p/3d7a4137d236816388a9dab075a2efbb   # 白鲶鱼（鮰系第 3 例）
+    - PRB: https://app.notion.com/p/3d7a4137d236814da518f55de491fd74   # 短扁口鲶（Piraiba 巨型顶级）
+    - RSS: https://app.notion.com/p/3d7a4137d23681199170c957a1741514   # 红斑太阳鱼（太阳鱼系第 6 例）
+    - PCC: https://app.notion.com/p/3d7a4137d23681a78225d1bacd38b1ca   # 细纹鲶鱼（毛鼻鲶薄资料）
+    - STS: https://app.notion.com/p/3d7a4137d236819b81d5fcdcf8285451   # 花鮨（深礁夜行）
+    - PKC: https://app.notion.com/p/3d7a4137d2368193b009c192b068fc3c   # 茅尖鱼（慈鲷掠食型）
+    - BCF: https://app.notion.com/p/3d7a4137d23681db944efd760f8ebe94   # 蓝鲶鱼（深潭主河道夜摄）
+    - TGS: https://app.notion.com/p/3d7a4137d2368165b516fa5f44d871b5   # 虎纹鸭嘴鲇（夜行洪泛林）
+    - EUP: https://app.notion.com/p/3d7a4137d23681de813bf105de96e004   # 赤梢鱼（名实分离欧洲鲈）
+    - BTS: https://app.notion.com/p/3d7a4137d23681018e8fec8281f1f43e   # 迷人真小鲤（水面昆虫）
+    - GDS: https://app.notion.com/p/3d7a4137d2368144a875d04ceaa100e4   # 金体美鱥（饵鱼供给）
+    - SLM: https://app.notion.com/p/3d7a4137d2368198a8b6d0e5b23c89b5   # 银斑鲫（Serrasalmid 植食第 3 例）
+    - PKS: https://app.notion.com/p/3d7a4137d236812a9616e679fd88e54e   # 高体太阳鱼（无信封转写；太阳鱼系第 7 例）
+    - BLT: https://app.notion.com/p/3d7a4137d236810495c2c7c9ae82ee73   # 黑口红点鲑（Bull Trout 名实分离）
+    - RSC: https://app.notion.com/p/3d7a4137d23681c6b5c2ff8c9dae1d60   # 黑棘鲶（甲鲶科群游）
+    - BBH: https://app.notion.com/p/3d7a4137d2368107b563fefd977c8ef5   # 黑鮰（无信封转写；鮰系第 4 例）
+    - AMN: https://app.notion.com/p/3d7a4137d23681cea7a7de48ed603f54   # 柳根鱼（薄资料同属推算）
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987   # B3 input_snapshots 同 URL 冻结快照复用
+    - P02: 无独立快照——ResourcePatch 背景语义由 AGC/SLM story FR 冻结解释承载（B5 RHM/RBP 同型）
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701   # B3 快照复用（契约：守护先存持续+目标可同时触发摄食与冲突路径）
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b   # B3 快照复用（停食判例族：R10 FR3 分支化——relation 证实→P04[护卵]/未证实→P05[洄游]）
+  packet_count_reconciliation: >-
+    四项口径差异按 story 字段处理（B5-⑤ 判例）：①packet 声明 Confidence
+    High 24/Medium 11/Low 12 vs story 字段实测 High 23/Medium 12/Low 12
+    （各差 1）；②packet Semantic Pattern Result P04×3（狼鱼/大鳍𫚪/彩虹镖鲈）
+    vs 正文 FCF Interpretation 实际 P04×2（RBD 彩虹镖鲈正文只记 P01——卵埋
+    底质 Lowest-Power 自证产卵行为变量非 guard，packet 计入疑为 S6 MSF 口径）；
+    ③packet P05×7 vs 正文 8（+WS2 白化高首鲟品系复用继承 P05——品系行复用
+    继承非独立判例）；④packet Verdict Default 34/Deferred 13 与实测一致。
+    DB Semantic Pattern 字段（properties）多数只登记 P01 单值（P05/P04 组合
+    仅部分行有）——压缩批字段登记简化的表现，frozen_patterns 以正文 FCF
+    Interpretation/Semantic Pattern Fit 节为准，DB 字段差异记档供 review。
+input_channel_note: >-
+  headless 通道只读 fetch（claude -p + notion MCP fetch，B5 模式复制）：
+  packet_R10.md（16:53Z fetch 时间戳内嵌）+ 47 份 story_*.md + story_urls_
+  R10.txt（顺序=packet Representative Coverage/Story Links 行序 1-47，每行
+  第二 URL=Story；3 Blocked 行无 Story 链接）+ fetch_all.log/fetch_retry1.log
+  （首轮 42 saved+5 间歇失败[模型 unrecognized_model 警告致空文件]+retry1 补
+  5/5 成功）。输入统计脚本实测对账（^<page url= / ^<properties> / ^</page>
+  三标记 grep——B5 F1 教训）：47 story 中 45 份完整包裹（其中 ACA 文件缺
+  ^</page> 尾标记——正文 </content> 完整，转写尾截断；PKS/BBH 2 份纯正文
+  转写[径从「内容作者」行起，B5 CSL 同型]，无信封文件 patterns 取正文
+  Evidence/Sweep 节）；47/47 BatchID=FISH-R10 逐份核验；47/47 正文节（压缩
+  模板：Reality Baseline/FCF Interpretation[部分行省略]/Evidence/Verdict/
+  Sweep Surface Log）+Sweep Log 完整核验。R10 压缩模板为 FISH-R10-FIX-001
+  F-B 已声明处置（十节压缩四节+Evidence，判例行补 Lowest-Power/Competing）
+  ——本批消费无受阻。Snapshot 模式 SNAPSHOT_UNVERIFIED-by-headless（CLAUDE.md
+  快照标注纪律）；判同/复核以 input_snapshots/ 为数据。
+blind_freeze:
+  n_blind_programs: 94
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-11T18:10:11Z"   # blind_programs.jsonl mtime 精确值
+  registry_reads_before_freeze: false
+  registry_version_before: 8
+  registry_opened_at_utc: "2026-09-11T10:14:10Z（run_merge_tests.py 执行窗口——date -u 实测包裹：脚本启动与 engine_report.json 写出同秒；盲冻结 10:10:11Z 严格在前[本地 +08:00 18:10:11 → UTC 10:10:11]）"
+  composition: "Bake 47 + Response 47（TYPED 标准形 45 + P04 guard 双 Path 2[AWF 狼鱼雄护卵块+护卵停食/LFB 大鳍𫚪贝内产卵+幼贝发育]）；MEDIUM 14（S1-EO/同属/亲本/形态推断）；Low 12（品系行 story Confidence 字段如实携带）；47/47 双面程序（本批无 0 程序边界样本；品系行 Sweep 宣称全面 SN——FCF 层 P01 复用主张承载为复用推算，映射注记）"
+bias_declaration:
+  b6_f0_class: >-
+    盲段加载流程管线时读过 B5 的 build_blind_programs.py / build_stories.py
+    （B5 104 鱼盲体的 SINGLE 链与 TYPED/guard 形态 op 名层面）与 B5 batch_
+    report/worker_self_qa（族名与计数散文）；角色记忆 v5 亦含各族散文描述
+    与 B0-B4/RS1/RP1/B5 判例。template_registry.yaml 本体（v8）在盲冻结前
+    未读。缓解：本批 94 条 sketch 严格从 47 份 Story 压缩正文 + P01/P04/P05
+    冻结 pattern 页独立推写，每条含顺序推导注记；P04 2 例按契约拓扑
+    （PARALLEL_SET 依据=契约文本）非按 registry 形状；未按 registry 形状定制。
+    【盲体语汇纪律自查（B5 F4 判例，本批强制）】逐条扫描 94 条盲体
+    sketch/premise/open_semantics：无 extension/新轴/轴值提案/anchor 提案
+    框架语汇——守护对象以行为事实描述（『雄鱼守护卵块直至孵化』『卵产于
+    双壳贝体内并在贝内发育』），判同提案语汇只允许出现在判同段产物
+    （merge_tests/HRQ）；AWF 停食语境按 FR3 R10 关系证实分支记 premise 注记
+    （『census 不预裁结构差异』明言）。偏差与缓解记档供 reviewer 裁决。
+execution_mode_note: >-
+  fresh spawn 单轮执行：双时间戳（盲冻结精确 mtime 18:10:11Z + registry
+  读取时刻见判同段）+ 逐条 registry_seen=false + 内容 hash + program_
+  revisions 空即证判同段零改动。
+coverage_discipline:
+  no_surface_exclusions:
+    - "47/47 Group 面：群游（CGD 沙底群/RSC 甲鲶科群）=群结构事实≠互斥 FishGroup（S3 excluded）；余 S3 SN"
+    - "47/47 Quality 面：无 Quality Selection 程序证据（B0-B5 基线）"
+    - "S11 保护边界 3 例 excluded（PSH CR/BLT V/BMB V=OPS 产品面）；S10 饵鱼 1 例 excluded（GDS 产品面）"
+    - "S1-EO 8 例显式注记程序由 P01 冻结主张/同属推算承载（GDB/DBC/JSB/DCL/PCC/PKC/BLT/AMN）"
+    - "P04 假说不预立 1 例（RBD 彩虹镖鲈卵埋底质——story FR 层明言产卵行为变量非 guard）"
+    - "名实分离 3 例（PSH/EUP/BLT）按库锚学名从——非 Identity Deferred，中文名错位注记"
+  sweep_mapping: "每 Story S1-S11 逐项 program/premise/param/excluded/eo/sn/tar 映射（stories.jsonl sweep_log_mapping 517 项=47×11 全覆盖）"
+  order_discipline: "authoring_work_standards §5.1：47 Story 逐条顺序扫描，无平铺默认（注记入每条 human_readable_sketch）；本批无面内 early-return 链，时序均为 lifecycle/洄游/昼夜/ontogeny/guard 期 premise 配置级（判例④/P05 状态抑制/FR3 R10 停食分支化）"
+fixture_gate: {status: "PASS——validate_batch PASS (programs=94 stories=47 merge_tests=155) + fixtures 12/12（项目 venv .venv/Scripts/python.exe；worker_self_qa.md 同步）"}
+status: INDEPENDENT_REVIEW_REQUIRED
