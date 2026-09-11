@@ -156,3 +156,132 @@ PASS (20 species files, 0 violations)
 - 未 commit（提交由 Coordinator / 用户决定）。
 
 BATCH_ID: REP-FULL-GUARD-001
+
+## 7. REP-ORDER-FIX-002 顺序还原修复批次记录（2026-09-11）
+
+**依据**：docs/authoring_work_standards.md §5.1（用户反馈修正，最高优先级——B 系列伪脚本顺序缺陷：平铺结构丢失真实判断顺序）+ fcf-representation-worker 章程产出规则第一条（commit 66713d8：伪脚本判断顺序最高优先级，从 Story 正文推导，不默认平铺）。**修复对象**：本批 19 个有效文件（marble_goby.md 为 INSUFFICIENT_LOCAL_EVIDENCE 退回件、无 Bake/Response 伪脚本，不修——同 grazing 批 giant_barb 撤回件先例：顺序还原不适用于无程序体件）。方法与 REP-ORDER-FIX-001（grazing/patch 面）一致。
+
+### Guard 面（BA-GUARD-ANCHOR-GATE）每文件修复
+
+全部 19 文件（含骨架件）的共同修复：① 锚缺失从「返回 极低 / 0 空间权重（early return）」改为干净 **EARLY_RETURN（返回 0 出局，不进入后续评估）**——OnAnchorMiss=RETURN_NEAR_ZERO 配置字段维持，判断序形态=锚不存在格出局（coordinator 关注项：锚存在性判定=第一道出局判定，非「算个分再减」）；② 三 Fit 平铺查询展开为「锚适配（preferred/tolerated/excluded 三档分级命中）→关系评估（三档）→局部温度（三档）」链，锚适配三档=coordinator 关注项的展开形态；③ §2.2 头部【顺序还原声明】+ §0 判断顺序行 + §2.1 BakeTemplate 尾注 + §5 自由度同步 + 文尾修复批次行。
+
+| 文件 | 档 | Guard 链（修复后） | 顺序推导来源与逐鱼判据 |
+|---|---|---|---|
+| bluegill.md | A | 锚存在性 → 锚适配（巢床） → 关系 → 温度 → 合并 | C06「预先建立并持续照护」——建立期选址（适配先行）→照护期占位 |
+| smallmouth.md | A | 阶段 premise（锚实例配置级切换） → 锚存在性 → 锚适配 → 关系 → 温度 → 合并（两段锚同链，body 不设分支） | C07 两段锚（§11.2 判例：锚实例先行） |
+| oscar.md | A | 阶段 premise → 锚存在性 → 锚适配（清巢石面） → 关系（**主导因子**） → 温度 → 加权合并（DominanceProfile 权重） | census premise「清巢产卵→护卵→迁仔」+「anchor 邻近权重主导」判例 |
+| lungfish.md | A | 锚存在性 → 锚适配（巢穴） → 关系 → 温度 → 合并（WET 季节=路由面已结算，不重复） | census premise「湿季筑巢→护卵」——筑巢=构建选址先行 |
+| electric_eel.md | A | 锚存在性 → 锚适配（静水浅洼） → 关系 → 温度 → 合并（巢体存在=路由面 C4 已结算） | census FIX-001「雄鱼筑泡沫巢护幼」——构建型选址 |
+| discus.md | A | 锚存在性 → 锚适配（**群栖境**——移动锚判「稚鱼群所在栖境」） → 关系（**贴群**） → 温度 → 合并 | census P-B1-DIS「幼鱼贴附取食黏液」——贴附=贴群关系 |
+| snakehead.md | A | 锚存在性 → 锚适配（植被掩体群栖境） → 关系（**环护**） → 温度 → 合并 | coverage #26「植被浮巢育幼」 |
+| nile_tilapia.md | A | **退化链**：锚存在性 → 常驻区适配（单 Factor 三档） → 返回（无关系轴/温度轴/合并步） | coverage #3 退化绑定判定 + §2.1 注记 |
+| red_bellied_piranha.md | B | 标准链（锚适配=沉水树根/水草丛附着面） | R06 一句「树根护卵」[需正文] |
+| wels_catfish.md | B | 标准链（关系=守洞语义） | R06 一句「雄鱼守巢」[需正文] |
+| arapaima.md | B | 锚存在性（**含洪泛漫滩可及性**——DynamicSpatialSlot 消费；位相=路由面已结算不重复） → 锚适配（漫滩群栖境） → 关系（环护） → 温度 → 合并 | R06 一句「洪水护幼」[需正文] |
+| hornyhead_chub.md | B | 标准链（锚适配=**构建型**选址——筑巢基质先行） | R07「石巢筑造+守护」；巢体存在=C4 已结算 [需正文] |
+| creek_chub.md | B | 同双点美鱥（跨属同形处置组成部分） | R08「石巢第 3 例跨属」[需正文] |
+| midas_cichlid.md | B | 标准链（锚适配=洞穴产卵面；关系=洞内/洞口占位语义） | R09 一句「洞穴顶产卵米达斯」[需正文] |
+| jaguar_cichlid.md | B | 标准链 + **浊度语境步**（unary 修饰步，温度后合并前，三档） | R09 一句「浊水双亲淡水石斑」[需正文] |
+| peacock_bass.md | B | 阶段 premise（两段锚切换） → 标准链 | R09 同 smallmouth 形（方向级套用 §11.2 判例）[需正文] |
+| lumpfish.md | B | 标准链（温度步=冷水轴三档；「激进」不进 Bake 链） | R09 一句「吸盘+雄激进护卵」[需正文] |
+| atka_mackerel.md | B | 标准链（关系=扇护占位语义；扇卵行为=premise 证据不进步） | R09 一句「岩缝胸鳍扇卵 40-45 天」[需正文] |
+| kissing_gourami.md | C | **模板缺省链**（骨架装链形：early return+分级命中；逐鱼顺序待正文重推） | 零证据——缺省序不冒充判断序，撤回条件不变 |
+
+链形分化小结（顺序差异=LogicTemplate 判据的表达侧呈现）：本批 Guard 链步序在现有证据下稳定为「存在→适配→关系→温度」（与 grazing 批逐鱼链序不同——本批 Story 空间细节多为一句方向级，步序分化空间登记 [需正文]）；**逐鱼差异落在** premise 前置层（两段锚×3/位相/季节/退化×1）、各步语义（固定巢址选址 vs 移动锚群栖境 vs 守洞/扇护/环护/贴群 vs 构建型基质）、附加步（浊度语境、漫滩可及性并入存在门、Dominance 加权合并）——tilapia 退化链（无关系/温度/合并）是本批唯一链拓扑分化。
+
+### Normal 面（§2.4）每文件修复
+
+「读因子→查 Profile 得单一 Fit→末位温度算术门→合并」平铺全部还原为定位链（coordinator 任务范围=Bake+Response 全部伪脚本）。**census open_semantics 特例（oscar/lungfish/electric_eel）**：census 判语「因子间顺序未裁决，unordered 处理」原样保留——顺序还原只到「硬门先行＋分级命中」，因子间不强行排序（强行排序=冒充证据；§5 放弃项登记）。
+
+| 文件 | Normal 链（修复后） | 备注 |
+|---|---|---|
+| bluegill / smallmouth / nile_tilapia / midas / jaguar / peacock_bass | 水层软定位 → 结构 → 水温（排除档出局） → 时段 → 合并 | benthopelagic 软定位 [需正文：硬定位与否] |
+| discus | 水温极值硬门 → 掩体结构定位 → 静水 → 猎物 → 时段 → 合并 | 暖水窄温门先行 |
+| snakehead | 水温极值硬门 → **植被结构定位（伏击掩体先行）** → 低光（K14 槽三档） → 猎物 → 时段 → 合并 | coverage #26 常态面=植被伏击 |
+| red_bellied_piranha | 水层软定位（pelagic 中上） → 结构 → 水温 → 时段 → 合并 | pelagic 方向 [需正文] |
+| wels_catfish | 水层软定位（近底——底栖掠食） → 结构 → 水温 → 时段 → 合并 | [需正文] |
+| arapaima / hornyhead_chub / creek_chub / atka_mackerel | 水层**硬定位**（demersal：非底层出局） → 结构 → 水温 → 时段 → 合并 | grazing 批 demersal 硬定位先例同构 |
+| lumpfish | 水层软定位（近底） → 结构 → 水温（冷水轴三档） → 时段 → 合并 | 冷水轴值域归 Profile |
+| oscar | 水温硬门先行 → 静水/结构/猎物/时段各三档（**因子间 unordered=census 原样**） | §5 放弃项 (5) |
+| lungfish | **水面可达硬门（第一——OBLIGATE 气呼吸）** → 水温极值门 → 因子三档（unordered 原样） | census HARD_GATED「硬门前置」 |
+| electric_eel | **族硬门（水面可达型，字段名 [需核对 HRQ-02]）** → 水温极值门 → 因子三档（顺序 [需正文]） | **族硬门步为本批还原**——原平铺脚本漏写族定义门（配置表已声明），补为第一出局条件 |
+| kissing_gourami | 模板缺省链（软定位→结构→水温→时段） | Tier C 骨架 |
+
+水温处理变化：原「TemperatureFit < floor → 返回极低」末位算术门统一还原为链中排除档判定（排除档=EARLY_RETURN，@TempFloor=边界参考）；有 TemperatureProfile 因子的文件温度在中段（work standards §5.1 例序同位），仅硬门无因子的文件（oscar/lungfish/eel/discus/snakehead）门前置。
+
+### Response 面（§3.2）修复（19/19）
+
+- **Guard 路径 DECIDE 展开（19/19）**：原「评价 @GuardThreatProfile → 得到 DefenseResponse → 返回」为平铺占位（coordinator 关注项）——展开为 EVAL_INTRUDER_THREAT → DECIDE_RESPONSE 三档（高威胁=全额防御 / 边际威胁=低强度削减不清零 / 无威胁=出局），与 §3.1「命中=返回防御 Response / 未命中=返回低、无响应」两列对齐。特例注记维持：lungfish（强度上限待证 caveat 并入档位说明）、hornyhead（无特异性形态注记）、lumpfish（「雄激进」=值域方向）、atka（扇卵边界注记）、electric_eel（放电边界注记）。
+- **Normal 路径 DECIDE 展开（16/19 R-T1 文件）**：原「用这些输入评价 → 返回 FeedingResponse」展开为 EVAL_TARGET_AS_FOOD → DECIDE_RESPONSE 三档（接受=全额 TargetFeeding / 边际=低响应 / 无响应=出局）。
+- **特例**：electric_eel（FIXED_COMBINE 合并后 CombinedEvaluation 三档 DECIDE，REP-CUE-AXIS-001 算子标注维持）；snakehead R-T2（只展开 Feeding 通道三档——**Reaction 通道不展开**：本文件 §3.2 既有声明「反应主导语义=Reaction Profile 值域承载，不是控制流差异」，给 Reaction 通道加档位控制流=走私控制流，§5 放弃项 (4)）；nile_tilapia Brooding（DECIDE 三档置于 Cap 之前，排除档不进 Cap；MIN Cap 公式原样）与 Normal（live 例 3 双通道绑定**原样不动**——改它=偏离 live 先例）。
+
+### 不修面与理由
+
+- **Group 面（§1）**：任务边界明示不变；既有伪脚本已是条件判定→份额→校验的顺序程序，无平铺问题。
+- **Quality 面（§4.3）**：既有伪脚本已是完整程序（循环乘因子→汇总→条件归一化），有顺序有分支。
+- **marble_goby.md**：INSUFFICIENT_LOCAL_EVIDENCE 退回件（P01 伏击、护巢零证据、四面未写）——无伪脚本可修；同 grazing 批 giant_barb（WITHDRAWN）先例。
+
+### 顺序差异与 live/census 的分歧登记（UPSTREAM 级，本批不闭合）
+
+1. **vs live BA-T2 / BA-T1 模板语义**：还原链（early return+分级命中）与 live BA-T1「Independent Factor Set（因子无序合并）」及 BA-T2 模板平铺读法**拓扑分歧**。处置同 grazing 批 README §7：BakeTemplate 投影标签（BA-GUARD-ANCHOR-GATE / BA-NORMAL-HABITAT-FIT / BA-EEL-GATED-FACTORS / BA-LUN-WET-GATED-FACTORS）不静默改写——换标签/改结构=机制裁决后结构变更需重审；每文件 §5 已把「无序因子语义的服从」转入放弃项登记。
+2. **vs census open_semantics**：oscar/lungfish（及 eel 族判例）的「因子间顺序未裁决 unordered」**被原样保留**——这两文件的顺序还原只到硬门先行+分级命中（这是「每鱼顺序不同」的合法一态：证据说未裁决，表达侧不冒充顺序）。census canonical body 与还原链的全面 reconciliation 归 census/机制侧。
+3. **census 侧受影响族重跑**：work standards §5.4 行动项（顺序差异=LogicTemplate 判据；GUARD 族与 HARD_GATED 族重跑归 census/coordinator，本批 19 文件链形=重跑输入）。
+4. **顺序推导证据分级**：Tier A 8 文件（C06/C07/census premise/coverage #3、#26 判定句直接支持链形或步语义）；Tier B 10 文件（triage 一句方向级，链内步序与档位成员全 [需正文]）；Tier C 1 文件（kissing_gourami 模板缺省链——骨架装链形保证「只填 Profile 不改结构」承诺在 §5.1 标准下仍成立，逐鱼顺序=正文到达后必做重推）。
+5. 水温/光照/时段因子入 Guard 链的进一步顺序裁决（如「适配先于关系」的逐鱼反转）＝Story 正文证实后扩链（结构变更需重审）；本批不冒充。
+
+### 验证记录（重跑，命令与输出原样）
+
+```
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/guarding/validate_guarding.py" --selftest
+[OK  ] baseline passes unchanged
+[OK  ] HEADER fires on missing NOT AUTHORITY
+[OK  ] HEADER fires on missing BATCH_ID line
+[OK  ] SECTIONS fires on missing Bake section
+[OK  ] VARIANT fires on missing V-tag
+[OK  ] VARIANT_COLS fires on wrong V1 columns
+[OK  ] REFS fires on undeclared condition ref
+[OK  ] REFS fires on undeclared ruleset in routing
+[OK  ] PROFILES fires on used-but-unlisted token
+[OK  ] PROFILES fires on listed-but-unused token
+[OK  ] THRESHOLD fires on bare numeric threshold
+[OK  ] BAN fires on forbidden phrase
+[OK  ] BAN fires on unannotated merge phrase
+[OK  ] DEFENSE fires on missing closure phrase
+[OK  ] SHARE fires on missing default route
+[OK  ] SHARE fires on missing validation block
+[OK  ] STRUCT fires on stray table
+[OK  ] exempt INSUFFICIENT_LOCAL_EVIDENCE file only needs header markers
+== selftest ==
+SELFTEST PASS
+
+$ "A:/Projs/FCF-Harness-Handoff/programaticHitFish/.venv/Scripts/python.exe" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/guarding/validate_guarding.py" \
+    "A:/Projs/FCF-Harness-Handoff/programaticHitFish/outputs/full_authoring/guarding"
+[PASS] arapaima.md
+[PASS] atka_mackerel.md
+[PASS] bluegill.md
+[PASS] creek_chub.md
+[PASS] discus.md
+[PASS] electric_eel.md
+[PASS] hornyhead_chub.md
+[PASS] jaguar_cichlid.md
+[PASS] kissing_gourami.md
+[PASS] lumpfish.md
+[PASS] lungfish.md
+[PASS] marble_goby.md
+[PASS] midas_cichlid.md
+[PASS] nile_tilapia.md
+[PASS] oscar.md
+[PASS] peacock_bass.md
+[PASS] red_bellied_piranha.md
+[PASS] smallmouth.md
+[PASS] snakehead.md
+[PASS] wels_catfish.md
+== result ==
+PASS (20 species files, 0 violations)
+```
+
+validator **零改动**（顺序还原链在 fence 自由文本内，全部检查族原样拦截力不变；@Profile 伪 token 教训先吸收——新增文案全部写「Profile 值域」不带 @）。本批首轮即 PASS。
+
+BATCH_ID: REP-ORDER-FIX-002（Guarding 面）

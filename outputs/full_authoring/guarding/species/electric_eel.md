@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 电感知轴（跨批资产）：电鳗对呈现的电场感知 cue 轴已由 REP-CUE-AXIS-001 立项（@ElectroFieldProfile，unary + FIXED_COMBINE 并入既有通道）；本文件 NormalFeeding Response 消费该轴，不重复规格。
 - census ↔ live 表达分歧（同 oscar.md §0 条目）：census S6 body 为双路径（DUAL_PATH）；live V0 为 Defense-only。本文件表达 live V0；COMBINE_DUAL_PATH 数学 OPERATOR UNDEFINED，待机制侧。
 - 互斥状态：guard_state ∈ {NONE, MALE_FOAM_NEST_GUARD}。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（静水浅洼锚面三档） → 关系评估（三档） → 局部温度 → 合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：census FIX-001 补录 premise「雄鱼筑泡沫巢护幼」——筑巢=构建选址（锚适配先行）；巢体存在事实已在路由面结算（C4），Bake 锚存在性只做空间定位判、不重复结算 premise。Normal 面＝族硬门（水面可达型硬约束——HARD_GATED 族「硬门前置」判例的判断序形态，字段名 [需核对 HRQ-02]） → 水温极值硬门 → 结构/静水/猎物/时段各三档（因子间顺序 [需正文]——census 族判例未裁决因子序）。分级命中：三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@EelSpawnWindowStart @EelSpawnWindowEnd @EelGuardWarmupDays @EelGuardTempThreshold @EelFoamNestSiteStructureSet @EelGuardingShare @EelLocalGuardAnchorEligibility @EelFoamNestSuitabilityProfile @EelGuardRelationProfile @EelGuardLocalTemperatureProfile @EelGuardThreatProfile @EelStillwaterProfile @EelStructureProfile @EelPreyResourceProfile @EelNormalTimeProfile @EelNormalTempFloor @EelNormalFeedingProfile @ElectroFieldProfile @EelGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -92,7 +93,7 @@ Share 语义：live §7 契约。C3（筑巢基质资格）与 C4（巢体已建
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-GUARD-ANCHOR-GATE |
+| BakeTemplate | BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
 | GuardAnchorEligibilityRule | @EelLocalGuardAnchorEligibility |
 | GuardAnchorResolverInstance | foam_nest（泡沫巢，单一实例） |
 | GuardAnchorRelationProfile | @EelGuardRelationProfile |
@@ -103,33 +104,69 @@ Share 语义：live §7 契约。C3（筑巢基质资格）与 C4（巢体已建
 ### 2.2 Guarding Group｜中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0，
+不进入后续评估），不做「先全算再减」。推导来源（Tier A）：census FIX-001 补录 premise「雄鱼筑
+泡沫巢护幼」——筑巢=构建选址（锚适配先行）→ 护幼=泡沫巢占位（关系评估在后）；巢体存在事实
+已在路由面结算（C4），本程序不重复结算该 premise。步序与档位成员的正文级校准 [需正文]。
+与 live BA-T2 模板平铺读法的分歧登记 README §7。
+
 读取 当前目标的结构 / 水深 / 岸缘关系
 读取 当前目标与泡沫巢锚点的关系（距离 / 朝向）
 读取 当前点局部温度
 
-如果当前目标不满足 @EelLocalGuardAnchorEligibility：
-    返回 极低 / 0 空间权重（early return）
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @EelLocalGuardAnchorEligibility
+    （锚=雄鱼泡沫巢；巢体存在事实已在路由面判定（C4），本步不重复结算 premise，
+      只判「当前目标是否处于泡沫巢的合法护巢锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        锚域外格子不参与护巢分布评价，非「算出低值」）
 
-用当前目标与泡沫巢锚点的关系查询 @EelGuardRelationProfile
-得到 RelationFit
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
+    用当前目标的静水浅洼结构查询 @EelFoamNestSuitabilityProfile
+    （泡沫巢锚面三档分档槽=Profile 值域——档位成员与阈值不冻结）
+    如果 锚面 ∈ 最适应档（preferred 锚面）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 锚面）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除锚面）：
+        返回 0（EARLY_RETURN：排除锚面出局——筑泡沫巢的选址适配先行）
 
-用当前目标的静水浅洼结构查询 @EelFoamNestSuitabilityProfile
-得到 AnchorSuitabilityFit
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
+    用当前目标与泡沫巢锚点的关系（距离 / 朝向）查询 @EelGuardRelationProfile
+    （守卫位三档=Profile 值域不冻结）
+    如果 关系 ∈ 守卫核档：
+        RelationFit = 全额（守卫占位）
+    否则如果 ∈ 守卫缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
 
-用当前点局部温度查询 @EelGuardLocalTemperatureProfile
-得到 LocalTempFit
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @EelGuardLocalTemperatureProfile
+    （护巢期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：护巢期排除温度带出局）
 
-合并 RelationFit / AnchorSuitabilityFit / LocalTempFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
 
-返回 Guarding SpatialDistributionWeight
+返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
 
 ### 2.3 NormalFeeding Group｜配置表（BA-T1 Independent Factor Set；HARD_GATED 族成员——P-EEL-BAKE 判例：必要硬门 + 因子组合）
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-EEL-GATED-FACTORS（census HARD_GATED_FACTOR_COMBINE 族成员；门语义=水面可达型硬约束，HRQ-02 队列在案） |
+| BakeTemplate | BA-EEL-GATED-FACTORS（census HARD_GATED_FACTOR_COMBINE 族成员；门语义=水面可达型硬约束，HRQ-02 队列在案）（**§2.4 已顺序还原（REP-ORDER-FIX-002）：族硬门先行＋水温极值门＋分级命中——原平铺脚本漏写族硬门步，本批还原；分歧登记 README §7**） |
 | StructureProfile | @EelStructureProfile（静水 / 沼泽结构因子） |
 | StillwaterProfile | @EelStillwaterProfile（静水偏好因子） |
 | PreyResourceProfile | @EelPreyResourceProfile（猎物资源因子：成体食鱼及小哺乳方向） |
@@ -142,24 +179,45 @@ Share 语义：live §7 契约。C3（筑巢基质资格）与 C4（巢体已建
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】Normal 面判断链＝族硬门（水面可达型硬约束） → 水温极值硬门 →
+因子评价（各三档分级命中）。**族硬门步为本批还原**：HARD_GATED 族判例=「硬门前置 + 因子组合」，
+原平铺脚本未展开该门（只在配置表声明）——还原为第一出局条件；具体门字段名 [需核对：P-EEL-BAKE
+硬门字段名（HRQ-02 队列）]。因子间顺序：census 族判例未裁决因子序，按 [需正文] 方向级给出
+（静水沼泽掩体结构优先——电鳗栖息方向锚），不冒充已裁决。
+
 读取 当前结构（静水 / 沼泽掩体）
 读取 当前点静水 / 流速事实
 读取 当前猎物资源事实
 读取 当前点水温
 读取 当前时段
 
-用结构查询 @EelStructureProfile 得到 StructureFit
-用静水事实查询 @EelStillwaterProfile 得到 StillwaterFit
-用猎物资源查询 @EelPreyResourceProfile 得到 PreyFit
-用时段查询 @EelNormalTimeProfile 得到 TimeFit
+第 1 步 族硬门（GATE_FAMILY_HARD——水面可达型硬约束）：
+    用当前目标的水面可达型硬约束事实对照族门（HRQ-02——具体字段名 [需核对]）
+    如果 当前目标不满足族硬门（水面不可达型出局条件）：
+        返回 0（EARLY_RETURN：族硬门出局——硬门前置先于一切因子评价，非相对排序）
+    否则：
+        进入第 2 步
 
-如果 当前点水温 < @EelNormalTempFloor：
-    返回 极低空间权重（early return）
+第 2 步 水温极值硬门（GATE_EXTREME_TEMP）：
+    用当前点水温对照排除档边界（@EelNormalTempFloor 为边界参考）
+    如果 当前点水温 ∈ 排除档（极值带）：
+        返回 0（EARLY_RETURN：极值温度带出局——从「末位算术门」还原为前置出局判定）
 
-合并 StructureFit / StillwaterFit / PreyFit / TimeFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子，无顺序依赖）
+因子评价（顺序 [需正文]——census 族判例未裁决因子序，以下按方向级排列；各因子分级命中，三档=Profile 值域不冻结）：
+    用结构查询 @EelStructureProfile（静水 / 沼泽掩体）：
+        最适应档=StructureFit 全额 / 可接受档=削减（× Profile 衰减参数，不清零）/ 排除档=返回 0（EARLY_RETURN）
+    用静水事实查询 @EelStillwaterProfile：
+        最适应档=StillwaterFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
+    用猎物资源查询 @EelPreyResourceProfile（成体食鱼及小哺乳方向）：
+        最适应档=PreyFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
+    用时段查询 @EelNormalTimeProfile（夜间活跃方向）：
+        活跃档=TimeFit 全额 / 一般档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
 
-返回 SpatialDistributionWeight
+合并步：
+    合并 StructureFit / StillwaterFit / PreyFit / TimeFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子——因子顺序与合并数学均待机制侧，不因分级命中展开而隐式定义）
+
+返回 SpatialDistributionWeight（顺序还原链结束：双门 early return、因子分级命中；族硬门字段名待核对）
 ```
 
 ## 3. Response
@@ -179,8 +237,19 @@ Guarding Group：
 读取 当前 Presentation 与泡沫巢锚点的关系
 读取 侵入距离、持续时间、威胁 Cue
 
-评价 @EelGuardThreatProfile
-得到 DefenseResponse
+EVAL_INTRUDER_THREAT：
+    用这些侵入事实评价 @EelGuardThreatProfile
+    得到 ThreatEvaluation
+
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→得到 DefenseResponse」为平铺占位；
+与 §3.1 配置表「命中=返回防御 Response / 未命中=返回低、无响应」两列语义对齐）：
+    按三档判定 ThreatEvaluation（档位成员=@EelGuardThreatProfile 值域不冻结）：
+    如果 ThreatEvaluation ∈ 高威胁档：
+        返回 Response(Defense)（全额防御响应）
+    否则如果 ∈ 边际威胁档：
+        返回低强度防御响应（削减但不清零）
+    否则（无威胁档）：
+        返回无响应（出局）
 
 返回 DefenseResponse
 不再评价普通 Feeding（结构性关闭：Feeding evaluator 不进入该 Group Program）
@@ -195,9 +264,22 @@ NormalFeeding Group：
 读取 当前拟饵 / 环境电场特征（LureElectricField——REP-CUE-AXIS-001 轴事实）
 读取 当前动态 Feeding / Pursuit 相关事实
 
-用 LureElectricField 查询 @ElectroFieldProfile 得到 ElectroFieldCueFit
-与 @EelNormalFeedingProfile 的评价结果按模板固定规则合并
-算子标注：OPERATOR UNDEFINED — 待机制侧（FIXED_COMBINE 数学；REP-CUE-AXIS-001 §1 同款声明）
+EVAL_TARGET_AS_FOOD + 电感知 cue 轴：
+    用 Presentation 事实评价 @EelNormalFeedingProfile 得到 FeedingEvaluation
+    用 LureElectricField 查询 @ElectroFieldProfile 得到 ElectroFieldCueFit
+    合并 FeedingEvaluation / ElectroFieldCueFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（FIXED_COMBINE 数学；REP-CUE-AXIS-001 §1 同款声明）
+    得到 CombinedEvaluation
+
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「合并→返回」为平铺占位；
+与 §3.1 配置表「命中 / 未命中」两列语义对齐）：
+    按三档判定 CombinedEvaluation（档位成员=@EelNormalFeedingProfile 与 @ElectroFieldProfile 值域不冻结）：
+    如果 CombinedEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
 
 返回 FeedingResponse
 ```
@@ -244,9 +326,10 @@ NormalFeeding Group：
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：V1 四原子（巢体存在事实==存在）+ R1；HARD_GATED 族绑定；R-T1 + 电感知轴消费（REP-CUE-AXIS-001 资产）；QT-1。
-- 放弃的自由度：(1) census 双路径 body（DUAL_PATH 第三成员）→ live V0 Defense-only，分歧待机制侧；(2) 主动放电攻击语义（Encounter/Conversion owner，永不进入 Response 面）；(3) 合并算子数学 OPERATOR UNDEFINED ×2。
+- 使用的自由度：V1 四原子（巢体存在事实==存在）+ R1；HARD_GATED 族绑定；R-T1 + 电感知轴消费（REP-CUE-AXIS-001 资产）；QT-1；**顺序还原链序与档位结构（REP-ORDER-FIX-002：Guard 面锚存在性→锚适配→关系→温度 early return 链、三档分级命中；Normal 面族硬门先行→水温极值门；Response DECIDE 三档——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) census 双路径 body（DUAL_PATH 第三成员）→ live V0 Defense-only，分歧待机制侧；(2) 主动放电攻击语义（Encounter/Conversion owner，永不进入 Response 面）；(3) 合并算子数学 OPERATOR UNDEFINED ×2；(4) Normal 面族硬门字段名的自行命名（[需核对 HRQ-02]——硬门步已还原为第一出局条件，字段名以 census 归档为准，不冒充）；(5) Normal 面因子间顺序的强行裁决（census 族判例未裁决——按方向级排列标 [需正文]，登记 README §7）；(6) 数值与 Profile 值域不冻结（含各步三档档位成员与阈值）。
 - 补录偏差声明（census bias_declaration）原样携带：非盲补录、同构预期本身是被审对象；本文件消费该程序时保留其 provenance。
 - [需核对] P-EEL-BAKE 硬门字段名（HRQ-02 队列）；泡沫巢位结构集合成员与窗口数值由 Profile 层定值。
 
 BATCH_ID: REP-FULL-GUARD-001
+顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Guard Bake 锚存在性 early return 链＋分级命中，Normal Bake 族硬门还原先行，Response DECIDE 档位展开）

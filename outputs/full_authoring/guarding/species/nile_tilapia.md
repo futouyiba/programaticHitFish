@@ -22,6 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 锚点：口孵群（brood-in-mouth，与个体绑定的锚）——GuardAnchor Resolver 实例 = 口孵群；空间锚=育幼期雌鱼常驻区 [需正文：口孵期雌鱼空间偏好无本地正文]。
 - 互斥状态：繁殖阶段 ∈ {NONE, BROODING（口孵期）, …}（typed 枚举；本 Story 冻结 BROODING 行）。
 - 与例 3 双通道的关系：NormalFeeding Group 的双通道摄食（刮食 + 悬浮颗粒）已由 live 例 3 表达（汇总算子 OPERATOR UNDEFINED 标注在案）；本文件只做绑定引用。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Brooding 面＝**退化链**：锚存在性判定 → 常驻区适配（单 Factor 三档） → 返回（无关系轴 / 无温度轴 / 无合并步——口孵锚与个体绑定，§2.1 退化绑定注记）；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：coverage #3 判定（口孵=类型化繁殖状态路由 + 退化 Bake 锚）；常驻区空间偏好 [需正文]。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（全天） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@TilapiaSpawnWindowStart @TilapiaSpawnWindowEnd @TilapiaBroodingWarmupDays @TilapiaBroodingTempThreshold @TilapiaBroodingStages @TilapiaBroodingFemaleShare @TilapiaBroodAnchorEligibility @TilapiaBroodCareSuitabilityProfile @TilapiaBroodingFeedingCap @ResponseCap @TilapiaNormalLayerProfile @TilapiaNormalStructureProfile @TilapiaNormalTemperatureProfile @TilapiaNormalTimeProfile @TilapiaNormalTempFloor @GrazingProfile @SuspendedFeedingProfile @TilapiaBroodingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -90,7 +91,7 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-GUARD-ANCHOR-GATE |
+| BakeTemplate | BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋常驻区适配分级命中——退化链形态；与模板平铺读法分歧登记 README §7**） |
 | GuardAnchorEligibilityRule | @TilapiaBroodAnchorEligibility |
 | GuardAnchorResolverInstance | brood_in_mouth（口孵群；锚与个体绑定，空间表现=育幼期雌鱼常驻区） |
 | GuardAnchorSuitabilityProfile | @TilapiaBroodCareSuitabilityProfile |
@@ -101,23 +102,44 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
 ### 2.2 Brooding Group｜中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 常驻区适配（分级命中） → 返回——**退化链**（口孵锚与个体绑定，
+无「目标点 vs 固定锚位」关系轴、无温度轴、无合并步；§2.1 退化绑定注记，coverage #3 判定）。
+出局即 EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。
+推导来源（Tier A）：coverage #3 四面判定；常驻区空间偏好 [需正文]。
+
 读取 当前目标的结构 / 水层 / 深度
 读取 育幼期雌鱼常驻区事实（口孵群锚的空间投影，上游 Resolver 产出）
 
-如果当前目标不满足 @TilapiaBroodAnchorEligibility：
-    返回 极低 / 0 空间权重（early return）
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @TilapiaBroodAnchorEligibility
+    （锚=口孵群（与个体绑定），空间表现=育幼期雌鱼常驻区；本步判「当前目标是否处于
+      常驻区合法锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        非锚域格不参与口孵育幼分布评价，非「算出低值」）
 
-用当前目标的常驻区适配查询 @TilapiaBroodCareSuitabilityProfile
-得到 BroodCareFit
+第 2 步 常驻区适配（EVAL_BROOD_SUITABILITY，分级命中——单 Factor 退化形）：
+    用当前目标的常驻区适配查询 @TilapiaBroodCareSuitabilityProfile
+    （常驻区适配三档分档槽=Profile 值域——档位成员与阈值不冻结 [需正文：口孵期雌鱼空间偏好]）
+    如果 常驻区 ∈ 最适应档（preferred 常驻区）：
+        BroodCareFit = 全额
+    否则如果 ∈ 可接受档（tolerated 常驻区）：
+        BroodCareFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：排除常驻区档出局）
 
-返回 Brooding SpatialDistributionWeight（单 Factor，无合并步）
+返回 Brooding SpatialDistributionWeight（退化链结束：锚存在性 early return＋单 Factor 分级命中；
+无关系轴 / 无温度轴 / 无合并步——退化绑定不是漏写，§2.1 注记）
 ```
 
 ### 2.3 NormalFeeding Group｜配置表（BA-T1 Independent Factor Set）
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-NORMAL-HABITAT-FIT |
+| BakeTemplate | BA-NORMAL-HABITAT-FIT（**§2.4 已顺序还原（REP-ORDER-FIX-002）：early return 链＋分级命中；与 live BA-T1 Independent Factor Set 无序语义的分歧登记 README §7**） |
 | LayerProfile | @TilapiaNormalLayerProfile |
 | StructureProfile | @TilapiaNormalStructureProfile |
 | TemperatureProfile | @TilapiaNormalTemperatureProfile |
@@ -128,23 +150,59 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】Normal 面判断链＝水层定位（软定位） → 结构 → 水温 → 时段 → 合并。
+推导来源：物种属性锚方向级（benthopelagic 软定位＋全天活跃——CSV 行级方向，[需正文] 校准；
+无 Story 空间程序证据的因子顺序不冒充）。水温从「末位算术门」还原为链中档位判定（排除档=
+EARLY_RETURN，@TilapiaNormalTempFloor 为排除档边界参考）。与 live BA-T1 Independent Factor
+Set（因子无序合并）模板语义的分歧登记 README §7。
+
 读取 当前水层
 读取 当前结构
 读取 当前点水温
 读取 当前时段
 
-用当前水层查询 @TilapiaNormalLayerProfile 得到 LayerFit
-用当前结构查询 @TilapiaNormalStructureProfile 得到 StructureFit
-用当前水温查询 @TilapiaNormalTemperatureProfile 得到 TemperatureFit
-用当前时段查询 @TilapiaNormalTimeProfile 得到 TimeFit
+第 1 步 水层定位（软定位，分级命中）：
+    用当前水层查询 @TilapiaNormalLayerProfile
+    （benthopelagic 软定位三档=Profile 值域不冻结 [需正文：硬定位与否]）
+    如果 水层 ∈ 近底带档：
+        LayerFit = 全额
+    否则如果 ∈ 中间水层档：
+        LayerFit = 削减（× Profile 衰减参数——不清零）
+    否则（远底带档）：
+        返回 0（EARLY_RETURN：远离底带格出局）
 
-如果 TemperatureFit < @TilapiaNormalTempFloor：
-    返回 极低空间权重（early return）
+第 2 步 结构（分级命中）：
+    用当前结构查询 @TilapiaNormalStructureProfile（三档=Profile 值域不冻结）
+    如果 结构 ∈ 最适应档：
+        StructureFit = 全额
+    否则如果 ∈ 可接受档：
+        StructureFit = 削减（不清零）
+    否则：
+        返回 0（EARLY_RETURN：排除结构档出局 [需正文：排除档成员]）
 
-合并 LayerFit / StructureFit / TemperatureFit / TimeFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明）
+第 3 步 水温（分级命中）：
+    用当前水温查询 @TilapiaNormalTemperatureProfile（三档=Profile 值域不冻结）
+    如果 水温 ∈ 适温档：
+        TemperatureFit = 全额
+    否则如果 ∈ 边际档：
+        TemperatureFit = 削减（不清零）
+    否则（排除档——@TilapiaNormalTempFloor 为边界参考）：
+        返回 0（EARLY_RETURN：极值温度带出局）
 
-返回 SpatialDistributionWeight
+第 4 步 时段（分级命中）：
+    用当前时段查询 @TilapiaNormalTimeProfile（全天活跃三档=Profile 值域不冻结）
+    如果 时段 ∈ 活跃档：
+        TimeFit = 全额
+    否则如果 ∈ 一般档：
+        TimeFit = 削减（不清零）
+    否则：
+        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+
+第 5 步 合并：
+    合并 LayerFit / StructureFit / TemperatureFit / TimeFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
 
 ## 3. Response
@@ -164,7 +222,18 @@ Brooding Group（Feeding-with-Cap——「口孵期间摄食减少」的表达�
 读取 当前饵 / Presentation Cue（尺寸、速度、轨迹、水层与相对位置）
 读取 当前动态 Feeding / Pursuit 相关事实
 
-评价 BaseResponse（复用 NormalFeeding 双通道评价结构，见下节）
+EVAL_TARGET_AS_FOOD（复用 NormalFeeding 双通道评价结构，见下节）
+    得到 BaseResponse
+
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→Cap」缺档位判定层；
+与 §3.1 配置表「命中=返回 Cap 后 FeedingResponse / 未命中=返回低、无响应」两列语义对齐）：
+    按三档判定 BaseResponse（档位成员=@GrazingProfile 与 @SuspendedFeedingProfile 值域不冻结）：
+    如果 BaseResponse ∈ 接受档：
+        进入 Cap 步（全额基础响应）
+    否则如果 ∈ 边际档：
+        低响应进入 Cap 步（削减但不清零）
+    否则（排除档）：
+        返回无响应（出局——不进 Cap）
 
 Response = MIN(BaseResponse, @TilapiaBroodingFeedingCap)
 
@@ -230,8 +299,9 @@ NormalFeeding Group（live 例 3 原样绑定）：
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：V1 三原子（无结构原子——口孵无巢语义）+ R1；BA-T2 退化绑定（单 Factor）；R-T1 + Cap 槽；R-T2 双通道绑定（例 3 既有）；QT-1。
-- 放弃的自由度：(1) 幼鱼回口行为——世界侧 brood anchor 行为，不进亲鱼 Response 面；(2) 雌性个体识别——份额表达；(3) 口孵期 Cap 之下的进一步摄食动态（Story 只冻结「减少」，强度由 Profile 层）；(4) 双通道汇总数学 OPERATOR UNDEFINED。
+- 使用的自由度：V1 三原子（无结构原子——口孵无巢语义）+ R1；BA-T2 退化绑定（单 Factor）；R-T1 + Cap 槽；R-T2 双通道绑定（例 3 既有）；QT-1；**顺序还原链序与档位结构（REP-ORDER-FIX-002：Brooding 面退化链（锚存在性→常驻区适配三档）、Normal 面定位→结构→水温→时段链、Brooding Response DECIDE 三档+Cap——推导依据 §0 判断顺序行）**。
+- 放弃的自由度：(1) 幼鱼回口行为——世界侧 brood anchor 行为，不进亲鱼 Response 面；(2) 雌性个体识别——份额表达；(3) 口孵期 Cap 之下的进一步摄食动态（Story 只冻结「减少」，强度由 Profile 层）；(4) 双通道汇总数学 OPERATOR UNDEFINED；(5) live BA-T1 Independent Factor Set 无序因子语义的服从（Normal 面顺序还原链与无序合并语义拓扑分歧——登记 README §7，裁决归机制侧）；(6) 数值与 Profile 值域不冻结（含各步三档档位成员与阈值）。
 - [需正文] 口孵期雌鱼空间偏好（常驻区方向）；@TilapiaBroodingStages 枚举成员。
 
 BATCH_ID: REP-FULL-GUARD-001
+顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Brooding Bake 退化链 early return＋分级命中，Normal Bake 链还原，Brooding Response DECIDE 档位展开＋Cap 维持；例 3 双通道绑定原样）

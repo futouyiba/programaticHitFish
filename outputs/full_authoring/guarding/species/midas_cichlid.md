@@ -19,6 +19,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - P04 内部多样性意义（R09 FR3 待裁口径）：护卵变体（洞穴顶 / 浊水双亲 / 岩缝扇卵 / 雄巢扇护 / 吸盘雄护）按「P04 样本累计 or 内部 typed variant 边界」记录——表达侧当前一律落同模板（BA-T2）+ Profile 重绑定，变体差异由锚实例 / Profile 承载，不建新模板（同 R07 石巢判例方向）。
 - 互斥状态：ReproductionState ∈ {NONE, ACTIVE_SPAWNING, PARENTAL_GUARD}。
 - 表达超集说明：Tier B 文件的条件原子结构与集名按 P04 标准骨架给出；洞穴结构集合成员、亲鱼组成、窗口数值全部 @ 化或标注 [需正文]。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（洞穴产卵面三档） → 关系评估（三档） → 局部温度 → 合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier B）：R09 triage 批注一句「洞穴顶产卵米达斯」（锚型方向级）；步序与档位成员 [需正文] 校准。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（全天） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@MidasSpawnWindowStart @MidasSpawnWindowEnd @MidasGuardWarmupDays @MidasGuardTempThreshold @MidasSpawnSurfaceSet @MidasGuardingShare @MidasLocalGuardAnchorEligibility @MidasCaveSpawnSuitabilityProfile @MidasGuardRelationProfile @MidasGuardLocalTemperatureProfile @MidasGuardThreatProfile @MidasNormalLayerProfile @MidasNormalStructureProfile @MidasNormalTemperatureProfile @MidasNormalTimeProfile @MidasNormalTempFloor @MidasNormalFeedingProfile @MidasGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -85,7 +86,7 @@ Share 语义：live §7 契约。双亲守护由份额整体表达（份额粒�
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-GUARD-ANCHOR-GATE |
+| BakeTemplate | BA-GUARD-ANCHOR-GATE（**§2.2 已顺序还原（REP-ORDER-FIX-002）：锚存在性 early return 链＋锚适配/关系/温度分级命中；与模板平铺读法分歧登记 README §7**） |
 | GuardAnchorEligibilityRule | @MidasLocalGuardAnchorEligibility |
 | GuardAnchorResolverInstance | cave_ceiling_spawn（洞穴顶壁 / 岩洞内壁产卵面 [需正文]） |
 | GuardAnchorRelationProfile | @MidasGuardRelationProfile |
@@ -96,33 +97,68 @@ Share 语义：live §7 契约。双亲守护由份额整体表达（份额粒�
 ### 2.2 Guarding Group｜中文伪脚本（完全展开）
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
+判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0，
+不进入后续评估），不做「先全算再减」。推导来源（Tier B）：R09 triage 批注一句「洞穴顶产卵
+米达斯」（洞穴顶壁/岩洞内壁产卵面——锚型方向级）；步序与档位成员 [需正文] 校准（顺序/档位
+变化=census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读法的分歧登记 README §7。
+
 读取 当前目标的岩洞结构 / 深度 / 遮蔽关系
 读取 当前目标与洞穴产卵面锚点的关系（距离 / 朝向）
 读取 当前点局部温度
 
-如果当前目标不满足 @MidasLocalGuardAnchorEligibility：
-    返回 极低 / 0 空间权重（early return）
+第 1 步 锚存在性判定（GATE_ANCHOR_EXISTENCE）：
+    用锚域事实查询 @MidasLocalGuardAnchorEligibility
+    （锚=cave_ceiling_spawn 洞穴产卵面；护巢资格已在路由面判定，本步不重复结算 premise，
+      只判「当前目标是否处于产卵面锚的合法护巢锚域」）
+    如果 当前目标处于合法锚域：
+        进入第 2 步
+    否则：
+        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        锚域外格子不参与护巢分布评价，非「算出低值」）
 
-用当前目标与产卵面锚点的关系查询 @MidasGuardRelationProfile
-得到 RelationFit
+第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
+    用当前目标的洞穴结构查询 @MidasCaveSpawnSuitabilityProfile
+    （洞穴产卵面三档分档槽=Profile 值域——档位成员与阈值不冻结 [需正文]）
+    如果 锚面 ∈ 最适应档（preferred 产卵面）：
+        AnchorSuitabilityFit = 全额
+    否则如果 ∈ 可接受档（tolerated 产卵面）：
+        AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除锚面）：
+        返回 0（EARLY_RETURN：排除产卵面出局——无可用洞穴结构无产卵面分布）
 
-用当前目标的洞穴结构查询 @MidasCaveSpawnSuitabilityProfile
-得到 AnchorSuitabilityFit
+第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
+    用当前目标与产卵面锚点的关系（距离 / 朝向）查询 @MidasGuardRelationProfile
+    （守卫位三档=Profile 值域不冻结——洞穴型守卫位=洞内/洞口占位 [需正文]）
+    如果 关系 ∈ 守卫核档：
+        RelationFit = 全额（守卫占位）
+    否则如果 ∈ 守卫缘档：
+        RelationFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（圈外档）：
+        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
 
-用当前点局部温度查询 @MidasGuardLocalTemperatureProfile
-得到 LocalTempFit
+第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
+    用当前点局部温度查询 @MidasGuardLocalTemperatureProfile
+    （护巢期局部温度三档=Profile 值域不冻结）
+    如果 局部温度 ∈ 适温档：
+        LocalTempFit = 全额
+    否则如果 ∈ 边际档：
+        LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
+    否则（排除档）：
+        返回 0（EARLY_RETURN：护巢期排除温度带出局）
 
-合并 RelationFit / AnchorSuitabilityFit / LocalTempFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+第 5 步 合并：
+    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
 
-返回 Guarding SpatialDistributionWeight
+返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
 
 ### 2.3 NormalFeeding Group｜配置表（BA-T1 Independent Factor Set）
 
 | 字段 | 值 |
 |---|---|
-| BakeTemplate | BA-NORMAL-HABITAT-FIT |
+| BakeTemplate | BA-NORMAL-HABITAT-FIT（**§2.4 已顺序还原（REP-ORDER-FIX-002）：early return 链＋分级命中；与 live BA-T1 Independent Factor Set 无序语义的分歧登记 README §7**） |
 | LayerProfile | @MidasNormalLayerProfile |
 | StructureProfile | @MidasNormalStructureProfile |
 | TemperatureProfile | @MidasNormalTemperatureProfile |
@@ -133,23 +169,59 @@ Share 语义：live §7 契约。双亲守护由份额整体表达（份额粒�
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
 ```plain text
+【顺序还原声明｜REP-ORDER-FIX-002】Normal 面判断链＝水层定位（软定位） → 结构 → 水温 → 时段 → 合并。
+推导来源：物种属性锚方向级（benthopelagic 软定位＋全天活跃——CSV 行级方向，[需正文] 校准；
+无 Story 空间程序证据的因子顺序不冒充）。水温从「末位算术门」还原为链中档位判定（排除档=
+EARLY_RETURN，@MidasNormalTempFloor 为排除档边界参考）。与 live BA-T1 Independent Factor
+Set（因子无序合并）模板语义的分歧登记 README §7。
+
 读取 当前水层
 读取 当前结构
 读取 当前点水温
 读取 当前时段
 
-用当前水层查询 @MidasNormalLayerProfile 得到 LayerFit
-用当前结构查询 @MidasNormalStructureProfile 得到 StructureFit
-用当前水温查询 @MidasNormalTemperatureProfile 得到 TemperatureFit
-用当前时段查询 @MidasNormalTimeProfile 得到 TimeFit
+第 1 步 水层定位（软定位，分级命中）：
+    用当前水层查询 @MidasNormalLayerProfile
+    （benthopelagic 软定位三档=Profile 值域不冻结 [需正文：硬定位与否]）
+    如果 水层 ∈ 近底带档：
+        LayerFit = 全额
+    否则如果 ∈ 中间水层档：
+        LayerFit = 削减（× Profile 衰减参数——不清零）
+    否则（远底带档）：
+        返回 0（EARLY_RETURN：远离底带格出局）
 
-如果 TemperatureFit < @MidasNormalTempFloor：
-    返回 极低空间权重（early return）
+第 2 步 结构（分级命中）：
+    用当前结构查询 @MidasNormalStructureProfile（三档=Profile 值域不冻结）
+    如果 结构 ∈ 最适应档：
+        StructureFit = 全额
+    否则如果 ∈ 可接受档：
+        StructureFit = 削减（不清零）
+    否则：
+        返回 0（EARLY_RETURN：排除结构档出局 [需正文：排除档成员]）
 
-合并 LayerFit / StructureFit / TemperatureFit / TimeFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子，无顺序依赖）
+第 3 步 水温（分级命中）：
+    用当前水温查询 @MidasNormalTemperatureProfile（三档=Profile 值域不冻结）
+    如果 水温 ∈ 适温档：
+        TemperatureFit = 全额
+    否则如果 ∈ 边际档：
+        TemperatureFit = 削减（不清零）
+    否则（排除档——@MidasNormalTempFloor 为边界参考）：
+        返回 0（EARLY_RETURN：极值温度带出局）
 
-返回 SpatialDistributionWeight
+第 4 步 时段（分级命中）：
+    用当前时段查询 @MidasNormalTimeProfile（全天三档=Profile 值域不冻结）
+    如果 时段 ∈ 活跃档：
+        TimeFit = 全额
+    否则如果 ∈ 一般档：
+        TimeFit = 削减（不清零）
+    否则：
+        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+
+第 5 步 合并：
+    合并 LayerFit / StructureFit / TemperatureFit / TimeFit
+    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+
+返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
 
 ## 3. Response
@@ -169,8 +241,19 @@ Guarding Group：
 读取 当前 Presentation 与洞穴产卵面锚点的关系
 读取 侵入距离、持续时间、威胁 Cue
 
-评价 @MidasGuardThreatProfile
-得到 DefenseResponse
+EVAL_INTRUDER_THREAT：
+    用这些侵入事实评价 @MidasGuardThreatProfile
+    得到 ThreatEvaluation
+
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→得到 DefenseResponse」为平铺占位；
+与 §3.1 配置表「命中=返回防御 Response / 未命中=返回低、无响应」两列语义对齐）：
+    按三档判定 ThreatEvaluation（档位成员=@MidasGuardThreatProfile 值域不冻结）：
+    如果 ThreatEvaluation ∈ 高威胁档：
+        返回 Response(Defense)（全额防御响应）
+    否则如果 ∈ 边际威胁档：
+        返回低强度防御响应（削减但不清零）
+    否则（无威胁档）：
+        返回无响应（出局）
 
 返回 DefenseResponse
 不再评价普通 Feeding（结构性关闭：Feeding evaluator 不进入该 Group Program）
@@ -182,7 +265,20 @@ NormalFeeding Group：
 读取 当前饵 / Presentation Cue（尺寸、速度、轨迹、水层与相对位置）
 读取 当前动态 Feeding / Pursuit 相关事实
 
-用这些输入评价 @MidasNormalFeedingProfile
+EVAL_TARGET_AS_FOOD：
+    用这些输入评价 @MidasNormalFeedingProfile
+    得到 FoodEvaluation
+
+DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→返回」为平铺占位；
+与 §3.1 配置表「命中 / 未命中」两列语义对齐）：
+    按三档判定 FoodEvaluation（档位成员=@MidasNormalFeedingProfile 值域不冻结）：
+    如果 FoodEvaluation ∈ 接受档：
+        返回 Response(TargetFeeding)（全额响应）
+    否则如果 ∈ 边际档：
+        返回低响应（削减但不清零）
+    否则：
+        返回无响应（出局）
+
 返回 FeedingResponse
 ```
 
@@ -228,8 +324,9 @@ NormalFeeding Group：
 
 ## 5. 自由度、边界与放弃项
 
-- 使用的自由度：V1 三原子 + R1；BA-T2 锚实例=cave_ceiling_spawn（P04 内部多样性由锚实例 / Profile 承载）；R-T1 Profile 重绑定；QT-1。
-- 放弃的自由度：(1) Defense / Feeding arbitration（live V0）；(2) Guard 合并算子数学 OPERATOR UNDEFINED；(3) 洞穴内微地形（顶壁朝向 / 洞深梯度）——无 Story 证据，不表达。
+- 使用的自由度：V1 三原子 + R1；BA-T2 锚实例=cave_ceiling_spawn（P04 内部多样性由锚实例 / Profile 承载）；R-T1 Profile 重绑定；QT-1；**顺序还原链序与档位结构（REP-ORDER-FIX-002：Guard 面锚存在性→锚适配→关系→温度 early return 链、三档分级命中；Normal 面定位→结构→水温→时段链；Response DECIDE 三档——推导依据 §0 判断顺序行，全部 [需正文] 校准）**。
+- 放弃的自由度：(1) Defense / Feeding arbitration（live V0）；(2) Guard 合并算子数学 OPERATOR UNDEFINED；(3) 洞穴内微地形（顶壁朝向 / 洞深梯度）——无 Story 证据，不表达；(4) live BA-T1 Independent Factor Set 无序因子语义的服从（Normal 面顺序还原链与无序合并语义拓扑分歧——登记 README §7，裁决归机制侧）；(5) 数值与 Profile 值域不冻结（含各步三档档位成员与阈值）。
 - [需正文] 洞穴产卵面结构集合成员、亲鱼组成（双亲判读）、窗口数值由 Profile 层定值。
 
 BATCH_ID: REP-FULL-GUARD-001
+顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Guard Bake 锚存在性 early return 链＋分级命中，Normal Bake 链还原，Response DECIDE 档位展开）
