@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>FCF 全库调研与表达｜进展汇总</title>
+<style>
+/* ========== 设计令牌（深色，经 CVD/对比度校验的调色板） ========== */
+:root{
+  --plane:#0d0d0d;            /* 页面底色 */
+  --surface:#1a1a19;          /* 卡片面 */
+  --raise:rgba(255,255,255,.03);
+  --ink:#ffffff;
+  --ink-2:#c3c2b7;
+  --muted:#898781;
+  --grid:#2c2c2a;
+  --axis:#383835;
+  --hairline:rgba(255,255,255,.10);
+  /* 分类色板（固定槽位顺序，深色档） */
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
+  --c5:#d55181; --c6:#008300; --c7:#9085e9;
+  /* 状态色（专用，不挪作系列色） */
+  --good:#0ca30c; --warn:#fab219;
+  --mono:ui-monospace,"Cascadia Code",Consolas,"SFMono-Regular",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--plane);color:var(--ink);
+  font:15px/1.65 system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1180px;margin:0 auto;padding:36px 24px 72px}
+
+/* ========== 页眉 ========== */
+.page-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--hairline);padding-bottom:20px}
+.kicker{font:600 11px/1 var(--mono);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+h1{font-size:30px;line-height:1.25;margin:0;font-weight:750}
+h1 .sep{color:var(--muted);font-weight:400;margin:0 6px}
+.subtitle{color:var(--ink-2);margin:8px 0 0;font-size:14px}
+.head-chips{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ========== 通用卡片与分节 ========== */
+.sec{margin-top:30px}
+h2{display:flex;align-items:baseline;gap:10px;font-size:18px;font-weight:700;margin:0 0 4px}
+h2 .idx{font:600 11px/1 var(--mono);letter-spacing:.1em;color:var(--muted)}
+.sec-desc{color:var(--muted);font-size:13px;margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:22px}
+
+/* ========== 顶部大数字卡 ========== */
+.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.stat{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:20px 22px}
+.stat .num{font-size:46px;line-height:1.05;font-weight:750;letter-spacing:-.01em}
+.stat .num small{font-size:17px;font-weight:650;color:var(--ink-2);margin-left:4px;letter-spacing:0}
+.stat .lbl{font-size:13.5px;color:var(--ink-2);font-weight:650;margin-top:4px}
+.stat .sub{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.55}
+.stat .topline{width:34px;height:3px;border-radius:2px;margin-bottom:14px}
+
+/* ========== 进度总览条（三张大数字之后、01 之前） ========== */
+.ov{position:relative;margin-top:14px;background:var(--surface);border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;padding:20px 22px 22px;overflow:hidden}
+.ov::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--good) 0,var(--good) 33.3%,var(--warn) 33.3%,var(--warn) 66.6%,var(--c1) 66.6%,var(--c1) 100%)}
+.ov-head{margin-bottom:14px}
+.ov-title{font-size:21px;font-weight:750;line-height:1.2;margin:2px 0 0}
+.ov-sub{color:var(--muted);font-size:13px;margin:5px 0 0}
+.ov-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.ov-line{padding:0 20px}
+.ov-line:first-child{padding-left:0}
+.ov-line:last-child{padding-right:0}
+.ov-line + .ov-line{border-left:1px solid var(--grid)}
+.ov-line-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--grid)}
+.ov-dot{width:10px;height:10px;border-radius:3px;flex:none}
+.ov-line-name{font-size:14.5px;font-weight:700}
+.ov-line-name .en{font-size:11px;color:var(--muted);font-weight:500;margin-left:6px}
+.ov-m + .ov-m{margin-top:12px}
+.ov-m-lbl{font-size:12px;color:var(--ink-2);font-weight:650}
+.ov-num{font-size:30px;line-height:1.15;font-weight:750;letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;margin-top:2px}
+.ov-num .den{font-size:14px;font-weight:600;color:var(--muted);margin-left:3px;letter-spacing:0}
+.ov-bar{height:8px;border-radius:4px;background:var(--grid);overflow:hidden;margin:7px 0 5px}
+.ov-bar i{display:block;height:100%;border-radius:4px}
+.ov-bar.fix{background:rgba(250,178,25,.16)}
+.ov-meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ov-note{font-size:11.5px;color:var(--muted)}
+.ov-pct{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ov-fixnote{font-size:11.5px;color:var(--warn);font-weight:650}
+.chip-blue{color:var(--c1);border-color:rgba(57,135,229,.45);background:rgba(57,135,229,.10)}
+
+/* ========== 三线进度 ========== */
+.pr{padding:16px 2px}
+.pr + .pr{border-top:1px solid var(--grid)}
+.pr-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pr-name{font-size:15.5px;font-weight:700}
+.pr-name .en{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px}
+.pr-bar{height:10px;border-radius:5px;background:var(--grid);overflow:hidden;margin:12px 0 8px}
+.pr-bar i{display:block;height:100%;border-radius:5px;background:var(--c1)}
+.pr-bar i.indet{background:linear-gradient(90deg,var(--c1),var(--c3))}
+.pr-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pr-meta .note{color:var(--muted);font-size:12.5px}
+.pr-meta .pct{font-size:15px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+/* ========== 徽章 ========== */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2.5px 10px;border-radius:99px;font-size:12px;
+  font-weight:650;border:1px solid var(--hairline);color:var(--ink-2);background:var(--raise);white-space:nowrap}
+.chip-good{color:var(--good);border-color:rgba(12,163,12,.45);background:rgba(12,163,12,.10)}
+.chip-warn{color:var(--warn);border-color:rgba(250,178,25,.40);background:rgba(250,178,25,.08)}
+.chip-info{color:var(--c7);border-color:rgba(144,133,233,.45);background:rgba(144,133,233,.10)}
+
+/* ========== 图表区 ========== */
+.chart-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;align-items:stretch}
+.chart-card{display:flex;flex-direction:column}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 6px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.c1{background:var(--c1)} .c2{background:var(--c2)} .c3{background:var(--c3)} .c4{background:var(--c4)}
+.c5{background:var(--c5)} .c6{background:var(--c6)} .c7{background:var(--c7)}
+svg{display:block;width:100%;height:auto}
+svg [data-tip]{transition:filter .12s ease;cursor:default}
+svg [data-tip]:hover{filter:brightness(1.22)}
+.caption{font-size:12.5px;color:var(--muted);line-height:1.6;margin:10px 0 0}
+.caption b{color:var(--ink-2)}
+
+/* SVG 内文字与线条 */
+.sv-unit{fill:var(--muted);font-size:11.5px}
+.sv-tick{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.sv-g{stroke:var(--grid);stroke-width:1}
+.sv-base{stroke:var(--axis);stroke-width:1}
+.sv-lab{fill:var(--ink);font-size:12.5px;font-weight:650;font-variant-numeric:tabular-nums}
+.sv-zero{fill:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.sv-note{fill:var(--ink-2);font-size:11.5px;font-weight:600}
+.sv-xl{fill:var(--ink-2);font-size:13px;font-weight:650}
+.sv-xs{fill:var(--muted);font-size:11px}
+.sv-center-num{fill:var(--ink);font-size:30px;font-weight:750;font-variant-numeric:tabular-nums}
+.sv-center-lab{fill:var(--muted);font-size:11px}
+
+/* 环形图布局 */
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:6px}
+.donut-wrap svg{width:208px;flex:none}
+.dleg{flex:1;min-width:218px;display:flex;flex-direction:column;gap:2px}
+.dleg .row{display:flex;align-items:center;gap:9px;padding:5px 8px;border-radius:8px;font-size:13px}
+.dleg .row:hover{background:var(--raise)}
+.dleg .row .id{font-family:var(--mono);font-size:12px;color:var(--ink-2);flex:1}
+.dleg .row .n{font-weight:700;font-variant-numeric:tabular-nums}
+.dleg .row .pct{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums;width:46px;text-align:right}
+
+/* ========== 表格 ========== */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11.5px;font-weight:650;letter-spacing:.06em;color:var(--muted);
+  padding:9px 12px;border-bottom:1px solid var(--axis);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}
+tbody tr:hover td{background:rgba(255,255,255,.03)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+td.strong{color:var(--ink);font-weight:650}
+td .mono{font-family:var(--mono);font-size:12.5px}
+tr.total td{border-top:2px solid var(--axis);border-bottom:none;color:var(--ink);font-weight:700}
+.muted{color:var(--muted);font-weight:400;font-size:12px}
+.rev{color:var(--warn);font-weight:650}
+.ok{color:var(--good);font-weight:650}
+.arrow{color:var(--muted);font-weight:400;padding:0 2px}
+
+/* LT 迷你条 */
+.mbar{width:104px;height:8px;border-radius:4px;background:var(--grid);overflow:hidden;display:inline-block;
+  vertical-align:middle;margin-right:9px;flex:none}
+.mbar i{display:block;height:100%;border-radius:4px}
+.mbar i.bake{background:var(--c1)}
+.mbar i.resp{background:var(--c2)}
+.cellbar{display:flex;align-items:center;justify-content:flex-end}
+.cellbar b{font-variant-numeric:tabular-nums}
+
+/* ========== Pattern Registry ========== */
+.pat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pat{display:flex;align-items:center;gap:11px;padding:13px 15px;border:1px solid var(--grid);border-radius:11px;background:var(--raise)}
+.pat .code{font:650 12px/1 var(--mono);color:var(--c1);flex:none;width:32px}
+.pat .name{font-size:13px;color:var(--ink-2);line-height:1.45}
+
+/* ========== 关键统计 ========== */
+.kv-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.kv{border:1px solid var(--grid);border-radius:11px;background:var(--raise);padding:15px 16px}
+.kv b{display:block;font-size:26px;line-height:1.1;font-weight:750}
+.kv span{display:block;font-size:12.5px;color:var(--muted);margin-top:5px}
+
+/* ========== 审核趋势 ========== */
+.rt-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.rt{border:1px solid var(--grid);border-radius:11px;background:var(--raise);padding:13px 13px 11px}
+.rt .id{font:650 11.5px/1 var(--mono);color:var(--muted)}
+.rt .n{font-size:12px;color:var(--ink-2);margin:7px 0 9px}
+.rt .out{font-size:12.5px;line-height:1.5}
+.strip{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.strip .cap{font-size:12.5px;color:var(--muted);margin-right:6px}
+.trend-note{margin-top:16px;padding:13px 16px;border-left:3px solid var(--good);border-radius:0 10px 10px 0;
+  background:rgba(12,163,12,.07);font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.trend-note b{color:var(--ink)}
+
+/* ========== 页脚 ========== */
+footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
+  color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ========== 提示浮层 ========== */
+.tooltip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .1s ease;
+  background:#232322;border:1px solid var(--hairline);color:var(--ink);border-radius:8px;
+  padding:6px 10px;font-size:12.5px;max-width:260px;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.tooltip.on{opacity:1}
+
+/* ========== 响应式 ========== */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .ov-grid{grid-template-columns:1fr}
+  .ov-line{padding:0}
+  .ov-line + .ov-line{border-left:none;border-top:1px solid var(--grid);margin-top:16px;padding-top:16px}
+  .chart-grid{grid-template-columns:1fr}
+  .pat-grid{grid-template-columns:repeat(2,1fr)}
+  .kv-grid{grid-template-columns:repeat(2,1fr)}
+  .rt-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .pat-grid,.rt-grid,.kv-grid{grid-template-columns:1fr}
+  .page{padding:24px 14px 56px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===================== 页眉 ===================== -->
+  <header class="page-header">
+    <div>
+      <div class="kicker">FCF Harness · Progress Report</div>
+      <h1>FCF 全库调研与表达<span class="sep">｜</span>进展汇总</h1>
+      <p class="subtitle">Fish Research × Representation × LogicTemplate Census —— 三线推进全景快照</p>
+    </div>
+    <div class="head-chips">
+      <span class="chip">快照 2026-09-11</span>
+      <span class="chip">数据内嵌 · 离线可开</span>
+      <span class="chip">单文件 · 无外部依赖</span>
+    </div>
+  </header>
+
+  <!-- ===================== 顶部三个大数字 ===================== -->
+  <section class="hero-grid" aria-label="核心数字">
+    <div class="stat">
+      <div class="topline" style="background:var(--c1)"></div>
+      <div class="num">267<small>种鱼</small></div>
+      <div class="lbl">FR 调研全量完成</div>
+      <div class="sub">十批 R01–R10 · ~295 个策略故事 · 8 个 Pattern · 零语义升级</div>
+    </div>
+    <div class="stat">
+      <div class="topline" style="background:var(--c2)"></div>
+      <div class="num">213<small>文件</small></div>
+      <div class="lbl">四面生产级表达</div>
+      <div class="sub">B 系列 8 批全部过独立审（4 批直接 APPROVE）· 267 CSV 行中 220 合格行全部处理</div>
+    </div>
+    <div class="stat">
+      <div class="topline" style="background:var(--c3)"></div>
+      <div class="num">10<small>族</small></div>
+      <div class="lbl">LogicTemplate（Registry v6）</div>
+      <div class="sub">162 程序 · 255 判同 · 已消费 84 Story · 剩余 ~173 Story（进行中）</div>
+    </div>
+  </section>
+
+  <!-- ===================== 进度总览条（三线九口径 X/Y 完成度） ===================== -->
+  <section class="ov" aria-label="进度总览：三线九口径完成度">
+    <div class="ov-head">
+      <div class="kicker">Progress Overview · Completion X/Y</div>
+      <div class="ov-title">进度总览</div>
+      <p class="ov-sub">三线九口径完成度：大数字为分子，灰色小字为分母，横条为完成百分比。</p>
+    </div>
+    <div class="ov-grid">
+
+      <div class="ov-line">
+        <div class="ov-line-head">
+          <span class="ov-dot" style="background:var(--good)"></span>
+          <span class="ov-line-name">FR 调研<span class="en">Fish Research</span></span>
+          <span class="chip chip-good">✓ 完成</span>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">鱼种覆盖</div>
+          <div class="ov-num">267<span class="den">/267</span></div>
+          <div class="ov-bar" role="img" aria-label="鱼种覆盖 267/267，100%"><i style="width:100%;background:var(--good)"></i></div>
+          <div class="ov-meta"><span class="ov-note">R01–R10 十批</span><span class="ov-pct" style="color:var(--good)">100%</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">策略故事</div>
+          <div class="ov-num">295<span class="den">/295</span></div>
+          <div class="ov-bar" role="img" aria-label="策略故事 295/295，100%"><i style="width:100%;background:var(--good)"></i></div>
+          <div class="ov-meta"><span class="ov-note">十批全部过审</span><span class="ov-pct" style="color:var(--good)">100%</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">批次</div>
+          <div class="ov-num">10<span class="den">/10</span></div>
+          <div class="ov-bar" role="img" aria-label="批次 10/10，100%"><i style="width:100%;background:var(--good)"></i></div>
+          <div class="ov-meta"><span class="ov-note">R01–R10 全 APPROVE</span><span class="ov-pct" style="color:var(--good)">100%</span></div>
+        </div>
+      </div>
+
+      <div class="ov-line">
+        <div class="ov-line-head">
+          <span class="ov-dot" style="background:var(--good)"></span>
+          <span class="ov-line-name">B 表达<span class="en">Representation</span></span>
+          <span class="chip chip-good">✓ CSV 口径闭合</span>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">CSV 行覆盖</div>
+          <div class="ov-num">220<span class="den">/220</span></div>
+          <div class="ov-bar" role="img" aria-label="CSV 行覆盖 220/220，100%"><i style="width:100%;background:var(--good)"></i></div>
+          <div class="ov-meta"><span class="ov-note">267 行中 220 合格行全处理</span><span class="ov-pct" style="color:var(--good)">100%</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">文件数</div>
+          <div class="ov-num">213</div>
+          <div class="ov-meta"><span class="ov-note">四面生产级表达 · 累计</span><span class="ov-pct" style="color:var(--good)">—</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">顺序还原修复</div>
+          <div class="ov-num" style="color:var(--good)">211<span class="den">/213</span></div>
+          <div class="ov-bar" role="img" aria-label="顺序还原修复 211/213，约 99%，已完成"><i style="width:99%;background:var(--good)"></i></div>
+          <div class="ov-meta"><span class="ov-note">✅ 五批全部完成 · 2 件合理跳过</span><span class="ov-pct" style="color:var(--good)">~99%</span></div>
+        </div>
+      </div>
+
+      <div class="ov-line">
+        <div class="ov-line-head">
+          <span class="ov-dot" style="background:var(--c1)"></span>
+          <span class="ov-line-name">LT 普查<span class="en">LogicTemplate Census</span></span>
+          <span class="chip chip-blue">⟳ 进行中</span>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">Story 消费</div>
+          <div class="ov-num">84<span class="den">/~257</span></div>
+          <div class="ov-bar" role="img" aria-label="Story 消费 84/~257，约 33%"><i style="width:32.7%;background:var(--c1)"></i></div>
+          <div class="ov-meta"><span class="ov-note">B0–B4 已消费（B4 新增 26）· 剩余 ~173</span><span class="ov-pct" style="color:var(--c1)">~33%</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">批次</div>
+          <div class="ov-num">5<span class="den">/~12</span></div>
+          <div class="ov-bar" role="img" aria-label="批次 5/~12，约 42%"><i style="width:41.7%;background:var(--c1)"></i></div>
+          <div class="ov-meta"><span class="ov-note">B0–B4 已过审</span><span class="ov-pct" style="color:var(--c1)">~42%</span></div>
+        </div>
+        <div class="ov-m">
+          <div class="ov-m-lbl">Registry 族数</div>
+          <div class="ov-num">10</div>
+          <div class="ov-meta"><span class="ov-note">Registry v6 · 162 程序 / 255 判同 · CENSUS-B4 零新族（连续第 3 批 ΔL_bake=0）</span><span class="ov-pct" style="color:var(--c1)">—</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 01 三线总览 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">01</span>三线总览</h2>
+    <p class="sec-desc">三条工作线的完成度与当前状态。</p>
+    <div class="card">
+
+      <div class="pr">
+        <div class="pr-head">
+          <span class="pr-name">FR 调研<span class="en">Fish Research</span></span>
+          <span class="chip chip-good">✓ 完成</span>
+        </div>
+        <div class="pr-bar" role="img" aria-label="FR 调研进度 100%"><i style="width:100%"></i></div>
+        <div class="pr-meta">
+          <span class="note">267/267 种鱼 · 十批（R01–R10）· ~295 个策略故事 · 8 个 Pattern · 零语义升级</span>
+          <span class="pct">100%</span>
+        </div>
+      </div>
+
+      <div class="pr">
+        <div class="pr-head">
+          <span class="pr-name">B 表达<span class="en">Representation</span></span>
+          <span class="chip chip-good">✓ CSV 口径闭合</span>
+        </div>
+        <div class="pr-bar" role="img" aria-label="B 表达进度 100%"><i style="width:100%"></i></div>
+        <div class="pr-meta">
+          <span class="note">8 批 213 文件四面生产级表达 · 全部过独立审（4 批直接 APPROVE）· 267 CSV 行中 220 合格行全部处理</span>
+          <span class="pct">100%</span>
+        </div>
+      </div>
+
+      <div class="pr">
+        <div class="pr-head">
+          <span class="pr-name">LT 普查<span class="en">LogicTemplate Census</span></span>
+          <span class="chip chip-warn">⟳ 进行中</span>
+        </div>
+        <div class="pr-bar" role="img" aria-label="LT 普查进度约 33%"><i class="indet" style="width:32.7%"></i></div>
+        <div class="pr-meta">
+          <span class="note">5 批已过审（B0–B4）· Registry v6 = 10 族 / 162 程序 / 255 判同 · CENSUS-B4 零新族（连续第 3 批 ΔL_bake=0），首个 LOCAL_SATURATION_CANDIDATE 立案 · 已消费 84 Story，剩余 ~173 Story</span>
+          <span class="pct">~33%</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 02 / 03 图表 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">02</span>LT 发现曲线（Discovery Curve）</h2>
+    <p class="sec-desc">按批次的新增族数增量 ΔL：Bake 面与 Response 面（B0–B4，已过独立审的五批）。</p>
+    <div class="chart-grid">
+
+      <div class="card chart-card">
+        <div class="legend" aria-hidden="false">
+          <span><i class="sw c1"></i>ΔL_bake（Bake 族增量）</span>
+          <span><i class="sw c2"></i>ΔL_response（Response 族增量）</span>
+          <span>＋N 族 = 当批新族数</span>
+        </div>
+        <svg viewBox="0 0 560 300" role="img" aria-label="分组柱状图：各批次 ΔL_bake 与 ΔL_response。B0 为 bake+3、response+2，新族 5；B1 为各 +1，新族 2；B2 为 bake 0、response +1，新族 1；B3 为 bake 0、response +1，新族 1；B4（CENSUS-B4）两面均为 0，零新族。">
+          <!-- 网格与坐标 -->
+          <text class="sv-unit" transform="rotate(-90 13 151)" x="13" y="151" text-anchor="middle">族数增量 ΔL</text>
+          <line class="sv-g" x1="44" y1="58"  x2="548" y2="58"/>
+          <line class="sv-g" x1="44" y1="120" x2="548" y2="120"/>
+          <line class="sv-g" x1="44" y1="182" x2="548" y2="182"/>
+          <line class="sv-base" x1="44" y1="244" x2="548" y2="244"/>
+          <text class="sv-tick" x="36" y="62"  text-anchor="end">3</text>
+          <text class="sv-tick" x="36" y="124" text-anchor="end">2</text>
+          <text class="sv-tick" x="36" y="186" text-anchor="end">1</text>
+          <text class="sv-tick" x="36" y="248" text-anchor="end">0</text>
+
+          <!-- B0：bake +3 / response +2 -->
+          <path fill="#3987e5" data-tip="B0 · ΔL_bake = +3（Bake 族新增 3 个）"
+                d="M57,244 L57,62 Q57,58 61,58 L87,58 Q91,58 91,62 L91,244 Z"/>
+          <path fill="#d95926" data-tip="B0 · ΔL_response = +2（Response 族新增 2 个）"
+                d="M97,244 L97,124 Q97,120 101,120 L127,120 Q131,120 131,124 L131,244 Z"/>
+          <text class="sv-note" x="94" y="27" text-anchor="middle">＋5 族</text>
+          <text class="sv-lab" x="74"  y="50"  text-anchor="middle">3</text>
+          <text class="sv-lab" x="114" y="112" text-anchor="middle">2</text>
+          <text class="sv-xl" x="94" y="264" text-anchor="middle">B0</text>
+          <text class="sv-xs" x="94" y="281" text-anchor="middle">5 故事 · 15 程序</text>
+
+          <!-- B1：bake +1 / response +1 -->
+          <path fill="#3987e5" data-tip="B1 · ΔL_bake = +1"
+                d="M158,244 L158,186 Q158,182 162,182 L188,182 Q192,182 192,186 L192,244 Z"/>
+          <path fill="#d95926" data-tip="B1 · ΔL_response = +1"
+                d="M198,244 L198,186 Q198,182 202,182 L228,182 Q232,182 232,186 L232,244 Z"/>
+          <text class="sv-note" x="195" y="27" text-anchor="middle">＋2 族</text>
+          <text class="sv-lab" x="175" y="174" text-anchor="middle">1</text>
+          <text class="sv-lab" x="215" y="174" text-anchor="middle">1</text>
+          <text class="sv-xl" x="195" y="264" text-anchor="middle">B1</text>
+          <text class="sv-xs" x="195" y="281" text-anchor="middle">15 故事 · 24 程序</text>
+
+          <!-- B2：bake 0 / response +1 -->
+          <path fill="#d95926" data-tip="B2 · ΔL_response = +1"
+                d="M299,244 L299,186 Q299,182 303,182 L329,182 Q333,182 333,186 L333,244 Z"/>
+          <text class="sv-note" x="296" y="27" text-anchor="middle">＋1 族</text>
+          <text class="sv-zero" x="276" y="174" text-anchor="middle">0</text>
+          <text class="sv-lab" x="316" y="174" text-anchor="middle">1</text>
+          <text class="sv-xl" x="296" y="264" text-anchor="middle">B2</text>
+          <text class="sv-xs" x="296" y="281" text-anchor="middle">10 故事 · 20 程序</text>
+
+          <!-- B3：bake 0 / response +1 -->
+          <path fill="#d95926" data-tip="B3 · ΔL_response = +1"
+                d="M400,244 L400,186 Q400,182 404,182 L430,182 Q434,182 434,186 L434,244 Z"/>
+          <text class="sv-note" x="397" y="27" text-anchor="middle">＋1 族</text>
+          <text class="sv-zero" x="377" y="174" text-anchor="middle">0</text>
+          <text class="sv-lab" x="417" y="174" text-anchor="middle">1</text>
+          <text class="sv-xl" x="397" y="264" text-anchor="middle">B3</text>
+          <text class="sv-xs" x="397" y="281" text-anchor="middle">28 故事 · 54 程序</text>
+
+          <!-- B4（CENSUS-B4）：bake 0 / response 0，零新族 -->
+          <text class="sv-zero" x="478" y="174" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_bake = 0（连续第 3 批归零）">0</text>
+          <text class="sv-zero" x="518" y="174" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_response = 0（Response 面首次归零）">0</text>
+          <text class="sv-note" x="498" y="27" text-anchor="middle">＋0 族</text>
+          <text class="sv-xl" x="498" y="264" text-anchor="middle">B4</text>
+          <text class="sv-xs" x="498" y="281" text-anchor="middle">26 故事 · 50 程序</text>
+        </svg>
+        <div class="table-wrap">
+          <table aria-label="发现曲线数据表">
+            <thead><tr><th>批次</th><th class="num">故事</th><th class="num">程序</th><th class="num">新族</th><th class="num">ΔL_bake</th><th class="num">ΔL_response</th></tr></thead>
+            <tbody>
+              <tr><td class="strong">B0</td><td class="num">5</td><td class="num">15</td><td class="num">5</td><td class="num">+3</td><td class="num">+2</td></tr>
+              <tr><td class="strong">B1</td><td class="num">15</td><td class="num">24</td><td class="num">2</td><td class="num">+1</td><td class="num">+1</td></tr>
+              <tr><td class="strong">B2</td><td class="num">10</td><td class="num">20</td><td class="num">1</td><td class="num">0</td><td class="num">+1</td></tr>
+              <tr><td class="strong">B3</td><td class="num">28</td><td class="num">54</td><td class="num">1</td><td class="num">0</td><td class="num">+1</td></tr>
+              <tr><td class="strong">B4 <span class="muted">CENSUS-B4</span></td><td class="num">26</td><td class="num">50</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption"><b>收敛信号：</b>新族数 5 → 2 → 1 → 1 → 0；Bake 面 ΔL 自 B1 起归零，B4（CENSUS-B4）Response 面首次归零——两面增量同时为 0，据此立案首个 <b>LOCAL_SATURATION_CANDIDATE</b>（局部饱和候选）；该批 26 故事 · 50 程序 · 52 判同全部并入既有十族。</p>
+      </div>
+
+      <div class="card chart-card">
+        <div class="legend"><span><i class="sw" style="background:var(--ink-2)"></i>B 系列批次文件数分布</span></div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 220 220" role="img" aria-label="环形图：B 系列各批次文件数分布。NORM2-001 72 件最多，其次 NORM-001 60 件；P02-001 5 件最少。">
+            <g transform="rotate(-90 110 110)">
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#3987e5" stroke-width="26"
+                      stroke-dasharray="38.332 427.257" stroke-dashoffset="0"
+                      data-tip="GUARD-001 · 20 文件 · 9.4%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#d95926" stroke-width="26"
+                      stroke-dasharray="18.163 427.257" stroke-dashoffset="-40.332"
+                      data-tip="GRAZE-001 · 10 有效文件 · 4.7%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#199e70" stroke-width="26"
+                      stroke-dasharray="40.322 427.257" stroke-dashoffset="-60.495"
+                      data-tip="MIGRA-001 · 21 文件 · 9.9%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#c98500" stroke-width="26"
+                      stroke-dasharray="118.913 427.257" stroke-dashoffset="-102.817"
+                      data-tip="NORM-001 · 60 文件 · 28.3%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#d55181" stroke-width="26"
+                      stroke-dasharray="46.365 427.257" stroke-dashoffset="-223.730"
+                      data-tip="FIELD-001 · 24 文件 · 11.3%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#008300" stroke-width="26"
+                      stroke-dasharray="143.087 427.257" stroke-dashoffset="-272.095"
+                      data-tip="NORM2-001 · 72 文件 · 34.0%"/>
+              <circle cx="110" cy="110" r="68" fill="none" stroke="#9085e9" stroke-width="26"
+                      stroke-dasharray="8.082 427.257" stroke-dashoffset="-417.182"
+                      data-tip="P02-001 · 5 文件 · 2.4%"/>
+            </g>
+            <text class="sv-center-num" x="110" y="108" text-anchor="middle">212</text>
+            <text class="sv-center-lab" x="110" y="128" text-anchor="middle">明细文件合计</text>
+          </svg>
+          <div class="dleg" aria-label="图例">
+            <div class="row" data-tip="GUARD-001 · Guarding 护巢系 · 20 文件"><i class="sw c1"></i><span class="id">GUARD-001</span><span class="n">20</span><span class="pct">9.4%</span></div>
+            <div class="row" data-tip="GRAZE-001 · Grazing 底质系 · 10 有效文件"><i class="sw c2"></i><span class="id">GRAZE-001</span><span class="n">10</span><span class="pct">4.7%</span></div>
+            <div class="row" data-tip="MIGRA-001 · Migration 洄游/生活史 · 21 文件"><i class="sw c3"></i><span class="id">MIGRA-001</span><span class="n">21</span><span class="pct">9.9%</span></div>
+            <div class="row" data-tip="NORM-001 · P01 普通层第一轮 · 60 文件"><i class="sw c4"></i><span class="id">NORM-001</span><span class="n">60</span><span class="pct">28.3%</span></div>
+            <div class="row" data-tip="FIELD-001 · P03 沄食系+品系 L1 · 24 文件"><i class="sw c5"></i><span class="id">FIELD-001</span><span class="n">24</span><span class="pct">11.3%</span></div>
+            <div class="row" data-tip="NORM2-001 · P01 第二轮闭合 · 72 文件"><i class="sw c6"></i><span class="id">NORM2-001</span><span class="n">72</span><span class="pct">34.0%</span></div>
+            <div class="row" data-tip="P02-001 · Resource Patch 补批 · 5 文件"><i class="sw c7"></i><span class="id">P02-001</span><span class="n">5</span><span class="pct">2.4%</span></div>
+          </div>
+        </div>
+        <p class="caption">两个 P01 普通层批次（NORM + NORM2）合计 132 文件，占明细的 <b>62.3%</b>；口径说明：概览计 8 批 213 文件，本图按已列明 7 批明细（212 文件）绘制，GRAZE-001 计 10 个有效文件。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 04 FR 十批 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">04</span>FR 十批明细（R01–R10）</h2>
+    <p class="sec-desc">调研批次、规模、主题与两道审核关（FR2 审核 / FR3 语义分诊）。</p>
+    <div class="card table-wrap">
+      <table aria-label="FR 十批明细">
+        <thead><tr>
+          <th>批次</th><th class="num">鱼种</th><th class="num">故事</th><th>主题</th><th>FR2 审核</th><th>FR3 分诊</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="strong mono">R01</td><td class="num">25</td><td class="num">54</td><td>高风险滤食 + 底质</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R02</td><td class="num">25</td><td class="num">25</td><td>滤食场 + 底质</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R03</td><td class="num">25</td><td class="num">25</td><td>河流追猎 + 底质</td><td><span class="ok">✓ APPROVE</span><br><span class="muted">撤回后重审</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R04</td><td class="num">24</td><td class="num">23</td><td>洄游 + 掠食</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R05</td><td class="num">15</td><td class="num">15</td><td>摄食切换 + 底质</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip chip-info">EMIT_COVERAGE_DELTA</span></td></tr>
+          <tr><td class="strong mono">R06</td><td class="num">28</td><td class="num">28</td><td>掠食 + 洄游</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R07</td><td class="num">26</td><td class="num">26</td><td>海水 + 特殊底栖边界</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip chip-info">EMIT_COVERAGE_DELTA</span></td></tr>
+          <tr><td class="strong mono">R08</td><td class="num">26</td><td class="num">26</td><td>普通层收尾</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R09</td><td class="num">26</td><td class="num">26</td><td>普通层续</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr><td class="strong mono">R10</td><td class="num">47</td><td class="num">47</td><td>全库收官（含品系）</td><td><span class="ok">✓ APPROVE</span></td><td><span class="chip">AUTO_CONTINUE</span></td></tr>
+          <tr class="total"><td>合计</td><td class="num">267</td><td class="num">295</td><td class="muted">十批全 APPROVE</td><td class="muted">10/10</td><td class="muted">8×AUTO_CONTINUE · 2×DELTA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 05 B 系列 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">05</span>B 系列批次明细（表达）</h2>
+    <p class="sec-desc">八个表达批次（下表为已列明明细）：Config / Table / Step Table / Narrow DSL 四面生产级表达，全部过独立审。</p>
+    <div class="card table-wrap">
+      <table aria-label="B 系列批次明细">
+        <thead><tr>
+          <th>批次</th><th>系</th><th class="num">文件</th><th>审核</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="strong mono">GUARD-001</td><td>Guarding 护巢系</td><td class="num">20</td><td><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></td></tr>
+          <tr><td class="strong mono">GRAZE-001</td><td>Grazing 底质系</td><td class="num">10 <span class="muted">有效</span></td><td><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></td></tr>
+          <tr><td class="strong mono">MIGRA-001</td><td>Migration 洄游 / 生活史</td><td class="num">21</td><td><span class="ok">✓ 直接 APPROVE</span></td></tr>
+          <tr><td class="strong mono">NORM-001</td><td>P01 普通层第一轮</td><td class="num">60</td><td><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></td></tr>
+          <tr><td class="strong mono">FIELD-001</td><td>P03 沄食系 + 品系 L1</td><td class="num">24</td><td><span class="ok">✓ 直接 APPROVE</span></td></tr>
+          <tr><td class="strong mono">NORM2-001</td><td>P01 第二轮闭合</td><td class="num">72</td><td><span class="ok">✓ 直接 APPROVE</span></td></tr>
+          <tr><td class="strong mono">P02-001</td><td>Resource Patch 补批</td><td class="num">5</td><td><span class="ok">✓ 直接 APPROVE</span></td></tr>
+          <tr class="total"><td>明细合计</td><td class="muted">覆盖 267 CSV 行中 220 合格行</td><td class="num">212</td><td class="muted">3 批经修复 · 4 批直接通过</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 06 LT 十族 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">06</span>LT Registry · 十族（Bake 5 / Response 5）</h2>
+    <p class="sec-desc">成员数条形按面着色：蓝 = Bake，橙 = Response（与发现曲线同一编码）。下表为 Registry v5 成员明细（112 程序 · 176 判同）；Registry 已升至 v6：10 族 / 162 程序 / 255 判同（含顺序还原修复后的重判同），各族明细待 SINGLE 族重跑后更新。</p>
+    <div class="card table-wrap">
+      <table aria-label="LT 十族明细">
+        <thead><tr>
+          <th>族</th><th>面</th><th class="num">成员</th><th>说明</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="strong mono">SINGLE_FACTOR_NORMALIZED_WEIGHT</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:82%"></i></span><b>41</b></span></td><td>最简结构</td></tr>
+          <tr><td class="strong mono">PLAIN_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:10%"></i></span><b>5</b></span></td><td>双因子 + 合并</td></tr>
+          <tr><td class="strong mono">HARD_GATED_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:4%"></i></span><b>2</b></span></td><td>硬门控</td></tr>
+          <tr><td class="strong mono">CONSTRAINED_RELATIVE_REFUGE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:0"></i></span><b>0</b></span></td><td>种子族，50 non-match</td></tr>
+          <tr><td class="strong mono">PATCH_RESOURCE_FOLLOWING</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:4%"></i></span><b>2</b></span></td><td>底质附着</td></tr>
+          <tr><td class="strong mono">TYPED_TARGET_RESPONSE</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:100%"></i></span><b>50</b></span></td><td>离散目标摄食</td></tr>
+          <tr><td class="strong mono">GUARD_CONFLICT_DUAL_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:14%"></i></span><b>7</b></span></td><td>∥ 并行竞争</td></tr>
+          <tr><td class="strong mono">STATE_GATED_MULTI_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:4%"></i></span><b>2</b></span></td><td>IF 门互斥</td></tr>
+          <tr><td class="strong mono">CUE_GUIDED_APPROACH_AVOID</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:2%"></i></span><b>1</b></span></td><td>环境梯度</td></tr>
+          <tr><td class="strong mono">FOOD_FIELD_FEEDING</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:4%"></i></span><b>2</b></span></td><td>场摄食</td></tr>
+          <tr>
+            <td class="strong mono">SINGLE 族重跑</td>
+            <td><span class="chip chip-warn">🔄 进行中</span></td>
+            <td class="num"><b>66</b> <span class="muted">成员</span></td>
+            <td>Census 重跑：66 成员用顺序还原后链形重判同</td>
+          </tr>
+          <tr class="total"><td>合计 10 族</td><td class="muted">Bake 5 / Response 5</td><td class="num">112 <span class="muted">v5 明细</span></td><td class="muted">v6：162 程序 / 255 判同 · 已消费 84 Story，剩余 ~173</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 07 Pattern Registry ===================== -->
+  <section class="sec">
+    <h2><span class="idx">07</span>Pattern Registry</h2>
+    <p class="sec-desc">8 条，自 R05 起稳定（下表列出 P01–P06）。</p>
+    <div class="pat-grid">
+      <div class="pat"><span class="code">P01</span><span class="name">Discrete Target → TargetFeeding</span></div>
+      <div class="pat"><span class="code">P02</span><span class="name">Resource Patch → TargetFeeding</span></div>
+      <div class="pat"><span class="code">P03</span><span class="name">Food Field → FieldFeeding</span></div>
+      <div class="pat"><span class="code">P04</span><span class="name">Guard Condition + Relation → RelationalConflict</span></div>
+      <div class="pat"><span class="code">P05</span><span class="name">Lifecycle / Migration / State</span></div>
+      <div class="pat"><span class="code">P06</span><span class="name">连续基质 / 底质处理</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 08 关键统计 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">08</span>关键统计</h2>
+    <p class="sec-desc">工程量与审核强度的总量视角。</p>
+    <div class="kv-grid">
+      <div class="kv"><b>60+</b><span>GitHub commits</span></div>
+      <div class="kv"><b>~50</b><span>轮独立审核<br>（FR 10 批 ×1–3 轮 + B 8 批 + LT 5 批 + 基建）</span></div>
+      <div class="kv"><b>~25</b><span>轮修复</span></div>
+      <div class="kv"><b>3</b><span>角色记忆文件<br>researcher / evidence-reviewer / census-worker</span></div>
+      <div class="kv"><b>~35</b><span>批次归档</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 09 审核通过趋势 ===================== -->
+  <section class="sec">
+    <h2><span class="idx">09</span>审核通过趋势</h2>
+    <p class="sec-desc">从「REVISE → 修复 → APPROVE」进化为「直接 APPROVE」—— 一次通过率随流程成熟显著上升。</p>
+    <div class="card">
+      <div class="rt-grid" aria-label="B 系列各批次审核路径">
+        <div class="rt"><div class="id">GUARD-001</div><div class="n">20 文件</div><div class="out"><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></div></div>
+        <div class="rt"><div class="id">GRAZE-001</div><div class="n">10 有效</div><div class="out"><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></div></div>
+        <div class="rt"><div class="id">MIGRA-001</div><div class="n">21 文件</div><div class="out"><span class="ok">✓ 直接 APPROVE</span></div></div>
+        <div class="rt"><div class="id">NORM-001</div><div class="n">60 文件</div><div class="out"><span class="rev">↻ REVISE</span><span class="arrow">→</span>修复<span class="arrow">→</span><span class="ok">✓ APPROVE</span></div></div>
+        <div class="rt"><div class="id">FIELD-001</div><div class="n">24 文件</div><div class="out"><span class="ok">✓ 直接 APPROVE</span></div></div>
+        <div class="rt"><div class="id">NORM2-001</div><div class="n">72 文件</div><div class="out"><span class="ok">✓ 直接 APPROVE</span></div></div>
+        <div class="rt"><div class="id">P02-001</div><div class="n">5 文件</div><div class="out"><span class="ok">✓ 直接 APPROVE</span></div></div>
+      </div>
+
+      <div class="strip">
+        <span class="cap">FR 十批</span>
+        <span class="chip chip-good">✓ R01</span><span class="chip chip-good">✓ R02</span><span class="chip chip-good">✓ R03†</span>
+        <span class="chip chip-good">✓ R04</span><span class="chip chip-good">✓ R05</span><span class="chip chip-good">✓ R06</span>
+        <span class="chip chip-good">✓ R07</span><span class="chip chip-good">✓ R08</span><span class="chip chip-good">✓ R09</span>
+        <span class="chip chip-good">✓ R10</span>
+        <span class="muted">† R03 撤回后重审通过</span>
+      </div>
+      <div class="strip">
+        <span class="cap">LT 五批</span>
+        <span class="chip chip-good">✓ B0</span><span class="chip chip-good">✓ B1</span>
+        <span class="chip chip-good">✓ B2</span><span class="chip chip-good">✓ B3</span>
+        <span class="chip chip-good">✓ B4</span>
+        <span class="muted">全部过独立审</span>
+      </div>
+
+      <p class="trend-note">
+        <b>趋势：</b>B 系列八批中，前三批（GUARD / GRAZE / NORM）走「REVISE → 修复 → APPROVE」路径；
+        后续四批（MIGRA / FIELD / NORM2 / P02）<b>四批全部直接 APPROVE</b>，零修复轮。
+        FR 十批全 APPROVE（仅 R03 撤回后重审一次），LT 前五批全部过审 ——
+        全程 ~50 轮独立审核、~25 轮修复，修复集中在流程早期。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 页脚 ===================== -->
+  <footer>
+    <span>FCF Harness · 进展汇总 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。</span>
+    <span>FR ✓ 完成 · B ✓ 闭合（顺序还原 211/213）· LT ⟳ 进行中（84 / ~257 Story）</span>
+  </footer>
+
+</div>
+
+<script>
+/* 轻量提示浮层：所有带 data-tip 的元素悬停显示说明，无外部依赖 */
+(function () {
+  var tip = document.createElement('div');
+  tip.className = 'tooltip';
+  tip.setAttribute('role', 'tooltip');
+  document.body.appendChild(tip);
+
+  function show(e) {
+    tip.textContent = this.getAttribute('data-tip');
+    tip.classList.add('on');
+    move(e);
+  }
+  function move(e) {
+    var x = e.clientX + 14, y = e.clientY + 16;
+    var r = tip.getBoundingClientRect();
+    if (x + r.width > window.innerWidth - 8)  x = window.innerWidth - r.width - 8;
+    if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 12;
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+  function hide() { tip.classList.remove('on'); }
+
+  var nodes = document.querySelectorAll('[data-tip]');
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener('mouseenter', show);
+    nodes[i].addEventListener('mousemove', move);
+    nodes[i].addEventListener('mouseleave', hide);
+  }
+})();
+</script>
+</body>
+</html>

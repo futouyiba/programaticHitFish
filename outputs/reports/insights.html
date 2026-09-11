@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FCF 全库调研与表达｜阶段结论与洞见</title>
+<style>
+  :root{
+    --bg:#071019; --bg2:#0B1826; --bg3:#102136; --fig:#081521;
+    --line:#1E3448; --line-soft:#152738;
+    --ink:#E3EDF5; --ink-2:#9FB4C8; --ink-3:#64778B;
+    --teal:#1CA3B8;  --teal-t:#5AC8D8;
+    --amber:#B3661A; --amber-t:#E3A45B;
+    --violet:#9D7BE0;--violet-t:#BCA4EE;
+    --reed:#4E8F5E;  --danger:#E25C4E;
+    --font-body:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+    --font-disp:"DengXian Light","Microsoft YaHei UI Light","Microsoft YaHei","PingFang SC",sans-serif;
+    --font-num:"Cascadia Mono","Consolas","SF Mono",Menlo,monospace;
+    --rail-w:44px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); font-size:15.5px; line-height:1.85;
+    padding-left:var(--rail-w);
+  }
+  ::selection{background:rgba(28,163,184,.35)}
+  a{color:var(--teal-t); text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--teal-t); outline-offset:3px; border-radius:4px}
+
+  /* ---------- 左侧钓线导轨（签名元素） ---------- */
+  .rail{position:fixed; top:0; left:0; bottom:0; width:var(--rail-w);
+    border-right:1px solid var(--line-soft); background:var(--bg); z-index:60}
+  .rail .line{position:absolute; left:21px; top:34px; bottom:34px; width:1px;
+    background:linear-gradient(180deg,transparent,rgba(159,180,200,.22) 8%,rgba(159,180,200,.22) 92%,transparent)}
+  .bobber{position:absolute; left:17.5px; top:24px; width:8px; height:20px; border-radius:4px;
+    background:linear-gradient(180deg,var(--danger) 0 45%,#DDE6EE 45% 100%);
+    box-shadow:0 0 0 1px rgba(7,16,25,.9), 0 2px 8px rgba(0,0,0,.5)}
+  .bobber::before{content:""; position:absolute; top:-7px; left:3px; width:2px; height:7px; background:#DDE6EE; border-radius:1px}
+  .rail-depth{position:absolute; left:30px; top:0; margin-top:-8px;
+    font-family:var(--font-num); font-size:10px; color:var(--ink-3); white-space:nowrap;
+    background:var(--bg); padding:0 3px; letter-spacing:.5px}
+  .rail-ticks{position:absolute; left:8px; top:0; bottom:0; width:8px}
+  .rail-ticks i{position:absolute; left:0; width:8px; height:1px; background:var(--line)}
+
+  /* ---------- 顶部导航 ---------- */
+  .nav{position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:4px;
+    padding:10px 26px; background:rgba(7,16,25,.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft); flex-wrap:wrap}
+  .nav .brand{font-family:var(--font-num); font-size:12.5px; letter-spacing:2px; color:var(--ink-2); margin-right:14px}
+  .nav a{font-size:13.5px; color:var(--ink-2); padding:4px 12px; border-radius:99px; border:1px solid transparent}
+  .nav a:hover{color:var(--ink); text-decoration:none; border-color:var(--line)}
+
+  .wrap{max-width:1060px; margin:0 auto; padding:0 26px}
+
+  /* ---------- 首屏 ---------- */
+  .hero{padding:84px 0 30px; position:relative}
+  .eyebrow{font-family:var(--font-num); font-size:12px; letter-spacing:4px; color:var(--teal-t); margin:0 0 18px}
+  h1{font-family:var(--font-disp); font-weight:300; font-size:clamp(30px,5vw,46px);
+    line-height:1.3; margin:0 0 18px; letter-spacing:1px}
+  h1 .vbar{color:var(--ink-3); font-weight:300; padding:0 6px}
+  h1 em{font-style:normal; color:var(--teal-t)}
+  .hero-lead{font-size:17px; color:var(--ink-2); max-width:760px; margin:0 0 34px}
+  .hero-lead strong{color:var(--ink); font-weight:600}
+
+  .readouts{position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    background:
+      repeating-radial-gradient(circle at 88% 12%, transparent 0 25px, rgba(90,200,216,.045) 25px 26.5px),
+      linear-gradient(180deg,#0A1624,#091420);
+    display:grid; grid-template-columns:repeat(4,1fr)}
+  .sweep{position:absolute; left:calc(88% - 500px); top:calc(12% - 500px); width:1000px; height:1000px;
+    border-radius:50%; pointer-events:none;
+    background:conic-gradient(rgba(90,200,216,.10),transparent 75deg 360deg);
+    transform-origin:500px 500px; animation:sweep 10s linear infinite}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+  .ro{position:relative; padding:26px 22px 22px; border-left:1px solid var(--line-soft); z-index:1}
+  .ro:first-child{border-left:none}
+  .ro .glyph{height:26px; display:flex; align-items:center; color:var(--ink-2); margin-bottom:10px}
+  .ro .num{font-family:var(--font-num); font-size:clamp(28px,3.6vw,42px); font-weight:700; line-height:1.1; letter-spacing:1px}
+  .ro .lab{font-size:14.5px; color:var(--ink); font-weight:600; margin-top:4px}
+  .ro .sub{font-size:12px; color:var(--ink-3); margin-top:3px; line-height:1.6}
+  .howto{margin:16px 0 0; font-size:13px; color:var(--ink-3)}
+  .howto b{color:var(--ink-2); font-weight:600}
+
+  /* ---------- 分区带 ---------- */
+  .band{padding:64px 0 8px}
+  .band-head{margin-bottom:26px; border-left:3px solid var(--accent); padding-left:18px}
+  .band-depth{display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:2px;
+    color:var(--accent-t); margin:0 0 8px; font-family:var(--font-num)}
+  .band-depth .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+  .band h2{font-family:var(--font-disp); font-weight:400; font-size:clamp(24px,3.4vw,32px); margin:0 0 6px}
+  .band-sub{color:var(--ink-2); margin:0; max-width:720px}
+  .band-design{--accent:var(--teal);  --accent-t:var(--teal-t)}
+  .band-method {--accent:var(--amber); --accent-t:var(--amber-t)}
+  .band-proc   {--accent:var(--violet);--accent-t:var(--violet-t)}
+  .band-warn   {--accent:var(--danger); --accent-t:#F09385}
+  .band-warn .chip{color:#F09385; border-color:rgba(226,92,78,.5); background:rgba(226,92,78,.09)}
+  .band-warn .card{border-color:rgba(226,92,78,.42);
+    background:radial-gradient(560px 220px at 8% -70px, rgba(226,92,78,.09), transparent 62%), var(--bg2)}
+  .pseudosteps{margin:12px 0 14px; padding:14px 20px 12px; background:#0D1B2B;
+    border:1px solid #2A4258; border-radius:10px; counter-reset:pstep}
+  .pseudosteps li{list-style:none; position:relative; margin:0; padding:5px 0 5px 38px;
+    color:var(--ink-2); font-size:14px; line-height:1.7}
+  .pseudosteps li b{color:var(--ink)}
+  .pseudosteps li::before{counter-increment:pstep; content:counter(pstep);
+    position:absolute; left:0; top:9px; width:24px; height:24px; border-radius:50%;
+    border:1px solid rgba(226,92,78,.55); color:#F09385;
+    font-family:var(--font-num); font-size:11.5px; line-height:24px; text-align:center}
+  .pseudosteps .out{color:#F09385; font-family:var(--font-num); font-size:.9em}
+  .pseudosteps .full{color:#7FC08D}
+  .pseudosteps .part{color:#E3A45B}
+  .conseq{margin:14px 0 2px; padding:13px 18px; border-radius:10px;
+    background:rgba(226,92,78,.09); border:1px solid rgba(226,92,78,.4);
+    color:var(--ink-2); font-size:14.5px; line-height:1.8}
+  .conseq b{color:var(--ink)}
+  /* 修正卡片的「已修复」状态 */
+  .chip-fixed{color:#7FC08D; border-color:rgba(78,143,94,.5); background:rgba(78,143,94,.10)}
+  .band-warn .card.card-fixed{border-color:rgba(78,143,94,.45);
+    background:radial-gradient(560px 220px at 8% -70px, rgba(78,143,94,.09), transparent 62%), var(--bg2)}
+  .fixednote{margin:14px 0 2px; padding:13px 18px; border-radius:10px;
+    background:rgba(78,143,94,.10); border:1px solid rgba(78,143,94,.45);
+    color:var(--ink-2); font-size:14.5px; line-height:1.8}
+  .fixednote b{color:#7FC08D}
+
+  /* ---------- 洞见卡片 ---------- */
+  .cards{display:flex; flex-direction:column; gap:22px; padding-bottom:26px}
+  .card{background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px 30px 24px}
+  .card-head{display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap}
+  .chip{font-family:var(--font-num); font-size:11px; letter-spacing:2px; padding:3px 11px;
+    border-radius:99px; border:1px solid; white-space:nowrap}
+  .band-design .chip{color:var(--teal-t);  border-color:rgba(28,163,184,.45);  background:rgba(28,163,184,.08)}
+  .band-method  .chip{color:var(--amber-t); border-color:rgba(227,164,91,.45); background:rgba(227,164,91,.08)}
+  .band-proc    .chip{color:var(--violet-t);border-color:rgba(188,164,238,.45);background:rgba(188,164,238,.08)}
+  .card h3{font-size:20px; font-weight:600; margin:0; line-height:1.5}
+  .thesis{margin:0 0 14px; padding:2px 0 2px 14px; border-left:3px solid var(--accent);
+    font-size:16.5px; font-weight:600; line-height:1.75}
+  .card p.body{margin:0 0 12px; color:var(--ink-2)}
+  .card p.body b, .card p.body strong{color:var(--ink); font-weight:600}
+  .card p.body .term{color:var(--ink); font-family:var(--font-num); font-size:.92em}
+  .analogy{margin:14px 0 16px; padding:14px 18px; background:#0D1B2B; border:1px dashed #2A4258; border-radius:10px}
+  .analogy-tag{display:inline-block; font-size:11.5px; letter-spacing:2px; color:var(--accent-t); margin-bottom:6px; font-weight:600}
+  .analogy p{margin:0; color:var(--ink-2); font-size:14.5px}
+  figure{margin:16px 0 0}
+  figure svg{display:block; width:100%; height:auto; background:var(--fig);
+    border:1px solid var(--line-soft); border-radius:10px}
+  figcaption{font-size:12.5px; color:var(--ink-3); margin-top:9px; line-height:1.7}
+  figcaption b{color:var(--ink-2); font-weight:600}
+
+  /* ---------- 图内通用样式 ---------- */
+  .dg-t{font-size:13.5px; font-weight:600; fill:var(--ink)}
+  .dg-s{font-size:11.5px; fill:var(--ink-2)}
+  .dg-n{font-size:10.5px; fill:var(--ink-3)}
+  .dg-mono{font-family:var(--font-num)}
+  .box{fill:#0D1B2B; stroke:var(--line); stroke-width:1; rx:9}
+  .note-chip{fill:rgba(28,163,184,.07); stroke:rgba(28,163,184,.4); stroke-width:1; stroke-dasharray:4 3}
+  .arrow{stroke:#5A7186; stroke-width:1.6; fill:none}
+  .ahead{fill:#5A7186}
+
+  details.tbl{margin:12px 0 0; font-size:13px; color:var(--ink-2)}
+  details.tbl summary{cursor:pointer; color:var(--ink-3); font-size:12.5px; letter-spacing:1px}
+  details.tbl summary:hover{color:var(--ink-2)}
+  details.tbl table{border-collapse:collapse; margin-top:10px; width:100%}
+  details.tbl th,details.tbl td{border:1px solid var(--line-soft); padding:7px 12px; text-align:left; vertical-align:top; line-height:1.7}
+  details.tbl th{color:var(--ink-2); font-weight:600; background:#0C1929; font-size:12px; letter-spacing:1px}
+  details.tbl td{font-size:12.5px; color:var(--ink-2)}
+  details.tbl td:first-child{font-family:var(--font-num); color:var(--ink); white-space:nowrap}
+
+  /* ---------- 图表交互 ---------- */
+  .pt{cursor:pointer; fill:transparent; stroke:transparent; stroke-width:1.5}
+  .pt:hover, .pt:focus-visible{fill:rgba(227,164,91,.18); stroke:var(--amber-t)}
+  #tip{position:fixed; z-index:99; pointer-events:none; display:none;
+    background:#13253A; border:1px solid var(--line); border-radius:8px;
+    padding:9px 13px; font-size:12.5px; line-height:1.65; color:var(--ink-2);
+    box-shadow:0 8px 28px rgba(0,0,0,.5); max-width:250px}
+  #tip b{color:var(--ink); font-family:var(--font-num)}
+  #tip .tm{color:var(--amber-t); font-weight:600}
+
+  /* ---------- 时间线 ---------- */
+  .timeline{padding:64px 0 20px}
+  .timeline h2{font-family:var(--font-disp); font-weight:400; font-size:clamp(24px,3.4vw,32px); margin:0 0 6px}
+  .timeline .tl-sub{color:var(--ink-2); margin:0 0 34px}
+  .tl{list-style:none; margin:0; padding:0 0 0 26px; border-left:2px solid var(--line); position:relative}
+  .tl li{position:relative; padding:0 0 30px 26px}
+  .tl li::before{content:""; position:absolute; left:-33px; top:8px; width:12px; height:12px;
+    border-radius:50%; background:var(--bg); border:3px solid var(--teal)}
+  .tl li.tl-end::before{border-color:var(--amber); background:var(--amber)}
+  .tl-date{font-family:var(--font-num); font-size:12px; letter-spacing:1.5px; color:var(--teal-t)}
+  .tl li.tl-end .tl-date{color:var(--amber-t)}
+  .tl h4{margin:2px 0 4px; font-size:16.5px; font-weight:600}
+  .tl p{margin:0; color:var(--ink-2); font-size:14px; max-width:720px}
+  .tl p b{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line-soft); margin-top:30px; padding:26px 0 44px;
+    font-size:12.5px; color:var(--ink-3); line-height:2}
+  footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+  @media (max-width:940px){
+    :root{--rail-w:0px}
+    .rail{display:none}
+    .readouts{grid-template-columns:1fr 1fr}
+    .ro{border-top:1px solid var(--line-soft)}
+    .ro:nth-child(-n+2){border-top:none}
+    .ro:nth-child(odd){border-left:none}
+    .card{padding:22px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .sweep{animation:none; display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- 共享图形符号 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="fish" viewBox="0 0 40 22">
+      <path fill="currentColor" d="M6 11 C12 3.5 29 3.5 36 11 C29 18.5 12 18.5 6 11 Z M6 11 L1 4 L3.5 11 L1 18 Z"/>
+      <circle cx="30" cy="9" r="1.5" fill="#071019"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 钓线导轨：浮漂随阅读下沉 -->
+<div class="rail" aria-hidden="true">
+  <div class="line"></div>
+  <div class="bobber" id="bobber"><span class="rail-depth" id="railDepth">0.0 m</span></div>
+  <div class="rail-ticks">
+    <i style="top:10%"></i><i style="top:30%"></i><i style="top:50%"></i><i style="top:70%"></i><i style="top:90%"></i>
+  </div>
+</div>
+
+<nav class="nav" aria-label="页面导航">
+  <span class="brand">FCF · PHASE REPORT</span>
+  <a href="#top">总览</a>
+  <a href="#design">设计发现</a>
+  <a href="#method">方法论发现</a>
+  <a href="#process">流程发现</a>
+  <a href="#corrections">重要修正</a>
+  <a href="#timeline">时间线</a>
+</nav>
+
+<header class="hero wrap" id="top">
+  <p class="eyebrow">FCF · PROGRAMATIC HIT FISH · 阶段报告</p>
+  <h1>FCF 全库调研与表达<span class="vbar">｜</span><em>阶段结论与洞见</em></h1>
+  <p class="hero-lead"><strong>一句话总结：267 种鱼、295 个故事、10 个程序模板、零语义推翻。</strong>
+  整个活水湖的行为世界，最终收敛成十个可调参的程序骨架——这份报告解释这次全库调研里最重要的十四个发现，以及它们为什么重要。</p>
+
+  <div class="readouts" role="group" aria-label="核心数字">
+    <div class="sweep" aria-hidden="true"></div>
+    <div class="ro">
+      <div class="glyph" aria-hidden="true">
+        <svg width="72" height="20" viewBox="0 0 72 20"><use href="#fish" x="0" y="4" width="24" height="13"/><use href="#fish" x="24" y="6" width="24" height="13" opacity=".75"/><use href="#fish" x="48" y="3" width="24" height="13" opacity=".5"/></svg>
+      </div>
+      <div class="num">267</div>
+      <div class="lab">种鱼</div>
+      <div class="sub">R01–R10 十批调研全覆盖（100%）</div>
+    </div>
+    <div class="ro">
+      <div class="glyph" aria-hidden="true">
+        <svg width="54" height="22" viewBox="0 0 54 22">
+          <rect x="6" y="2" width="34" height="17" rx="3" fill="none" stroke="currentColor" opacity=".4"/>
+          <rect x="3" y="5" width="34" height="17" rx="3" fill="none" stroke="currentColor" opacity=".65"/>
+          <rect x="0" y="8" width="34" height="13" rx="3" fill="none" stroke="currentColor"/>
+          <path d="M44 11 h8 M48 8 l4 3 -4 3" stroke="currentColor" fill="none" stroke-width="1.4"/>
+        </svg>
+      </div>
+      <div class="num">295</div>
+      <div class="lab">个行为故事</div>
+      <div class="sub">每种鱼至少一则，证据链逐字核验</div>
+    </div>
+    <div class="ro">
+      <div class="glyph" aria-hidden="true">
+        <svg width="54" height="22" viewBox="0 0 54 22">
+          <g fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="1" y="1" width="8" height="8" rx="2"/><rect x="12" y="1" width="8" height="8" rx="2"/><rect x="23" y="1" width="8" height="8" rx="2"/><rect x="34" y="1" width="8" height="8" rx="2"/><rect x="45" y="1" width="8" height="8" rx="2"/>
+            <rect x="1" y="12" width="8" height="8" rx="2"/><rect x="12" y="12" width="8" height="8" rx="2"/><rect x="23" y="12" width="8" height="8" rx="2"/><rect x="34" y="12" width="8" height="8" rx="2"/><rect x="45" y="12" width="8" height="8" rx="2"/>
+          </g>
+        </svg>
+      </div>
+      <div class="num">10</div>
+      <div class="lab">个程序模板</div>
+      <div class="sub">registry v6：10 族 162 程序（84/~257 Story）</div>
+    </div>
+    <div class="ro">
+      <div class="glyph" aria-hidden="true">
+        <svg width="54" height="22" viewBox="0 0 54 22">
+          <circle cx="15" cy="11" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M11 11 l3 3 6 -7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="30" y="15" font-family="Cascadia Mono,Consolas,monospace" font-size="12" fill="currentColor">= 0</text>
+        </svg>
+      </div>
+      <div class="num">0</div>
+      <div class="lab">次语义推翻</div>
+      <div class="sub">Pattern 稳定 8 条，R05 起零新立</div>
+    </div>
+  </div>
+  <p class="howto">怎么读：<b>结论</b>（一句话）→ <b>解释</b>（发生了什么）→ <b>打个比方</b>（非技术版）→ <b>图示</b>。技术术语保留英文原名，首次出现时给出中文释义。结论的适用边界见 <a href="#corrections">⚠️ 重要修正与已知局限</a>（模板数等结论以该区限定为准）。</p>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= 一、设计发现 ================= -->
+  <section class="band band-design" id="design" aria-labelledby="h-design">
+    <header class="band-head">
+      <p class="band-depth"><span class="dot"></span>水深 0–10 M · 阳光带 · 游戏机制层</p>
+      <h2 id="h-design">一、核心设计发现</h2>
+      <p class="band-sub">这七个发现直接决定游戏机制怎么搭：哪些东西必须拆开、哪些看起来不同的东西其实是同一个、哪些诱人的想法不该做进核心判断。</p>
+    </header>
+
+    <div class="cards">
+
+      <!-- 1 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 01</span><h3>一片芦苇丛，干了三件事</h3></div>
+        <p class="thesis">机制上必须把同一片芦苇丛拆成食物、庇护、感知三个互相独立的因子——不拆，调一个参数会连锁砸到另外两个，就是「调参地狱」。</p>
+        <p class="body">真实水下，一片芦苇丛同时扮演三个角色：它是<b>食堂</b>（小鱼小虾聚在这里，把掠食者也引来）、是<b>卧室</b>（鱼躲在里面避敌）、还是<b>窗帘</b>（挡住视线，谁也看不清谁）。玩家其实一直在用三种不同手段分别「攻击」这三个角色：打窝调<span class="term">饵料浓度</span>，动的是食堂；选钓点和结构，动的是鱼敢不敢待（卧室）；挑线色、看光线，动的是能不能被看见（窗帘）。如果游戏里这三个角色共用一套参数，策划想让鱼更容易聚过来，结果顺带把水「变清」了——鱼把钩看得一清二楚，全跑光。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>就像合租屋里客厅灯、热水器、音响接在同一个总开关上：你只想开个灯，结果室友的洗澡水凉了、音响半夜炸响。解法不是设计更复杂的开关顺序，而是老老实实拉三路线、装三个开关。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 320" role="img" aria-label="图示：一片芦苇丛分出三个独立因子，各自带独立调节旋钮">
+            <g stroke="#4E8F5E" stroke-width="3" fill="none" stroke-linecap="round">
+              <path d="M96 236 C92 190 96 150 108 112"/>
+              <path d="M112 238 C112 196 118 158 132 124"/>
+              <path d="M128 238 C130 200 138 166 150 136"/>
+              <path d="M146 240 C148 206 156 178 166 152"/>
+              <path d="M76 238 C74 202 76 172 84 144"/>
+            </g>
+            <ellipse cx="112" cy="244" rx="52" ry="9" fill="#12283C" stroke="#1E3448"/>
+            <text x="112" y="272" text-anchor="middle" class="dg-t">一片芦苇丛</text>
+            <text x="112" y="291" text-anchor="middle" class="dg-n">现实里同一个东西</text>
+            <g class="arrow">
+              <path d="M172 214 L252 96"/><path d="M178 222 L258 170"/><path d="M178 230 L258 248"/>
+            </g>
+            <path class="ahead" d="M252 96 l1 10 -9 -3 Z"/><path class="ahead" d="M258 170 L253.2 179.1 L247.8 170.7 Z"/><path class="ahead" d="M258 248 l-8 -4 0 9 Z"/>
+            <g>
+              <rect x="268" y="52" width="420" height="58" rx="9" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".55"/>
+              <text x="290" y="77" class="dg-t">食物因子 · 食堂</text>
+              <text x="290" y="96" class="dg-s">饵料浓度 → 聚不聚鱼</text>
+              <line x1="560" y1="81" x2="664" y2="81" stroke="#1E3448" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="588" cy="81" r="6" fill="#5AC8D8"/>
+              <g>
+              <rect x="268" y="126" width="420" height="58" rx="9" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".55"/>
+              <text x="290" y="151" class="dg-t">庇护因子 · 卧室</text>
+              <text x="290" y="170" class="dg-s">结构选择 → 敢不敢待</text>
+              <line x1="560" y1="155" x2="664" y2="155" stroke="#1E3448" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="634" cy="155" r="6" fill="#5AC8D8"/>
+              </g>
+              <rect x="268" y="200" width="420" height="58" rx="9" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".55"/>
+              <text x="290" y="225" class="dg-t">感知因子 · 窗帘</text>
+              <text x="290" y="244" class="dg-s">颜色 / 亮度 → 看不看得见</text>
+              <line x1="560" y1="229" x2="664" y2="229" stroke="#1E3448" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="612" cy="229" r="6" fill="#5AC8D8"/>
+            </g>
+            <text x="478" y="300" text-anchor="middle" class="dg-n">三个独立旋钮：各转各的，互不牵连</text>
+          </svg>
+          <figcaption><b>同一片芦苇丛 → 三个独立因子。</b>右侧滑杆位置各不相同，表示三个因子各自独立调参——动食堂的旋钮，卧室和窗帘纹丝不动。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 02</span><h3>鲈鱼护巢 = 一个程序，不是三个</h3></div>
+        <p class="thesis">护巢鲈鱼的「想吃」与「想赶人」是并行运行、最后合并竞争的两条评估路径——不需要独立的「护巢鱼 AI」，一套双通道 <span class="term">Response</span> 程序就够。</p>
+        <p class="body">护巢期的鲈鱼同时在做两件事：看见饵，想吃（<b>摄食路径</b>）；看见入侵者，要赶（<b>冲突路径</b>）。关键发现是这两条路径<b>同时运行</b>——鱼心里同时放着两杆秤，最后合并出一个行为：可能去追饵、可能去驱赶、也可能是权衡后的折中（比如守在巢和饵之间的位置）。所以「护巢」不是切换到另一个物种模式：配置上只需要在同一条鱼的 Response 程序里开两个评估通道，不存在第三套「护巢专用逻辑」。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>像父母一边做饭一边看孩子：油已经下锅（摄食），孩子在拆家（冲突）。人不会「切换成看护模式」就忘了锅——两件事同时在心里过秤，哪边更急先处理哪边，中间态是「端着锅铲去看娃」。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 320" role="img" aria-label="图示：一个 Response 程序分出两条并行评估通道，合并竞争后输出行为">
+            <rect x="200" y="18" width="320" height="52" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="360" y="40" text-anchor="middle" class="dg-t">护巢鲈鱼 · 同一个 ResponseProgram</text>
+            <text x="360" y="58" text-anchor="middle" class="dg-n">没有「护巢模式专用 AI」</text>
+            <path class="arrow" d="M300 70 L180 108"/><path class="arrow" d="M420 70 L540 108"/>
+            <path class="ahead" d="M180 108 l9 -1 -3 -9 Z"/><path class="ahead" d="M540 108 l-9 -1 3 -9 Z"/>
+            <rect x="60" y="112" width="240" height="64" rx="9" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".6"/>
+            <text x="180" y="139" text-anchor="middle" class="dg-t">摄食评估</text>
+            <text x="180" y="159" text-anchor="middle" class="dg-s">看见饵：想吃</text>
+            <text x="360" y="150" text-anchor="middle" class="dg-mono" font-size="20" fill="#5AC8D8">∥</text>
+            <rect x="420" y="112" width="240" height="64" rx="9" fill="#0D1B2B" stroke="#B3661A" stroke-opacity=".65"/>
+            <text x="540" y="139" text-anchor="middle" class="dg-t">冲突评估</text>
+            <text x="540" y="159" text-anchor="middle" class="dg-s">看见入侵者：要赶</text>
+            <path class="arrow" d="M180 176 L180 210 L300 232"/>
+            <path class="arrow" d="M540 176 L540 210 L420 232"/>
+            <path class="ahead" d="M300 232 l-9 -3 5 -8 Z"/><path class="ahead" d="M420 232 l9 -3 -5 -8 Z"/>
+            <rect x="270" y="228" width="180" height="50" rx="25" fill="#0E2130" stroke="#1CA3B8"/>
+            <text x="360" y="249" text-anchor="middle" class="dg-t">COMBINE</text>
+            <text x="360" y="267" text-anchor="middle" class="dg-n">合并 · 两杆秤拔河</text>
+            <path class="arrow" d="M450 253 L520 253"/>
+            <path class="ahead" d="M528 253 l-9 -4 0 8 Z"/>
+            <rect x="532" y="228" width="168" height="50" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="616" y="249" text-anchor="middle" class="dg-t">行为输出</text>
+            <text x="616" y="267" text-anchor="middle" class="dg-n">追饵 / 驱赶 / 折中守位</text>
+            <text x="360" y="308" text-anchor="middle" class="dg-n">两条通道并行评估 → 合并决定行为，而不是切换成「另一条鱼」</text>
+          </svg>
+          <figcaption><b>双通道并行（∥ 拓扑）。</b>合并点本身就是信息：两个动机的相对强度，直接决定鱼做出哪种折中行为——这是单通道程序表达不出来的。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 03</span><h3>洄游期停食 ≠ 不咬钩</h3></div>
+        <p class="thesis">「停食」关闭的是摄食路径，「可钓」走的是另一条非摄食攻击路径——两件事互不矛盾；动机归因（攻击？领地？反射？）暂无引文支持，保持 <span class="term">open</span>，不下结论。</p>
+        <p class="body">大马哈鱼洄游期停止进食，这一点经 <span class="term">FishBase</span> 逐字核验。但洄游季照样能钓到它们——机制上毫不矛盾：决定咬不咬钩的，从来不止「饿」这一条路。摄食路径关了，<b>非摄食的攻击路径</b>仍然开放（也许是攻击、领地、反射——具体动机目前没有文献支持，所以归因保持 open，宁缺毋假）。对游戏的直接含义：洄游季的鱼不是「锁死的木头」，只是换了一条上钩的路——鱼饵的「可钓性」和「可食性」是两个独立的轴。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>一个人宣布「减肥不吃晚饭」，但你朝他扔纸团，他还是会抬手挡开。「不吃东西」和「不出手」是两套系统——关掉食欲这个应用的通知，不代表卸载了本能反应这个应用。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 270" role="img" aria-label="图示：摄食路径已关闭，非摄食攻击路径仍然开放并通向咬钩">
+            <use href="#fish" x="26" y="112" width="96" height="53" color="#7E93A8"/>
+            <text x="74" y="192" text-anchor="middle" class="dg-t">大马哈鱼</text>
+            <text x="74" y="210" text-anchor="middle" class="dg-n">洄游期 · 停食已核验</text>
+            <rect x="160" y="46" width="360" height="58" rx="9" fill="#0C1725" stroke="#1E3448" stroke-dasharray="6 4" opacity=".75"/>
+            <text x="192" y="71" class="dg-t" opacity=".65">摄食路径 ·「饿了吗？」</text>
+            <text x="192" y="90" class="dg-s" opacity=".65">停食：此路关闭（FishBase 核验）</text>
+            <circle cx="548" cy="75" r="15" fill="rgba(226,92,78,.12)" stroke="#E25C4E"/>
+            <path d="M542 69 l12 12 M554 69 l-12 12" stroke="#E25C4E" stroke-width="2.4" stroke-linecap="round"/>
+            <rect x="160" y="166" width="360" height="58" rx="9" fill="#0D1B2B" stroke="#B3661A" stroke-opacity=".75"/>
+            <text x="192" y="191" class="dg-t">非摄食攻击路径 ·「出手不问饿不饿」</text>
+            <text x="192" y="210" class="dg-s">仍开放 · 洄游季可钓走的就是这条路</text>
+            <circle cx="548" cy="195" r="15" fill="rgba(28,163,184,.12)" stroke="#5AC8D8"/>
+            <path d="M541 195 l5 5 10 -11" stroke="#5AC8D8" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="arrow" d="M566 195 L600 195 L600 145"/>
+            <path class="ahead" d="M600 137 l-4 9 8 0 Z"/>
+            <rect x="560" y="88" width="132" height="50" rx="9" fill="#0E2130" stroke="#5AC8D8"/>
+            <text x="626" y="109" text-anchor="middle" class="dg-t">咬钩可能</text>
+            <text x="626" y="127" text-anchor="middle" class="dg-n">与饿不饿无关</text>
+            <rect x="160" y="234" width="532" height="0" fill="none"/>
+            <rect x="160" y="238" width="470" height="26" rx="13" class="note-chip"/>
+            <text x="395" y="256" text-anchor="middle" class="dg-n">动机归因（攻击？领地？反射？）→ open：无引文支持，不写进结论</text>
+          </svg>
+          <figcaption><b>两条路，一关一开。</b>停食关掉的是「饿」这条路径；攻击路径不受影响——所以「停食」和「可钓」可以在同一条鱼身上同时成立。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 04</span><h3>「泛食适应性高」≠ 程序复杂</h3></div>
+        <p class="thesis">267 种鱼的摄食行为全部收敛到 10 个程序模板——行为差异是<b>参数差异</b>，不是<b>逻辑差异</b>；策划不需要为每条鱼写新逻辑，只需要调参。</p>
+        <p class="body">调研启动前最大的恐惧是「每种鱼都得写一套 AI」。全库跑完，结论正好相反：把鱼名和参数拿掉，大量看起来行为迥异的鱼，<b>函数体完全相同</b>——267 种鱼的摄食程序最终收敛在 10 个 <span class="term">LogicTemplate</span>（逻辑模板）里。滤食的白鲢、伏击的鳜鱼、翻底的鲤鱼，天差地别的是 <span class="term">Profile</span> 参数（滤什么、伏多久、翻多深），不是程序结构。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>267 道菜，共用 10 张菜谱骨架。米其林大厨和食堂阿姨用的是同一本「炒、炖、蒸、煮」，不同的只是配料表和火候数字。对策划的含义：不用学新菜谱，只需要会调配料表。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 300" role="img" aria-label="图示：267 种鱼收敛到 10 个模板，再通过参数差异化表达">
+            <g color="#7E93A8">
+              <use href="#fish" x="24"  y="30" width="34" height="19"/><use href="#fish" x="66"  y="44" width="34" height="19"/><use href="#fish" x="108" y="26" width="34" height="19"/><use href="#fish" x="30"  y="74" width="34" height="19"/><use href="#fish" x="72"  y="86" width="34" height="19"/><use href="#fish" x="112" y="72" width="34" height="19"/><use href="#fish" x="26"  y="116" width="34" height="19"/><use href="#fish" x="70"  y="128" width="34" height="19"/><use href="#fish" x="110" y="114" width="34" height="19"/><use href="#fish" x="34"  y="158" width="34" height="19"/><use href="#fish" x="76"  y="170" width="34" height="19"/><use href="#fish" x="114" y="156" width="34" height="19"/><use href="#fish" x="40"  y="200" width="34" height="19"/><use href="#fish" x="82"  y="212" width="34" height="19"/><use href="#fish" x="118" y="198" width="34" height="19"/>
+            </g>
+            <text x="84" y="248" text-anchor="middle" class="dg-t">267 种鱼</text>
+            <text x="84" y="267" text-anchor="middle" class="dg-n">行为五花八门</text>
+            <path d="M152 134 L208 134 L286 76 M208 134 L286 192" class="arrow" fill="none"/>
+            <path class="ahead" d="M286 76 l-9 1 4 8 Z"/><path class="ahead" d="M286 192 l-9 -1 4 -8 Z"/>
+            <text x="212" y="120" class="dg-n">普查收敛</text>
+            <g fill="none" stroke="#5AC8D8" stroke-opacity=".8">
+              <rect x="300" y="44"  width="74" height="40" rx="7"/><rect x="384" y="44"  width="74" height="40" rx="7"/><rect x="468" y="44"  width="74" height="40" rx="7"/><rect x="552" y="44"  width="74" height="40" rx="7"/><rect x="636" y="44"  width="74" height="40" rx="7"/>
+              <rect x="300" y="96"  width="74" height="40" rx="7"/><rect x="384" y="96"  width="74" height="40" rx="7"/><rect x="468" y="96"  width="74" height="40" rx="7"/><rect x="552" y="96"  width="74" height="40" rx="7"/><rect x="636" y="96"  width="74" height="40" rx="7"/>
+            </g>
+            <g fill="#5AC8D8" class="dg-mono" font-size="12" text-anchor="middle">
+              <text x="337" y="69">T1</text><text x="421" y="69">T2</text><text x="505" y="69">T3</text><text x="589" y="69">T4</text><text x="673" y="69">T5</text>
+              <text x="337" y="121">T6</text><text x="421" y="121">T7</text><text x="505" y="121">T8</text><text x="589" y="121">T9</text><text x="673" y="121">T10</text>
+            </g>
+            <text x="505" y="30" text-anchor="middle" class="dg-t">10 个 LogicTemplate（程序骨架）</text>
+            <path class="arrow" d="M337 136 L337 168 M421 136 L421 168 M589 136 L589 168"/>
+            <path class="ahead" d="M337 176 l-4 -9 8 0 Z"/><path class="ahead" d="M421 176 l-4 -9 8 0 Z"/><path class="ahead" d="M589 176 l-4 -9 8 0 Z"/>
+            <g>
+              <rect x="252" y="180" width="150" height="58" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+              <text x="327" y="204" text-anchor="middle" class="dg-t">白鲢</text>
+              <text x="327" y="224" text-anchor="middle" class="dg-s" fill="#E3A45B">换滤食参数</text>
+              <rect x="430" y="180" width="150" height="58" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+              <text x="505" y="204" text-anchor="middle" class="dg-t">鳜鱼</text>
+              <text x="505" y="224" text-anchor="middle" class="dg-s" fill="#E3A45B">换伏击参数</text>
+              <rect x="608" y="180" width="102" height="58" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+              <text x="659" y="204" text-anchor="middle" class="dg-t">鲤鱼</text>
+              <text x="659" y="224" text-anchor="middle" class="dg-s" fill="#E3A45B">换翻掘参数</text>
+            </g>
+            <text x="505" y="268" text-anchor="middle" class="dg-n">同一张骨架 · 只换 Profile 参数 · 函数体一行不改</text>
+          </svg>
+          <figcaption><b>收敛漏斗。</b>「泛食适应性高」听起来像要写复杂程序，实际上 267 种鱼共享 10 个模板——复杂度活在参数表里，不活在代码里。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 05</span><h3>打的窝和长的草，是同一种「斑块」</h3></div>
+        <p class="thesis">玩家打窝产生的食物斑块与自然生长的食物斑块，在鱼侧走<b>完全相同</b>的 <span class="term">Bake</span>（空间烘焙）程序——来源差异由世界系统的事实供给层处理，打窝不需要购买任何新的鱼侧结构。</p>
+        <p class="body">打窝（预投饵）形成的食物分布，和世界里水草自然长出来的食物分布，到了鱼这边是同一种东西：一片空间里的<b>食物斑块场</b>。鱼只对「哪里有多少吃的」做反应，不问、也无法问「这是玩家撒的还是自然长的」。所以实现上：世界系统负责把两种来源煮成一锅「事实」，鱼侧的 Bake 程序只需要一个，吃这锅事实就行。这也是普查的实际结论：<span class="term">P02</span> 资源斑块族的预投饵与自然斑块样本，形态完全一致。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>家门口的储物柜不区分快递是哪家公司送的——进了柜子就是「一格包裹」。鱼的世界也一样：进了烘焙，就只是一件「食物」，出生证明不重要。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 280" role="img" aria-label="图示：两种来源汇入同一个事实供给层，再进同一个烘焙程序">
+            <rect x="36" y="36" width="200" height="56" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="136" y="60" text-anchor="middle" class="dg-t">玩家打窝</text>
+            <text x="136" y="80" text-anchor="middle" class="dg-n">预投饵 · 人为投放</text>
+            <rect x="36" y="150" width="200" height="56" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="136" y="174" text-anchor="middle" class="dg-t">水草斑块</text>
+            <text x="136" y="194" text-anchor="middle" class="dg-n">自然生长 · 世界自己长出来</text>
+            <path class="arrow" d="M236 64 L268 64 L268 104"/><path class="arrow" d="M236 178 L268 178 L268 138"/>
+            <path class="ahead" d="M268 104 l-4 -9 8 0 Z"/>
+            <path class="ahead" d="M268 138 l-4 9 8 0 Z"/>
+            <rect x="292" y="104" width="196" height="68" rx="9" fill="#0E2130" stroke="#5AC8D8" stroke-opacity=".7"/>
+            <text x="390" y="131" text-anchor="middle" class="dg-t">世界系统 · 事实供给层</text>
+            <text x="390" y="152" text-anchor="middle" class="dg-n">来源差异在这里消化掉</text>
+            <path class="arrow" d="M488 138 L524 138"/>
+            <path class="ahead" d="M532 138 l-9 -4 0 8 Z"/>
+            <rect x="536" y="104" width="160" height="68" rx="9" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".7"/>
+            <text x="616" y="131" text-anchor="middle" class="dg-t">鱼侧 Bake</text>
+            <text x="616" y="152" text-anchor="middle" class="dg-n">空间烘焙 · 同一个程序</text>
+            <path class="arrow" d="M616 172 L616 202"/>
+            <path class="ahead" d="M616 210 l-4 -9 8 0 Z"/>
+            <g fill="none" stroke="#5AC8D8" stroke-opacity=".55">
+              <ellipse cx="470" cy="238" rx="70" ry="17" stroke-dasharray="5 4"/>
+              <ellipse cx="560" cy="252" rx="52" ry="13" stroke-dasharray="5 4"/>
+              <ellipse cx="646" cy="236" rx="38" ry="10" stroke-dasharray="5 4"/>
+            </g>
+            <text x="240" y="243" class="dg-n">食物斑块场（鱼眼里的世界）</text>
+            <text x="240" y="260" class="dg-n">不问来路，只问哪里有多少吃的</text>
+          </svg>
+          <figcaption><b>两条来路，一个出口。</b>「打窝」这个玩法不需要在鱼侧新买任何结构——它只是往世界的事实供给层里多倒了一勺食材。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 6 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 06</span><h3>电鳗的「放电」，管不到「上不上钩」</h3></div>
+        <p class="thesis">电鳗放电瘫痪猎物发生在<b>袭击时刻</b>（实例化之后，<span class="term">Encounter / Conversion</span> 层），不改变「这条鱼进不进候选池」的 <span class="term">pre-hook</span> 判断——它是「吃到之后怎么处理」，不是「看不看得上你的饵」。</p>
+        <p class="body">电鳗确实能用放电「遥控」猎物——让猎物躲向它想要的方向再一口拿下，听起来像极了某种高级咬钩机制。但把时间轴拆开看：FCF 的核心判断是<b>「这条鱼看到我的饵了吗、想不想吃」</b>（pre-hook，决定进不进候选池）；放电发生在袭击时刻——鱼已经决定出击<b>之后</b>，怎么处理猎物。前者管「约不约」，后者管「约会之后的日子怎么过」。把放电做进候选池判断，等于让相亲环节去考察对方婚后会不会修水管。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>招聘漏斗的两端：「要不要发面试邀请」（pre-hook）和「入职第一天怎么干活」（袭击后的放电）是两个完全不同的问题。后者的技能再炫酷，也不该写进前者的筛选条件。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 240" role="img" aria-label="图示：三个阶段中，pre-hook 是核心判断，放电发生在最后的处理阶段">
+            <rect x="30" y="52" width="222" height="92" rx="10" fill="#0E2130" stroke="#1CA3B8" stroke-opacity=".8"/>
+            <text x="141" y="80" text-anchor="middle" class="dg-t">pre-hook · 候选池判断</text>
+            <text x="141" y="102" text-anchor="middle" class="dg-s">这条鱼看到饵了吗？想吃吗？</text>
+            <text x="141" y="124" text-anchor="middle" class="dg-n">FCF 的核心问题 · 与放电无关</text>
+            <path class="arrow" d="M252 98 L288 98"/>
+            <path class="ahead" d="M296 98 l-9 -4 0 8 Z"/>
+            <rect x="300" y="52" width="180" height="92" rx="10" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="390" y="84" text-anchor="middle" class="dg-t">Encounter</text>
+            <text x="390" y="106" text-anchor="middle" class="dg-s">相遇 · 出击</text>
+            <text x="390" y="128" text-anchor="middle" class="dg-n">鱼决定动手了</text>
+            <path class="arrow" d="M480 98 L516 98"/>
+            <path class="ahead" d="M524 98 l-9 -4 0 8 Z"/>
+            <rect x="528" y="52" width="164" height="92" rx="10" fill="#152238" stroke="#E3A45B" stroke-opacity=".85"/>
+            <path d="M610 68 l-9 14 h8 l-6 13 14 -17 h-8 l7 -10 Z" fill="#E3A45B"/>
+            <text x="610" y="112" text-anchor="middle" class="dg-t">Conversion</text>
+            <text x="610" y="132" text-anchor="middle" class="dg-n">电鳗放电住在这里</text>
+            <text x="141" y="188" text-anchor="middle" class="dg-n">放电不改变「进不进候选池」</text>
+            <text x="610" y="188" text-anchor="middle" class="dg-n">「吃到之后怎么处理」属于下游</text>
+            <text x="360" y="220" text-anchor="middle" class="dg-n">钓鱼机制的分界线：袭击之前 vs 袭击之后</text>
+          </svg>
+          <figcaption><b>时间轴分层。</b>电鱼的电是「打架的招式」，不是「应约的请柬」——归 Encounter / Conversion 层，别塞进候选池判断。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 14 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 14</span><h3>伏击组 26 个门形，各不相同</h3></div>
+        <p class="thesis">顺序还原揭示：伏击鱼的第一判断步（<b>门</b>）类型各异——植被定位 / 底栖硬定位 / 可埋底质 / 洞隙 / 结构 / 明暗交界 / 表层，<b>门形本身就是 LogicTemplate 的判据</b>；修正前它们全部被平铺归入 SINGLE 两步链。</p>
+        <p class="body">B 系列顺序还原修复完成后，伏击组 26 个策略故事的<b>第一判断步</b>第一次显形：同样是「先找到埋伏点」，有的鱼靠<span class="term">植被定位</span>埋进草丛、有的靠<span class="term">底栖硬定位</span>贴住硬底、有的认<span class="term">可埋底质</span>看泥沙能不能埋、有的守<span class="term">洞隙</span>、有的依<span class="term">结构</span>、有的卡<span class="term">明暗交界</span>、有的占<span class="term">表层</span>——七类门形，没有两个相同。这个差异在平铺写法里完全不可见：修正前，26 个伏击故事全部被压扁成同一条 SINGLE 两步链（读因子 → 合并），仿佛所有伏击鱼用同一个姿势埋伏。顺序还原把「门」还给了它们——门是什么、门在第几步，直接决定程序骨架是否同构，是判同的第一判据。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>26 家伏击店招牌都写着「ambush」，但门脸各不相同：有的开在草丛里，有的开在礁石缝，有的开在沙坑……平铺写法等于把 26 家店的照片全部复印成同一张「有门面」。要看出门脸差异，得先按顺序还原「客人进门第一步看到什么」。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 312" role="img" aria-label="图示：伏击组 26 个策略故事在顺序还原后显形出七类第一判断步（门形），修正前全部平铺为 SINGLE 两步链">
+            <rect x="130" y="14" width="460" height="54" rx="10" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="360" y="36" text-anchor="middle" class="dg-t">伏击组 Ambush · 26 个策略故事</text>
+            <text x="360" y="58" text-anchor="middle" class="dg-n">修正前：26 个门全部平铺 → SINGLE 两步链（一种骨架）</text>
+            <path class="arrow" d="M360 68 L360 94"/>
+            <path class="ahead" d="M360 100 l-4 -9 8 0 Z"/>
+            <text x="374" y="90" class="dg-n">顺序还原修复（2026-09-11）· 显形 7 类门形</text>
+            <g fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".55">
+              <rect x="24"  y="104" width="156" height="48" rx="9"/>
+              <rect x="196" y="104" width="156" height="48" rx="9"/>
+              <rect x="368" y="104" width="156" height="48" rx="9"/>
+              <rect x="540" y="104" width="156" height="48" rx="9"/>
+              <rect x="114" y="164" width="156" height="48" rx="9"/>
+              <rect x="282" y="164" width="156" height="48" rx="9"/>
+              <rect x="450" y="164" width="156" height="48" rx="9"/>
+            </g>
+            <g class="dg-mono" font-size="10.5" fill="#5AC8D8">
+              <text x="34"  y="120">G1</text><text x="206" y="120">G2</text><text x="378" y="120">G3</text><text x="550" y="120">G4</text>
+              <text x="124" y="180">G5</text><text x="292" y="180">G6</text><text x="460" y="180">G7</text>
+            </g>
+            <g class="dg-s" text-anchor="middle">
+              <text x="102" y="135">植被定位</text><text x="274" y="135">底栖硬定位</text><text x="446" y="135">可埋底质</text><text x="618" y="135">洞隙</text>
+              <text x="192" y="195">结构</text><text x="360" y="195">明暗交界</text><text x="528" y="195">表层</text>
+            </g>
+            <path class="arrow" d="M360 212 L360 228"/>
+            <path class="ahead" d="M360 234 l-4 -9 8 0 Z"/>
+            <rect x="60" y="238" width="600" height="60" rx="10" fill="rgba(78,143,94,.08)" stroke="#4E8F5E" stroke-opacity=".7"/>
+            <text x="360" y="262" text-anchor="middle" class="dg-t">门形 = LogicTemplate 第一判据</text>
+            <text x="360" y="284" text-anchor="middle" class="dg-n">门是什么、排在第几步 → 决定链是否同构 → 决定是否并族</text>
+          </svg>
+          <figcaption><b>七类门形。</b>修正前 26 个伏击故事共享一条 SINGLE 两步链，第一判断步的差异被完全压扁；顺序还原后，仅「门」这一步就显形出 7 类形态——门形差异直接进入判同依据（参见「重要修正 03」与 SINGLE 族重跑）。</figcaption>
+        </figure>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= 二、方法论发现 ================= -->
+  <section class="band band-method" id="method" aria-labelledby="h-method">
+    <header class="band-head">
+      <p class="band-depth"><span class="dot"></span>水深 10–20 M · 过渡带 · 研究方法层</p>
+      <h2 id="h-method">二、方法论发现</h2>
+      <p class="band-sub">这四个发现回答「怎么把 267 种鱼调研得又准又稳」——防偏见、防误合并、防假收敛。它们和鱼无关，和求真有关。</p>
+    </header>
+
+    <div class="cards">
+
+      <!-- 7 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 07</span><h3>蒙着眼睛写答案，才有资格对答案</h3></div>
+        <p class="thesis">先写程序骨架、后开模板库的「盲纪律」被实验证实有效：26 个 <span class="term">Bake</span> 程序<b>全部拒绝了种子模板</b>——顺着模板写（fit bias）的人，产不出「拒绝」。</p>
+        <p class="body">逻辑模板普查最大的隐性风险是：一旦先看见模板，就会不知不觉把程序<b>写成模板的样子</b>——那样 Pairwise Merge Test（两两合并测试）永远测不出差异，世界看起来完美收敛，其实是被污染的收敛。所以纪律定为：从冻结故事重建程序骨架时<b>绝不打开模板库</b>（盲写），写完再开库比对。实验结果是最好的自证：26 个 Bake 程序全部拒绝了种子模板——一个 fit bias（迎合偏见）的产出只会是「完美贴合」，不会是「拒绝」。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>考前不看答案，交卷后再对答案。看过答案做题的人得满分不稀奇；没看答案的人做错了某道题，恰恰证明这张卷子是真做的。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 170" role="img" aria-label="图示：盲写、开库比对、全部拒绝种子模板三步">
+            <path d="M40 60 L228 60 L252 85 L228 110 L40 110 L64 85 Z" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="134" y="80" text-anchor="middle" class="dg-t">① 盲写</text>
+            <text x="134" y="100" text-anchor="middle" class="dg-n">先写程序骨架，不开模板库</text>
+            <path d="M256 60 L444 60 L468 85 L444 110 L256 110 L280 85 Z" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="350" y="80" text-anchor="middle" class="dg-t">② 开库比对</text>
+            <text x="350" y="100" text-anchor="middle" class="dg-n">骨架冻结之后，才打开 registry</text>
+            <path d="M472 60 L660 60 L684 85 L660 110 L472 110 L496 85 Z" fill="#0E2130" stroke="#5AC8D8" stroke-opacity=".8"/>
+            <text x="576" y="80" text-anchor="middle" class="dg-t">③ 实验证实</text>
+            <text x="576" y="100" text-anchor="middle" class="dg-n">26 / 26 全部拒绝种子模板</text>
+            <text x="360" y="148" text-anchor="middle" class="dg-n">fit bias 的人只会产出「完美贴合」，不会产出「拒绝」——拒绝本身，就是盲写的凭证</text>
+          </svg>
+          <figcaption><b>盲纪律三步。</b>「全部拒绝」不是失败，恰恰是干净度证明：没有一个程序被种子模板污染收编。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 8 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 08</span><h3>两条「并行的路」≠ 一条「二选一的路」</h3></div>
+        <p class="thesis">护巢的双路径是<b>并行竞争</b>（<span class="term">GUARD</span> 拓扑，∥），停食洄游的双路径是<b>状态门控</b>（<span class="term">STATE_GATED</span> 拓扑，IF 门）——看似都是「两条路」，实为两种控制流，<b>不得合并为一个模板</b>。</p>
+        <p class="body">调研里两次遇到「一条鱼、两条路」的表述，第一反应是「这该是同一个模式吧」。拆开看完全不同：护巢鲈鱼的两条路<b>同时</b>在跑，最后合并竞争——合并点承载语义（两个动机在拔河，拔河的相对力量就是信息）；停食洄游鱼的两条路是<b>先看状态再选一条</b>——现在停食吗？是就走非摄食那条，另一条根本不启动，门本身承载语义。合并点上的拔河和门上的二选一，是完全不同的两种机制。真合并成一个模板，两种语义都会丢。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>一种是「评委同时打分再合计」——两位评委的分歧本身就是重要信息；另一种是「铁路道岔」——火车永远只走一条轨，另一条上根本没有车。评委席和道岔，不能共用一套管理制度。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 350" role="img" aria-label="图示：GUARD 双路并行合并 与 STATE_GATED IF 门二选一 的对比">
+            <rect x="18" y="16" width="330" height="320" rx="12" fill="#0A1626" stroke="#1E3448"/>
+            <text x="183" y="44" text-anchor="middle" class="dg-mono" font-size="13" fill="#5AC8D8">GUARD 拓扑</text>
+            <text x="183" y="62" text-anchor="middle" class="dg-n">并行竞争 · 护巢鲈鱼用这个</text>
+            <circle cx="183" cy="86" r="5" fill="#5AC8D8"/>
+            <text x="200" y="90" class="dg-n">两条动机同时在场</text>
+            <path class="arrow" d="M160 92 L110 116 M206 92 L256 116"/>
+            <path class="ahead" d="M110 116 l9 -2 -4 -8 Z"/><path class="ahead" d="M256 116 l-9 -2 4 -8 Z"/>
+            <rect x="52" y="120" width="118" height="46" rx="8" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".6"/>
+            <text x="111" y="140" text-anchor="middle" class="dg-s">摄食评估</text>
+            <text x="111" y="158" text-anchor="middle" class="dg-n">一直在跑</text>
+            <rect x="196" y="120" width="118" height="46" rx="8" fill="#0D1B2B" stroke="#B3661A" stroke-opacity=".7"/>
+            <text x="255" y="140" text-anchor="middle" class="dg-s">冲突评估</text>
+            <text x="255" y="158" text-anchor="middle" class="dg-n">也一直在跑</text>
+            <path class="arrow" d="M111 166 L111 196 L160 216 M255 166 L255 196 L206 216"/>
+            <path class="ahead" d="M160 216 l-9 -4 3 -8 Z"/><path class="ahead" d="M206 216 l9 -4 -3 -8 Z"/>
+            <rect x="123" y="212" width="120" height="40" rx="20" fill="#0E2130" stroke="#1CA3B8"/>
+            <text x="183" y="237" text-anchor="middle" class="dg-t" font-size="12.5">COMBINE</text>
+            <path class="arrow" d="M183 252 L183 276"/>
+            <path class="ahead" d="M183 284 l-4 -9 8 0 Z"/>
+            <text x="183" y="304" text-anchor="middle" class="dg-s">输出：带拔河痕迹的行为</text>
+            <text x="183" y="322" text-anchor="middle" class="dg-n">分歧本身是信息</text>
+
+            <text x="360" y="180" text-anchor="middle" font-size="26" fill="#E3A45B" class="dg-mono">≠</text>
+
+            <rect x="372" y="16" width="330" height="320" rx="12" fill="#0A1626" stroke="#1E3448"/>
+            <text x="537" y="44" text-anchor="middle" class="dg-mono" font-size="13" fill="#5AC8D8">STATE_GATED 拓扑</text>
+            <text x="537" y="62" text-anchor="middle" class="dg-n">状态门控 · 停食洄游鱼用这个</text>
+            <circle cx="537" cy="86" r="5" fill="#5AC8D8"/>
+            <text x="554" y="90" class="dg-n">先看状态，再选路</text>
+            <path class="arrow" d="M537 92 L537 108"/>
+            <path class="ahead" d="M537 116 l-4 -9 8 0 Z"/>
+            <path d="M537 116 L570 138 L537 160 L504 138 Z" fill="#0D1B2B" stroke="#E3A45B" stroke-opacity=".85"/>
+            <text x="537" y="134" text-anchor="middle" class="dg-s">IF</text>
+            <text x="537" y="152" text-anchor="middle" class="dg-n" font-size="10.5">停食期？</text>
+            <path class="arrow" d="M570 138 L610 138 L610 162 M504 138 L464 138 L464 162" />
+            <path class="ahead" d="M610 170 l-4 -9 8 0 Z"/><path class="ahead" d="M464 170 l-4 -9 8 0 Z"/>
+            <text x="612" y="128" text-anchor="middle" class="dg-n">是</text>
+            <text x="466" y="128" text-anchor="middle" class="dg-n">否</text>
+            <rect x="560" y="172" width="106" height="46" rx="8" fill="#152238" stroke="#B3661A" stroke-opacity=".8"/>
+            <text x="613" y="192" text-anchor="middle" class="dg-s">非摄食攻击</text>
+            <text x="613" y="210" text-anchor="middle" class="dg-n">此状态启动</text>
+            <rect x="408" y="172" width="106" height="46" rx="8" fill="#0C1725" stroke="#1E3448" stroke-dasharray="5 4"/>
+            <text x="461" y="192" text-anchor="middle" class="dg-s" opacity=".6">摄食路径</text>
+            <text x="461" y="210" text-anchor="middle" class="dg-n" opacity=".6">根本不启动</text>
+            <path class="arrow" d="M613 218 L613 252 L560 268 M461 218 L461 252 L514 268"/>
+            <path class="ahead" d="M560 268 l9 -4 -4 -8 Z"/><path class="ahead" d="M514 268 l-9 -4 4 -8 Z"/>
+            <text x="537" y="290" text-anchor="middle" class="dg-s">输出：一次只来自一条路</text>
+            <text x="537" y="308" text-anchor="middle" class="dg-n">门的位置承载语义</text>
+          </svg>
+          <figcaption><b>两种「双路」拓扑。</b>GUARD 是评委席（并行打分、合并竞争），STATE_GATED 是道岔（IF 门、二选一）——长得像，机制完全不同，所以是两个模板，不是一个。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 9 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 09</span><h3>十批调研，零语义升级</h3></div>
+        <p class="thesis">267 种鱼全部调研完成，<b>没有出现任何需要推翻现有 <span class="term">ontology</span>（本体结构）的新结构</b>——电感知、雌核发育、frenzy 群游、耐冻蛰伏全部被 8 个既有 Pattern + typed 参数化吸收。</p>
+        <p class="body">十批调研里不断冒出「这条鱼总得新开结构了吧」的候选：能感知电场的、能雌核发育自己生自己的、成群疯狂进食的、能冻进泥里蛰伏的……每一次都走了完整的语义分诊（triage），每一次的结论都是：<b>既有 Pattern 加类型化参数就能准确表达</b>，不需要新开结构。零推翻不是「没敢推翻」——是每一次都真刀真枪验过，每一次都没必要。八块积木，从头拼到尾。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>一套标准乐高（8 种基础件）拼出了 267 个「看起来独一无二」的造型——没有为任何「限量款」开过新模具，因为真的不需要。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 250" role="img" aria-label="图示：四个看似特殊的行为被既有 Pattern 体系全部吸收">
+            <rect x="36"  y="26" width="150" height="50" rx="25" fill="none" stroke="#2A4258" stroke-dasharray="5 4"/>
+            <text x="111" y="48" text-anchor="middle" class="dg-t">电感知</text>
+            <text x="111" y="66" text-anchor="middle" class="dg-n">能感应电场</text>
+            <rect x="206" y="26" width="150" height="50" rx="25" fill="none" stroke="#2A4258" stroke-dasharray="5 4"/>
+            <text x="281" y="48" text-anchor="middle" class="dg-t">雌核发育</text>
+            <text x="281" y="66" text-anchor="middle" class="dg-n">自己生自己</text>
+            <rect x="376" y="26" width="150" height="50" rx="25" fill="none" stroke="#2A4258" stroke-dasharray="5 4"/>
+            <text x="451" y="48" text-anchor="middle" class="dg-t">frenzy 群游</text>
+            <text x="451" y="66" text-anchor="middle" class="dg-n">集体疯狂进食</text>
+            <rect x="546" y="26" width="150" height="50" rx="25" fill="none" stroke="#2A4258" stroke-dasharray="5 4"/>
+            <text x="621" y="48" text-anchor="middle" class="dg-t">耐冻蛰伏</text>
+            <text x="621" y="66" text-anchor="middle" class="dg-n">冻在泥里过冬</text>
+            <text x="170" y="106" class="dg-n">看着都很特殊</text>
+            <path class="arrow" d="M150 80 L240 128 M280 80 L300 128 M450 80 L420 128 M620 80 L480 128"/>
+            <path class="ahead" d="M240 128 l-2 -9 -8 4 Z"/><path class="ahead" d="M300 128 l-4 -9 -6 6 Z"/><path class="ahead" d="M420 128 l4 -9 6 6 Z"/><path class="ahead" d="M480 128 l2 -9 8 4 Z"/>
+            <rect x="170" y="132" width="380" height="58" rx="10" fill="#0E2130" stroke="#1CA3B8"/>
+            <text x="360" y="156" text-anchor="middle" class="dg-t">8 个既有 Pattern + typed 参数化</text>
+            <text x="360" y="177" text-anchor="middle" class="dg-n">全部吸收，一个不剩</text>
+            <text x="360" y="226" text-anchor="middle" class="dg-mono" font-size="12.5" fill="#5AC8D8">新结构 +0　·　语义推翻 +0　·　十批零 escalation</text>
+          </svg>
+          <figcaption><b>吸收式收敛。</b>「特殊感」住在外观里，不住在结构里——参数化的表达力比想象中大得多。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 10 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 10</span><h3>错误不复发，才是流程在学</h3></div>
+        <p class="thesis">十批审核的失分模式<b>逐批不同且递减</b>：R05 引文归属 → R06 宣称对账 → R07 越权（零失分）→ R08 连带同步 → R09/R10 残留措辞——同类错误不再复发，教训吸收机制在真实起效。</p>
+        <p class="body">把 R05 到 R10 每批审核揪出的问题排成一列，会看到一个特别的模式：每一批的新失分都是<b>新的种类</b>，旧种类不再出现，且整体越来越轻。R05 主要栽在「引文归属」（把话说成了引文没说的话）；R06 换成「宣称对账」（报告里的数字和数据库对不上，引文归属没再犯）；R07 审「越权」，零失分；R08 是「连带同步」（改了表格忘了同步统计）；R09、R10 只剩残留措辞。这说明审核意见真的被沉淀成了流程记忆，而不是每批从头犯一遍。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>像学生改错本起效的样子：第一次月考错「审题」，第二次审题全对、错的是「单位换算」——错还在出，但<b>不是同一个错</b>，且越来越少。反过来，如果每次都错审题，改错本就是摆设。</p>
+        </div>
+        <figure>
+          <svg id="chart-revise" viewBox="0 0 720 310" role="img" aria-label="折线图：R05 到 R10 各批 REVISE 项数量递减趋势示意，每批主导失分模式各不相同">
+            <text x="26" y="140" class="dg-n" transform="rotate(-90 26 140)" text-anchor="middle">REVISE 体量（示意，无刻度）</text>
+            <g stroke="#152738" stroke-width="1">
+              <line x1="70" y1="70"  x2="690" y2="70"/>
+              <line x1="70" y1="130" x2="690" y2="130"/>
+              <line x1="70" y1="190" x2="690" y2="190"/>
+              <line x1="70" y1="230" x2="690" y2="230"/>
+            </g>
+            <text x="62" y="74"  text-anchor="end" class="dg-n">重</text>
+            <text x="62" y="234" text-anchor="end" class="dg-n">轻</text>
+            <line x1="70" y1="230" x2="690" y2="230" stroke="#2A4258" stroke-width="1.4"/>
+            <polyline points="130,84 226,116 322,152 418,176 514,200 610,218"
+              fill="none" stroke="#B3661A" stroke-width="2" stroke-linejoin="round"/>
+            <g>
+              <circle class="dot" cx="130" cy="84"  r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+              <circle class="dot" cx="226" cy="116" r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+              <circle class="dot" cx="322" cy="152" r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+              <circle class="dot" cx="418" cy="176" r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+              <circle class="dot" cx="514" cy="200" r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+              <circle class="dot" cx="610" cy="218" r="5.5" fill="#B3661A" stroke="#081521" stroke-width="2"/>
+            </g>
+            <text x="130" y="62"  text-anchor="middle" class="dg-s">引文归属</text>
+            <text x="226" y="94"  text-anchor="middle" class="dg-s">宣称对账</text>
+            <text x="322" y="130" text-anchor="middle" class="dg-s">越权</text>
+            <text x="418" y="154" text-anchor="middle" class="dg-s">连带同步</text>
+            <text x="514" y="178" text-anchor="middle" class="dg-s">残留措辞</text>
+            <text x="610" y="196" text-anchor="middle" class="dg-s">残留措辞</text>
+            <text x="322" y="146" text-anchor="middle" class="dg-n" fill="#5AC8D8">零失分</text>
+            <g class="dg-mono" font-size="13" fill="#9FB4C8" text-anchor="middle">
+              <text x="130" y="256">R05</text><text x="226" y="256">R06</text><text x="322" y="256">R07</text>
+              <text x="418" y="256">R08</text><text x="514" y="256">R09</text><text x="610" y="256">R10</text>
+            </g>
+            <text x="360" y="286" text-anchor="middle" class="dg-n">纵轴为体量示意（越低越轻）；每批主导失分模式为审核记录实录 · 同类失分不复发 = 教训在沉淀</text>
+            <g>
+              <circle class="pt" cx="130" cy="84"  r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R05" data-mode="引文归属" data-note="把「推断」写成了「引文说」——归属错了。此后各批该族未复发。"/>
+              <circle class="pt" cx="226" cy="116" r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R06" data-mode="宣称对账" data-note="报告数字与数据库对不上（引文族未复发）。"/>
+              <circle class="pt" cx="322" cy="152" r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R07" data-mode="越权（零失分）" data-note="三防布防：引文 1 · 对账 1+1 · 越权 0——最强项。"/>
+              <circle class="pt" cx="418" cy="176" r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R08" data-mode="连带同步" data-note="改了表格忘了同步统计——由此定型「修复→重加总→同步」三步清单。"/>
+              <circle class="pt" cx="514" cy="200" r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R09" data-mode="残留措辞" data-note="只剩身份计数与残留措辞级别的轻失分。"/>
+              <circle class="pt" cx="610" cy="218" r="15" fill="transparent" tabindex="0" role="button"
+                data-batch="R10" data-mode="残留措辞（更轻）" data-note="收官批：事故验证全组通过，仅余披露与构成修正。"/>
+            </g>
+          </svg>
+          <figcaption><b>失分模式迁移图。</b>线往下走不是「审得松了」，而是「能犯的错越来越少」——每一族的错误只出现一次，随后进入流程记忆被封死。悬停各点可看该批实录。</figcaption>
+          <details class="tbl">
+            <summary>展开：各批失分实录表</summary>
+            <table>
+              <thead><tr><th>批次</th><th>主导失分模式</th><th>实录备注</th></tr></thead>
+              <tbody>
+                <tr><td>R05</td><td>引文归属</td><td>14/15 故事零内容缺陷，驱动项全机械；引文错标（如把两篇文献合并引用）逐字纠正</td></tr>
+                <tr><td>R06</td><td>宣称 vs DB 对账</td><td>对账族首现（先例计数 2/4 非 4/4、域分布 84 vs 85）；引文族零复发</td></tr>
+                <tr><td>R07</td><td>越权（零失分）</td><td>三防布防下越权 0 失分；边界层判定成为最强项</td></tr>
+                <tr><td>R08</td><td>连带同步</td><td>修复改表未同步统计，连带错；定型「修复 → 重加总 → 同步表格」三步清单</td></tr>
+                <tr><td>R09</td><td>残留措辞</td><td>身份计数、行漏改、引文形态等残留级失分；旧族零复发</td></tr>
+                <tr><td>R10</td><td>残留措辞（更轻）</td><td>收官批事故验证全组通过；仅双行披露与构成修正</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </figure>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= 三、流程基建发现 ================= -->
+  <section class="band band-proc" id="process" aria-labelledby="h-process">
+    <header class="band-head">
+      <p class="band-depth"><span class="dot"></span>水深 20–30 M · 深水层 · 协作基建层</p>
+      <h2 id="h-process">三、流程基建发现</h2>
+      <p class="band-sub">这三个发现解释这套多角色（多 agent）流水线产出的东西为什么敢信——不是靠自觉，是结构上堵死了自证。</p>
+    </header>
+
+    <div class="cards">
+
+      <!-- 11 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 11</span><h3>每批新眼睛，带着老将的笔记</h3></div>
+        <p class="thesis">暖启动 = <b>上下文隔离 + 记忆复利</b>：每批 <span class="term">spawn</span> 全新上下文保证独立性，角色记忆跨批累积产生复利；reviewer 的攻击模式逐轮叠加——<b>第二轮能抓到第一轮抓不到的洞</b>。</p>
+        <p class="body">长流水线最怕两件事：上下文太「脏」（前面的偏见污染后面的判断），或者太「净」（每批从零学起，重复交学费）。这套流程两头都要：会话上下文每批全新——谁也不知道上一批是怎么想的，独立性是物理保证；而角色记忆（教训、惯例、审核案例）跨批累积——同一个角色的「经验本」越写越厚。叠加效应体现在审核上：reviewer 的攻击模式一轮轮叠上去，第一轮没抓到的洞，第二轮用新攻击面抓到。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>每批换一位新来的审计员——不带上一批的立场和面子；但所有审计员共用一本越来越厚的《历年案例集》。新眼睛保证不串通，老笔记保证不重复交学费。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 270" role="img" aria-label="图示：三个全新会话共享跨批累积的角色记忆，审核攻击逐轮叠加">
+            <g fill="none" stroke="#64778B" stroke-width="1.4">
+              <rect x="40"  y="44"  width="170" height="50" rx="9" stroke-dasharray="6 4"/>
+              <rect x="40"  y="112" width="170" height="50" rx="9" stroke-dasharray="6 4"/>
+              <rect x="40"  y="180" width="170" height="50" rx="9" stroke-dasharray="6 4"/>
+            </g>
+            <text x="125" y="66"  text-anchor="middle" class="dg-s">新会话 · 批 N</text>
+            <text x="125" y="84"  text-anchor="middle" class="dg-n">上下文从零开始</text>
+            <text x="125" y="134" text-anchor="middle" class="dg-s">新会话 · 批 N+1</text>
+            <text x="125" y="152" text-anchor="middle" class="dg-n">同样从零开始</text>
+            <text x="125" y="202" text-anchor="middle" class="dg-s">新会话 · 批 N+2</text>
+            <text x="125" y="220" text-anchor="middle" class="dg-n">还是从零开始</text>
+            <g>
+              <rect x="292" y="92" width="130" height="90" rx="12" fill="#141B31" stroke="#9D7BE0" stroke-opacity=".8"/>
+              <ellipse cx="357" cy="92" rx="65" ry="14" fill="#1A2440" stroke="#9D7BE0" stroke-opacity=".8"/>
+              <text x="357" y="138" text-anchor="middle" class="dg-t" font-size="12.5">角色记忆</text>
+              <text x="357" y="158" text-anchor="middle" class="dg-n">跨批累积 · 越写越厚</text>
+            </g>
+            <path class="arrow" d="M292 130 L212 76 M292 137 L212 137 M292 144 L212 196" stroke-dasharray="4 4"/>
+            <path class="ahead" d="M212 76 l9 2 -5 8 Z"/><path class="ahead" d="M212 137 l9 -4 0 8 Z"/><path class="ahead" d="M212 196 l9 -6 4 8 Z"/>
+            <text x="252" y="52" class="dg-n">供给经验</text>
+            <g>
+              <rect x="482" y="60"  width="208" height="52" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".35"/>
+              <rect x="496" y="102" width="208" height="52" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".6"/>
+              <rect x="510" y="144" width="208" height="52" rx="9" fill="#0D1B2B" stroke="#9D7BE0"/>
+              <text x="600" y="84"  text-anchor="middle" class="dg-s">第 1 轮攻击面</text>
+              <text x="600" y="126" text-anchor="middle" class="dg-s">＋ 第 2 轮新攻击面</text>
+              <text x="600" y="168" text-anchor="middle" class="dg-s">＋ 第 3 轮更新攻击面</text>
+              <text x="600" y="188" text-anchor="middle" class="dg-n">逐轮叠加，漏洞越挖越深</text>
+            </g>
+            <path class="arrow" d="M422 137 L476 137"/>
+            <path class="ahead" d="M484 137 l-9 -4 0 8 Z"/>
+            <text x="360" y="238" text-anchor="middle" class="dg-n">上下文隔离（每批新眼睛）× 记忆复利（案例越攒越多）= 暖启动</text>
+          </svg>
+          <figcaption><b>隔离与复利并行不悖。</b>「新眼睛」防串通，「老笔记」防重复交学费——两件事分别住在会话层和记忆层，互不打架。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 12 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 12</span><h3>补不回的「盲」，用透明来换</h3></div>
+        <p class="thesis">非盲补录的诚实范式：从<b>冻结证据</b>重建（不凭空编造）→ 声明 <span class="term">bias</span> 风险 → 引擎直验 → reviewer 复检 fit → <b>永不进盲文件</b>——用透明度替代不可能达到的「重新盲一次」。</p>
+        <p class="body">项目中发现过覆盖缺口——需要补录，但补录时研究者已经「知道得太多」，不可能回到盲态。硬装盲是自欺。替代范式是把非盲的每一步亮出来：只从冻结证据重建（每一句都有当时留档的出处，不靠事后记忆）；在产物上明确声明「此段为非盲补录、存在 bias 风险」；引擎直接验证行为可运行；reviewer 独立复检 fit；并且这些补录永不进入盲统计文件——盲纪律的账本不被污染。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>案发后补写笔录，警察不会假装自己「没看过监控」。诚实的做法是：只用监控里真实存在的画面来写，每一页盖上「事后补录」的章，再交给一个没参与办案的人复核一遍——并且这份笔录永远不放进「当场记录」的档案柜。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 180" role="img" aria-label="图示：非盲补录的六步诚实管线">
+            <g>
+              <rect x="22"  y="34" width="100" height="64" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+              <text x="72"  y="60" text-anchor="middle" class="dg-t" font-size="12.5">发现缺口</text>
+              <text x="72"  y="82" text-anchor="middle" class="dg-n">覆盖不全</text>
+              <rect x="136" y="34" width="100" height="64" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".7"/>
+              <text x="186" y="60" text-anchor="middle" class="dg-t" font-size="12.5">证据重建</text>
+              <text x="186" y="82" text-anchor="middle" class="dg-n">只用冻结证据</text>
+              <rect x="250" y="34" width="100" height="64" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".7"/>
+              <text x="300" y="60" text-anchor="middle" class="dg-t" font-size="12.5">声明 bias</text>
+              <text x="300" y="82" text-anchor="middle" class="dg-n">风险写在脸上</text>
+              <rect x="364" y="34" width="100" height="64" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".7"/>
+              <text x="414" y="60" text-anchor="middle" class="dg-t" font-size="12.5">引擎直验</text>
+              <text x="414" y="82" text-anchor="middle" class="dg-n">跑得通才算数</text>
+              <rect x="478" y="34" width="100" height="64" rx="9" fill="#0D1B2B" stroke="#9D7BE0" stroke-opacity=".7"/>
+              <text x="528" y="60" text-anchor="middle" class="dg-t" font-size="12.5">复检 fit</text>
+              <text x="528" y="82" text-anchor="middle" class="dg-n">reviewer 独立</text>
+              <rect x="592" y="34" width="106" height="64" rx="9" fill="#141B31" stroke="#BCA4EE"/>
+              <text x="645" y="60" text-anchor="middle" class="dg-t" font-size="12.5">不进盲文件</text>
+              <text x="645" y="82" text-anchor="middle" class="dg-n">盲账本不污染</text>
+            </g>
+            <path class="arrow" d="M122 66 L134 66 M236 66 L248 66 M350 66 L362 66 M464 66 L476 66 M578 66 L590 66"/>
+            <path class="ahead" d="M134 66 l-8 -4 0 8 Z M248 66 l-8 -4 0 8 Z M362 66 l-8 -4 0 8 Z M476 66 l-8 -4 0 8 Z M590 66 l-8 -4 0 8 Z"/>
+            <text x="360" y="134" text-anchor="middle" class="dg-n">透明度替代了不可能达到的「重新盲一次」——每一步都亮出来，比假装盲更可信</text>
+            <text x="360" y="156" text-anchor="middle" class="dg-n">补录范式在 Census B0 批定型，此后作为标准流程沿用</text>
+          </svg>
+          <figcaption><b>诚实管线。</b>回不到过去没关系——把「回不到过去」这件事本身写进档案，比任何完美的表演都更接近真相。</figcaption>
+        </figure>
+      </article>
+
+      <!-- 13 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">发现 13</span><h3>写账的和查账的，不在一个房间</h3></div>
+        <p class="thesis">每批产物只有<b>一个写入者</b>，审核者是<b>物理隔离的不同会话</b>（不同对话窗口）——「自己审自己」不是被规则禁止，而是在结构上画不出来。</p>
+        <p class="body">每批产物的作者只有一个；审核者是另一个完全独立的会话——不是同一场对话换个语气，而是不同的对话窗口，物理上看不到对方的推理过程。审核章程还给 reviewer 上了只读约束（不给写工具），结论必须带完整字段的 scoped verdict（限定范围的裁定）、必须绑定证据。于是「自证」这件事不依赖任何人的自觉：组织架构图上根本不存在从「写入者」指回「写入者」的审核箭头。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>会计和审计必须在不同房间——不是「同一个会计保证会认真复查」，而是让「自己查自己的账」这家公司在组织架构上注册不下来。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 260" role="img" aria-label="图示：单会话自审被禁止，写入者与审核者分属两个物理隔离的会话">
+            <rect x="150" y="22" width="420" height="86" rx="12" fill="#0C1725" stroke="#1E3448"/>
+            <text x="360" y="54" text-anchor="middle" class="dg-t" opacity=".7">同一个会话：又写又审</text>
+            <text x="360" y="78" text-anchor="middle" class="dg-n" opacity=".7">「我来检查一下我自己」——结构上允许自证</text>
+            <path d="M420 62 C480 40 500 96 444 96" fill="none" stroke="#64778B" stroke-width="1.6" stroke-dasharray="5 4"/>
+            <path class="ahead" d="M444 96 L453 91 L451 102 Z"/>
+            <circle cx="588" cy="65" r="16" fill="rgba(226,92,78,.12)" stroke="#E25C4E"/>
+            <path d="M581 58 l14 14 M595 58 l-14 14" stroke="#E25C4E" stroke-width="2.6" stroke-linecap="round"/>
+            <text x="360" y="138" text-anchor="middle" class="dg-mono" font-size="13" fill="#BCA4EE">↓ 换成这样</text>
+            <rect x="52" y="168" width="200" height="70" rx="10" fill="#0D1B2B" stroke="#1CA3B8" stroke-opacity=".7"/>
+            <text x="152" y="196" text-anchor="middle" class="dg-t">写入者会话</text>
+            <text x="152" y="218" text-anchor="middle" class="dg-n">唯一写入权 · 一个批次一个作者</text>
+            <path class="arrow" d="M252 203 L330 203"/>
+            <path class="ahead" d="M338 203 l-9 -4 0 8 Z"/>
+            <rect x="342" y="168" width="130" height="70" rx="10" fill="#0E2130" stroke="#1E3448"/>
+            <text x="407" y="196" text-anchor="middle" class="dg-t">产物</text>
+            <text x="407" y="218" text-anchor="middle" class="dg-n">批次工件</text>
+            <path class="arrow" d="M528 203 L476 203"/>
+            <path class="ahead" d="M468 203 l9 -4 0 8 Z"/>
+            <rect x="532" y="168" width="166" height="70" rx="10" fill="#141B31" stroke="#9D7BE0"/>
+            <text x="615" y="192" text-anchor="middle" class="dg-t">审核者会话</text>
+            <text x="615" y="212" text-anchor="middle" class="dg-n">不同窗口 · 物理隔离 · 只读</text>
+            <text x="615" y="230" text-anchor="middle" class="dg-n">结论必须带证据</text>
+            <circle cx="524" cy="176" r="13" fill="rgba(28,163,184,.12)" stroke="#5AC8D8"/>
+            <path d="M518 176 l4 4 8 -8" stroke="#5AC8D8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <figcaption><b>单写双岗。</b>独立性不是态度问题，是拓扑问题——审核箭头只能从另一个房间画过来。</figcaption>
+        </figure>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= 重要修正与已知局限 ================= -->
+  <section class="band band-warn" id="corrections" aria-labelledby="h-corrections">
+    <header class="band-head">
+      <p class="band-depth"><span class="dot"></span>水深 30 M · 触底警示 · 修正与局限层</p>
+      <h2 id="h-corrections">⚠️ 重要修正与已知局限</h2>
+      <p class="band-sub">以下三条来自报告初版发布后的复核反馈，划定上面各节结论的「可信边界」：哪些只是方向可信的工作假设、哪些数字可能被低估、哪些缺陷已经修复闭环。引用本报告结论时，以本区为准。</p>
+    </header>
+
+    <div class="cards">
+
+      <!-- 修正 1 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">修正 01</span><h3>LT 不是泛泛分类——267 个判断都是逐案裁决</h3></div>
+        <p class="thesis">「267 种鱼收敛到 10 个模板」<b>不是拿分类学往上一套的归类结果</b>：每条鱼、每个特殊习性、每个策略故事都需要具体推导它落在哪个模板（或成为新模板）——267 个判断全部是逐案裁决。</p>
+        <p class="body">此前「收敛漏斗」的表述容易让人误解为「把鱼分成几类，就知道逻辑有几种」。实际的普查工序是逐鱼走完 <span class="term">冻结故事 → 还原程序骨架 → 同构推导 → 裁决落点</span>：知道一条鱼属于哪个目、哪个科，推不出它的程序骨架；每一个特殊习性、每一个策略故事都要单独推导它落在哪一族、或者立新族。「10 个模板」是 267 次独立裁决的累计结果，不是分类学的推论——其中任何一次裁决都可能翻案。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>法院办案不是「按籍贯量刑」：267 个案子，每一个都要开庭、对证据、写判决书。分类学最多帮你给案卷编号归档，替代不了任何一次开庭。</p>
+        </div>
+      </article>
+
+      <!-- 修正 2 -->
+      <article class="card">
+        <div class="card-head"><span class="chip">修正 02</span><h3>模型能力边界：方向可信，逐案待复核</h3></div>
+        <p class="thesis">当前 Census 推演使用<b>较弱模型 + 有限上下文</b>。10 族的划分方向可信，但逐案裁决还需更强模型（如 GPT + 更强上下文）复核——<b>这不是定论，是工作假设</b>。</p>
+        <p class="body">这份报告的普查结论产自一个刻意节制的推演环境。好处是成本低、能对 267 种鱼全量跑完；代价是分辨力有限：族与族之间的大边界（10 族的划分方向）在现有证据上是稳的，但具体到「某条鱼是不是真的属于 SINGLE 族」这类逐案裁决，正处在弱模型分辨力的边缘。把这些裁决升格为定论之前，需要用更强模型配合更长上下文重跑复核——在那之前，本报告的模板归属应一律按「工作假设」对待。</p>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>像先派侦察兵做拉网踏勘：山脊走向（10 族的大方向）已经画对；但每一块石头属于哪个地层，要等带着仪器来的复核队再跑一遍才能定案。</p>
+        </div>
+      </article>
+
+      <!-- 修正 3（已修复） -->
+      <article class="card card-fixed">
+        <div class="card-head"><span class="chip">修正 03</span><span class="chip chip-fixed">✅ 已修复（2026-09-11）</span><h3>B 系列伪脚本的顺序缺陷：平铺 ≠ 真实判断链</h3></div>
+        <p class="thesis">当前大量鱼被写成<b>平铺结构</b>（读因子 → 查 Profile → 合并），丢失了真实判断顺序。正确写法是<b>有顺序的 early return 链</b>，命中分级（全额 / 削减 / 出局），且每鱼顺序不同——顺序差异本身就是 <span class="term">LogicTemplate</span> 判据。</p>
+        <div class="fixednote"><b>✅ 修复完成（2026-09-11）：</b>五批顺序还原全部完成——211 / 213 文件还原为有顺序的 early return 链（2 件合理跳过）；首个成果即「发现 14」（伏击组 26 个门形各异），SINGLE 族重跑已启动（66 成员用还原后链形重判同）。下文保留缺陷原文与对比图，作为修复依据的记录。</div>
+        <p class="body">以底栖鱼为例，真实的伪脚本应当长这样：</p>
+        <ol class="pseudosteps">
+          <li><b>是否底层水层？</b>——不是 → <span class="out">EARLY RETURN</span>（直接出局）</li>
+          <li><b>是否可接受底质？</b>——不接受 → <span class="out">EARLY RETURN</span>；最适应 → <span class="full">全额保留</span>；可接受 → <span class="part">削减但不清空</span></li>
+          <li><b>水温</b> → <b>光照</b> → <b>食物丰度</b> → <b>流速</b> …（后续因子继续排下去，每条鱼的次序不同）</li>
+        </ol>
+        <p class="body">三个关键特征：<b>有顺序的 early return 链</b>（先问什么后问什么，问错顺序结果就错）、<b>分级命中</b>（全额 / 削减 / 出局三态，不是简单的加减法）、<b>每鱼顺序不同</b>（A 鱼先查水层、B 鱼先查底质——这个顺序差异本身就是 LogicTemplate 的判据）。平铺写法把三者全部压扁。</p>
+        <div class="conseq"><b>修复前的直接后果：SINGLE 族 41 个成员可能低估了模板数</b>——平铺化让不同鱼的程序骨架长得一样，本应按「顺序不同」拆开的模板，被并进了同一个族。<b>修复后：</b>211 文件完成顺序还原，首个成果即「发现 14」（伏击组 26 个门形各异）；SINGLE 族重跑（66 成员链形重判同）进行中，模板计数以重跑结果为准。</div>
+        <div class="analogy"><span class="analogy-tag">打个比方</span>
+          <p>菜谱被抄成了购物清单：「鱼、酱油、糖、火」四样都在，但「先煎后烧、糖起锅前才放」的顺序没了——照清单是做不出那道菜的。</p>
+        </div>
+        <figure>
+          <svg viewBox="0 0 720 504" role="img" aria-label="对比图：左侧是丢失顺序的平铺结构，右侧是以底栖鱼为例、有顺序的 early return 判断链">
+            <!-- 左：平铺结构（当前缺陷写法） -->
+            <rect x="18" y="16" width="330" height="440" rx="12" fill="#0A1626" stroke="#1E3448"/>
+            <text x="183" y="44" text-anchor="middle" class="dg-mono" font-size="13" fill="#F09385">平铺结构 · 修复前的 B 系列</text>
+            <text x="183" y="62" text-anchor="middle" class="dg-n">读因子 → 查 Profile → 合并 · 顺序丢失</text>
+            <g fill="#0D1B2B" stroke="#1E3448">
+              <rect x="36" y="82" width="68" height="30" rx="7"/>
+              <rect x="106" y="82" width="68" height="30" rx="7"/>
+              <rect x="176" y="82" width="68" height="30" rx="7"/>
+              <rect x="246" y="82" width="68" height="30" rx="7"/>
+            </g>
+            <g class="dg-s" font-size="11.5" text-anchor="middle">
+              <text x="70" y="101">水层</text><text x="140" y="101">底质</text>
+              <text x="210" y="101">水温</text><text x="280" y="101">流速</text>
+            </g>
+            <path class="arrow" d="M183 118 L183 144"/>
+            <path class="ahead" d="M183 150 l-4 -8 8 0 Z"/>
+            <rect x="63" y="152" width="240" height="44" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="183" y="172" text-anchor="middle" class="dg-s">读因子 · 查 Profile</text>
+            <text x="183" y="189" text-anchor="middle" class="dg-n">四个因子一起读入，不分先后</text>
+            <path class="arrow" d="M183 196 L183 208"/>
+            <path class="ahead" d="M183 214 l-4 -8 8 0 Z"/>
+            <rect x="63" y="216" width="240" height="32" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="183" y="236" text-anchor="middle" class="dg-s">合并成一个数</text>
+            <path class="arrow" d="M183 248 L183 258"/>
+            <path class="ahead" d="M183 264 l-4 -8 8 0 Z"/>
+            <rect x="63" y="266" width="240" height="30" rx="9" fill="#0C1725" stroke="#1E3448"/>
+            <text x="183" y="285" text-anchor="middle" class="dg-s">输出 · 单一评分</text>
+            <line x1="42" y1="312" x2="324" y2="312" stroke="#1E3448" stroke-dasharray="5 4"/>
+            <g class="dg-s" font-size="12">
+              <text x="42" y="336"><tspan fill="#E25C4E" font-weight="700">✗ </tspan>没有顺序：因子平铺，先后无所谓</text>
+              <text x="42" y="358"><tspan fill="#E25C4E" font-weight="700">✗ </tspan>没有 early return：中上层鱼也照读底质</text>
+              <text x="42" y="380"><tspan fill="#E25C4E" font-weight="700">✗ </tspan>没有分级：全额 / 削减 / 出局被压成一个数</text>
+            </g>
+            <rect x="42" y="396" width="282" height="42" rx="9" fill="rgba(226,92,78,.10)" stroke="rgba(226,92,78,.45)"/>
+            <text x="183" y="414" text-anchor="middle" class="dg-s">鲤鱼 ≡ 鲶鱼 ≡ 谁来都一样</text>
+            <text x="183" y="430" text-anchor="middle" class="dg-mono" font-size="11" fill="#F09385">骨架趋同 → 模板数被低估</text>
+
+            <text x="360" y="244" text-anchor="middle" class="dg-mono" font-size="18" fill="#F09385">→</text>
+
+            <!-- 右：有顺序的 early return 链（应然写法） -->
+            <rect x="372" y="16" width="330" height="440" rx="12" fill="#0A1626" stroke="#1E3448"/>
+            <text x="537" y="44" text-anchor="middle" class="dg-mono" font-size="13" fill="#5AC8D8">有序 EARLY RETURN 链 · 应然写法</text>
+            <text x="537" y="62" text-anchor="middle" class="dg-n">真实伪脚本 · 以底栖鱼为例</text>
+            <rect x="386" y="80" width="140" height="34" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="456" y="101" text-anchor="middle" class="dg-s">① 是否底层水层？</text>
+            <path class="arrow" d="M456 114 L456 124"/><path class="ahead" d="M456 130 l-4 -8 8 0 Z"/>
+            <text x="464" y="126" class="dg-n" font-size="10.5">是 · 底层</text>
+            <rect x="386" y="130" width="140" height="34" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="456" y="151" text-anchor="middle" class="dg-s">② 底质可接受？</text>
+            <path class="arrow" d="M456 164 L456 176"/><path class="ahead" d="M456 184 l-4 -8 8 0 Z"/>
+            <rect x="386" y="184" width="140" height="28" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="456" y="202" text-anchor="middle" class="dg-s">③ 水温</text>
+            <path class="arrow" d="M456 212 L456 224"/><path class="ahead" d="M456 232 l-4 -8 8 0 Z"/>
+            <rect x="386" y="232" width="140" height="28" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="456" y="250" text-anchor="middle" class="dg-s">④ 光照</text>
+            <path class="arrow" d="M456 260 L456 272"/><path class="ahead" d="M456 280 l-4 -8 8 0 Z"/>
+            <rect x="386" y="280" width="140" height="28" rx="9" fill="#0D1B2B" stroke="#1E3448"/>
+            <text x="456" y="298" text-anchor="middle" class="dg-s">⑤ 食物 → ⑥ 流速 …</text>
+            <path class="arrow" d="M456 308 L456 318"/><path class="ahead" d="M456 326 l-4 -8 8 0 Z"/>
+            <rect x="386" y="326" width="140" height="36" rx="9" fill="#0E2130" stroke="#5AC8D8" stroke-opacity=".8"/>
+            <text x="456" y="343" text-anchor="middle" class="dg-s" style="fill:#E3EDF5">底栖适宜度</text>
+            <text x="456" y="356" text-anchor="middle" class="dg-n" font-size="10">活着走完全链才有输出</text>
+
+            <rect x="576" y="104" width="118" height="58" rx="9" fill="rgba(226,92,78,.08)" stroke="#E25C4E" stroke-opacity=".75"/>
+            <text x="635" y="126" text-anchor="middle" class="dg-mono" font-size="11" fill="#F09385">EARLY RETURN</text>
+            <text x="635" y="144" text-anchor="middle" font-size="10.5" fill="#9FB4C8">出局 · 后面全部跳过</text>
+            <g stroke="#E25C4E" stroke-width="1.4" fill="none" stroke-dasharray="4 3" opacity=".9">
+              <path d="M526 97 C546 97 548 112 568 115"/>
+              <path d="M526 144 C546 144 548 130 568 129"/>
+            </g>
+            <path d="M575 116 L564 112 L566 121 Z" fill="#E25C4E"/>
+            <path d="M575 130 L564 126 L566 135 Z" fill="#E25C4E"/>
+            <text x="530" y="93" font-size="10.5" fill="#E25C4E">否</text>
+            <text x="530" y="141" font-size="10.5" fill="#E25C4E">不接受</text>
+
+            <path d="M526 164 L542 164 L542 191 L554 191" stroke="#5A7186" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <rect x="556" y="170" width="136" height="20" rx="10" fill="rgba(78,143,94,.12)" stroke="#4E8F5E" stroke-opacity=".8"/>
+            <text x="624" y="184" text-anchor="middle" font-size="10.5" fill="#7FC08D">最适应 → 全额保留</text>
+            <rect x="556" y="192" width="136" height="20" rx="10" fill="rgba(179,102,26,.14)" stroke="#B3661A" stroke-opacity=".85"/>
+            <text x="624" y="206" text-anchor="middle" font-size="10.5" fill="#E3A45B">可接受 → 削减不清空</text>
+
+            <line x1="386" y1="372" x2="694" y2="372" stroke="#1E3448" stroke-dasharray="5 4"/>
+            <g class="dg-s" font-size="11.5">
+              <text x="386" y="392"><tspan fill="#7FC08D" font-weight="700">✓ </tspan>有序链：问错顺序，结果就错</text>
+              <text x="386" y="412"><tspan fill="#7FC08D" font-weight="700">✓ </tspan>分级命中：全额 / 削减 / 出局</text>
+              <text x="386" y="432"><tspan fill="#7FC08D" font-weight="700">✓ </tspan>每鱼顺序不同：顺序差异 = LT 判据</text>
+            </g>
+            <text x="537" y="450" text-anchor="middle" class="dg-mono" font-size="11" fill="#5AC8D8">顺序 · 分级 · 每鱼差异 —— 全部在场</text>
+
+            <text x="360" y="488" text-anchor="middle" class="dg-n">同一批因子，两种骨架：平铺把顺序、分级、出局全部压扁——而这些差异正是 LogicTemplate 的判据</text>
+          </svg>
+          <figcaption><b>平铺 vs 有序 early return 链。</b>左：修复前 B 系列的写法把所有因子平铺读入后合并，顺序与分级信息全部丢失，于是鲤鱼和鲶鱼的骨架长得一模一样。右：真实伪脚本是一条有序链——任何一步不满足直接出局（EARLY RETURN），底质命中还分「全额 / 削减」两档，且每条鱼的检查顺序各不相同。<b>顺序差异本身就是 LogicTemplate 的判据</b>——平铺化把它压扁，意味着 SINGLE 族 41 个成员很可能低估了真实模板数。<b>该缺陷已于 2026-09-11 修复（211 / 213 文件完成顺序还原）</b>，SINGLE 族重跑进行中。</figcaption>
+        </figure>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= 时间线 ================= -->
+  <section class="timeline" id="timeline" aria-labelledby="h-timeline">
+    <header>
+      <p class="band-depth" style="color:var(--teal-t)"><span class="dot" style="background:var(--teal)"></span>湖底沉积层</p>
+      <h2 id="h-timeline">旅程时间线：从 handoff 接手到全库完成</h2>
+      <p class="tl-sub">2026-09-10 → 2026-09-11。交接件来自 Mac 侧（R01–R04 已在远端完成），本机接手后完成 R05–R10 及全部表达与普查线。</p>
+    </header>
+    <ol class="tl">
+      <li>
+        <span class="tl-date">09-10 · HANDOFF</span>
+        <h4>交接件接手，基线恢复</h4>
+        <p>工作树、venv、测试基线本机恢复并验证（157 项全绿）；远端已有 R01–R04 四批调研成果，续跑点定为 R05。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-10 · 流程立骨</span>
+        <h4>多角色流水线成形</h4>
+        <p>researcher / evidence-reviewer / census / representation / triage 五角色章程落地；<b>单一写入者 + 物理隔离审核</b>确立；跨会话消息链路验证打通。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-10 · 补账冷审</span>
+        <h4>接手存量的清理</h4>
+        <p>R03 状态对账、R04 冷审维持原判、外链核验 23/23；审出「链接真实但主张失实」两例——「真链接」不等于「真结论」成为先例。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-10 · R05–R06</span>
+        <h4>持久角色首批自写自核</h4>
+        <p>researcher / reviewer 常驻会话开始自写自核；停食洄游双例确立 P05 判例；电鳗电感知候选浮现（后归入 K8 感知轴）。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-10 · CENSUS 立线</span>
+        <h4>逻辑模板普查启动</h4>
+        <p>B0 校准批盲纪律跑通（先冻结骨架后开 registry）；金样本门 + 引擎六维结构比对就位；<b>非盲补录范式在此定型</b>；26 个 Bake 程序全部拒绝种子模板。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-10 → 09-11 · R07–R09</span>
+        <h4>边界层与收尾层推进</h4>
+        <p>覆盖 166 → 218 / 267；失分族逐批更替且递减（R07 越权项零失分）；停食判例族跨科扩展到第 4 例。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-11 · R10 收官</span>
+        <h4>全库覆盖达成</h4>
+        <p><b>267 / 267（100%）</b>，十批全闭；38 个重复页事故主动披露并修复（终态零误差）；停食护卵第 5 例收官。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-11 · 全库完成</span>
+        <h4>调研、表达、普查三线汇流</h4>
+        <p>FR 调研 267 种全量 + B 系列八批 213 文件四面生产级表达全审 + census registry v5（10 族 112 程序）——<b>Pattern 稳定 8 条，零语义推翻</b>。阶段报告初版于此发布。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-11 · 顺序还原修复</span>
+        <h4>五批完成：211 / 213 文件还原判断链</h4>
+        <p>修正 03 落地：平铺结构 → 有顺序的 early return 链，五批全部完成（2 件合理跳过）；<b>顺序差异作为 LogicTemplate 判据</b>正式入册，首个成果即「发现 14」。</p>
+      </li>
+      <li>
+        <span class="tl-date">09-11 · CENSUS-B4</span>
+        <h4>零新族 + 首个饱和候选立案</h4>
+        <p>第 5 批普查（26 故事 · 50 程序 · 52 判同）<b>零新族</b>——ΔL_bake 连续第 3 批归零，两面增量首次同时为 0，首个 <b>LOCAL_SATURATION_CANDIDATE</b> 立案；Registry 升 v6（10 族 / 162 程序 / 255 判同）。</p>
+      </li>
+      <li class="tl-end">
+        <span class="tl-date">09-11 · Census 重跑</span>
+        <h4>SINGLE 族重跑启动</h4>
+        <p>66 个成员用顺序还原后的链形骨架<b>重新判同</b>——「10 族」的最终计数以重跑结果为准；伏击组 26 门形各异（发现 14）已先行入册。</p>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>FCF · programaticHitFish<br>全库调研与表达 · 阶段结论与洞见</div>
+    <div style="text-align:right">单文件离线报告 · 数据全部内嵌，可断网打开<br>生成于 2026-09-11</div>
+  </div>
+</footer>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  /* ---- 左侧浮漂：随滚动下沉，换算成水深 ---- */
+  var bobber = document.getElementById("bobber");
+  var depthEl = document.getElementById("railDepth");
+  var rail = document.querySelector(".rail");
+  var ticking = false;
+  function update(){
+    ticking = false;
+    if(!rail || getComputedStyle(rail).display === "none") return;
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop) / max)) : 0;
+    var travel = rail.clientHeight - 120;
+    bobber.style.transform = "translateY(" + (p * travel).toFixed(1) + "px)";
+    depthEl.textContent = (p * 30).toFixed(1) + " m";
+  }
+  window.addEventListener("scroll", function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+  }, {passive:true});
+  window.addEventListener("resize", update);
+  update();
+
+  /* ---- 折线图悬停提示 ---- */
+  var tip = document.getElementById("tip");
+  function showTip(evt, pt){
+    tip.innerHTML = "<b>" + pt.getAttribute("data-batch") + "</b><br>" +
+      "<span class='tm'>" + pt.getAttribute("data-mode") + "</span><br>" +
+      pt.getAttribute("data-note");
+    tip.style.display = "block";
+    moveTip(evt);
+  }
+  function moveTip(evt){
+    var x = Math.min(Math.max(evt.clientX + 14, 8), window.innerWidth - 260);
+    var y = Math.max(evt.clientY - 14, 8);
+    tip.style.left = x + "px";
+    tip.style.top = (y - tip.offsetHeight - 8) + "px";
+    if(tip.offsetHeight && y - tip.offsetHeight - 8 < 4){ tip.style.top = (evt.clientY + 18) + "px"; }
+  }
+  function hideTip(){ tip.style.display = "none"; }
+  Array.prototype.forEach.call(document.querySelectorAll("#chart-revise .pt"), function(pt){
+    pt.addEventListener("pointerenter", function(e){ showTip(e, pt); });
+    pt.addEventListener("pointermove", moveTip);
+    pt.addEventListener("pointerleave", hideTip);
+    pt.addEventListener("focus", function(e){ showTip({clientX: window.innerWidth/2, clientY: window.innerHeight/2}, pt); });
+    pt.addEventListener("blur", hideTip);
+  });
+})();
+</script>
+
+</body>
+</html>
