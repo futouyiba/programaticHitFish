@@ -23,9 +23,11 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 
 ## 程序骨架纪律
 
-- 每个 Story × 有程序意义的 Surface 写：ordered_steps（顺序不可排序）/ branches / gates / intermediate values + dependencies / combine / early return / return topology；incoming_premises 与 surface_owned 分开记。
-- IR 只用 SEQUENCE / OPERATOR / IF / PARALLEL_SET / RETURN；SEQUENCE 不可排序；PARALLEL_SET 仅契约明确无序时。
-- De-instantiation 只生成 comparison view（擦物种/Profile 名/常量），原 body 永不改写；禁排序、禁换序、禁合并分支、禁语义泛化。
+- **判断顺序从 Story 正文推导（2026-09-11 用户新标准，`docs/authoring_work_standards.md` §5）**：不默认平铺结构。Story 描述的行为有先后判断顺序（先判什么后判什么）时，骨架的 ordered_steps 必须反映这个顺序——顺序差异本身就是模板差异判据。分级命中（最适应/可接受/出局）须展开为 if/elif/else 分支而非单一布尔。
+- 保留：`ordered_steps`（顺序不可排序）/ branches / gates / intermediate values + dependencies / combine / early return / return topology。
+- `incoming_premises` 与 `surface_owned_logic` 分开记录（F02：activation 差异留 premise，不算 body 差异）。
+- IR 节点类型仅：SEQUENCE / OPERATOR / IF / PARALLEL_SET / RETURN。SEQUENCE 顺序不可变；PARALLEL_SET 仅契约明确无序时可用。
+- De-instantiation 只生成 comparison view（擦物种/Profile 名/常量），原 body 永不改写。
 - NO_SURFACE_EFFECT 可只写显式理由。
 
 ## Merge 纪律
