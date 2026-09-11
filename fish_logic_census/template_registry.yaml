@@ -2,8 +2,12 @@
 # 治理：只有独立审通过的 verdict 才能改 status；mutation 必须留 provenance/previous state/known non-matches。
 # v0→v1 (CENSUS-B0)：CRR known_non_matches 补 B0 五个 Bake 程序（非匹配证据；第 6 个 P-LUN-BAKE-AESTIVATION 为 AMBIGUOUS 不入 non-match）；
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
-version: 7
+version: 8
 mutation_provenance:
+  batch: CENSUS-RERUN-PLAIN-001
+  date: 2026-09-11
+  previous_version: 7
+  rerun_summary: "PLAIN/HARD_GATED/PATCH 三族自有成员顺序还原重跑（RS1 同构；9/9 有输入）：PLAIN 原始 5 → 3 例 slot_tiering 受限还原（并入 HRQ-RS1-03 轨；v1 平铺 canonical 经原始成员全体证伪）+OSC/BRT 出族候选；HARD_GATED 2 → canonical v2 提案（双硬门+EXIT 档因子集；LUN 源）+EEL AMBIGUOUS（BUILD 投影缺口证据分层）；PATCH 2 → canonical 评估先行证伪：MGC 门先行→GATED_COVER 重指派（gate_axis bottom_zone 第 3 实例）/ONS 三档×3→SOFT_TRIPLE 重指派（族 1→2，PROVISIONAL 升格候选）——族空置提案 pending；+2 新 Bake 候选族（EXTREME_TEMP_GATED_TIERED_COMBINE[OSC 单成员 PROV]/PATCH_GATED_DUAL_SLOT_COMBINE[BRT 单成员 PROV]）；名义 162 不变（重指派挂账 moved_pending_review）；dL_bake=+2；HRQ-RP1-01..04"
   batch: CENSUS-RERUN-SINGLE-001
   date: 2026-09-11
   previous_version: 6
@@ -124,7 +128,8 @@ templates:
     known_non_matches:
       - {batch: CENSUS-B0, program_id: P-MGC-BAKE-ADULT, reason: 单链无 combine/依赖扇入（merge_tests 确证）}
       - {batch: CENSUS-B0, program_id: P-LUN-BAKE-WET, reason: 前置 hard gate（extend-vs-split 见 HRQ-03）}
-    open_precedents: [HRQ-07（因子槽间顺序 unordered 提案）, HRQ-03（gate 轴 extend-vs-split）, HRQ-B1-04（槽位数伸缩+rank 因子类型）, HRQ-RS1-03（slot_tiering 轴+14 重归族挂账）]
+    open_precedents: [HRQ-07（因子槽间顺序 unordered 提案）, HRQ-03（gate 轴 extend-vs-split）, HRQ-B1-04（槽位数伸缩+rank 因子类型）, HRQ-RS1-03（slot_tiering 轴+14 重归族挂账）, HRQ-RP1-03（原始 5 成员重跑：slot_tiering 轨并入+OSC/BRT 出族）]
+    rerun_2026_09_11_original_members: "CENSUS-RERUN-PLAIN-001：原始 5 成员（OSC/CHB/BRT/WAL/MDF——P-RP1-*-BAKE）顺序还原重跑：3 例（CHB 4 槽/WAL 2 槽/MDF 2 槽）受限还原=槽值三档+COMBINE（与 RS1 C8 形同构，slot_tiering 唯一真差异；census story 证据=多因子 PLAIN 与表达投影同向——无 RS1 14 例来源分歧）→并入 HRQ-RS1-03 extension 轨（批前挂账）；OSC（极值门+EXIT 档因子集）与 BRT（patch 门+双槽混合档+COMBINE 无归一化）出族候选（HRQ-RP1-02）。PLAIN v1 平铺 canonical 经原始成员全体重跑证伪（0 匹配）——canonical v2（slot_tiering）为唯一存活读法 pending"
     rerun_2026_09_11_pending_members: "CENSUS-RERUN-SINGLE-001：14 追击型成员（TAI/BLP/GW/RFP/DS/PBF/GT/HAL/GG/POR/RKB/WIN/SMF/SAI——P-RS1-*-BAKE）表达文件自投影 PLAIN 双槽+槽内三档受限还原；slot_tiering(FLAT|IF3_SLOT_VALUE) 轴提案 pending HRQ-RS1-03——批准前不计正式成员（HNC extension 挂账先例）；证据分层（表达文件 Tier B vs story 单因子）待裁决"
   - template_id: HARD_GATED_FACTOR_COMBINE
     surface: Bake
@@ -154,7 +159,11 @@ templates:
       - {batch: CENSUS-B0, program_id: P-EEL-BAKE, blind_hash: 611e70f2cd5fd260}
     known_non_matches:
       - {batch: CENSUS-B0, template_id: CONSTRAINED_RELATIVE_REFUGE, reason: gate 后无 RelativeRank/secondary refuge}
-    open_precedents: [HRQ-03（与 PLAIN 的 extend-vs-split）, HRQ-B4-01（guard_target_specificity 新轴+anchor pebble_mound 提案）]
+    open_precedents: [HRQ-03（与 PLAIN 的 extend-vs-split）, HRQ-B4-01（guard_target_specificity 新轴+anchor pebble_mound 提案）, HRQ-RP1-01（canonical v2 升级提案+EEL BUILD 证据分层）]
+    rerun_2026_09_11_canonical_v2_proposal:
+      batch: CENSUS-RERUN-PLAIN-001
+      outcome: "2/2 成员顺序还原重跑 vs v1 canonical（BUILD→GATE→平铺因子→COMBINE）body 结构差异（第二道极值水温门+因子 EXIT 档位化+时段槽）——族定义（硬门前置+因子组合）保持；canonical v2 提案=源成员 P-RP1-LUN-BAKE 冻结体（BUILD→GATE_SURFACE_ACCESS→GATE_EXTREME_TEMP→EXIT 档因子×4 unordered→COMBINE_WEIGHTED）；EEL=AMBIGUOUS_NEEDS_EXPANSION（§2.4 投影未承载 census 原体 BUILD_ACCESSIBLE_SET+族硬门字段名 [需核对 HRQ-02]——Tier A story 证据支持 BUILD 存在则直验并入 v2）"
+      review: HRQ-RP1-01
   - template_id: PATCH_RESOURCE_FOLLOWING
     surface: Bake
     status: CANDIDATE
@@ -178,7 +187,11 @@ templates:
       - {batch: CENSUS-B0, program_id: P-MGC-BAKE-ADULT, blind_hash: 2b560452df77643f}
       - {batch: CENSUS-B1, program_id: P-B1-ONS-BAKE, blind_hash: 4e782a2e8b2440a4, note: "第 2 成员：context_type=current（急流石底绑定）；行为链 Evidence Open（confidence LOW）"}
     known_non_matches: []
-    provisional_note: 双成员（湄公鲶成体 zone + 准白甲鱼 current）均 P06 域；PROVISIONAL 维持待 P06 压缩测试；context_type 轴（zone|current）待批；与 SINGLE 族的 optional_context 边界交 HRQ-B1-02；helper SubstrateResourcePatchEvaluator 同 PROVISIONAL
+    rerun_2026_09_11:
+      batch: CENSUS-RERUN-PLAIN-001
+      outcome: "2/2 成员 vs canonical 评估先行三步 body 证伪：MGC zone=bottom 还原为首道二元定位门（GATE_ZONE→EVAL_RESOURCE_PATCH→NORMALIZE=门先行）→GATED_COVER_TIER_CHAIN 重指派提案（gate_axis bottom_zone 第 3 实例，AST/SNS 同值；deps 位形全同语义 MC）；ONS current 侧展开为流速三档+石底档两步（三档×3 链无二元门——首档含过渡削减带）→SOFT_TRIPLE_TIER_CHAIN 重指派提案（族 1→2，单成员 PROVISIONAL 升格候选；deps 位形全同语义 MC）——重指派批准后本族空置（P06 压缩候选联动 HRQ-04/HRQ-B1-02 PENDING 不受影响，归并裁决一并处置）"
+      review: HRQ-RP1-02
+    provisional_note: 双成员（湄公鲶成体 zone + 准白甲鱼 current）均 P06 域；PROVISIONAL 维持待 P06 压缩测试；context_type 轴（zone|current）待批；与 SINGLE 族的 optional_context 边界交 HRQ-B1-02；helper SubstrateResourcePatchEvaluator 同 PROVISIONAL；RP1 重跑后两成员均重指派提案 pending（本注记为历史态，见 rerun_2026_09_11）
   - template_id: TYPED_TARGET_RESPONSE
     surface: Response
     status: CANDIDATE
@@ -441,6 +454,7 @@ templates:
       - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-FGA-BAKE, role: canonical_source}
       - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-SGA-BAKE, P-RS1-AST-BAKE, P-RS1-SNS-BAKE, P-RS1-GPF-BAKE, P-RS1-SSL-BAKE, P-RS1-WIT-BAKE, P-RS1-YTF-BAKE, P-RS1-FDR-BAKE, P-RS1-BSB-BAKE], note: "伏击门 9 例（engine raw=gate_axis 字面，语义 MC——GUARD anchor 判例同型）"}
       - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-GRB-BAKE, P-RS1-SMA-BAKE], note: "patch/扰动门 2 例（vs PATCH 族 ORDER 真差异——门先行 vs 评估先行；merge_tests 边界证据）"}
+      - {batch: CENSUS-RERUN-PLAIN-001, program_id: P-RP1-MGC-BAKE, note: "重指派提案 pending HRQ-RP1-02：PATCH 族 canonical 源成员 MGC 顺序还原门先行形（GATE_ZONE→EVAL_RESOURCE_PATCH→NORMALIZE）；gate_axis=bottom_zone 第 3 实例（AST/SNS 同值）；engine raw=门/tier 字面（B/O/P），语义 MC——伏击门 9 例同型；批准前不计正式成员"}
     known_non_matches:
       - {batch: CENSUS-RERUN-SINGLE-001, template_id: HARD_GATED_FACTOR_COMBINE, reason: "无 accessible-set 构建/多槽合并；门语义=结构掩体存在非硬生存约束（OPERATOR/DEPENDENCY/COMBINE 真差异）"}
       - {batch: CENSUS-RERUN-SINGLE-001, template_id: PATCH_RESOURCE_FOLLOWING, reason: "门先行 vs 评估先行（ORDER）+无 typed context 中间步（OPERATOR）"}
@@ -516,9 +530,10 @@ templates:
     resolver_dependencies: []
     known_instances:
       - {batch: CENSUS-RERUN-SINGLE-001, program_id: P-RS1-BSK-BAKE, role: canonical_source}
+      - {batch: CENSUS-RERUN-PLAIN-001, program_id: P-RP1-ONS-BAKE, note: "重指派提案 pending HRQ-RP1-02：PATCH 族 ONS 顺序还原三档×3 链（流速档[含过渡削减带]/石底档/附着资源档+三值积归一化；deps 位形全同语义 MC——GATE_CURRENT 为文件原标签、分支语义=IF3 非二元门）；族 1→2 跨科独立重复（BSK 吸口形 vs ONS 急流刮食形）——单成员 PROVISIONAL 升格候选；批准前不计正式成员"}
     known_non_matches:
       - {batch: CENSUS-RERUN-SINGLE-001, template_id: ZONE_SUBSTRATE_RESOURCE_CHAIN, reason: "首步软档 vs GATE（结构差异）；extend-vs-split 见 HRQ-RS1-02"}
-    provisional_note: 单成员 PROVISIONAL（Tier B CSV benthopelagic 软定位推导，硬定位与否 [需正文]——正文证实硬定位则并入 ZONE_SUBSTRATE 族）
+    provisional_note: 单成员 PROVISIONAL（Tier B CSV benthopelagic 软定位推导，硬定位与否 [需正文]——正文证实硬定位则并入 ZONE_SUBSTRATE 族）；RP1 后 2 成员候选（+ONS pending HRQ-RP1-02）——批准后升格
   - template_id: ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN
     surface: Bake
     status: CANDIDATE
@@ -596,3 +611,63 @@ templates:
       - {batch: CENSUS-RERUN-SINGLE-001, program_id: [P-RS1-ARA-BAKE, P-RS1-RBP-BAKE, P-RS1-HNC-BAKE], note: "engine 零差异（4 锚型）；HNC pebble_mound 与 HRQ-B4-01 Response 面提案同值"}
     known_non_matches:
       - {batch: CENSUS-RERUN-SINGLE-001, template_id: PLAIN_FACTOR_COMBINE, reason: "RETURN（Guarding vs 分布）+COMBINE（UNDEFINED 多评估合并 vs WEIGHTED 终合并）+前置锚门——真差异"}
+
+  - template_id: EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-PLAIN-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RP1-02
+      origin: PLAIN 原始成员 OSC 顺序还原出族（极值水温门从末位算术门还原为前置出局判定）；canonical=P-RP1-OSC-BAKE 冻结体
+    canonical_program_body: |
+      GATE_EXTREME_TEMP(极值水温硬门：末位算术门还原为前置出局——极值带=EARLY_RETURN)
+      -> EVAL 因子×4 unordered（静水/结构/猎物/时段——因子间顺序=证据未裁决 unordered 原样；
+         各三档分级命中，排除档=EARLY_RETURN——EXIT 语义非 PLAIN 槽值出局）
+      -> COMBINE_WEIGHTED(算子 OPERATOR UNDEFINED 待机制侧)
+      -> SpatialDistributionWeight
+    ir_pointer: batches/CENSUS-RERUN-PLAIN-001/run_merge_tests.py::NEW_FAMILY_SOURCE.EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN
+    allowed_parameter_axes:
+      - factor_set(typed, bounded 2–6 槽；时段槽=还原新增)
+      - factor_tiering(EXIT 档语义族内固定——与 PLAIN slot_tiering 槽值语义为族域边界)
+      - temp_gate_band(极值带边界=Profile 值域不冻结 [需正文])
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 双硬门链/生存门（HARD_GATED 域——门数与门语义=结构非轴内）, BUILD_ACCESSIBLE_SET（HARD_GATED 域）, 槽值出局语义（PLAIN slot_tiering 域）, 单档链+NORMALIZE（GATED_COVER 域）, 无门因子组合（PLAIN 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-PLAIN-001, program_id: P-RP1-OSC-BAKE, role: canonical_source}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: PLAIN_FACTOR_COMBINE, reason: "前置门+槽 EXIT 语义 vs 无门平铺/槽值——GATE+BRANCH 真差异（B0 HRQ-03 谱系）"}
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: HARD_GATED_FACTOR_COMBINE, reason: "门数（1 vs 2）+无 BUILD——结构元素差异（v2 提案形下续存）"}
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: GATED_COVER_TIER_CHAIN, reason: "EXIT 档因子集+COMBINE vs 单档+NORMALIZE"}
+    provisional_note: 单成员 PROVISIONAL（guarding 目录 1 文件承载）；vs HARD_GATED extend-vs-split：门数/BUILD=结构元素非 typed 轴——worker 裁 NEW，复杂度对比入 merge_tests（HRQ-RP1-02）
+  - template_id: PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN
+    surface: Bake
+    status: CANDIDATE
+    provenance:
+      batch: CENSUS-RERUN-PLAIN-001
+      seeded: 2026-09-11
+      review_queue: HRQ-RP1-02
+      origin: PLAIN 第 3 成员 BRT 顺序还原出族（patch 存在性先行——无 patch 格无竞争占位对象）；canonical=P-RP1-BRT-BAKE 冻结体
+    canonical_program_body: |
+      GATE_PATCH_PRESENCE(patch 存在性门：无 patch=EARLY_RETURN——竞争占位对象存在性先行)
+      -> EVAL_RESOURCE_PATCH(patch 强度档三档：近零档=出局 EARLY_RETURN)
+      -> EVAL_RANK_POSITION_PREFERENCE(core-vs-edge 三档：优势=中心全额/中间=削减/次级=边缘带占位
+         更低削减不清零——出局落槽值非 EARLY_RETURN)
+      -> COMBINE_WEIGHTED(算子 OPERATOR UNDEFINED 待机制侧)
+      -> SpatialDistributionWeight（无归一化步——族边界）
+    ir_pointer: batches/CENSUS-RERUN-PLAIN-001/run_merge_tests.py::NEW_FAMILY_SOURCE.PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN
+    allowed_parameter_axes:
+      - gate_axis(patch_presence——与 GATED_COVER 门轴同源值)
+      - slot2_type(typed: rank_position 个体属性调制因子|…；准入待批 HRQ-B1-04 联动)
+      - factor_set(typed, bounded)
+    forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 归一化步（GATED_COVER 域——COMBINE 终结=族边界）, 无门双槽（PLAIN 域）, 全 EXIT 档 unordered 因子集（EXTREME_TEMP_GATED 域）, 单档链（GATED_COVER 域）]
+    helper_dependencies: []
+    resolver_dependencies: []
+    known_instances:
+      - {batch: CENSUS-RERUN-PLAIN-001, program_id: P-RP1-BRT-BAKE, role: canonical_source}
+    known_non_matches:
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: PLAIN_FACTOR_COMBINE, reason: "门先行+槽 EXIT 档+无归一化 vs 无门槽值组合——GATE/BRANCH/RETURN 拓扑真差异"}
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: GATED_COVER_TIER_CHAIN, reason: "第二槽+COMBINE vs 单档+NORMALIZE"}
+      - {batch: CENSUS-RERUN-PLAIN-001, template_id: EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN, reason: "互记：门轴（patch 存在性 vs 极值带）+混合槽语义（EXIT+槽值）链式 vs 全 EXIT unordered 因子集+无归一化"}
+    provisional_note: 单成员 PROVISIONAL + 退化条款（TAR-05 rank fact 未定则槽 2 退化常量→纯 patch 形族归属翻案——open_semantics 原样携带）

@@ -1,0 +1,380 @@
+{
+ "vs_plain_v1": [
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-CHB-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-WAL-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MDF-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "vs_hard_gated_v1": [
+  {
+   "program_id": "P-RP1-LUN-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-EEL-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR"
+   ]
+  }
+ ],
+ "vs_patch_v1": [
+  {
+   "program_id": "P-RP1-MGC-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-ONS-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR"
+   ]
+  }
+ ],
+ "membership": [
+  {
+   "program_id": "P-RP1-LUN-BAKE",
+   "family": "HARD_GATED_FACTOR_COMBINE_V2__PROPOSAL",
+   "role": "canonical_source_selftest",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RP1-EEL-BAKE",
+   "family": "HARD_GATED_FACTOR_COMBINE_V2__PROPOSAL",
+   "role": "member_direct_test",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "family": "EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN",
+   "role": "canonical_source_selftest",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "family": "PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN",
+   "role": "canonical_source_selftest",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RP1-CHB-BAKE",
+   "family": "PLAIN_SHAPE_DUAL_SLOT__PLAIN_PROPOSAL",
+   "role": "member_direct_test_vs_rs1_carrier",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-WAL-BAKE",
+   "family": "PLAIN_SHAPE_DUAL_SLOT__PLAIN_PROPOSAL",
+   "role": "member_direct_test_vs_rs1_carrier",
+   "engine_structural_diff": [
+    "BRANCH",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MDF-BAKE",
+   "family": "PLAIN_SHAPE_DUAL_SLOT__PLAIN_PROPOSAL",
+   "role": "member_direct_test_vs_rs1_carrier",
+   "engine_structural_diff": [
+    "BRANCH",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MGC-BAKE",
+   "family": "GATED_COVER_TIER_CHAIN",
+   "role": "member_direct_test",
+   "engine_structural_diff": [
+    "BRANCH",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-ONS-BAKE",
+   "family": "SOFT_TRIPLE_TIER_CHAIN",
+   "role": "member_direct_test",
+   "engine_structural_diff": [
+    "BRANCH",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "boundary": [
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "template": "vs_HARD_GATED_V2",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "template": "vs_GATED_COVER",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "template": "vs_C8_CARRIER",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "template": "vs_GATED_COVER",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "template": "vs_C8_CARRIER",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "template": "vs_OSC_SOURCE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-LUN-BAKE",
+   "template": "vs_GATED_COVER",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MGC-BAKE",
+   "template": "vs_HARD_GATED_V1",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MGC-BAKE",
+   "template": "vs_ZONE_SUBSTRATE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-ONS-BAKE",
+   "template": "vs_ZONE_SUBSTRATE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-ONS-BAKE",
+   "template": "vs_ZONE_DEPTH",
+   "engine_structural_diff": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "vs_crr": [
+  {
+   "program_id": "P-RP1-OSC-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-CHB-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-BRT-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-WAL-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MDF-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-LUN-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-EEL-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR"
+   ]
+  },
+  {
+   "program_id": "P-RP1-MGC-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RP1-ONS-BAKE",
+   "engine_structural_diff": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR"
+   ]
+  }
+ ]
+}

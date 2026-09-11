@@ -1,0 +1,48 @@
+batch_id: CENSUS-RERUN-PLAIN-001
+role: FCF-CENSUS-WORKER
+status: INDEPENDENT_REVIEW_REQUIRED
+trigger: envelope CENSUS-RERUN-PLAIN-001（RS1 同构：SINGLE 重跑后 PLAIN/HARD_GATED/PATCH
+  自有成员的顺序还原复检——B 系列 FIX 已触及全库文件）
+scope:
+  families: PLAIN_FACTOR_COMBINE（原始 5）+ HARD_GATED_FACTOR_COMBINE（2）+ PATCH_RESOURCE_FOLLOWING（2）
+  rerun_with_input: 9/9（B0:5 B1:2 B2:2）
+  rerun_input_unavailable: 0（absence_claims 空）
+  input_layer: 顺序还原后 B 系列表达文件 §2.2（migration/normal/grazing/patch）与
+    §2.3/§2.4 NormalFeeding 面（guarding——目录约定记 HRQ-RP1-04）
+  input_dirs: 6（grazing/migration/normal/patch/guarding[Bake 在 §2.3/2.4]/——
+    envelope ARTIFACT_URL 指全量顺序还原表达文件，成员清单从批档台账导出 RS1 判例④）
+execution_mode: B3-F-0（fresh spawn 单轮；program_revisions 空）
+blind_discipline:
+  blind_programs_frozen_at: "2026-09-11T05:25:21Z"   # 终冻（本地 13:25:21+0800；文件系统精确时刻）
+  freeze_history: "两次冻结：05:24:07Z 首冻 → 05:25:21Z 终冻。间隔内仅做 IR deps 忠实度修正
+    （档位步/因子步读原始事实 deps=()——RS1 C3 惯例 vs HARD_GATED 因子集约定区分），依据=文件
+    正文读取行重读，registry 全程未开（05:25:21Z 前零 registry 读取），无判同信息流入"
+  n_programs: 9
+  registry_opened_at: ">=2026-09-11T05:26:00Z（冻结后读取 v7；opened_at 为声明性下界，
+    权威锚=blind 文件 mtime 05:25:21Z 先于 registry Read）"
+  post_registry_mutations: 0
+  bias_declaration: |
+    事前暴露：三族 v1 canonical 形在角色记忆、B0 批档（run_merge_tests.py CANONICALS——
+    流程范式恢复时读取，与 RS1 同源）与 RS1 批档/报告中已知；RS1 9 新族（GATED_COVER/
+    SOFT_TRIPLE 等）的存在与 canonical 源成员亦经 RS1 report（流程范式）已知——本批骨架
+    不从任何 canonical 反推，全部 9 条为各文件伪脚本的机械 IR 转写（文件自身声明与
+    canonical 的分歧并要求 census 侧重跑裁决——work standards §5.4）。盲重建顺序：读 9 份
+    输入 → 转写冻结 → 开 registry v7 → 判同。重跑语义：输入为表达文件（非 Story DB
+    快照），与 B0-B4 批的 Story 输入层不同——envelope 明示授权（ARTIFACT_URL=顺序还原
+    后表达文件）。
+order_discipline: 判断顺序从文件伪脚本正文推导（§5.1）：PLAIN 4 例=受限还原（槽间 unordered
+  族契约维持不发明链序）；HARD_GATED/OSC=门先行 EARLY_RETURN 链；BRT=门+槽序链；MGC=门
+  先行二元；ONS=行为链四环原序；分级命中全部展开为 if/elif/else 分支（IF3_EXIT/IF3_SLOT_
+  VALUE 区分出局语义）非单一布尔——2026-09-11 用户新标准
+verdict_counts:
+  merge_confident: 8          # 语义层（3 canonical 源自测+P1 三成员 vs TAI 载体+MGC/ONS 直验）
+  extension_candidate: 3      # CHB/WAL/MDF × PLAIN v1（slot_tiering 轨并入 HRQ-RS1-03）
+  new_template_candidate_families: 2   # distinct 新候选族（OSC/BRT 形）
+  ambiguous: 2                # EEL × {HARD_GATED v1, v2}——证据分层（BUILD 投影缺口）
+deltas:
+  dL_group: 0
+  dL_bake: 2                  # EXTREME_TEMP_GATED_TIERED_COMBINE + PATCH_GATED_DUAL_SLOT_COMBINE（candidate 级）
+  dL_response: 0
+  dL_quality: 0
+registry: v7 -> v8（PLAIN/HARD_GATED/PATCH 三族重跑注记 + HARD_GATED v2 提案 + 2 新候选族 +
+  GATED_COVER/SOFT_TRIPLE 重指派挂账；名义 162 不变——重指派非新增）
