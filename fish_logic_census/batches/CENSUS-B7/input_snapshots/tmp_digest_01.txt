@@ -1,0 +1,194 @@
+===== story_001.md :: B01-S01｜玻璃梭鲈｜低光与遮蔽下的离散捕食
+--Reality Baseline--
+玻璃梭鲈眼部反光结构有利于低光视觉；常在晨昏浅区活动，白天也可在深水、遮蔽或浑水摄食，亦可追随悬浮饵鱼。
+--Story Scope / State Scope--
+MN DNR 的成鱼生态与钓法；不是所有种群只在夜间摄食。
+--Strategy Story--
+机构钓法把浅水晨昏、白天深处/结构及悬浮鱼的位置区别处理；先改变搜索水层和位置，再选择 jig 或浮漂呈现。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：光照、浑浊、遮蔽是 Context；Spatial 负责鱼所在位置，TargetFeeding 负责当前饵。
+--Lowest-Power Explanation--
+光照、浑浊、遮蔽是 Context；Spatial 负责鱼所在位置，TargetFeeding 负责当前饵。
+--Competing Explanation--
+LowLight Mode 不能只凭视觉适应成立；需要独立持久控制身份的证据。
+
+===== story_002.md :: ?
+--Reality Baseline--
+黑斑刺盖太阳鱼幼体以浮游动物为食，较大个体更多摄入鱼类；清水、植被和结构影响栖息与觅食。
+--Story Scope / State Scope--
+Pomoxis nigromaculatus；钓法页同时涉及黑、白 crappie，只作共同呈现参照。
+--Strategy Story--
+小型鱼饵/jig 围绕掩体与相应水层呈现；幼鱼食谱不是成鱼持续滤食的证明。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：体型/阶段 Context + 离散饵目标，资源分布交 Spatial。
+--Lowest-Power Explanation--
+体型/阶段 Context + 离散饵目标，资源分布交 Spatial。
+--Competing Explanation--
+吃浮游生物并不单独证明 FoodField evaluand 或 FieldFeeding。
+
+===== story_003.md :: B01-S04｜黑斑刺盖太阳鱼｜雄鱼筑巢护卵的独立繁殖 Story
+--Reality Baseline--
+Illinois DNR 与 USFWS 均明确黑 crappie 雄鱼筑巢并护卵至孵化；这是本种证据，不再只因同科而猜测守巢。
+--Story Scope / State Scope--
+繁殖雄鱼；不覆盖雌鱼、非繁殖个体，也不证明每次近巢咬饵的动机。
+--Strategy Story--
+巢区提供可搜索位置；定向检索后仍未找到区分饥饿与护卵动机的本种钩饵实验，策略机制保持开放。
+--FCF Interpretation--
+Semantic Open；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：先用既存繁殖 Condition + Nest relation 描述护卵；对玩家饵的冲突路径尚待行为证据。
+--Lowest-Power Explanation--
+先用既存繁殖 Condition + Nest relation 描述护卵；对玩家饵的冲突路径尚待行为证据。
+--Competing Explanation--
+巢区捕获也可能是摄食；护卵事实不足以购买 FishMode 或把 RelationalConflict 标成已验证。
+
+===== story_004.md :: B01-S05｜鳄雀鳝｜鱼类猎物与缓慢取饵
+--Reality Baseline--
+鳄雀鳝捕食鱼类，TPWD 描述其取食/吞咽可缓慢谨慎；初始食物接受与后续挂钩不是同一事件。
+--Story Scope / State Scope--
+TPWD 物种概述；不等于慢速假饵在所有水域最优。
+--Strategy Story--
+自然鱼饵提供可靠实践背景；携行与吞咽的具体处理分到 GAR-2。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：猎物属性 + Context + TargetFeeding 即可先解释初始接受。
+--Lowest-Power Explanation--
+猎物属性 + Context + TargetFeeding 即可先解释初始接受。
+--Competing Explanation--
+外观凶猛不证明高攻击倾向或新 Mode。
+
+===== story_005.md :: B01-S06｜鳄雀鳝｜洪水繁殖入口与不连续的年度成功
+--Reality Baseline--
+鳄雀鳝繁殖依赖合适的温度和淹水浅滩/植被通达，成功繁殖并非每年必然发生。
+--Story Scope / State Scope--
+TPWD 所述种群生态；洪水入口是繁殖/空间条件，不是当前饵必定可接受。
+--Strategy Story--
+鱼所在栖地与可接近区域影响找鱼；繁殖洪水不能直接转成咬饵加成。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：水位与繁殖入口由 Spatial/Lifecycle 提供；与 GAR-0 普通捕食分开。
+--Lowest-Power Explanation--
+水位与繁殖入口由 Spatial/Lifecycle 提供；与 GAR-0 普通捕食分开。
+--Competing Explanation--
+年度募集失败不能推出单次 Encounter 失败；不存在已证明的 Flood Mode。
+
+===== story_006.md :: B01-S08｜黄鲈｜体型食谱与小饵水层匹配
+--Reality Baseline--
+黄鲈随成长由浮游食物转向底栖无脊椎与鱼类；通常吞入完整猎物。植被、掩体和食物所在水层影响觅食。
+--Story Scope / State Scope--
+MN DNR 物种资料；食谱变化不代表每条个体同步换食。
+--Strategy Story--
+官方建议在掩体附近以小饵/小型冰钓 jig 匹配鱼所在水层。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：体型和局部资源为 Context，实际饵为 Discrete Target。
+--Lowest-Power Explanation--
+体型和局部资源为 Context，实际饵为 Discrete Target。
+--Competing Explanation--
+幼体浮游食谱不等于连续 Field Feeding；吞整只猎物不提供独立 swallowing 状态契约。
+
+===== story_007.md :: B01-S09｜黄鲈｜产卵迁移与植被卵带
+--Reality Baseline--
+黄鲈在适合底质/植被处产出胶状卵带；USGS 对 Chesapeake 支流的产卵栖地开展调查，说明繁殖可涉及特定水域入口。
+--Story Scope / State Scope--
+卵带为物种生物学；迁移/入口的具体外推限 Chesapeake 调查，不能拿来规定所有湖泊。
+--Strategy Story--
+可形成繁殖区域的找鱼线索；缺对应水域实际垂钓因果研究，不能给出统一季节加成。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：繁殖阶段改变 Spatial/Condition；卵带是环境事实，不自动成为玩家冲突对象。
+--Lowest-Power Explanation--
+繁殖阶段改变 Spatial/Condition；卵带是环境事实，不自动成为玩家冲突对象。
+--Competing Explanation--
+有卵不等于有守巢 RelationalConflict。
+
+===== story_008.md :: B01-S10｜大口牛胭脂鱼｜浮游资源选择与滤食机会
+--Reality Baseline--
+大口牛胭脂鱼存在滤取浮游食物的证据；Wabash 与历史水库研究提供食物选择和阶段资料。密度、动作、连续机会之间的完整因果链仍未闭合。
+--Story Scope / State Scope--
+不同地点/年份的食谱与形态资料分开使用；不把胃内容物频率当行为切换概率。
+--Strategy Story--
+Iowa DNR 记载很少以钩线捕获。该描述不证明绝不咬饵；尚缺稳定钩饵呈现如何对接滤食的策略链。
+--FCF Interpretation--
+Existing Pattern；比较 P03：<mention-page url="https://app.notion.com/p/3d6a4137d236810696fbdb25e854c094"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：typed FoodField evaluator + 现有 Response；先问输入范围、机会寿命和去重。
+--Lowest-Power Explanation--
+typed FoodField evaluator + 现有 Response；先问输入范围、机会寿命和去重。
+--Competing Explanation--
+离散颗粒选择可以不要求独立 Field Grammar；须证明单目标 Context 不能承载所需行为。
+
+===== story_009.md :: B01-S11｜大口牛胭脂鱼｜水位升高后的繁殖浅滩通达
+--Reality Baseline--
+Iowa DNR 描述温度与水位上升后，成群进入浅水沼泽繁殖，卵无人照护；可见繁殖聚集不能直接归成守巢。
+--Story Scope / State Scope--
+机构淡水生态概述；不是所有种群的年度成功预测。
+--Strategy Story--
+区域通达可改变找鱼位置；未找到可将该迁移转为稳定钩饵响应的证据。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：水位和阶段更新 Spatial/Condition，群聚不单独购买 Group。
+--Lowest-Power Explanation--
+水位和阶段更新 Spatial/Condition，群聚不单独购买 Group。
+--Competing Explanation--
+Flood/Spawn Mode 与 Guard Mode 均缺额外控制身份证据。
+
+===== story_010.md :: B01-S13｜褐鳟｜定居与海行生活史共存
+--Reality Baseline--
+同种褐鳟可终生淡水定居，也可入海/河口生长后返河繁殖；这些生态型可在同一河流以幼鱼共存和繁殖。
+--Story Scope / State Scope--
+IFI 爱尔兰资料；不自动采用其生态型拉丁亚种标签作为新的物种拆分 Authority。
+--Strategy Story--
+海行、湖河定居改变找鱼水域与时间；不能把海行个体的返河摄食描述套到全体。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle + Spatial + Condition 先表达生活史；只有产品需要并存且互斥供给才测试 FishGroup。
+--Lowest-Power Explanation--
+Lifecycle + Spatial + Condition 先表达生活史；只有产品需要并存且互斥供给才测试 FishGroup。
+--Competing Explanation--
+现实生态型并存不单独证明系统必须预分 Group。
+
+===== story_011.md :: B01-S15｜褐鳟｜繁殖雄鱼竞争与求偶结果
+--Reality Baseline--
+1999 年受控研究观察雌鱼选择与释放后雄鱼竞争；支配关系可改变繁殖配对结果。它证明繁殖竞争，不证明产后守卵或对假饵攻击。
+--Story Scope / State Scope--
+该实验的成鱼、场地与配对安排；第二来源只核对物种繁殖背景，并非独立重复相同竞争结果。
+--Strategy Story--
+未找到可把观察转化为特定 lure、停顿或取食触发的策略证据；候选仍可供遗漏审查。
+--FCF Interpretation--
+Semantic Open；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：繁殖 Condition + 对手/配偶关系；P04 仅为竞争参照，因为没有 Nest guard 前提。
+--Lowest-Power Explanation--
+繁殖 Condition + 对手/配偶关系；P04 仅为竞争参照，因为没有 Nest guard 前提。
+--Competing Explanation--
+求偶不等于冲突，二者须分开；当前证据不足以接受新 Mode 或套用守巢 bundle。
+
+===== story_012.md :: B01-S16｜美国红鱼｜尾露与底栖猎物斑块
+--Reality Baseline--
+美国红鱼可头朝下在底部取食而露尾，也可在水层中摄食。浅水草区和甲壳类/小鱼资源为搜索线索。
+--Story Scope / State Scope--
+TPWD 的 red drum 生态和垂钓说明；露尾不是攻击玩家的信号。
+--Strategy Story--
+来源直接描述向巡游或露尾鱼投呈虾/蟹等模仿物；位置和饵型随自然觅食位置改变。
+--FCF Interpretation--
+Existing Pattern；比较 P02：<mention-page url="https://app.notion.com/p/3d6a4137d2368111a1bbf2139e8b61a1"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：ResourcePatch 组织机会，离散钩饵进入 TargetFeeding；可见尾露交观察反馈。
+--Lowest-Power Explanation--
+ResourcePatch 组织机会，离散钩饵进入 TargetFeeding；可见尾露交观察反馈。
+--Competing Explanation--
+Tailing 不需要独立 Mode；群聚也不必创建 Group。
+
+===== story_013.md :: B01-S17｜美国红鱼｜潮位水深与幼鱼—成鱼栖地
+--Reality Baseline--
+幼鱼多利用海湾、成鱼更多外海；潮位和温度可改变日内水深。TPWD 明说一般季节迁移证据有限，不能把秋季出现成鱼直接定为统一洄游。
+--Story Scope / State Scope--
+得克萨斯 red drum；每日位置与生活史差异分开记录。
+--Strategy Story--
+潮位和鱼龄改变搜索湾区、浅滩或更深水域；不能仅凭季节标签承诺可钓。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Spatial 的时变条件和生活史输入足够先表达，不设 Tide Mode。
+--Lowest-Power Explanation--
+Spatial 的时变条件和生活史输入足够先表达，不设 Tide Mode。
+--Competing Explanation--
+秋季 bull red 聚集的繁殖解释有不确定性，不能偷换成已知触发。

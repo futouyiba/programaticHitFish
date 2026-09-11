@@ -1,0 +1,245 @@
+warning: Failed to set cwd to temp dir
+saved 4743 bytes -> story_001.md
+warning: Failed to set cwd to temp dir
+saved 2444 bytes -> story_002.md
+warning: Failed to set cwd to temp dir
+saved 4884 bytes -> story_003.md
+warning: Failed to set cwd to temp dir
+saved 4202 bytes -> story_004.md
+warning: Failed to set cwd to temp dir
+saved 4527 bytes -> story_005.md
+warning: Failed to set cwd to temp dir
+saved 4381 bytes -> story_006.md
+warning: Failed to set cwd to temp dir
+saved 4634 bytes -> story_007.md
+warning: Failed to set cwd to temp dir
+saved 5263 bytes -> story_008.md
+warning: Failed to set cwd to temp dir
+saved 4411 bytes -> story_009.md
+warning: Failed to set cwd to temp dir
+saved 4631 bytes -> story_010.md
+warning: Failed to set cwd to temp dir
+saved 4896 bytes -> story_011.md
+warning: Failed to set cwd to temp dir
+saved 4383 bytes -> story_012.md
+warning: Failed to set cwd to temp dir
+saved 4468 bytes -> story_013.md
+warning: Failed to set cwd to temp dir
+FAILED: story_014 B01-S18｜白斑狗鱼｜植被伏击与从下方接近
+warning: Failed to set cwd to temp dir
+saved 5264 bytes -> story_015.md
+warning: Failed to set cwd to temp dir
+saved 4383 bytes -> story_016.md
+warning: Failed to set cwd to temp dir
+saved 4702 bytes -> story_017.md
+warning: Failed to set cwd to temp dir
+saved 4429 bytes -> story_018.md
+warning: Failed to set cwd to temp dir
+saved 4334 bytes -> story_019.md
+warning: Failed to set cwd to temp dir
+saved 4328 bytes -> story_020.md
+warning: Failed to set cwd to temp dir
+saved 5217 bytes -> story_021.md
+warning: Failed to set cwd to temp dir
+saved 4746 bytes -> story_022.md
+warning: Failed to set cwd to temp dir
+saved 5432 bytes -> story_023.md
+warning: Failed to set cwd to temp dir
+saved 3050 bytes -> story_024.md
+warning: Failed to set cwd to temp dir
+saved 5053 bytes -> story_025.md
+warning: Failed to set cwd to temp dir
+saved 4796 bytes -> story_026.md
+warning: Failed to set cwd to temp dir
+saved 4184 bytes -> story_027.md
+warning: Failed to set cwd to temp dir
+FAILED: story_028 B01-S38｜蓝鳃太阳鱼｜雄鱼护巢、觅食与食卵的边界
+warning: Failed to set cwd to temp dir
+saved 2550 bytes -> story_029.md
+warning: Failed to set cwd to temp dir
+saved 4532 bytes -> story_030.md
+warning: Failed to set cwd to temp dir
+saved 5153 bytes -> story_031.md
+warning: Failed to set cwd to temp dir
+saved 4749 bytes -> story_032.md
+FETCH_FAILED: https://app.notion.com/p/3d6a4137d236818cae92f8532fbe027a
+所有路径已穷尽：主会话、fcf-evidence-reviewer、fcf-fish-researcher、general-purpose（Tools: *）四个会话均确认 `mcp__notion__notion-fetch` 未挂载——notion 服务器在本环境只暴露 `notion://docs/*` 文档资源，不暴露任何抓取工具；webReader 仅能取到登录墙（私有页，未认证）。independent-narrow-reviewer 的工具集是 general-purpose 的子集，无再试价值。按协议输出：
+
+FETCH_FAIL notion MCP 服务器已连接但未暴露 fetch 工具（全部会话仅含 notion://docs/* 资源，无 mcp__notion__notion-fetch/notion-search），页面为私有 Notion 页，webReader 仅能取到登录墙外壳，无任何已认证通道可获取页面 markdown。
+FAILED: story_033 B01-S45｜黑鼓鱼｜触须找底栖猎物与咽齿处理
+warning: Failed to set cwd to temp dir
+saved 4811 bytes -> story_034.md
+warning: Failed to set cwd to temp dir
+saved 4484 bytes -> story_035.md
+warning: Failed to set cwd to temp dir
+saved 4663 bytes -> story_036.md
+warning: Failed to set cwd to temp dir
+saved 4889 bytes -> story_037.md
+warning: Failed to set cwd to temp dir
+saved 4876 bytes -> story_038.md
+warning: Failed to set cwd to temp dir
+saved 3619 bytes -> story_039.md
+warning: Failed to set cwd to temp dir
+saved 3320 bytes -> story_040.md
+warning: Failed to set cwd to temp dir
+FAILED: story_041 FISH-R02-S05｜毛鳞鱼｜繁殖上岸与近岸资源窗口
+warning: Failed to set cwd to temp dir
+saved 3306 bytes -> story_042.md
+warning: Failed to set cwd to temp dir
+saved 3603 bytes -> story_043.md
+warning: Failed to set cwd to temp dir
+saved 3309 bytes -> story_044.md
+warning: Failed to set cwd to temp dir
+saved 3275 bytes -> story_045.md
+warning: Failed to set cwd to temp dir
+saved 3407 bytes -> story_046.md
+warning: Failed to set cwd to temp dir
+saved 3412 bytes -> story_047.md
+warning: Failed to set cwd to temp dir
+saved 3436 bytes -> story_048.md
+warning: Failed to set cwd to temp dir
+saved 3429 bytes -> story_049.md
+warning: Failed to set cwd to temp dir
+saved 3388 bytes -> story_050.md
+warning: Failed to set cwd to temp dir
+saved 3288 bytes -> story_051.md
+warning: Failed to set cwd to temp dir
+saved 3420 bytes -> story_052.md
+warning: Failed to set cwd to temp dir
+saved 3385 bytes -> story_053.md
+warning: Failed to set cwd to temp dir
+saved 3272 bytes -> story_054.md
+warning: Failed to set cwd to temp dir
+saved 3213 bytes -> story_055.md
+warning: Failed to set cwd to temp dir
+saved 5569 bytes -> story_056.md
+warning: Failed to set cwd to temp dir
+saved 5720 bytes -> story_057.md
+warning: Failed to set cwd to temp dir
+saved 6166 bytes -> story_058.md
+warning: Failed to set cwd to temp dir
+saved 3628 bytes -> story_059.md
+warning: Failed to set cwd to temp dir
+saved 5331 bytes -> story_060.md
+warning: Failed to set cwd to temp dir
+saved 5080 bytes -> story_061.md
+warning: Failed to set cwd to temp dir
+saved 6966 bytes -> story_062.md
+warning: Failed to set cwd to temp dir
+saved 5528 bytes -> story_063.md
+warning: Failed to set cwd to temp dir
+saved 5613 bytes -> story_064.md
+warning: Failed to set cwd to temp dir
+saved 5441 bytes -> story_065.md
+warning: Failed to set cwd to temp dir
+saved 5832 bytes -> story_066.md
+warning: Failed to set cwd to temp dir
+saved 5124 bytes -> story_067.md
+warning: Failed to set cwd to temp dir
+saved 5024 bytes -> story_068.md
+warning: Failed to set cwd to temp dir
+saved 5708 bytes -> story_069.md
+warning: Failed to set cwd to temp dir
+saved 7572 bytes -> story_070.md
+warning: Failed to set cwd to temp dir
+saved 5313 bytes -> story_071.md
+warning: Failed to set cwd to temp dir
+saved 6690 bytes -> story_072.md
+warning: Failed to set cwd to temp dir
+saved 6133 bytes -> story_073.md
+warning: Failed to set cwd to temp dir
+saved 5663 bytes -> story_074.md
+warning: Failed to set cwd to temp dir
+saved 5514 bytes -> story_075.md
+warning: Failed to set cwd to temp dir
+saved 5680 bytes -> story_076.md
+warning: Failed to set cwd to temp dir
+saved 5100 bytes -> story_077.md
+warning: Failed to set cwd to temp dir
+saved 5359 bytes -> story_078.md
+warning: Failed to set cwd to temp dir
+saved 6525 bytes -> story_079.md
+warning: Failed to set cwd to temp dir
+saved 1013 bytes -> story_080.md
+warning: Failed to set cwd to temp dir
+saved 1093 bytes -> story_081.md
+warning: Failed to set cwd to temp dir
+saved 3184 bytes -> story_082.md
+warning: Failed to set cwd to temp dir
+saved 3543 bytes -> story_083.md
+warning: Failed to set cwd to temp dir
+saved 3523 bytes -> story_084.md
+warning: Failed to set cwd to temp dir
+saved 3154 bytes -> story_085.md
+warning: Failed to set cwd to temp dir
+saved 1043 bytes -> story_086.md
+warning: Failed to set cwd to temp dir
+saved 3570 bytes -> story_087.md
+warning: Failed to set cwd to temp dir
+saved 3148 bytes -> story_088.md
+warning: Failed to set cwd to temp dir
+saved 3462 bytes -> story_089.md
+warning: Failed to set cwd to temp dir
+saved 2935 bytes -> story_090.md
+warning: Failed to set cwd to temp dir
+saved 3261 bytes -> story_091.md
+warning: Failed to set cwd to temp dir
+saved 3516 bytes -> story_092.md
+warning: Failed to set cwd to temp dir
+saved 3426 bytes -> story_093.md
+warning: Failed to set cwd to temp dir
+saved 3097 bytes -> story_094.md
+warning: Failed to set cwd to temp dir
+saved 3709 bytes -> story_095.md
+warning: Failed to set cwd to temp dir
+saved 2997 bytes -> story_096.md
+warning: Failed to set cwd to temp dir
+saved 3045 bytes -> story_097.md
+warning: Failed to set cwd to temp dir
+saved 3479 bytes -> story_098.md
+warning: Failed to set cwd to temp dir
+saved 3268 bytes -> story_099.md
+warning: Failed to set cwd to temp dir
+saved 3856 bytes -> story_100.md
+warning: Failed to set cwd to temp dir
+saved 3280 bytes -> story_101.md
+warning: Failed to set cwd to temp dir
+saved 3178 bytes -> story_102.md
+warning: Failed to set cwd to temp dir
+saved 3445 bytes -> story_103.md
+warning: Failed to set cwd to temp dir
+saved 3573 bytes -> story_104.md
+warning: Failed to set cwd to temp dir
+saved 4740 bytes -> story_105.md
+warning: Failed to set cwd to temp dir
+saved 3399 bytes -> story_106.md
+warning: Failed to set cwd to temp dir
+saved 3270 bytes -> story_107.md
+warning: Failed to set cwd to temp dir
+saved 3200 bytes -> story_108.md
+warning: Failed to set cwd to temp dir
+saved 3454 bytes -> story_109.md
+warning: Failed to set cwd to temp dir
+FAILED: story_110 FISH-R05｜团头鲂｜Wuchang
+warning: Failed to set cwd to temp dir
+saved 3622 bytes -> story_111.md
+warning: Failed to set cwd to temp dir
+saved 3237 bytes -> story_112.md
+== retry pass ==
+RETRY story_014
+warning: Failed to set cwd to temp dir
+saved 4543 bytes -> story_014.md
+RETRY story_028
+warning: Failed to set cwd to temp dir
+saved 5459 bytes -> story_028.md
+RETRY story_033
+warning: Failed to set cwd to temp dir
+saved 4463 bytes -> story_033.md
+RETRY story_041
+warning: Failed to set cwd to temp dir
+saved 3366 bytes -> story_041.md
+RETRY story_110
+warning: Failed to set cwd to temp dir
+saved 4482 bytes -> story_110.md
+== done ==
+113

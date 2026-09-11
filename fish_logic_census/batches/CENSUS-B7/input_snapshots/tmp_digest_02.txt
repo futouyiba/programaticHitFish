@@ -1,0 +1,166 @@
+===== story_014.md :: ?
+
+===== story_015.md :: B01-S21｜鲻鱼｜底质、附着物与颗粒捕获吐出
+--Reality Baseline--
+鲻鱼利用底泥、附着物，也可在水气界面取食；2022 年圈养观察区分持续游动、底部/表面颗粒捕获与吐出，不能写成持续吞咽。
+--Story Scope / State Scope--
+Mugil cephalus；圈养 36 鱼/3 缸研究与野外/养殖概述分开，不把动作时长转成触发概率。
+--Strategy Story--
+基质层位可影响呈现位置；稳定钩饵策略如何对接连续资源处理仍缺直接证据。
+--FCF Interpretation--
+Compression Candidate；比较 P06：<mention-page url="https://app.notion.com/p/3d6a4137d23681d6a527eef7c9f42d7d"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：优先 ResourcePatch + typed substrate evaluator，测试是否仍可由离散 TargetFeeding 消费。
+--Lowest-Power Explanation--
+优先 ResourcePatch + typed substrate evaluator，测试是否仍可由离散 TargetFeeding 消费。
+--Competing Explanation--
+处理持续不等于机会必须连续；P06 向 P02 压缩仍是候选，不能宣称完成。
+
+===== story_016.md :: B01-S22｜鲻鱼｜近岸生长与外海产卵的空间分离
+--Reality Baseline--
+FAO 描述鲻鱼成鱼成群外海繁殖，幼体进入近岸/河口生长；觅食底质与繁殖位置不应混成一处。
+--Story Scope / State Scope--
+物种概述，不是所有区域统一迁徙时间表。
+--Strategy Story--
+生命周期改变搜索水域；缺迁徙期钩饵反应证据，不由繁殖聚群推导咬饵热度。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Spatial 描述位置与阶段；同种群游不单独购买 Group。
+--Lowest-Power Explanation--
+Lifecycle/Spatial 描述位置与阶段；同种群游不单独购买 Group。
+--Competing Explanation--
+繁殖迁移不等同 FieldFeeding 模式切换。
+
+===== story_017.md :: B01-S23｜虹鳟｜天然漂流与鲑卵/尸体食物脉冲
+--Reality Baseline--
+虹鳟摄食无脊椎和鱼类；ADFG 的 Kanektok 实例描述鲑繁殖季卵/肉来源以及自然漂流呈现。
+--Story Scope / State Scope--
+Oncorhynchus mykiss；后半结论限阿拉斯加具体河流，不泛化所有虹鳟水域。
+--Strategy Story--
+机构建议用卵/肉模仿物作不受拖拽的漂流，通过水层和配重接近底部。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：流速和食物类型是 Context，实际漂流饵仍为 Discrete Target。
+--Lowest-Power Explanation--
+流速和食物类型是 Context，实际漂流饵仍为 Discrete Target。
+--Competing Explanation--
+食物脉冲不自动要求 FieldFeeding；Drift 不是独立 Mode。
+
+===== story_018.md :: B01-S25｜虹鳟｜定居虹鳟与海行钢头鳟
+--Reality Baseline--
+定居虹鳟和海行钢头鳟为同种不同生活史；海行后返淡水繁殖，个体可重复繁殖。
+--Story Scope / State Scope--
+生活史概述；重复繁殖能力不等于每条个体必定重复。
+--Strategy Story--
+搜索水域和返回时序因生活史不同；不能将湖泊摄食策略直接用于所有返河成鱼。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Spatial/Condition 优先；Group 只在并存且供给必须隔离时考虑。
+--Lowest-Power Explanation--
+Lifecycle/Spatial/Condition 优先；Group 只在并存且供给必须隔离时考虑。
+--Competing Explanation--
+生态型名称不能直接购买两套鱼种或 Group。
+
+===== story_019.md :: B01-S26｜美洲鳗鲡｜夜间离散觅食与白天隐蔽
+--Reality Baseline--
+美洲鳗鲡白天在植物、倒木等处隐蔽，夜间摄食甲壳类、昆虫、蠕虫和鱼。
+--Story Scope / State Scope--
+USFWS 对生长期的概述；不套用到全部迁徙和生殖阶段。
+--Strategy Story--
+可提出改变搜索时段/隐蔽处的生态推论；本批专查钓法仍缺可靠物种级直接证据，不能写成验证过的钩饵方案。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：昼夜和遮蔽为 Context/Spatial，食物为离散 Target。
+--Lowest-Power Explanation--
+昼夜和遮蔽为 Context/Spatial，食物为离散 Target。
+--Competing Explanation--
+夜间活动不要求 Night Mode；不由细长体形推导连续底质摄食。
+
+===== story_020.md :: B01-S27｜美洲鳗鲡｜降海生殖与多阶段迁移
+--Reality Baseline--
+美洲鳗鲡由海洋幼体到沿岸/淡水生长，成熟后返回 Sargasso Sea 繁殖；障碍物会影响迁移通达。
+--Story Scope / State Scope--
+降海洄游概述；并非所有生长个体都进入纯淡水。
+--Strategy Story--
+阶段与连通性决定鱼是否可能出现在水域；不足以定义某饵能否触发返海个体。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle 与 Spatial 通达；阶段存在不必创建 Mode。
+--Lowest-Power Explanation--
+Lifecycle 与 Spatial 通达；阶段存在不必创建 Mode。
+--Competing Explanation--
+迁徙与摄食变化不能简单合成绝对关断开关；具体银化后的 feeding suppression 需专项证据。
+
+===== story_021.md :: B01-S28｜红鲑鱼｜浮游食物与阶段不确定的滤食证据
+--Reality Baseline--
+红鲑有支持浮游摄食的鳃耙/食物资料；幼鱼食谱随大小与季节变化，2017 年研究包含昆虫利用。食谱差异不足以闭合 filter/particulate 动作切换。
+--Story Scope / State Scope--
+幼鱼、海行红鲑与 kokanee 不互相替换；原冻结结论是正向证据加阶段 ambiguity。
+--Strategy Story--
+根据幼鱼食谱不能直接推荐返河成鱼的饵或判定其取食动机。
+--FCF Interpretation--
+Existing Pattern；比较 P03：<mention-page url="https://app.notion.com/p/3d6a4137d236810696fbdb25e854c094"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：若行为证据成立可测试 typed field evaluator；当前先保留阶段条件。
+--Lowest-Power Explanation--
+若行为证据成立可测试 typed field evaluator；当前先保留阶段条件。
+--Competing Explanation--
+离散昆虫/颗粒捕食能否解释资料仍需排查，不能把鳃耙自动译成每阶段 FieldFeeding。
+
+===== story_022.md :: B01-S29｜红鲑鱼｜返河繁殖与非摄食捕获动机未定
+--Reality Baseline--
+ADFG 描述红鲑返河繁殖与生长期食物的差异；幼鱼饮食研究不回答返河成鱼为何被钓获。
+--Story Scope / State Scope--
+太平洋红鲑生活史；不把大西洋鲑例外或 kokanee 食谱移植进来。
+--Strategy Story--
+已检索 snagging/flossing 线索，但没有把公众监管提案当机构行为结论；本批不宣称每次口部中钩是摄食或侵略。
+--FCF Interpretation--
+Semantic Open；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：Lifecycle/Spatial 解释返河；实际捕获须另核主动响应、线接触与 Hook owner。
+--Lowest-Power Explanation--
+Lifecycle/Spatial 解释返河；实际捕获须另核主动响应、线接触与 Hook owner。
+--Competing Explanation--
+既不能默认 TargetFeeding，也不能仅凭停止摄食概述就归 B02；两种归属均缺当前实例证据。
+
+===== story_023.md :: B01-S30｜大西洋鲑鱼｜生长摄食与返河繁殖的限定差异
+--Reality Baseline--
+大西洋鲑淡水生长期与海洋阶段食物不同。返河摄食不能写成绝对零：Johansen 的特定支流样本有淡水/陆生食物，另一支流样本没有；fjord 胃物与潜水也不能直接证明最近摄食。
+--Story Scope / State Scope--
+NOAA 概述、Tana 支流样本及挪威 fjord 研究各自限定；本页承接 C12 已登记的 qualification，不执行其责任 Gate。
+--Strategy Story--
+水域/阶段影响找鱼；返河咬饵的摄食、冲突或其他动机仍不能由胃内容物直接决定。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Condition/Spatial 先解释差异；不必新建 Return Mode 或按迁移阶段预分 Group。
+--Lowest-Power Explanation--
+Lifecycle/Condition/Spatial 先解释差异；不必新建 Return Mode 或按迁移阶段预分 Group。
+--Competing Explanation--
+潜水可能与导航有关；食物残留不等于当前 FeedingMatch，绝对 fasting 与绝对 continued feeding 都不成立。
+
+===== story_024.md :: ?
+--Reality Baseline--
+小口黑鲈繁殖雄鱼护巢/护幼。2009 年饱食处理与防御行为下降相关；2016 年补食降低弃巢却未显示相同的照护行为显著变化，不能把两实验压成恒定规则。
+--Story Scope / State Scope--
+不同实验条件分别解释；守护持续与当前食物反应不能被假设为严格互斥。
+--Strategy Story--
+巢区存在明确玩家接近情境，但 nutrition 实验不直接校准某 lure 的效果。
+--FCF Interpretation--
+Existing Pattern；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：既存 guard Condition + nest/fry relation + 当前目标 meaning；并行可用候选不等于必须共同结算。
+--Lowest-Power Explanation--
+既存 guard Condition + nest/fry relation + 当前目标 meaning；并行可用候选不等于必须共同结算。
+--Competing Explanation--
+Guard Mode 仍缺必要 bundle identity、供给分区和退场 policy；营养结果不能偷写成双通道固定顺序。
+
+===== story_025.md :: B01-S33｜鸭嘴鲟｜滤食与颗粒选择的输入边界
+--Reality Baseline--
+鸭嘴鲟有明确滤食资料；圈养亚成体研究记载 filter/particulate 行为，未观察到清楚固定切换规律不等于证明没有切换规则。
+--Story Scope / State Scope--
+机构成人概述与两个圈养亚成体观察分开；同 DOI 不同作者显示顺序不算独立研究。
+--Strategy Story--
+常见 snagging 另列 PAD-4；不把滤食能力当作咬普通钩饵的证据。
+--FCF Interpretation--
+Existing Pattern；比较 P03：<mention-page url="https://app.notion.com/p/3d6a4137d236810696fbdb25e854c094"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：typed FoodField evaluator + 机会输入；先验证分布式资源是否不能由离散目标承载。
+--Lowest-Power Explanation--
+typed FoodField evaluator + 机会输入；先验证分布式资源是否不能由离散目标承载。
+--Competing Explanation--
+个别颗粒选择与连续滤取可能共享 Response；行为名不足以购买新 Grammar。

@@ -1,0 +1,170 @@
+===== story_046.md :: FISH-R02-S12｜七彩神仙鱼（白）｜亲鱼护幼关系（色型不分裂）
+--Reality Baseline--
+亲鱼—幼鱼关系包含体表黏液摄食和守护阶段，机制语义与普通摄食不同。
+--Strategy Story--
+阶段性亲鱼关系决定接近和干扰的意义；不应将其写成普通鱼的永久反应。
+--FCF Interpretation--
+P04；与橙色型形成 Compression Candidate，而非新 Pattern。
+--Lowest-Power Explanation--
+同一繁殖 Condition + Relation owner；色型为视觉/资产属性。
+--Competing Explanation--
+不为色型单独购买 FishMode 或 Grammar。
+
+===== story_047.md :: FISH-R02-S13｜东方狐鲣｜开放水层追猎与移动饵群
+--Reality Baseline--
+东方狐鲣为高速追猎型鱼类，利用移动小鱼与头足类资源，空间位置随饵群与水层变化。
+--Strategy Story--
+策略优先寻找移动饵群、流线和水层，再以高速移动 Presentation 模拟追猎。
+--FCF Interpretation--
+P03；FieldFeeding + downstream TargetFeeding。
+--Lowest-Power Explanation--
+移动 FoodField + current/depth context + target response。
+--Competing Explanation--
+不因高速追猎词汇新增 FishMode；需有持久状态或 owner 证据才升级。
+
+===== story_048.md :: FISH-R02-S14｜中华倒刺鲃｜溪流底质资源与流速窗口
+--Reality Baseline--
+现有公开记录支持中华倒刺鲃与河流/溪流环境的关联；本批资料不足以闭合“流速—底质—季节性摄食”这一物种级因果链。
+--Strategy Story--
+可把急缓流交界、砾石/砂底和深潭边缘作为候选搜索点，再用底层离散目标 Presentation；这是 Evidence Open 的策略假设，不是已验证规则。
+--FCF Interpretation--
+P02；资源斑块 + TargetFeeding。
+--Lowest-Power Explanation--
+River/stream context + discrete target；substrate/flow mechanism remains open。
+--Competing Explanation--
+不因流速窗口引入新 Trigger grammar。
+
+===== story_049.md :: FISH-R02-S15｜乌鳢｜伏击捕食与护幼关系切换
+--Reality Baseline--
+乌鳢为伏击型捕食者，常在植被和浅水结构附近捕食鱼、蛙等；繁殖期亲鱼可守护卵和幼鱼。
+--Strategy Story--
+非繁殖期找隐蔽伏击点；护幼期 Presentation 靠近幼鱼团可能触发防御，而不是纯饵料选择。
+--FCF Interpretation--
+P04；Persistent Guard Condition + Relation；普通捕食仍可落 P01。
+--Lowest-Power Explanation--
+Condition + relation object；FishMode 只作候选。
+--Competing Explanation--
+不把“凶猛”标签当作全局 Mode。
+
+===== story_050.md :: FISH-R02-S16｜云斑鮰｜夜间底栖嗅觉取食与洞巢护卵
+--Reality Baseline--
+云斑鮰常在低光或夜间沿底层觅食，依赖嗅味和触须线索；繁殖时会使用巢穴并照护卵/幼鱼。
+--Strategy Story--
+普通策略重视底层、气味和低光窗口；繁殖期巢区接近可能产生防御/干扰意义。
+--FCF Interpretation--
+P01 + P04；传感差异可作 typed context，护卵用 Relation。
+--Lowest-Power Explanation--
+TargetFeeding with sensory context；guard condition for nest relation。
+--Competing Explanation--
+不因夜钓常见就购买独立 Mode。
+
+===== story_051.md :: FISH-R02-S18｜俄罗斯鲟｜底栖摄食与河海繁殖洄游
+--Reality Baseline--
+俄罗斯鲟为底栖摄食者，利用软体动物、甲壳类和小鱼等底层资源，并具有河海洄游与繁殖回河阶段。
+--Strategy Story--
+如果纳入游戏，定位应围绕底层通道、迁移入口和底质资源；捕获合法性与现实保护需单独处理。
+--FCF Interpretation--
+P05；lifecycle/spatial condition + TargetFeeding；保护限制是 Boundary。
+--Lowest-Power Explanation--
+迁移/底质 context；不购买新 response channel。
+--Competing Explanation--
+不把长寿/稀有性变成机制语义。
+
+===== story_052.md :: FISH-R02-S19｜光倒刺鲃｜山溪底质与刮食/杂食斑块
+--Reality Baseline--
+现有公开记录支持光倒刺鲃与淡水河流/溪流分布相关；本批资料不足以闭合“底层摄食—流速—底质偏好”这一物种级链条。
+--Strategy Story--
+可把流速变化、底质和深潭边缘作为候选搜索点，再用底层离散 Presentation；该策略仍是 Evidence Open 假设。
+--FCF Interpretation--
+P02；ResourcePatch + TargetFeeding。
+--Lowest-Power Explanation--
+Spatial/substrate context + discrete target。
+--Competing Explanation--
+不因资料稀缺设置 Semantic Open。
+
+===== story_053.md :: FISH-R02-S20｜公牛鲨｜广盐性河口进入与机会捕食
+--Reality Baseline--
+公牛鲨具强广盐性，可利用海水、河口和淡水通道，并机会性捕食鱼类、鳐类和其他动物。
+--Strategy Story--
+找鱼要看河口通道、盐度梯度、浑水和猎物聚集；Presentation 仍以离散猎物响应表达。
+--FCF Interpretation--
+P05；Spatial/Condition owner 优先，FishMode 仅作候选。
+--Lowest-Power Explanation--
+salt/freshwater condition + spatial entry + TargetFeeding。
+--Competing Explanation--
+不因危险性或广盐性新增 Channel。
+
+===== story_054.md :: FISH-R02-S21｜六须鲶｜大型河道夜间底层捕食
+--Reality Baseline--
+六须鲶为大型河道底层掠食鱼，主要捕食鱼类和其他动物，常与深槽、缓流和遮蔽结构相关。
+--Strategy Story--
+策略优先找深槽、回水、浑水和低光窗口，用大体型离散目标或气味饵表达。
+--FCF Interpretation--
+P01；sensory/habitat context + TargetFeeding。
+--Lowest-Power Explanation--
+typed habitat and light context，不购买新 Mode。
+--Competing Explanation--
+不因大型掠食者标签推导 Strong FishMode。
+
+===== story_055.md :: FISH-R02-S24｜加拿大梭鲈｜浑水低光与底层捕食窗口
+--Reality Baseline--
+加拿大梭鲈常与大河、浑水、沙砾底和低光条件相关，捕食小鱼和无脊椎。
+--Strategy Story--
+策略优先找河道结构、浑水边界和晨昏/夜间窗口，再用贴底或近底离散 Presentation。
+--FCF Interpretation--
+P01；typed sensory/context + TargetFeeding。
+--Lowest-Power Explanation--
+light/turbidity/current context，不购买 FishMode。
+--Competing Explanation--
+与 walleye 相似不代表复制其全部机制。
+
+===== story_056.md :: FISH-R03｜红罗非｜Red Tilapia｜Discrete Target + Resource Patch
+--Reality Baseline--
+红罗非（Red tilapia；*Oreochromis* hybrid）是杂交/选育标签，不是单一稳定物种。FAO 罗非鱼资料支持温暖淡水、杂食和底质/植物资源利用；但不同亲本、养殖投喂史和环境驯化会显著改变表现，因此本条只能保留低强度资源机会解释。[FAO tilapia profile](https://www.fao.org/3/t0581e/t0581e00.htm) · [FishBase hybrid entry](https://www.fishbase.se/summary/Oreochromis-sp.-hybrid.html)
+--Strategy Story--
+机制侧先按温度、底质和可得资源建立 Resource Patch，再让离散目标进入 TargetFeeding。饵型、深度和速度只作设计推断；养殖池中对饲料的反应不能外推为所有红罗非个体。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 已能表达低强度温水杂食机会，不新增 Hybrid Mode。
+--Competing Explanation--
+观察到的摄食差异可能来自亲本组合、饲料训练、温度或池塘密度，而非统一红罗非机制。
+
+===== story_057.md :: FISH-R03｜细鳞鲑｜Sharp Snouted Lenok｜Discrete Target + Resource Patch
+--Reality Baseline--
+细鳞鲑（Sharp-snouted lenok；*Brachymystax lenok*）是冷水河流中的鲑形鱼。FishBase 入口支持其冷水、河流和肉食性背景；本批把急流/深潭、昆虫与小鱼以及季节性上溯作为可审的 Context 候选，但不把所有种群的迁移距离或钓法参数写成统一事实。[FishBase species entry](https://www.fishbase.se/summary/Brachymystax-lenok.html)
+证据足以支持冷水河流与离散猎物 Story，但生命周期、阶段食性和野外呈现仍 Evidence Open。
+--Strategy Story--
+机制侧可先按水温、流速、深浅结构和猎物出现位置寻找 Opportunity，再由移动或漂流离散目标进入 TargetFeeding。涉水深度、饵型、速度和停顿是设计推断，不能代替直接垂钓证据。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Lifecycle Migration。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 能表达冷水河流中的猎物与季节重排，不新增 Coldwater Mode。
+--Competing Explanation--
+上溯和深浅变化也可能由繁殖、水温、流量和猎物输运共同造成，不能归因于单一状态。
+
+===== story_058.md :: FISH-R03｜翘嘴红鲌｜Topmouth Culter｜Discrete Target + Resource Patch
+--Reality Baseline--
+翘嘴红鲌（Topmouth culter；*Culter alburnus*）是河流与湖泊中的中上层肉食/偏肉食鲌类。FishBase 物种页可作为身份和基础生态入口；公开资料通常将其与小鱼、虾和其他水生动物的追捕联系起来，并记录其受水位、流速和繁殖季节影响的空间重排，但这些关系的强度和地域差异仍需直接研究核验。[FishBase species entry](https://www.fishbase.se/summary/Culter-alburnus.html)
+本批把“移动离散猎物 + 中上层机会”作为现有 Pattern 的候选解释；群聚只作为发现层线索，不能直接写成 FishMode 或统一群体状态。
+--Strategy Story--
+可观察约束是：猎物移动和水层条件决定可达机会。设计上可先扫描中上层和流速变化，再以移动目标的速度、大小和停顿保持离散目标可见。饵型、速度和“追群”属于基于机制的策略推断；本批不声称现实垂钓者必然使用这些操作。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。群体仅影响发现/机会，不直接产生新控制流。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达水层重排和移动猎物，不新增 Pelagic Mode 或 School Mode。
+--Competing Explanation--
+所谓“追群”也可能只是猎物集中、流速边界或季节迁移造成的局部机会，不足以证明鱼群状态本身决定响应。
+
+===== story_059.md :: (no-title)
+--Reality Baseline--
+花骨鱼（Spotted steed；*Hemibarbus maculatus*）的物种级基线来自 FishBase 分类/生态入口：它是东亚河流鱼类，主要在河流底层和底质附近利用小型无脊椎、昆虫幼体等资源；水流、砾石/砂底和河段结构共同决定可达机会。[FishBase species entry](https://www.fishbase.se/summary/Hemibarbus-maculatus.html)
+当前资料不足以闭合一个统一的钓法参数或特殊摄食模式，因此本条保持 Evidence Open；底层位置先作为 Spatial/Resource Context，不升级为 Bottom Mode。
+--Strategy Story--
+机制侧先按流速、底质和小型底栖猎物集中区建立 Opportunity Context，再由离散目标进入 TargetFeeding。玩家侧的深度、饵型、速度和停顿只能作为设计推断，需避免把“底层鱼”直接等同于固定下沉或固定钓法。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。底质只改变机会，不创建独立控制流。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达底层猎物和流速位置，不新增 Bottom Mode。
+--Competing Explanation--
+底层出现也可能只是猎物分布、流速边界或底质遮蔽造成的空间机会，不一定代表持久的个体状态。

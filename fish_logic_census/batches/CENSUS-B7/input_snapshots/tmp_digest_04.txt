@@ -1,0 +1,138 @@
+===== story_034.md :: B01-S47｜海七鳃鳗｜附着宿主后的持续寄生
+--Reality Baseline--
+海七鳃鳗寄生阶段附着宿主并获取组织/体液；它不是普通离散饵吞咽，也不代表成体所有阶段都寄生。
+--Strategy Story--
+没有普通钩饵策略的可靠映射；该 Story 用来核对持续关系是否属于产品范围。
+--FCF Interpretation--
+Existing Pattern；比较 B01：<mention-page url="https://app.notion.com/p/3d6a4137d23681aaa5e0ec425e5434d1"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：前链最多负责宿主相关机会，持续 attachment 交实例化后的关系 owner。
+--Lowest-Power Explanation--
+前链最多负责宿主相关机会，持续 attachment 交实例化后的关系 owner。
+--Competing Explanation--
+不能把持续寄生要求倒灌成 pre-generation FCF Grammar。
+
+===== story_035.md :: B01-S48｜海七鳃鳗｜埋栖滤食幼体到寄生与生殖期
+--Reality Baseline--
+海七鳃鳗幼体埋栖利用水中颗粒；变态后进入寄生阶段，成熟繁殖阶段消化系统退化并停止摄食。
+--Strategy Story--
+不同阶段处于不同栖位并使用不同资源；普通钩饵呈现的直接策略证据缺失。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Condition 分阶段；幼体 field input 与实例化后寄生分别交适当 owner。
+--Lowest-Power Explanation--
+Lifecycle/Condition 分阶段；幼体 field input 与实例化后寄生分别交适当 owner。
+--Competing Explanation--
+差异大不等于必须预分 Group；需先确认产品会同时提供哪些阶段。
+
+===== story_036.md :: B01-S50｜大西洋鳕鱼｜普通离散猎物摄食
+--Reality Baseline--
+大西洋鳕鱼以多种鱼类与无脊椎为食，体型和栖位影响食谱；NOAA 描述钩线等渔法。
+--Strategy Story--
+渔法证明实际可捕获，但不在这里补造 lure 速度和停顿的因果规则。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：猎物类型、大小与底层环境作 Context，当前食物为 Discrete Target。
+--Lowest-Power Explanation--
+猎物类型、大小与底层环境作 Context，当前食物为 Discrete Target。
+--Competing Explanation--
+底层生活不等于持续基质滤食；普通 Story 不能当鱼种全局 Default。
+
+===== story_037.md :: B01-S51｜大西洋鳕鱼｜繁殖发声、求偶与竞争的非等价性
+--Reality Baseline--
+2006 年圈养大西洋鳕研究将发声与求偶/竞争行为联系；另一项 cod/pollack 研究不能把 pollack 的产卵相关结果外推为 cod。发声不是万能“进食/产卵”指标。
+--Strategy Story--
+声学可作研究/监测线索，未找到钓手通过仿声稳定改变咬饵的直接证据。
+--FCF Interpretation--
+Semantic Open；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：先区分求偶、对手关系与感官 Context；P04 守巢不自动覆盖 courtship。
+--Lowest-Power Explanation--
+先区分求偶、对手关系与感官 Context；P04 守巢不自动覆盖 courtship。
+--Competing Explanation--
+生产声音与对声音响应不同；没有必要性证据购买 Sound Mode 或新 Feeding Channel。
+
+===== story_038.md :: B01-S54｜草鱼｜流动水繁殖与亲鱼阶段摄食减少
+--Reality Baseline--
+草鱼自然产卵依赖流动水及水位变化；USGS 研究特定支流产卵。FAO 中国养殖资料记录亲鱼临产前减少或停止进食，只能限定养殖亲鱼语境。
+--Strategy Story--
+河流通达决定繁殖出现位置；对当前钩饵接受率不能据此给出绝对关闭。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Spatial 加限定 Condition；暂不增加 Spawn Mode。
+--Lowest-Power Explanation--
+Lifecycle/Spatial 加限定 Condition；暂不增加 Spawn Mode。
+--Competing Explanation--
+流动水刺激与摄食减少并非已测得同一触发因果链；Group 需另证供给需求。
+
+===== story_039.md :: FISH-R02-S01｜大西洋鲭｜季节性上层鱼群与移动饵场
+--Reality Baseline--
+大西洋鲭在开放海域形成大型群体，季节性沿陆架移动，摄食小型鱼、甲壳类和浮游动物。
+--Strategy Story--
+钓手先找移动饵场、鸟群和水层，再用高速或中速追猎 Presentation；位置和深度优先于单一饵型。
+--FCF Interpretation--
+Existing Pattern P03；FoodField + FieldFeeding，GroupPressure=Strong 仅表示群体是找鱼线索。
+--Lowest-Power Explanation--
+移动 FoodField/饵鱼资源 + typed depth/current context + FieldFeeding。
+--Competing Explanation--
+不需要把每次群体遭遇都建成持续 FishMode；群体只在资源场或阶段需要时改变机会。
+
+===== story_040.md :: FISH-R02-S03｜日本竹荚鱼｜近岸鱼群与水层追猎
+--Reality Baseline--
+日本竹荚鱼常在近岸形成群体，摄食小鱼、甲壳类和浮游生物，分布随水温与潮流改变。
+--Strategy Story--
+钓手会沿潮流、礁缘或饵鱼层搜索，按水层调整拟饵速度与停顿；Presentation 的深度匹配比单一诱饵名称更关键。
+--FCF Interpretation--
+P03；资源场先决定位置，离散钩饵仍是 Target 的下游表现。
+--Lowest-Power Explanation--
+近岸 FoodField + current/temperature context + FieldFeeding。
+--Competing Explanation--
+不把潮流本身升级成新 Grammar；其作用可由空间与机会输入表达。
+
+===== story_041.md :: ?
+
+===== story_042.md :: FISH-R02-S06｜湖白鲑｜底层摄食与季节性浅深转换
+--Reality Baseline--
+湖白鲑主要利用湖底和近底层资源，食物包括底栖无脊椎、小鱼和甲壳类；季节改变深浅分布。
+--Strategy Story--
+找鱼从底质、深度和季节窗口入手；Presentation 需到达近底层，不能用泛化“白鲑”策略覆盖。
+--FCF Interpretation--
+P02/P05；ResourcePatch + Discrete Target，身份不确定阻止升级。
+--Lowest-Power Explanation--
+底质资源 + depth/temperature context + TargetFeeding。
+--Competing Explanation--
+不能因为深水迁移就购买独立 FishMode。
+
+===== story_043.md :: FISH-R02-S07｜鲢鱼｜滤食水体食物场与非目标捕获边界
+--Reality Baseline--
+鲢鱼以滤食方式处理水柱中的浮游生物和悬浮有机物，机会来自分布式 FoodField，而非单个可见猎物。
+--Strategy Story--
+若产品只模拟主动摄食，钩饵 Presentation 的映射有限；若保留特殊捕获，必须走 Capture Boundary。
+--FCF Interpretation--
+P03 + B02；滤食是 FieldFeeding，特殊接触捕获不证明新 Grammar。
+--Lowest-Power Explanation--
+FoodField evaluator；响应独立捕获由 Boundary owner 处理。
+--Competing Explanation--
+禁止把“滤食”当成离散目标吞食，也禁止把偶发跳跃自动做成 FishMode。
+
+===== story_044.md :: FISH-R02-S08｜鲤鱼｜底质翻拱与资源斑块
+--Reality Baseline--
+鲤鱼用口部翻拱底泥，摄食底栖无脊椎、植物碎屑和种子；活动可造成浑水与底质扰动。
+--Strategy Story--
+钓手可根据浑水、气泡、底质和预投饵区定位，再呈现离散钩饵；底质是搜索与机会背景。
+--FCF Interpretation--
+P02；ResourcePatch → Discrete Target → TargetFeeding。
+--Lowest-Power Explanation--
+底质资源 owner + TargetFeeding + typed substrate context。
+--Competing Explanation--
+不因翻拱造成可见痕迹就购买持续 Field Grammar。
+
+===== story_045.md :: FISH-R02-S10｜丁鱥｜底层摄食与季节水草边缘
+--Reality Baseline--
+丁鱥偏好静水与植被边缘，主要在底层寻找无脊椎和植物性资源，暖季活动更明显。
+--Strategy Story--
+先找植被边缘、软底与低扰动水域，再以底层离散目标呈现；速度通常不如位置和底质重要。
+--FCF Interpretation--
+P02；ResourcePatch + TargetFeeding。
+--Lowest-Power Explanation--
+静水植被/底质 context + 离散目标。
+--Competing Explanation--
+不因植被偏好引入独立 FishMode。

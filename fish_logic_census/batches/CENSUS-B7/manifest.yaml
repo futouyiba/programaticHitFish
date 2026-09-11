@@ -1,0 +1,164 @@
+batch_id: CENSUS-B7
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0-B6+RS1+RP1 固化范式（role_memory v5）; authoring_work_standards §2/§5（顺序推导纪律）
+created: "2026-09-11 (local time zone)"
+blind_freeze_frozen_at_utc: "2026-09-11T13:01:45Z"   # blind_programs.jsonl 文件系统 mtime（精确）；registry 开启时刻见判同段 build_census_outputs 后记
+input:
+  selection_rule: >-
+    coordinator envelope CENSUS-B7 = census 基线收尾批：消费 R01–R07 中
+    B0–B4 未覆盖的残余 Story。残余清单推导（实测对账，见下 residual_
+    derivation）= 基线 295 − 已消费 183 = 112 Story（R01 残 38 + R02 残 17 +
+    R03 残 24 + R04 全 23 + R05 残 10）。全部 FR3-passed（R01-R05 packet +
+    FR3 packet 快照存 input_snapshots/，headless 通道只读 fetch——B5/B6
+    模式）。R06-R10 已由 B3/B4/B5/B6 全量消费不在本批。
+  baseline_reconciliation: >-
+    【基线终值实测（本批收敛——envelope「~257」为估算值，实测 295）】
+    逐包 packet+FR3 packet 声明核验：R01=54 unique Story（25 species=22
+    confirmed+3 Blocked-by-Identity 无 Story；55 关联中褐鳟/大西洋鲑共用
+    S30）+ R02=25（24 Complete+1 Lake Whitefish S06 story 存在但 Coverage
+    行 Blocked-by-Identity/Evidence Open——FR2-R2 scoped approve 后 FR3
+    25/25 全 PASS，quarantine 继续隔离注记）+ R03=25（draft 页 CURRENT_
+    SCOPE 25+FR3 25/25）+ R04=23（24 行=23 confirmed+1 大口黑鲈 Blocked
+    无 Story）+ R05=15（15 identity-confirmed）+ R06=28 + R07=26 + R08=26
+    + R09=26 + R10=47（47 Complete+3 Blocked 无 Story；38 VOID 重复页已
+    隔离）= 295。已消费（B0-B6 stories.jsonl story 级去重 183：B0=5[R05]
+    B1=15[R01 13+R02 2] B2=10[R01 3+R02 6+R03 1] B3=28[R06] B4=26[R07]
+    B5=52[R08+R09] B6=47[R10]；RS1/RP1 为重跑批不新增 story 消费）。
+    295−183=112=本批输入。终态：消费后 295/295=100%（2 个 0 程序 story
+    的原因分类见 stories.jsonl no_surface_reason——均为捕获边界型非
+    identity-blocked）。
+  residual_derivation_note: >-
+    R01/R02 packet URL 有 hub 记录互换笔误（hub_R2.md 把 R01 package URL
+    记在 R02 名下）——以 library 母页（鱼种参考库｜全库现实/策略研究与
+    FCF 机制发现 R2，3d6a4137d23681338596c10634e31c6b）页面链接区为准确
+    认 R01=3d6a…8c682c / R02=3d6a…e5c8 / R04=3d7a…f9218c1b9 / R05=
+    3d7a…d611f477；R03 无正式 package 页（仅 withdrawn draft=3d6a…
+    0775f 与 FR3 packet=3d7a…aae801）。54 条 R01 story 行集经 Notion
+    search（headless 通道只读）逐号收敛：S01-S54 全集（缺号 S03/S04/
+    S41/S48 由鱼名专项搜索补齐——三标记 grep 实测 54/54）。
+  frozen_stories_count: 112   # input_snapshots story_*.md 实际计数（fetch_pairs.tsv 112 行对账）
+  frozen_stories:
+    # R01 残余 38（B01-Sxx；B1 13+B2 3 已消费不在列）
+    - WAL2: https://app.notion.com/p/3d6a4137d23681769fd2ffc9cf261e2f   # B01-S01 玻璃梭鲈低光离散捕食
+    - CRA1: https://app.notion.com/p/3d6a4137d23681cf9af8e9dec968e96e   # B01-S03 黑斑刺盖幼成食谱
+    - CRA2: https://app.notion.com/p/3d6a4137d2368165bbeee2e2fbeb7349   # B01-S04 黑斑刺盖守巢（Semantic Open）
+    - GAR1: https://app.notion.com/p/3d6a4137d23681e8b364c215b33e6355   # B01-S05 鳄雀鳝缓慢取饵
+    - GAR3: https://app.notion.com/p/3d6a4137d236813d9339d59330afd01e   # B01-S06 鳄雀鳝洪水繁殖
+    - YEP1: https://app.notion.com/p/3d6a4137d236811abba9f3b8bf0ccac4   # B01-S08 黄鲈体型食谱
+    - YEP2: https://app.notion.com/p/3d6a4137d23681fc8405ec8581336190   # B01-S09 黄鲈产卵迁移
+    - BIB1: https://app.notion.com/p/3d6a4137d23681afab37eca0c0c6c103   # B01-S10 大口牛胭脂鱼滤食
+    - BIB2: https://app.notion.com/p/3d6a4137d23681bea04ed87916da8e63   # B01-S11 大口牛胭脂鱼水位繁殖
+    - BRT3: https://app.notion.com/p/3d6a4137d236816d8198f823d80f37e2   # B01-S13 褐鳟定居海行
+    - BRT4: https://app.notion.com/p/3d6a4137d236819fb27de6fb5aa72f1c   # B01-S15 褐鳟求偶竞争（Semantic Open）
+    - RED1: https://app.notion.com/p/3d6a4137d2368177bbe6e094d6a47966   # B01-S16 美国红鱼尾露斑块
+    - RED2: https://app.notion.com/p/3d6a4137d23681e2b482d46134616af4   # B01-S17 美国红鱼潮位幼成栖地
+    - PIK1: https://app.notion.com/p/3d6a4137d236812d8df4c5f8d07694c1   # B01-S18 白斑狗鱼植被伏击
+    - MUL1: https://app.notion.com/p/3d6a4137d236816f8879d0f774f6f805   # B01-S21 鲻鱼底质颗粒吐出（P06 压缩候选）
+    - MUL2: https://app.notion.com/p/3d6a4137d236815380e0f50940a5caba   # B01-S22 鲻鱼近岸外海
+    - RAI2: https://app.notion.com/p/3d6a4137d23681788e1be215763a29af   # B01-S23 虹鳟漂流脉冲
+    - RAI3: https://app.notion.com/p/3d6a4137d23681aaaaf3e57061df3973   # B01-S25 虹鳟定居钢头
+    - AEL1: https://app.notion.com/p/3d6a4137d2368196b0b9d215bdde798e   # B01-S26 美洲鳗鲡夜摄昼蔽
+    - AEL2: https://app.notion.com/p/3d6a4137d236819ab8e2fff03fe2a489   # B01-S27 美洲鳗鲡降海
+    - SOK1: https://app.notion.com/p/3d6a4137d23681d5a86de73559a5deb7   # B01-S28 红鲑浮游滤食
+    - SOK2: https://app.notion.com/p/3d6a4137d23681f891d3e32aaf9728ed   # B01-S29 红鲑返河动机未定
+    - SAL1: https://app.notion.com/p/3d6a4137d23681bb926cd970f229f7a8   # B01-S30 大西洋鲑生长返河（褐鳟共享 story）
+    - SMA1: https://app.notion.com/p/3d6a4137d236815ca0e2cfc0a3d60484   # B01-S31 小口黑鲈巢守护（P04）
+    - PAD1: https://app.notion.com/p/3d6a4137d236810893cccde48dedd880   # B01-S33 鸭嘴鲟滤食输入边界
+    - PAD5: https://app.notion.com/p/3d6a4137d236813f8caded5d51b52d39   # B01-S37 鸭嘴鲟上游繁殖
+    - BLU2: https://app.notion.com/p/3d6a4137d23681159182c03c8bf67b17   # B01-S38 蓝鳃护巢觅食食卵（P04）
+    - CCF1: https://app.notion.com/p/3d6a4137d23681e2be24d0fa957526e3   # B01-S40 斑点叉尾鮰嗅味触觉
+    - CCF2: https://app.notion.com/p/3d6a4137d236810989d1eeddf58de71e   # B01-S41 斑点叉尾鮰洞巢照护（Semantic Open）
+    - TIL2: https://app.notion.com/p/3d6a4137d236813fa889e6102f4ee6ca   # B01-S42 罗非鱼刮食悬浮
+    - TIL3: https://app.notion.com/p/3d6a4137d2368154b78fd3fec19b1459   # B01-S43 罗非鱼巢区领地（Semantic Open）
+    - BDR2: https://app.notion.com/p/3d6a4137d236818cae92f8532fbe027a   # B01-S45 黑鼓触须找底
+    - SEA2: https://app.notion.com/p/3d6a4137d236817382c4de6449e19120   # B01-S48 七鳃鳗三阶段
+    - COD1: https://app.notion.com/p/3d6a4137d23681c38bb0f7caab986286   # B01-S50 鳕鱼普通离散
+    - COD2: https://app.notion.com/p/3d6a4137d2368152afffcdf456261a43   # B01-S51 鳕鱼繁殖发声（Semantic Open）
+    - GRA2: https://app.notion.com/p/3d6a4137d2368110baa7c3aa1757100b   # B01-S54 草鱼流水繁殖
+    # R02 残余 17（S01/S03/S05/S06/S07/S08/S10/S12/S13/S14/S15/S16/S18/S19/S20/S21/S24）
+    # R03 残余 24 / R04 全 23 / R05 残余 10：逐条 URL 见 input_snapshots/fetch_pairs.tsv（112 行完整台账——本节不再逐行重复，以 fetch_pairs.tsv 为权威清单）
+  frozen_semantic_patterns: >-
+    各 story 正文 FCF Interpretation 节内嵌比较 pattern（P01/P02/P03/P04/
+    P05/P06/B01/B02）随 story 冻结文本承载（R01 story 十节完整形；R04
+    英文压缩十节；无独立 pattern 页 fetch——P01/P04/P05 语义另可参照 B3
+    input_snapshots 同 URL 冻结快照复用）。frozen_patterns 登记见
+    stories.jsonl 逐条。
+  packet_count_reconciliation: >-
+    R01 packet Story Discovery Curve 按鱼给计数（22 species 合计 54+1 共享
+    关联）与 search 实测 S01-S54 逐号一致；R02 25 行与 search 25 行一致
+    （S06 Lake Whitefish=Blocked-by-Identity 行但 story 页存在且属 FR3
+    25/25 PASS 范围——本批消费+身份隔离注记 Medium）；R03 25 行（FR3
+    「25/25 Story」）与 search 25 行一致（鳡鱼行在包内——R05 packet 曾
+    注「鳡鱼 Coverage 行漏检」指 Coverage 行计数非 story，RECON-001 已对
+    账）；R04 23 confirmed+1 Blocked（大口黑鲈无 story 不入）与 search
+    23 行一致（Representative Links 区仅 12 对=FR1 时点节选，FR2 F04-01
+    修复未补 links——以 Story DB 行集为准）；R05 15 行与 packet links
+    15+15 全量一致。B0 消费 5 条 R05 story 均在 packet 15 内。发现 R02-S17
+    佛罗里达雀鳝与 R04 佛罗里达雀鳝同种双 story 跨批（内容近似——
+    Vegetated Edge Ambush）——同种 Cross-Batch 双 story 去重联动注记
+    （B5 CMR/LKR、B6 WS2 同型判例，story 级各自消费）。
+input_channel_note: >-
+  headless 通道只读 fetch（claude -p + notion MCP fetch，B5/B6 模式复制
+  + B7 加固：HTML 转义标记容忍+unescape）：packet_R01/R02/R03_draft/
+  R04/R05 + library_R2 + packet_R02_fr3/packet_R03_fr3 + 112 份
+  story_XXX.md + fetch_pairs.tsv（行号→URL→标题台账）+ fetch_all.log
+  （首轮 109 saved+4 空文件[0 字节间歇失败]+retry pass 补 4/4 成功——
+  B6 判例⑦模式）。输入统计脚本实测对账：112 story 中 26 份完整包裹
+  （<page url= + <properties>）+ 73 份 fetch 前导句+page 包裹 + 13 份
+  纯正文转写（B5 CSL 同型——十节正文完整为准）；Reality Baseline/FCF
+  Interpretation/Evidence 核心节 112/112 逐份核验；R01/R02/R04 story
+  十节无 Sweep Surface Log 节（B1/B2 消费同源同范式——sweep_log_
+  mapping 省略不编造），R03 逐行 11 面 Sweep + R05 压缩单行 Sweep
+  （34/34 解析映射）。Snapshot 模式 SNAPSHOT_UNVERIFIED-by-headless
+  （CLAUDE.md 快照标注纪律）；判同/复核以 input_snapshots/ 为数据。
+blind_freeze:
+  n_blind_programs: 219
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-11T13:01:45Z"   # blind_programs.jsonl mtime 精确值
+  registry_reads_before_freeze: false
+  registry_version_before: 8
+  registry_opened_at_utc: "2026-09-11T13:08:45Z–13:08:52Z（run_merge_tests.py mtime 定稿→engine_report.json 写出——B5 F2 区间法；盲冻结 13:01:45Z 严格在前）"
+  composition: "Bake 110 + Response 109（typed 86 + guard 9[CRA2/SMA1/BLU2/CCF2/TIL3/DIS2/CSN1/BBR1/RSB] + field 14[MAC1/JCK1/CAP1/SIL1/BON1/MDC2/XCD/ROH/MRC/SPR/CHM/SHB/GTB/WCB]）+ WBL（R04 西方七鳃鳗）仅 Bake 无 Response（boundary-only/Product Scope Deferred）；0 程序 story 2（PAD4=S36 锚挂 B02 边界 / SEA1=S47 附着寄生 B01 实例化后边界）顶层 no_surface_reason；MEDIUM 3（LWF1 身份隔离推算/SBS1/SBH1 Evidence Open 推算）+LJB 薄资料 +Low 5（品系 RTL/WRC/KOI/MIR/GCR）+TNS 稀疏证据占位 + DIS2 色型复用推算 Low"
+bias_declaration:
+  b7_f0_class: >-
+    本会话盲段加载流程管线时读过 B6 的 build_blind_programs.py /
+    build_stories.py / run_merge_tests.py / build_census_outputs.py
+    （B6 94 盲体的 SINGLE 链与 TYPED/guard 形态 op 名层面——B7 脚本
+    管线直接沿用其骨架）与 B6 batch_report/manifest（族名与计数散文）；
+    角色记忆 v5 亦含各族散文描述与 B0-B6/RS1/RP1 判例（含 RS1 61/61
+    证伪与 9 新族链形散文——本批 Bake 盲体因此自知为 Story 层平链收敛
+    形，此认知源于 role_memory 而非 registry 本体）。template_registry
+    .yaml 本体（v8）在盲冻结前未读。缓解：本批 219 条 sketch 严格从
+    112 份 Story 正文 + story 内冻结 FCF Interpretation 独立推写，每条
+    含顺序推导注记；guard 9 例按 P04 契约拓扑（PARALLEL_SET 依据=B3
+    pattern 快照契约文本）非按 registry 形状；field Response 14 例按
+    story 行为描述（场评估单步+决策）推写；未按 registry 形状定制。
+    【盲体语汇纪律自查（B5 F4 判例，强制）】逐条扫描 219 条盲体
+    sketch/premise/open_semantics：无 extension/新轴/轴值提案/anchor
+    提案框架语汇——守护对象以行为事实描述（『雄鱼守巢并照护幼鱼至
+    离巢』『卵产于双壳贝体内并在贝内发育』），判同提案语汇只出现在
+    判同段产物（merge_tests/HRQ）；BRT4/COD2 求偶语境按 story FR 层
+    『P04 守巢不自动覆盖 courtship』记 premise+open_semantics；CRA2/
+    CCF2/TIL3 Semantic Open 置信注记如实携带。偏差与缓解记档供
+    reviewer 裁决。
+execution_mode_note: >-
+  fresh spawn 单轮执行：双时间戳（盲冻结精确 mtime 13:01:45Z + registry
+  读取时刻见判同段）+ 逐条 registry_seen=false + 内容 hash +
+  program_revisions 空即证判同段零改动。
+coverage_discipline:
+  no_surface_exclusions:
+    - "112/112 Group 面：群游/聚集（R02 鲭鲱系/R03 鲌系群聚）=群结构事实或发现层线索≠互斥 FishGroup（story 层逐条明言）"
+    - "112/112 Quality 面：无 Quality Selection 程序证据（B0-B6 基线）"
+    - "0 程序 story 2 例（PAD4/SEA1）：捕获边界型（B02 锚挂/B01 实例化后寄生）——story FR 层明言 owner 边界，非 identity-blocked"
+    - "WBL 1 例 Response=NO_SURFACE_EFFECT（boundary-only/Product Scope Deferred）+ Bake 保留"
+    - "LWF1 身份隔离推算 Medium（R02 S06 Lake Whitefish Blocked-by-Identity 行——story FR3-PASS 范围内消费+隔离注记）"
+    - "品系/杂交 5 例（RTL 红罗非/WRC 荷包红鲤/KOI 锦鲤/MIR 镜鲤/GCR 黄金鲫）+ 色型 1 例（DIS2 白神仙鱼）+ 野生边界 1 例（WCR2）=机制复用推算承载（B6 判例⑥身份层分型）"
+    - "S1-EO/薄资料 4 例（LJB/SBS1/SBH1/TNS）显式注记推算承载（story 记 EO/Low）"
+    - "R02-S17 vs R04-FGA4 佛罗里达雀鳝同种双 story 跨批（内容近似）——各自消费+去重联动注记"
+  sweep_mapping: "R03/R05 34 story 逐条 Sweep Log 解析映射（S1-S11 全覆盖 11 项）；R01/R02/R04 78 story 无 Sweep Log 节（FR 线该三批 story 无此节——不编造，B1/B2 同范式）"
+  order_discipline: "authoring_work_standards §5.1：112 Story 逐条顺序扫描，无面内 early-return 判断链；策略层『先找位置再选呈现』为 Bake→Response 面间顺序非面内 branch；时序均为 lifecycle/洄游/昼夜/ontogeny/繁殖期 premise 配置级（S48 三阶段/生态型对/产卵窗/守巢期——判例④/P05 状态抑制/Semantic Open 注记型）"
+fixture_gate: {status: "见 worker_self_qa.md——validate_batch + fixtures 12/12（项目 venv）"}
+status: INDEPENDENT_REVIEW_REQUIRED

@@ -1,0 +1,252 @@
+===== story_061.md :: FISH-R03｜蒙古红鲌｜Mongolian Redfin｜Discrete Target
+--Reality Baseline--
+蒙古红鲌（Mongolian redfin；*Chanodichthys mongolicus*）的物种入口支持河流/湖泊鲌类身份和中上层离散猎物机会。FishBase 可作为身份与基础生态入口；本批不把群聚、繁殖季水位变化或近缘红鲌资料直接升级为稳定追猎机制。[FishBase species entry](https://www.fishbase.se/summary/Chanodichthys-mongolicus.html)
+--Strategy Story--
+机制侧可先扫描水层、流速和移动猎物 Patch，再由离散目标进入 TargetFeeding。速度、目标大小、追群和停顿只是设计推断；群聚只作发现层压力。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder + Lifecycle Migration。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context 足以表达中上层机会，不新增 School/Chase Mode。
+--Competing Explanation--
+中上层出现可能由猎物、水位和流速共同造成，不能归因于稳定的鱼群状态。
+
+===== story_062.md :: FISH-R03｜蓝鲨｜Iridescent Shark｜Discrete Target + Resource Patch
+--Reality Baseline--
+蓝鲨（Iridescent shark；*Pangasianodon hypophthalmus*）是湄公河流域大型河流鲶形鱼。FAO 资料和 FishBase 入口支持其河流栖息、杂食性以及与洪水季节相关的迁移/繁殖空间变化；食物可包含浮游生物、昆虫、甲壳类、植物材料和小型动物。养殖场中的饲料和高密度行为不能直接代表野生机制。[FAO aquaculture profile](https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/en/en_pangasius.htm) · [FishBase species entry](https://www.fishbase.se/summary/Pangasianodon-hypophthalmus.html)
+本 Story 只保留“河流资源 Patch + 体型/阶段变化 + 季节迁移 Context”的最低能
+--Strategy Story--
+现实约束提示玩家侧先按水位、河段和资源集中找机会，再根据个体大小选择可达呈现。深度、饵型、速度和停顿是机制推断，不能替代直接野外垂钓证据；养殖环境的高密度反应不得外推为野生群体规则。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。资源先改变机会，再进入离散摄食；迁移保持为相邻 lifecycle evidence，不在本响应链重复结算。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 已能表达当前事实，不新增 Farm Mode 或 Size Mode。
+--Competing Explanation--
+观察到的个体聚集或摄食变化可能由水位、饲料、养殖密度或猎物集中解释，而不是单一物种状态。
+
+===== story_063.md :: FISH-R03｜赤眼鳟｜Barbel Chub｜Discrete Target + Resource Patch
+--Reality Baseline--
+赤眼鳟（Barbel chub；*Squaliobarbus curriculus*）的物种级入口支持其河流/湖泊淡水身份；本批把流速、底质和季节性食物供应作为机会条件，而不是稳定 FishMode。FishBase 可核验分类与基本生态入口，但公开行为字段不足以闭合统一钓法、迁移或感觉机制。[FishBase species entry](https://www.fishbase.se/summary/Squaliobarbus-curriculus.html)
+当前结论保持 Evidence Open：可讨论空间和资源候选，不把近缘鲤科资料拼接成该物种事实。
+--Strategy Story--
+机制侧先按流速、底质和季节性资源 Patch 找机会，再让离散目标进入 TargetFeeding。深度、速度和停顿是设计推断，不是已核验的现实钓法。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达流速与资源变化，不新增 Current Mode。
+--Competing Explanation--
+站位变化可能来自猎物随流输运、底质遮蔽或水位变化，而不是个体状态切换。
+
+===== story_064.md :: FISH-R03｜野生鲫鱼｜Wild Crucian Carp｜Discrete Target + Resource Patch
+--Reality Baseline--
+野生鲫鱼（Wild crucian carp；*Carassius auratus*）的物种级基线是浅水、缓流或湖泊环境中的底层杂食机会。FishBase 支持植物材料、底栖无脊椎和其他可得资源的广食性背景；天气和水温先改变活动位置与资源可达性，不能直接写成早晨硬触发器。[FishBase species entry](https://www.fishbase.se/summary/Carassius-auratus.html)
+本条与观赏金鱼、养殖鲫和其它品系保持身份边界；品系/驯化差异继续 Evidence Open。
+--Strategy Story--
+机制侧先按浅水、底质和资源 Patch 找机会，再让离散目标进入 TargetFeeding。水温、天气、饵型、深度和停顿是设计推断；“早口”或固定时段不作为硬触发器。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达鲫鱼机会，不新增 Weather/Time Mode。
+--Competing Explanation--
+活动变化也可能由水温、氧气、猎物分布或天气共同造成，不能归因于单一时间窗口。
+
+===== story_065.md :: FISH-R03｜锦鲤｜Koi｜Discrete Target + Resource Patch
+--Reality Baseline--
+锦鲤（Koi；观赏鲤品系，通常以 *Cyprinus carpio* 物种基线处理）的生态机制应继承普通鲤，而不能由颜色和鳞片图案单独推导。FishBase 普通鲤资料支持底层杂食、植物残屑和底栖无脊椎资源；锦鲤的投喂史、选育和池塘环境可能改变响应，当前不作为物种级事实。[FishBase common carp](https://www.fishbase.se/summary/Cyprinus-carpio.html)
+--Strategy Story--
+机制侧按普通鲤的底质与资源 Patch 处理，再由离散目标或 FieldFeeding 进入响应。观赏池投喂、饵料训练和水质管理不能直接外推为野生策略；具体饵型、深度和停顿只作设计推断。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达继承的鲤类机制，不新增 Koi Mode。
+--Competing Explanation--
+行为差异可能来自投喂历史、池塘环境、体型或人工选择，而非观赏表型本身。
+
+===== story_066.md :: FISH-R03｜镜鲤｜Mirror Carp｜Discrete Target + Resource Patch
+--Reality Baseline--
+镜鲤（Mirror carp；common carp scale morph, commonly treated as a form of *Cyprinus carpio*）应先按普通鲤的物种级生态基线处理，再把鳞被表型作为身份限定。FishBase 的普通鲤资料支持底层杂食、底质觅食、植物和底栖无脊椎资源；镜鲤的外观/鳞片差异本身不足以证明独立 FishMode。[FishBase common carp](https://www.fishbase.se/summary/Cyprinus-carpio.html)
+本条明确区分“品系身份”和“物种机制”：投喂史、养殖条件与选育可能改变个体响应，当前仍 Evidence Open。
+--Strategy Story--
+机制侧可按鲤类底质、植物残屑和底栖无脊椎资源建立 Resource Patch，再由离散目标或 FieldFeeding 响应。饵型、深度、速度和停顿属于设计推断；不能因镜鲤外观把呈现方式写成不同物种机制。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达镜鲤可继承的鲤类底层资源，不新增 Mirror Mode。
+--Competing Explanation--
+观察到的投喂反应差异可能来自养殖环境、学习史、体型或饵料，而不是鳞被表型。
+
+===== story_067.md :: FISH-R03｜长吻𬶏｜Chinese Longsnout Catfish｜Discrete Target + Resource Patch
+--Reality Baseline--
+长吻𬶏（Chinese longsnout catfish；*Tachysurus dumerili*）的物种级入口支持河流底层和机会性摄食方向，但触须、低光与夜间活动的强因果关系尚未由本批直接来源闭合。[FishBase species entry](https://www.fishbase.se/summary/Tachysurus-dumerili.html)
+--Strategy Story--
+先按底质、遮蔽物和资源 Patch 找机会，再由离散目标进入 TargetFeeding。低光、触须和夜间只作待验证 Context，不购买 Night/Barbel Mode；深度、饵型和停顿是设计推断。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达底层机会，不新增 Night Mode。
+--Competing Explanation--
+夜间或底层捕获也可能来自猎物分布、流速和遮蔽，而非触须直接提高攻击概率。
+
+===== story_068.md :: FISH-R03｜青梢红鲌｜Humpback｜Discrete Target
+--Reality Baseline--
+青梢红鲌（Humpback；*Culter recurviceps*）的物种入口支持河流/湖泊鲌类身份和中上层小型猎物机会。FishBase 可作为基础生态入口；本批不把近缘红鲌的群聚、追猎或季节迁移资料直接外推。[FishBase species entry](https://www.fishbase.se/summary/Culter-recurviceps.html)
+--Strategy Story--
+先按水层、近岸结构和移动猎物 Patch 找机会，再由离散目标进入 TargetFeeding。速度、目标大小和停顿是设计推断，群聚只作发现层线索。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context 足以表达中上层小型猎物，不新增 School/Chase Mode。
+--Competing Explanation--
+季节聚集可能来自猎物、水位和水流，而非稳定群体状态。
+
+===== story_069.md :: FISH-R03｜青鱼｜Black Carp｜Discrete Target + Resource Patch
+--Reality Baseline--
+青鱼（Black carp；*Mylopharyngodon piceus*）是大型淡水鲤科鱼类。FishBase 与 FAO 资料支持其河流/湖泊环境、底层或近底层活动以及以螺类、蛤类等硬壳无脊椎为重要资源；大型个体的食物谱和养殖饲料条件不能直接外推为所有野生种群。[FishBase species entry](https://www.fishbase.se/summary/Mylopharyngodon-piceus.html) · [FAO aquaculture profile](https://www.fao.org/3/t0551e/t0551e00.htm)
+本条保留“硬壳资源 Patch + 离散目标”双层解释，不把底层资源直接写成固定 Bottom Mode。
+--Strategy Story--
+机制侧先寻找螺类/贝类集中、底质和水流合适的 Resource Patch，再由可辨识的离散目标进入 TargetFeeding。深度、饵型、速度和停顿属于设计推断；不能把养殖饲料反应当成野生策略。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder + Lifecycle Migration。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达硬壳资源和底层机会，无需新增 Bottom Mode。
+--Competing Explanation--
+硬壳资源密度、底质和水流可能共同造成摄食热点，不能把热点单独归因于鱼的固定深水状态。
+
+===== story_070.md :: FISH-R03｜革胡子鲶｜African Sharptooth Catfish｜Discrete Target + Resource Patch
+--Reality Baseline--
+革胡子鲶（African sharptooth catfish；*Clarias gariepinus*）的现实基线可由 FAO 与 FishBase 的物种资料闭合到以下范围：栖息于河流、湖泊、沼泽和可能季节性干涸的洪泛区；具辅助空气呼吸能力，能够在低氧和水体收缩条件下维持生存。FAO 资料记录其食性随体型变化，从浮游动物和昆虫幼体到较大鱼类，属于机会性、广食性的捕食者；FishBase 还记录其在洪泛季节进行迁移和繁殖相关移动。[FAO biology](https://www.fao.org/4/w3595e/w3595e04.htm) · [FishBase](https://www.fishbase.se/summary/Clarias-gariepinus.html)
+这些事实支持“资源 Patch + 离散目标 + 低氧/洪泛 Context”的最低能力解释。空气呼吸是现实边界，不自动创建独立 Night 或 Lo
+--Strategy Story--
+现实策略约束是：鱼可能在低氧、浅滩、洪泛边缘或泥底资源区保持可用状态，且食物谱随体型改变。对玩家的设计含义是先按水体状态和资源 Patch 找位置，再在离散目标和底层机会之间切换呈现。饵种、深度、速度与停顿属于基于上述现实约束的策略推断；本批没有把“夜钓”或“低氧专用呈现”写成已被直接垂钓研究证明的事实。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。资源场先提供机会，离散猎物再进入 TargetFeeding；洪泛迁移保持为相邻 lifecycle evidence，不在本响应链重复结算。
+--Lowest-Power Explanation--
+既有 P02 Resource Patch → Discrete Target → TargetFeeding + P01 Discrete Target → TargetFeeding + Typed Context 足以表达低氧/洪泛背景下的资源重排和机会性捕食，无需新增 FishMode。
+--Competing Explanation--
+观察到的“低氧仍可捕获”也可能来自猎物集中、浅水边缘或水位变化，而不是空气呼吸直接提高攻击倾向；目前不能把这些因果拆开。
+
+===== story_071.md :: FISH-R03｜马口鱼｜Chinese Hook Snout Carp｜Discrete Target
+--Reality Baseline--
+马口鱼（Chinese hook snout carp；*Opsariichthys bidens*）是东亚小型溪流鱼。FishBase 物种页支持其身份与淡水河流生态入口；本批只保留浅水、流速边界和小型水生猎物的低强度机会解释。物种级食谱、日周期和现实垂钓响应仍未由直接交叉来源闭合。[FishBase species entry](https://www.fishbase.se/summary/Opsariichthys-bidens.html)
+本条不把“溪流鱼”自动变成快流 Mode，也不把微栖位差异写成独立控制流。
+--Strategy Story--
+机制侧可先用浅水、流速和遮蔽物定义可达机会，再由离散目标进入 TargetFeeding。深度、饵型、速度和停顿只是设计推断，不声称现实垂钓者的统一操作。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context 足以表达溪流边界与小型猎物，不新增 Flow Mode。
+--Competing Explanation--
+站位变化也可能由水位、猎物输运和底质遮蔽解释，而非鱼的固定流速偏好。
+
+===== story_072.md :: FISH-R03｜高体鳑鲏｜Rosy Bitterling｜Relation Object
+--Reality Baseline--
+高体鳑鲏（Rosy bitterling；*Rhodeus ocellatus*）的关键现实事实是繁殖关系而非普通摄食：雌鱼把卵产入活淡水蚌的鳃腔，胚胎在蚌体内发育，雄鱼在繁殖期围绕产卵机会和配偶竞争表现出关系性行为。[PMC study](https://pmc.ncbi.nlm.nih.gov/articles/PMC3399850/) · [PubMed study](https://pubmed.ncbi.nlm.nih.gov/24925267/)
+这条证据支持 Relation Object / Condition 候选：淡水蚌是繁殖所需的外部关系对象，不能并入普通 Target Feeding。当前资料对具体野外种群、亚种边界、摄食与垂钓响应仍不完整，EvidenceState 保持 Evidence Open。
+--Strategy Story--
+对机制设计的含义是：只有在活淡水蚌这一关系对象存在且处于可用状态时，繁殖相关机会才成立；这不是一个“更容易攻击”的普通饵料故事。任何面向玩家的寻找位置或时段建议都只能作为关系对象的场景推断，不能声称现实垂钓者普遍利用该繁殖关系。
+--FCF Interpretation--
+PrimaryEvaluand=Relation Object；ResponseChannels=RelationalConflict。Relation Object 的成立条件是活淡水蚌及繁殖期语境；普通摄食不属于本 Story。
+--Lowest-Power Explanation--
+既有 P04 Persistent Guard Condition + Relation → RelationalConflict 已能表达“对象依赖的繁殖关系”和雄性竞争，不购买新 FishMode。
+--Competing Explanation--
+部分观察也可能由繁殖期空间集中或一般配偶竞争解释；当前材料不足以判定是否需要独立的强状态或全局关系锁。
+
+===== story_073.md :: FISH-R03｜鯮鱼｜Long-jawed Baelama｜Discrete Target + Resource Patch
+--Reality Baseline--
+鯮鱼（Long-jawed Baelama；*Luciobrama macrocephalus*）的可靠基线目前只能闭合到身份与大河中上层机会：FishBase 将其作为中国淡水鲤科鱼类的分类与分布入口，但公开物种级行为字段较稀疏。现阶段可保留“河流/湖泊水层与小型猎物资源共同决定可达机会”的低强度解释；不能把中上层活动、群聚或具体钓法写成已核验事实。[FishBase species entry](https://www.fishbase.se/summary/Luciobrama-macrocephalus.html)
+因此本条的核心结论是 Evidence Open：身份基本可核验，摄食对象、季节迁移、水层稳定性和现实垂钓响应仍需直接物种级资料。不要从属名或相近鲌类的资料拼接行为链。
+--Strategy Story--
+机制上可先把水层、流速和猎物可得性作为 Opportunity Context，再由确证的离散猎物进入 TargetFeeding。任何中上层检索、速度、停顿或饵型建议目前都只是设计侧待验证假设，不声称现实垂钓者普遍如此操作。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target + Resource Patch；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。当前只允许低强度 Context 影响机会，不创建新模式。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以承载当前可证范围；不要用相近物种的追猎资料填补空缺。
+--Competing Explanation--
+中上层出现可能只是水文、猎物分布或季节重排，而非物种固有的追猎偏好；现有资料不足以区分。
+
+===== story_074.md :: FISH-R03｜鲮｜Mud Carp｜Resource Patch
+--Reality Baseline--
+鲮（Mud carp；*Cirrhinus molitorella*）是华南淡水鲤科鱼类。FishBase 物种入口及 FAO 养殖资料支持其以藻类、附着生物和底质有机碎屑为主要资源，并在河流、池塘和缓流环境中利用连续食物场；养殖饲料条件不能直接代表野生行为。[FishBase species entry](https://www.fishbase.se/summary/Cirrhinus-molitorella.html) · [FAO aquaculture profile](https://www.fao.org/4/ab915e/ab915e00.htm)
+这支持 Resource Patch + FieldFeeding 候选，但连续资源摄食不等于一个新 FishMode，也不自动证明某种固定钓法。
+--Strategy Story--
+机制侧先定位藻类、附着生物和有机碎屑集中的底质 Patch，再由 FieldFeeding 处理持续摄食机会。玩家侧的底质、深度、饵料和停顿是设计推断；不能把“连续资源场”压缩成单一离散目标或固定底钓参数。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch；ResponseChannels=FieldFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P03 Food Field → FieldFeeding / Field Opportunity 已能表达连续底质资源，无需新增 Grass/Filter Mode。
+--Competing Explanation--
+资源场位置也可能由流速、底质和水质共同决定；摄食密度变化不能单独归因于藻类质量。
+
+===== story_075.md :: FISH-R03｜鳡鱼｜Yellowcheek｜Discrete Target
+--Reality Baseline--
+鳡鱼（Yellowcheek；*Elopichthys bambusa*）是大型河流鲌类。FishBase 物种入口支持其淡水河流身份和鱼食性/捕食性背景；本批把中上层移动猎物、流速与季节水位作为 Opportunity Context，保留迁移和追猎强度的证据开放项。[FishBase species entry](https://www.fishbase.se/summary/Elopichthys-bambusa.html)
+不能把群游、追群或高速呈现直接写成 FishMode；需要物种级野外行为和垂钓来源才能进一步提高置信度。
+--Strategy Story--
+设计侧可按水层、流速边界和猎物移动寻找机会，再用可见的移动目标推进 TargetFeeding。速度、目标大小和追群策略都是机制推断，不能声称已被现实垂钓研究统一证实。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Lifecycle Migration。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context 足以表达水层和移动猎物，不新增 Chase Mode 或 School Mode。
+--Competing Explanation--
+中上层捕食可能由猎物集中、水流和季节水位造成，而非持续个体状态。
+
+===== story_076.md :: FISH-R03｜麦穗鱼｜Stone Moroko｜Discrete Target
+--Reality Baseline--
+麦穗鱼（Stone moroko；*Pseudorasbora parva*）是小型淡水鲤科鱼类。FishBase 物种入口支持其浅水、缓流和植被边缘的基础生态背景；公开入侵生态资料还记录其取食小型无脊椎、鱼卵和幼体，并能在多种小型水体中维持种群。[FishBase species entry](https://www.fishbase.se/summary/Pseudorasbora-parva.html) · [CABI invasive species profile](https://www.cabi.org/isc/datasheet/45010)
+本批把鱼卵/幼体摄食作为普通离散目标候选，不把群游或入侵扩散直接写成 FishMode。
+--Strategy Story--
+机制侧可按浅水植被边缘和小型资源 Patch 找机会，再由鱼卵、幼体或小型无脊椎等离散目标进入 TargetFeeding。饵型、深度、速度和停顿属于设计推断；入侵扩散只说明可用资源场，不等同于个体攻击模式。
+--FCF Interpretation--
+PrimaryEvaluand=Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。群游只作发现层线索。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context 足以表达浅水植被和小目标，不新增 School/Invader Mode。
+--Competing Explanation--
+鱼卵或幼体出现可能由繁殖期和资源密度造成，而不是全年稳定偏好；群聚也可能只是资源集中。
+
+===== story_077.md :: FISH-R03｜黄尾鲴｜Xenocypris Davidi｜Resource Patch
+--Reality Baseline--
+黄尾鲴（Xenocypris davidi）的公开物种级资料支持鲴类底质/附着资源摄食的方向性解释，但食物组成、空间分布和具体季节边界仍稀疏。FishBase 可作为身份入口；本条保留 Resource Patch + FieldFeeding 候选，不把连续资源摄食自动变成新模式。[FishBase species entry](https://www.fishbase.se/summary/Xenocypris-davidi.html)
+--Strategy Story--
+机制侧先寻找附着资源和底质条件合适的连续 Patch，再由 FieldFeeding 处理资源场响应。玩家侧饵料、深度和停顿只是设计推断；离散钓获边界交给下游 Capture owner。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch；ResponseChannels=FieldFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P03 Food Field → FieldFeeding / Field Opportunity 足以表达连续附着资源，不新增 Grazing Mode。
+--Competing Explanation--
+资源热点也可能由底质、水流和水质共同造成，不能单独归因于藻类或附着层。
+
+===== story_078.md :: FISH-R03｜黄金鲫｜Golden Crucian｜Discrete Target + Resource Patch
+--Reality Baseline--
+黄金鲫（Golden crucian；杂交/选育鲫鱼标签）的身份不稳定，不能直接当作单一物种。普通鲫鱼资料可提供浅水/底层杂食和资源 Patch 基线，但亲本、投喂史和养殖环境可能改变行为；本条不作品系特有机制。[FishBase Carassius auratus baseline](https://www.fishbase.se/summary/Carassius-auratus.html)
+--Strategy Story--
+先按浅水、底质和资源 Patch 找机会，再由离散目标进入 TargetFeeding。饵型、深度、速度和停顿是设计推断；不把黄金色表型或养殖投喂反应写成独立 Mode。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达继承的鲫鱼基线，不新增 Hybrid Mode。
+--Competing Explanation--
+差异可能来自亲本、投喂史、体型和池塘环境，而非表型本身。
+
+===== story_079.md :: FISH-R03｜黄颡鱼｜Yellow Catfish｜Discrete Target + Resource Patch
+--Reality Baseline--
+黄颡鱼（Yellow catfish；*Tachysurus fulvidraco*）的物种级资料支持底层、河湖通道和离散猎物故事：FishBase 将其记录为河流与湖泊底层鱼，摄食昆虫、软体动物，并偶尔摄食鱼类；公开食性汇总还列出鱼类、浮游动物和昆虫幼体等成分。FishBase 另记录雄鱼在黏土底质巢穴中守护卵和幼体，说明繁殖关系应与普通摄食分开处理。[FishBase species page](https://fishbase.se/Summary/tachysurus-fulvidraco) · [FishBase diet summary](https://fishbase.se/TrophicEco/DietCompoSummary.php?dietcode=7431&genusname=Tachysurus&speciesname=fulvidraco)
+这些事实支持“底质/遮蔽 Context + Resourc
+--Strategy Story--
+机制侧可以把底层、巢穴/石缝附近和昆虫/软体动物资源理解为机会来源，再由离散目标进入 TargetFeeding。玩家侧的深度、底质、饵型、速度和停顿是由现实约束推出的设计推断；当前来源不支持“夜间一定更有效”或某一固定钓法的现实断言。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。守巢是独立 Relation/Guard 候选，不在本普通摄食 Story 的响应链内。
+--Lowest-Power Explanation--
+既有 P02 Resource Patch → Discrete Target → TargetFeeding + P01 Discrete Target → TargetFeeding + Typed Context 可表达底层资源与离散摄食机会，不新增 Night Mode。
+--Competing Explanation--
+底层捕获率的变化也可能来自水流、底质和猎物集中，而非低光本身；现有证据不足以分解各因素。
+
+===== story_080.md :: ?
+--Reality Baseline--
+Florida Gar is a freshwater predator using shallow vegetated or slow-water habitat and taking fish and other prey.
+--Strategy Story--
+Search vegetation edges and quiet water, then present a discrete prey-like target through the ambush lane. The player changes access and posture first.
+--FCF Interpretation--
+P01 typed habitat context.
+--Lowest-Power Explanation--
+Discrete Target → TargetFeeding.
+--Competing Explanation--
+A surface or air-breathing mode lacks evidence of independent supply partition.

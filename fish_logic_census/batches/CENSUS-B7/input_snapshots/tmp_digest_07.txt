@@ -1,0 +1,229 @@
+===== story_081.md :: (no-title)
+--Reality Baseline--
+Muskellunge is a large freshwater predator taking fish and other vertebrate prey, often using cover and edge habitat.
+--Strategy Story--
+The player prioritizes large-target profiles and cover edges, varying retrieve and depth to cross the strike lane. This is a target-size/presentation context, not a new mode.
+--FCF Interpretation--
+P01 typed target context.
+--Lowest-Power Explanation--
+Discrete Target plus static habitat and slow reorder.
+
+===== story_082.md :: FISH-R04｜双线无须鳕｜Silver Hake｜Shelf-Depth Target
+--Reality Baseline--
+Silver Hake is a marine predator using pelagic and demersal shelf habitats and taking fish and cephalopods.
+--Strategy Story--
+The player locates the active depth band and presents a discrete bait or lure in the target layer. Depth and season reorder access to the same target logic.
+--FCF Interpretation--
+P01 with lifecycle/spatial context.
+--Lowest-Power Explanation--
+Discrete target plus slow/lifecycle reorder.
+
+===== story_083.md :: FISH-R04｜大眼金枪鱼｜Bigeye Tuna｜Deep-Diel Pelagic Target
+--Reality Baseline--
+Bigeye Tuna is an oceanic predator with strong depth and diel movement, taking fish, squid and crustaceans.
+--Strategy Story--
+The player follows temperature, depth and prey marks, then presents a discrete target in the active layer. The control problem is finding the moving opportunity, not selecting a new fish mode.
+--FCF Interpretation--
+P01/P02 under runtime overlay and lifecycle context.
+--Lowest-Power Explanation--
+Discrete target plus moving resource patch and depth reorder.
+
+===== story_084.md :: FISH-R04｜弓鳍鱼｜Bowfin｜Ambush Target
+--Reality Baseline--
+Bowfin is a predatory freshwater fish associated with vegetated, quiet or structured water. It takes fish and other animal prey; the source record does not justify a universal night-only rule.
+--Strategy Story--
+A player should search cover edges and low-current structure, then present a discrete animal-like target with pauses. The strategy consequence is location and posture, not a new fish-wide mode.
+--FCF Interpretation--
+Discrete Target → TargetFeeding with typed cover context.
+--Lowest-Power Explanation--
+P01 existing pattern: a discrete target is evaluated under habitat and visibility context.
+
+===== story_085.md :: FISH-R04｜斑点黑鲈｜Spotted Bass｜Stream Cover Target
+--Reality Baseline--
+Spotted Bass is a freshwater predator commonly associated with current, rock and cover, taking fish and invertebrates.
+--Strategy Story--
+The angler searches current seams, rock and cover, using a discrete moving or paused target that can be presented near structure. The key variable is access to target opportunity.
+--FCF Interpretation--
+Discrete Target → TargetFeeding + typed current/cover context.
+--Lowest-Power Explanation--
+P01 covers one target evaluated under habitat and flow context.
+
+===== story_086.md :: (no-title)
+--Reality Baseline--
+White Crappie is a schooling freshwater predator taking small fish and invertebrates, often using submerged structure and changing depth seasonally.
+--Strategy Story--
+Locate structure and the active depth band, then present a small discrete target within the school opportunity. Schooling is a context signal, not a new supply mode.
+--FCF Interpretation--
+P01 with typed school/structure context.
+--Lowest-Power Explanation--
+Discrete target under spatial and lifecycle context.
+
+===== story_087.md :: FISH-R04｜白马切喉鳟｜Cutthroat Trout｜Resident–Migratory Drift
+--Reality Baseline--
+Cutthroat Trout spans resident freshwater and migratory forms. It takes aquatic and terrestrial invertebrates and fish depending on life stage and habitat.
+--Strategy Story--
+The player reads coldwater flow, drift lanes and seasonal access, then selects a small discrete target and presentation that matches the current prey field.
+--FCF Interpretation--
+P01/P02 with lifecycle context.
+--Lowest-Power Explanation--
+Existing target evaluation plus slow reorder and lifecycle migration.
+
+===== story_088.md :: FISH-R04｜真鲷｜Red Seabream｜Reef-Bottom Patch Target
+--Reality Baseline--
+Red Seabream uses reef-associated and bottom habitats and feeds on fish, crustaceans and other benthic prey.
+--Strategy Story--
+Find hard bottom or reef edges where prey patches form, then present a discrete bait close to the feeding layer. Patch context guides search but does not replace target evaluation.
+--FCF Interpretation--
+P02 → P01.
+--Lowest-Power Explanation--
+Resource Patch context plus discrete target.
+
+===== story_089.md :: FISH-R04｜眼鳢｜Bullseye Snakehead｜Vegetated Ambush Patch
+--Reality Baseline--
+Bullseye Snakehead is a warm freshwater predator using cover and taking animal prey. Air-breathing tolerance changes habitat persistence but is not itself a feeding channel.
+--Strategy Story--
+Search dense cover edges and oxygen-stressed or shallow opportunity zones, then use a discrete target that can enter the ambush lane. The player changes location and presentation before changing species logic.
+--FCF Interpretation--
+P01/P02 with typed cover and resource context; no independent Low-Oxygen Mode.
+--Lowest-Power Explanation--
+TargetFeeding plus resource patch exposure and static habitat.
+
+===== story_090.md :: FISH-R04｜红尾梭鱼｜Red Tail Barracuda｜Clearwater Pursuit
+--Reality Baseline--
+Red Tail Barracuda is a freshwater predator taking small fish in channel and open-water contexts.
+--Strategy Story--
+The player uses a visible, moving discrete target near current edges and clear-water prey lanes. The evidence supports a target story, not a special chase mode.
+--FCF Interpretation--
+P01 typed flow/visibility context.
+--Lowest-Power Explanation--
+Discrete Target → TargetFeeding.
+
+===== story_091.md :: FISH-R04｜红钩鱼｜Redhook Myleus｜Floodplain Plant Patch
+--Reality Baseline--
+Redhook Myleus is a freshwater characin with plant/fruit and other food resources, especially where floodplain resources are available.
+--Strategy Story--
+The player looks for resource-rich edges and presents a discrete item rather than assuming continuous grazing. Patch context changes encounter opportunity.
+--FCF Interpretation--
+P02 Resource Patch → P01 Discrete Target.
+--Lowest-Power Explanation--
+Resource context plus item-level feeding.
+
+===== story_092.md :: FISH-R04｜美洲条纹狼鲈｜Striped Bass｜Migratory Pelagic Target
+--Reality Baseline--
+Striped Bass uses estuarine, coastal and river habitats and can move between them. It feeds on fish and invertebrates, often in schooling or current-associated opportunities.
+--Strategy Story--
+The player follows current, temperature and bait concentration, then presents a discrete target at the active depth. Migration changes where opportunity is exposed; it does not itself create a new response channel.
+--FCF Interpretation--
+P01/P02: Discrete Target under lifecycle and resource-patch context.
+--Lowest-Power Explanation--
+Existing target evaluation plus slow spatial reorder and lifecycle migration.
+
+===== story_093.md :: FISH-R04｜花羔红点鲑｜Dolly Varden｜Coldwater Resident–Anadromous Target
+--Reality Baseline--
+Dolly Varden includes resident and migratory forms and feeds on aquatic prey in coldwater streams, lakes and coastal systems.
+--Strategy Story--
+The player follows coldwater access, seasonal movement and prey drift, then presents a discrete target in the active lane. Form changes context and location before response semantics.
+--FCF Interpretation--
+P01/P02 with lifecycle context.
+--Lowest-Power Explanation--
+Existing target feeding plus spatial/lifecycle reorder.
+
+===== story_094.md :: FISH-R04｜蓝笛鲷｜Green Jobfish｜Reef-Edge Current Break
+--Reality Baseline--
+Green Jobfish is a reef-associated marine predator using structure, current breaks and schooling prey.
+--Strategy Story--
+The player searches current breaks and structure, then places a discrete target where prey is concentrated. Current and depth reorder exposure.
+--FCF Interpretation--
+P02 → P01.
+--Lowest-Power Explanation--
+Resource patch plus discrete target.
+
+===== story_095.md :: FISH-R04｜西方七鳃鳗｜Western Brook Lamprey｜Stage-Switching Feeding
+--Reality Baseline--
+Western Brook Lamprey is a non-parasitic lamprey. The larval ammocoete stage feeds by filtering fine material and adults do not map cleanly to a conventional predatory hook-bait story.
+--Strategy Story--
+The factual strategy implication is habitat and lifecycle targeting rather than a standard lure recipe: fine sediment, low-gradient habitat and migration access matter.
+--FCF Interpretation--
+Do not force into TargetFeeding or FieldFeeding until product scope and owner boundary are explicit.
+--Lowest-Power Explanation--
+A lifecycle/state story with a nonstandard feeding channel, not a new FishMode.
+
+===== story_096.md :: FISH-R04｜链纹狗鱼｜Chain Pickerel｜Vegetation-Edge Target
+--Reality Baseline--
+Chain Pickerel is a freshwater predator associated with vegetated cover and small fish prey.
+--Strategy Story--
+Work the vegetation edge with a discrete prey target and controlled pauses. The player’s main decision is access to the strike lane.
+--FCF Interpretation--
+P01 typed habitat context.
+--Lowest-Power Explanation--
+Discrete Target → TargetFeeding.
+
+===== story_097.md :: FISH-R04｜长吻鲍氏脂鲤｜Bicuda｜Channel Pursuit Target
+--Reality Baseline--
+Bicuda is a South American freshwater predator taking fish in open or channel-associated water.
+--Strategy Story--
+The player works channel edges and moving-water lanes with a discrete target that matches small prey. Position and retrieve are context-sensitive.
+--FCF Interpretation--
+P01 typed flow/channel context.
+--Lowest-Power Explanation--
+Discrete Target → TargetFeeding.
+
+===== story_098.md :: FISH-R04｜闪光鲟｜Stellate Sturgeon｜Benthic Odour Patch + Migration
+--Reality Baseline--
+Stellate Sturgeon uses bottom habitats, searches benthic prey and migrates between marine and river systems for lifecycle needs.
+--Strategy Story--
+The player must find migratory access and bottom resource patches, then place a discrete bait near the substrate. The story is target-level after habitat selection.
+--FCF Interpretation--
+P02 → P01 with lifecycle migration.
+--Lowest-Power Explanation--
+Resource patch plus target feeding and spatial/lifecycle reorder.
+
+===== story_099.md :: FISH-R04｜露仙美鱥｜Tennessee Shiner｜Sparse Evidence Target
+--Reality Baseline--
+The source identifies Tennessee Shiner as *Paranotropis leuciodus*. Species-level public evidence available in this sweep is sparse.
+--Strategy Story--
+A cautious working hypothesis is shallow-flow small-target presentation, but this remains a research lead rather than a player-facing fact.
+--FCF Interpretation--
+Keep a low-confidence P01 placeholder without promoting a mechanism.
+--Lowest-Power Explanation--
+Discrete target under static habitat, with evidence open.
+
+===== story_100.md :: FISH-R04｜鬼头刀｜Mahi-Mahi｜Floating-Structure Bait Patch
+--Reality Baseline--
+Mahi-Mahi is a warm pelagic predator associated with floating objects and concentrated baitfish, with rapid movement and broad prey capture.
+--Strategy Story--
+The player searches floating structure or bait concentration, then keeps a fast discrete target in the active layer. Structure exposes the opportunity; it does not replace target evaluation.
+--FCF Interpretation--
+P02 Resource Patch → Discrete Target → TargetFeeding.
+--Lowest-Power Explanation--
+Transient resource patch changes target exposure; no new FishMode.
+
+===== story_101.md :: FISH-R04｜黄尾鰤｜Yellowtail Amberjack｜Reef-Current Bait Patch
+--Reality Baseline--
+Yellowtail Amberjack is a pelagic/reef-associated predator that follows baitfish, current breaks and structure.
+--Strategy Story--
+Search current breaks and baitfish aggregation, then place a discrete target in the moving strike lane. Current changes opportunity exposure and depth.
+--FCF Interpretation--
+P02 → P01 with runtime current context.
+--Lowest-Power Explanation--
+Resource patch and discrete target; no dedicated reef mode.
+
+===== story_102.md :: FISH-R04｜黑牛胭脂鱼｜Black Buffalo｜Benthic Patch to Bite
+--Reality Baseline--
+Black Buffalo uses bottom habitats and feeds on benthic material and invertebrates. Seasonal river movement can change access to those patches.
+--Strategy Story--
+The player finds soft-bottom or current-transition patches, then offers a discrete bait at the feeding layer. Resource context changes exposure; the bite remains target-level.
+--FCF Interpretation--
+P02 → P01; no continuous FieldFeeding claim.
+--Lowest-Power Explanation--
+Resource Patch context plus discrete target response.
+
+===== story_103.md :: FISH-R05｜泰鲮｜Rohu｜Monsoon Grazing Patch
+--Reality Baseline--
+成体植食（“Feed on plants”，营养级 2.2）；底中栖；河川大型个体；昼行、常独居、偶掘穴；季风期在洪泛河段中游产卵。第二源 Wikipedia（roho labeo）一致。
+--Strategy Story--
+钓手应在季风洪泛窗找河道中游/淹没区；植物基饵底层；细策略证据开放。
+--FCF Interpretation--
+Resource Patch → FieldFeeding（P06 连续基质处理）；季节由 P05 语义覆盖。
+--Lowest-Power Explanation--
+P06 连续基质处理即足；无需 Grazing FishMode。

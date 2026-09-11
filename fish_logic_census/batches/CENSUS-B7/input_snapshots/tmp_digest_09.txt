@@ -1,0 +1,59 @@
+===== story_108.md :: FISH-R05｜暹罗巨鲤｜Giant Barb｜Floodplain Fruit & Algae Window + Stage Habitat Split
+--Reality Baseline--
+食 "algae, phytoplankton and fruits of inundated terrestrial plants"+腐屑；入洪泛林；幼体见于沼泽小支流、成体居大河深潭（幼成栖息分异）；migratory；CR。
+--Strategy Story--
+钓法（泰国 stocked 塘文化）未引源，开放。
+--FCF Interpretation--
+洪泛季果实窗 = 季节性 Resource Patch（P06）；阶段栖息分异 = P05。
+--Lowest-Power Explanation--
+P05+P06 即足。
+--Competing Explanation--
+无实质竞争解释。
+
+===== story_109.md :: FISH-R05｜小体鲟｜Sterlet｜Barbel-Bottom Tactile Foraging + Winter Holes
+--Reality Baseline--
+大河流水深水；冬季 "aggregates in bottom holes" 不活动，春季上溯砾石强流产卵；吻下四长须（穗状）；营养级 3.6（食性项字段空）。
+--Strategy Story--
+钓法证据开放（S10=EO）。
+--FCF Interpretation--
+底栖触须搜寻 → Discrete Target（P01，patch 背景由 P02 语义兼容）；冬穴-春溯 = 季节差异（P05）。
+--Lowest-Power Explanation--
+P01 + P05 季节语义即足；与 R04 闪光鲟对照同构。
+--Competing Explanation--
+触须使用行为学开放（形态证实，用途未闭合——S2=EO）。
+
+===== story_110.md :: FISH-R05｜团头鲂｜Wuchang Bream｜Submerged-Grazing Herbivore
+--Reality Baseline--
+淡水植食种，主食高等水生植物与沉水草（ScienceDirect overview；fair-fish database）；长江中游湖泊，5–20m；选择性放牧控草：显著抑制 Hydrilla、混养中放过 Vallisneria（KMAE/Yin 2019；细化见 Evidence 注记）。
+--Strategy Story--
+湖泊季节深浅迁移、植物基钓法证据开放。
+--FCF Interpretation--
+沉水草床 = Resource Patch → FieldFeeding（P06 连续基质处理）。
+--Lowest-Power Explanation--
+P06 即足；与草鱼 grazing 前例同构（垂钓钩饵仍可 TargetFeeding）。
+--Competing Explanation--
+无实质竞争解释。
+
+===== story_111.md :: FISH-R05｜笋壳鱼｜Marble Goby｜Nocturnal Structure Ambush
+--Reality Baseline--
+食小鱼虾/水生昆虫/螺蟹；夜行伏击，日间藏于底部石草间不动（FISHBIO）；喜深软沙、掘穴/半埋（SeriouslyFish）；兼性气呼吸；河-沼-库-渠-洪泛林；potamodromous。
+--Strategy Story--
+活饵/夜钓具体策略开放。
+--FCF Interpretation--
+Discrete Target → TargetFeeding（P01 + 结构/低光 context）；穴/掩体 = 持续结构占用。
+--Lowest-Power Explanation--
+P01 + Spatial/低光 context 即足。
+--Competing Explanation--
+无实质竞争解释。
+
+===== story_112.md :: FISH-R05｜圆腹雅罗鱼｜Ide｜Ontogenetic Piscivory + Tributary Spawning
+--Reality Baseline--
+"Larger individuals feed mainly on fishes"；幼体沿岸→成体深水/大河大湖；洄游支流产卵、粘性卵附砾石；成体独居幼体群；耐半咸水。
+--Strategy Story--
+钓法证据开放（S10=EO）。
+--FCF Interpretation--
+Discrete Target（P01）；阶段差异（P05）。
+--Lowest-Power Explanation--
+P01+P05 即足；与欧鲢同构（替代被剔除的鳡鱼——其 Coverage 行经二次精确搜索发现属 R03 包外行，已从本批候选剔除）。
+--Competing Explanation--
+无实质竞争解释。

@@ -1,0 +1,97 @@
+===== story_014.md :: B01-S18｜白斑狗鱼｜植被伏击与从下方接近
+--Reality Baseline--
+白斑狗鱼多为视觉伏击捕食者，常从下方接近猎物；MN DNR 指出夜间较少咬饵，不能沿用“夜行捕食”候选标签。
+--Strategy Story--
+在植被边缘和结构附近呈现仿鱼饵；有时模仿受伤鱼。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：遮蔽和相对深度属 Spatial/Context，当前猎物走 TargetFeeding。
+--Lowest-Power Explanation--
+遮蔽和相对深度属 Spatial/Context，当前猎物走 TargetFeeding。
+--Competing Explanation--
+伏击方式不要求新 Mode；吞咽前处理不等于响应独立捕获。
+
+===== story_028.md :: B01-S38｜蓝鳃太阳鱼｜雄鱼护巢、觅食与食卵的边界
+--Reality Baseline--
+蓝鳃太阳鱼存在护巢雄鱼与其他繁殖策略。官方钓法并列饥饿与防御动机；Neff 研究的食卵受亲子关系/状态影响，但不是护巢与外部食物路径同时执行的证明。
+--Strategy Story--
+巢区近静止小饵可被摄食或防御攻击；实际钓获无法单独识别两种原因。
+--FCF Interpretation--
+Existing Pattern；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：既存繁殖 Condition + Nest/Anchor relation；当前目标可有不同 meaning，结算政策仍未定。
+--Lowest-Power Explanation--
+既存繁殖 Condition + Nest/Anchor relation；当前目标可有不同 meaning，结算政策仍未定。
+--Competing Explanation--
+父本食卵不是“外部钩饵吃食 + 守护冲突”并发；Guard Mode 必须证明 bundle 必要性。
+
+===== story_041.md :: FISH-R02-S05｜毛鳞鱼｜繁殖上岸与近岸资源窗口
+--Reality Baseline--
+毛鳞鱼形成大群体，摄食浮游和小型底栖资源，繁殖季会出现近岸或岸滩聚集。
+--Strategy Story--
+钓手或捕食者可利用短时近岸窗口和群体边缘；水层、潮位与时间窗共同决定机会。
+--FCF Interpretation--
+P03；资源场 + 生命周期入口；不把群体聚集自动升级为 FishMode。
+--Lowest-Power Explanation--
+Seasonal FoodField + spatial migration overlay + FieldFeeding。
+--Competing Explanation--
+岸线可见度是玩家线索，不是独立持久状态 owner。
+
+===== story_060.md :: FISH-R03｜荷包红鲤｜Wuyuan Red Carp｜Discrete Target + Resource Patch
+--Reality Baseline--
+荷包红鲤（Wuyuan red carp；地方鲤品系，通常按 *Cyprinus carpio* 基线处理）的物种级机制不能由红色表型单独推出。普通鲤资料支持底层杂食、植物残屑和底栖无脊椎资源；地方品系、养殖条件和投喂史可能改变响应，目前没有足够独立证据证明品系专属机制。[FishBase common carp](https://www.fishbase.se/summary/Cyprinus-carpio.html)
+--Strategy Story--
+先按普通鲤的底质与 Resource Patch 处理，再由离散目标进入 TargetFeeding。饵型、深度和停顿仅作设计推断；品系外观不购买独立 Mode。
+--FCF Interpretation--
+PrimaryEvaluand=Resource Patch + Discrete Target；ResponseChannels=TargetFeeding；SpatialPattern=Static Habitat + Slow Reorder。
+--Lowest-Power Explanation--
+P01 Discrete Target → TargetFeeding + Typed Context + P02 Resource Patch → Discrete Target → TargetFeeding 足以表达继承的鲤类机制，不新增 Wuyuan Mode。
+--Competing Explanation--
+差异可能来自投喂史、养殖环境、体型或选育，而非红色表型。
+
+===== story_104.md :: FISH-R05｜印度鲮｜Mrigal Carp｜Column-to-Bottom Low-Trophic Feeding
+--Reality Baseline--
+FishBase：淡水 demersal，营养级 2.3（依近缘推定）；Wikipedia（按 C. cirrhosus）称 benthopelagic and potamodromous plankton feeder，产卵于 50–100cm 沙泥质边缘带，池中不自然繁殖。
+--Strategy Story--
+钓法证据开放（S10=EO）。
+--FCF Interpretation--
+Food Field → FieldFeeding；机制（拾取 vs 滤）未闭合，按 R02 教训不从「浮游食性」推导滤食。
+--Lowest-Power Explanation--
+P03 Food Field + FieldFeeding 即足；机制开放留给证据闭合。
+--Competing Explanation--
+滤食机制可能性未被排除（证据开放，不默认）。
+
+===== story_105.md :: FISH-R05｜巴西鲷｜Streaked Prochilod｜Illiophagous Mud Processing + Long Migration
+--Reality Baseline--
+Potamodromous 长距离洄游（Speranza et al. 2012 摘要：migrates a highly variable distance, exceeding 800–1000 km）；illiophagous（口特化吸食有机泥）；Río de la Plata 优势腐食者（dominant detritivore，Speranza et al. 2012 原文定性；具体占比数字未证实——原 \>60% ichthyomass 主张在该文献摘要/元数据中不存在｜FISH-R05-SRCHECK-001-FINAL）；食谱含种子/丝藻/摇蚊。
+--Strategy Story--
+洄游窗聚集期定位；底栖腐屑场；钓法细节开放。
+--FCF Interpretation--
+Resource Patch（有机泥层）→ FieldFeeding（P06 连续基质处理）；洄游按 P05。
+--Lowest-Power Explanation--
+P06 足以表达；无需新 Mode。
+--Competing Explanation--
+无实质竞争解释。
+
+===== story_106.md :: FISH-R05｜美洲锐唇鲷｜Chiselmouth｜Diatom Scrape Plate
+--Reality Baseline--
+成体 "feed mainly on diatoms, also on filamentous algae"，下颌硬板 + 超长肠；幼体食水面昆虫；砂砾底溪流池-急流；potamodromous。
+--Strategy Story--
+钓获记录稀少（S10=SN）。
+--FCF Interpretation--
+附着藻层 = Resource Patch → FieldFeeding（P06）；幼→成食谱切换 = P05 语义。
+--Lowest-Power Explanation--
+P06 足以表达刮食；形态特化不自动购买 FishMode。
+--Competing Explanation--
+无实质竞争解释。
+
+===== story_107.md :: FISH-R05｜白条鱼｜Sharpbelly｜Upper-Layer Opportunistic Field
+--Reality Baseline--
+"zooplankton, insects, crustaceans, algae and detritus"；0–10m；大溪流与水库；FishBase 记 gamefish。
+--Strategy Story--
+上层呈现/飞蝇策略（中文钓法文化强但无可引用公开源，EO）。
+--FCF Interpretation--
+Food Field → FieldFeeding（上层悬浮/漂流物场），虫类拾取含 TargetFeeding 次级。
+--Lowest-Power Explanation--
+P03 Food Field 即足；上层属性由 Spatial/Habitat 表达。
+--Competing Explanation--
+无实质竞争解释。

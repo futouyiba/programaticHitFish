@@ -1,0 +1,79 @@
+===== story_026.md :: B01-S36｜鸭嘴鲟｜锚挂捕获与主动摄食分离
+--Reality Baseline--
+MDC 描述鸭嘴鲟的锚挂捕获方式；这种捕获不要求鱼先把钩当食物接受。
+--Strategy Story--
+方法的钩接触/拉动与鱼主动吞饵不同，不能拿捕获成功证明 filter Story 已映射成 TargetFeeding。
+--FCF Interpretation--
+Existing Pattern；比较 B02：<mention-page url="https://app.notion.com/p/3d6a4137d23681ab9c3ac2e3d7ba2730"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Contact/capture owner 处理不依赖主动响应的路径，FCF feeding 不添加新 Channel。
+--Lowest-Power Explanation--
+Contact/capture owner 处理不依赖主动响应的路径，FCF feeding 不添加新 Channel。
+--Competing Explanation--
+B02 不适用于 GAR-2 已主动取饵后的吞咽，也不证明所有网/陷阱都响应独立。
+
+===== story_027.md :: B01-S37｜鸭嘴鲟｜开放水体生长与上游繁殖入口
+--Reality Baseline--
+MDC 说明鸭嘴鲟利用开放水体并在繁殖季上移至适宜产卵地；觅食资源与繁殖通达应分开。
+--Strategy Story--
+搜索鱼的聚集通道与实际捕获方法分别建模；找到洄游鱼不等于其接受饵。
+--FCF Interpretation--
+Existing Pattern；比较 P05：<mention-page url="https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：Lifecycle/Spatial 更新位置；捕获交 PAD-4，电感受和滤食另列。
+--Lowest-Power Explanation--
+Lifecycle/Spatial 更新位置；捕获交 PAD-4，电感受和滤食另列。
+--Competing Explanation--
+迁徙群聚不证明需 FishGroup，也不自动开启 Feeding。
+
+===== story_028.md :: ?
+
+===== story_029.md :: ?
+--Reality Baseline--
+叉尾鮰利用味、嗅、触觉等寻找多样食物；成鱼与幼鱼食谱、水层及昼夜位置可不同。
+--Strategy Story--
+机构钓法支持不同自然/气味饵及底层搜索；气味存在不等于必须产生独立 FoodField 摄食。
+--FCF Interpretation--
+Existing Pattern；比较 P01：<mention-page url="https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：气味扩散为 sensory Context，当前实际食物仍为 Target；位置由 Spatial。
+--Lowest-Power Explanation--
+气味扩散为 sensory Context，当前实际食物仍为 Target；位置由 Spatial。
+--Competing Explanation--
+Scent Mode/Field Grammar 无必要性证据；气味线索与食物对象不可混为一物。
+
+===== story_030.md :: B01-S41｜斑点叉尾鮰｜洞巢雄鱼照护与受扰食卵
+--Reality Baseline--
+两机构均记载雄鱼洞巢照护卵/幼鱼；TPWD 描述受扰时可吃卵。照护并不证明所有巢边食物都触发攻击。
+--Strategy Story--
+已查物种钓法，尚无可靠证据把洞巢照护直接译为 lure-defense 策略。
+--FCF Interpretation--
+Semantic Open；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：先用 Nest relation + parental Condition；吃卵与守护对象处理需具体说明。
+--Lowest-Power Explanation--
+先用 Nest relation + parental Condition；吃卵与守护对象处理需具体说明。
+--Competing Explanation--
+不能把受扰食卵当普遍饥饿，也不能因“护巢”复制 Bluegill Mode。
+
+===== story_031.md :: B01-S42｜罗非鱼｜刮食、悬浮颗粒与再悬浮动作
+--Reality Baseline--
+尼罗罗非鱼可刮食并利用黏液截留颗粒；研究区分多种动作，包括令颗粒再悬浮。动作存在不等于已有完整切换条件。
+--Strategy Story--
+养殖喂食资料不能直接证明假饵策略；颗粒尺度、位置与供给形式是已发现的候选差异。
+--FCF Interpretation--
+Existing Pattern；比较 P03：<mention-page url="https://app.notion.com/p/3d6a4137d236810696fbdb25e854c094"/>。映射仅覆盖本 Story 的明示阶段。
+Owner 推论：typed field/substrate evaluator + 已有 Response；环境颗粒变化与鱼响应分开 owner。
+--Lowest-Power Explanation--
+typed field/substrate evaluator + 已有 Response；环境颗粒变化与鱼响应分开 owner。
+--Competing Explanation--
+五种动作不等于五个 Mode；刮食可尝试 P02 压缩，尚未证明失败。
+
+===== story_032.md :: B01-S43｜罗非鱼｜雄鱼巢区领地与雌鱼离巢
+--Reality Baseline--
+尼罗罗非雄鱼建立繁殖领地，雌鱼取卵后离开并口孵；雄鱼领地与雌鱼所携幼体不是同一个持久关系对象。
+--Strategy Story--
+繁殖位置提供找鱼候选；未找到本批直接证据将雄性驱逐行为映射到玩家假饵。
+--FCF Interpretation--
+Semantic Open；比较 P04：<mention-page url="https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701"/>。字段里的 Evaluand / Channels 仅为待检验映射，不是已接受的 Fit。
+Owner 推论：Territory relation + reproductive Condition；P04 只作为竞争参照，先区分领地与护卵。
+--Lowest-Power Explanation--
+Territory relation + reproductive Condition；P04 只作为竞争参照，先区分领地与护卵。
+--Competing Explanation--
+雌性口孵不能拿来证明雄性 Guard bundle，双方也不必因此先分供给 Group。
