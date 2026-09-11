@@ -21,7 +21,7 @@
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
   --c5:#d55181; --c6:#008300; --c7:#9085e9;
   /* 状态色（专用，不挪作系列色） */
-  --good:#0ca30c; --warn:#fab219;
+  --good:#0ca30c; --warn:#fab219; --bad:#e5484d;
   --mono:ui-monospace,"Cascadia Code",Consolas,"SFMono-Regular",Menlo,monospace;
 }
 *{box-sizing:border-box}
@@ -195,6 +195,10 @@ tr.total td{border-top:2px solid var(--axis);border-bottom:none;color:var(--ink)
 .trend-note{margin-top:16px;padding:13px 16px;border-left:3px solid var(--good);border-radius:0 10px 10px 0;
   background:rgba(12,163,12,.07);font-size:13.5px;color:var(--ink-2);line-height:1.7}
 .trend-note b{color:var(--ink)}
+.warn-note{margin-top:14px;padding:13px 16px;border-left:3px solid var(--bad);border-radius:0 10px 10px 0;
+  background:rgba(229,72,77,.08);font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.warn-note b{color:var(--ink)}
+.warn-note .flag{color:var(--bad);font-weight:750}
 
 /* ========== 页脚 ========== */
 footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
@@ -256,9 +260,9 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
     </div>
     <div class="stat">
       <div class="topline" style="background:var(--c3)"></div>
-      <div class="num">10<small>族</small></div>
-      <div class="lbl">LogicTemplate（Registry v6）</div>
-      <div class="sub">162 程序 · 255 判同 · 已消费 84 Story · 剩余 ~173 Story（进行中）</div>
+      <div class="num">19<small>族</small></div>
+      <div class="lbl">LogicTemplate（Registry v7 · CANDIDATE）</div>
+      <div class="sub">SINGLE 拆分 +9 新族 · 162 程序 · 466 判同 · 已消费 84 Story · 剩余 ~173（基线重估中）</div>
     </div>
   </section>
 
@@ -332,7 +336,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
           <div class="ov-m-lbl">Story 消费</div>
           <div class="ov-num">84<span class="den">/~257</span></div>
           <div class="ov-bar" role="img" aria-label="Story 消费 84/~257，约 33%"><i style="width:32.7%;background:var(--c1)"></i></div>
-          <div class="ov-meta"><span class="ov-note">B0–B4 已消费（B4 新增 26）· 剩余 ~173</span><span class="ov-pct" style="color:var(--c1)">~33%</span></div>
+          <div class="ov-meta"><span class="ov-note">B0–B4 已消费（B4 新增 26）· 剩余 ~173 · SINGLE 拆分后基线重估中</span><span class="ov-pct" style="color:var(--c1)">~33%</span></div>
         </div>
         <div class="ov-m">
           <div class="ov-m-lbl">批次</div>
@@ -342,8 +346,8 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
         </div>
         <div class="ov-m">
           <div class="ov-m-lbl">Registry 族数</div>
-          <div class="ov-num">10</div>
-          <div class="ov-meta"><span class="ov-note">Registry v6 · 162 程序 / 255 判同 · CENSUS-B4 零新族（连续第 3 批 ΔL_bake=0）</span><span class="ov-pct" style="color:var(--c1)">—</span></div>
+          <div class="ov-num">19</div>
+          <div class="ov-meta"><span class="ov-note">Registry v7 CANDIDATE · 162 程序 / 466 判同 · SINGLE 拆分 +9 新族（ΔL_bake=+9，B2 以来首次正增长）</span><span class="ov-pct" style="color:var(--c1)">—</span></div>
         </div>
       </div>
 
@@ -387,7 +391,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
         </div>
         <div class="pr-bar" role="img" aria-label="LT 普查进度约 33%"><i class="indet" style="width:32.7%"></i></div>
         <div class="pr-meta">
-          <span class="note">5 批已过审（B0–B4）· Registry v6 = 19 族 CANDIDATE · 162 程序 · 466 判同（v7） · CENSUS-B4 零新族（连续第 3 批 ΔL_bake=0），首个 LOCAL_SATURATION_CANDIDATE 立案 · 已消费 84 Story，剩余 ~173 Story</span>
+          <span class="note">5 批已过审（B0–B4）+ SINGLE 族重跑 · Registry v7 = 19 族 CANDIDATE / 162 程序 / 466 判同（SINGLE 拆分 +9 新族，ΔL_bake=+9 为 B2 以来首次正增长）· B4 饱和候选已被证伪（根因 = 平铺输入抹平差异，非真实饱和）· 已消费 84 Story，剩余 ~173 Story（基线重估中）</span>
           <span class="pct">~33%</span>
         </div>
       </div>
@@ -398,7 +402,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
   <!-- ===================== 02 / 03 图表 ===================== -->
   <section class="sec">
     <h2><span class="idx">02</span>LT 发现曲线（Discovery Curve）</h2>
-    <p class="sec-desc">按批次的新增族数增量 ΔL：Bake 面与 Response 面（B0–B4，已过独立审的五批）。</p>
+    <p class="sec-desc">按批次的新增族数增量 ΔL：Bake 面与 Response 面（B0–B4 五批 + CENSUS-RERUN-SINGLE-001 重跑批）。</p>
     <div class="chart-grid">
 
       <div class="card chart-card">
@@ -406,65 +410,75 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
           <span><i class="sw c1"></i>ΔL_bake（Bake 族增量）</span>
           <span><i class="sw c2"></i>ΔL_response（Response 族增量）</span>
           <span>＋N 族 = 当批新族数</span>
+          <span><i class="sw" style="background:var(--good)"></i>RERUN-SINGLE = 首次正增长</span>
         </div>
-        <svg viewBox="0 0 560 300" role="img" aria-label="分组柱状图：各批次 ΔL_bake 与 ΔL_response。B0 为 bake+3、response+2，新族 5；B1 为各 +1，新族 2；B2 为 bake 0、response +1，新族 1；B3 为 bake 0、response +1，新族 1；B4（CENSUS-B4）两面均为 0，零新族。">
-          <!-- 网格与坐标 -->
+        <svg viewBox="0 0 560 300" role="img" aria-label="分组柱状图：各批次 ΔL_bake 与 ΔL_response。B0 为 bake+3、response+2，新族 5；B1 为各 +1，新族 2；B2 为 bake 0、response +1，新族 1；B3 为 bake 0、response +1，新族 1；B4（CENSUS-B4）两面均为 0，零新族；RERUN（CENSUS-RERUN-SINGLE-001）为 bake +9、response 0，新族 9——B2 以来首次正增长。">
+          <!-- 网格与坐标（刻度上限 9：RERUN-SINGLE 的 +9 为全图最高柱） -->
           <text class="sv-unit" transform="rotate(-90 13 151)" x="13" y="151" text-anchor="middle">族数增量 ΔL</text>
           <line class="sv-g" x1="44" y1="58"  x2="548" y2="58"/>
           <line class="sv-g" x1="44" y1="120" x2="548" y2="120"/>
           <line class="sv-g" x1="44" y1="182" x2="548" y2="182"/>
           <line class="sv-base" x1="44" y1="244" x2="548" y2="244"/>
-          <text class="sv-tick" x="36" y="62"  text-anchor="end">3</text>
-          <text class="sv-tick" x="36" y="124" text-anchor="end">2</text>
-          <text class="sv-tick" x="36" y="186" text-anchor="end">1</text>
+          <text class="sv-tick" x="36" y="62"  text-anchor="end">9</text>
+          <text class="sv-tick" x="36" y="124" text-anchor="end">6</text>
+          <text class="sv-tick" x="36" y="186" text-anchor="end">3</text>
           <text class="sv-tick" x="36" y="248" text-anchor="end">0</text>
 
           <!-- B0：bake +3 / response +2 -->
           <path fill="#3987e5" data-tip="B0 · ΔL_bake = +3（Bake 族新增 3 个）"
-                d="M57,244 L57,62 Q57,58 61,58 L87,58 Q91,58 91,62 L91,244 Z"/>
+                d="M53,244 L53,186 Q53,182 57,182 L79,182 Q83,182 83,186 L83,244 Z"/>
           <path fill="#d95926" data-tip="B0 · ΔL_response = +2（Response 族新增 2 个）"
-                d="M97,244 L97,124 Q97,120 101,120 L127,120 Q131,120 131,124 L131,244 Z"/>
-          <text class="sv-note" x="94" y="27" text-anchor="middle">＋5 族</text>
-          <text class="sv-lab" x="74"  y="50"  text-anchor="middle">3</text>
-          <text class="sv-lab" x="114" y="112" text-anchor="middle">2</text>
-          <text class="sv-xl" x="94" y="264" text-anchor="middle">B0</text>
-          <text class="sv-xs" x="94" y="281" text-anchor="middle">5 故事 · 15 程序</text>
+                d="M89,244 L89,207 Q89,203 93,203 L115,203 Q119,203 119,207 L119,244 Z"/>
+          <text class="sv-note" x="86" y="27" text-anchor="middle">＋5 族</text>
+          <text class="sv-lab" x="68"  y="174" text-anchor="middle">3</text>
+          <text class="sv-lab" x="104" y="195" text-anchor="middle">2</text>
+          <text class="sv-xl" x="86" y="264" text-anchor="middle">B0</text>
+          <text class="sv-xs" x="86" y="281" text-anchor="middle">5 故事 · 15 程序</text>
 
           <!-- B1：bake +1 / response +1 -->
           <path fill="#3987e5" data-tip="B1 · ΔL_bake = +1"
-                d="M158,244 L158,186 Q158,182 162,182 L188,182 Q192,182 192,186 L192,244 Z"/>
+                d="M137,244 L137,227 Q137,223 141,223 L163,223 Q167,223 167,227 L167,244 Z"/>
           <path fill="#d95926" data-tip="B1 · ΔL_response = +1"
-                d="M198,244 L198,186 Q198,182 202,182 L228,182 Q232,182 232,186 L232,244 Z"/>
-          <text class="sv-note" x="195" y="27" text-anchor="middle">＋2 族</text>
-          <text class="sv-lab" x="175" y="174" text-anchor="middle">1</text>
-          <text class="sv-lab" x="215" y="174" text-anchor="middle">1</text>
-          <text class="sv-xl" x="195" y="264" text-anchor="middle">B1</text>
-          <text class="sv-xs" x="195" y="281" text-anchor="middle">15 故事 · 24 程序</text>
+                d="M173,244 L173,227 Q173,223 177,223 L199,223 Q203,223 203,227 L203,244 Z"/>
+          <text class="sv-note" x="170" y="27" text-anchor="middle">＋2 族</text>
+          <text class="sv-lab" x="152" y="215" text-anchor="middle">1</text>
+          <text class="sv-lab" x="188" y="215" text-anchor="middle">1</text>
+          <text class="sv-xl" x="170" y="264" text-anchor="middle">B1</text>
+          <text class="sv-xs" x="170" y="281" text-anchor="middle">15 故事 · 24 程序</text>
 
           <!-- B2：bake 0 / response +1 -->
           <path fill="#d95926" data-tip="B2 · ΔL_response = +1"
-                d="M299,244 L299,186 Q299,182 303,182 L329,182 Q333,182 333,186 L333,244 Z"/>
-          <text class="sv-note" x="296" y="27" text-anchor="middle">＋1 族</text>
-          <text class="sv-zero" x="276" y="174" text-anchor="middle">0</text>
-          <text class="sv-lab" x="316" y="174" text-anchor="middle">1</text>
-          <text class="sv-xl" x="296" y="264" text-anchor="middle">B2</text>
-          <text class="sv-xs" x="296" y="281" text-anchor="middle">10 故事 · 20 程序</text>
+                d="M257,244 L257,227 Q257,223 261,223 L283,223 Q287,223 287,227 L287,244 Z"/>
+          <text class="sv-note" x="254" y="27" text-anchor="middle">＋1 族</text>
+          <text class="sv-zero" x="236" y="215" text-anchor="middle">0</text>
+          <text class="sv-lab" x="272" y="215" text-anchor="middle">1</text>
+          <text class="sv-xl" x="254" y="264" text-anchor="middle">B2</text>
+          <text class="sv-xs" x="254" y="281" text-anchor="middle">10 故事 · 20 程序</text>
 
           <!-- B3：bake 0 / response +1 -->
           <path fill="#d95926" data-tip="B3 · ΔL_response = +1"
-                d="M400,244 L400,186 Q400,182 404,182 L430,182 Q434,182 434,186 L434,244 Z"/>
-          <text class="sv-note" x="397" y="27" text-anchor="middle">＋1 族</text>
-          <text class="sv-zero" x="377" y="174" text-anchor="middle">0</text>
-          <text class="sv-lab" x="417" y="174" text-anchor="middle">1</text>
-          <text class="sv-xl" x="397" y="264" text-anchor="middle">B3</text>
-          <text class="sv-xs" x="397" y="281" text-anchor="middle">28 故事 · 54 程序</text>
+                d="M341,244 L341,227 Q341,223 345,223 L367,223 Q371,223 371,227 L371,244 Z"/>
+          <text class="sv-note" x="338" y="27" text-anchor="middle">＋1 族</text>
+          <text class="sv-zero" x="320" y="215" text-anchor="middle">0</text>
+          <text class="sv-lab" x="356" y="215" text-anchor="middle">1</text>
+          <text class="sv-xl" x="338" y="264" text-anchor="middle">B3</text>
+          <text class="sv-xs" x="338" y="281" text-anchor="middle">28 故事 · 54 程序</text>
 
           <!-- B4（CENSUS-B4）：bake 0 / response 0，零新族 -->
-          <text class="sv-zero" x="478" y="174" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_bake = 0（连续第 3 批归零）">0</text>
-          <text class="sv-zero" x="518" y="174" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_response = 0（Response 面首次归零）">0</text>
-          <text class="sv-note" x="498" y="27" text-anchor="middle">＋0 族</text>
-          <text class="sv-xl" x="498" y="264" text-anchor="middle">B4</text>
-          <text class="sv-xs" x="498" y="281" text-anchor="middle">26 故事 · 50 程序</text>
+          <text class="sv-zero" x="404" y="215" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_bake = 0（连续第 3 批归零——后被重跑证实为平铺化伪影）">0</text>
+          <text class="sv-zero" x="440" y="215" text-anchor="middle" data-tip="CENSUS-B4 · ΔL_response = 0（Response 面首次归零）">0</text>
+          <text class="sv-note" x="422" y="27" text-anchor="middle">＋0 族</text>
+          <text class="sv-xl" x="422" y="264" text-anchor="middle">B4</text>
+          <text class="sv-xs" x="422" y="281" text-anchor="middle">26 故事 · 50 程序</text>
+
+          <!-- RERUN-SINGLE（CENSUS-RERUN-SINGLE-001）：bake +9 / response 0 —— B2 以来首次正增长，全图最高柱 -->
+          <path fill="#3987e5" data-tip="CENSUS-RERUN-SINGLE-001 · ΔL_bake = +9（SINGLE 拆分出 9 个新族 · B2 以来首次正增长）"
+                d="M473,244 L473,62 Q473,58 477,58 L499,58 Q503,58 503,62 L503,244 Z"/>
+          <text class="sv-note" x="506" y="27" text-anchor="middle" style="fill:var(--good);font-weight:750">＋9 族</text>
+          <text class="sv-lab" x="488" y="50" text-anchor="middle" style="fill:var(--good);font-size:14px">9</text>
+          <text class="sv-zero" x="524" y="215" text-anchor="middle" data-tip="CENSUS-RERUN-SINGLE-001 · ΔL_response = 0">0</text>
+          <text class="sv-xl" x="506" y="264" text-anchor="middle">RERUN</text>
+          <text class="sv-xs" x="506" y="281" text-anchor="middle">61 故事 · 61 程序</text>
         </svg>
         <div class="table-wrap">
           <table aria-label="发现曲线数据表">
@@ -475,10 +489,12 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
               <tr><td class="strong">B2</td><td class="num">10</td><td class="num">20</td><td class="num">1</td><td class="num">0</td><td class="num">+1</td></tr>
               <tr><td class="strong">B3</td><td class="num">28</td><td class="num">54</td><td class="num">1</td><td class="num">0</td><td class="num">+1</td></tr>
               <tr><td class="strong">B4 <span class="muted">CENSUS-B4</span></td><td class="num">26</td><td class="num">50</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+              <tr><td class="strong">RERUN <span class="muted">CENSUS-RERUN-SINGLE-001</span></td><td class="num">61</td><td class="num">61</td><td class="num ok">9</td><td class="num ok">+9</td><td class="num">0</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="caption"><b>收敛信号：</b>新族数 5 → 2 → 1 → 1 → 0；Bake 面 ΔL 自 B1 起归零，B4（CENSUS-B4）Response 面首次归零——两面增量同时为 0，据此立案首个 <b>LOCAL_SATURATION_CANDIDATE</b>（局部饱和候选）；该批 26 故事 · 50 程序 · 52 判同全部并入既有十族。</p>
+        <p class="caption"><b>曲线读法：</b>新族数 5 → 2 → 1 → 1 → 0 → 9。B0–B4 五批已过独立审；B4（CENSUS-B4）两面增量首次同时为 0，曾据此立案首个 <b>LOCAL_SATURATION_CANDIDATE</b>（局部饱和候选；该批 26 故事 · 50 程序 · 52 判同全部并入既有十族）——该候选现已证伪，见下方警示。</p>
+        <p class="warn-note"><span class="flag">⚠️ 饱和候选已被证伪</span> ——「连续 3 批 ΔL_bake = 0 → 饱和」的根因是<b>平铺输入抹平差异</b>，不是真实饱和：顺序还原后的 SINGLE 族重跑（CENSUS-RERUN-SINGLE-001 · 61 故事 · 61 程序 · 52 判同）发现 61/61 成员有结构差异，SINGLE 族拆分出 9 个新族——<b>ΔL_bake = +9，B2 以来首次正增长</b>。</p>
       </div>
 
       <div class="card chart-card">
@@ -576,33 +592,41 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
     </div>
   </section>
 
-  <!-- ===================== 06 LT 十族 ===================== -->
+  <!-- ===================== 06 LT 十九族 ===================== -->
   <section class="sec">
-    <h2><span class="idx">06</span>LT Registry · 十族（Bake 5 / Response 5）</h2>
-    <p class="sec-desc">成员数条形按面着色：蓝 = Bake，橙 = Response（与发现曲线同一编码）。下表为 Registry v5 成员明细（112 程序 · 176 判同）；Registry 已升至 v6：19 族 CANDIDATE · 162 程序 · 466 判同（v7）（含顺序还原修复后的重判同），各族明细待 SINGLE 族重跑后更新。</p>
+    <h2><span class="idx">06</span>LT Registry · 十九族 CANDIDATE（Bake 14 / Response 5）</h2>
+    <p class="sec-desc">Registry v7（CANDIDATE）：顺序还原后的 SINGLE 族重跑（61 故事 · 61 程序 · 52 判同）发现 61/61 成员有结构差异——旧 SINGLE 大吸收确认为平铺化伪影，66 成员全部拆移至新族；下表前 9 族（CHAIN 系）即该次拆分新增，Registry 由 10 族升至 19 族、判同 255 → 466。成员数条形按面着色：蓝 = Bake，橙 = Response（与发现曲线同一编码）。</p>
     <div class="card table-wrap">
-      <table aria-label="LT 十族明细">
+      <table aria-label="LT 十九族明细">
         <thead><tr>
           <th>族</th><th>面</th><th class="num">成员</th><th>说明</th>
         </tr></thead>
         <tbody>
-          <tr><td class="strong mono">SINGLE_FACTOR_NORMALIZED_WEIGHT</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:82%"></i></span><b>41</b></span></td><td>最简结构</td></tr>
-          <tr><td class="strong mono">PLAIN_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:10%"></i></span><b>5</b></span></td><td>双因子 + 合并</td></tr>
-          <tr><td class="strong mono">HARD_GATED_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:4%"></i></span><b>2</b></span></td><td>硬门控</td></tr>
-          <tr><td class="strong mono">CONSTRAINED_RELATIVE_REFUGE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:0"></i></span><b>0</b></span></td><td>种子族，50 non-match</td></tr>
-          <tr><td class="strong mono">PATCH_RESOURCE_FOLLOWING</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:4%"></i></span><b>2</b></span></td><td>底质附着</td></tr>
-          <tr><td class="strong mono">TYPED_TARGET_RESPONSE</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:100%"></i></span><b>50</b></span></td><td>离散目标摄食</td></tr>
-          <tr><td class="strong mono">GUARD_CONFLICT_DUAL_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:14%"></i></span><b>7</b></span></td><td>∥ 并行竞争</td></tr>
-          <tr><td class="strong mono">STATE_GATED_MULTI_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:4%"></i></span><b>2</b></span></td><td>IF 门互斥</td></tr>
+          <tr><td class="strong mono">TIERED_SINGLE_FACTOR_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:23%"></i></span><b>17</b></span></td><td>单因子三档 → 归一化</td></tr>
+          <tr><td class="strong mono">GATED_COVER_TIER_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:16%"></i></span><b>12</b></span></td><td>结构门 + 质量档（gate_axis 8 值）</td></tr>
+          <tr><td class="strong mono">GUARD_ANCHOR_TIERED_COMBINE_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:5%"></i></span><b>4</b></span></td><td>锚门 + 三档 → 合并</td></tr>
+          <tr><td class="strong mono">ZONE_SUBSTRATE_RESOURCE_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:4%"></i></span><b>3</b></span></td><td>底带硬门 + 底质 + 资源</td></tr>
+          <tr><td class="strong mono">NOCTURNAL_LIGHTSLOT_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:7%"></i></span><b>5</b></span></td><td>夜行底板 + 低光槽</td></tr>
+          <tr><td class="strong mono">LAYER_AXIS_DUAL_TIER_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:3%"></i></span><b>2</b></span></td><td>水层 + 轴段 → 积归一</td></tr>
+          <tr><td class="strong mono">FILTER_FIELD_ACCUMULATE_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:3%"></i></span><b>2</b></span></td><td>水层 → 场浓度 → 口径</td></tr>
+          <tr><td class="strong mono">SOFT_TRIPLE_TIER_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:2%"></i></span><b>1</b></span></td><td>软三档无门 <span class="chip chip-info">PROV</span></td></tr>
+          <tr><td class="strong mono">ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:2%"></i></span><b>1</b></span></td><td>五步含深度档 <span class="chip chip-info">PROV</span></td></tr>
+          <tr><td class="strong mono">PLAIN_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:26%"></i></span><b>5 <span class="arrow">→</span> 19</b></span></td><td>双因子 + 合并（+14 重归族提案）</td></tr>
+          <tr><td class="strong mono">HARD_GATED_FACTOR_COMBINE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:3%"></i></span><b>2</b></span></td><td>硬门控 <span class="chip chip-warn">重跑中</span></td></tr>
+          <tr><td class="strong mono">CONSTRAINED_RELATIVE_REFUGE</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:0"></i></span><b>0</b></span></td><td>种子族（75 non-match）</td></tr>
+          <tr><td class="strong mono">PATCH_RESOURCE_FOLLOWING</td><td><span class="chip"><i class="sw c1"></i>Bake</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:3%"></i></span><b>2</b></span></td><td>底质附着 <span class="chip chip-warn">重跑中</span></td></tr>
+          <tr><td class="strong mono">TYPED_TARGET_RESPONSE</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:100%"></i></span><b>74</b></span></td><td>离散目标摄食</td></tr>
+          <tr><td class="strong mono">GUARD_CONFLICT_DUAL_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:9%"></i></span><b>7</b></span></td><td>∥ 并行竞争</td></tr>
+          <tr><td class="strong mono">STATE_GATED_MULTI_PATH</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:3%"></i></span><b>2</b></span></td><td>IF 门互斥</td></tr>
           <tr><td class="strong mono">CUE_GUIDED_APPROACH_AVOID</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:2%"></i></span><b>1</b></span></td><td>环境梯度</td></tr>
-          <tr><td class="strong mono">FOOD_FIELD_FEEDING</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:4%"></i></span><b>2</b></span></td><td>场摄食</td></tr>
-          <tr>
-            <td class="strong mono">SINGLE 族重跑</td>
-            <td><span class="chip chip-warn">🔄 进行中</span></td>
-            <td class="num"><b>66</b> <span class="muted">成员</span></td>
-            <td>Census 重跑：66 成员用顺序还原后链形重判同</td>
+          <tr><td class="strong mono">FOOD_FIELD_FEEDING</td><td><span class="chip"><i class="sw c2"></i>Response</span></td><td class="num"><span class="cellbar"><span class="mbar"><i class="resp" style="width:3%"></i></span><b>2</b></span></td><td>场摄食</td></tr>
+          <tr style="opacity:.8">
+            <td class="strong mono">SINGLE_FACTOR_NORMALIZED_WEIGHT <span class="muted">（旧族已拆分）</span></td>
+            <td><span class="chip"><i class="sw c1"></i>Bake</span></td>
+            <td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:0"></i></span><b>66 <span class="arrow">→</span> 0</b></span></td>
+            <td>SINGLE 旧族已拆分——66 成员全部移至上方 9 个新族（v7 双列保留）</td>
           </tr>
-          <tr class="total"><td>合计 19 族 CANDIDATE · 162 程序 · 466 判同（v7） · 已消费 84 Story，剩余 ~173</td></tr>
+          <tr class="total"><td>合计 19 族</td><td class="muted">Bake 14 / Response 5</td><td class="num">156 <span class="muted">v7 明细</span></td><td class="muted">Registry v7 CANDIDATE：162 程序 / 466 判同 · 已消费 84 Story，剩余 ~173（基线重估中）</td></tr>
         </tbody>
       </table>
     </div>
@@ -659,11 +683,12 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
         <span class="muted">† R03 撤回后重审通过</span>
       </div>
       <div class="strip">
-        <span class="cap">LT 五批</span>
+        <span class="cap">LT 批次</span>
         <span class="chip chip-good">✓ B0</span><span class="chip chip-good">✓ B1</span>
         <span class="chip chip-good">✓ B2</span><span class="chip chip-good">✓ B3</span>
         <span class="chip chip-good">✓ B4</span>
-        <span class="muted">全部过独立审</span>
+        <span class="chip chip-info">RERUN-SINGLE</span>
+        <span class="muted">B0–B4 过独立审 · RERUN-SINGLE 重跑批（SINGLE 拆分 +9 新族）</span>
       </div>
 
       <p class="trend-note">
@@ -678,7 +703,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
   <!-- ===================== 页脚 ===================== -->
   <footer>
     <span>FCF Harness · 进展汇总 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。</span>
-    <span>FR ✓ 完成 · B ✓ 闭合（顺序还原 211/213）· LT ⟳ 进行中（84 / ~257 Story）</span>
+    <span>FR ✓ 完成 · B ✓ 闭合（顺序还原 211/213）· LT ⟳ 进行中（84 / ~257 Story · Registry v7 基线重估中）</span>
   </footer>
 
 </div>
