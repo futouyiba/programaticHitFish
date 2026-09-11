@@ -244,6 +244,37 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
     </div>
   </header>
 
+  <!-- ===================== 00 最新进展摘要（置顶醒目区） ===================== -->
+  <section class="ov" aria-label="最新进展摘要" style="border-color:rgba(57,135,229,.5)">
+    <div class="ov-head">
+      <div class="kicker">What's New · 更新至 2026-09-11 晚（v9）</div>
+      <div class="ov-title">最新进展摘要</div>
+      <p class="ov-sub">先看结论：现在处于什么状态、刚发生了什么、下一步是什么。逐批明细见下方 01–09 节。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px;margin-top:4px">
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(12,163,12,.07);border:1px solid rgba(12,163,12,.25)">
+        <span style="flex:none">✅</span>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">LT 模板族 Registry v8 定稿：21 族 CANDIDATE</b>（Bake 16 / Response 5 · 162 程序 · 466 判同）——旧 10 族经两次顺序还原重跑拆出 <b>+11 新族</b>（SINGLE +9 · PLAIN/GATED/PATCH +2）；B4 时期的「饱和」信号被彻底证伪（根因＝平铺输入抹平结构差异，非真实收敛）。</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(12,163,12,.07);border:1px solid rgba(12,163,12,.25)">
+        <span style="flex:none">✅</span>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">B 系列（四面表达）全部闭合</b>：8 批 213 文件全部过独立审（后 4 批直接 APPROVE）；用户反馈的「伪脚本平铺化」缺陷经五批顺序还原修复 <b>211/213</b>（2 件合理跳过）；CSV 口径 220/220 合格行全处理。</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(250,178,25,.06);border:1px solid rgba(250,178,25,.28)">
+        <span style="flex:none">↻</span>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">重跑批独立审（最新两轮）</b>：PLAIN/GATED/PATCH 重跑 <b>直接 ARTIFACT_APPROVE</b>（零 blocker）；SINGLE 重跑 <b>REVISE B1 挂账</b>——C7 缺陷：GUARD_ANCHOR_TIERED 4 成员 rerun_of 锚定错面（重跑取 §2.2 Guard 面、原件为栖息面），修完前不升格。</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(57,135,229,.07);border:1px solid rgba(57,135,229,.28)">
+        <span style="flex:none">⟳</span>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">LT 普查进行中（当前活跃线）</b>：已消费 84/~257 Story（B0–B4 + 两次重跑）；CENSUS-B5（R08+R09 · 52 Story）输入快照已拉取，盲重建因进程中断待重启——重启后基线继续重估。</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:var(--raise);border:1px solid var(--hairline)">
+        <span style="flex:none">📄</span>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">本报告（v9）已作为 HTML 原生嵌入 Notion</b>（embed 沙箱预览，不再只有下载链接）——入口页：Notion「进展与洞见报告｜HTML 仪表盘入口」。</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== 顶部三个大数字 ===================== -->
   <section class="hero-grid" aria-label="核心数字">
     <div class="stat">
@@ -699,24 +730,25 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
         <span class="chip chip-good">✓ B0</span><span class="chip chip-good">✓ B1</span>
         <span class="chip chip-good">✓ B2</span><span class="chip chip-good">✓ B3</span>
         <span class="chip chip-good">✓ B4</span>
-        <span class="chip chip-info">RERUN-SINGLE</span>
-        <span class="chip chip-info">RERUN-PLAIN</span>
-        <span class="muted">B0–B4 过独立审 · 两次重跑批（SINGLE +9 · PLAIN +2 新族）</span>
+        <span class="chip chip-warn">↻ RERUN-SINGLE｜REVISE B1</span>
+        <span class="chip chip-good">✓ RERUN-PLAIN｜直接 APPROVE</span>
+        <span class="muted">B0–B4 过独立审 · SINGLE 重跑审出 C7 锚面错配挂账 · PLAIN 重跑零 blocker 直接过</span>
       </div>
 
       <p class="trend-note">
         <b>趋势：</b>B 系列八批中，前三批（GUARD / GRAZE / NORM）走「REVISE → 修复 → APPROVE」路径；
         后续四批（MIGRA / FIELD / NORM2 / P02）<b>四批全部直接 APPROVE</b>，零修复轮。
+        重跑批延续同型分化：PLAIN 重跑直接 ARTIFACT_APPROVE，SINGLE 重跑审出 1 项 face-mismatch（REVISE B1 挂账）。
         FR 十批全 APPROVE（仅 R03 撤回后重审一次），LT 前五批全部过审 ——
-        全程 ~50 轮独立审核、~25 轮修复，修复集中在流程早期。
+        全程 ~52 轮独立审核、~26 轮修复，修复集中在流程早期。
       </p>
     </div>
   </section>
 
   <!-- ===================== 页脚 ===================== -->
   <footer>
-    <span>FCF Harness · 进展汇总 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。</span>
-    <span>FR ✓ 完成 · B ✓ 闭合（顺序还原 211/213）· LT ⟳ 进行中（84 / ~257 Story · Registry v8 基线重估中）</span>
+    <span>FCF Harness · 进展汇总 v9 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。已嵌入 Notion（embed 原生预览）。</span>
+    <span>FR ✓ 完成 · B ✓ 闭合（顺序还原 211/213）· LT ⟳ 进行中（84 / ~257 Story · Registry v8 = 21 族 · B5 待重启）</span>
   </footer>
 
 </div>
