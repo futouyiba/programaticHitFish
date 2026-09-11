@@ -1,0 +1,27 @@
+# CENSUS-B5 R09 story fetch list: 26 stories, order = packet_R09 table rows 1-26 (second URL of each mention pair = Story)
+WST|https://app.notion.com/p/3d7a4137d236813187adddcd69543f07
+ROB|https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0
+KGO|https://app.notion.com/p/3d7a4137d23681b68b31d8c5b9599e00
+LMD|https://app.notion.com/p/3d7a4137d23681bb8fd0d8734eb329b2
+MDC|https://app.notion.com/p/3d7a4137d23681bdb8d9caf7e494d0a4
+JGC|https://app.notion.com/p/3d7a4137d2368184a040d081eee7d919
+SPC|https://app.notion.com/p/3d7a4137d2368187ad00e324e1380b54
+TGT|https://app.notion.com/p/3d7a4137d23681d79933d7ffd8993431
+HYC|https://app.notion.com/p/3d7a4137d23681f2ad7ee79384e1e421
+PRC|https://app.notion.com/p/3d7a4137d2368176a3e3dd6402dae8ba
+CCR|https://app.notion.com/p/3d7a4137d2368191b66eed0bad664c99
+APA|https://app.notion.com/p/3d7a4137d236819db21adddce653b2e1
+GOT|https://app.notion.com/p/3d7a4137d236818bbf6dc0f9aedb4643
+GIT|https://app.notion.com/p/3d7a4137d236812a8564fe14934880c6
+SVT|https://app.notion.com/p/3d7a4137d236812c94eef4acbd36b2c0
+PEL|https://app.notion.com/p/3d7a4137d23681698c3ec857e0f936ba
+CMR|https://app.notion.com/p/3d7a4137d23681d8a4a9d0fc32c41407
+LKR|https://app.notion.com/p/3d7a4137d2368152a0ecd8b5939cab48
+ASP|https://app.notion.com/p/3d7a4137d23681ea892ffc8e9715678f
+BIA|https://app.notion.com/p/3d7a4137d23681698a9cc1805a8f7425
+HLL|https://app.notion.com/p/3d7a4137d2368183a3f2d34097ae916e
+BAS|https://app.notion.com/p/3d7a4137d23681459c6afea8475b6ad5
+JDP|https://app.notion.com/p/3d7a4137d236811ebb5aefb0cbcac9a0
+LMP|https://app.notion.com/p/3d7a4137d236811ebec0cc6c0640ef44
+AMK|https://app.notion.com/p/3d7a4137d236819d8b05fa1bb6a6f16e
+GSF|https://app.notion.com/p/3d7a4137d23681a99a88d40a0a11075b

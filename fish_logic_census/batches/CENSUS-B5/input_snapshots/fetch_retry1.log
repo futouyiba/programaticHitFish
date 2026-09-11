@@ -1,0 +1,73 @@
+SKIP SAF (exists)
+SKIP ARO (exists)
+SKIP CSL (exists)
+== fetching AKB -> https://app.notion.com/p/3d7a4137d236815ebb30d511f8bab74b
+saved 3549 bytes -> story_AKB.md
+SKIP MHS (exists)
+SKIP SPM (exists)
+SKIP YFT (exists)
+SKIP STM (exists)
+== fetching ALB -> https://app.notion.com/p/3d7a4137d2368181a585d84a7f8aa4b4
+saved 3414 bytes -> story_ALB.md
+SKIP STL (exists)
+SKIP ARG (exists)
+SKIP LKT (exists)
+SKIP RHM (exists)
+SKIP RBP (exists)
+SKIP TMU (exists)
+SKIP SPK (exists)
+SKIP DTN (exists)
+SKIP GAJ (exists)
+SKIP HAD (exists)
+SKIP BPB (exists)
+== fetching RVC -> https://app.notion.com/p/3d7a4137d236812da391def70534e735
+EMPTY_PARSE for https://app.notion.com/p/3d7a4137d236812da391def70534e735; raw:
+&lt;&lt;SNAPSHOT_BEGIN&gt;&gt;
+以下是截至 2026-09-10T14:03:48.151Z，针对 URL 为 https://app.notion.com/p/3d7a4137d236812da391def70534e735 的页面的 “fetch” 结果：
+&lt;page url="https://app.notion.com/p/3d7a4137d236812da391def70534e735"&gt;
+&lt;ancestor-path&gt;
+&lt;parent-data-source url="collection://1c5f9fd8-ea3b-4290-a11d-98e173b03a07" name="FCF Mechanism Story｜Working R2"/&gt;
+FAILED RVC
+SKIP CRC (exists)
+== fetching INC -> https://app.notion.com/p/3d7a4137d23681c9bbb9c6c60cc3671d
+saved 3729 bytes -> story_INC.md
+== fetching HBW -> https://app.notion.com/p/3d7a4137d2368145bce1f564a311de52
+saved 3544 bytes -> story_HBW.md
+SKIP CLC (exists)
+SKIP RTC (exists)
+SKIP WST (exists)
+== fetching ROB -> https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0
+EMPTY_PARSE for https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0; raw:
+&lt;&lt;SNAPSHOT_BEGIN&gt;&gt;
+以下是截至 2026-09-10T14:51:19.531Z，URL 为 https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0 的页面的 "fetch" 结果：
+&lt;page url="https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0"&gt;
+&lt;ancestor-path&gt;
+&lt;parent-data-source url="collection://1c5f9fd8-ea3b-4290-a11d-98e173b03a07" name="FCF Mechanism Story｜Working R2"/&gt;
+FAILED ROB
+SKIP KGO (exists)
+SKIP LMD (exists)
+SKIP MDC (exists)
+SKIP JGC (exists)
+SKIP SPC (exists)
+SKIP TGT (exists)
+SKIP HYC (exists)
+SKIP PRC (exists)
+SKIP CCR (exists)
+SKIP APA (exists)
+SKIP GOT (exists)
+SKIP GIT (exists)
+== fetching SVT -> https://app.notion.com/p/3d7a4137d236812c94eef4acbd36b2c0
+saved 3335 bytes -> story_SVT.md
+SKIP PEL (exists)
+SKIP CMR (exists)
+== fetching LKR -> https://app.notion.com/p/3d7a4137d2368152a0ecd8b5939cab48
+saved 3086 bytes -> story_LKR.md
+SKIP ASP (exists)
+SKIP BIA (exists)
+SKIP HLL (exists)
+SKIP BAS (exists)
+SKIP JDP (exists)
+SKIP LMP (exists)
+SKIP AMK (exists)
+SKIP GSF (exists)
+ALL_DONE

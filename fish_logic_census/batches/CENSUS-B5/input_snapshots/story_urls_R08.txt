@@ -1,0 +1,27 @@
+# CENSUS-B5 R08 story fetch list: 26 stories, order = packet_R08 table rows 1-26 (second URL of each mention pair = Story)
+SAF|https://app.notion.com/p/3d7a4137d2368119b6aaf8457de89541
+ARO|https://app.notion.com/p/3d7a4137d23681f2b556def8bd21ff9a
+CSL|https://app.notion.com/p/3d7a4137d23681d3a9c6ca05ecbadac6
+AKB|https://app.notion.com/p/3d7a4137d236815ebb30d511f8bab74b
+MHS|https://app.notion.com/p/3d7a4137d2368181a4d4fdd6f64bebcd
+SPM|https://app.notion.com/p/3d7a4137d2368179bf16e7b791f5ab3f
+YFT|https://app.notion.com/p/3d7a4137d23681d888a4cd74dce4054a
+STM|https://app.notion.com/p/3d7a4137d23681799923cd392bfc0f0a
+ALB|https://app.notion.com/p/3d7a4137d2368181a585d84a7f8aa4b4
+STL|https://app.notion.com/p/3d7a4137d23681f28078f0a1e7e33d7a
+ARG|https://app.notion.com/p/3d7a4137d23681c49e17eb4573c4c867
+LKT|https://app.notion.com/p/3d7a4137d2368145b413ff9f36b5ac8e
+RHM|https://app.notion.com/p/3d7a4137d236817eb518fae0be954105
+RBP|https://app.notion.com/p/3d7a4137d23681018e5fceb06333f0d5
+TMU|https://app.notion.com/p/3d7a4137d2368133bf92dec11cd68662
+SPK|https://app.notion.com/p/3d7a4137d236817c84b1fa57bdf2f261
+DTN|https://app.notion.com/p/3d7a4137d23681b0b2c9d9b4412ad818
+GAJ|https://app.notion.com/p/3d7a4137d2368193a31defe1eca576cb
+HAD|https://app.notion.com/p/3d7a4137d2368107afcbf98c58e257a0
+BPB|https://app.notion.com/p/3d7a4137d23681e6a00fdd24fdca6535
+RVC|https://app.notion.com/p/3d7a4137d236812da391def70534e735
+CRC|https://app.notion.com/p/3d7a4137d2368150beaaef2c28407ff4
+INC|https://app.notion.com/p/3d7a4137d23681c9bbb9c6c60cc3671d
+HBW|https://app.notion.com/p/3d7a4137d2368145bce1f564a311de52
+CLC|https://app.notion.com/p/3d7a4137d23681d6b645f7b5bc07a13b
+RTC|https://app.notion.com/p/3d7a4137d23681098c55e5705ef95962

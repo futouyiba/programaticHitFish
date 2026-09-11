@@ -1,0 +1,125 @@
+batch_id: CENSUS-B5
+stage: CENSUS
+worker_role: FCF-CENSUS-WORKER
+worker_handle: local_1e980abd-8c5f-4129-be13-6c48535c9de5
+coordinator: local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
+contract: Orchestrator R2 §5; Method R0 §11; B0-B4+RS1+RP1 固化范式（role_memory v5）; authoring_work_standards §2/§5（顺序推导纪律）
+created: "2026-09-11 (local time zone)"
+blind_freeze_frozen_at_utc: "2026-09-11T08:04:47Z"   # blind_programs.jsonl 文件系统 mtime（精确）
+input:
+  selection_rule: >-
+    coordinator envelope CENSUS-B5：R08+R09 两包合批全量 52 Story（FISH-R08 §4
+    优先级 6 收尾普通补齐 26 + FISH-R09 优先级 6 续普通层 26；两包均 FR3 CLOSED
+    快照存 input_snapshots/）。SNAPSHOT_ONLY：不访问 Notion live、不重跑 fetch。
+  frozen_stories_count: 52   # input_snapshots story_*.md 实际计数 = R08 26 + R09 26；与两包 packet 声明 STORY_COUNT=26+26 一致（无差异）
+  frozen_stories:
+    # R08（26）
+    - SAF: https://app.notion.com/p/3d7a4137d2368119b6aaf8457de89541   # 旗鱼（喙击打群猎）
+    - ARO: https://app.notion.com/p/3d7a4137d23681f2b556def8bd21ff9a   # 银龙鱼（水面跳捕+雄口哺）
+    - CSL: https://app.notion.com/p/3d7a4137d23681d3a9c6ca05ecbadac6   # 葛氏鲈塘鳢（冻结蛰伏+雄护卵幼）
+    - AKB: https://app.notion.com/p/3d7a4137d236815ebb30d511f8bab74b   # 阿拉斯加黑鱼（食管气呼吸耐冻）
+    - MHS: https://app.notion.com/p/3d7a4137d2368181a4d4fdd6f64bebcd   # 大理石倒立鱼（头下位假说）
+    - SPM: https://app.notion.com/p/3d7a4137d2368179bf16e7b791f5ab3f   # 康氏马鲛（单独高速猎击）
+    - YFT: https://app.notion.com/p/3d7a4137d23681d888a4cd74dce4054a   # 黄旗金枪鱼（体型分级+FAD 关联）
+    - STM: https://app.notion.com/p/3d7a4137d23681799923cd392bfc0f0a   # 条纹四鳍旗鱼（冷水 billfish）
+    - ALB: https://app.notion.com/p/3d7a4137d2368181a585d84a7f8aa4b4   # 长鳍金枪鱼（混群游钓）
+    - STL: https://app.notion.com/p/3d7a4137d23681f28078f0a1e7e33d7a   # 硬头鳟（同种双生活史）
+    - ARG: https://app.notion.com/p/3d7a4137d23681c49e17eb4573c4c867   # 北极茴鱼（水面昆虫+背鳍展示）
+    - LKT: https://app.notion.com/p/3d7a4137d2368145b413ff9f36b5ac8e   # 湖红点鲑（深湖夜产）
+    - RHM: https://app.notion.com/p/3d7a4137d236817eb518fae0be954105   # 红钩鱼（食人鱼科植食反差）
+    - RBP: https://app.notion.com/p/3d7a4137d23681018e5fceb06333f0d5   # 淡水白鲳（幼体拟态植食）
+    - TMU: https://app.notion.com/p/3d7a4137d2368133bf92dec11cd68662   # 虎纹梭鱼（杂交 Identity-Deferred）
+    - SPK: https://app.notion.com/p/3d7a4137d236817c84b1fa57bdf2f261   # 萨克拉门托大斑狗鱼（名实分离）
+    - DTN: https://app.notion.com/p/3d7a4137d23681b0b2c9d9b4412ad818   # 裸狐鲣（礁栖金枪鱼反差+ciguatoxic）
+    - GAJ: https://app.notion.com/p/3d7a4137d2368193a31defe1eca576cb   # 高体鰤（深礁夏产+ciguatera）
+    - HAD: https://app.notion.com/p/3d7a4137d2368107afcbf98c58e257a0   # 黑线鳕（中深底食）
+    - BPB: https://app.notion.com/p/3d7a4137d23681e6a00fdd24fdca6535   # 眼点丽鱼（纯鱼食慈鲷）
+    - RVC: https://app.notion.com/p/3d7a4137d236812da391def70534e735   # 小须美鱥（同属默认+石巢假说 EO）
+    - CRC: https://app.notion.com/p/3d7a4137d2368150beaaef2c28407ff4   # 黑斑须雅罗鱼（砾巢脊）
+    - INC: https://app.notion.com/p/3d7a4137d23681c9bbb9c6c60cc3671d   # 白北鲑（停食洄游第 3 例）
+    - HBW: https://app.notion.com/p/3d7a4137d2368145bce1f564a311de52   # 驼背白鲑（双洄游白鲑）
+    - CLC: https://app.notion.com/p/3d7a4137d23681d6b645f7b5bc07a13b   # 大口鲶（同属默认推算）
+    - RTC: https://app.notion.com/p/3d7a4137d23681098c55e5705ef95962   # 红尾鲶鱼（果实输入游钓鲶）
+    # R09（26）
+    - WST: https://app.notion.com/p/3d7a4137d236813187adddcd69543f07   # 高首鲟（巨型溯河+产卵前停食第 4 例）
+    - ROB: https://app.notion.com/p/3d7a4137d2368118a72cf8959f9bd1b0   # 岩钝鲈（雄巢扇护）
+    - KGO: https://app.notion.com/p/3d7a4137d23681b68b31d8c5b9599e00   # 接吻鲷（接吻器假说）
+    - LMD: https://app.notion.com/p/3d7a4137d23681bb8fd0d8734eb329b2   # 斑鳜（同属伏击默认）
+    - MDC: https://app.notion.com/p/3d7a4137d23681bdb8d9caf7e494d0a4   # 米达斯慈鲷（洞顶双亲护）
+    - JGC: https://app.notion.com/p/3d7a4137d2368184a040d081eee7d919   # 淡水石斑（浊水双亲掠食）
+    - SPC: https://app.notion.com/p/3d7a4137d2368187ad00e324e1380b54   # 金目丽鱼（Cichla 第 3 例）
+    - TGT: https://app.notion.com/p/3d7a4137d23681d79933d7ffd8993431   # 虎纹鳟鱼（杂交鲑鳟第 2 例）
+    - HYC: https://app.notion.com/p/3d7a4137d23681f2ad7ee79384e1e421   # 工程鲫（三倍体工程身份）
+    - PRC: https://app.notion.com/p/3d7a4137d2368176a3e3dd6402dae8ba   # 银鲫（雌核发育全雌）
+    - CCR: https://app.notion.com/p/3d7a4137d2368191b66eed0bad664c99   # 金鲫（夜行钻泥蛰伏第 5 例）
+    - APA: https://app.notion.com/p/3d7a4137d236819db21adddce653b2e1   # 阿帕奇鳟（CR 源头特有）
+    - GOT: https://app.notion.com/p/3d7a4137d236818bbf6dc0f9aedb4643   # 金鳟（高山特有）
+    - GIT: https://app.notion.com/p/3d7a4137d236812a8564fe14934880c6   # 吉拉鳟（EN 源头第 3 例）
+    - SVT: https://app.notion.com/p/3d7a4137d236812c94eef4acbd36b2c0   # 塞凡湖鳟（湖特有双种群）
+    - PEL: https://app.notion.com/p/3d7a4137d23681698c3ec857e0f936ba   # 高白鲑（三型白鲑第 5 例）
+    - CMR: https://app.notion.com/p/3d7a4137d23681d8a4a9d0fc32c41407   # 常见拟鲤（双行 A）
+    - LKR: https://app.notion.com/p/3d7a4137d2368152a0ecd8b5939cab48   # 湖拟鲤（双行 B Deferred）
+    - ASP: https://app.notion.com/p/3d7a4137d23681ea892ffc8e9715678f   # 赤稍雅罗鱼（鲤科罕见鱼食）
+    - BIA: https://app.notion.com/p/3d7a4137d23681698a9cc1805a8f7425   # 针牙脂鲤（犬牙 characid 第 2 例）
+    - HLL: https://app.notion.com/p/3d7a4137d2368183a3f2d34097ae916e   # 黑带兔脂鲤（headstander 第 2 例）
+    - BAS: https://app.notion.com/p/3d7a4137d23681459c6afea8475b6ad5   # 巨型巴沙（洪水气呼吸）
+    - JDP: https://app.notion.com/p/3d7a4137d236811ebb5aefb0cbcac9a0   # 宝石鲈（洪水机会+雄护卵）
+    - LMP: https://app.notion.com/p/3d7a4137d236811ebec0cc6c0640ef44   # 圆鳍鱼（吸盘卵块守护）
+    - AMK: https://app.notion.com/p/3d7a4137d236819d8b05fa1bb6a6f16e   # 单鳍多线鱼（岩缝扇护）
+    - GSF: https://app.notion.com/p/3d7a4137d23681a99a88d40a0a11075b   # 绿太阳鱼（太阳鱼系第 5 例）
+  frozen_semantic_patterns:
+    - P01: https://app.notion.com/p/3d6a4137d236812ebe4debf960c18987   # B3 input_snapshots 同 URL 冻结快照复用
+    - P02: https://app.notion.com/p/3d6a4137d2368111a1bbf2139e8b61a1   # 无独立快照——ResourcePatch 背景语义由 RHM/RBP story FR 冻结解释承载（两层登记非 census 族）
+    - P04: https://app.notion.com/p/3d6a4137d23681dd8804d14893ed7701   # B3 快照复用（契约：守护先存持续+目标可同时触发摄食与冲突路径）
+    - P05: https://app.notion.com/p/3d6a4137d2368131a7c1ec70105a5e0b   # B3 快照复用（停食洄游判例：P05 状态抑制不落 P04）
+  packet_count_reconciliation: >-
+    R08 packet 声明 P04×4 而 story Semantic Pattern 字段实际 P04 例=3（ARO/CSL/
+    CRC）——差异口径疑为 packet 将 CSL「护卵+护浮游幼」分开计或含同属注记；R09
+    packet P04×6（ROB/MDC/JGC/JDP/LMP/AMK）与 story 字段一致。本批按 story 字段
+    9 例 P04 处理，packet 口径差异记档供 review（非计数受阻）。
+input_channel_note: >-
+  本批为 CENSUS-B5 重启：前次运行快照抓取完成（input_snapshots/ 含 fetch 脚本
+  +packet_R08/packet_R09 + 52 份 story_*.md + story_urls 双清单 + fetch 日志），
+  进程退出丢失全部中间状态；本会话以快照为全部输入重建（SNAPSHOT_ONLY，未访问
+  Notion live，未重跑 fetch）。快照为 headless 转写：11 份完整包裹（page/
+  properties/content），41 份纯正文转写（中文 fetch 引言或径从「内容作者」行起
+  ——B4 BFS/MOO 同型转写省略）；52/52 十节正文+Semantic Pattern Fit+Sweep Log
+  完整核验（脚本检查零缺失），标题/BatchID=FISH-R08/R09 逐份核验，story↔URL
+  对位来自 story_urls_R08/R09.txt（顺序=packet 表行序）；无信封文件的 frozen_
+  patterns 取自正文 Semantic Pattern Fit 节。Snapshot 模式
+  SNAPSHOT_UNVERIFIED-by-headless（CLAUDE.md 快照标注纪律）；判同/复核以
+  input_snapshots/ 为数据。
+blind_freeze:
+  n_blind_programs: 104
+  frozen_before_registry_open: true
+  frozen_at_utc: "2026-09-11T08:04:47Z"   # blind_programs.jsonl mtime 精确值
+  registry_reads_before_freeze: false
+  registry_version_before: 8
+  registry_opened_at_utc: "（判同段开始时打开 v8——见本 manifest 写入后 run_merge_tests.py 执行记录；判同产物时间戳均晚于盲冻结）"
+  composition: "Bake 52 + Response 52（TYPED 标准形 43 + P04 guard 双 Path 9[ARO 口哺/CSL 护卵幼/CRC 砾巢脊/ROB 巢扇护/MDC 洞顶双亲/JGC 浊水双亲/JDP 洪水护卵/LMP 卵块/AMK 岩缝扇护]）；MEDIUM 13（S1-EO/同属/亲本/形态推断）；52/52 双面程序（本批无 0 程序边界样本）"
+bias_declaration:
+  b5_f0_class: >-
+    本会话为重启执行：盲段加载流程管线时读过 B4 的 build_blind_programs.py /
+    build_stories.py（B4 26 鱼盲体的 SINGLE 链与 TYPED 形态 op 名层面）与 B4
+    batch_report/worker_self_qa（族名与计数散文）；角色记忆 v5 亦含各族散文描述
+    与 B0-B4/RS1/RP1 判例。template_registry.yaml 本体（v8）在盲冻结前未读。
+    缓解：本批 104 条 sketch 严格从 52 份 Story 十节正文 + P01/P04/P05 冻结
+    pattern 页独立推写，每条含顺序推导注记（正文有判断顺序的反映顺序——本批
+    扫描结论=无面内 early-return 链，时序均为 lifecycle/季节/洪水/昼夜 premise
+    配置级，B3 判例④）；P04 9 例按契约拓扑（PARALLEL_SET 依据=契约文本）非按
+    registry 形状；未按 registry 形状定制。偏差与缓解记档供 reviewer 裁决。
+execution_mode_note: >-
+  重启 fresh spawn 单轮执行：双时间戳（盲冻结精确 mtime 08:04:47Z + registry
+  读取时刻见判同段）+ 逐条 registry_seen=false + 内容 hash + program_revisions
+  空即证判同段零改动。
+coverage_discipline:
+  no_surface_exclusions:
+    - "52/52 Group 面：体型分级群游/混群/海豚漂浮物 FAD/繁殖集群/同种多型/独居=群结构事实或负知识≠互斥 FishGroup（YFT/ALB/CMR/PEL/STL/LMP 判例沿用）"
+    - "52/52 Quality 面：无 Quality Selection 程序证据（B0-B4 基线）"
+    - "S11 CB 轴两例 excluded（DTN ciguatoxic/GAJ ciguatera=人类侧食物安全——R07 补标系判例第 3-4 例）；保护边界三例=OPS 产品面（WST VU/APA CR/GIT EN）"
+    - "S1-EO 9 例显式注记程序由 P01 冻结主张承载（AKB/RVC/CLC/GOT/GIT/LMD/HLL/AMK+APA 栖息推断）"
+    - "P04 假说不预立 2 例（RVC 石巢 EO/GSF 巢产 EO——若证实同型后续补录）"
+  sweep_mapping: "每 Story S1-S11 逐项 program/premise/param/excluded/eo/sn/tar 映射（stories.jsonl sweep_log_mapping 572 项=52×11 全覆盖）"
+  order_discipline: "authoring_work_standards §5.1：逐 Story 顺序扫描，无平铺默认（注记入每条 human_readable_sketch）；本批无面内 early-return 链，时序均为 lifecycle/季节/洪水/昼夜 premise 配置级（判例④/P05 状态抑制）"
+fixture_gate: {status: PASSED, detail: "validate_batch PASS (programs=104 stories=52 merge_tests=169) + fixtures 12/12（项目 venv .venv/Scripts/python.exe）"}
+status: INDEPENDENT_REVIEW_REQUIRED
