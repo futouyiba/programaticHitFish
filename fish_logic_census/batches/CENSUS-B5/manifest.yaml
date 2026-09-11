@@ -81,21 +81,26 @@ input_channel_note: >-
   本批为 CENSUS-B5 重启：前次运行快照抓取完成（input_snapshots/ 含 fetch 脚本
   +packet_R08/packet_R09 + 52 份 story_*.md + story_urls 双清单 + fetch 日志），
   进程退出丢失全部中间状态；本会话以快照为全部输入重建（SNAPSHOT_ONLY，未访问
-  Notion live，未重跑 fetch）。快照为 headless 转写：11 份完整包裹（page/
-  properties/content），41 份纯正文转写（中文 fetch 引言或径从「内容作者」行起
-  ——B4 BFS/MOO 同型转写省略）；52/52 十节正文+Semantic Pattern Fit+Sweep Log
-  完整核验（脚本检查零缺失），标题/BatchID=FISH-R08/R09 逐份核验，story↔URL
-  对位来自 story_urls_R08/R09.txt（顺序=packet 表行序）；无信封文件的 frozen_
-  patterns 取自正文 Semantic Pattern Fit 节。Snapshot 模式
-  SNAPSHOT_UNVERIFIED-by-headless（CLAUDE.md 快照标注纪律）；判同/复核以
-  input_snapshots/ 为数据。
+  Notion live，未重跑 fetch）。快照为 headless 转写：45 份完整包裹（page/
+  properties/content 闭合——^<page url= / ^<properties> / ^</page> 三项标记
+  各 45 文件复核），7 份纯正文转写（CSL/CRC/ARG/SPM/RTC/CMR/JGC，均径从
+  「内容作者」行起——B4 BFS/MOO 同型转写省略；此 7 份即『无信封文件
+  frozen_patterns 取自正文 Semantic Pattern Fit 节』方法的实际适用集）；52/52
+  十节正文+Semantic Pattern Fit+Sweep Log 完整核验（脚本检查零缺失），标题/
+  BatchID=FISH-R08/R09 逐份核验，story↔URL 对位来自 story_urls_R08/R09.txt
+  （顺序=packet 表行序）。初版「11 完整包裹+41 纯正文」系登记笔误：fetch
+  日志（首跑 44 saved+6 EMPTY_PARSE，retry1/retry2 补 8）/快照文件实测/git
+  历史（input_snapshots 于 3455cf5 首次入库，无更旧版本）均无 11/41 佐证，
+  非旧状态残留；成因无从回溯（批内「11」仅见于「11 新族分组」计数语境）。
+  Snapshot 模式 SNAPSHOT_UNVERIFIED-by-headless（CLAUDE.md 快照标注纪律）；
+  判同/复核以 input_snapshots/ 为数据。（ARTIFACT_REVISE F1 修正）
 blind_freeze:
   n_blind_programs: 104
   frozen_before_registry_open: true
   frozen_at_utc: "2026-09-11T08:04:47Z"   # blind_programs.jsonl mtime 精确值
   registry_reads_before_freeze: false
   registry_version_before: 8
-  registry_opened_at_utc: "（判同段开始时打开 v8——见本 manifest 写入后 run_merge_tests.py 执行记录；判同产物时间戳均晚于盲冻结）"
+  registry_opened_at_utc: "2026-09-11T08:11:31Z–08:11:37Z 之间（区间估计：registry v8 读取发生在判同脚本 run_merge_tests.py 执行窗口内——脚本文件 mtime 08:11:31Z 定稿、engine_report.json mtime 08:11:37Z 写出；盲冻结 08:04:47Z 严格在前。依据=文件系统 mtime 本地 +08:00 换算 UTC，无法精确到秒故记区间——ARTIFACT_REVISE F2 补记）"
   composition: "Bake 52 + Response 52（TYPED 标准形 43 + P04 guard 双 Path 9[ARO 口哺/CSL 护卵幼/CRC 砾巢脊/ROB 巢扇护/MDC 洞顶双亲/JGC 浊水双亲/JDP 洪水护卵/LMP 卵块/AMK 岩缝扇护]）；MEDIUM 13（S1-EO/同属/亲本/形态推断）；52/52 双面程序（本批无 0 程序边界样本）"
 bias_declaration:
   b5_f0_class: >-

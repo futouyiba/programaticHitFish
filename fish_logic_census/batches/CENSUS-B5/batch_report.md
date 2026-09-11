@@ -7,7 +7,7 @@ status: **INDEPENDENT_REVIEW_REQUIRED**；validate PASS（programs=104 stories=5
 ## 输入
 
 FISH-R08（§4 优先级 6 收尾普通补齐 26：billfish/金枪鱼 3-4 例、白鲑系、鲑科生活史多型、食人鱼科植食反差×2、石巢系第 3 例、耐冻蛰伏系、名实分离/杂交身份）+ FISH-R09（优先级 6 续 26：鲟科第 4 例、慈鲷系 4、鲫系 3 含雌核发育、稀有鳟系 3、白鲑第 5 例、身份层 4 行、拟鲤双行、鲤科鱼食反差、洪水系第 3 例、吸盘底栖、岩缝护卵）。两包均 FR3 CLOSED；对账：packet 声明 26+26=52 = input_snapshots story_*.md 实际 52（零差异）。语义输入 P01/P04/P05（B3 同 URL 冻结快照复用）+P02（story FR 解释承载，无独立快照）。
-快照转写：11 份完整包裹+41 份纯正文（十节+Sweep Log 脚本核验 52/52 零缺失）；计数口径差异 1 项已记档（R08 packet 声明 P04×4 vs story 字段实际 3 例——疑 CSL 护卵+护幼分开计，按 story 字段 9 例 P04 处理）。
+快照转写：45 份完整包裹（page/properties/content 闭合）+7 份纯正文（CSL/CRC/ARG/SPM/RTC/CMR/JGC——径从「内容作者」行起，即「无信封文件 frozen_patterns 取自正文 Semantic Pattern Fit 节」方法的实际适用集；初版误记 11/41 系登记笔误，fetch 日志/文件实测/git 历史均无佐证——ARTIFACT_REVISE F1 修正，详见 manifest input_channel_note）；十节+Sweep Log 脚本核验 52/52 零缺失；计数口径差异 1 项已记档（R08 packet 声明 P04×4 vs story 字段实际 3 例——疑 CSL 护卵+护幼分开计，按 story 字段 9 例 P04 处理）。
 
 ## 核心结论
 
