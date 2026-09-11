@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
-"""CENSUS-RERUN-SINGLE-001 语义裁决与产物装配（build_census_outputs）。
+"""CENSUS-RERUN-SINGLE-001 语义裁决与产物装配（build_census_outputs）——原批生成器。
+
+【REV-001 注记 2026-09-11】本脚本描述原批（61 程序）的一次性生成，含 registry v6->v7
+突变（历史段）。REV-001 修复轮（B1 面错配）后的批档终态由 apply_fix_rev001.py 持有与
+转换：blind/programs/stories/merge_tests/HRQ/manifest 的修复增量与 manifest 终文本
+（MANIFEST_FINAL）均以该脚本为源。若检测到修复已应用（programs.jsonl 含 P-RS1-*-HAB-BAKE）
+本脚本拒绝执行（防幂等重跑回退修复产物——独立审 M2 处置）。manifest 模板的
+registry_opened_at 已由精确版同步为磁盘声明性弱化版（M2 修复）。
 
 产物：programs.jsonl / merge_tests.jsonl / stories.jsonl /
 absence_claims.jsonl / human_review_queue.jsonl / manifest.yaml +
@@ -98,6 +105,14 @@ def write_jsonl(name, rows):
 
 
 def main():
+    # REV-001 守卫：修复轮已应用则拒绝执行（修复产物由 apply_fix_rev001.py 持有）
+    _progs_on_disk = (BATCH / "programs.jsonl").read_text(encoding="utf-8")
+    if "P-RS1-BLU-HAB-BAKE" in _progs_on_disk:
+        raise SystemExit(
+            "REV-001 fix round already applied: batch artifacts (incl. manifest fix_round\n"
+            "sections and corrected counts) are owned by apply_fix_rev001.py. Re-running this\n"
+            "original-run generator would regress them. To regenerate from scratch: restore\n"
+            "pre-fix artifacts via git, run build_census_outputs.py, then apply_fix_rev001.py.")
     # ---------------- programs.jsonl ----------------
     programs = []
     for pid, p in progs.items():
@@ -323,7 +338,8 @@ execution_mode: B3-F-0（fresh spawn 单轮，双时间戳+内容 hash 自证；
 blind_discipline:
   blind_programs_frozen_at: "2026-09-11T04:39:22Z"   # 文件系统精确时刻（本地 12:39:22+0800）
   n_programs: 61
-  registry_opened_at: "2026-09-11T04:41:30Z"          # 冻结后（read template_registry.yaml v6）
+  registry_opened_at: ">=2026-09-11T04:39:22Z（冻结后；权威锚=blind 文件 mtime"
+    # + 本 manifest 生成时刻 git 工作树差异——opened_at 为声明性下界，不作精确时序主张）"
   post_registry_mutations: 0
   bias_declaration: |
     事前暴露：SINGLE v1 canonical 两步形在角色记忆与 B4 批档（run_merge_tests.py
@@ -358,8 +374,12 @@ registry: v6 -> v7（SINGLE 拆分注记 + 9 新候选族 + PLAIN 重归族挂�
     if "CENSUS-RERUN-SINGLE-001" not in txt:  # 幂等重入
         CURVE.write_text(txt + row, encoding="utf-8")
 
-    # ---------------- registry v6 -> v7 ----------------
+    # ---------------- registry v6 -> v7（历史段：仅在 v6 注册表上执行——幂等守卫） ----------------
     reg = REG.read_text(encoding="utf-8")
+    # 幂等守卫（REV-001）：v6->v7 突变为原批一次性历史段——v7/v8 注册表已含 RS1 族时
+    # 跳过写入（下方各 replace 在 v8 文本上均为 no-op 或仅内存字符串操作，不落盘）
+    _registry_mutation_pending = ("version: 6" in reg
+                                  and "template_id: TIERED_SINGLE_FACTOR_CHAIN" not in reg)
     reg = reg.replace(
         "version: 6\n",
         "version: 7\n", 1)
@@ -619,7 +639,11 @@ registry: v6 -> v7（SINGLE 拆分注记 + 9 新候选族 + PLAIN 重归族挂�
       - {batch: CENSUS-RERUN-SINGLE-001, template_id: PLAIN_FACTOR_COMBINE, reason: "RETURN（Guarding vs 分布）+COMBINE（UNDEFINED 多评估合并 vs WEIGHTED 终合并）+前置锚门——真差异"}
 """
     reg = reg.rstrip("\n") + "\n" + new_templates
-    REG.write_text(reg, encoding="utf-8")
+    if _registry_mutation_pending:
+        REG.write_text(reg, encoding="utf-8")
+    else:
+        print("  registry write skipped: v6->v7 mutation already applied "
+              "(historical section; see REV-001 note in module docstring)")
 
     print("outputs written:")
     print(f"  programs={len(programs)} stories={len(stories)} "

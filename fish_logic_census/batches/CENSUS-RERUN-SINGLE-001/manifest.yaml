@@ -9,13 +9,15 @@ scope:
   input_layer: 顺序还原后 B 系列表达文件 §2.2（REP-ORDER-FIX-001..005；WORKING/NOT AUTHORITY）
   input_dirs: 7（grazing/migration/normal/normal2/field/guarding/patch——envelope 列 5，
     guarding/patch 经全库 FIX 标记扫描确认纳入，HRQ-RS1-04 记档）
-execution_mode: B3-F-0（fresh spawn 单轮，双时间戳+内容 hash 自证；program_revisions 空）
+execution_mode: B3-F-0（fresh spawn 单轮，双时间戳+内容 hash 自证；program_revisions 原空——
+  REV-001 修复轮后 8 条）
 blind_discipline:
-  blind_programs_frozen_at: "2026-09-11T04:39:22Z"   # 文件系统精确时刻（本地 12:39:22+0800）
-  n_programs: 61
+  blind_programs_frozen_at: "2026-09-11T04:39:22Z"   # 原批 61 条首冻（文件系统精确时刻，本地 12:39:22+0800）——append-only 未改写
+  blind_programs_fix_appended_at: "2026-09-11T09:07:39Z"   # REV-001 追加 4 条栖息面补录（registry_seen_at_creation=true）
+  n_programs: 65   # 61 原冻 + 4 修复轮补录（HAB）
   registry_opened_at: ">=2026-09-11T04:39:22Z（冻结后；权威锚=blind 文件 mtime"
     # + 本 manifest 生成时刻 git 工作树差异——opened_at 为声明性下界，不作精确时序主张）"
-  post_registry_mutations: 0
+  post_registry_mutations: 0   # 原 61 条冻结体零改动；修复轮 4 条为新增创建（program_revisions 留痕）非 mutation
   bias_declaration: |
     事前暴露：SINGLE v1 canonical 两步形在角色记忆与 B4 批档（run_merge_tests.py
     CANONICALS——流程范式恢复时读取）中已知；本批骨架不从 canonical 反推，全部
@@ -24,17 +26,59 @@ blind_discipline:
     §2.2 → 转写冻结 → 开 registry。重跑语义：输入为表达文件（非 Story DB 快照），
     与 B0-B4 批的 Story 输入层不同——envelope 明示授权（ARTIFACT_URL=顺序还原后
     表达文件）。
+    【REV-001 修复轮补段｜C7 面错配，2026-09-11】独立审 CENSUS-RERUN-SINGLE-REV-001
+    （verdict=ARTIFACT_REVISE）B1 blocker 实证：GUARD_ANCHOR_TIERED_COMBINE_CHAIN 4 成员
+    （P-RS1-BLU/ARA/RBP/HNC-BAKE）的 rerun_of 所指原 SINGLE 成员，直读 B1-B4 原盲体证实
+    全部为栖息/洄游分布面程序；重跑体实际取自各表达文件 §2.2 护巢 Guard 面（返回 Guarding
+    SpatialDistributionWeight）——行为面不同。佐证：tmp_chain_dump.txt 行 193（输入映射=物种名级
+    文件扫描无面信息）；4 物种 census 侧原无护巢 Bake 面程序。面错配对照表（rerun 体｜误指
+    原程序｜正确对应面）：
+      P-RS1-BLU-BAKE（§2.2 护巢面）｜P-B1-BLU-BAKE「季节性水层变化：水层因子评估→归一化」
+        （CENSUS-B1 blind 行 15）｜bluegill.md §2.4 NormalFeeding（行 171）→ P-RS1-BLU-HAB-BAKE
+      P-RS1-ARA-BAKE（§2.2 护巢面）｜P-B3-ARA-BAKE「洪水周期阶段重排：低产卵场→洪泛平原→干季湖」
+        （CENSUS-B3 行 23）｜arapaima.md §2.4（行 182）→ P-RS1-ARA-HAB-BAKE
+      P-RS1-RBP-BAKE（§2.2 护巢面）｜P-B3-RBP-BAKE「植被区结构因子（静态）→归一化」
+        （CENSUS-B3 行 27）｜red_bellied_piranha.md §2.4（行 170）→ P-RS1-RBP-HAB-BAKE
+      P-RS1-HNC-BAKE（§2.2 护巢面）｜P-B4-HNC-BAKE「岩池小河清水静态分布。静态栖息单因子，无判断链」
+        （CENSUS-B4 行 45）｜hornyhead_chub.md §2.4（行 176）→ P-RS1-HNC-HAB-BAKE
+    修复处置（Coordinator 修复指令）：①4 个护巢面程序改记新增（+4 名义，rerun_of=null，
+    program_revisions PROVENANCE_REWRITTEN ×4）；②4 个栖息面正确重跑补录（§2.4 →
+    P-RS1-{BLU,ARA,RBP,HNC}-HAB-BAKE；FIX 非盲补录范式 CENSUS-B0-FIX-001：创建时 registry v8
+    与 REV-001 结论已知——同构落族预期本身是被审对象；程序形状自 §2.4 伪脚本机械转写，
+    四文件 §2.4 结构同构事实先于 registry 读取即已确立，由 reviewer 复检）；③B1-B4 原栖息面
+    程序维持 SINGLE moved_pending_review，归宿挂 §2.4 重跑结果（HRQ-RS1-01/05 联动）；
+    ④名义 162 → 162+4=166 pending HRQ（原「重指派非新增」对 4 条不成立——守恒破坏修正）。
+    C7 族链形同构论证经独立审确认真实无瑕（4 文件 Guard 面直验成立），本修复轮对 4 条
+    护巢面盲体零改动；对照 C8 同面分歧显式挂 HRQ-RS1-03——处理梯度倒挂由本补段归零。
 order_discipline: 全 61 链形按 §5.1 顺序还原形转写（ordered_steps 顺序=文件判断链顺序；
   early return/分级命中/槽语义=branches+return topology；分级命中展开为 IF3 非
-  单一布尔——2026-09-11 用户新标准）
+  单一布尔——2026-09-11 用户新标准）；修复轮 4 条同纪律（§2.4 判断链序逐字转写，
+  软/硬定位=Profile 档位成员归属非 branch 结构）
+fix_round:
+  id: CENSUS-RERUN-SINGLE-REV-001
+  driver: independent review CENSUS-RERUN-SINGLE-REV-001 B1（verdict=ARTIFACT_REVISE；修复指令=Coordinator）
+  date_applied: "2026-09-11T09:07:39Z"
+  artifacts: "program_revisions 8 / merge_tests 211->224（+4 ×SINGLE、+4 C9 簇直验、+5 分组边界）/
+    programs 61->65（4 护巢面改记新增+4 HAB 补录）/ stories 61->65 / blind_programs 61->65
+    （append-only）/ HRQ 4->5（RS1-01/02/04 补正+RS1-05 新增）/ engine_report_rev001.json /
+    batch_report+worker_self_qa 修复轮段落"
+  registry: v8 零改动（+4 名义与 C9 候选族归 HRQ 批准后另批入册——章程：mutation 由独立审另批）
+  m2_sync: "build_census_outputs.py 内嵌 manifest 模板 registry_opened_at 同步为磁盘声明性弱化版
+    （原精确版 04:41:30Z 漂移——M2）；原批生成器加 REV-001 守卫（检测到修复已应用即拒绝执行，
+    防幂等重跑回退），修复后批档终态（含本 manifest）由 apply_fix_rev001.py::MANIFEST_FINAL 持有"
 verdict_counts:
-  merge_confident: 61          # 簇内直验（含 10 canonical 源自测；语义层）
-  extension_candidate: 14      # C8 × PLAIN（slot_tiering 轴）
-  new_template_candidate_families: 9   # distinct 新候选族（registry template 级）
+  merge_confident: 65          # 61 簇内直验（原批，含 10 canonical 源自测）+ 4 C9 簇直验（修复轮）
+  extension_candidate: 14      # C8 × PLAIN（slot_tiering 轴）——不变
+  new_template_candidate_families: 9   # 原批 distinct 新候选族（registry template 级）
+  new_template_candidate_fix_addendum: "C9 ORDERED_QUAD_TIER_COMBINE_CHAIN（修复轮实测产生，HRQ-RS1-05）——按修复指令不计入本批 dL_bake/curve RS1 行"
   ambiguous: 0
+  fix_round_addendum:
+    merge_confident_add: 4
+    new_family_candidate_add: 1   # C9（挂 HRQ-RS1-05；dL 计入待裁决）
+    nominal_programs_add: 4      # 护巢面 4 程序改记新增（162→166 pending HRQ）
 deltas:
   dL_group: 0
-  dL_bake: 9
+  dL_bake: 9    # 按修复指令冻结 +9；C9 候选 +1 的计入位置挂 HRQ-RS1-05 裁决
   dL_response: 0
   dL_quality: 0
-registry: v6 -> v7（SINGLE 拆分注记 + 9 新候选族 + PLAIN 重归族挂账）
+registry: v6 -> v7（原批）——REV-001 修复轮 v8 零改动（+4 名义/C9/provenance 改写均挂 HRQ 批准后另批入册）

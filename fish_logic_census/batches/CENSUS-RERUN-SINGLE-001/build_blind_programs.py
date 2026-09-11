@@ -12,6 +12,12 @@
 - 5 个无文件成员（LAM/PIN/ASR/RVS/RDS）不在本批骨架内，记 absence_claims。
 
 程序 ID 约定：P-RS1-<CODE>-BAKE；story ID：CENSUS-RERUN-SINGLE-001-<CODE>。
+
+【REV-001 注记 2026-09-11】原批盲输入提取的物种名级文件扫描无面信息缺陷（guarding
+目录 §2.2 护巢 vs §2.4 栖息）由独立审 CENSUS-RERUN-SINGLE-REV-001 B1 实证（4 例面
+错配——MEMBERS 表 guarding 目录 4 条误取 §2.2）；修复=apply_fix_rev001.py 补录 4 条
+§2.4 栖息面盲体（blind_programs.jsonl append-only，本脚本与已冻结 61 条零改动；
+节级面定位约定记 HRQ-RS1-04⑥）。
 """
 import hashlib
 import json

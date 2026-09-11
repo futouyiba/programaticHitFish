@@ -9,3 +9,13 @@ B1 教训执行（计数四方对账，程序化核验）：merge_tests 211 条 
 TAR：本批零新增（TAR-01..12 沿用；输入层缺陷归 HRQ-RS1-04 非 census 现实受阻）。
 
 Open：HRQ-RS1-01（族拆分总裁决+SINGLE v2 alternative+饱和 candidate 处置）/ HRQ-RS1-02（9 新族立族+2 单成员 PROVISIONAL extend-vs-split+轴声明）/ HRQ-RS1-03（PLAIN 重归族+slot_tiering 轴+证据分层）/ HRQ-RS1-04（输入层治理备案）。
+
+---
+
+# REV-001 修复轮 Self-QA（B1 面错配，2026-09-11，R2 §12 对修复轮逐项）
+
+1 修复越权？NO——修复指令全文来自 Coordinator（修复裁决权按 REV-001 摘要归 Coordinator）；未动裁决语义（9 族拆分论断/C8 extension 轨/61/61 论断结构均维持，仅修正其证据映射）；未动 registry（v8 零改动——+4 名义/C9 均挂 HRQ）。2 修复轮纪律？FIX 非盲补录范式（B0-FIX-001）：4 条 HAB 程序 registry_seen_at_creation=true + program_revisions ADDED_IN_FIX_ROUND + manifest bias_declaration 补段全 disclosure（含对照表）；同构落族预期本身是被审对象——sketch 仅描述行为结构、零 extension/新轴提案语汇（F4 盲体语汇纪律自查通过：轴声明只在 merge_tests/HRQ）。3 原 61 条冻结体被改？NO——blind_programs.jsonl append-only（61→65，原 61 行字节不变）；4 条护巢面程序 body 零改动（只改 programs.jsonl 侧 rerun_of/provenance 语义，PROVENANCE_REWRITTEN 留痕）。4 判同实测非预设？YES——engine 实跑（engine_report_rev001.json）：C9 簇内 4/4 零差异（含 PREMISE——uniform 激活 premise）；vs SINGLE/SOFT_TRIPLE/CRR={BRANCH,OPERATOR,DEPENDENCY,COMBINE}、vs EXTREME_TEMP={OPERATOR,BRANCH,DEPENDENCY}（COMBINE 同为 UNDEFINED 族——差异隔离到门+序）、vs GUARD_ANCHOR=五类全差、vs PLAIN={OPERATOR,BRANCH,COMBINE}——全部 NEW_TEMPLATE_CANDIDATE（worker 语义裁决：链长/门有无/序语义/面级边界，extend-vs-split 复杂度对比入条目）。5 计数四方对账（修复后）？merge_tests 224=65 MC（61 原簇直验+4 C9 直验）+14 EXT（不变）+145 NEW（136 原批+4 HAB×SINGLE+5 分组边界条目[program_ids×4，distinct_diff_sets=1 断言]）；CSV 行 65/14/9/0/ΔL_bake=+9（C9 不入——修复指令冻结，开放问题挂 HRQ-RS1-05）；manifest verdict_counts 65/14/9+fix_round_addendum（MC+4/新族+1/名义+4）；名义 162+4=166 pending（护巢面改记新增——独立审 B1③守恒破坏修正）。6 幂等与回退防护？apply_fix_rev001.py 重复执行对账 65/65/224/65 不变（timestamp 沿用首次 applied_at）；build_census_outputs.py 加守卫（修复已应用即 exit 1）+ registry 历史段写入守卫 + manifest 模板 registry_opened_at 同步弱化版（M2）。7 validate+fixtures？PASS（programs=65 stories=65 merge_tests=224）+ 12/12（项目 venv）。8 Self-QA 冒充审？NO——C9 立族/+4 名义/4 原栖息面程序归宿/HRQ-RS1-01④ 全部 INDEPENDENT_REVIEW_REQUIRED（HRQ-RS1-05）。
+
+过程偏差记录（修复轮）：①build_blind_programs.py docstring 注记编辑两轮失误（首次 old_string 吞掉原 docstring 开引号——git checkout 回滚后重做）；②apply_fix_rev001.py 幂等重入首次运行 date_applied 提取未剥引号致 manifest 双引号损坏（YAML parse 失败）——加 strip('"') 修复并重生成，现多次重入稳定。产物以终态为准（脚本可复现）。
+
+Open（修复轮追加）：HRQ-RS1-05（C9 立族+provenance 改记备案+名义 166+dL_bake +1 计入位置[修复指令冻结本批 +9——若 review 裁 C9 立族，+1 落本行修正为 +10 还是批准批次计入，需裁决]）/ HRQ-RS1-04⑥（guarding 目录节级面定位约定固化）/ HRQ-RS1-01④（+4 名义与 C9 联动）。

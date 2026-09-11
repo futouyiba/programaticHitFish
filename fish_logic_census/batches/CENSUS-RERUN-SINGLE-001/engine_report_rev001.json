@@ -1,0 +1,280 @@
+{
+ "fix_round": "CENSUS-RERUN-SINGLE-REV-001",
+ "canon": {
+  "ORDERED_QUAD_TIER_COMBINE_CHAIN": "P-RS1-BLU-HAB-BAKE（本修复轮冻结体）",
+  "SOFT_TRIPLE_TIER_CHAIN": "P-RS1-BSK-BAKE（RS1 冻结体直读）",
+  "EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN": "P-RP1-OSC-BAKE（RP1 冻结体跨批直读）",
+  "GUARD_ANCHOR_TIERED_COMBINE_CHAIN": "P-RS1-BLU-BAKE（RS1 冻结体直读）",
+  "SINGLE_FACTOR_NORMALIZED_WEIGHT / PLAIN_FACTOR_COMBINE / CRR": "run_merge_tests.py 内嵌 canonical 同文"
+ },
+ "hab_vs_single": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "c9_cluster_membership": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "role": "canonical_source_selftest",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "role": "member_direct_test",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "role": "member_direct_test",
+   "engine_structural_diff": []
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "role": "member_direct_test",
+   "engine_structural_diff": []
+  }
+ ],
+ "hab_vs_soft_triple": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "hab_vs_extreme_temp": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "hab_vs_guard_anchor": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE",
+    "RETURN"
+   ]
+  }
+ ],
+ "hab_vs_plain": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ],
+ "hab_vs_crr": [
+  {
+   "program_id": "P-RS1-BLU-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-ARA-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-RBP-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  },
+  {
+   "program_id": "P-RS1-HNC-HAB-BAKE",
+   "structural_diffs": [
+    "BRANCH",
+    "COMBINE",
+    "DEPENDENCY",
+    "OPERATOR",
+    "PREMISE"
+   ]
+  }
+ ]
+}

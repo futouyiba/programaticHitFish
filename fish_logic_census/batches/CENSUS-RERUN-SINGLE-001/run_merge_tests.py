@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-"""CENSUS-RERUN-SINGLE-001 判同段（engine 层）。
+"""CENSUS-RERUN-SINGLE-001 判同段（engine 层）——原批 61 程序测试矩阵。
+
+【REV-001 注记 2026-09-11】本脚本描述原批 engine 矩阵（A-E 段，engine_report.json）。
+REV-001 修复轮（B1 面错配）新增的 4 条栖息面补录程序（P-RS1-{BLU,ARA,RBP,HNC}-HAB-BAKE）
+engine 判同在 apply_fix_rev001.py（engine_report_rev001.json）——不回写本脚本与本报告
+（原批 61 条冻结体与测试产物零改动）。
 
 输入：blind_programs.jsonl 61 条（已冻结 2026-09-11T04:39:22Z，registry_seen=false）。
 registry v6 canonical 逐字取自各批 ir_pointer：
