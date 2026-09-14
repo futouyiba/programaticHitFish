@@ -116,19 +116,23 @@ def main():
     mc = sum(1 for t in tests if t["verdict"] == "MERGE_CONFIDENT")
     nw = sum(1 for t in tests if t["verdict"] == "NEW_TEMPLATE_CANDIDATE")
     am = sum(1 for t in tests if t["verdict"] == "AMBIGUOUS_NEEDS_EXPANSION")
-    with open(os.path.join(OUT, "manifest.yaml"), "a", encoding="utf-8") as f:
-        f.write("""
+    # REV-001 F6: idempotent guard + format fix (template had unformatted {mc} literal and garbage string)
+    _post = """
 post_registry:
   registry_opened_for_merge_tests: true（run_merge_tests.py 只读——template_registry.yaml 零改动验证：sha256 前后一致）
   verdicts:
-    MERGE_CONFIDENT: {mc}
-    TEMPLATE_EXTENSION_CANTON. See merge_tests.jsonl.
     counts: MERGE_CONFIDENT={mc} NEW_TEMPLATE_CANDIDATE={nw} AMBIGUOUS_NEEDS_EXPANSION={am} HELD=3
     new_family_proposals_distinct: 6（FF 10/SF 28/TB 2/TU 2/SL 2/FS 1——curve n_new_template=6）
     family_move_proposals: 7（HRQ-RB1-01）
     canonical_order_confirmations: 7 族（HRQ-RB1-06）
   status: INDEPENDENT_REVIEW_REQUIRED
-""".replace("TEMPLATE_EXTENSION_CANTON. See merge_tests.jsonl.\n    ", ""))
+""".format(mc=mc, nw=nw, am=am)
+    _mf = os.path.join(OUT, "manifest.yaml")
+    if "post_registry:" in open(_mf, encoding="utf-8").read():
+        print("manifest post_registry already present (idempotent skip)")
+    else:
+        with open(_mf, "a", encoding="utf-8") as f:
+            f.write(_post)
     with open(os.path.join(OUT, "manifest.yaml"), "a", encoding="utf-8") as f:
         f.write("  generated_at: %s\n" % now)
     print("programs:", len(tests), "| hrq:", len(hrq))

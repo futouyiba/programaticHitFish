@@ -1,6 +1,6 @@
 {
  "batch": "CENSUS-REBUILD-001",
- "generated_at": "2026-09-14T05:10:34Z",
+ "generated_at": "2026-09-14T05:30:19Z",
  "registry_version": "v9 (read-only; zero mutation this batch)",
  "n_truth_bodies": 82,
  "verdicts": {
@@ -84,6 +84,7 @@
   "DS": "->SF(CSL 双轨合并)",
   "PBF": "->FF",
   "GT": "->SL 新族",
+  "GW": "->SL 新族（STRUCTURE_LIGHTSLOT_FORAGE 第 2 成员——REV-001 F2 补键）",
   "HAL": "->SF",
   "GG": "->SF",
   "POR": "->FF（B4 双轨合并）",

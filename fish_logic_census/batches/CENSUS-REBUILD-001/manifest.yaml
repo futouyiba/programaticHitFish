@@ -41,6 +41,7 @@ post_registry:
   verdicts:
     counts: MERGE_CONFIDENT=35 NEW_TEMPLATE_CANDIDATE=45 TEMPLATE_EXTENSION_CANDIDATE=0 AMBIGUOUS_NEEDS_EXPANSION=2 HELD=3（程序级；四态详表=merge_tests.jsonl）
     new_family_proposals_distinct: 6（FORAGE_FIRST 10/SPACE_FIRST 28/GATE_SUBSTRATE_TEMPBAND 2/GUARD_ANCHOR_TURBIDITY 2/STRUCTURE_LIGHTSLOT_FORAGE 2/HABITAT_FORAGE_FLOODSLOT 1——curve n_new_template=6）
+    curve_col_semantics_note: "REV-001 F1：n_new_template_candidate=6（distinct 新族口径，承 RS1=9/RP1=2 先例）；n_stories_consumed=85 为 queue 条目口径（82 真形+3 held），非 story 单元——口径随行声明"
     family_move_proposals: 7（HRQ-RB1-01：WIT/YTF/FDR/BSB/SSL/SDG/TSK）
     canonical_order_confirmations: 7 族（HRQ-RB1-06）
     slot_tiering_track_closure: 14/14 真形归属（HRQ-RB1-02 随族）

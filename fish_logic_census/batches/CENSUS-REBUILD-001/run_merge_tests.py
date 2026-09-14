@@ -114,7 +114,7 @@ MOVED = {
 }
 SLOT_TIERING_CLOSE = {
     "TAI": "C8 slot_tiering 轨关闭确认->SF", "BLP": "->SF", "RFP": "->SF", "DS": "->SF(CSL 双轨合并)",
-    "PBF": "->FF", "GT": "->SL 新族", "HAL": "->SF", "GG": "->SF",
+    "PBF": "->FF", "GT": "->SL 新族", "GW": "->SL 新族（STRUCTURE_LIGHTSLOT_FORAGE 第 2 成员——REV-001 F2 补键）", "HAL": "->SF", "GG": "->SF",
     "POR": "->FF（B4 双轨合并）", "RKB": "->SF（B4 双轨合并）", "WIN": "->SF（B4 双轨合并）",
     "SMF": "->GC MC（B4 双轨合并）", "SAI": "->FF（B4 双轨合并）",
 }
@@ -154,7 +154,7 @@ def main():
             same=verdict == "MERGE_CONFIDENT",
             param_only=[],
             structural_diffs=[] if verdict == "MERGE_CONFIDENT" else (
-                ["ORDER（序镜像或轴域）"] if "FF" == (target or "")[-2:] or "SF" == (target or "")[-2:] else
+                ["ORDER（序镜像或轴域）"] if (target or "").startswith(("SPACE_FIRST", "FORAGE_FIRST")) else  # REV-001 F3：原尾串切片对 __NEW 后缀恒 False
                 ["OPERATOR/步数/结构元素"]),
             semantic_note=note,
             moved_proposal=MOVED.get(sid),

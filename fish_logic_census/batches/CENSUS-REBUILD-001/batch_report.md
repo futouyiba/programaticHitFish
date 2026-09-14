@@ -70,7 +70,7 @@ WIT/YTF（RS1 GATED_COVER→TB 新族）；FDR/BSB/SSL（RS1 GATED_COVER→SF：
 - queue 91 = 推导 82（含 6 双轨合并对象）+ held 3 ✓
 - 82 真形 = MC 35 + NEW 45 + AMB 2 ✓（merge_tests.jsonl 行数 82）
 - NEW 45 = 6 distinct 族（10+28+2+2+2+1）✓
-- curve 行：n_new_template=6（distinct 口径）✓
+- curve 行：n_new_template_candidate=6（distinct 新族口径——REV-001 F1：原误填程序级 NEW 数 45，已改）；n_stories_consumed=85=queue 条目口径（82 真形+3 held）✓
 - registry/template_registry.yaml 零改动（sha256 断言）；discovery_curve.csv 追加 1 行 ✓
 - 双轨 6 组两轨条目状态互引记录（stories.jsonl queue_ids 合并承载）✓
 

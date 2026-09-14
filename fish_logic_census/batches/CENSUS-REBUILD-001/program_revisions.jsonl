@@ -1,0 +1,3 @@
+{"program_id": "P-RB1-KGO-BAKE", "rev_id": "REV-RB1-P-RB1-KGO-BAKE-01", "date": "2026-09-14T05:28:46Z", "reason": "REV-001 F4：KGO axis 英文引文三层零命中（凭记忆 FishBase 措辞），改为可溯源 story 中文原文——排序结论不变", "changed": "order_derivation.basis / axis 引文溯源修正（judgment/ordered_steps 零改动）"}
+{"program_id": "P-RB1-ARG-BAKE", "rev_id": "REV-RB1-P-RB1-ARG-BAKE-01", "date": "2026-09-14T05:28:46Z", "reason": "REV-001 F5：ARG 的 B 层缺席声明失实（arctic_grayling.md 存在）——改为显式分歧记录；判同结论不变", "changed": "order_derivation.basis / axis 引文溯源修正（judgment/ordered_steps 零改动）"}
+{"program_id": "P-RB1-CSL-BAKE", "rev_id": "REV-RB1-CSL-01", "date": "2026-09-14T05:28:46Z", "reason": "REV-001 F4：CSL basis 标题引用载体失实（story_CSL.md 纯正文型无标题）——改标 packet_R08.md 实际载体", "changed": "order_derivation.basis 溯源修正"}
