@@ -1,0 +1,130 @@
+{
+ "batch": "CENSUS-REBUILD-002",
+ "generated_at": "2026-09-14T05:43:33Z",
+ "registry_version": "v9 (read-only; zero mutation this batch)",
+ "n_truth_bodies": 94,
+ "verdicts": {
+  "MERGE_CONFIDENT": 69,
+  "TEMPLATE_EXTENSION_CANDIDATE": 0,
+  "NEW_TEMPLATE_CANDIDATE": 25,
+  "AMBIGUOUS_NEEDS_EXPANSION": 0
+ },
+ "order_provisional_confirmations": {
+  "n": 31,
+  "families": [
+   "GATED_COVER_TIER_CHAIN",
+   "GUARD_ANCHOR_TIERED_COMBINE_CHAIN",
+   "LAYER_AXIS_DUAL_TIER_CHAIN",
+   "NOCTURNAL_LIGHTSLOT_CHAIN",
+   "SOFT_TRIPLE_TIER_CHAIN",
+   "TIERED_SINGLE_FACTOR_CHAIN",
+   "ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN",
+   "ZONE_SUBSTRATE_RESOURCE_CHAIN"
+  ],
+  "members": [
+   "ARA",
+   "ARC",
+   "AST",
+   "BLU",
+   "BSK",
+   "BST",
+   "BUR",
+   "CBM",
+   "CHU",
+   "COD",
+   "DRU",
+   "FGA",
+   "FLA",
+   "GDE",
+   "GPF",
+   "GRB",
+   "GRH",
+   "HNC",
+   "MOO",
+   "PAD34",
+   "PIK19",
+   "RBP",
+   "RRH",
+   "SGA",
+   "SHA",
+   "SMA",
+   "SMB",
+   "SWO",
+   "TAR",
+   "VEN",
+   "WEL"
+  ],
+  "note": "MC 成员真形序=所在族 canonical 序——order_provisional 清零提案证据（v10 降级待独立审，registry 零改动纪律）"
+ },
+ "family_move_proposals": {
+  "n": 16,
+  "moves": {
+   "ALE": "TIERED_SINGLE_FACTOR_CHAIN -> LAYER_AXIS_DUAL_TIER_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "BHC": "FILTER_FIELD_ACCUMULATE_CHAIN -> TIERED_SINGLE_FACTOR_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "BRO": "TIERED_SINGLE_FACTOR_CHAIN -> LAYER_AXIS_DUAL_TIER_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "BRT12": "TIERED_SINGLE_FACTOR_CHAIN -> FORAGE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "BSB": "GATED_COVER_TIER_CHAIN -> SPACE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "CHN": "TIERED_SINGLE_FACTOR_CHAIN -> LAYER_AXIS_DUAL_TIER_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "COH": "TIERED_SINGLE_FACTOR_CHAIN -> LAYER_AXIS_DUAL_TIER_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "FDR": "GATED_COVER_TIER_CHAIN -> SPACE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "HER": "FILTER_FIELD_ACCUMULATE_CHAIN -> TIERED_SINGLE_FACTOR_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "PB": "TIERED_SINGLE_FACTOR_CHAIN -> FORAGE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "SDG": "TIERED_SINGLE_FACTOR_CHAIN -> FORAGE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "SNS": "GATED_COVER_TIER_CHAIN -> ZONE_SUBSTRATE_RESOURCE_CHAIN（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "SSL": "GATED_COVER_TIER_CHAIN -> SPACE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "TSK": "TIERED_SINGLE_FACTOR_CHAIN -> SPACE_FIRST_DUAL_TIER_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "WIT": "GATED_COVER_TIER_CHAIN -> GATE_SUBSTRATE_TEMPBAND_RESOURCE_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）",
+   "YTF": "GATED_COVER_TIER_CHAIN -> GATE_SUBSTRATE_TEMPBAND_RESOURCE_CHAIN__RB1（STRUCTURAL_DIFF=步数/ORDER——真形序与所在族 canonical 不符）"
+  },
+  "filter_field_vacate": "FILTER_FIELD_ACCUMULATE_CHAIN 移空（BHC/HER 出族后 0 成员）——空置提案（PATCH VACATED 先例）挂 HRQ-RB2-01"
+ },
+ "related_rb1_proposals": {
+  "FORAGE_FIRST": [
+   "ASB",
+   "BHM",
+   "BRT12",
+   "BTS",
+   "EUP",
+   "GDS",
+   "JSB",
+   "PB",
+   "PKS",
+   "PLC",
+   "PRB",
+   "PSH",
+   "RSC",
+   "RUF",
+   "SDG",
+   "SSM"
+  ],
+  "SPACE_FIRST": [
+   "BSB",
+   "CGD",
+   "FDR",
+   "RBD",
+   "SSL",
+   "TSK"
+  ],
+  "GATE_SUBSTRATE_TEMPBAND": [
+   "WIT",
+   "YTF"
+  ],
+  "HABITAT_FORAGE_FLOODSLOT": [
+   "SLM"
+  ],
+  "note": "RB-1 新族提案形状扩充证据（不在 registry v9 活族——NEW 轨+related_proposal=HRQ-RB1-02）；本批 distinct 新族=0（无 RB-1 六提案外新形状）"
+ },
+ "same_fish_reconciliation": {
+  "reused_same_face": 17,
+  "reused_same_species_strain": 1,
+  "same_fish_diff_face": {
+   "RBP": "RB-1=摄食面/本批=护卵面——独立记账"
+  },
+  "in_batch_dedup": [
+   "JSB<->ASB（同 URL 同种——真形同体）",
+   "AGC<->GRB（同种品系）"
+  ],
+  "conflicts": 0
+ },
+ "revision": "REV-RB2-001（BHC/HER return_type 契约修正——program_revisions.jsonl）"
+}
