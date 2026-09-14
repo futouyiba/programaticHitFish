@@ -26,7 +26,7 @@
 |---|---|---|---|
 | R1a | `返回 0（EARLY_RETURN：…` → `返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；…原因原文保留…）` | 347 | field 36 / grazing 29 / guarding 146 / migration 24 / normal 54 / normal2 46 / patch 12 |
 | R1b | `返回 0（EARLY_RETURN）`（三档枚举行内闭括号形态）→ 同上措辞 | 12 | guarding 12 |
-| R1c | fence 顺序还原声明 `（返回 0，不进入后续评估）` → `（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估）`（含跨行变体 9 处：行尾「（返回 0，」+下一行「不进入后续评估）」） | 19（单行 10 + 跨行 9） | guarding 19 |
+| R1c | fence 顺序还原声明 `（返回 0，不进入后续评估）` → `（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估）`（含跨行变体 9 处：行尾「（返回 0，」+下一行实际文案为「不进入后续评估——×0.01 软出局：非零、仍可参与下游[REP-WORDING-ALIGN-001]）」——较单行模板多「×0.01 软出局：」、少「语义裁定 1/2」字样，语义等价、批号溯源齐全[REV-001 F3 补登：变体形态原未声明]） | 19（单行 10 + 跨行 9） | guarding 19 |
 | R6 | §0 判断顺序行 `锚不存在格 EARLY_RETURN 出局（非「返回低值」）` → `锚不存在格 ×0.01 软出局返回（非零）`（任务例句；§0 行仅动此出局值子串，箭头链序与步名零改动） | 19 | guarding 19 |
 
 小计 397 处。
@@ -100,13 +100,15 @@ normal2 closure_replay.py: PASS（闭合账不受影响）
 
 新措辞未误伤任何 BAN/文案规则，无需修工件表述。
 
+**[REV-001 F2 披露] validator 语义漂移登记**：normal/normal2/migration/patch 四件 validator 的 FAMCTX 规则要求 CombineRule 行含 `OPERATOR UNDEFINED` 子串（错误消息主张「combine math must stay visibly open」）。经语义裁定 1 关闭合并数学后，新文案因保留历史引述字样（「原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭」）而**字面兼容通过**——但规则意图（保持开放）与新口径（已裁定=逐步乘法）相悖。处置：本批不改 validator（先例在案），**同步列入后续批**（清理 §5 历史引述前必须先改 FAMCTX，否则误拦）；后续作者见到该错误消息时以 §6.1 为准。
+
 ## 5. 判定边界登记（本批明确不改的相邻形态，供独立审裁决）
 
 1. **§5 放弃项 191 处**「(2) 合并算子（OPERATOR UNDEFINED…）」等历史自由度记录保留：不在 §2、不含审计串；语义=「当时放弃定义合并数学」（历史记录，同 README §7 历史批次不动先例）。本批文尾标记已声明 Bake 面落盘；若需清理 §5 与新口径的表述差，属独立后续批。
 2. **PLAIN/HARD_GATED 受限还原的「出局槽值（excluded——非 EARLY_RETURN）」保留**：语义裁定 1 钉的是「软出局**返回**」形态（return 0.01 × weight）；受限族域 excluded 档**不返回、槽值进 COMBINE**，其槽值是否同样取 0.01 无明文裁决——**OPEN 登记**（槽值数值归 Profile/机制侧；本批不擅自钉死）。
 3. **§0 行与 fence 声明中的动作名形态保留**（「无夜行底板=EARLY_RETURN」「/出局 EARLY_RETURN」「排除档=EARLY_RETURN，…」等约 150 处）：无「返回 0」值主张，EARLY_RETURN 作为提前返回动作名在新语义下仍准确；出局值语义由伪脚本返回语句（已改）承载。§0 行链尾「→ 合并」链描述词同理保留（任务：§0 顺序与步名零改动）。
 4. **oscar「第 5 步 加权合并」步保留**：Dominance 加权合并是 census 判例结构，吃块替换=改结构（违反禁区「链形/步数零改动」）；仅其算子标注行对齐乘法口径（Dominance 权重读作逐因子乘入系数）。§0 行「→ 加权合并」同理保留。
-5. **越界哨兵 8 处不改**：§3 Response 面 7 处（见 4.1）+ §5 walleye_spawn 1 处。
+5. **越界哨兵 15 处不改**：§3 Response 面 7 处（见 4.1）+ §5 walleye_spawn 1 处 + **文件头部元数据表/§0 区 7 处**[REV-001 F1 补登：原「8 处」清单缺口]——guarding\species\oscar.md:22 / electric_eel.md:23 / lungfish.md:24 / nile_tilapia.md:24 / discus.md:21 / normal\species\striped_bass.md:14 / pumpkinseed.md:14，逐处直读语义均为 Response/census 侧算子引述（COMBINE_DUAL_PATH／live 例 3 汇总／R-T2 MAX 汇总），非 Bake 面残留。全文件裸 OPERATOR UNDEFINED 389 行四方分解＝184（新文案 §2 引述）+7（§3 审计串）+191（§5 放弃行）+7（本条头部引述）——闭合。
 6. `marble_goby`（退回件）等 18 件不适用原因见 §2。
 
 ## 6. 并行声明（必读）
