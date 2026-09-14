@@ -82,6 +82,17 @@
 **移交重跑批**：234+14 条真形重验队列（逐鱼顺序推导为必做工序）；C9 与 brooded 由重跑证据终裁。
 **mutation 批执行清单（registry v9）**：SINGLE v1 退役（61 moved 转正归属+5 无文件挂起）→ 9 链族转正（canonical 重写：渐进累积语义、order-provisional 标注）→ anchor 四形式轴+participant 轴建立（GUARD 族改写）→ HARD_GATED v2 → PATCH/PLAIN 撤除（provenance）→ CRR 台账保留注记 → 名义数字入册（TYPED 248/FOOD_FIELD 16/166 程序）→ 饱和候选撤销 → mutation_provenance 全记录。
 
+## 追加裁决：HRQ-REBUILD-SCOPE-01（2026-09-14，用户口述）✅
+
+- **裁定：①链族 47 个在册成员纳入重跑队列；②重跑为终局级别（全库顺序还原重跑，输出 registry v10 终态）**
+- 执行：REBUILD-SCOPE-001 范围 mutation——truth_rebuild_queue.jsonl 248→**303 行**（+47 链族 order_provisional 成员 +8 终裁特例[C9×4 栖息面/brooded×2/form_hold×2]）；9 链族 order_provisional 注记解析载体更新为已入队；handed_to_rerun 同步；registry 版本维持 9（范围 mutation 不动族结构）。
+- 分批方案（终局重跑 RB 系列）：
+  - **RB-1**：B4 25 + B5 52 + slot_tiering 14 = 91 项（同鱼互引最密，先清最纠缠层）
+  - **RB-2**：B6 47 + 链族 47 = 94 项（order_provisional 解析主力）
+  - **RB-3**：B7 110 + 终裁特例 8 = 118 项（含 C9 立族材料终裁）
+  - 每批：证据源 = B 系列表达文件（顺序还原后）+ census 冻结快照 + fish-reference CSV 形态/生态 → 逐鱼推导判断顺序 → 盲冻结 → 对 registry v9 判同（严格顺序判据+渐进累积）→ HRQ 提案 → 独立审 → 之后统一 mutation（registry v10）
+
+
 
 
 

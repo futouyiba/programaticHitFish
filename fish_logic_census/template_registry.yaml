@@ -4,6 +4,10 @@
 # 新增 5 个 CANDIDATE 族（HRQ-01/02/04/05/06 待审）。原 v0 内容未改写。
 version: 9
 mutation_provenance:
+  batch: REBUILD-SCOPE-001
+  date: 2026-09-14
+  previous_version: 9（本批为范围 mutation，registry 版本号维持 9）
+  scope_summary: "HRQ-REBUILD-SCOPE-001 用户裁决（终局级别全库重跑确认）：truth_rebuild_queue 248->303 行——+47 链族在册 P-RS1 成员（order_provisional 解析）+8 终裁特例（C9×4 栖息面冻结体/brooded×2/form_hold×2）；9 链族 order_provisional 注记的解析载体更新为已入队；handed_to_rerun 行同步。族结构/成员/轴零改动。"
   batch: HRQ-MUTATION-001
   kind: HRQ_ADJUDICATION_EXECUTION（registry mutation 批——非普查批：无新盲程序/无新判同；人类裁决已完成，本批逐条落表）
   date: 2026-09-14
@@ -22,7 +26,7 @@ mutation_provenance:
     ruling_6_directory_hygiene: "PATCH_RESOURCE_FOLLOWING status->VACATED（MGC->GATED_COVER gate_axis bottom_zone 第 3 实例转正/ONS->SOFT_TRIPLE 第 2 成员转正）；PLAIN_FACTOR_COMBINE status->FALSIFIED（0/5 自有成员证伪证据随册；14 slot_tiering -> truth_rebuild_queue）；活族 21->19 条目（Bake 空壳移除——PROVISIONAL 新族不受影响）"
     ruling_7_CRR_ledger_plus_bookkeeping: "CRR 保留+negative_evidence_ledger（284 non-match=live 侧资产；known_non_matches 补 B5/B6/B7 三行对账闭环 75+52+47+110=284）；TYPED known_instances 74->248（B5 43+B6 45+B7 86）；FOOD_FIELD 2->16（B7 14）；GUARD 四形式重排+participant 轴；Bake 名义程序数 166（v8 pending 转 v9 正式）；LOCAL_SATURATION_CANDIDATE 正式撤销（B4 立案前提证伪——裁决 1 联动）；MGC 旧口径 reconciliation-note（B0 TYPED premise 处理 vs FOOD_FIELD 族——待重跑对齐）"
   closed_hrqs: "RS1-01/RS1-04⑥/RS1-05/RS1-03、B4-01（饱和撤销）/B4-02、B5-01/B5-02、B6-01/B6-02、B7-01/B7-02、B2-02（CRR）"
-  handed_to_rerun: "truth_rebuild_queue.jsonl 248 行（234 AMB+14 slot_tiering）——终局全库顺序还原重跑输入清单（逐鱼顺序推导必做；C9、brooded[ARO/TIL3] 与 form_hold[CSL/CSN1] 由重跑证据终裁——REV-001-R2 补正）"
+  handed_to_rerun: "truth_rebuild_queue.jsonl 303 行（234 AMB+14 slot_tiering+47 链族 order_provisional 成员+8 终裁特例[C9×4/brooded×2/form_hold×2]——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁入）——终局全库顺序还原重跑输入清单（逐鱼顺序推导必做；C9、brooded 与 form_hold 由重跑证据终裁）"
   review_gate: "本批 status=INDEPENDENT_REVIEW_REQUIRED——mutation 不自我批准；独立审通过前不推远端"
 
 v8_mutation_history:
@@ -490,7 +494,7 @@ templates:
         [非零、仍可参与下游——对齐 0.3.4.0 Bake DSL『return 0.01 * weight』；语义裁定 2：原『出局 EARLY_RETURN』措辞废止])
       -> [无终步合并算子：weight = weight × StepFit 逐步累积——单步链即终值（NORMALIZE_WEIGHT 终步经语义裁定 1 关闭）]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.TIERED_SINGLE_FACTOR_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - factor_type(typed: premise_bound_axis | opportunity_field | sensory_signal | …；HRQ-B1-01 轴延续)
@@ -519,7 +523,7 @@ templates:
       -> EVAL_TYPED_FIELD_OR_FACTOR(premise 绑定轴段归属三档——同上乘入)
       -> [渐进累积：weight = weight × LayerTierFit × AxisFit——无终步合并算子（原『积内归一化』读法经语义裁定 1 关闭）]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.LAYER_AXIS_DUAL_TIER_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - layer_anchor(typed: benthopelagic | pelagic_neritic | …)
@@ -545,7 +549,7 @@ templates:
       -> EVAL_TYPED_FIELD_OR_FACTOR(掩体/质量档三档——渐进累积语义：preferred=全额乘入/tolerated=×衰减乘入/excluded=×0.01 软出局乘入)
       -> [渐进累积：weight = weight × CoverTierFit——无终步合并算子]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.GATED_COVER_TIER_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - gate_axis(typed: vegetation_edge | weedy_slack | bottom_zone | buryable_substrate | pool_structure | reef_edge | patch_presence | disturbance_window；HRQ-RS1-02 待批)
@@ -574,7 +578,7 @@ templates:
       -> APPLY_DYNAMIC_SPATIAL_SLOT(低光/夜相槽三档：调整器语义——亮水=极低削减不清零，出局语义不落槽内；槽位=live §11.5 判例固定；槽值乘入 running weight)
       -> [渐进累积：weight = weight × NightHabitatFit × LowlightSlotMod——无终步合并算子]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.NOCTURNAL_LIGHTSLOT_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - night_habitat_axis(typed: 洞穴深潭 | 木石结构 | 石底深潭 | 开阔水面 | …)
@@ -601,7 +605,7 @@ templates:
       -> EVAL_TYPED_FIELD_OR_FACTOR(底栖资源档三档——同上乘入)
       -> [渐进累积：weight = weight × SubstrateTierFit × ResourceIntensityFit——无终步合并算子（原『积内归一化』读法经语义裁定 1 关闭）]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.ZONE_SUBSTRATE_RESOURCE_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - substrate_tier_axis(typed: 无脊椎栖境 | 大型无脊椎 | 可翻性 | 底泥)
@@ -629,7 +633,7 @@ templates:
       -> EVAL_TYPED_FIELD_OR_FACTOR(资源档三档——同上乘入)
       -> [渐进累积：weight = weight × LayerTierFit × SubstrateTierFit × ResourceTierFit——无终步合并算子（原『三档积内归一化』读法经语义裁定 1 关闭）]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.SOFT_TRIPLE_TIER_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - layer_tier_axis(typed)
@@ -658,7 +662,7 @@ templates:
       -> EVAL_TYPED_FIELD_OR_FACTOR(底泥资源档三档——同上乘入)
       -> [渐进累积：weight 逐步乘入——无终步合并算子（原『三档积内归一化』读法经语义裁定 1 关闭）]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - depth_tier_axis(typed)
@@ -685,7 +689,7 @@ templates:
       -> EVAL_SIZE_GAUGE_MATCH(个体口径三档：口径不匹配=×0.01 软出局乘入[原『出局』措辞对齐语义裁定 1/2]——乘入 running weight)
       -> [渐进累积：weight 逐步乘入——『步间折减合成算子 OPERATOR UNDEFINED』占位经语义裁定 1 关闭：乘法逐步进行，无终点合并步骤]
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.FILTER_FIELD_ACCUMULATE_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
 
     allowed_parameter_axes:
       - field_type(typed: plankton_field | …；P03 轴 Bake 侧对应)
@@ -714,7 +718,7 @@ templates:
       -> [渐进累积：weight = weight × SuitabilityFit × RelationFit × TempFit——COMBINE_GUARD_FACTORS 终步合并算子经语义裁定 1 关闭（无终点合并步骤）]
       -> Guarding SpatialDistributionWeight
     ir_pointer: batches/CENSUS-RERUN-SINGLE-001/run_merge_tests.py::NEW_FAMILY_SOURCE.GUARD_ANCHOR_TIERED_COMBINE_CHAIN
-    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
+    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 已含链族在册成员——HRQ-REBUILD-SCOPE-001 于 2026-09-14 裁定入队[REBUILD-SCOPE-001 微 mutation]）——真实序差异=族移动
     allowed_parameter_axes:
       - anchor_type(typed: nest | egg_mass | fry_school | host_brood——四形式[裁决 4-A]；v8 原值映射：colony_nest->nest / floodplain_fry_school->fry_school / root_spawn_eggs->egg_mass / pebble_mound->nest；与 Response 面 GUARD anchor 轴同源对齐[18-vs-19 口径经裁决 4 关闭])
     forbidden_freedoms: [arbitrary policy, arbitrary steps, arbitrary expression, arbitrary next, 分布权重返回类型外的 return（其余 Bake 域）, BUILD_ACCESSIBLE_SET/hard_viability（HARD_GATED 域）, ∥ 并行双 evaluand（Response 面 GUARD 域）]
