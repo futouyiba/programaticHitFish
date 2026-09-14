@@ -7,17 +7,18 @@
 
 - [x] **1. RB-3 独立审** ✅ 首轮 ARTIFACT_APPROVE（8a5bf47+6a47078+F2/F4 卫生已推 0fdee44；审校卡在案；F1 追溯 freeze_marker 留 v10 补）
 - [ ] **2. 轻量 Notion 同步**（RB-3 过审后，用户已确认要）：入口页文字数字更新（RB 系列结果、族数口径 18/23/28）——不重传 embed
-- [ ] **3. v10 统一 mutation**（全部过审后执行，scope）：
-  - RB-1 六族入册（FF 34/SF 61 名义/TB 4/TU 2/SL 4/FS 2——含 RB-2/3 累积）
+- [x] **3. v10 统一 mutation** ✅ 已执行（commit 1f9f5fd；批档 batches/HRQ-V10-MUTATION-001/；停点 INDEPENDENT_REVIEW_REQUIRED——审后随第 4 步推送）：
+  - RB-1 六族入册（FF 34/SF 61 名义/TB 4/TU 2/SL 2/FS 2——含 RB-2/3 累积；**SL 工件实数 2 非 4**——envelope 口径 vs 工件偏差已在 batch_report §4 披露留独立审）
   - RB-3 五新形入册（BLU 结构先行/HNC 门化/RBP 三步/ARA 门化温度次置/BROODED 退化链族）+ C9 撤案注记
-  - 族移动执行：RB-2 16 条 + RB-1 7 条
+  - 族移动执行：RB-2 16 条 + RB-1 7 条（23 条记录=16 成员条目迁移，moved_from 注记）
   - FILTER_FIELD 空置（VACATED）
-  - order_provisional 清零（RB-2 确认 31 尾 + RB-1 确认 7 族）
-  - TIL3 分面记账修正（雌退化/雄领地）、ARO 退化链确认、CSL/CSN1→fry_school（3→5）
-  - 跨阶段 anchor 取值规则统一（HRQ-RB2-07：JDP/ARA/CSL/SMA1）
+  - order_provisional 解析：8 链族 order_confirmed + 3 族无 RB 证据如实保留 provisional（envelope「12 族」口径偏离已披露）
+  - TIL3 分面记账修正（雌退化/雄领地）、ARO 退化链确认、CSL/CSN1→fry_school（fry_school 3→6 net：+CSL/CSN1+ARA 规则重落）
+  - 跨阶段 anchor 取值规则统一（HRQ-RB2-07 主形式/直证：JDP/ARA/CSL/SMA1）
   - KOI 品系闭合注记（RB-2 开放项）
-  - RB-2 批内生成器常量 7 处旧口径顺手同步（防重跑再生）
-  - mutation_provenance 全记录；HRQ 全队列关闭对账
+  - RB-2 批内生成器常量 7 处旧口径顺手同步（防重跑再生）+ RB-3 追溯 freeze_marker 补建
+  - mutation_provenance 全记录；HRQ 全队列关闭对账（18 条全 resolved——batch_report §3）
+  - 活族终态 28（Bake 23+Response 5）；curve 零改动；validate PASS+fixtures 12/12+幂等守卫实测
 - [ ] **4. v10 独立审** → 修复闭环 → 推送
 - [ ] **5. v15 终版全家桶**：HTML 重生成（终族数/成员数/终裁结论/三批 RB 曲线）→ 上传附件 → Notion 三页更新 + embed 换新（**用户明确要求不可忘记**）→ 审校卡补齐
   - **用户验收标准（2026-09-14 追加，硬性）**：
