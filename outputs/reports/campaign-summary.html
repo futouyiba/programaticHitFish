@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>FCF 全库战役总结｜从 267 种鱼到 28 个逻辑模板</title>
+<style>
+:root{
+  --bg:#0b1017; --bg2:#111826; --card:#141d2e; --card2:#182338;
+  --line:#233350; --ink:#e8eef7; --ink2:#a8b8cf; --mut:#6b7d97;
+  --teal:#2fb8c9; --tealL:#7fdce8; --amber:#e8a24b; --violet:#a58af0;
+  --green:#4bc987; --red:#e2635c;
+  --mono:"Cascadia Mono",Consolas,"SF Mono",Menlo,monospace;
+  --body:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.85 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+section{padding:52px 0 6px}
+h2{font-size:25px;margin:0 0 4px;font-weight:700}
+h2 .no{font:600 12px var(--mono);color:var(--teal);letter-spacing:2px;display:block;margin-bottom:6px}
+.lead{color:var(--ink2);max-width:780px;margin:8px 0 22px}
+.lead b{color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+svg{display:block;width:100%;height:auto}
+.cap{font-size:12.5px;color:var(--mut);margin:10px 2px 0;line-height:1.7}
+.cap b{color:var(--ink2)}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;border:1px solid var(--line);font-size:12px;color:var(--ink2);margin:0 6px 6px 0}
+.krow{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 4px}
+.kpi{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.kpi b{font:700 30px/1.1 var(--mono);display:block}
+.kpi span{font-size:12.5px;color:var(--mut)}
+.note{border-left:3px solid var(--teal);background:rgba(47,184,201,.07);border-radius:0 12px 12px 0;padding:14px 18px;color:var(--ink2);font-size:14px;margin:16px 0}
+.note b{color:var(--ink)}
+.warn{border-left-color:var(--red);background:rgba(226,99,92,.08)}
+.ok{border-left-color:var(--green);background:rgba(75,201,135,.07)}
+footer{margin-top:60px;border-top:1px solid var(--line);padding:20px 0 46px;color:var(--mut);font-size:12.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:var(--tealL);text-decoration:none}
+/* 28 型地图 */
+.fmap{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fcell{border-radius:10px;padding:10px 12px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.fcell .n{font:700 20px/1 var(--mono)}
+.fcell .t{font-size:12px;color:var(--mut);margin-top:3px}
+.bake{background:linear-gradient(135deg,rgba(47,184,201,.16),rgba(47,184,201,.05));border-color:rgba(47,184,201,.4)}
+.resp{background:linear-gradient(135deg,rgba(232,162,75,.16),rgba(232,162,75,.05));border-color:rgba(232,162,75,.4)}
+.leg{display:flex;gap:18px;font-size:12.5px;color:var(--ink2);margin:6px 0 2px}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+pre.kc{background:#0a0f18;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font:12.5px/1.8 var(--mono);overflow-x:auto;color:var(--ink2)}
+pre.kc b{color:var(--ink)}
+.tl{position:relative;margin:20px 0 8px}
+.tl .axis{position:absolute;left:0;right:0;top:44px;height:2px;background:var(--line)}
+.tl .stops{display:flex;justify-content:space-between;position:relative}
+.tl .st{text-align:center;width:19%}
+.tl .dot{width:12px;height:12px;border-radius:50%;background:var(--teal);margin:38px auto 8px;border:2px solid var(--bg)}
+.tl .v{font:700 15px var(--mono);color:var(--ink)}
+.tl .d{font-size:11.5px;color:var(--mut);line-height:1.5}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}.tl .st{width:32%;margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="padding:72px 0 10px">
+  <div style="font:600 12px var(--mono);letter-spacing:4px;color:var(--teal)">FCF · CAMPAIGN SUMMARY · 2026-09</div>
+  <h1 style="font-size:clamp(30px,5vw,44px);margin:14px 0 10px;font-weight:750">从 267 种鱼到 28 个逻辑模板</h1>
+  <p class="lead" style="font-size:17px">我们想知道：让每条鱼「像那条鱼」地活动，游戏需要写多少种不同的逻辑？
+  跑完全库——<b>267 种鱼、295 个行为故事、303 项逐鱼重推</b>——答案是：
+  <b>28 个可调参的程序骨架</b>，外加一套「怎么得出 28」的可复核方法。</p>
+  <div class="krow">
+    <div class="kpi"><b style="color:var(--teal)">267</b><span>种鱼全量调研（10 批全过审）</span></div>
+    <div class="kpi"><b style="color:var(--teal)">295</b><span>行为故事全部消费（基线实测）</span></div>
+    <div class="kpi"><b style="color:var(--amber)">28</b><span>活逻辑模板（registry v10 终态）</span></div>
+    <div class="kpi"><b style="color:var(--green)">~70</b><span>轮独立审核 · 10 版零回滚</span></div>
+  </div>
+</header>
+
+<!-- ============ 1 中鱼逻辑是什么 ============ -->
+<section id="s1">
+  <h2><span class="no">01</span>中鱼逻辑是什么——三层流水线</h2>
+  <p class="lead">一条鱼每个时刻的行为由三层程序决定。<b>分群路由</b>先回答「它现在处于什么状态」（护巢期？常规觅食？），把它的行为份额分给对应的组；<b>烘焙（Bake）</b>回答「它分布在钓场哪些格子」；<b>响应（Response）</b>回答「饵来了它咬不咬」。</p>
+  <div class="card">
+    <svg viewBox="0 0 980 210" role="img" aria-label="三层流水线：分群路由→烘焙→响应">
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#6b7d97" stroke-width="1.4"/></marker></defs>
+      <g font-family="Cascadia Mono,Consolas,monospace">
+        <!-- box 1 -->
+        <rect x="20" y="40" width="240" height="110" rx="14" fill="rgba(165,138,240,.10)" stroke="#a58af0" stroke-opacity=".55"/>
+        <text x="140" y="72" text-anchor="middle" fill="#cdbcfa" font-size="16" font-weight="700">分群路由 Group</text>
+        <text x="140" y="98" text-anchor="middle" fill="#a8b8cf" font-size="12">日期窗口 ∧ 水温蓄积 ∧ 场内结构</text>
+        <text x="140" y="120" text-anchor="middle" fill="#6b7d97" font-size="11.5">→ 护巢组 / 常规觅食组（份额分配）</text>
+        <path d="M268,95 L318,95" stroke="#6b7d97" stroke-width="1.4" marker-end="url(#ar)"/>
+        <!-- box 2 -->
+        <rect x="326" y="40" width="300" height="110" rx="14" fill="rgba(47,184,201,.10)" stroke="#2fb8c9" stroke-opacity=".55"/>
+        <text x="476" y="72" text-anchor="middle" fill="#7fdce8" font-size="16" font-weight="700">烘焙 Bake（空间分布）</text>
+        <text x="476" y="98" text-anchor="middle" fill="#a8b8cf" font-size="12">有序判断链：水层→结构→温度→…（每鱼不同）</text>
+        <text x="476" y="120" text-anchor="middle" fill="#6b7d97" font-size="11.5">→ 每个格子的分布权重（渐进累积）</text>
+        <path d="M634,95 L684,95" stroke="#6b7d97" stroke-width="1.4" marker-end="url(#ar)"/>
+        <!-- box 3 -->
+        <rect x="692" y="40" width="268" height="110" rx="14" fill="rgba(232,162,75,.10)" stroke="#e8a24b" stroke-opacity=".55"/>
+        <text x="826" y="72" text-anchor="middle" fill="#f2c98b" font-size="16" font-weight="700">响应 Response</text>
+        <text x="826" y="98" text-anchor="middle" fill="#a8b8cf" font-size="12">评价饵目标 / 场 / 入侵威胁</text>
+        <text x="826" y="120" text-anchor="middle" fill="#6b7d97" font-size="11.5">→ 吃 / 防御 / 无响应（三档决定）</text>
+      </g>
+      <text x="490" y="185" text-anchor="middle" fill="#6b7d97" font-size="12">本战役的「逻辑模板」= 烘焙层与响应层的程序骨架分类（分群层全部收敛为声明式路由表，无需模板）</text>
+    </svg>
+  </div>
+
+  <p class="lead" style="margin-top:26px">烘焙层的核心语义叫<b>渐进累积</b>：判断链一步一步走，每一步给当前权重乘一个系数——<b>没有单独的「合并」步骤</b>。</p>
+  <div class="grid2">
+    <div class="card">
+      <svg viewBox="0 0 440 240" role="img" aria-label="渐进累积漏斗：三档系数">
+        <g font-family="Cascadia Mono,Consolas,monospace" font-size="12">
+        <rect x="30" y="18"  width="380" height="44" rx="9" fill="rgba(75,201,135,.12)"  stroke="#4bc987" stroke-opacity=".5"/>
+        <text x="52" y="46" fill="#9fe3bf">最适应档</text><text x="400" y="46" text-anchor="end" fill="#9fe3bf" font-weight="700">weight × 1.0　继续</text>
+        <rect x="30" y="74"  width="380" height="44" rx="9" fill="rgba(232,162,75,.12)" stroke="#e8a24b" stroke-opacity=".5"/>
+        <text x="52" y="102" fill="#f2c98b">可接受档</text><text x="400" y="102" text-anchor="end" fill="#f2c98b" font-weight="700">weight × 0.4　继续</text>
+        <rect x="30" y="130" width="380" height="44" rx="9" fill="rgba(226,99,92,.12)"  stroke="#e2635c" stroke-opacity=".5"/>
+        <text x="52" y="158" fill="#f0a29d">不居留档</text><text x="400" y="158" text-anchor="end" fill="#f0a29d" font-weight="700">weight × 0.01　立即返回</text>
+        <text x="52" y="204" fill="#6b7d97">硬门 GATE 是二元的：不过门直接 ×0.01 返回（不算档位）</text>
+        <text x="52" y="226" fill="#6b7d97">×0.01＝软出局：非零，仍可参与下游选择；要绝对排除才显式返回 0</text>
+        </g>
+      </svg>
+      <p class="cap"><b>三档系数。</b>例子：一条鱼查「觅食水层」——最适应带不折损；差一点的带 ×0.4 还能继续查结构、温度；完全不对的带 ×0.01 立刻结束这个格子的评估。</p>
+    </div>
+    <div class="card">
+      <pre class="kc">weight = 1.0
+<b>第1步 水层</b>   最适应 → ×1.0 继续
+          可接受 → ×0.4 继续
+          不居留 → <b>return weight × 0.01</b>
+<b>第2步 结构</b>   …同样三档
+<b>第3步 温度</b>   …同样三档
+（没有第4步「合并」——乘法边走边完成）
+<b>return weight</b></pre>
+      <p class="cap"><b>一条链的全部语法。</b>不同鱼的差异＝①因子的集合 ②因子的先后顺序 ③门的类型与位置——这三个差异正是模板分类的判据。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 两次危机 ============ -->
+<section id="s2">
+  <h2><span class="no">02</span>两次「平铺化」危机——这次战役最贵的教训</h2>
+  <p class="lead">普查差点得出一个错误的好消息：「所有鱼收敛得很好，模板很少」。真相是被我们自己拍扁了——而且拍了两次。</p>
+  <div class="card">
+    <div class="grid2">
+      <div>
+        <h3 style="margin:4px 0 8px;font-size:16px;color:#f0a29d">第一次平铺（伪脚本层）</h3>
+        <p style="color:var(--ink2);font-size:14px;margin:0 0 10px">早期的鱼表达文件把判断写成了「读因子→查表→合并」的平铺结构：先查什么后查什么的信息全部丢失。用这种输入做普查，61 条鱼里有 61 条被误并进一个大族——「收敛」是假的。</p>
+        <p style="color:var(--ink2);font-size:14px;margin:0"><b style="color:var(--ink)">修正</b>：213 份表达文件全部重写为有序 early-return 链（211 份实际修复）；重跑普查一次性拆出 11 个新族，曾被立案的「饱和」结论被证伪。</p>
+      </div>
+      <div>
+        <h3 style="margin:4px 0 8px;font-size:16px;color:#f0a29d">第二次平铺（约定序冒充推导）</h3>
+        <p style="color:var(--ink2);font-size:14px;margin:0 0 10px">四种鱼的栖息面看起来「顺序完全相同」——后来发现那份相同来自模板的<b>默认约定顺序</b>，不是逐鱼推导。证据里根本没有「谁先谁后」。</p>
+        <p style="color:var(--ink2);font-size:14px;margin:0"><b style="color:var(--ink)">修正</b>：终局重跑对每条鱼从形态/生态证据重推顺序——四条鱼各奔四方（蓝鳃结构先行、食人鱼时段被证据直接砍掉）。原候选族撤案，换成 4 个独立新形。</p>
+      </div>
+    </div>
+  </div>
+  <div class="note warn"><b>由此立下的铁律（用户裁决）：</b>①<b>顺序就是族判据</b>——因子顺序不同＝不同模板，不得合并；顺序证据不足必须挂起，不许套约定序，也不许虚构。②<b>没有合并步</b>——乘法逐步完成；不居留＝×0.01 软出局而非归零。</div>
+</section>
+
+<!-- ============ 3 最大发现：镜像对 ============ -->
+<section id="s3">
+  <h2><span class="no">03</span>最大发现：一对镜像</h2>
+  <p class="lead">把顺序当真之后，全库最大的两个模板自己浮出来了——它们用的是<b>同一对因子</b>，只是先查谁不一样：</p>
+  <div class="card">
+    <svg viewBox="0 0 980 300" role="img" aria-label="镜像对：空间先行 61 成员 vs 觅食先行 34 成员">
+      <g font-family="Cascadia Mono,Consolas,monospace" font-size="12.5">
+      <!-- SF lane -->
+      <rect x="20" y="24" width="440" height="106" rx="14" fill="rgba(47,184,201,.10)" stroke="#2fb8c9" stroke-opacity=".5"/>
+      <text x="40" y="52" fill="#7fdce8" font-size="15" font-weight="700">空间先行（61 种鱼）</text>
+      <text x="40" y="76" fill="#a8b8cf">「先找合适的地方，再找吃的」</text>
+      <g fill="none" stroke-width="1.6">
+        <rect x="40"  y="90" width="88" height="26" rx="7" stroke="#2fb8c9"/><text x="84"  y="107" text-anchor="middle" fill="#7fdce8">空间因子</text>
+        <rect x="148" y="90" width="88" height="26" rx="7" stroke="#2fb8c9"/><text x="192" y="107" text-anchor="middle" fill="#7fdce8">猎物场</text>
+      </g>
+      <text x="256" y="107" fill="#6b7d97">→ 返回权重</text>
+      <text x="446" y="52" text-anchor="end" fill="#7fdce8" font-size="20" font-weight="700">61</text>
+      <!-- FF lane -->
+      <rect x="520" y="24" width="440" height="106" rx="14" fill="rgba(165,138,240,.10)" stroke="#a58af0" stroke-opacity=".5"/>
+      <text x="540" y="52" fill="#cdbcfa" font-size="15" font-weight="700">觅食先行（34 种鱼）</text>
+      <text x="540" y="76" fill="#a8b8cf">「跟着食物走，栖息带次之」</text>
+      <g fill="none" stroke-width="1.6">
+        <rect x="540" y="90" width="88" height="26" rx="7" stroke="#a58af0"/><text x="584" y="107" text-anchor="middle" fill="#cdbcfa">猎物场</text>
+        <rect x="648" y="90" width="88" height="26" rx="7" stroke="#a58af0"/><text x="692" y="107" text-anchor="middle" fill="#cdbcfa">空间因子</text>
+      </g>
+      <text x="756" y="107" fill="#6b7d97">→ 返回权重</text>
+      <text x="946" y="52" text-anchor="end" fill="#cdbcfa" font-size="20" font-weight="700">34</text>
+      <!-- mirror axis -->
+      <path d="M480,150 L500,150" stroke="#6b7d97"/><path d="M480,158 L500,158" stroke="#6b7d97"/>
+      <text x="490" y="180" text-anchor="middle" fill="#6b7d97" font-size="11.5">互为镜像</text>
+      <!-- bottom note boxes -->
+      <rect x="20" y="200" width="940" height="76" rx="12" fill="rgba(232,162,75,.07)" stroke="#e8a24b" stroke-opacity=".35"/>
+      <text x="40" y="228" fill="#f2c98b" font-weight="700" font-size="13.5">为什么它们不是一族？</text>
+      <text x="40" y="250" fill="#a8b8cf" font-size="12.5">调换两个因子的顺序会改变「出局」的优先级：空间先行的鱼会先放弃不合适的水域（哪怕那里食物多），</text>
+      <text x="40" y="268" fill="#a8b8cf" font-size="12.5">觅食先行的鱼会先放弃没吃的的地方（哪怕水域再舒适）——对钓点选择的影响是可观察的，所以按「顺序=族判据」分立。</text>
+      </g>
+    </svg>
+    <p class="cap"><b>镜像对（SPACE_FIRST 61 / FORAGE_FIRST 34）。</b>三批终局重跑独立推导、不同鱼群撞出同一对形状——这是「顺序当真」最有力的回报。两族合计 95 个成员，占全库烘焙程序的三分之一。</p>
+  </div>
+</section>
+
+<!-- ============ 4 28 型地图 ============ -->
+<section id="s4">
+  <h2><span class="no">04</span>28 个模板长什么样</h2>
+  <p class="lead">按名义成员数排布（格子大小≈成员数）。烘焙面 23 族（蓝）管「分布在哪」，响应面 5 族（橙）管「咬不咬」。最大的几个：类型化目标摄食 248、单因子三档链 94、空间先行 61、觅食先行 34、护巢双路径 28。</p>
+  <div class="card">
+    <div class="leg"><span><i style="background:linear-gradient(135deg,rgba(47,184,201,.5),rgba(47,184,201,.2))"></i>烘焙 Bake（23 族）</span><span><i style="background:linear-gradient(135deg,rgba(232,162,75,.5),rgba(232,162,75,.2))"></i>响应 Response（5 族）</span><span style="color:var(--mut)">格内数字＝名义成员数</span></div>
+    <div class="fmap" id="fmap"></div>
+    <p class="cap"><b>完整版每型一页</b>（中文伪脚本＋配置表）：Notion《中鱼逻辑模板类型手册 v10》28 个子页；本页系列的仪表盘 HTML §10/§11 也有同源总表与锚点详情。</p>
+  </div>
+</section>
+
+<!-- ============ 5 数字之旅 ============ -->
+<section id="s5">
+  <h2><span class="no">05</span>模板数的旅程——为什么数字一直在变</h2>
+  <p class="lead">「到底有多少种逻辑」这个数字的每次变化，都对应一次<b>证据质量的升级</b>，而不是反复横跳：</p>
+  <div class="card">
+    <div class="tl">
+      <div class="axis"></div>
+      <div class="stops">
+        <div class="st"><div class="v">5 族</div><div class="dot"></div><div class="d">首批种子<br>（含 live 带来的外来假设）</div></div>
+        <div class="st"><div class="v">10 族</div><div class="dot"></div><div class="d">B0–B4 消费 84 故事<br>「饱和」错觉出现</div></div>
+        <div class="st"><div class="v">21 族</div><div class="dot"></div><div class="d">顺序还原后两次重跑 +11<br>饱和结论被证伪</div></div>
+        <div class="st"><div class="v">18 活</div><div class="dot"></div><div class="d">八项人类裁决清理<br>（退役 3 个伪族/空族）</div></div>
+        <div class="st"><div class="v">28 活</div><div class="dot"></div><div class="d">终局逐鱼重推定稿<br>（registry v10）</div></div>
+      </div>
+    </div>
+    <div class="note ok" style="margin-top:18px"><b>对数字的态度：</b>每一次改口都留了完整证据链（~70 轮独立审、~40 轮修复、10 个 registry 版本零回滚、每个结论绑定 commit SHA）。宁可数字变丑，不要数字说谎。</div>
+  </div>
+</section>
+
+<!-- ============ 6 治理 ============ -->
+<section id="s6">
+  <h2><span class="no">06</span>结果为什么可信——每一步都有人挑错</h2>
+  <div class="grid2">
+    <div class="card">
+      <svg viewBox="0 0 440 170" role="img" aria-label="审校循环：产出→独立审→修复→闭合复审">
+        <g font-family="Cascadia Mono,Consolas,monospace" font-size="12">
+        <rect x="24"  y="56" width="92" height="44" rx="10" fill="rgba(47,184,201,.1)"  stroke="#2fb8c9" stroke-opacity=".5"/><text x="70"  y="82" text-anchor="middle" fill="#7fdce8">产出</text>
+        <rect x="150" y="56" width="92" height="44" rx="10" fill="rgba(232,162,75,.1)" stroke="#e8a24b" stroke-opacity=".5"/><text x="196" y="82" text-anchor="middle" fill="#f2c98b">独立审</text>
+        <rect x="276" y="14" width="92" height="44" rx="10" fill="rgba(226,99,92,.1)"  stroke="#e2635c" stroke-opacity=".5"/><text x="322" y="40" text-anchor="middle" fill="#f0a29d">有问题→修</text>
+        <rect x="276" y="98" width="92" height="44" rx="10" fill="rgba(75,201,135,.1)" stroke="#4bc987" stroke-opacity=".5"/><text x="322" y="124" text-anchor="middle" fill="#9fe3bf">通过→入库</text>
+        <g fill="none" stroke="#6b7d97" stroke-width="1.4">
+          <path d="M118,78 L146,78" marker-end="url(#ar)"/>
+          <path d="M244,70 L272,42" marker-end="url(#ar)"/>
+          <path d="M244,86 L272,116" marker-end="url(#ar)"/>
+          <path d="M322,60 L322,94" marker-end="url(#ar)"/>
+          <path d="M322,36 C240,10 120,20 70,52" marker-end="url(#ar)"/>
+        </g>
+        </g>
+      </svg>
+      <p class="cap"><b>每个批次的固定环路。</b>审校者是上下文隔离的独立 agent，只认工件不认作者——连协调者自己的失误也被抓过两次。</p>
+    </div>
+    <div class="card">
+      <div class="krow" style="margin:4px 0">
+        <div class="kpi" style="min-width:120px"><b>~70</b><span>轮独立审核</span></div>
+        <div class="kpi" style="min-width:120px"><b>~40</b><span>轮修复</span></div>
+      </div>
+      <div class="krow" style="margin:4px 0">
+        <div class="kpi" style="min-width:120px"><b style="color:var(--green)">0</b><span>registry 版本回滚</span></div>
+        <div class="kpi" style="min-width:120px"><b style="color:var(--green)">0</b><span>未审突变入册</span></div>
+      </div>
+      <p class="cap" style="margin-top:8px"><b>审校抓过的代表性错误</b>：凭记忆转写的「引文」（冻结证据里不存在）、把「同代号」当「同一种鱼」（淡水白鲳≠红腹食人鱼）、生成器把程序级计数填进「族数」列（连续三批）、修复文本抄错 reviewer 给的算术分解——每一类错误都已沉淀为判例，写进审核角色的长期记忆。</p>
+    </div>
+  </div>
+  <div class="note"><b>盲纪律</b>也是可信度的一部分：普查的每一步都是「先凭故事盲写出程序骨架并冻结（带哈希），然后才允许打开模板库比对」——防止照着答案填问卷。</div>
+</section>
+
+<!-- ============ 7 结语 ============ -->
+<section id="s7">
+  <h2><span class="no">07</span>这对游戏意味着什么</h2>
+  <div class="card">
+    <p style="font-size:16.5px;color:var(--ink);margin:4px 0 12px">做一条新鱼，<b>不需要写新逻辑</b>。</p>
+    <p class="lead" style="margin:0">策划的工作变成三件事：①从 28 个模板里挑一个（手册一页一个，中文伪脚本+配置表）；②填参数（因子档位成员、锚形式、衰减系数——全在 Profile 层，不冻结）；③特殊故事进分群路由。鱼的多样性来自<b>参数差异</b>，不是逻辑差异——这句结论从「直觉」变成了「267 种鱼逐条验证过、每一步可复核」的事实。</p>
+    <p class="cap" style="margin-top:14px">尚存的开放项（均已在案）：两个单成员 PROV 族待补证；2 尾鱼顺序证据不足挂起待调研线；护巢面的「目标特异性」轴留给机制侧；census↔live 的全面对账（含 284 条负证据台账）是下一段工作的入口。</p>
+  </div>
+</section>
+
+<footer>
+  <span>FCF 全库战役总结 · 单文件离线页 · 数据内嵌（registry v10 / 战役台账）</span>
+  <span>FR 267 ✓ · B 表达 213 ✓ · LT 295/295 + 303 重推 ✓ · 28 模板 · 2026-09-14</span>
+</footer>
+
+</div>
+<script>
+/* 28 型地图（数据与手册/registry v10 同源） */
+var F=[
+ ["类型化目标摄食",248,"r"],["单因子三档链",94,"b"],["空间先行双因子链",61,"b"],["觅食先行双因子链",34,"b"],
+ ["护巢双路径并行响应",28,"r"],["结构门+质量档链",27,"b"],["夜行底板+低光槽链",24,"b"],["护巢锚门四步链",18,"b"],
+ ["场摄食响应",16,"r"],["水层+轴段双步链",7,"b"],["底带硬门+底质+资源",7,"b"],["底质门→深冷带→资源",4,"b"],
+ ["软三步无门链",3,"b"],["底带门五步链（含深度）",2,"b"],["护巢四步+浊度语境",2,"b"],["结构→夜槽→猎物",2,"b"],
+ ["栖息→猎物+洪泛槽",2,"b"],["双硬门因子集",2,"b"],["极值门+无序因子集",1,"b"],["patch 门+双槽档",1,"b"],
+ ["结构先行四步",1,"b"],["门化结构先行四步",1,"b"],["水层→温度→结构",1,"b"],["门化温度次置四步",1,"b"],
+ ["口孵退化两步",1,"b"],["环境梯度趋避响应",1,"r"],["状态门互斥多路径",2,"r"],["受约束庇护所（负证据台账）",0,"b"]
+];
+var m=document.getElementById("fmap");
+F.forEach(function(f){
+  var d=document.createElement("div");
+  d.className="fcell "+(f[2]==="b"?"bake":"resp");
+  var w=Math.max(96,Math.min(300,90+f[1]*7));
+  d.style.width=w+"px";
+  d.innerHTML='<div class="n">'+(f[1]>0?f[1]:"—")+'</div><div class="t">'+f[0]+'</div>';
+  m.appendChild(d);
+});
+</script>
+</body>
+</html>
