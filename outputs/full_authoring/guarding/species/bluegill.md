@@ -21,7 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 互斥状态：ReproductionState ∈ {NONE, ACTIVE_SPAWNING, PARENTAL_GUARD}（§13.1 先例）；蓝鳃护巢行＝PARENTAL_GUARD。本鱼仅一个 Special Group（Guarding），不触发跨 Special Group 的重叠约束。
 - 「部分雄鱼」语义：只有部分成熟雄鱼进入护巢组成——由 GuardingShare 表达（供给份额），不需要逐个体属性事实（REP-COVERAGE-DELTA-001 §2.1 share-vector 先例；不触发 Sex/Maturity 个体属性 TODO）。
 - 表达超集说明：无（本文件未超出 C06 冻结语义主张范围）。
-- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（巢床结构三档） → 关系评估（与巢群锚点距离/朝向三档） → 局部温度 → 合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：C06 已审主张「预先建立并持续照护巢区」——建立期选址（锚适配先行）、照护期占位（关系评估在后）。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（晨昏） → 合并——物种属性锚方向级推导 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减×衰减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（巢床结构三档） → 关系评估（与巢群锚点距离/朝向三档） → 局部温度 → 合并；锚不存在格 ×0.01 软出局返回（非零）。推导来源（Tier A）：C06 已审主张「预先建立并持续照护巢区」——建立期选址（锚适配先行）、照护期占位（关系评估在后）。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（晨昏） → 合并——物种属性锚方向级推导 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减×衰减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@BluegillSpawnWindowStart @BluegillSpawnWindowEnd @BluegillGuardWarmupDays @BluegillGuardTempThreshold @BluegillColonyNestStructureSet @BluegillGuardingShare @BluegillLocalGuardAnchorEligibility @BluegillColonyNestSuitabilityProfile @BluegillGuardRelationProfile @BluegillGuardLocalTemperatureProfile @BluegillGuardThreatProfile @BluegillNormalLayerProfile @BluegillNormalStructureProfile @BluegillNormalTemperatureProfile @BluegillNormalTimeProfile @BluegillNormalTempFloor @BluegillNormalFeedingProfile @BluegillGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -100,8 +100,8 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 
 ```plain text
 【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
-判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0，
-不进入后续评估），不做「先全算再减」。推导来源（Tier A）：C06「预先建立并持续照护巢区」——
+判断链＝锚存在性判定 → 锚适配 → 关系评估 → 局部温度 → 合并；出局即 EARLY_RETURN（返回 0.01 × weight，
+不进入后续评估——×0.01 软出局：非零、仍可参与下游[REP-WORDING-ALIGN-001]），不做「先全算再减」。推导来源（Tier A）：C06「预先建立并持续照护巢区」——
 建立期选址（锚适配先行）→ 照护期占位（关系评估在后）。步序与档位成员的正文级校准 [需正文]。
 与 live BA-T2 模板平铺读法（读关系→查 Profile 得单一 Fit→合并）的分歧登记 README §7。
 
@@ -116,7 +116,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     如果 当前目标处于合法锚域：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
         锚域外格子不参与护巢分布评价，非「算出低值」）
 
 第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
@@ -127,7 +127,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 可接受档（tolerated 锚面）：
         AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除锚面）：
-        返回 0（EARLY_RETURN：不可守巢结构出局——殖民地巢群选址适配先行）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不可守巢结构出局——殖民地巢群选址适配先行）
 
 第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
     用当前目标与巢群锚点的关系（距离 / 朝向）查询 @BluegillGuardRelationProfile
@@ -137,7 +137,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 守卫缘档：
         RelationFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（圈外档）：
-        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；守卫圈外无护巢占位）
 
 第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
     用当前点局部温度查询 @BluegillGuardLocalTemperatureProfile
@@ -147,11 +147,9 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 边际档：
         LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除档）：
-        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；护巢期排除温度带出局）
 
-第 5 步 合并：
-    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -166,7 +164,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 | TemperatureProfile | @BluegillNormalTemperatureProfile |
 | TimeProfile | @BluegillNormalTimeProfile |
 | ExtremeTemperatureGate | @BluegillNormalTempFloor |
-| CombineRule | Template-fixed（数学 OPERATOR UNDEFINED — 待机制侧） |
+| CombineRule | Template-fixed（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
@@ -190,7 +188,7 @@ Independent Factor Set（因子无序合并）模板语义的分歧登记 README
     否则如果 ∈ 中间水层档：
         LayerFit = 削减（× Profile 衰减参数——不清零）
     否则（远底带档）：
-        返回 0（EARLY_RETURN：远离底带格出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；远离底带格出局）
 
 第 2 步 结构（分级命中）：
     用当前结构查询 @BluegillNormalStructureProfile（三档=Profile 值域不冻结）
@@ -199,7 +197,7 @@ Independent Factor Set（因子无序合并）模板语义的分歧登记 README
     否则如果 ∈ 可接受档：
         StructureFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除结构档出局 [需正文：排除档成员]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除结构档出局 [需正文：排除档成员]）
 
 第 3 步 水温（分级命中）：
     用当前水温查询 @BluegillNormalTemperatureProfile（三档=Profile 值域不冻结）
@@ -208,7 +206,7 @@ Independent Factor Set（因子无序合并）模板语义的分歧登记 README
     否则如果 ∈ 边际档：
         TemperatureFit = 削减（不清零）
     否则（排除档——@BluegillNormalTempFloor 为边界参考）：
-        返回 0（EARLY_RETURN：极值温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；极值温度带出局）
 
 第 4 步 时段（分级命中）：
     用当前时段查询 @BluegillNormalTimeProfile（晨昏三档=Profile 值域不冻结）
@@ -217,11 +215,9 @@ Independent Factor Set（因子无序合并）模板语义的分歧登记 README
     否则如果 ∈ 一般档：
         TimeFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
 
-第 5 步 合并：
-    合并 LayerFit / StructureFit / TemperatureFit / TimeFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -333,3 +329,4 @@ DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→�
 
 BATCH_ID: REP-FULL-GUARD-001
 顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Guard Bake 锚存在性 early return 链＋分级命中，Normal Bake 链还原，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

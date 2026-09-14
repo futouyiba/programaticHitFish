@@ -96,7 +96,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 弱信号档（tolerated 槽）：
         BenthicForageFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（无信号档）：
-        返回 0（EARLY_RETURN：无可探测猎物信号的格子出局——感官型信号先行判据）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无可探测猎物信号的格子出局——感官型信号先行判据）
 
 第 2 步 NORMALIZE_WEIGHT：
     对 BenthicForageFit 执行模板固定归一化（族常量，非作者可选）
@@ -195,3 +195,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-NORM-001
 顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 信号场可探测档三档分级命中 EARLY_RETURN，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

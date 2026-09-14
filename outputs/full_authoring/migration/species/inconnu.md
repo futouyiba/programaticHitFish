@@ -121,7 +121,7 @@ work standards §5.4 行动项）。
     否则如果 ∈ 近底过渡带（tolerated 槽）：
         LayerTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（中上远带）：
-        返回 0（EARLY_RETURN：demersal 底栖特化不在非底层分布——
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；demersal 底栖特化不在非底层分布——
         硬判定；CSV 锚方向级推导 [需正文]，若正文证实离底取食
         则档位化=结构变更需重审）
 
@@ -133,7 +133,7 @@ work standards §5.4 行动项）。
     否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
         MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（当前阶段绑定轴段外——非本阶段空间）：
-        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；格子不在当前阶段空间重排范围，出局）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 LayerTier × MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
@@ -276,3 +276,4 @@ live §8.8 Typed Result 先例；本行=第 1 步状态门控的拓扑语义，�
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 底层硬定位+轴段归属三档+early return 链，Response 状态门控显式化+程序级门+双 Path 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

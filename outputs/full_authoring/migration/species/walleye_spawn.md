@@ -68,7 +68,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 | FactorBinding | lifecycle premise：spawning_stage 配置级切换（繁殖浅滩期↔散后深水结构期因子值域切换；值域由 Profile 层定值；不建 body 分支） |
 | TemperatureProfile | @WalleyeSpawnTemperatureProfile |
 | PreyFactorProfile | @WalleyeSpawnPreyFactorProfile |
-| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学 OPERATOR UNDEFINED 待机制侧——census open_semantics 因子间顺序 unordered） |
+| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——census open_semantics 因子间顺序 unordered） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@WalleyePreyFields；diet_classes=@WalleyeDietClasses；size_window=@WalleyeSizeWindow） |
 | LiveLayerProjection | B-T1 Independent Factor Set（§13.2 结构族：2 槽温度+食物；两层 reconciliation OPEN——README §3 登记） |
 
@@ -116,7 +116,7 @@ tolerated=削减不清零/excluded=槽值出局）。**族域边界注意：PLAI
 
 COMBINE_WEIGHTED：
     按模板固定组合规则合并 TemperatureFit 与 PreyFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
+    算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
     因子间顺序 unordered，Factor 展示顺序不改变结果）
 
 返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
@@ -206,3 +206,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 槽内三档分级命中+excluded 槽值出局族域边界显式化（链序按 unordered 族契约不还原），Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

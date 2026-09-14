@@ -95,7 +95,7 @@ LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）—
     如果 格子存在急流石隙/岩缝掩体结构：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：格子无石隙结构——伏击型结构掩体先行判据）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；格子无石隙结构——伏击型结构掩体先行判据）
 
 第 2 步 掩体结构档位（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
     用该 typed 因子轴事实查询 @SbbRiffleRockStructureProfile 的掩体伏击分档槽
@@ -105,7 +105,7 @@ LogicTemplate 判据。顺序来源＝CSV 方向锚级推导（[需正文]）—
     否则如果 ∈ 次级掩体档（tolerated 槽）：
         RiffleRockFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（暴露无掩体档）：
-        返回 0（EARLY_RETURN：暴露格子不承载伏击分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；暴露格子不承载伏击分布）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 RiffleRockFit 执行模板固定归一化（族常量，非作者可选）
@@ -203,3 +203,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-NORM-001
 顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 门先行 EARLY_RETURN+掩体档三档分级命中，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

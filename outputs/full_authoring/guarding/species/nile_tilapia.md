@@ -22,7 +22,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 锚点：口孵群（brood-in-mouth，与个体绑定的锚）——GuardAnchor Resolver 实例 = 口孵群；空间锚=育幼期雌鱼常驻区 [需正文：口孵期雌鱼空间偏好无本地正文]。
 - 互斥状态：繁殖阶段 ∈ {NONE, BROODING（口孵期）, …}（typed 枚举；本 Story 冻结 BROODING 行）。
 - 与例 3 双通道的关系：NormalFeeding Group 的双通道摄食（刮食 + 悬浮颗粒）已由 live 例 3 表达（汇总算子 OPERATOR UNDEFINED 标注在案）；本文件只做绑定引用。
-- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Brooding 面＝**退化链**：锚存在性判定 → 常驻区适配（单 Factor 三档） → 返回（无关系轴 / 无温度轴 / 无合并步——口孵锚与个体绑定，§2.1 退化绑定注记）；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：coverage #3 判定（口孵=类型化繁殖状态路由 + 退化 Bake 锚）；常驻区空间偏好 [需正文]。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（全天） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Brooding 面＝**退化链**：锚存在性判定 → 常驻区适配（单 Factor 三档） → 返回（无关系轴 / 无温度轴 / 无合并步——口孵锚与个体绑定，§2.1 退化绑定注记）；锚不存在格 ×0.01 软出局返回（非零）。推导来源（Tier A）：coverage #3 判定（口孵=类型化繁殖状态路由 + 退化 Bake 锚）；常驻区空间偏好 [需正文]。Normal 面＝水层软定位（benthopelagic） → 结构 → 水温（排除档=极值出局） → 时段（全天） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@TilapiaSpawnWindowStart @TilapiaSpawnWindowEnd @TilapiaBroodingWarmupDays @TilapiaBroodingTempThreshold @TilapiaBroodingStages @TilapiaBroodingFemaleShare @TilapiaBroodAnchorEligibility @TilapiaBroodCareSuitabilityProfile @TilapiaBroodingFeedingCap @ResponseCap @TilapiaNormalLayerProfile @TilapiaNormalStructureProfile @TilapiaNormalTemperatureProfile @TilapiaNormalTimeProfile @TilapiaNormalTempFloor @GrazingProfile @SuspendedFeedingProfile @TilapiaBroodingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -105,7 +105,7 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
 【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
 判断链＝锚存在性判定 → 常驻区适配（分级命中） → 返回——**退化链**（口孵锚与个体绑定，
 无「目标点 vs 固定锚位」关系轴、无温度轴、无合并步；§2.1 退化绑定注记，coverage #3 判定）。
-出局即 EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。
+出局即 EARLY_RETURN（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估），不做「先全算再减」。
 推导来源（Tier A）：coverage #3 四面判定；常驻区空间偏好 [需正文]。
 
 读取 当前目标的结构 / 水层 / 深度
@@ -118,7 +118,7 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
     如果 当前目标处于合法锚域：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
         非锚域格不参与口孵育幼分布评价，非「算出低值」）
 
 第 2 步 常驻区适配（EVAL_BROOD_SUITABILITY，分级命中——单 Factor 退化形）：
@@ -129,7 +129,7 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
     否则如果 ∈ 可接受档（tolerated 常驻区）：
         BroodCareFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除档）：
-        返回 0（EARLY_RETURN：排除常驻区档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除常驻区档出局）
 
 返回 Brooding SpatialDistributionWeight（退化链结束：锚存在性 early return＋单 Factor 分级命中；
 无关系轴 / 无温度轴 / 无合并步——退化绑定不是漏写，§2.1 注记）
@@ -145,7 +145,7 @@ Share 语义：live §7 契约；份额是供给比例，不是逐个体性别�
 | TemperatureProfile | @TilapiaNormalTemperatureProfile |
 | TimeProfile | @TilapiaNormalTimeProfile（全天活跃方向） |
 | ExtremeTemperatureGate | @TilapiaNormalTempFloor |
-| CombineRule | Template-fixed（数学 OPERATOR UNDEFINED — 待机制侧） |
+| CombineRule | Template-fixed（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
@@ -169,7 +169,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 中间水层档：
         LayerFit = 削减（× Profile 衰减参数——不清零）
     否则（远底带档）：
-        返回 0（EARLY_RETURN：远离底带格出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；远离底带格出局）
 
 第 2 步 结构（分级命中）：
     用当前结构查询 @TilapiaNormalStructureProfile（三档=Profile 值域不冻结）
@@ -178,7 +178,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 可接受档：
         StructureFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除结构档出局 [需正文：排除档成员]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除结构档出局 [需正文：排除档成员]）
 
 第 3 步 水温（分级命中）：
     用当前水温查询 @TilapiaNormalTemperatureProfile（三档=Profile 值域不冻结）
@@ -187,7 +187,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 边际档：
         TemperatureFit = 削减（不清零）
     否则（排除档——@TilapiaNormalTempFloor 为边界参考）：
-        返回 0（EARLY_RETURN：极值温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；极值温度带出局）
 
 第 4 步 时段（分级命中）：
     用当前时段查询 @TilapiaNormalTimeProfile（全天活跃三档=Profile 值域不冻结）
@@ -196,11 +196,9 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 一般档：
         TimeFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
 
-第 5 步 合并：
-    合并 LayerFit / StructureFit / TemperatureFit / TimeFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -305,3 +303,4 @@ NormalFeeding Group（live 例 3 原样绑定）：
 
 BATCH_ID: REP-FULL-GUARD-001
 顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Brooding Bake 退化链 early return＋分级命中，Normal Bake 链还原，Brooding Response DECIDE 档位展开＋Cap 维持；例 3 双通道绑定原样）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

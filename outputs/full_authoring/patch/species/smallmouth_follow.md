@@ -95,7 +95,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 第 1 步 扰动机会存在性（GATE_DISTURBANCE_WINDOW）：
     用扰动事件事实查询 @SmaDisturbanceFollowerProfile 的存在分档槽
     如果 当前扰动窗口内无扰动事件（excluded 槽——零事件）：
-        返回 0（EARLY_RETURN：无扰动=无动态机会斑块，本面零权重——
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无扰动=无动态机会斑块，本面零权重——
         常态分布由该鱼其它程序面承载，非本 Story 程序）
     否则：
         进入第 2 步
@@ -109,7 +109,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 有限暴露档（tolerated 槽）：
         DisturbanceFollowerFit = 削减强度（× Profile 衰减参数——削减但不清零）
     否则（残余暴露档）：
-        返回 0（EARLY_RETURN：残余暴露出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；残余暴露出局）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 DisturbanceFollowerFit 执行模板固定归一化（族常量，非作者可选）
@@ -208,3 +208,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-P02-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

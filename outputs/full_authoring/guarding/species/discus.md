@@ -21,7 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - census ↔ live 表达分歧（同 oscar.md §0 条目）：census 育幼期 body 为双路径（DUAL_PATH，HIGH）；live V0 为 Defense-only（RR-T2）。本文件表达 live V0；COMBINE_DUAL_PATH 数学 OPERATOR UNDEFINED，待机制侧。
 - 互斥状态：guard_state ∈ {NONE, BIPARENTAL_CARE}。
 - 表达超集说明：无。
-- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：BroodCare 面＝锚存在性判定 → 锚适配（**群栖境**三档——移动锚的适配判「稚鱼群所在栖境」而非固定巢址） → 关系评估（贴群三档） → 局部温度 → 合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：census P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液」——贴附=贴群关系；稚鱼群存在已在路由面结算（C4），Bake 不重复结算。Normal 面＝水温极值硬门（暖水窄温方向锚） → 掩体结构定位 → 静水 → 猎物 → 时段（早晨） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：BroodCare 面＝锚存在性判定 → 锚适配（**群栖境**三档——移动锚的适配判「稚鱼群所在栖境」而非固定巢址） → 关系评估（贴群三档） → 局部温度 → 合并；锚不存在格 ×0.01 软出局返回（非零）。推导来源（Tier A）：census P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液」——贴附=贴群关系；稚鱼群存在已在路由面结算（C4），Bake 不重复结算。Normal 面＝水温极值硬门（暖水窄温方向锚） → 掩体结构定位 → 静水 → 猎物 → 时段（早晨） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@DiscusSpawnWindowStart @DiscusSpawnWindowEnd @DiscusGuardWarmupDays @DiscusGuardTempThreshold @DiscusBroodStructureSet @DiscusGuardingShare @DiscusLocalGuardAnchorEligibility @DiscusBroodHabitatSuitabilityProfile @DiscusGuardRelationProfile @DiscusGuardLocalTemperatureProfile @DiscusGuardThreatProfile @DiscusNormalStructureProfile @DiscusStillwaterProfile @DiscusPreyResourceProfile @DiscusNormalTimeProfile @DiscusNormalTempFloor @DiscusNormalFeedingProfile @DiscusGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -107,7 +107,7 @@ Share 语义：live §7 契约。双亲育幼由份额整体表达（份额粒�
 ```plain text
 【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
 判断链＝锚存在性判定 → 锚适配（群栖境） → 关系评估（贴群） → 局部温度 → 合并；出局即
-EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。推导来源（Tier A）：census
+EARLY_RETURN（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估），不做「先全算再减」。推导来源（Tier A）：census
 P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——贴附=亲鱼贴群；稚鱼群存在已在
 路由面判定（C4），本程序不重复结算该 premise。移动锚语义：锚适配判「稚鱼群所在栖境」
 （群位置由上游 Resolver 解析），非固定巢址选址。步序与档位成员的正文级校准 [需正文]。
@@ -125,7 +125,7 @@ P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——�
     如果 当前目标处于合法锚域：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
         锚域外格子不参与育幼分布评价，非「算出低值」）
 
 第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中——群栖境语义）：
@@ -137,7 +137,7 @@ P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——�
     否则如果 ∈ 可接受档（tolerated 栖境）：
         AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除栖境档）：
-        返回 0（EARLY_RETURN：排除栖境出局——稚鱼群不驻留的栖境无育幼分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除栖境出局——稚鱼群不驻留的栖境无育幼分布）
 
 第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中——贴群语义）：
     用当前目标与稚鱼群的关系（距离 / 朝向）查询 @DiscusGuardRelationProfile
@@ -147,7 +147,7 @@ P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——�
     否则如果 ∈ 护卫缘档：
         RelationFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（圈外档）：
-        返回 0（EARLY_RETURN：护卫圈外无育幼占位）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；护卫圈外无育幼占位）
 
 第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
     用当前点局部温度查询 @DiscusGuardLocalTemperatureProfile
@@ -157,11 +157,9 @@ P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——�
     否则如果 ∈ 边际档：
         LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除档）：
-        返回 0（EARLY_RETURN：育幼期排除温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；育幼期排除温度带出局）
 
-第 5 步 合并：
-    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 BroodCare SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -176,7 +174,7 @@ P-B1-DIS premise「幼鱼贴附取食亲鱼体表黏液＝照护关系」——�
 | PreyResourceProfile | @DiscusPreyResourceProfile（猎物资源因子） |
 | TimeProfile | @DiscusNormalTimeProfile（早晨活跃方向） |
 | ExtremeTemperatureGate | @DiscusNormalTempFloor |
-| CombineRule | Template-fixed（数学 OPERATOR UNDEFINED — 待机制侧） |
+| CombineRule | Template-fixed（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
@@ -196,7 +194,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
 第 1 步 水温极值硬门（GATE_EXTREME_TEMP）：
     用当前点水温对照排除档边界（@DiscusNormalTempFloor 为边界参考）
     如果 当前点水温 ∈ 排除档（极值带）：
-        返回 0（EARLY_RETURN：极值温度带出局——暖水窄温种的生存出局条件先行）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；极值温度带出局——暖水窄温种的生存出局条件先行）
 
 第 2 步 掩体结构定位（分级命中）：
     用当前结构查询 @DiscusNormalStructureProfile（三档=Profile 值域不冻结）
@@ -205,7 +203,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 可接受档：
         StructureFit = 削减（× Profile 衰减参数——不清零）
     否则：
-        返回 0（EARLY_RETURN：排除结构档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除结构档出局）
 
 第 3 步 静水（分级命中）：
     用静水事实查询 @DiscusStillwaterProfile（三档=Profile 值域不冻结）
@@ -214,7 +212,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 可接受档：
         StillwaterFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除流态档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除流态档出局）
 
 第 4 步 猎物（分级命中）：
     用猎物资源查询 @DiscusPreyResourceProfile（三档=Profile 值域不冻结）
@@ -223,7 +221,7 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 可接受档：
         PreyFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：无猎物资源档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无猎物资源档出局）
 
 第 5 步 时段（分级命中）：
     用当前时段查询 @DiscusNormalTimeProfile（早晨三档=Profile 值域不冻结）
@@ -232,11 +230,9 @@ Set（因子无序合并）模板语义的分歧登记 README §7。
     否则如果 ∈ 一般档：
         TimeFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
 
-第 6 步 合并：
-    合并 StructureFit / StillwaterFit / PreyFit / TimeFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -349,3 +345,4 @@ DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→�
 
 BATCH_ID: REP-FULL-GUARD-001
 顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；BroodCare Bake 锚存在性 early return 链＋分级命中，Normal Bake 链还原，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

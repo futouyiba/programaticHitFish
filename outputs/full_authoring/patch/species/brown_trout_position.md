@@ -69,7 +69,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 | Factor1Type(typed) | resource_patch：食物位置分布轴（census premise resource_patch=食物位置分布；盲体槽1 op=EVAL_RESOURCE_PATCH——族判同实例化名） |
 | Factor2Type(typed) | individual_rank：优势等级→patch 中心-边缘位置偏好轴（census 盲体槽2 op=EVAL_RANK_POSITION_PREFERENCE——新具名 typed 因子类型，首个个体属性调制因子，**准入待批 HRQ-B1-04**；rank fact 产品持久写回未定 TAR-05） |
 | FactorBinding | 常年绑定（rank premise 为个体 Condition/Relation 上游 fact，非 lifecycle/season 切换） |
-| CombineRule | Template-fixed COMBINE_WEIGHTED（数学 OPERATOR UNDEFINED 待机制侧） |
+| CombineRule | Template-fixed COMBINE_WEIGHTED（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@BrtPreyFields；diet_classes=@BrtDietClasses；size_window=@BrtSizeWindow） |
 | LiveLayerProjection | B-T1 Independent Factor Set 双因子形态（§13.2 结构族读法）+ Group 侧 share-vector 替代读法（§7/§15.1，HRQ-B1-04 联合裁决 OPEN——README §3 登记 4） |
 
@@ -95,7 +95,7 @@ core-vs-edge（优势=中心/次级=边缘化）直接支持。顺序差异本�
 第 1 步 patch 存在性（GATE_PATCH_PRESENCE）：
     用食物位置分布轴事实查询 @BrtPatchCompetitorProfile 的存在分档槽
     如果 本格无食物 patch（excluded 槽——零 patch 强度）：
-        返回 0（EARLY_RETURN：无 patch 格无竞争占位对象，不参与本分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无 patch 格无竞争占位对象，不参与本分布）
     否则：
         进入第 2 步
 
@@ -107,7 +107,7 @@ core-vs-edge（优势=中心/次级=边缘化）直接支持。顺序差异本�
     否则如果 patch 强度 ∈ 中档（tolerated 槽）：
         PatchFit = 削减强度（× Profile 衰减参数——削减但不清零）
     否则（patch 存在但强度近零档）：
-        返回 0（EARLY_RETURN：强度排除档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；强度排除档出局）
 
 第 3 步 rank 位置档位（EVAL_RANK_POSITION_PREFERENCE 槽2，分级命中——core-vs-edge）：
     用个体 rank premise 查询 @BrtRankPositionProfile
@@ -122,7 +122,7 @@ core-vs-edge（优势=中心/次级=边缘化）直接支持。顺序差异本�
 
 第 4 步 COMBINE_WEIGHTED：
     合并 PatchFit 与 RankPositionFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明）
+算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；多因子合并算子；live §15.3 同款占位声明）
 
 返回 SpatialDistributionWeight（顺序还原链结束：有 early return、双槽分级命中；
 无归一化步——族边界维持。本链与 census PLAIN 族 canonical
@@ -217,3 +217,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-P02-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+双槽分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

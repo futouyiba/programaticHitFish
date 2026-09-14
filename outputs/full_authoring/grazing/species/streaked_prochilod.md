@@ -98,7 +98,7 @@ Story 正文到达后校准，顺序/档位差异本身=LogicTemplate 判据
     否则如果 水层 ∈ 中下水层档（tolerated 槽）：
         LayerTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（远离底带档）：
-        返回 0（EARLY_RETURN：底泥碎屑摄食定位不在远底水层分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；底泥碎屑摄食定位不在远底水层分布）
 
 第 2 步 底泥底质档位（分级命中——碎屑载体可承载性）：
     用底质类型查询 @ProchilodSubstratePatchProfile 的底质分档槽
@@ -108,7 +108,7 @@ Story 正文到达后校准，顺序/档位差异本身=LogicTemplate 判据
     否则如果 底质 ∈ 部分承载档（tolerated 槽——如沙质混泥）：
         SubstrateTier = 削减（削减但不清零）
     否则（不可承载档——如硬砾无沉积）：
-        返回 0（EARLY_RETURN：无碎屑承载的底质出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无碎屑承载的底质出局）
 
 第 3 步 碎屑资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @ProchilodSubstratePatchProfile
@@ -118,7 +118,7 @@ Story 正文到达后校准，顺序/档位差异本身=LogicTemplate 判据
     否则如果 ∈ 贫档（tolerated 槽）：
         SubstratePatchIntensity = 削减强度（削减但不清零）
     否则（无沉积资源档）：
-        返回 0（EARLY_RETURN：无碎屑资源的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无碎屑资源的格子出局）
 
 第 4 步 NORMALIZE_WEIGHT：
     对 LayerTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
@@ -213,3 +213,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-GRAZE-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

@@ -105,7 +105,7 @@ early return 的对象=格子。推导来源与 census 判语分歧登记 README
     否则如果 ∈ 可接受邻层（tolerated 槽）：
         携削减标记进入第 2 步（× Profile 衰减参数——削减但不清零）
     否则（远离资源 patch 层位，场不在位）：
-        返回 0（EARLY_RETURN：格子不在资源 patch 层位范围，出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；格子不在资源 patch 层位范围，出局）
 
 第 2 步 EVAL_FOOD_FIELD_CONCENTRATION（canonical 步的档位化展开——patch 密度三档）：
     用资源 patch 场浓度事实查询 @GrbResourcePatchFieldEvaluatorProfile
@@ -116,7 +116,7 @@ early return 的对象=格子。推导来源与 census 判语分歧登记 README
     否则如果 ∈ 边际密度带（tolerated 槽）：
         FieldSuitability = 削减（× Profile 衰减参数叠加——削减但不清零）
     否则（无 patch/密度低于起始阈值）：
-        返回 0（EARLY_RETURN：场不可用，格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；场不可用，格子出局）
 
 第 3 步 个体大小口径判定（口径三档——契约口径过滤维度的链位化）：
     用口径过滤前后的构成对比（patch 场浓度事实 vs diet_classes=@GrbDietClasses
@@ -127,9 +127,9 @@ early return 的对象=格子。推导来源与 census 判语分歧登记 README
     否则如果 仅部分构成在口径内（tolerated 槽）：
         FieldSuitability = 削减（× Profile 衰减参数叠加——部分可食）
     否则（patch 构成全部超出本鱼口径——密度高亦不可食）：
-        返回 0（EARLY_RETURN：口径不匹配，格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；口径不匹配，格子出局）
 
-    多步命中档的折减合成算子标注：OPERATOR UNDEFINED —— 待机制侧
+    多步命中档的折减合成算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——折减合成=逐步乘法 weight = weight × step_fit）
     （SINGLE 族 forbidden_freedoms 无 combine 步；三步为同一场评估的顺序判定非并联，
      步间折减合成=族重跑后的规格动作，本文件不静默定义）
 
@@ -231,3 +231,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-FIELD-001
 顺序还原修复批次：REP-ORDER-FIX-005（§0/§2/§3/§5 修改；Bake 场层位定位→场密度→口径链+early return，Response 档位展开——重建件修复适用，WITHDRAWN 状态已被 REV-001 B1 重建取代）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

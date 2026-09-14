@@ -97,7 +97,7 @@ EARLY_RETURN），与伏击型（掩体先行）、追击型（猎物场+栖息�
     否则如果 ∈ 贫档（tolerated 槽）：
         EstuaryPulseFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（枯竭档——无可食机会）：
-        返回 0（EARLY_RETURN：无食物机会的格子出局——机会型跟着食物走）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无食物机会的格子出局——机会型跟着食物走）
 
 第 2 步 NORMALIZE_WEIGHT：
     对 EstuaryPulseFit 执行模板固定归一化（族常量，非作者可选）
@@ -195,3 +195,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-NORM-001
 顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 食物丰度档三档分级命中 EARLY_RETURN，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

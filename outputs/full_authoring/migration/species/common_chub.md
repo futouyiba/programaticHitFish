@@ -71,7 +71,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 | Factor3Type(typed) | resource_factor：猎物资源（杂食宽谱，大个体鱼食权重升——size_class premise 落本槽参数；census 槽 3） |
 | Factor4Type(typed) | resource_factor：陆生猎物水面机会（typed 实例——census 槽 4 EVAL_RESOURCE_FACTOR_SURFACE_FILM） |
 | FactorBinding | lifecycle premise：spawn_run 配置级切换（INACTIVE=常态 4 槽因子集 / ACTIVE=快水+砾石繁殖因子集 {fast_water, gravel} 冻结常量——P05 判例配置级，body 不分支；size_class 同为上游 premise，落槽 3 参数） |
-| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学 OPERATOR UNDEFINED 待机制侧——census open_semantics 因子间顺序 unordered 原样携带） |
+| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——census open_semantics 因子间顺序 unordered 原样携带） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@CommonChubPreyFields；diet_classes=@CommonChubDietClasses；size_window=@CommonChubSizeWindow） |
 | LiveLayerProjection | B-T1 Independent Factor Set（§13.2 结构族：4 槽因子集；两层 reconciliation OPEN——README §3 登记） |
 
@@ -143,7 +143,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 
 COMBINE_WEIGHTED：
     按模板固定组合规则合并 FlowFit / PoolStructureFit / PreyFit / SurfaceFilmFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
+    算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；census PLAIN 族 COMBINE_WEIGHTED 数学未冻结；
     因子间顺序未由证据裁决，unordered 处理——open_semantics 原样携带）
 
 返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
@@ -242,3 +242,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 槽内三档分级命中+excluded 槽值出局族域边界显式化（链序按 unordered 族契约不还原），Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

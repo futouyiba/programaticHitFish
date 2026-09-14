@@ -71,7 +71,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 | FactorSet(typed) | 静水偏好/塘体结构/猎物资源（typed 因子集——census P-LUN-BAKE-WET 冻结因子集） |
 | FactorBinding | lifecycle premise：season_regime 配置级切换（WET=本程序绑定实例 / DRY=蛰伏退化体不建体——census AMBIGUOUS/TAR-01 原样，见 §2.3） |
 | HabitatFactorProfile | @LungfishWetFactorSetProfile |
-| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学 OPERATOR UNDEFINED 待机制侧——census open_semantics 因子间顺序 unordered） |
+| CombineRule | Template-fixed COMBINE_WEIGHTED（族常量拓扑；数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——census open_semantics 因子间顺序 unordered） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@LungfishPreyFields；diet_classes=@LungfishDietClasses；size_window=@LungfishSizeWindow） |
 | LiveLayerProjection | B-T1 Independent Factor Set + Optional Gate（§13.2 结构族：Optional Gate 槽即硬门——两层 reconciliation OPEN，README §3 登记） |
 
@@ -106,7 +106,7 @@ EARLY_RETURN 化（水面不可达=程序级出局）+ WET/DRY premise 门语义
 
 第 1 步 GATE_HARD_VIABILITY（硬门前置——顺序还原后显式 EARLY_RETURN 形）：
     如果 当前点水面不可达（@LungfishSurfaceAccessGate 不成立）：
-        返回 0（EARLY_RETURN：从可访问集中剔除该目标——硬门，非相对排序；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；从可访问集中剔除该目标——硬门，非相对排序；
         与 CRR 判别结构不同——水面可达是绝对约束而非相对寻优，census 冻结判语；
         本步即族 canonical gate 步的 early return 显式化，拓扑不变）
 
@@ -143,7 +143,7 @@ EARLY_RETURN 化（水面不可达=程序级出局）+ WET/DRY premise 门语义
 
 COMBINE_WEIGHTED：
     按模板固定组合规则合并 StillwaterFit / StructureFit / PreyFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（census HARD_GATED 族 COMBINE_WEIGHTED
+    算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；census HARD_GATED 族 COMBINE_WEIGHTED
     数学未冻结；因子间顺序 unordered，open_semantics 原样）
 
 返回 SpatialDistributionWeight（gate 后因子集结束：硬门 EARLY_RETURN+槽内分级命中；
@@ -249,3 +249,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 硬门 EARLY_RETURN 显式化+WET/DRY 程序级门语义+槽内三档，Response 档位展开+DRY 门控 early return 显式化）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

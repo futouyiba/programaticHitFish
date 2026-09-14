@@ -102,7 +102,7 @@ standards §5.4 行动项）。
     否则如果 ∈ 稀草过渡带（tolerated 槽）：
         ReproductiveStateSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（无草带——无植食资源）：
-        返回 0（EARLY_RETURN：无草带的格子出局——CSV 锚方向级推导 [需正文]，
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无草带的格子出局——CSV 锚方向级推导 [需正文]，
         若正文证实底栖无脊椎等替代资源带则档位成员调整，结构变更需重审）
 
 第 2 步 NORMALIZE_WEIGHT：
@@ -199,3 +199,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 资源带档位归属三档+early return 链，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

@@ -101,7 +101,7 @@ census context 常量 fast_flow_stone（单绑定）拆为流速档＋石底档�
     否则如果 流速 ∈ 过渡档（tolerated 槽）：
         CurrentTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（缓流/静水档）：
-        返回 0（EARLY_RETURN：急流种不入缓静水分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；急流种不入缓静水分布）
 
 第 2 步 石底档（分级命中）：
     用底质类型查询 @OnychostomaSubstratePatchProfile 的基质分档槽
@@ -110,7 +110,7 @@ census context 常量 fast_flow_stone（单绑定）拆为流速档＋石底档�
     否则如果 底质 ∈ 硬质非石档（tolerated 槽——附着面有限）：
         SubstrateTier = 削减（削减但不清零）
     否则（软底无附着面档）：
-        返回 0（EARLY_RETURN：无附着面底质出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无附着面底质出局）
 
 第 3 步 附着资源档（EVAL_RESOURCE_PATCH，分级命中）：
     用附着资源事实查询 @OnychostomaSubstratePatchProfile
@@ -120,7 +120,7 @@ census context 常量 fast_flow_stone（单绑定）拆为流速档＋石底档�
     否则如果 附着生物量 ∈ 贫档（tolerated 槽）：
         SubstratePatchIntensity = 削减强度（削减但不清零）
     否则（无附着资源档）：
-        返回 0（EARLY_RETURN：无附着资源的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无附着资源的格子出局）
 
 第 4 步 NORMALIZE_WEIGHT：
     对 CurrentTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
@@ -216,3 +216,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-GRAZE-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本行为链四环原序+early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

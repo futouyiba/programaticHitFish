@@ -97,7 +97,7 @@ LightAvailability cue 双承载，槽位置提前＝改判例结构需重审（�
     否则如果 ∈ 次级夜栖档（tolerated 槽）：
         RockNightDeepPoolFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（无夜行底板档）：
-        返回 0（EARLY_RETURN：无夜行底板的格子出局——夜行型栖息底板判据）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无夜行底板的格子出局——夜行型栖息底板判据）
 
 第 2 步 低光/夜相槽档位（APPLY_DYNAMIC_SPATIAL_SLOT 槽内三档——光照+时段判据；
   槽位置=live §11.5 判例固定原位，非作者可选）：
@@ -204,3 +204,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-NORM2-001
 顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 夜行底板档三档+低光槽内三档——槽位置按 §11.5 判例原位，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

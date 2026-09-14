@@ -96,7 +96,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 第 1 步 斑块存在性（GATE_PATCH_PRESENCE）：
     用斑块轴事实查询 @GrbHerbivorePatchProfile 的存在分档槽
     如果 本格无植食资源斑块且无预投饵斑块（excluded 槽——零斑块）：
-        返回 0（EARLY_RETURN：无斑块格不参与斑块追随分布）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无斑块格不参与斑块追随分布）
     否则：
         进入第 2 步
 
@@ -109,7 +109,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 斑块质量 ∈ 可接受档（tolerated 槽）：
         HerbivorePatchFit = 削减强度（× Profile 衰减参数——削减但不清零）
     否则（斑块存在但质量近零档）：
-        返回 0（EARLY_RETURN：质量排除档出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；质量排除档出局）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 HerbivorePatchFit 执行模板固定归一化（族常量，非作者可选）
@@ -205,3 +205,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-P02-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

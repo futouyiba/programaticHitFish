@@ -97,7 +97,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 水层 ∈ 中下水层档（tolerated 槽）：
         LayerTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（远离底带档）：
-        返回 0（EARLY_RETURN：吸食底栖取食定位不在远底水层分布——
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；吸食底栖取食定位不在远底水层分布——
         硬定位与否 [需正文]，正文证实可离底则档位化=结构变更需重审）
 
 第 2 步 底质栖境档位（分级命中——表面/间隙无脊椎栖境可得性）：
@@ -108,7 +108,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 底质 ∈ 有限栖境档（tolerated 槽）：
         SubstrateTier = 削减（削减但不清零）
     否则（无栖境档——无脊椎不可栖底质）：
-        返回 0（EARLY_RETURN：无可吸食栖境的底质出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无可吸食栖境的底质出局）
 
 第 3 步 无脊椎资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @BlueSuckerSubstratePatchProfile
@@ -118,7 +118,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 贫档（tolerated 槽）：
         SubstratePatchIntensity = 削减强度（削减但不清零）
     否则（无资源档）：
-        返回 0（EARLY_RETURN：无底栖无脊椎的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无底栖无脊椎的格子出局）
 
 第 4 步 NORMALIZE_WEIGHT：
     对 LayerTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
@@ -213,3 +213,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-GRAZE-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

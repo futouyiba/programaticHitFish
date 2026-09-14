@@ -66,7 +66,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
 | BakeTemplate | BA-P01-PURSUIT-PLAIN（本批投影标签＝census PLAIN_FACTOR_COMBINE，registry v4；因子集→组合——追击型双因子投影，第一轮定型，本批零新族；**§2.2 已顺序还原（REP-ORDER-FIX-004）：槽内三档分级命中——槽间顺序按族契约 unordered 不还原，登记 README §7**） |
 | Factor1Type(typed) | forage_factor：开阔水小鱼群猎物场轴 |
 | Factor2Type(typed) | habitat_factor：急流深潭结构轴 |
-| CombineRule | Template-fixed COMBINE_WEIGHTED（数学 OPERATOR UNDEFINED 待机制侧） |
+| CombineRule | Template-fixed COMBINE_WEIGHTED（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 | Bake 输入契约 | UsableForageAvailability（prey_fields=@PYRPreyFields；diet_classes=@PYRDietClasses；size_window=@PYRSizeWindow） |
 | LiveLayerProjection | B-T1 Independent Factor Set 双因子形态（§13.2 结构族读法；两层 reconciliation OPEN——README §3） |
 
@@ -114,7 +114,7 @@ EARLY_RETURN**——槽无 gate 语义（族边界禁 gate），出槽值仍进 
 
 COMBINE_WEIGHTED：
     合并两个 FactorFit
-算子标注：OPERATOR UNDEFINED — 待机制侧（多因子合并算子；live §15.3 同款占位声明；
+算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；多因子合并算子；live §15.3 同款占位声明；
 census PLAIN 族因子间顺序 unordered，槽展示顺序不改变结果）
 
 返回 SpatialDistributionWeight（受限还原结束：槽内有分级命中；无链序、无 gate、
@@ -205,3 +205,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-NORM2-001
 顺序还原修复批次：REP-ORDER-FIX-004（§0/§2/§3/§5 修改；Bake 伪脚本 槽内三档分级命中——槽间顺序按族契约 unordered 不还原，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

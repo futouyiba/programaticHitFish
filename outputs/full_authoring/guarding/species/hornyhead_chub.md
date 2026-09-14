@@ -21,7 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - 特异性边界：R07 判定「guard target specificity=Open Question 不立 Candidate」——本表达**不含**「对共生产卵者 / 对入侵者」的分辨逻辑；@HornyheadGuardThreatProfile 对一切逼近锚点的呈现统一评价。若未来特异性立项，走 Response Profile 重绑定（REP-COVERAGE-DELTA-001 K13 先例），不是新结构。
 - 互斥状态：ReproductionState ∈ {NONE, PARENTAL_GUARD}。
 - 表达超集说明：Tier B 文件的条件原子结构与集名按 P04 标准骨架给出；石巢基质集合成员、窗口数值全部 @ 化或标注 [需正文]。
-- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（砾石基质三档——**构建型**：雄鱼筑巢=选址适配先行） → 关系评估（三档） → 局部温度 → 合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier B）：R07 FR3 抽验名单「石巢筑造+守护」（构筑型锚——方向级）；巢体存在事实已在路由面结算（C4），Bake 不重复结算；步序与档位成员 [需正文] 校准。Normal 面＝水层硬定位（demersal——非底层出局） → 结构 → 水温（排除档=极值出局） → 时段（早晨） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝锚存在性判定 → 锚适配（砾石基质三档——**构建型**：雄鱼筑巢=选址适配先行） → 关系评估（三档） → 局部温度 → 合并；锚不存在格 ×0.01 软出局返回（非零）。推导来源（Tier B）：R07 FR3 抽验名单「石巢筑造+守护」（构筑型锚——方向级）；巢体存在事实已在路由面结算（C4），Bake 不重复结算；步序与档位成员 [需正文] 校准。Normal 面＝水层硬定位（demersal——非底层出局） → 结构 → 水温（排除档=极值出局） → 时段（早晨） → 合并——物种属性锚方向级 [需正文]。分级命中：各步三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@HornyheadSpawnWindowStart @HornyheadSpawnWindowEnd @HornyheadGuardWarmupDays @HornyheadGuardTempThreshold @HornyheadNestSiteStructureSet @HornyheadGuardingShare @HornyheadLocalGuardAnchorEligibility @HornyheadStoneNestSuitabilityProfile @HornyheadGuardRelationProfile @HornyheadGuardLocalTemperatureProfile @HornyheadGuardThreatProfile @HornyheadNormalLayerProfile @HornyheadNormalStructureProfile @HornyheadNormalTemperatureProfile @HornyheadNormalTimeProfile @HornyheadNormalTempFloor @HornyheadNormalFeedingProfile @HornyheadGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -105,7 +105,7 @@ Share 语义：live §7 契约。C3（基质资格）与 C4（石巢已筑成）
 ```plain text
 【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
 判断链＝锚存在性判定 → 锚适配（构建型选址） → 关系评估 → 局部温度 → 合并；出局即
-EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。推导来源（Tier B）：R07 FR3
+EARLY_RETURN（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估），不做「先全算再减」。推导来源（Tier B）：R07 FR3
 「石巢筑造+守护」——雄鱼筑砾石巢（构筑型锚：选址适配先于守位）；巢体存在事实已在路由面
 判定（C4），本程序不重复结算该 premise；步序与档位成员 [需正文] 校准（顺序/档位变化=
 census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读法的分歧登记 README §7。
@@ -121,7 +121,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     如果 当前目标处于合法锚域：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
         锚域外格子不参与护巢分布评价，非「算出低值」）
 
 第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中——构建型选址语义）：
@@ -132,7 +132,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 可接受档（tolerated 基质）：
         AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除基质档）：
-        返回 0（EARLY_RETURN：排除基质出局——不可筑巢底质无石巢分布，构建型选址先行）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除基质出局——不可筑巢底质无石巢分布，构建型选址先行）
 
 第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中）：
     用当前目标与石巢锚点的关系（距离 / 朝向）查询 @HornyheadGuardRelationProfile
@@ -142,7 +142,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 守卫缘档：
         RelationFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（圈外档）：
-        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；守卫圈外无护巢占位）
 
 第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
     用当前点局部温度查询 @HornyheadGuardLocalTemperatureProfile
@@ -152,11 +152,9 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 边际档：
         LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除档）：
-        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；护巢期排除温度带出局）
 
-第 5 步 合并：
-    合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 合并算子；live §15.3 同款占位声明）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -171,7 +169,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
 | TemperatureProfile | @HornyheadNormalTemperatureProfile |
 | TimeProfile | @HornyheadNormalTimeProfile（早晨活跃方向） |
 | ExtremeTemperatureGate | @HornyheadNormalTempFloor |
-| CombineRule | Template-fixed（数学 OPERATOR UNDEFINED — 待机制侧） |
+| CombineRule | Template-fixed（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]） |
 
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
@@ -195,7 +193,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 近底带档：
         LayerFit = 削减（× Profile 衰减参数——不清零）
     否则（远底层档）：
-        返回 0（EARLY_RETURN：非底层格出局——demersal 硬判定）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；非底层格出局——demersal 硬判定）
 
 第 2 步 结构（分级命中）：
     用当前结构查询 @HornyheadNormalStructureProfile（三档=Profile 值域不冻结）
@@ -204,7 +202,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 可接受档：
         StructureFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除结构档出局 [需正文：排除档成员]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除结构档出局 [需正文：排除档成员]）
 
 第 3 步 水温（分级命中）：
     用当前水温查询 @HornyheadNormalTemperatureProfile（三档=Profile 值域不冻结）
@@ -213,7 +211,7 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 边际档：
         TemperatureFit = 削减（不清零）
     否则（排除档——@HornyheadNormalTempFloor 为边界参考）：
-        返回 0（EARLY_RETURN：极值温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；极值温度带出局）
 
 第 4 步 时段（分级命中）：
     用当前时段查询 @HornyheadNormalTimeProfile（早晨三档=Profile 值域不冻结）
@@ -222,11 +220,9 @@ census 判同输入，结构变更需重审）。与 live BA-T2 模板平铺读�
     否则如果 ∈ 一般档：
         TimeFit = 削减（不清零）
     否则：
-        返回 0（EARLY_RETURN：排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除时段档出局 [需正文：非活跃时段是否出局归 Profile 值域]）
 
-第 5 步 合并：
-    合并 LayerFit / StructureFit / TemperatureFit / TimeFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子；live §15.2 M0 同款占位声明——合并数学待机制侧，不因链序还原而隐式定义）
+终值：返回 running weight（渐进累积——各步 Fit 已逐步乘入，无独立合并步；原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭——合并数学=逐步乘法）
 
 返回 SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -341,3 +337,4 @@ DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→�
 
 BATCH_ID: REP-FULL-GUARD-001
 顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Guard Bake 锚存在性 early return 链＋分级命中，Normal Bake 硬定位链还原，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

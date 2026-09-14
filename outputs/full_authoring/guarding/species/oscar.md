@@ -21,7 +21,7 @@ Status：WORKING / REPRESENTATION ARTIFACT / NOT AUTHORITY / NOT PROMOTED
 - P04 消费方式：guard_state 是 persistent condition premise（presentation 前已存在且持续）；census Bake 判例：护巢期 anchor 邻近因子激活且权重主导，按 condition 配置级因子切换处理，body 不设分支（CENSUS-B0 open_semantics 原样保留：若 review 判需 body 内 IF，本面结构结论需复核）。
 - census ↔ live 表达分歧（显式登记，本文件表达 live Working V0）：census Response canonical body 为双路径（EVAL_TARGET_AS_FOOD_TYPED ∥ EVAL_TARGET_AS_INTRUDER_TYPED → COMBINE_DUAL_PATH → DECIDE，可出 TargetFeeding 或 RelationalConflict）；live V0 取舍为 Guarding Group 只评 Defense（例 1C）。本文件按 live V0 表达；双路径族真值登记在 census registry（GUARD_CONFLICT_DUAL_PATH_RESPONSE，本鱼为 canonical_source），其 COMBINE_DUAL_PATH 合并算子数学 OPERATOR UNDEFINED——待机制侧裁决两线 reconciliation。见 §5 放弃自由度 (1)。
 - 互斥状态：guard_state ∈ {NONE, BIPARENTAL_GUARD}（census premise 枚举）。
-- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝guard 阶段 premise 读取（锚实例配置级切换） → 锚存在性判定 → 锚适配（清巢石面/浅坑锚面三档） → 关系评估（三档——census 判例：护巢期 anchor 邻近因子主导，主导权重合并步消费） → 局部温度 → 加权合并；锚不存在格 EARLY_RETURN 出局（非「返回低值」）。推导来源（Tier A）：census premise「清巢产卵→护卵→迁仔」——清巢=主动构建锚面（选址适配先行）。Normal 面＝水温硬门先行（极值出局） → 静水/结构/猎物/时段各三档——**因子间顺序不排序**（census open_semantics「未裁决 unordered」原样保留，强行排序=冒充证据）。分级命中：三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
+- **判断顺序（REP-ORDER-FIX-002 顺序还原）**：Guard 面＝guard 阶段 premise 读取（锚实例配置级切换） → 锚存在性判定 → 锚适配（清巢石面/浅坑锚面三档） → 关系评估（三档——census 判例：护巢期 anchor 邻近因子主导，主导权重合并步消费） → 局部温度 → 加权合并；锚不存在格 ×0.01 软出局返回（非零）。推导来源（Tier A）：census premise「清巢产卵→护卵→迁仔」——清巢=主动构建锚面（选址适配先行）。Normal 面＝水温硬门先行（极值出局） → 静水/结构/猎物/时段各三档——**因子间顺序不排序**（census open_semantics「未裁决 unordered」原样保留，强行排序=冒充证据）。分级命中：三档（最适应=全额 / 可接受=削减不清零 / 排除=出局），档位成员与阈值全 Profile 值域不冻结。与 live BA-T2/BA-T1 模板平铺读法的分歧登记 README §7。
 
 Profile 引用清单：@OscarSpawnWindowStart @OscarSpawnWindowEnd @OscarGuardWarmupDays @OscarGuardTempThreshold @OscarNestStructureSet @OscarGuardingShare @OscarLocalGuardAnchorEligibility @OscarNestSuitabilityProfile @OscarGuardRelationProfile @OscarGuardAnchorDominanceProfile @OscarGuardLocalTemperatureProfile @OscarGuardThreatProfile @OscarStillwaterProfile @OscarSubstrateStructureProfile @OscarPreyResourceProfile @OscarNormalTimeProfile @OscarNormalTempFloor @OscarNormalFeedingProfile @OscarGuardingEligibilityByQuality @NeutralEligibility @NeutralAffinity @SpeciesBaseQualityProfile
 
@@ -102,7 +102,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 ```plain text
 【顺序还原声明｜REP-ORDER-FIX-002】本伪脚本按行为判断顺序还原（authoring_work_standards §5.1）：
 判断链＝（premise：guard 阶段事实→锚实例配置级切换，body 不设分支） → 锚存在性判定 → 锚适配 →
-关系评估 → 局部温度 → 加权合并；出局即 EARLY_RETURN（返回 0，不进入后续评估），不做「先全算再减」。
+关系评估 → 局部温度 → 加权合并；出局即 EARLY_RETURN（返回 0.01 × weight，非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不进入后续评估），不做「先全算再减」。
 推导来源（Tier A）：census premise「清巢产卵→护卵 3–4 天→迁仔 6–7 天」——清巢=主动构建锚面
 （选址适配先行）；census 判例「护巢期 anchor 邻近因子权重主导」→ 关系评估为主导因子。
 与 live BA-T2 模板平铺读法的分歧登记 README §7。
@@ -121,7 +121,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     如果 当前目标处于合法锚域：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；锚不存在格出局——OnAnchorMiss=RETURN_NEAR_ZERO 的判断序形态；
         锚域外格子不参与护巢分布评价，非「算出低值」）
 
 第 2 步 锚适配（EVAL_ANCHOR_SUITABILITY，分级命中）：
@@ -132,7 +132,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 可接受档（tolerated 锚面）：
         AnchorSuitabilityFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除锚面）：
-        返回 0（EARLY_RETURN：排除锚面出局——清巢产卵的选址适配先行）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；排除锚面出局——清巢产卵的选址适配先行）
 
 第 3 步 关系评估（EVAL_ANCHOR_RELATION，分级命中——本鱼主导因子，census 判例）：
     用当前目标与锚点的关系（距离 / 朝向）查询 @OscarGuardRelationProfile
@@ -142,7 +142,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 守卫缘档：
         RelationFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（圈外档）：
-        返回 0（EARLY_RETURN：守卫圈外无护巢占位）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；守卫圈外无护巢占位）
 
 第 4 步 局部温度（EVAL_LOCAL_TEMPERATURE，分级命中）：
     用当前点局部温度查询 @OscarGuardLocalTemperatureProfile
@@ -152,13 +152,13 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
     否则如果 ∈ 边际档：
         LocalTempFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（排除档）：
-        返回 0（EARLY_RETURN：护巢期排除温度带出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；护巢期排除温度带出局）
 
 第 5 步 加权合并：
     用当前 guard 阶段事实查询 @OscarGuardAnchorDominanceProfile
     得到各因子权重（护巢期 anchor 因子主导）
     按 @OscarGuardAnchorDominanceProfile 权重合并 AnchorSuitabilityFit / RelationFit / LocalTempFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（Guard 模式 Bake 多 Factor 加权合并算子；live §15.3 同款占位声明）
+    算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；Guard 模式 Bake 多 Factor 加权合并算子；live §15.3 同款占位声明）
 
 返回 Guarding SpatialDistributionWeight（顺序还原链结束：有 early return、有分级命中）
 ```
@@ -173,7 +173,7 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 | PreyResourceProfile | @OscarPreyResourceProfile（小鱼 / 螯虾 / 虫 / 幼虫资源因子） |
 | TimeProfile | @OscarNormalTimeProfile（全天活跃方向） |
 | ExtremeTemperatureGate | @OscarNormalTempFloor |
-| CombineRule | Template-fixed（数学 OPERATOR UNDEFINED — 待机制侧；census open_semantics：因子间业务顺序未由冻结证据裁决，按 unordered typed factor set 处理） |
+| CombineRule | Template-fixed（数学=渐进累积逐步乘法——原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]；census open_semantics：因子间业务顺序未由冻结证据裁决，按 unordered typed factor set 处理） |
 
 ### 2.4 NormalFeeding Group｜中文伪脚本
 
@@ -192,22 +192,22 @@ Share 语义：Species 当前基础供给权重的无量纲分配比例（live �
 第 1 步 水温硬门（GATE_EXTREME_TEMP）：
     用当前点水温对照排除档边界（@OscarNormalTempFloor 为边界参考）
     如果 当前点水温 ∈ 排除档（极值带）：
-        返回 0（EARLY_RETURN：极值温度带出局——出局条件先于因子评价；
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；极值温度带出局——出局条件先于因子评价；
         从「末位算术门」还原为前置出局判定）
 
 因子评价（因子间顺序=census unordered 原样，不排序；各因子分级命中，三档=Profile 值域不冻结）：
     用静水事实查询 @OscarStillwaterProfile：
-        最适应档=StillwaterFit 全额 / 可接受档=削减（× Profile 衰减参数，不清零）/ 排除档=返回 0（EARLY_RETURN）
+        最适应档=StillwaterFit 全额 / 可接受档=削减（× Profile 衰减参数，不清零）/ 排除档=返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]）
     用结构查询 @OscarSubstrateStructureProfile：
-        最适应档=StructureFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
+        最适应档=StructureFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]）
     用猎物资源查询 @OscarPreyResourceProfile：
-        最适应档=PreyFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
+        最适应档=PreyFit 全额 / 可接受档=削减（不清零）/ 排除档=返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]）
     用时段查询 @OscarNormalTimeProfile（全天活跃方向）：
-        活跃档=TimeFit 全额 / 一般档=削减（不清零）/ 排除档=返回 0（EARLY_RETURN）
+        活跃档=TimeFit 全额 / 一般档=削减（不清零）/ 排除档=返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]）
 
 合并步：
     合并 StillwaterFit / StructureFit / PreyFit / TimeFit
-    算子标注：OPERATOR UNDEFINED — 待机制侧（BA-T1 因子合并算子——因子顺序与合并数学均待机制侧，不因分级命中展开而隐式定义）
+    算子标注：渐进累积（原 OPERATOR UNDEFINED 占位经语义裁定 1 关闭[REP-WORDING-ALIGN-001]——B 系列表达口径：合并数学=逐步乘法 weight = weight × step_fit；BA-T1 因子合并算子——因子顺序与合并数学均待机制侧，不因分级命中展开而隐式定义）
 
 返回 SpatialDistributionWeight（顺序还原范围：硬门先行+分级命中已还原；因子间顺序=证据未裁决，不冒充）
 ```
@@ -320,3 +320,4 @@ DECIDE_RESPONSE（分级命中，REP-ORDER-FIX-002 展开——原「评价→�
 
 BATCH_ID: REP-FULL-GUARD-001
 顺序还原修复批次：REP-ORDER-FIX-002（§0/§2/§3/§5 修改；Guard Bake 锚存在性 early return 链＋分级命中，Normal Bake 硬门先行＋因子 unordered 原样，Response DECIDE 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

@@ -96,7 +96,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     如果 水层 ∈ 底层带档：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：demersal 翻底取食定位不在非底层分布——
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；demersal 翻底取食定位不在非底层分布——
         底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
 
 第 2 步 底质可翻性档位（分级命中——翻底物理依赖）：
@@ -108,7 +108,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 底质 ∈ 难翻档（tolerated 槽）：
         SubstrateTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（不可翻档）：
-        返回 0（EARLY_RETURN：不可翻底质无翻取意义，出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；不可翻底质无翻取意义，出局）
 
 第 3 步 底栖猎物丰度档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用底栖猎物 patch 轴事实查询 @DruBottomForagerProfile
@@ -119,7 +119,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 贫档（tolerated 槽）：
         BottomForagerFit = 削减强度（削减但不清零）
     否则（无底栖猎物档）：
-        返回 0（EARLY_RETURN：无底栖猎物的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无底栖猎物的格子出局）
 
 第 4 步 NORMALIZE_WEIGHT：
     对 SubstrateTier × BottomForagerFit 执行模板固定归一化（族常量，非作者可选）
@@ -216,3 +216,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-P02-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

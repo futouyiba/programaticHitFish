@@ -100,7 +100,7 @@ work standards §5.4 行动项）。
     否则如果 ∈ 季节过渡带（tolerated 槽——沿岸中间带方向）：
         SeasonSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（对侧季节带——当前季节不取的轴段）：
-        返回 0（EARLY_RETURN：格子不在当前季节空间范围，出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；格子不在当前季节空间范围，出局）
 
 第 2 步 NORMALIZE_WEIGHT：
     对 SeasonSpatialFit 执行模板固定归一化（族常量，非作者可选）
@@ -193,3 +193,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 季节轴段归属三档+early return 链，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

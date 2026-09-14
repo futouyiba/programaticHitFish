@@ -102,7 +102,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     如果 当前格子位于底带（zone=bottom）：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：非底带格不参与成体底质分布——底栖取食定位先行）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；非底带格不参与成体底质分布——底栖取食定位先行）
 
 第 2 步 底质资源档位（EVAL_RESOURCE_PATCH，分级命中）：
     用底部碎屑/藻资源事实查询 @MekongCatfishSubstratePatchProfile
@@ -113,7 +113,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 资源可得性 ∈ 可接受档（tolerated 槽）：
         SubstratePatchIntensity = 削减强度（× Profile 衰减参数——削减但不清零）
     否则（资源可得性 ∈ 排除档）：
-        返回 0（EARLY_RETURN：无可得碎屑/藻资源的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无可得碎屑/藻资源的格子出局）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 SubstratePatchIntensity 执行模板固定归一化（族常量，非作者可选）
@@ -210,3 +210,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-GRAZE-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中，Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

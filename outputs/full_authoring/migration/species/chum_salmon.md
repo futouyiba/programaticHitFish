@@ -120,7 +120,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 过渡带（tolerated 槽）：
         LayerTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（远带）：
-        返回 0（EARLY_RETURN：远离近底带的格子出局——CSV 锚方向级推导 [需正文]，
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；远离近底带的格子出局——CSV 锚方向级推导 [需正文]，
         若正文证实深层/底层带活动则档位成员调整，结构变更需重审）
 
 第 2 步 阶段绑定轴段归属（EVAL_TYPED_FIELD_OR_FACTOR 的顺序还原形，分级命中）：
@@ -131,7 +131,7 @@ Share 语义：live §7 契约（Species 基础供给权重的无量纲分配比
     否则如果 ∈ 过渡带（tolerated 槽——河口/近口混交带方向）：
         MigrationSpatialFit = 削减（× Profile 衰减参数——削减但不清零）
     否则（当前阶段绑定轴段外——非本阶段空间）：
-        返回 0（EARLY_RETURN：格子不在当前阶段空间重排范围，出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；格子不在当前阶段空间重排范围，出局）
 
 第 3 步 NORMALIZE_WEIGHT：
     对 LayerTier × MigrationSpatialFit 执行模板固定归一化（族常量，非作者可选）
@@ -274,3 +274,4 @@ live §8.8 Typed Result 先例；本行=第 1 步状态门控的拓扑语义，�
 
 BATCH_ID: REP-FULL-MIGRA-001
 顺序还原修复批次：REP-ORDER-FIX-003（§0/§2/§3/§5 修改；Bake 近底软定位+轴段归属三档+early return 链，Response 状态门控显式化+程序级门+停食触点语义+双 Path 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）

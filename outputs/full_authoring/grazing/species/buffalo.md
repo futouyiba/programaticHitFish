@@ -95,7 +95,7 @@ census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README
     如果 水层 ∈ 底层带档：
         进入第 2 步
     否则：
-        返回 0（EARLY_RETURN：demersal 底泥吸食定位不在非底层分布——
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；demersal 底泥吸食定位不在非底层分布——
         底栖特化硬判定；若正文证实会离底取食则档位化=结构变更需重审）
 
 第 2 步 深度带档位（分级命中——CSV 深≥4m 方向锚，本鱼独有步）：
@@ -106,7 +106,7 @@ census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README
     否则如果 深度 ∈ 过渡深度档（tolerated 槽）：
         DepthTier = 削减（× Profile 衰减参数——削减但不清零）
     否则（过浅带档）：
-        返回 0（EARLY_RETURN：浅带格出局——深水底泥取食定位）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；浅带格出局——深水底泥取食定位）
 
 第 3 步 底泥栖境档位（分级命中——底泥无脊椎栖境可得性）：
     用底质类型查询 @BuffaloSubstratePatchProfile 的底质分档槽
@@ -116,7 +116,7 @@ census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README
     否则如果 底质 ∈ 有限栖境档（tolerated 槽——如砂质混泥）：
         SubstrateTier = 削减（削减但不清零）
     否则（无栖境档——如硬砾无底泥）：
-        返回 0（EARLY_RETURN：无底泥栖境的底质出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无底泥栖境的底质出局）
 
 第 4 步 底泥资源档位（EVAL_TYPED_FIELD_OR_FACTOR，分级命中）：
     用基质资源事实查询 @BuffaloSubstratePatchProfile
@@ -126,7 +126,7 @@ census 侧 SINGLE 族重跑=work standards §5.4 行动项，分歧登记 README
     否则如果 ∈ 贫档（tolerated 槽）：
         SubstratePatchIntensity = 削减强度（削减但不清零）
     否则（无资源档）：
-        返回 0（EARLY_RETURN：无底泥无脊椎的格子出局）
+        返回 0.01 × weight（EARLY_RETURN ×0.01 软出局：非零、仍可参与下游——语义裁定 1/2[REP-WORDING-ALIGN-001]；无底泥无脊椎的格子出局）
 
 第 5 步 NORMALIZE_WEIGHT：
     对 DepthTier × SubstrateTier × SubstratePatchIntensity 执行模板固定归一化
@@ -221,3 +221,4 @@ Reaction 槽 OFF
 
 BATCH_ID: REP-FULL-GRAZE-001
 顺序还原修复批次：REP-ORDER-FIX-001（§0/§2/§3/§5 修改；Bake 伪脚本 early return 链+分级命中（含深度带档步），Response 档位展开）
+措辞对齐批次：REP-WORDING-ALIGN-001（Bake 面 ×0.01 软出局/无合并步——语义裁定 1/2 落盘；Response/Quality 面与判断顺序零改动）
