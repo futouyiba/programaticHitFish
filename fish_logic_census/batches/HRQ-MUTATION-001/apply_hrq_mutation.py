@@ -84,7 +84,7 @@ HEAD_NEW = """mutation_provenance:
   ruling_scope: "七项裁决（1 SINGLE 拆分/2 顺序=族判据/3 C9 缓立并入重跑/4 anchor 四形式/5 HARD_GATED v2/6 目录卫生三件套/7 CRR+簿记打包）+两组语义裁定（1 无合并步——渐进累积+×0.01 软出局；2 措辞对齐/逐鱼顺序推导必做）"
   previous_state: "v8：21 族条目全 CANDIDATE；SINGLE 66 名义（61 moved_pending_review 过渡双列+5 无文件成员）；9 链族 CANDIDATE-pending-HRQ-RS1-01；GUARD anchor 轴 6+1 值+18 候选挂账（B5 9+B6 2+B7 7）+RSB 复现+DIS2 对照；TYPED 74 名义；FOOD_FIELD 2 名义；HARD_GATED canonical v1+v2 提案 pending（EEL AMBIGUOUS）；PLAIN 5 名义（0/5 证伪后 3 slot_tiering+OSC/BRT 出族挂账）；PATCH 2 名义（MGC/ONS 重指派挂账）；CRR known_non_matches 75（B0-B4）；Bake 名义程序 162+RS1 REV-001 4 HAB=166 pending"
   ruling_to_mutation_map:
-    ruling_1_SINGLE_split: "SINGLE_FACTOR_NORMALIZED_WEIGHT status CANDIDATE->RETIRED（v1 canonical 证伪注记：RS1 61/61 全 body 结构差异+渐进累积语义）；61 moved 成员归属转正 9 链族（known_instances 实数迁移——链族条目已有 P-RS1-* 成员，SINGLE 原 66 条清单保留为 v8 历史快照层）；5 无文件成员（LAM/PIN/ASR/RVS/RDS）evidence_insufficient_held 归 FR/表达线；234 AMB（B4 25+B5 52+B6 47+B7 110）-> truth_rebuild_queue.jsonl"
+    ruling_1_SINGLE_split: "SINGLE_FACTOR_NORMALIZED_WEIGHT status CANDIDATE->RETIRED（v1 canonical 证伪注记：RS1 61/61 全 body 结构差异+渐进累积语义）；61 moved 成员＝47 转正 9 链族（链族 known_instances 已载：B1 6+B2 8+B3 16+B4 17）+14 slot_tiering（C8 追击型：B3 9+B4 5）经裁决 6-③ 转 truth_rebuild_queue（不在任何链族——HRQ-MUTATION-REV-001 F2 补正）；SINGLE 原 66 条清单保留为 v8 历史快照层；5 无文件成员（LAM/PIN/ASR/RVS/RDS）evidence_insufficient_held 归 FR/表达线；234 AMB（B4 25+B5 52+B6 47+B7 110）-> truth_rebuild_queue.jsonl"
     semantic_1_progressive_accumulation: "9 链族+HARD_GATED v2+EXTREME_TEMP+PATCH_GATED_DUAL canonical 全部重写：无终步合并算子（NORMALIZE_WEIGHT/COMBINE_* 终步与 OPERATOR UNDEFINED 占位关闭），每步 EVAL 三档（preferred=全额乘入/tolerated=×衰减乘入/excluded=×0.01 软出局乘入——非零、仍可参与下游，对齐 0.3.4.0 Bake DSL）-> 乘入 running weight；GATE 硬门 EARLY_RETURN 语义保留（门非三档出局）"
     semantic_2_wording_alignment: "原『排除档=出局/EARLY_RETURN』措辞全部对齐为 ×0.01 软出局（B 系列表达文件措辞对齐待办记批报告；work standards §5.1 表述更新归文档线）"
     ruling_2_order_as_family_criterion: "9 链族全部加 order_provisional: true（基础序=模板约定；成员真实序待终局逐鱼推导，序差异=族移动）"
@@ -319,7 +319,7 @@ rep(
     """    ir_pointer: batches/CENSUS-B1/run_merge_tests.py::CANONICALS.SINGLE_FACTOR_NORMALIZED_WEIGHT
     retired_provenance:
       ruling: "裁决 1-A（%s）：SINGLE v1 canonical 正式退役——RS1 61/61 有输入成员全 body 结构差异（0 匹配）+B4 饱和伪影根因在案（LOCAL_SATURATION_CANDIDATE 前提证伪——裁决 7 撤销）+渐进累积语义（语义裁定 1：无终步合并算子，NORMALIZE_WEIGHT 终步读法废止）"
-      member_disposition: "61 moved 成员（RS1 重跑体 P-RS1-*）归属 v9 转正 9 链族（计数层面移出本族——链族 known_instances 已载）；5 无 B 系列表达文件成员 evidence_insufficient_held：LAM[P-B1]/PIN[P-B3]/ASR+RVS+RDS[P-B4]——归 FR/表达线补证，不并入任何族（裁决 1-④）；本族 known_instances 原 66 条清单=v8 历史快照层（git b5088ab^ 可溯全文）"
+      member_disposition: "61 moved 成员（RS1 重跑体 P-RS1-*）＝47 转正 9 链族（计数层面移出本族——链族 known_instances 已载：B1 6+B2 8+B3 16+B4 17）+14 slot_tiering（C8 追击型）经裁决 6-③ 转 truth_rebuild_queue（不在任何链族——HRQ-MUTATION-REV-001 F2 补正）；5 无 B 系列表达文件成员 evidence_insufficient_held：LAM[P-B1]/PIN[P-B3]/ASR+RVS+RDS[P-B4]——归 FR/表达线补证，不并入任何族（裁决 1-④）；本族 known_instances 原 66 条清单=v8 历史快照层（git b5088ab^ 可溯全文）"
       amb_chain: "B4 25+B5 52+B6 47+B7 110=234 AMB 四层链 -> truth_rebuild_queue.jsonl（终局全库顺序还原重跑输入清单；裁决 1-③）"
       status_note: RETIRED（非删除——证伪留册；重跑若复活单步平铺形需新证据新裁决）""" % DEC,
     1,
@@ -362,7 +362,7 @@ rep(
     "chain families review_queue closed (x2)",
 )
 
-ORDER_PROV = """    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（truth_rebuild_queue）——真实序差异=族移动
+ORDER_PROV = """    order_provisional: true   # 裁决 2-B：因子判断顺序=族判据；本基础序为模板约定（B 系列表达文件序），成员真实序待终局逐鱼顺序推导（解析载体=重跑批范围声明：HRQ-MUTATION-001 batch_report §5-③；truth_rebuild_queue 仅为其 AMB/C8 输入子集，链族在册成员的入队属新裁决 HRQ-REBUILD-SCOPE-01 候选待裁——HRQ-MUTATION-REV-001 F5 补正）——真实序差异=族移动
 """
 
 # TIERED_SINGLE
@@ -692,7 +692,7 @@ GUARD_NEW = f"""    allowed_parameter_axes:
     resolver_dependencies: []
     four_form_disposition:
       ruling: "裁决 4-A（{DEC}）：落位表点名成员照录（石巢脊->nest/洪水->fry_school+slot/洞顶->egg_mass+suitability/卵块->egg_mass/岩缝扇护->egg_mass+fan/双亲巢->nest+participant/狼鱼->egg_mass+premise[fasting]/贝内->host_brood/口孵->待重跑/pebble_mound->nest/discus_mucus->fry_school+注记）；未点名成员（CSL/ROB/CRA2/SMA1/BLU2/CCF2/CSN1/BBR1）按四形式定义直接分类——独立审复核点"
-      counts: "28 名义=既有 8（含 HNC 挂账转正）+挂账 20（B5 9+B6 2+B7 9）；四形式正式 26[nest 14/egg_mass 7/fry_school 3/host_brood 2]+brooded 挂起 2[ARO/TIL3——结构级退化链边界成员不计四形式轴值，待真形重跑终裁]"
+      counts: "28 名义=既有 8（含 HNC 挂账转正）+挂账 20（B5 9+B6 2+B7 9）；四形式正式 24[nest 12/egg_mass 7/fry_school 3/host_brood 2]+brooded 挂起 2[ARO/TIL3——结构级退化链边界成员不计四形式轴值，待真形重跑终裁]+form-hold 挂起 2[CSL/CSN1——冻结证据无巢/构建判别词（HRQ-MUTATION-REV-001 F1），待真形重跑终裁]"
     known_instances:
       # —— v9 四形式重排（裁决 4-A）：anchor=语义分类；原细名保留于 note（GuardAnchorResolverInstance 场内定位）——
       - {{batch: CENSUS-B0, program_id: P-OSC-RESP-GUARD, blind_hash: 50945342e27abd5c, role: canonical_source, anchor: nest, participant: biparental, note: "地图鱼双亲护巢（B0 story Biparental-Guard 标题直证）；细名 nest_anchor->nest"}}
@@ -705,7 +705,7 @@ GUARD_NEW = f"""    allowed_parameter_axes:
       - {{batch: CENSUS-B4, program_id: P-B4-HNC-RESP, blind_hash: fb17fdf2f57dbadf, anchor: nest, note: "第 8 成员（双点美鱥石巢守护）：细名 pebble_mound->nest（裁决 4：18-vs-19 口径关闭——构建型）；guard_target_specificity=species_typed_intruder 维持 HRQ-B4-01 pending（『defend…from other N. biguttatus males but not other species』逐字；异种借巢被容忍）；骨架同构（engine raw 仅槽名/合并步标名字面）"}}
       # —— B5 挂账 9 例转正（裁决 4-A 落位；HRQ-B5-02 关闭）——
       - {{batch: CENSUS-B5, program_id: P-B5-ARO-RESP, blind_hash: {h(BH5, 'P-B5-ARO-RESP')}, anchor: brooded, membership: pending_truth_rebuild, note: "银龙雄口哺携带卵/幼近 6 周——落位表『口孵->待重跑（退化链候选）』+裁决 4 brooded 边界（结构级退化链不入本族）：anchor 轴值挂起不计四形式，待真形重跑终裁；水面跳捕 P01 面另行"}}
-      - {{batch: CENSUS-B5, program_id: P-B5-CSL-RESP, blind_hash: {h(BH5, 'P-B5-CSL-RESP')}, anchor: nest, note: "细名 nest_pelagic_larvae（雄护卵+浮游幼体跨两发育阶段）——按初始存在形式（巢/卵）落 nest+跨阶段注记：浮游幼体期=fry_school 语义，主形式待终局重跑（独立审复核点）"}}
+      - {{batch: CENSUS-B5, program_id: P-B5-CSL-RESP, blind_hash: {h(BH5, 'P-B5-CSL-RESP')}, anchor: form_hold, membership: pending_truth_rebuild, note: "细名 nest_pelagic_larvae（雄护卵+浮游幼体跨两发育阶段）——冻结 premise/story 无巢/构建判别词，四形式证据不足不虚构（HRQ-MUTATION-REV-001 F1）：anchor 形式挂起，待真形重跑以 B 系列证据终裁；浮游幼体期 fry_school 语义注记保留"}}
       - {{batch: CENSUS-B5, program_id: P-B5-CRC-RESP, blind_hash: {h(BH5, 'P-B5-CRC-RESP')}, anchor: nest, participant: male, note: "细名 gravel_ridge（雄砾巢脊连续建造：挖坑->覆石->紧邻下游再挖成脊）——落位表『石巢脊->nest』（stone_nest/gravel_ridge 合一）"}}
       - {{batch: CENSUS-B5, program_id: P-B5-ROB-RESP, blind_hash: {h(BH5, 'P-B5-ROB-RESP')}, anchor: nest, participant: male, note: "细名 rock_nest_fan（雄岩巢扇护+防御复合约 14 天）——岩巢构建型->nest；fan 供氧子动作=guard_action_notes（Response 动作注记，裁决 4 拆解规则）"}}
       - {{batch: CENSUS-B5, program_id: P-B5-MDC-RESP, blind_hash: {h(BH5, 'P-B5-MDC-RESP')}, anchor: egg_mass, note: "细名 cave_ceiling（洞顶产卵——产卵位垂直面选择）——落位表『洞顶->egg_mass+suitability』（底质差异归 suitability Profile）"}}
@@ -721,7 +721,7 @@ GUARD_NEW = f"""    allowed_parameter_axes:
       - {{batch: CENSUS-B7, program_id: P-B7-BLU2-RESP, blind_hash: {h(BH7, 'P-B7-BLU2-RESP')}, anchor: nest, participant: male, note: "细名 bluegill_nest_guard_forage_overlap（护巢+父本食卵+巢区小饵双意义并存）——巢守护构建型->nest[未点名成员，独立审复核点]；filial cannibalism 双意义结算政策未定注记保留"}}
       - {{batch: CENSUS-B7, program_id: P-B7-CCF2-RESP, blind_hash: {h(BH7, 'P-B7-CCF2-RESP')}, anchor: egg_mass, participant: male, note: "细名 channel_cave_guard（洞巢雄鱼照护+受扰食卵）——洞巢=利用型->egg_mass+suitability（洞巢）[未点名成员，独立审复核点]；Semantic Open 置信如实保留（照护->lure-defense 映射无可靠证据）"}}
       - {{batch: CENSUS-B7, program_id: P-B7-CRA2-RESP, blind_hash: {h(BH7, 'P-B7-CRA2-RESP')}, anchor: nest, participant: male, note: "细名 black_crappie_nest_guard（雄鱼筑巢护卵至孵化——本种证据实证不再同科猜测）——筑巢构建型->nest[未点名成员，独立审复核点]；Semantic Open 保留（对玩家饵的冲突路径尚待行为证据）"}}
-      - {{batch: CENSUS-B7, program_id: P-B7-CSN1-RESP, blind_hash: {h(BH7, 'P-B7-CSN1-RESP')}, anchor: nest, note: "细名 snakehead_brood_guard（繁殖期亲鱼守护卵幼+植被伏击捕食双语境）——浮巢构建型->nest+跨阶段注记[护幼期 fry_school 语义；主形式待终局重跑——未点名成员，独立审复核点]；P01 伏击+P04 组合注记保留"}}
+      - {{batch: CENSUS-B7, program_id: P-B7-CSN1-RESP, blind_hash: {h(BH7, 'P-B7-CSN1-RESP')}, anchor: form_hold, membership: pending_truth_rebuild, note: "细名 snakehead_brood_guard（繁殖期亲鱼守护卵幼+植被伏击捕食双语境）——冻结 premise/story 无浮巢/筑巢判别词，『浮巢构建型』系册外知识注入（HRQ-MUTATION-REV-001 F1）：anchor 形式挂起，待真形重跑以 B 系列证据终裁；护幼期 fry_school 语义注记保留；P01 伏击+P04 组合注记保留"}}
       - {{batch: CENSUS-B7, program_id: P-B7-DIS2-RESP, blind_hash: {h(BH7, 'P-B7-DIS2-RESP')}, anchor: fry_school, participant: biparental, note: "白神仙色型（色型不分裂——并入 B1-DIS 同值）；提案 discus_mucus_brood 与 fry_anchor 覆盖关系经裁决 4 关闭->fry_school+guard_action_notes（黏液喂养=Response 动作）；Low 证据（色型压缩）注记保留"}}
       - {{batch: CENSUS-B7, program_id: P-B7-RSB-RESP, blind_hash: {h(BH7, 'P-B7-RSB-RESP')}, anchor: host_brood, note: "细名 bitterling_mussel_brood（卵产入活蚌鳃腔+贝内发育）——host_brood（mussel_brood 语义并入 B6 LFB 同值）：鳑鲏科跨属第 2 实证；Relation Object 语义（非新捕食/资源程序）；产卵管=产卵工具行为变量非 branch"}}
       - {{batch: CENSUS-B7, program_id: P-B7-SMA1-RESP, blind_hash: {h(BH7, 'P-B7-SMA1-RESP')}, anchor: nest, note: "细名 smallmouth_nest_fry_guard（巢与幼鱼守护+营养竞争语境）——按初始存在形式落 nest+跨阶段注记[稚鱼期 fry_school 语义；主形式待终局重跑——未点名成员，独立审复核点]；2009 饱食/2016 补食实验注记保留"}}
