@@ -1,0 +1,707 @@
+{
+ "_meta": {
+  "version": "v10",
+  "generated_for": "v15 终版手册（Notion 子页树 + HTML 总表同源）",
+  "semantics": "渐进累积：每步 EVAL→三档（最适应=全额乘入/可接受=×衰减乘入/不居留=×0.01 软出局立即返回——非零仍可参与下游）；无终步合并；GATE 硬门=二元 EARLY_RETURN",
+  "counts_source": "template_registry.yaml v10（名义成员，脚本合并）"
+ },
+ "families": [
+  {
+   "id": "SPACE_FIRST_DUAL_TIER_CHAIN",
+   "cn": "空间先行双因子链",
+   "face": "Bake",
+   "sig": "先找合适的地方，再找吃的——空间因子（水层/结构/栖境带）先行出局，猎物场第二。",
+   "pseudo": [
+    "读取 空间因子事实（水层/结构/栖境带）",
+    "EVAL[空间因子] 三档：最适应=全额乘入 / 可接受=×衰减 / 不居留=×0.01 软出局返回",
+    "EVAL[猎物场] 三档：同上",
+    "返回 running weight（逐步累积，无合并步）"
+   ],
+   "axes": [
+    [
+     "space_factor",
+     "typed：水层带/结构/栖境带"
+    ],
+    [
+     "forage_field",
+     "typed：猎物场/资源场"
+    ],
+    [
+     "tier_members",
+     "Profile 值域（档位成员不冻结）"
+    ]
+   ],
+   "registry_id": "SPACE_FIRST_DUAL_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 61
+  },
+  {
+   "id": "FORAGE_FIRST_DUAL_TIER_CHAIN",
+   "cn": "觅食先行双因子链",
+   "face": "Bake",
+   "sig": "镜像语序——跟着食物走优先，栖息带次之；与空间先行族因子集同、顺序相反，按顺序判据分立。",
+   "pseudo": [
+    "读取 猎物场事实",
+    "EVAL[猎物场] 三档：×0.01 软出局/×衰减/全额",
+    "EVAL[空间因子] 三档：同上",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "forage_field",
+     "typed：先行"
+    ],
+    [
+     "space_factor",
+     "typed：次位"
+    ],
+    [
+     "mirror_of",
+     "SPACE_FIRST（顺序判据不并）"
+    ]
+   ],
+   "registry_id": "FORAGE_FIRST_DUAL_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 34
+  },
+  {
+   "id": "TIERED_SINGLE_FACTOR_CHAIN",
+   "cn": "单因子三档链",
+   "face": "Bake",
+   "sig": "全库最大族——整条空间判断只有一个 typed 因子（轴段/资源斑块/场浓度等），一步定终值。",
+   "pseudo": [
+    "读取 typed 因子事实",
+    "EVAL[typed 因子] 三档：最适应=全额 / 可接受=×衰减 / 不居留=×0.01 软出局",
+    "返回 running weight（单步即终值）"
+   ],
+   "axes": [
+    [
+     "factor_type",
+     "typed：lifecycle 轴段|resource patch|场浓度 field|position 等约 29 亚群"
+    ],
+    [
+     "tier_members",
+     "Profile 值域"
+    ]
+   ],
+   "registry_id": "TIERED_SINGLE_FACTOR_CHAIN",
+   "status": "CANDIDATE",
+   "members": 94
+  },
+  {
+   "id": "GATED_COVER_TIER_CHAIN",
+   "cn": "结构门+质量档链",
+   "face": "Bake",
+   "sig": "先过一道二元结构门（门值=gate_axis 八值之一），门内再走因子档位。",
+   "pseudo": [
+    "GATE[结构门]：命中→继续 / 不命中→×0.01 软出局返回",
+    "EVAL[掩护/质量因子] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "gate_axis",
+     "8 值：植被缘/静水/底带/可埋底质/池潭/礁缘/斑块/扰动窗"
+    ],
+    [
+     "post_gate_factor",
+     "typed"
+    ]
+   ],
+   "registry_id": "GATED_COVER_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 27
+  },
+  {
+   "id": "GUARD_ANCHOR_TIERED_COMBINE_CHAIN",
+   "cn": "护巢锚门四步链",
+   "face": "Bake",
+   "sig": "护巢期分布围着「守的东西」转：锚存在性硬门→锚面适配→守卫关系→温度。",
+   "pseudo": [
+    "GATE[锚存在性]：处于合法锚域？否→×0.01 软出局",
+    "EVAL[锚面适配] 三档",
+    "EVAL[守卫关系（核/缘/圈外）] 三档",
+    "EVAL[局部温度] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "anchor",
+     "四形式：nest 构建型/egg_mass 附着/fry_school 移动群/host_brood 蚌宿主"
+    ],
+    [
+     "guard_participant",
+     "male/biparental"
+    ],
+    [
+     "guard_action_notes",
+     "fan 扇护/黏液喂养→Response；洪水→DynamicSlot；停食→premise"
+    ],
+    [
+     "resolver_instance",
+     "细名（colony_nest/cave_ceiling…场内定位）"
+    ]
+   ],
+   "registry_id": "GUARD_ANCHOR_TIERED_COMBINE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 18
+  },
+  {
+   "id": "NOCTURNAL_LIGHTSLOT_CHAIN",
+   "cn": "夜行底板+低光槽链",
+   "face": "Bake",
+   "sig": "夜行性打底，链中插一个光照档位槽。",
+   "pseudo": [
+    "读取 夜行底板事实",
+    "EVAL[因子] 三档",
+    "SLOT[低光]：档位乘入",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "light_slot",
+     "K14 槽三档"
+    ],
+    [
+     "base_factors",
+     "typed"
+    ]
+   ],
+   "registry_id": "NOCTURNAL_LIGHTSLOT_CHAIN",
+   "status": "CANDIDATE",
+   "members": 24
+  },
+  {
+   "id": "LAYER_AXIS_DUAL_TIER_CHAIN",
+   "cn": "水层+轴段双步链",
+   "face": "Bake",
+   "sig": "第二步是生命周期轴段（深度带/洄游廊道）而非空间因子——轴域限定是与镜像双因子族的分界。",
+   "pseudo": [
+    "EVAL[水层] 三档",
+    "EVAL[轴段（深度带/洄游廊道）] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "layer",
+     "typed"
+    ],
+    [
+     "axis_segment",
+     "lifecycle 轴段（非空间因子）"
+    ]
+   ],
+   "registry_id": "LAYER_AXIS_DUAL_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 7
+  },
+  {
+   "id": "ZONE_SUBSTRATE_RESOURCE_CHAIN",
+   "cn": "底带硬门+底质+资源链",
+   "face": "Bake",
+   "sig": "非底层直接出局（硬门），然后底质档、资源档。",
+   "pseudo": [
+    "GATE[底带]：demersal？否→×0.01 软出局",
+    "EVAL[底质] 三档",
+    "EVAL[资源] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "zone_gate",
+     "底带二元"
+    ],
+    [
+     "substrate",
+     "typed"
+    ],
+    [
+     "resource",
+     "typed"
+    ]
+   ],
+   "registry_id": "ZONE_SUBSTRATE_RESOURCE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 7
+  },
+  {
+   "id": "SOFT_TRIPLE_TIER_CHAIN",
+   "cn": "软三步无门链",
+   "face": "Bake",
+   "sig": "无硬门，三步软档直连（跨科重复，PROV 系）。",
+   "pseudo": [
+    "EVAL[因子1] 三档",
+    "EVAL[因子2] 三档",
+    "EVAL[因子3] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "factors",
+     "typed ×3"
+    ]
+   ],
+   "registry_id": "SOFT_TRIPLE_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 3
+  },
+  {
+   "id": "ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN",
+   "cn": "底带门五步链（含深度档）",
+   "face": "Bake",
+   "sig": "底带门+深度档+底质+资源，五步形。",
+   "pseudo": [
+    "GATE[底带]",
+    "EVAL[深度] 三档",
+    "EVAL[底质] 三档",
+    "EVAL[资源] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "depth",
+     "显式档位步"
+    ],
+    [
+     "substrate/resource",
+     "typed"
+    ]
+   ],
+   "registry_id": "ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "GATE_SUBSTRATE_TEMPBAND_RESOURCE_CHAIN",
+   "cn": "底质门→深冷带→资源链",
+   "face": "Bake",
+   "sig": "深冷水种（白鲑/黄鲈）：底质门先行，接着深冷复合带，再资源。",
+   "pseudo": [
+    "GATE[底质]",
+    "EVAL[深冷复合带] 三档（如 −1.3~14℃ 带归属）",
+    "EVAL[资源] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "tempband",
+     "深冷带档"
+    ],
+    [
+     "substrate_gate/resource",
+     "typed"
+    ]
+   ],
+   "registry_id": "GATE_SUBSTRATE_TEMPBAND_RESOURCE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 4
+  },
+  {
+   "id": "GUARD_ANCHOR_TURBIDITY_CONTEXT_CHAIN",
+   "cn": "护巢四步+浊度语境链",
+   "face": "Bake",
+   "sig": "护巢锚门四步后加一个浊度修饰步（浑水种淡水石斑/朱氏鲈）。",
+   "pseudo": [
+    "GATE[锚存在性]",
+    "EVAL[锚适配]",
+    "EVAL[关系]",
+    "EVAL[温度]",
+    "EVAL[浊度] 三档（语境修饰）",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "turbidity",
+     "语境档（unary 修饰步）"
+    ],
+    [
+     "anchor",
+     "四形式"
+    ]
+   ],
+   "registry_id": "GUARD_ANCHOR_TURBIDITY_CONTEXT_CHAIN",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "STRUCTURE_LIGHTSLOT_FORAGE_TRIPLE_CHAIN",
+   "cn": "结构→夜槽→猎物三步链",
+   "face": "Bake",
+   "sig": "夜行结构种（GT/GW）——结构定位→低光槽→猎物。",
+   "pseudo": [
+    "EVAL[结构] 三档",
+    "SLOT[低光]",
+    "EVAL[猎物] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "structure",
+     "先行"
+    ],
+    [
+     "light_slot",
+     "中位"
+    ],
+    [
+     "forage",
+     "末位"
+    ]
+   ],
+   "registry_id": "STRUCTURE_LIGHTSLOT_FORAGE_TRIPLE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "HABITAT_FORAGE_FLOODSLOT_CHAIN",
+   "cn": "栖息→猎物+洪泛槽链",
+   "face": "Bake",
+   "sig": "栖息→猎物双步，链尾挂洪泛连通槽（modifier 非 gate；巴沙/斯氏鳊）。",
+   "pseudo": [
+    "EVAL[栖息带] 三档",
+    "EVAL[猎物资源] 三档",
+    "SLOT[洪泛林连通]：连通=全额/边缘=削减/断连=极低削减",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "flood_slot",
+     "DynamicSpatialSlot modifier"
+    ],
+    [
+     "habitat/forage",
+     "typed"
+    ]
+   ],
+   "registry_id": "HABITAT_FORAGE_FLOODSLOT_CHAIN",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "HARD_GATED_FACTOR_COMBINE",
+   "cn": "双硬门因子集链",
+   "face": "Bake",
+   "sig": "生死门前置：水面可达+温度极值双硬门，过了门才轮到因子集（肺鱼/电鳗；电感知不进 Bake）。",
+   "pseudo": [
+    "GATE[水面可达]：否→×0.01 软出局",
+    "GATE[温度极值]：否→×0.01 软出局",
+    "因子集：各因子档位逐步乘入（EXIT 档出局）",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "hard_gates",
+     "surface_access + 极值门"
+    ],
+    [
+     "factor_set",
+     "typed bounded；v2 canonical（LUN 源+EEL）"
+    ]
+   ],
+   "registry_id": "HARD_GATED_FACTOR_COMBINE",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN",
+   "cn": "极值门+无序因子集链",
+   "face": "Bake",
+   "sig": "极值温度门+因子无序集（OSC 出族单成员，PROV）。",
+   "pseudo": [
+    "GATE[极值温度]",
+    "因子无序集：各因子 EXIT 档/档位乘入",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "temp_gate",
+     "前置"
+    ],
+    [
+     "factor_set",
+     "unordered（证据未裁决序）"
+    ]
+   ],
+   "registry_id": "EXTREME_TEMP_GATED_TIERED_COMBINE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN",
+   "cn": "patch 门+双槽档链",
+   "face": "Bake",
+   "sig": "资源斑块门+双槽档位（BRT 出族单成员，PROV）。",
+   "pseudo": [
+    "GATE[斑块在场]",
+    "SLOT[槽1] 档位",
+    "SLOT[槽2] 档位",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "patch_gate",
+     "二元"
+    ],
+    [
+     "dual_slots",
+     "双槽档"
+    ]
+   ],
+   "registry_id": "PATCH_GATED_DUAL_SLOT_COMBINE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "STRUCTURE_FIRST_QUAD_CHAIN",
+   "cn": "结构先行四步链",
+   "face": "Bake",
+   "sig": "蓝鳃栖息面真形：结构→…四步，结构第一（用户裁正「蓝鳃可能结构第一」的推导证实）。",
+   "pseudo": [
+    "EVAL[结构] 三档（先行）",
+    "EVAL[水层] 三档",
+    "EVAL[温度] 三档",
+    "EVAL[时段] 三档",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "factor_order",
+     "结构→水层→温度→时段（推导序）"
+    ]
+   ],
+   "registry_id": "STRUCTURE_FIRST_QUAD_TIER_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "GATED_STRUCTURE_TEMP_TIME_QUAD_CHAIN",
+   "cn": "门化结构先行四步链",
+   "face": "Bake",
+   "sig": "美鱥栖息面真形：先一道门（口器/底栖形态锚），结构先行四步。",
+   "pseudo": [
+    "GATE[形态锚定门]",
+    "EVAL[结构]",
+    "EVAL[温度]",
+    "EVAL[时段]",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "gate",
+     "形态锚（口器→水层先行判据的 GATE 化）"
+    ],
+    [
+     "order",
+     "结构→温→时"
+    ]
+   ],
+   "registry_id": "GATED_STRUCTURE_TEMP_TIME_QUAD_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "LAYER_TEMP_STRUCTURE_TRIPLE_CHAIN",
+   "cn": "水层→温度→结构三步链",
+   "face": "Bake",
+   "sig": "红腹食人鱼栖息面真形：三步，时段被证据剔除（CSV 全天活跃→不入链）。",
+   "pseudo": [
+    "EVAL[水层]",
+    "EVAL[温度]",
+    "EVAL[结构]",
+    "返回 running weight（无时段步——证据砍步）"
+   ],
+   "axes": [
+    [
+     "dropped_factor",
+     "时段（CSV 全天直证剔除）"
+    ],
+    [
+     "order",
+     "层→温→构"
+    ]
+   ],
+   "registry_id": "LAYER_TEMP_STRUCTURE_TRIPLE_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "GATED_TEMP_STRUCTURE_TIME_QUAD_CHAIN",
+   "cn": "门化温度次置四步链",
+   "face": "Bake",
+   "sig": "巨骨舌鱼栖息面真形：门+四步，温度第二位（25-29℃ 窄带证据压过结构[需正文]）。",
+   "pseudo": [
+    "GATE[硬门]",
+    "EVAL[温度]（次置——窄带强证据）",
+    "EVAL[结构]",
+    "EVAL[时段]",
+    "返回 running weight"
+   ],
+   "axes": [
+    [
+     "order",
+     "温→构→时（vs 美鱥构→温→时=ORDER 差异不并）"
+    ]
+   ],
+   "registry_id": "GATED_TEMP_STRUCTURE_TIME_QUAD_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "BROODED_DEGENERATE_TWO_STEP_CHAIN",
+   "cn": "口孵退化两步链",
+   "face": "Bake",
+   "sig": "卵含在嘴里=没有外部锚：常驻区适配单步即终值（无关系轴/无温度轴/无合并步；银龙/罗非雌面）。",
+   "pseudo": [
+    "读取 常驻区事实",
+    "EVAL[常驻区适配] 三档（单 Factor）",
+    "返回 running weight（退化链）"
+   ],
+   "axes": [
+    [
+     "brooded",
+     "结构级退化边界成员"
+    ],
+    [
+     "home_range",
+     "单因子"
+    ]
+   ],
+   "registry_id": "BROODED_DEGENERATE_TWO_STEP_CHAIN",
+   "status": "CANDIDATE",
+   "members": 1
+  },
+  {
+   "id": "CONSTRAINED_RELATIVE_REFUGE",
+   "cn": "受约束相对庇护所（种子）",
+   "face": "Bake",
+   "sig": "live 侧带来的外来假说——普查 7 批 284 条 non-match 0 命中，作负证据台账留册不撤。",
+   "pseudo": [
+    "（无成员——负证据台账载体）"
+   ],
+   "axes": [
+    [
+     "ledger",
+     "284 non-match（census↔live 对账弹药）"
+    ]
+   ],
+   "registry_id": "CONSTRAINED_RELATIVE_REFUGE",
+   "status": "CANDIDATE",
+   "members": 0
+  },
+  {
+   "id": "TYPED_TARGET_RESPONSE",
+   "cn": "类型化目标摄食响应",
+   "face": "Response",
+   "sig": "全库最大响应族——对离散饵目标做类型化食物评价，三档决定吃不吃。",
+   "pseudo": [
+    "读取 饵/Presentation 事实（尺寸/速度/轨迹/相对位置）",
+    "EVAL_TARGET_AS_FOOD[typed] → FoodEvaluation",
+    "DECIDE 三档：接受=全额响应 / 边际=低响应 / 无响应=出局",
+    "返回 FeedingResponse"
+   ],
+   "axes": [
+    [
+     "evaluator",
+     "typed Profile"
+    ],
+    [
+     "tiers",
+     "三档 DECIDE"
+    ]
+   ],
+   "registry_id": "TYPED_TARGET_RESPONSE",
+   "status": "CANDIDATE",
+   "members": 248
+  },
+  {
+   "id": "FOOD_FIELD_FEEDING_RESPONSE",
+   "cn": "场摄食响应",
+   "face": "Response",
+   "sig": "吃的是「场」（浓度/丰度）不是离散目标——RETURN 硬判据（evaluand=场）与 TYPED 分立。",
+   "pseudo": [
+    "读取 场浓度事实",
+    "EVAL_FIELD → FieldEvaluation",
+    "DECIDE 三档",
+    "返回 FieldFeedingResponse"
+   ],
+   "axes": [
+    [
+     "evaluand",
+     "field（RETURN 硬判据）"
+    ]
+   ],
+   "registry_id": "FOOD_FIELD_FEEDING_RESPONSE",
+   "status": "CANDIDATE",
+   "members": 16
+  },
+  {
+   "id": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "cn": "护巢双路径并行响应",
+   "face": "Response",
+   "sig": "食物∥入侵者两条路径并行评估后合并——不是切换，是并行竞争（∥ 拓扑）。",
+   "pseudo": [
+    "并行：EVAL[食物] 与 EVAL[入侵威胁]",
+    "合并双路径评价（算子待机制侧）",
+    "DECIDE → Defense/Feeding/低响应",
+    "返回 Response"
+   ],
+   "axes": [
+    [
+     "topology",
+     "∥ 并行（≠IF 门互斥）"
+    ],
+    [
+     "combine",
+     "双路径合并"
+    ]
+   ],
+   "registry_id": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
+   "status": "CANDIDATE",
+   "members": 28
+  },
+  {
+   "id": "STATE_GATED_MULTI_PATH_RESPONSE",
+   "cn": "状态门互斥多路径响应",
+   "face": "Response",
+   "sig": "先过状态门（如停食洄游态），门内互斥选径（IF 门拓扑——与 ∥ 分立）。",
+   "pseudo": [
+    "IF[状态门]：命中径 A / 未命中径 B（互斥）",
+    "径内 EVAL+DECIDE",
+    "返回 Response"
+   ],
+   "axes": [
+    [
+     "state_gate",
+     "premise 状态"
+    ],
+    [
+     "paths",
+     "互斥多径"
+    ]
+   ],
+   "registry_id": "STATE_GATED_MULTI_PATH_RESPONSE",
+   "status": "CANDIDATE",
+   "members": 2
+  },
+  {
+   "id": "CUE_GUIDED_APPROACH_AVOID_RESPONSE",
+   "cn": "环境梯度趋避响应",
+   "face": "Response",
+   "sig": "沿环境 cue 梯度趋近或避开（单例族）。",
+   "pseudo": [
+    "读取 cue 梯度",
+    "EVAL[梯度方向] → 趋近/避开",
+    "返回 Approach/Avoid"
+   ],
+   "axes": [
+    [
+     "cue",
+     "环境梯度"
+    ]
+   ],
+   "registry_id": "CUE_GUIDED_APPROACH_AVOID",
+   "status": "CANDIDATE",
+   "members": 1
+  }
+ ]
+}
