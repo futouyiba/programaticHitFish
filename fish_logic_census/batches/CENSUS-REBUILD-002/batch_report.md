@@ -48,7 +48,7 @@ TS 9（COD PIK19 ARC VEN SWO TAR PAD34 BST CBM）/LA 2（CHU SHA）/GC 6（FGA S
 TS→LA×4（CHN COH BRO ALE：垂直层步独立维度）/TS→FF×3（BRT12 PB SDG）/TS→SF×1（TSK）/GC→ZS×1（SNS：软底质原文步）/GC→SF×3（SSL FDR BSB）/GC→TB×2（WIT YTF）/**FILTER_FIELD→TS×2（BHC HER：单步场浓度链——B 层三步展开无 story 级顺序证据；FILTER_FIELD 移空→空置提案，PATCH VACATED 先例）**。
 
 ### 3.5 复用对账（envelope 衔接指令）
-reused_from=RB-1 共 18：17 同鱼同面（BSK BST CBM GDE GPF GRH HNC MOO RRH SMB 确认类 + BSB FDR SSL TSK SDG WIT YTF 移动类）+WS2 同种品系（WST）。RBP 异面独立推导。同鱼冲突 0。
+reused_from=RB-1 共 18：17 同鱼同面（BSK BST CBM GDE GPF GRH HNC MOO RRH SMB 确认类 + BSB FDR SSL TSK SDG WIT YTF 移动类）+WS2 同种品系（WST）。RBP 同代号异种独立推导。同鱼冲突 0。
 
 ## 4. RB-1 提案形状累积证据（HRQ-RB2-02）
 FF 10→26 名义（+16）/SF 28→34（+6）/TB 2→2（+0 新增，双轨确认）/FS 1→2（+1，SLM 升格证据）/其余两提案（TU/SL）本批无新证。**本批 curve n_new_template=0**（无 RB-1 六提案外新形状——判同只对 registry v9 活族 18，RB-1 提案形状全按 related_proposal 备注累积）。
