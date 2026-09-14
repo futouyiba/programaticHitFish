@@ -1,0 +1,116 @@
+{
+ "batch": "CENSUS-REBUILD-001",
+ "generated_at": "2026-09-14T05:10:34Z",
+ "registry_version": "v9 (read-only; zero mutation this batch)",
+ "n_truth_bodies": 82,
+ "verdicts": {
+  "MERGE_CONFIDENT": 35,
+  "TEMPLATE_EXTENSION_CANDIDATE": 0,
+  "NEW_TEMPLATE_CANDIDATE": 45,
+  "AMBIGUOUS_NEEDS_EXPANSION": 2
+ },
+ "new_family_proposals": {
+  "FORAGE_FIRST_DUAL_TIER_CHAIN__NEW": [
+   "ALB",
+   "BIA",
+   "PBF",
+   "POR",
+   "SAF",
+   "SAI",
+   "SDG",
+   "SPM",
+   "STM",
+   "YFT"
+  ],
+  "SPACE_FIRST_DUAL_TIER_CHAIN__NEW": [
+   "ARG",
+   "ASP",
+   "BLP",
+   "BPB",
+   "BSB",
+   "CCR",
+   "CMR",
+   "CSL",
+   "DTN",
+   "FDR",
+   "GAJ",
+   "GG",
+   "GSF",
+   "HAD",
+   "HAL",
+   "KGO",
+   "LKR",
+   "LKT",
+   "RFP",
+   "RKB",
+   "ROB",
+   "SPC",
+   "SPK",
+   "SSL",
+   "TAI",
+   "TMU",
+   "TSK",
+   "WIN"
+  ],
+  "GATE_SUBSTRATE_TEMPBAND_RESOURCE_CHAIN__NEW": [
+   "WIT",
+   "YTF"
+  ],
+  "GUARD_ANCHOR_TURBIDITY_CONTEXT_CHAIN__NEW": [
+   "JDP",
+   "JGC"
+  ],
+  "STRUCTURE_LIGHTSLOT_FORAGE_TRIPLE_CHAIN__NEW": [
+   "GT",
+   "GW"
+  ],
+  "HABITAT_FORAGE_FLOODSLOT_CHAIN__NEW": [
+   "BAS"
+  ]
+ },
+ "family_move_proposals": {
+  "WIT": "RS1 归族 GATED_COVER -> 本批 TB 新族（STRUCTURAL_DIFF：+深冷复合带步）",
+  "YTF": "RS1 归族 GATED_COVER -> 本批 TB 新族（同 WIT）",
+  "FDR": "RS1 归族 GATED_COVER -> 本批 SF（story TierA omnivore 证伪伏击门样板——无门两步链）",
+  "BSB": "RS1 归族 GATED_COVER -> 本批 SF（story 无二元排除原文）",
+  "SSL": "RS1 归族 GATED_COVER -> 本批 SF（story FCI：潜沙=反捕食 overlay 非伏击——证据分层）",
+  "SDG": "RS1 归族 TIERED_SINGLE -> 本批 FF（裁决 4 电感知分层后 Bake 真形=双因子链）",
+  "TSK": "RS1 归族 TIERED_SINGLE -> 本批 SF（深冷厂适主句先行 vs 感官组样板单步）"
+ },
+ "slot_tiering_track_closure": {
+  "TAI": "C8 slot_tiering 轨关闭确认->SF",
+  "BLP": "->SF",
+  "RFP": "->SF",
+  "DS": "->SF(CSL 双轨合并)",
+  "PBF": "->FF",
+  "GT": "->SL 新族",
+  "HAL": "->SF",
+  "GG": "->SF",
+  "POR": "->FF（B4 双轨合并）",
+  "RKB": "->SF（B4 双轨合并）",
+  "WIN": "->SF（B4 双轨合并）",
+  "SMF": "->GC MC（B4 双轨合并）",
+  "SAI": "->FF（B4 双轨合并）"
+ },
+ "confirmations": {
+  "canonical_order_confirmed_families": [
+   "GATED_COVER_TIER_CHAIN(6)",
+   "ZONE_SUBSTRATE_RESOURCE_CHAIN(2)",
+   "ZONE_DEPTH_SUBSTRATE_RESOURCE_CHAIN(1)",
+   "NOCTURNAL_LIGHTSLOT_CHAIN(4)",
+   "GUARD_ANCHOR_TIERED_COMBINE_CHAIN(5)",
+   "SOFT_TRIPLE_TIER_CHAIN(1)",
+   "TIERED_SINGLE_FACTOR_CHAIN(16; 单步无序判据适用)"
+  ],
+  "note": "MC 成员真形序=所在族 canonical 序——为 order_provisional 证据态提供确认证据（v10 降级提案待独立审）"
+ },
+ "held_absence": [
+  "ASR",
+  "RVS",
+  "RDS"
+ ],
+ "ambiguity": [
+  "TGT",
+  "PEL"
+ ]
+}

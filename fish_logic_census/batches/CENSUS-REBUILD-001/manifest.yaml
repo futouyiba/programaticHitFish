@@ -1,0 +1,49 @@
+# CENSUS-REBUILD-001 (RB-1) manifest
+batch_id: CENSUS-REBUILD-001
+batch_type: TRUTH_REBUILD_RERUN
+created_utc: 2026-09-14T05:04:32Z
+ruling_ref: HRQ-REBUILD-SCOPE-001（用户终局裁决授权）+ HRQ-ADJUDICATION-2026-09-11（hrq_decision_log.md @ commit b5088ab）
+registry_baseline: v9（HRQ-MUTATION-001 后；本批零 mutation——v10 提案待独立审另批）
+
+inputs:
+  truth_rebuild_queue_layers:
+    - AMB 四层链第 1 层（B4 25）
+    - AMB 四层链第 2 层（B5 52）
+    - slot_tiering 追击轨（14）
+  queue_items_selected: 91
+  dual_track_fish: 6（POR/RKB/WIN/SMF/SAI=B4↔RS1；CSL=B5↔RS1-DS——两轨合并处理以最新真形为准）
+  evidence_layers:
+    - A=census 冻结 story 快照（B4/B5/B3 批档 input_snapshots，Tier A）
+    - B=B 系列表达文件 §0 判断顺序行+§2 Bake（Tier B 受限还原——不得照抄，只作对照）
+    - C=fish-reference-20260908.csv 形态/生态行（口器代理=食性/摄食类型；水层=栖息带；活跃时段=时段偏好）
+    - 顺序证据不足 → order_undetermined 挂起（不虚构不默认约定序）
+
+outputs:
+  blind_programs: "82（frozen_at_utc: 2026-09-14T05:04:02Z；sha256[:16]=a10f61207746aecd；registry_seen=false）"
+  order_derived: 80
+  order_undetermined: 2（PEL 三态×三型泛化无链序证据；TGT 亲本系复用未消解+CSV 行不可信）
+  held_absence: 3（ASR/RVS/RDS——queue 裁决 evidence_insufficient_held，不并入任何族）
+  merge_tests: post-registry（判同段产出）
+  human_review_queue: post-registry
+
+bias_declaration:
+  blind_discipline: 判同前未读 template_registry.yaml——全部 82 真形体从证据三层（A story 快照/B 表达文件对照/C CSV）逐鱼推导后冻结于 2026-09-14T05:04:02Z（.freeze_marker 锚定；本 manifest 写出=2026-09-14T05:04:32Z）
+  expression_file_usage: B 层文件仅作因子集与 §0 顺序声明对照——其 Normal 面受限还原（槽间序不主张/约定序+[需正文] 旗）一律不照抄；每鱼 order_basis 记录与 B 层的分歧（证据分层记录）
+  vocabulary_discipline: 盲体语汇自查——truth body 仅描述行为结构（链/档/门/槽），无 extension/新轴/anchor 提案语汇；anchor 四形式值（nest/egg_mass）与 participant 仅作 guard 链记录字段（裁决 6.3 要求的记录形式），提案语汇只出现在判同段
+  wording_alignment_parallel: 证据源读取期间有 REP-WORDING-ALIGN-001 并行批执行（Coordinator 2026-09-14 通知）：其机械修改 B 系列表达文件的 ×0.01 软出局措辞与合并步表述，不动 §0 判断顺序行/链形/步序/Response 面——本批顺序推导不受影响；引文含「返回 0（EARLY_RETURN」字样按对齐前文本标注（读取时文本），不重读
+  derived_vs_template_order: 本批出现的组样板序（如追击组猎物先行）仅作 B 层对照引文，真形顺序一律从 story 正文主句/形态生态特化/CSV 锚独立推导（推导方向：食性主句先行=开放水跟随型；栖息复合主句信息密度高=结构/复合带先行；口器/生理特化绑定=GATE 或特化轴先行；证据分辨率决定链长与轴类型）
+
+self_qa: worker_self_qa.md（判同后补全）
+review_gate: INDEPENDENT_REVIEW_REQUIRED
+
+post_registry:
+  registry_opened_for_merge_tests: true（run_merge_tests.py 只读——template_registry.yaml 零改动验证：sha256 前后一致）
+  verdicts:
+    counts: MERGE_CONFIDENT=35 NEW_TEMPLATE_CANDIDATE=45 TEMPLATE_EXTENSION_CANDIDATE=0 AMBIGUOUS_NEEDS_EXPANSION=2 HELD=3（程序级；四态详表=merge_tests.jsonl）
+    new_family_proposals_distinct: 6（FORAGE_FIRST 10/SPACE_FIRST 28/GATE_SUBSTRATE_TEMPBAND 2/GUARD_ANCHOR_TURBIDITY 2/STRUCTURE_LIGHTSLOT_FORAGE 2/HABITAT_FORAGE_FLOODSLOT 1——curve n_new_template=6）
+    family_move_proposals: 7（HRQ-RB1-01：WIT/YTF/FDR/BSB/SSL/SDG/TSK）
+    canonical_order_confirmations: 7 族（HRQ-RB1-06）
+    slot_tiering_track_closure: 14/14 真形归属（HRQ-RB1-02 随族）
+    dual_track_merged: 6（POR/RKB/WIN/SMF/SAI/CSL——以本批真形为准）
+  status: INDEPENDENT_REVIEW_REQUIRED
+  generated_at: 2026-09-14T05:08:44Z
