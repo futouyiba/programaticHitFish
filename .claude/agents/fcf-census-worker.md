@@ -24,7 +24,10 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 ## 程序骨架纪律
 
 - **判断顺序从 Story 正文推导（2026-09-11 用户新标准，`docs/authoring_work_standards.md` §5）**：不默认平铺结构。Story 描述的行为有先后判断顺序（先判什么后判什么）时，骨架的 ordered_steps 必须反映这个顺序——顺序差异本身就是模板差异判据。分级命中（最适应/可接受/出局）须展开为 if/elif/else 分支而非单一布尔。
-- 保留：`ordered_steps`（顺序不可排序）/ branches / gates / intermediate values + dependencies / combine / early return / return topology。
+- **渐进累积语义——没有「合并」步（2026-09-11 HRQ 裁决，§6.1）**：伪脚本不存在终步「合并」；每步＝`EVAL → 三档判定 → 乘入 running weight`。三档＝不折损 / ×衰减 / **×0.01 软出局立即返回（非零，仍可参与下游）**。骨架**不写 combine 步**；比较存量 canonical 时忽略其终步 COMBINE 字段（v9 前遗留）。
+- **顺序＝族判据（严格）＋逐鱼推导（§6.2）**：任何判断顺序不同＝不同族（ORDER 差异不得合并）。每条鱼的因子顺序必须从证据推导（形态/生态/调研→关键度排序；例：美鱥口器形态→水层先行），**不得套模板约定序**——「多物种同序」若源自约定而非逐鱼推导＝第二层平铺化伪影（C9 教训）。顺序证据不足时标 `order_undetermined` 挂真形重验队列，不得默认约定序也不得虚构顺序。
+- **Guard 面 anchor 四形式（§6.3）**：anchor 轴值＝后代空间存在形式——`nest`（构建型 C4）/ `egg_mass`（利用型附着）/ `fry_school`（移动群）/ `host_brood`（蚌宿主）；`brooded`（口孵）＝退化链结构级不入本族（待重跑终裁）。底质→NestStructureSet+suitability；谁守→guard_participant 轴（male/biparental）；怎么守→Response 动作注记（fan/黏液）；洪水→DynamicSpatialSlot；停食→premise。解析器实例名保留细名。
+- 保留：`ordered_steps`（顺序不可排序）/ branches / gates / intermediate values + dependencies / early return / return topology。
 - `incoming_premises` 与 `surface_owned_logic` 分开记录（F02：activation 差异留 premise，不算 body 差异）。
 - IR 节点类型仅：SEQUENCE / OPERATOR / IF / PARALLEL_SET / RETURN。SEQUENCE 顺序不可变；PARALLEL_SET 仅契约明确无序时可用。
 - De-instantiation 只生成 comparison view（擦物种/Profile 名/常量），原 body 永不改写。

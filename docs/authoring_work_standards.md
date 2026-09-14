@@ -141,3 +141,43 @@ B 系列需「顺序还原修复」；census 需在顺序还原后重跑受影�
 ### 5.5 顺序还原重跑结论（2026-09-11）
 
 SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族（+9 新 Bake 族）。旧 SINGLE 66 成员全部移至新族。B4 饱和候选被证伪。后续饱和判定必须基于顺序还原后输入。
+
+---
+
+## 6. 2026-09-11 HRQ 互动式裁决基准（最高优先级）
+
+本节由用户互动式裁决产生（授权与全文：`fish_logic_census/hrq_decision_log.md`，commit `b5088ab`；执行批 HRQ-MUTATION-001）。**与本节冲突的旧表述以本节为准**（含 §5.1 中「EARLY RETURN 返回 0」的出局值——见 6.1）。
+
+### 6.1 伪脚本语义：渐进累积（无「合并」步）
+
+- **不存在独立的终步「合并」**。乘法逐步进行：每一步＝`EVAL(因子) → 三档判定 → 乘入 running weight`。
+- **三档**：最喜爱＝不折损进入下一步；可接受＝×衰减（不清零）进入下一步；不居留＝**×0.01 软出局立即返回**——非零、仍可参与下游选择；需要绝对排除时须显式返回 0。
+- 与 0.3.4.0 Bake DSL 语义一致（rule 内 `weight = weight × fit`；`if fit <= 阈值 { return 0.01 × weight }`）。
+- 存量影响：B 系列文件「排除档返回 0 出局」措辞与「第 5 步 合并」步骤的对齐＝mutation 批登记待办；比较存量 canonical 时**忽略其终步 COMBINE 字段**（v9 前遗留，重写后移除）。
+
+### 6.2 顺序的地位：严格判据＋逐鱼推导
+
+- **因子判断顺序＝族判据**：任何顺序不同＝不同族（`STRUCTURAL_DIFF=ORDER`，不得合并——§2.3 的唯一读法，不再有「顺序仅参数」读法）。
+- **逐鱼推导纪律**：每条鱼的因子顺序必须从证据推导——形态/生态/调研资料→关键度与漏斗排序（例：美鱥口器形态→水层先行；蓝鳃→结构先行）。**不得套用模板约定序**；「多个物种同序」若源自模板约定而非逐鱼推导＝**第二层平铺化伪影**（C9 教训：四鱼栖息面「4/4 同形」实为 BA-NORMAL-HABITAT-FIT 约定序产物）。
+- 存量影响：B 系列 Normal 面（§2.4）普遍携带约定序＋[需正文] 旗——真值待全库顺序还原重跑逐鱼推导。
+
+### 6.3 Guard 面 anchor 轴：四形式
+
+- **anchor 轴取值＝后代空间存在形式**，仅四值＋一边界：
+  - `nest`（构建型，有 C4 巢体存在原子：石巢/泡沫/殖民巢/pebble_mound/清巢…）
+  - `egg_mass`（利用型附着：岩缝/洞顶/岩面/树根——底质差异归 suitability）
+  - `fry_school`（移动稚鱼群）
+  - `host_brood`（蚌宿主）
+  - `brooded`（口孵/体内携带）＝**退化链，结构级，不入 GUARD_ANCHOR 族**（待重跑终裁；罗非退化链先例 vs 银龙盲形冲突在案）
+- **拆解规则**（各归其槽，轴不重复记账）：底质→`@NestStructureSet`（路由 C3）+ suitability Profile；谁守→`guard_participant` 轴（male/biparental）；怎么守→Response 动作注记（fan/黏液喂养）；位相/洪水→DynamicSpatialSlot；停食→premise。`GuardAnchorResolverInstance` 保留细名（实例管场内定位，轴值管语义分类）。
+
+### 6.4 判同操作化（LT 执行与审查共用）
+
+1. 比较 Bake 程序：**先比对完整有序链**（含门/槽位位置与因子排列）——顺序任一不同→NEW 轨；再比对算子语义（渐进累积口径）。
+2. 骨架书写：`ordered_steps` 每步标注三档语义（不折损/×衰减/×0.01）；**不写 combine 步**。
+3. Guard 面：anchor 以「四形式值＋实例名＋participant＋修饰槽位」记，底质细值不入轴。
+4. 顺序证据不足时：标 `order_undetermined` 挂真形重验队列，**不得默认约定序**（也不得虚构顺序冒充推导）。
+
+### 6.5 registry 现状基准（v9 起）
+
+SINGLE RETIRED（v1 证伪）；9 链族转正（canonical 渐进语义＋`order_provisional` 标注）；HARD_GATED v2（双硬门→EXIT 档因子集，LUN+EEL；电感知归 Response/Encounter 层不进 Bake）；PATCH VACATED；PLAIN FALSIFIED；CRR＝负证据台账（live 侧资产）；TYPED/FOOD_FIELD/GUARD 名义扩容入册；B4 饱和候选撤销。**234＋14 条真形重验队列**（`truth_rebuild_queue.jsonl`）＝终局重跑输入；C9 与 brooded 由重跑证据终裁。
