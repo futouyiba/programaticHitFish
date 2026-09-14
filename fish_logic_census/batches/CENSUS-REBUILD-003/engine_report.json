@@ -1,0 +1,111 @@
+{
+ "batch": "CENSUS-REBUILD-003",
+ "generated_at": "2026-09-14T06:23:58Z",
+ "registry_version": "v9 (read-only; zero mutation this batch)",
+ "n_truth_bodies": 118,
+ "verdicts": {
+  "MERGE_CONFIDENT": 77,
+  "TEMPLATE_EXTENSION_CANDIDATE": 0,
+  "NEW_TEMPLATE_CANDIDATE": 40,
+  "AMBIGUOUS_NEEDS_EXPANSION": 0,
+  "NO_SURFACE_EFFECT": 1
+ },
+ "mc_by_family": {
+  "NOCTURNAL_LIGHTSLOT_CHAIN": 8,
+  "TIERED_SINGLE_FACTOR_CHAIN": 50,
+  "ZONE_SUBSTRATE_RESOURCE_CHAIN": 1,
+  "GUARD_ANCHOR_TIERED_COMBINE_CHAIN": 9,
+  "GATED_COVER_TIER_CHAIN": 7,
+  "SOFT_TRIPLE_TIER_CHAIN": 1,
+  "LAYER_AXIS_DUAL_TIER_CHAIN": 1
+ },
+ "related_rb1_proposals": {
+  "FORAGE_FIRST": {
+   "n": 8,
+   "members": [
+    "BET",
+    "BKC",
+    "COD1",
+    "MAH",
+    "RAI2",
+    "RED1",
+    "RST1",
+    "STB"
+   ],
+   "cumulative": "RB-1 10 -> RB-2 26 -> RB-3 34（+8）"
+  },
+  "SPACE_FIRST": {
+   "n": 27,
+   "members": [
+    "BBF",
+    "BIC",
+    "CRA1",
+    "CTT",
+    "DVK",
+    "GJC",
+    "HMB",
+    "IRS",
+    "LNK",
+    "LWF1",
+    "MRF",
+    "MUL1",
+    "RSB2",
+    "RTB",
+    "SB2",
+    "SBH1",
+    "SBS1",
+    "SIH",
+    "SPS",
+    "SS2",
+    "STM",
+    "TEN1",
+    "TPC",
+    "WCR3",
+    "YCK",
+    "YEP1",
+    "YTA"
+   ],
+   "cumulative": "RB-1 28 -> RB-2 34 -> RB-3 61（+27）"
+  },
+  "note": "RB-1 提案形状累积证据（不在 registry v9 活族——NEW 轨+related_proposal=HRQ-RB1-02）"
+ },
+ "new_shapes_this_batch": {
+  "n_distinct": 5,
+  "members": [
+   "ARA-HAB",
+   "ARO-RESP",
+   "BLU-HAB",
+   "HNC-HAB",
+   "RBP-HAB",
+   "ARO-RESP（BROODED_DEGENERATE_TWO_STEP_CHAIN）"
+  ],
+  "note": "本批 distinct 新形状=5（C9 材料 4 形状+brooded 退化链 1 形状）——RB-1 六提案外新证据，HRQ-RB3-03/04 终裁提案载体；n_new_template=5（distinct 口径）"
+ },
+ "same_fish_reconciliation": {
+  "strain_track": "KOI/MIR/WRC（鲤品系）+RTL（杂交）=TS 同形——RB-2 品系开放项闭合（亲本 KOI 本体补证同形，0 冲突）",
+  "dual_story_reuse": [
+   "FGA4<-RB-2 FGA",
+   "RHM2<-RB-1 RHM"
+  ],
+  "dual_story_independent": [
+   "BRT3/BRT4/BRT12",
+   "COD1/COD2/COD",
+   "PIK1/PIK19",
+   "PAD1/PAD5/PAD34",
+   "WAL2/WAG",
+   "SMA1/SMA",
+   "BLU2/BLU",
+   "TIL2/TIL3",
+   "RSB(Bake/EXT)",
+   "CLC(B5/R03)——挂 HRQ-RB3-01"
+  ],
+  "conflicts": 0
+ },
+ "special_adjudications": {
+  "C9": "HRQ-RB3-03（不立原 C9 族——4/4 分散 4 新形状）",
+  "brooted": "HRQ-RB3-04（ARO 退化链维持；TIL3 分面记账读法修正）",
+  "form_hold": "HRQ-RB3-05（CSL/CSN1 anchor=fry_school——story/B 文件直证）",
+  "no_surface": "GAR1=Bake 面显式无程序（BOUNDARY-DECL 直证，非四态单列）"
+ },
+ "revision": "REV-RB3-001（4 特例 surface/return_type 契约标注——program_revisions.jsonl）"
+}
