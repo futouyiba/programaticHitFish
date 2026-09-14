@@ -118,10 +118,10 @@
   "reused_same_face": 17,
   "reused_same_species_strain": 1,
   "same_fish_diff_face": {
-   "RBP": "RB-1=摄食面/本批=护卵面——独立记账"
+   "RBP": "同代号异种（REV-001 F2 勘误）：RB-1=B5 FISH-R08 Pacu 摄食面/本批=B3 FISH-R06 Piranha 护卵面——独立记账"
   },
   "in_batch_dedup": [
-   "JSB<->ASB（同 URL 同种——真形同体）",
+   "JSB<->ASB（同属参照：JSB=maculatus/ASB=japonicus，源数据层 FishBase 同、页面/Species 层不同——REV-001 F2 勘误；真形同体）",
    "AGC<->GRB（同种品系）"
   ],
   "conflicts": 0

@@ -124,7 +124,10 @@ cnt = Counter(t["verdict"] for t in mt.values())
 curve = CEN / "discovery_curve.csv"
 lines = curve.read_text(encoding="utf-8").strip().splitlines()
 assert lines[0].startswith("batch_id,n_stories_consumed")
-row = "CENSUS-REBUILD-002,94,94,%d,0,%d,0,0,0,0,0,0,0,0" % (cnt["MERGE_CONFIDENT"], cnt["NEW_TEMPLATE_CANDIDATE"])
+# REV-001 F1：n_new_template_candidate 列=distinct 新族口径（判例 CENSUS-REBUILD-001-REV-001 #2）——
+# 本批 distinct=0（NEW 25 全落 RB-1 提案形状，无本批新族）。distinct_new_families 显式常量承口径。
+DISTINCT_NEW_FAMILIES_RB2 = 0
+row = "CENSUS-REBUILD-002,94,94,%d,0,%d,0,0,0,0,0,0,0,0" % (cnt["MERGE_CONFIDENT"], DISTINCT_NEW_FAMILIES_RB2)
 if any(l.startswith("CENSUS-REBUILD-002,") for l in lines):
     print("curve: row already present (idempotent skip)")
 else:

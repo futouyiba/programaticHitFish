@@ -6,7 +6,7 @@
 - 链族在册 order_provisional 成员（47）：RS1 批档冻结链（Tier C 对照）+原批 story 快照
   （B3/B4 有档；B1/B2 无 story 文本档→Tier C 冻结 sketch 事实）+表达文件 §0/§2.2（Tier B
   对照不照抄）+CSV。18 尾与 RB-1 同鱼同面（17 尾 B4 起源 + WS2↔WST 同种）——复用 RB-1
-  真形并标注 reused_from；RBP 为同鱼异面（RB-1=摄食面/本项=护巢面 §2.2）→独立推导。
+  真形并标注 reused_from；RBP 为同代号异种（REV-001 F2 勘误：RB-1=B5 FISH-R08 Pacu 摄食面/本项=B3 FISH-R06 Piranha 护巢面）→独立推导。
 
 盲纪律：本脚本运行时 registry v9 尚未打开（registry_seen=false 全体）；骨架只描述观察到的
 行为结构（渐进累积语义，三档=全额/×衰减/×0.01 软出局），不携带 extension/新轴/族名提案
@@ -978,7 +978,7 @@ def build():
         steps = src["surface_owned_logic"]["ordered_steps"]
         od = dict(src["order_derivation"])
         od["status"] = "reused"
-        od["reused_from"] = "CENSUS-REBUILD-001:P-RB1-%s-BAKE" % code
+# REV-001 F4：嵌套 reused_from 已移除（顶层唯一写面，防 JSON 重复键）
         od["queues"] = [QUEUE["P-RS1-%s-BAKE" % code]]
         od["consistency_check"] = ("同鱼同面复用：RB-1 证据层（B4 story 快照+表达文件+CSV）与本批 RS1 证据层指向同一 B4 冻结 story——"
                                    "无新顺序证据（Tier B 表达链=约定序层不构成冲突证据）；一致性核验=RB-1 basis 事实逐条存在于 B4 快照（本批复核通过）")

@@ -13,7 +13,7 @@ inputs:
   same_fish_reconciliation:
     - RB-1 同鱼同面复用 17（BSB/BSK/BST/CBM/FDR/GDE/GPF/GRH/HNC/MOO/RRH/SDG/SMB/SSL/TSK/WIT/YTF——B4 起源 RS1 成员，RB-1 已从同一 B4 story 快照 Tier A 推导；复用体标注 reused_from，不重推不冲突）
     - RB-1 同种品系复用 1（WS2=白化高首鲟↔WST 同种 Cross-Batch 去重联动第 2 例）
-    - 同鱼异面 1（RBP：RB-1=摄食面单因子/本批 RS1 项=护卵面 §2.2——两程序面独立记账，RB-1 真形不适用于本项，独立推导）
+    - 同代号异种 1（RBP：RB-1 P-RB1-RBP-BAKE=B5 story FISH-R08 淡水白鲳 Pacu 摄食面/本批 RS1 项=B3 story FISH-R06 红腹食人鱼 Piranha 护卵面——REV-001 F2 勘误：原记「同鱼异面」失实，两代号复用不同物种；独立记账理由=异种（更不可复用），推导结论不变）
     - 批内同种双行 1（JSB↔ASB 同 URL 同种——真形同体推导，双 queue 项独立记账+去重联动注记）
     - 批内同种品系 1（AGC 白化草鱼↔GRB 同种——GRB 本批真形复用）
   evidence_layers:
@@ -56,7 +56,7 @@ post_registry:
     order_provisional_confirmations: 31 尾（9 族：TS 9/LA 2/GC 6/NO 5/ZS 3/ZD 1/ST 1/GA 4——清零提案随 v10）
     family_move_proposals: 16（HRQ-RB2-01：TS->LA x4/TS->FF x3/TS->SF x1/GC->ZS x1/GC->SF x3/GC->TB x2/FILTER_FIELD->TS x2）
     filter_field_vacate_proposal: FILTER_FIELD_ACCUMULATE_CHAIN 移空 0 成员（BHC/HER 出族）——空置提案（PATCH VACATED 先例）
-    same_fish_reconciliation: reused 18（17 同鱼同面+1 同种品系 WS2）/RBP 异面独立推导/冲突 0
+    same_fish_reconciliation: reused 18（17 同鱼同面+1 同种品系 WS2）/RBP 同代号异种独立推导（REV-001 F2 勘误）/冲突 0
   revision: REV-RB2-001（BHC/HER return_type 契约修正——program_revisions.jsonl+freeze_history 双留痕）
   status: INDEPENDENT_REVIEW_REQUIRED
   generated_at: 2026-09-14T05:47:17Z
