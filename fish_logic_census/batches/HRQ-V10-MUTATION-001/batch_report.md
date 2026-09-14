@@ -72,7 +72,7 @@
 
 ## 5. 验证
 
-- 改动前基线：git HEAD=a09e0b4（REV-001 F3 勘误：原记 8196719，真实父提交为 a09e0b4[docs-only 验收标准提交]；registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）
+- 改动前基线：git HEAD=a09e0b4（REV-001 F3 勘误：原记 8196719，真实父提交为 a09e0b4[docs-only 验收标准提交]；registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）
 - 脚本执行：全部锚点 count 断言通过（含 chain order line 9 处/单例锚 1 处）；**写盘前** yaml.safe_load+结构断言全过（version 10/32 条目/名义计数 19 族/GUARD anchor Counter/statuses Counter/order 标志 8+3/moved_from=16）
 - 幂等守卫：二跑 exit 1（GUARD: registry already at v10）实测 ✓
 - validate_batch HRQ-V10-MUTATION-001：PASS（0 程序空批——manifest 声明非普查批）

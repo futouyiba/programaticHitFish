@@ -17,7 +17,7 @@
 ## 计数对账（脚本断言全过）
 
 - [x] 名义：SF 61=28+6+27/FF 34=10+16+8/TB 4/TU 2/SL 2/FS 2/四形族各 1（新族 110=RB NEW 45+25+40）
-- [x] 既有族：TS 94/GC 27/NO 24/LA 7/ZS 7/ST 3/ZD 2/GA 18（181 RB+MGC 1）
+- [x] 既有族：TS 94/GC 27/NO 24/LA 7/ZS 7/ST 3/ZD 2/GA 18（名义 182=前 RB 期 40+RB 落册 142——REV-001 F1 双轴拆分勘误；原「181 RB+MGC 1」为混轴等式）
 - [x] RB 闭合：294=181 MC+110 NEW+2 AMB+1 NOS
 - [x] GUARD 26：Counter{nest 11/egg_mass 7/fry_school 6/host_brood 2}+exited 2（brooded 历史层）
 - [x] 活族：28 CANDIDATE（23 Bake+5 Response）——三口径 18/23/28 在 provenance 声明
