@@ -61,6 +61,6 @@
 
 ## 5. 停点
 
-**status=INDEPENDENT_REVIEW_REQUIRED**。独立审通过后：①push（mutation 批审后推送）；②文档线 v13+work standards §5.1 措辞对齐（语义裁定 2 待办）；③重跑批以 truth_rebuild_queue.jsonl 248 行为输入清单（逐鱼顺序推导必做工序；C9 与 brooded 终裁）。**范围披露（REV-001 F5）**：链族 47 个在册成员（B1 6+B2 8+B3 16+B4 17）的 order_provisional 解析不在 248 行 queue 内——其入队属范围扩展=新裁决，立 **HRQ-REBUILD-SCOPE-01 候选**待人类裁（本批不自行决定；重跑批设计时必须先闭合此裁决）。
+**status=INDEPENDENT_REVIEW_REQUIRED**。独立审通过后：①push（mutation 批审后推送）；②文档线 v13+work standards §5.1 措辞对齐（语义裁定 2 待办）；③重跑批以 truth_rebuild_queue.jsonl 248 行为输入清单（逐鱼顺序推导必做工序；C9、brooded 与 form_hold 终裁——R2 闭合补齐）。**范围披露（REV-001 F5）**：链族 47 个在册成员（B1 6+B2 8+B3 16+B4 17）的 order_provisional 解析不在 248 行 queue 内——其入队属范围扩展=新裁决，立 **HRQ-REBUILD-SCOPE-01 候选**待人类裁（本批不自行决定；重跑批设计时必须先闭合此裁决）。
 
 BATCH_ID: HRQ-MUTATION-001
