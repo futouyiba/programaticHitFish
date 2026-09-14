@@ -83,7 +83,7 @@ EXEMPLARS = {
  'SPACE_FIRST_DUAL_TIER_CHAIN': ('rb', 'P-RB1-RKB-BAKE'),
  'FORAGE_FIRST_DUAL_TIER_CHAIN': ('rb', 'P-RB1-POR-BAKE'),
  'TIERED_SINGLE_FACTOR_CHAIN': ('rb', pick('-TIL2-BAKE') if any(k.endswith('-TIL2-BAKE') for k in bodies) else pick('-KGO-BAKE')),
- 'GATED_COVER_TIER_CHAIN': ('file', 'outputs/full_authoring/normal2/species/arctic_grayling.md', '2.3', '2.4', '北极茴鱼（normal2 表达文件·伏击门 GATE_RIFFLE_GRAVEL·已 ×0.01 对齐）'),
+ 'GATED_COVER_TIER_CHAIN': ('file', 'outputs/full_authoring/normal2/species/arctic_grayling.md', '2.1', '2.2', '北极茴鱼（normal2 表达文件·伏击门 GATE_RIFFLE_GRAVEL·已 ×0.01 对齐）'),
  'GUARD_ANCHOR_TIERED_COMBINE_CHAIN': ('file', 'outputs/full_authoring/guarding/species/bluegill.md', '2.1', '2.2', '蓝鳃太阳鱼（guarding 表达文件·canonical 成员·已 ×0.01 对齐）'),
  'NOCTURNAL_LIGHTSLOT_CHAIN': ('file', 'outputs/full_authoring/guarding/species/wels_catfish.md', '2.3', '2.4', '欧洲巨鲶（Normal 面·夜行低光槽·已 ×0.01 对齐）'),
  'LAYER_AXIS_DUAL_TIER_CHAIN': ('rb', pick('-CHN-BAKE')),
