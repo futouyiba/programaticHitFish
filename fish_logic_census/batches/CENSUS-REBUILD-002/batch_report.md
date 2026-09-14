@@ -65,4 +65,10 @@ BHC/HER return_type 契约修正（FieldFeeding→SpatialDistributionWeight）�
 - registry/template_registry.yaml 零改动（sha256 断言）；discovery_curve.csv 追加 1 行（幂等守卫）✓
 
 ## 7. 停点
+## 8. REV-001 / REV-001-R1 修复轮记录（2026-09-14）
+
+- F4 处置（reviewer 推荐方案 a）：**冻结盲体回滚至 e1adf08 原样**（sha256[:16] CRLF 口径=1a43453f38dcec61 与 freeze manifest 声明精确复现——R1 修复中曾直接改冻结体未动 hash，被审出后回滚）；嵌套 reused_from 重复键以「**schema 缺陷记录在案**」关闭：构造器已修（顶层唯一写面），存量 18 行保持冻结原样，后续批不再产生双写。
+- F2 清扫：批档非冻结文件旧口径清零（同 URL 同种/同鱼异面/RBP 异面→同属参照/同代号异种，点名 7 处+扫出其余共 9 处）；RBP 冻结盲体内的「RB-1 RBP 摄食面真形另载」字样**保持冻结不动**——勘误由 program_revisions REV-RB2-RBP-02 ledger 承载（reviewer fix 指令选项 A）。
+- F1/F3/F5：见 REV-001 闭合（curve 0/HRQ-RB2-07/行级回链 4/4）。
+
 Self-QA（worker_self_qa.md）+ validate_batch + fixtures 通过 → INDEPENDENT_REVIEW_REQUIRED → 停。BATCH_ID: CENSUS-REBUILD-002
