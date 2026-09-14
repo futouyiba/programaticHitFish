@@ -1,4 +1,4 @@
-> **类型**：护巢双路径并行响应（GUARD_CONFLICT_DUAL_PATH_RESPONSE）｜面：Response｜状态：CANDIDATE｜名义成员：28
+> **类型**：护巢双路径并行响应（GUARD_CONFLICT_DUAL_PATH_RESPONSE）｜面：Response｜状态：CANDIDATE｜名义成员：26（registry v10 counts_v10 口径——四形式正式 nest 11/egg_mass 7/fry_school 6/host_brood 2；另 2 条 brooded 边界注记不计名义）
 
 ## 特点
 

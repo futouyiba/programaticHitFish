@@ -25,6 +25,6 @@
 | 受约束相对庇护所（种子） | Bake | 0 | live 侧带来的外来假说——普查 7 批 284 条 non-match 0 命中，作负证据台账留册不撤。 | <a href="#constrained_relative_refuge">伪脚本</a> · <a href="#constrained_relative_refuge-cfg">配置表</a> |
 | 类型化目标摄食响应 | Response | 248 | 全库最大响应族——对离散饵目标做类型化食物评价，三档决定吃不吃。 | <a href="#typed_target_response">伪脚本</a> · <a href="#typed_target_response-cfg">配置表</a> |
 | 场摄食响应 | Response | 16 | 吃的是「场」（浓度/丰度）不是离散目标——RETURN 硬判据（evaluand=场）与 TYPED 分立。 | <a href="#food_field_feeding_response">伪脚本</a> · <a href="#food_field_feeding_response-cfg">配置表</a> |
-| 护巢双路径并行响应 | Response | 28 | 食物∥入侵者两条路径并行评估后合并——不是切换，是并行竞争（∥ 拓扑）。 | <a href="#guard_conflict_dual_path_response">伪脚本</a> · <a href="#guard_conflict_dual_path_response-cfg">配置表</a> |
+| 护巢双路径并行响应 | Response | 26 | 食物∥入侵者两条路径并行评估后合并——不是切换，是并行竞争（∥ 拓扑）。 | <a href="#guard_conflict_dual_path_response">伪脚本</a> · <a href="#guard_conflict_dual_path_response-cfg">配置表</a> |
 | 状态门互斥多路径响应 | Response | 2 | 先过状态门（如停食洄游态），门内互斥选径（IF 门拓扑——与 ∥ 分立）。 | <a href="#state_gated_multi_path_response">伪脚本</a> · <a href="#state_gated_multi_path_response-cfg">配置表</a> |
 | 环境梯度趋避响应 | Response | 1 | 沿环境 cue 梯度趋近或避开（单例族）。 | <a href="#cue_guided_approach_avoid">伪脚本</a> · <a href="#cue_guided_approach_avoid-cfg">配置表</a> |
