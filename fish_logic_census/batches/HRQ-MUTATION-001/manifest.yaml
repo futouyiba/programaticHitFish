@@ -1,0 +1,20 @@
+batch_id: HRQ-MUTATION-001
+kind: REGISTRY_MUTATION_EXECUTION
+date: 2026-09-14
+status: INDEPENDENT_REVIEW_REQUIRED
+authorization:
+  source: fish_logic_census/hrq_decision_log.md
+  commit: b5088ab
+  adjudication: HRQ-ADJUDICATION-2026-09-11（七项裁决+两组语义裁定）
+  scope: "本批零新增裁决——仅逐条落表；不超出决策日志文末 mutation 批执行清单范围"
+no_blind_input: true
+blind_discipline: "非普查批：无冻结 Story/无新盲程序/无判同——盲纪律不适用（无新 sketch 故无 registry_seen 风险面）"
+registry_mutation:
+  file: fish_logic_census/template_registry.yaml
+  version: 8 -> 9
+  script: batches/HRQ-MUTATION-001/apply_hrq_mutation.py（幂等守卫：检测 v9 即拒绝重放）
+  previous_state_snapshot: "mutation_provenance.previous_state + v8_mutation_history + git b5088ab^（权威文件不删历史）"
+new_artifacts:
+  - "fish_logic_census/truth_rebuild_queue.jsonl（248 行=234 AMB[B4 25+B5 52+B6 47+B7 110]+14 slot_tiering——终局全库顺序还原重跑输入清单）"
+counts_reconciliation: "见 batch_report.md（逐条裁决->落表对照与计数对账）"
+validator_note: "programs/stories/blind_programs/merge_tests 为空文件（validate_batch 形式要求——本批无新程序）；受影响程序 248 条清单见 truth_rebuild_queue.jsonl；registry 归属变更见 mutation_provenance.ruling_to_mutation_map"
