@@ -247,7 +247,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
   <!-- ===================== 00 最新进展摘要（置顶醒目区） ===================== -->
   <section class="ov" aria-label="最新进展摘要" style="border-color:rgba(57,135,229,.5)">
     <div class="ov-head">
-      <div class="kicker">What's New · 更新至 2026-09-12 凌晨（v13）</div>
+      <div class="kicker">What's New · 更新至 2026-09-14（v14）</div>
       <div class="ov-title">最新进展摘要</div>
       <p class="ov-sub">先看结论：现在处于什么状态、刚发生了什么、下一步是什么。逐批明细见下方 01–09 节。</p>
     </div>
@@ -258,7 +258,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
       </div>
       <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(12,163,12,.07);border:1px solid rgba(12,163,12,.25)">
         <span style="flex:none">✅</span>
-        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">LT 终局阶段（最后一段路）：全库顺序还原重跑</b>——<b>truth_rebuild_queue 248 行</b>（234 AMB + 14 slot_tiering）为输入清单；逐鱼推导判断顺序（形态/生态→关键度排序，如美鱥口器→水层先行）为必做工序。唯一待裁 <b>HRQ-REBUILD-SCOPE-01</b>（链族 47 在册成员是否入队）；C9 / brooded / form_hold 由重跑证据终裁；TYPED 248 · FOOD_FIELD 16 · CRR 台账 284 已入册。</div>
+        <div style="font-size:14px;line-height:1.65;color:var(--ink-2)"><b style="color:var(--ink)">LT 终局重跑已裁决并启动</b>：HRQ-REBUILD-SCOPE-01 裁定（2026-09-14）——链族 47 在册成员入队 + 终局级别全库重跑确认；<b>truth_rebuild_queue 303 行</b>（234 AMB + 14 slot_tiering + 47 order_provisional + 8 终裁特例[C9×4/brooded×2/form_hold×2]）。分三批执行：<b>RB-1（91 项，运行中）</b>→ RB-2（94 项）→ RB-3（118 项）→ 统一 mutation 升 registry v10。</div>
       </div>
       <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:rgba(12,163,12,.07);border:1px solid rgba(12,163,12,.25)">
         <span style="flex:none">✅</span>
@@ -297,7 +297,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
       <div class="topline" style="background:var(--c3)"></div>
       <div class="num">18<small>活族</small></div>
       <div class="lbl">LogicTemplate（Registry v9 · 裁决后）</div>
-      <div class="sub">21 条目含 3 退役（SINGLE/PLAIN/PATCH 留档）· TYPED 248 · FOOD_FIELD 16 · GUARD 四形式 24 · 消费 295/295 ✓ · HRQ 裁决全出队 → 终局重跑（queue 248）</div>
+      <div class="sub">21 条目含 3 退役（SINGLE/PLAIN/PATCH 留档）· TYPED 248 · FOOD_FIELD 16 · GUARD 四形式 24 · 消费 295/295 ✓ · HRQ 裁决全出队（含 REBUILD-SCOPE-01）→ 终局重跑 RB 系列（queue 303，RB-1 运行中）</div>
     </div>
   </section>
 
@@ -697,7 +697,7 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
             <td class="num"><span class="cellbar"><span class="mbar"><i class="bake" style="width:0"></i></span><b>66 <span class="arrow">→</span> 0</b></span></td>
             <td>SINGLE 旧族已拆分——66 成员全部移至上方 9 个新族（双列保留）</td>
           </tr>
-          <tr class="total"><td>合计 21 族</td><td class="muted">Bake 16 / Response 5</td><td class="num">139 <span class="muted">v8 明细</span></td><td class="muted">Registry v9（HRQ 裁决后）：18 活族 + SINGLE RETIRED / PLAIN FALSIFIED / PATCH VACATED 留档 · TYPED 248 / FOOD_FIELD 16 / GUARD 28（四形式正式 24+brooded 2+form_hold 2）/ CRR 负证据台账 284 · 渐进累积语义+order_provisional 已落 12 族 · 终局重跑 queue 248 行</td></tr>
+          <tr class="total"><td>合计 21 族</td><td class="muted">Bake 16 / Response 5</td><td class="num">139 <span class="muted">v8 明细</span></td><td class="muted">Registry v9（HRQ 裁决后）：18 活族 + SINGLE RETIRED / PLAIN FALSIFIED / PATCH VACATED 留档 · TYPED 248 / FOOD_FIELD 16 / GUARD 28（四形式正式 24+brooded 2+form_hold 2）/ CRR 负证据台账 284 · 渐进累积语义+order_provisional 已落 12 族 · 终局重跑 queue 303 行（REBUILD-SCOPE-001 裁入 47+8）</td></tr>
         </tbody>
       </table>
     </div>
@@ -779,8 +779,8 @@ footer{margin-top:44px;border-top:1px solid var(--hairline);padding-top:18px;
 
   <!-- ===================== 页脚 ===================== -->
   <footer>
-    <span>FCF Harness · 进展汇总 v13 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。已嵌入 Notion（embed 原生预览）。</span>
-    <span>FR ✓ · B ✓ · LT 消费 ✓ 295/295 · HRQ 裁决 ✓ → Registry v9（18 活族）→ 终局：顺序还原重跑（queue 248 · 唯一待裁 HRQ-REBUILD-SCOPE-01）</span>
+    <span>FCF Harness · 进展汇总 v14 —— 单文件离线报告，所有数据为 2026-09-11 快照内嵌，无外部请求。已嵌入 Notion（embed 原生预览）。</span>
+    <span>FR ✓ · B ✓ · LT 消费 ✓ · HRQ 裁决 ✓（含 REBUILD-SCOPE-01）→ Registry v9（18 活族）→ 终局重跑进行中（RB-1/3 · queue 303）</span>
   </footer>
 
 </div>
