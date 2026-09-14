@@ -30,7 +30,7 @@
 | registry 条目 | 21（18 CANDIDATE+3 退役态） | 32（28 CANDIDATE+RETIRED 1+FALSIFIED 1+VACATED 2） | +11 新族−1（FILTER_FIELD 转VACATED） |
 | 活族三口径 | 18 在册（CANDIDATE） | **18→28 终态** | 23 Bake（13−1+11）+5 Response；envelope「23 过审」口径=Bake 终态数 |
 | 新族名义 | — | **110** | SF 61=28+6+27 / FF 34=10+16+8 / TB 4=2+2 / TU 2 / SL 2 / FS 2 / 五形各 1×5 |
-| 既有族 RB 落册 | — | **181+MGC=182** | TS 94（RS1 存留 9+迁入 2+RB-1 16+RB-2 17+RB-3 50）/GC 27（存留 7+RB-1 6+RB-2 7+RB-3 7）/NO 24（5+4+7+8）/LA 7（2+迁入 4+RB-3 1）/ZS 7（3+迁入 1+RB-1 2+RB-3 1）/ST 3（2+RB-3 1）/ZD 2（1+RB-1 1）/GA 18（4+RB-1 5+RB-3 9） |
+| 既有族名义 | — | **182=前 RB 期 40+RB 落册 142**（REV-001 F1 双轴拆分；RB MC 判定 181=142 注册+39 注记承载） | TS 94（RS1 存留 9+迁入 2+RB-1 16+RB-2 17+RB-3 50）/GC 27（存留 7+RB-1 6+RB-2 7+RB-3 7）/NO 24（5+4+7+8）/LA 7（2+迁入 4+RB-3 1）/ZS 7（3+迁入 1+RB-1 2+RB-3 1）/ST 3（2+RB-3 1）/ZD 2（1+RB-1 1）/GA 18（4+RB-1 5+RB-3 9） |
 | RB 三批闭合 | 294 真形体 | =181 MC+110 NEW+AMB 2（TGT/PEL 挂重验）+NOS 1（GAR1） | 82+94+118=294 ✓ |
 | GUARD（Response） | 28（四形式 24+brooded 2+form_hold 2） | **26**（nest 11/egg_mass 7/fry_school 6/host_brood 2） | fry_school 3→6（+CSL/CSN1 终裁+ARA 规则重落）；nest 12→11（ARA 出）；brooded 2 退族历史层 |
 | 迁移成员条目 | — | 16（moved_from 注记，脚本断言=16） | 23 条批级移动记录（7 条 RB-1/RB-2 双轨） |
@@ -72,7 +72,7 @@
 
 ## 5. 验证
 
-- 改动前基线：git HEAD=8196719（registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）
+- 改动前基线：git HEAD=a09e0b4（REV-001 F3 勘误：原记 8196719，真实父提交为 a09e0b4[docs-only 验收标准提交]；registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）registry v9 sha256_16=6867cc1ebc74541a——脚本首行读取后未再断言前值，锚点 count 断言承担等价防护）
 - 脚本执行：全部锚点 count 断言通过（含 chain order line 9 处/单例锚 1 处）；**写盘前** yaml.safe_load+结构断言全过（version 10/32 条目/名义计数 19 族/GUARD anchor Counter/statuses Counter/order 标志 8+3/moved_from=16）
 - 幂等守卫：二跑 exit 1（GUARD: registry already at v10）实测 ✓
 - validate_batch HRQ-V10-MUTATION-001：PASS（0 程序空批——manifest 声明非普查批）
