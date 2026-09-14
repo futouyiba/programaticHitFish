@@ -638,7 +638,7 @@
    "id": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
    "cn": "护巢双路径并行响应",
    "face": "Response",
-   "sig": "食物∥入侵者两条路径并行评估后合并——不是切换，是并行竞争（∥ 拓扑）。",
+   "sig": "食物∥入侵者两条路径并行评估后合并——不是切换，是并行竞争（∥ 拓扑）。（名义 26=registry v10 counts_v10 口径：四形式正式 nest 11/egg_mass 7/fry_school 6/host_brood 2；另 2 条 brooded 边界注记不计名义）",
    "pseudo": [
     "并行：EVAL[食物] 与 EVAL[入侵威胁]",
     "合并双路径评价（算子待机制侧）",
@@ -657,7 +657,7 @@
    ],
    "registry_id": "GUARD_CONFLICT_DUAL_PATH_RESPONSE",
    "status": "CANDIDATE",
-   "members": 28
+   "members": 26
   },
   {
    "id": "STATE_GATED_MULTI_PATH_RESPONSE",
