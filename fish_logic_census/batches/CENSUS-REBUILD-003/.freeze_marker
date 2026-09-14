@@ -1,0 +1,3 @@
+blind_frozen_at=2026-09-14T06:21:24Z
+blind_sha256_16=6171ed89cbb82a4e
+retrospective=true   # HRQ-V10-MUTATION-001 补建（RB-3 审校 F1：原批未落盘 marker）；hash=现盲文件实测（自 2026-09-14T06:21:24Z 二冻[REV-RB3-001]后未变，git 8a5bf47 起可溯）；first_freeze=2026-09-14T06:18:50Z

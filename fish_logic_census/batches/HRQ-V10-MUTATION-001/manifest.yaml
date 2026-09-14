@@ -1,0 +1,34 @@
+batch_id: HRQ-V10-MUTATION-001
+kind: HRQ_ADJUDICATION_EXECUTION
+date: 2026-09-14
+status: INDEPENDENT_REVIEW_REQUIRED
+authorization:
+  source: "LT_ENDGAME_CHECKLIST.md 第 3 步（用户指示：RB-3 跑完->全部审完->统一 v10 mutation）"
+  verdict_cards:
+    - "RB-1：9e58bb6+5bf0694 / verdict d0db89b=ARTIFACT_APPROVE"
+    - "RB-2：e1adf08+ecc2510+ac75b77+32e4b78+96cf145 / verdict 2c3bc94=三轮 APPROVE 闭环"
+    - "RB-3：8a5bf47+6a47078+0fdee44 / 首轮 ARTIFACT_APPROVE（checklist 8196719）"
+  decisions: "fish_logic_census/hrq_decision_log.md 全部裁决（七项裁决+两组语义裁定+HRQ-REBUILD-SCOPE-01）"
+  scope: "本批零新增裁决——逐条落表；不超出 checklist 第 3 步 scope"
+no_blind_input: true
+blind_discipline: "非普查批：无冻结 Story/无新盲程序/无判同——盲纪律不适用（无新 sketch 故无 registry_seen 风险面）"
+registry_mutation:
+  file: fish_logic_census/template_registry.yaml
+  version: 9 -> 10
+  script: batches/HRQ-V10-MUTATION-001/apply_v10_mutation.py（幂等守卫：检测 v10 即拒绝重放 exit 1；锚点 count 断言+写盘前 yaml.safe_load 全文结构/计数断言）
+  previous_state_snapshot: "mutation_provenance.previous_state + v9_mutation_history（原 v9 mutation_provenance 块整体平移重命名——内容零删改）+ git HEAD（8196719）可溯全文"
+scope_executed:
+  new_families_11: "SPACE_FIRST 61/FORAGE_FIRST 34/GATE_SUBSTRATE_TEMPBAND 4/GUARD_ANCHOR_TURBIDITY 2/STRUCTURE_LIGHTSLOT 2/HABITAT_FORAGE_FLOODSLOT 2/STRUCTURE_FIRST_QUAD 1/LAYER_TEMP_STRUCTURE_TRIPLE 1/GATED_STRUCTURE_TEMP_TIME_QUAD 1/GATED_TEMP_STRUCTURE_TIME_QUAD 1/BROODED_DEGENERATE_TWO_STEP 1"
+  family_moves: "23 条移动记录（RB-1 7+RB-2 16——7 条双轨确认）=16 个 known_instances 成员条目迁移（moved_from 注记）"
+  filter_field: VACATED（BHC/HER 迁 TIERED_SINGLE factor_type=field）
+  order_resolution: "8 链族 order_confirmed+FILTER_FIELD 随空置关闭+3 族（HARD_GATED/EXTREME_TEMP/PATCH_GATED_DUAL）如实保留 provisional+终态注记"
+  terminal_adjudications: "TIL3 分面/ARO 退化链/CSL+CSN1 fry_school/跨阶段 anchor 规则（HRQ-RB2-07 主形式-直证）/KOI 品系闭合/C9 撤案注记"
+  incidental: "RB-2 生成器常量 7 处点名+邻行 title 共 8 行同步（RBP/JSB 身份措辞——对齐 REV-001/R1 已修产物）；RB-3 追溯性 .freeze_marker 补建（retrospective 标注+现盲 sha256=6171ed89cbb82a4e）"
+incidental_files:
+  - "fish_logic_census/batches/CENSUS-REBUILD-002/build_census_outputs.py（L103/L107/L110）"
+  - "fish_logic_census/batches/CENSUS-REBUILD-002/build_stories_and_manifest.py（L74/L75）"
+  - "fish_logic_census/batches/CENSUS-REBUILD-002/run_merge_tests.py（L152/L200/L320-321）"
+  - "fish_logic_census/batches/CENSUS-REBUILD-003/.freeze_marker（新建）"
+counts_reconciliation: "见 batch_report.md §2（逐项对照+计数对账）；活族终态三口径 18 在册/23 Bake/28 总"
+validator_note: "programs/stories/blind_programs/merge_tests 为空文件（validate_batch 形式要求——本批无新程序）；判同细节权威=RB-1/2/3 各批 merge_tests.jsonl；本批改动清单见 scope_executed+incidental_files"
+curve: "discovery_curve.csv 零改动（RB 三行已在——envelope 明示 curve 零改动）"

@@ -149,7 +149,7 @@ add("BSK", "MERGE_CONFIDENT", ST, "近底软三档->底质->资源无门：canon
 for sid, note, anchor in [
     ("BLU", "锚存在门->选址->占位关系->局部温度：canonical 精确同构（canonical 源成员真形复验；Tier A C06 建立期选址->照护期占位=步序证据）", "colony_nest（nest 构建型——殖民地巢群）"),
     ("ARA", "锚存在门->漫滩栖境->环护关系->局部温度：canonical 精确同构（A 正文全句证据升级 B 层一句方向级）；anchor 跨阶段（沙底巢->稚鱼群）按初始形式落 nest+后阶段注记（MUT ② CSL 先例）", "nest（沙底巢+稚鱼群 brood 后阶段注记）"),
-    ("RBP", "锚存在门->树根附着面->护卵关系->局部温度：canonical 精确同构（A 正文原句 'Eggs are laid on tree roots...guarded'）；同鱼异面注记：RB-1 RBP=摄食面单因子（另轨）——本项=护卵面独立记账", "egg_mass（树根附着利用型）"),
+    ("RBP", "锚存在门->树根附着面->护卵关系->局部温度：canonical 精确同构（A 正文原句 'Eggs are laid on tree roots...guarded'）；同代号异种注记（REV-001 F2）：RB-1 P-RB1-RBP=淡水白鲳 Pacu 摄食面（另轨）——本项=红腹食人鱼 Piranha 护卵面独立记账", "egg_mass（树根附着利用型）"),
 ]:
     add(sid, "MERGE_CONFIDENT", GA, note + "；anchor=" + anchor, oc=True)
 add("HNC", "MERGE_CONFIDENT", GA, "锚存在门->石巢选址->关系->局部温度：canonical 同构（RB-1 MC 复用；anchor=nest 构建型）", oc=True, ru=R1)
@@ -197,7 +197,7 @@ add("EUP", "NEW_TEMPLATE_CANDIDATE", FF,
 add("GDB", "MERGE_CONFIDENT", TS, "单步链 MC（S1 EO 同属推算——河川带单因子）")
 add("GDS", "NEW_TEMPLATE_CANDIDATE", FF, "真形两步 forage->habitat：杂食主句先行（植被湖潭次之）——RB-1 FF 提案形状", rel="HRQ-RB1-02")
 add("JSB", "NEW_TEMPLATE_CANDIDATE", FF,
-    "真形两步 forage->habitat：同种 ASB 真形同体推导（JSB↔ASB 同 URL 同种——批内去重联动，双 queue 项独立记账）——RB-1 FF 提案形状", rel="HRQ-RB1-02")
+    "真形两步 forage->habitat：同属参照 ASB 真形同体推导（JSB=maculatus↔ASB=japonicus，源数据层 FishBase 同、页面/Species 层不同——REV-001 F2 勘误；批内去重联动，双 queue 项独立记账）——RB-1 FF 提案形状", rel="HRQ-RB1-02")
 add("LFB", "MERGE_CONFIDENT", TS, "单步链 MC（S1 EO trophic 推算——河湖带单因子；P04 贝宿主=guard 面 premise 注记另轨）")
 add("PCC", "MERGE_CONFIDENT", TS, "单步链 MC（S1 EO——同科底栖带单因子）")
 add("PKC", "MERGE_CONFIDENT", TS, "单步链 MC（S1 EO 掠食推算——热带河带单因子）")
@@ -317,8 +317,8 @@ def main():
             note="RB-1 新族提案形状扩充证据（不在 registry v9 活族——NEW 轨+related_proposal=HRQ-RB1-02）；本批 distinct 新族=0（无 RB-1 六提案外新形状）",
         ),
         same_fish_reconciliation=dict(
-            reused_same_face=17, reused_same_species_strain=1, same_fish_diff_face=dict(RBP="RB-1=摄食面/本批=护卵面——独立记账"),
-            in_batch_dedup=["JSB<->ASB（同 URL 同种——真形同体）", "AGC<->GRB（同种品系）"],
+            reused_same_face=17, reused_same_species_strain=1, same_fish_diff_face=dict(RBP="同代号异种（REV-001 F2 勘误）：RB-1=B5 FISH-R08 Pacu 摄食面/本批=B3 FISH-R06 Piranha 护卵面——独立记账"),
+            in_batch_dedup=["JSB<->ASB（同属参照：JSB=maculatus/ASB=japonicus，源数据层 FishBase 同、页面/Species 层不同——REV-001 F2 勘误；真形同体）", "AGC<->GRB（同种品系）"],
             conflicts=0,
         ),
         revision="REV-RB2-001（BHC/HER return_type 契约修正——program_revisions.jsonl）",

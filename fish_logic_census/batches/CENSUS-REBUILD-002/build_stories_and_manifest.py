@@ -71,8 +71,8 @@ inputs:
   same_fish_reconciliation:
     - RB-1 同鱼同面复用 17（BSB/BSK/BST/CBM/FDR/GDE/GPF/GRH/HNC/MOO/RRH/SDG/SMB/SSL/TSK/WIT/YTF——B4 起源 RS1 成员，RB-1 已从同一 B4 story 快照 Tier A 推导；复用体标注 reused_from，不重推不冲突）
     - RB-1 同种品系复用 1（WS2=白化高首鲟↔WST 同种 Cross-Batch 去重联动第 2 例）
-    - 同鱼异面 1（RBP：RB-1=摄食面单因子/本批 RS1 项=护卵面 §2.2——两程序面独立记账，RB-1 真形不适用于本项，独立推导）
-    - 批内同种双行 1（JSB↔ASB 同 URL 同种——真形同体推导，双 queue 项独立记账+去重联动注记）
+    - 同代号异种 1（RBP：RB-1 P-RB1-RBP-BAKE=B5 story FISH-R08 淡水白鲳 Pacu 摄食面/本批 RS1 项=B3 story FISH-R06 红腹食人鱼 Piranha 护卵面——REV-001 F2 勘误：原记「同鱼异面」失实，两代号复用不同物种；独立记账理由=异种（更不可复用），推导结论不变）
+    - 批内同种双行 1（JSB↔ASB 同属参照（源数据层 FishBase 同、页面/Species 条目层不同——REV-001 F2）——真形同体推导，双 queue 项独立记账+去重联动注记）
     - 批内同种品系 1（AGC 白化草鱼↔GRB 同种——GRB 本批真形复用）
   evidence_layers:
     - A=census 冻结 story 快照（B6/B3/B4 批档 input_snapshots，Tier A；R10 压缩四节格式按 B6 判例①直接消费）

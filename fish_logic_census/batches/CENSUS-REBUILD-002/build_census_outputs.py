@@ -100,14 +100,14 @@ hrq = [
   "items": [
     "8 鲤品系（SUK/GRK/KHK/OGK/LCP/AMC/ASC/HFC）=同种 CSV 单因子（benthopelagic 静水带）MC TIERED_SINGLE——亲本（鲤/锦鲤/镜鲤/鳞鲤 R03 轨）真形不在重跑队列，补证后升档复核",
     "WAG（雀鳝科伏击）/WCC（鲿形目夜行底栖）/HYS（鲟形目底栖探食）=亲本构型+CSV 复用真形（MC）",
-    "WS2=RB-1 WST 同种复用（Cross-Batch 去重联动第 2 例）；AGC=GRB 同种（批内联动）；JSB↔ASB 同 URL 同种（真形同体，双 queue 项独立记账）",
+    "WS2=RB-1 WST 同种复用（Cross-Batch 去重联动第 2 例）；AGC=GRB 同种（批内联动）；JSB↔ASB 同属参照（源数据层 FishBase 同、页面/Species 层不同——REV-001 F2）（真形同体，双 queue 项独立记账）",
   ],
   "basis": "Identity Deferred 品系行 S1-S11 全 SN——分辨率=同种物种级（证据分辨率决定链长）",
   "ask": "确认品系轨分辨率处理（亲本批补证通道）"},
- {"id": "HRQ-RB2-06", "title": "同鱼对账执行记录（复用/异面/去重——零冲突）",
+ {"id": "HRQ-RB2-06", "title": "同鱼对账执行记录（复用/同代号异种/去重——零冲突）",
   "items": [
     "reused_from=RB-1 共 18（17 同鱼同面 B4 起源+1 同种品系 WS2）；一致性核验=RB-1 basis 事实逐条存在于 B4 快照",
-    "RBP 同鱼异面：RB-1=摄食面单因子/本批=护卵面四步——两程序面独立记账（REV-001 ④ 同物种双面先例）",
+    "RBP 同代号异种（REV-001 F2 勘误：Pacu FISH-R08 vs Piranha FISH-R06）：RB-1=摄食面单因子/本批=护卵面四步——两程序面独立记账（REV-001 F2 勘误：原引同物种双面先例不适用——实为同代号异种）",
     "同鱼冲突数=0（RB-1 与本批无矛盾推导——RB-1 移动提案成员的 RS1 轨复核全部一致）",
   ],
   "basis": "envelope 同鱼对账指令；面级守恒判据（RS1 REV-001 ②）",
