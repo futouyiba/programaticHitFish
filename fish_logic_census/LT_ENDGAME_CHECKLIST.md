@@ -1,11 +1,11 @@
 # LT 线收官清单（持久驱动——任何会话恢复后从本文件继续）
 
-状态基线：RB-1 ✅ / RB-2 ✅（均 APPROVE 已推送）｜ RB-3 已产出（8a5bf47+6a47078 本地）｜ registry v9（18 活族+3 退役）
+状态基线：RB-1/2/3 全部 APPROVE 已推送 ｜ registry v9（18 活族+3 退役）｜ 终局重跑 303/303 全消费完毕
 用户指示（2026-09-14）：RB-3 跑完 → 全部审完 → 统一 v10 mutation；Notion 上传不可忘记。
 
 ## 待办（按序）
 
-- [ ] **1. RB-3 独立审**（在途；如 REVISE → 修复 → 闭合确认 → 推送 8a5bf47/6a47078 + 审校卡 outputs/batches/CENSUS-REBUILD-003-REV-001.md）
+- [x] **1. RB-3 独立审** ✅ 首轮 ARTIFACT_APPROVE（8a5bf47+6a47078+F2/F4 卫生已推 0fdee44；审校卡在案；F1 追溯 freeze_marker 留 v10 补）
 - [ ] **2. 轻量 Notion 同步**（RB-3 过审后，用户已确认要）：入口页文字数字更新（RB 系列结果、族数口径 18/23/28）——不重传 embed
 - [ ] **3. v10 统一 mutation**（全部过审后执行，scope）：
   - RB-1 六族入册（FF 34/SF 61 名义/TB 4/TU 2/SL 4/FS 2——含 RB-2/3 累积）
