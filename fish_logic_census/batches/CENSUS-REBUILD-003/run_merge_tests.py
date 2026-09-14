@@ -19,6 +19,10 @@ CEN = os.path.join(ROOT, "fish_logic_census")
 BATCH = "CENSUS-REBUILD-003"
 OUT = os.path.join(CEN, "batches", BATCH)
 
+# CANON 覆盖面声明（REV-001 F4）：本字典=Bake 面 8 个可签名对照族；
+# registry v9 Bake 活族 13 中，CRR 种子/HARD_GATED/FILTER_FIELD/OSC(EXTREME_TEMP)/PATCH_GATED_DUAL
+# 五族因算子形态（种子模板/双硬门/混合步/特殊算子）不进入 engine 签名比对面——
+# 语义层全族对照由 merge_tests note 承载，签名碰撞分析见审校报告（无碰撞）。
 CANON = {
     "TIERED_SINGLE_FACTOR_CHAIN": dict(sig=["EVAL"], note="单 typed 因子三档渐进"),
     "LAYER_AXIS_DUAL_TIER_CHAIN": dict(sig=["EVAL", "EVAL"],
@@ -331,7 +335,7 @@ def main():
                              cumulative="RB-1 28 -> RB-2 34 -> RB-3 61（+27）"),
             note="RB-1 提案形状累积证据（不在 registry v9 活族——NEW 轨+related_proposal=HRQ-RB1-02）"),
         new_shapes_this_batch=dict(
-            n_distinct=5, members=c9 + ["ARO-RESP（BROODED_DEGENERATE_TWO_STEP_CHAIN）"],
+            n_distinct=5, members=["ARO-RESP（BROODED_DEGENERATE_TWO_STEP_CHAIN）" if m == "ARO-RESP" else m for m in c9],  # REV-001 F2：ARO 裸名替换为带族注记（c9 已含 ARO，防双计）
             note="本批 distinct 新形状=5（C9 材料 4 形状+brooded 退化链 1 形状）——RB-1 六提案外新证据，HRQ-RB3-03/04 终裁提案载体；n_new_template=5（distinct 口径）"),
         same_fish_reconciliation=dict(
             strain_track="KOI/MIR/WRC（鲤品系）+RTL（杂交）=TS 同形——RB-2 品系开放项闭合（亲本 KOI 本体补证同形，0 冲突）",

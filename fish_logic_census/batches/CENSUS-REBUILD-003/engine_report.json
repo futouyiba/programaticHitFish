@@ -1,6 +1,6 @@
 {
  "batch": "CENSUS-REBUILD-003",
- "generated_at": "2026-09-14T06:23:58Z",
+ "generated_at": "2026-09-14T06:48:52Z",
  "registry_version": "v9 (read-only; zero mutation this batch)",
  "n_truth_bodies": 118,
  "verdicts": {
@@ -73,11 +73,10 @@
   "n_distinct": 5,
   "members": [
    "ARA-HAB",
-   "ARO-RESP",
+   "ARO-RESP（BROODED_DEGENERATE_TWO_STEP_CHAIN）",
    "BLU-HAB",
    "HNC-HAB",
-   "RBP-HAB",
-   "ARO-RESP（BROODED_DEGENERATE_TWO_STEP_CHAIN）"
+   "RBP-HAB"
   ],
   "note": "本批 distinct 新形状=5（C9 材料 4 形状+brooded 退化链 1 形状）——RB-1 六提案外新证据，HRQ-RB3-03/04 终裁提案载体；n_new_template=5（distinct 口径）"
  },
