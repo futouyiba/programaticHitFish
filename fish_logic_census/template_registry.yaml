@@ -22,7 +22,7 @@ mutation_provenance:
     ruling_6_directory_hygiene: "PATCH_RESOURCE_FOLLOWING status->VACATED（MGC->GATED_COVER gate_axis bottom_zone 第 3 实例转正/ONS->SOFT_TRIPLE 第 2 成员转正）；PLAIN_FACTOR_COMBINE status->FALSIFIED（0/5 自有成员证伪证据随册；14 slot_tiering -> truth_rebuild_queue）；活族 21->19 条目（Bake 空壳移除——PROVISIONAL 新族不受影响）"
     ruling_7_CRR_ledger_plus_bookkeeping: "CRR 保留+negative_evidence_ledger（284 non-match=live 侧资产；known_non_matches 补 B5/B6/B7 三行对账闭环 75+52+47+110=284）；TYPED known_instances 74->248（B5 43+B6 45+B7 86）；FOOD_FIELD 2->16（B7 14）；GUARD 四形式重排+participant 轴；Bake 名义程序数 166（v8 pending 转 v9 正式）；LOCAL_SATURATION_CANDIDATE 正式撤销（B4 立案前提证伪——裁决 1 联动）；MGC 旧口径 reconciliation-note（B0 TYPED premise 处理 vs FOOD_FIELD 族——待重跑对齐）"
   closed_hrqs: "RS1-01/RS1-04⑥/RS1-05/RS1-03、B4-01（饱和撤销）/B4-02、B5-01/B5-02、B6-01/B6-02、B7-01/B7-02、B2-02（CRR）"
-  handed_to_rerun: "truth_rebuild_queue.jsonl 248 行（234 AMB+14 slot_tiering）——终局全库顺序还原重跑输入清单（逐鱼顺序推导必做；C9 与 brooded[ARO/TIL3] 由重跑证据终裁）"
+  handed_to_rerun: "truth_rebuild_queue.jsonl 248 行（234 AMB+14 slot_tiering）——终局全库顺序还原重跑输入清单（逐鱼顺序推导必做；C9、brooded[ARO/TIL3] 与 form_hold[CSL/CSN1] 由重跑证据终裁——REV-001-R2 补正）"
   review_gate: "本批 status=INDEPENDENT_REVIEW_REQUIRED——mutation 不自我批准；独立审通过前不推远端"
 
 v8_mutation_history:
@@ -300,7 +300,7 @@ templates:
       -> Response(TargetFeeding | RelationalConflict)
     ir_pointer: batches/CENSUS-B0/run_merge_tests.py::CANONICALS.GUARD_CONFLICT_DUAL_PATH_RESPONSE
     allowed_parameter_axes:
-      - anchor(typed：后代空间存在形式——四值+一边界[裁决 4-A 四形式方案]：nest[构建型巢体：石巢/砾脊合一/pebble_mound/泡沫巢/殖民巢/清巢] | egg_mass[利用型附着：岩缝/洞顶/岩面/树根——底质差异归 suitability] | fry_school[移动稚鱼群] | host_brood[蚌宿主]；brooded[口孵/体内携带]=结构级退化链不入本族——待真形重跑终裁[ARO 银龙口哺/TIL3 罗非退化链先例])   # v9 重写：原 intruder_evaluator_context 6+1 值与 18 候选收敛为四形式（轴膨胀根因=四维度塞一轴——关注项经裁决 4 关闭）
+      - anchor(typed：后代空间存在形式——四值+一边界[裁决 4-A 四形式方案]：nest[构建型巢体：石巢/砾脊合一/pebble_mound/泡沫巢/殖民巢/清巢] | egg_mass[利用型附着：岩缝/洞顶/岩面/树根——底质差异归 suitability] | fry_school[移动稚鱼群] | host_brood[蚌宿主]；brooded[口孵/体内携带]=结构级退化链不入本族——待真形重跑终裁[ARO 银龙口哺/TIL3 罗非退化链先例]；form_hold[四形式证据不足挂起]=成员级挂起态不入四值——待真形重跑终裁[CSL/CSN1，REV-001 F1/R3])   # v9 重写：原 intruder_evaluator_context 6+1 值与 18 候选收敛为四形式（轴膨胀根因=四维度塞一轴——关注项经裁决 4 关闭）
       - guard_participant(typed：male | biparental——谁守独立成轴[裁决 4-A 配套拆解规则]；未记录成员不虚构——终局重跑补全)
       - guard_target_specificity(typed：species_typed_intruder[B4 提案, pending HRQ-B4-01] | any_intruder[B0-B3 默认未显式分型])   # NEW 轴提案（HRQ-B4-01）——独立审确认点：决策日志收官关闭清单含「B4-01（饱和撤销）」但七项裁决未显式处置本轴（裁决 4 仅涉 anchor 轴系）；B4-01 的 anchor 部分（pebble_mound）已随裁决 4 关闭->nest，本轴维持 pending 待独立审裁（不擅自关闭/转正）
       - path_strength_weights
@@ -370,7 +370,7 @@ templates:
     helper_dependencies: []
     resolver_dependencies: []
     known_instances:
-      # —— v8 历史快照层（66 名义：61 成员 v9 转正 9 链族[RS1 重跑体承载]+5 无文件成员 evidence_insufficient_held——裁决 1-A；SINGLE v1 证伪后本清单不计任何族的正式成员）——
+      # —— v8 历史快照层（66 名义：47 成员 v9 转正 9 链族+14 slot_tiering 转 queue[RS1 重跑体承载——REV-001-R1 补正]+5 无文件成员 evidence_insufficient_held——裁决 1-A；SINGLE v1 证伪后本清单不计任何族的正式成员）——
       - {batch: CENSUS-B1, program_id: P-B1-GRB-BAKE, blind_hash: 7386b661fbf0c696}
       - {batch: CENSUS-B1, program_id: P-B1-DRU-BAKE, blind_hash: be9208df5d4b38aa}
       - {batch: CENSUS-B1, program_id: P-B1-PAD34-BAKE, blind_hash: 94902290bfe32ec4}

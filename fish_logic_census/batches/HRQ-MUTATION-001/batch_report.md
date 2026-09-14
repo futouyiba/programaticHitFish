@@ -19,7 +19,7 @@
 | 6 目录卫生 | A：①PATCH 空置②PLAIN 废止③14 并队 | PATCH status→VACATED+vacated_provenance（MGC→GATED_COVER bottom_zone 第 3 实例转正/ONS→SOFT_TRIPLE 第 2 成员转正，known_instances 历史层保留）；PLAIN status→FALSIFIED+v1_falsification（0/5 证据随册：RP1 merge_tests 38 条+OSC/BRT 出族去向）；14 slot_tiering→queue（HRQ-RS1-03 轨关闭注记） | 落表 |
 | 7 CRR+簿记 | A：负证据台账保留+名义打包 | CRR negative_evidence_ledger 字段（284=live 侧资产；HRQ-B2-02 关闭）+known_non_matches 补 B5/B6/B7 三行（75+52+47+110=284 闭环）；TYPED 74→248；FOOD_FIELD 2→16；Bake 名义程序 166（v8 pending 转正）；LOCAL_SATURATION_CANDIDATE 正式撤销注记（裁决 1 联动）；MGC 旧口径 reconciliation-note（TYPED v9_notes，待重跑对齐） | 落表 |
 
-**关闭的 HRQ**（随裁决落表）：RS1-01/RS1-04⑥/RS1-05/RS1-03、B4-01（饱和撤销）/B4-02、B5-01/B5-02、B6-01/B6-02、B7-01/B7-02、B2-02。**移交重跑批**：248 行 queue+brooded[ARO/TIL3]+C9 终裁。
+**关闭的 HRQ**（随裁决落表）：RS1-01/RS1-04⑥/RS1-05/RS1-03、B4-01（饱和撤销）/B4-02、B5-01/B5-02、B6-01/B6-02、B7-01/B7-02、B2-02。**移交重跑批**：248 行 queue+brooded[ARO/TIL3]+form_hold[CSL/CSN1]+C9 终裁（R2 补正）。
 
 ## 2. 计数对账
 
@@ -56,6 +56,8 @@
 - 结构断言：version 9；21 条目 id 唯一；SINGLE/PLAIN/PATCH = RETIRED/FALSIFIED/VACATED；TYPED 248/FOOD_FIELD 16/GUARD 28/CRR 284（§2 全对账）
 - 幂等守卫：重跑 exit 1 拒绝（GUARD: registry already at v9）
 - 泄漏检查：%s/PLACEHOLDER/FALSITED/brooted 拼写残留 0
+
+**修复轮再验证（REV-001 / REV-001-R1，coordinator 执行）**：两轮修复后均重跑 YAML safe_load（version 9 / 21 条目）+ anchor 四形式 Counter 实数复算（nest 12/egg_mass 7/fry_school 3/host_brood 2/brooded 2/form_hold 2=28）+ 修复锚短语白名单三文件断言；P-R1 残留与 P-R2/P-R3 枚举差集已随 R1 轮闭合（见 registry 373/25/303 及脚本镜像）。
 
 ## 5. 停点
 
