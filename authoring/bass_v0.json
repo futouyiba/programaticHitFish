@@ -1,17 +1,72 @@
 {
-  "schema_version": "pre-generation-authoring-r0",
-  "templates": {"NORMAL_FEEDING_BASE": {"kind":"response_policy"}},
-  "template_ref": "NORMAL_FEEDING_BASE",
-  "species": {"species_id":"Bass", "slow_facts":{"FeedingReadiness":"NORMAL", "FeedingCueDisposition":{"SHAD":"PREFERRED","CRAWFISH":"NEUTRAL"}}, "fish_modes":[{"id":"NORMAL","pathways":["FEEDING"]},{"id":"SPAWN_GUARD","pathways":["GUARD_DEFENSE","FEEDING"]}]},
-  "lifecycles": [
-    {"id":"Ordinary","supply_share":0.70,"mode":"NORMAL","response_slice":null,"materialization_profile":"normal"},
-    {"id":"ActiveSpawning","supply_share":0.20,"mode":"NORMAL","response_slice":"ACTIVE_SPAWNING","materialization_profile":"reproductive"},
-    {"id":"Guard","supply_share":0.10,"mode":"SPAWN_GUARD","materialization_profile":"guard"}
+  "schema_version": "pre-generation-authoring-current-r1",
+  "templates": {"BASS_BASE": {"kind": "species_authoring_preset"}},
+  "template_ref": "BASS_BASE",
+  "species": {
+    "species_id": "Bass",
+    "default_engagement_mode_ref": "NORMAL",
+    "engagement_mode_routing_program_ref": "BASS_ROUTING",
+    "slow_facts": {
+      "FeedingReadiness": "NORMAL",
+      "FeedingCueDisposition": {"SHAD": "PREFERRED", "CRAWFISH": "NEUTRAL"}
+    },
+    "engagement_modes": [
+      {"id": "NORMAL", "bake_program_ref": "BAKE_NORMAL", "response_program_ref": "RESPONSE_NORMAL", "quality_selection_program_ref": "QUALITY_DEFAULT"},
+      {"id": "ACTIVE_SPAWNING", "bake_program_ref": "BAKE_ACTIVE_SPAWNING", "response_program_ref": "RESPONSE_ACTIVE_SPAWNING", "quality_selection_program_ref": "QUALITY_SPAWNING"},
+      {"id": "SPAWN_GUARD", "bake_program_ref": "BAKE_SPAWN_GUARD", "response_program_ref": "RESPONSE_SPAWN_GUARD", "quality_selection_program_ref": "QUALITY_GUARD"}
+    ]
+  },
+  "fish_qualities": [
+    {"id": "Q1", "base_weight": 1.0},
+    {"id": "Q2", "base_weight": 1.0},
+    {"id": "Q3", "base_weight": 1.0},
+    {"id": "Q4", "base_weight": 1.0},
+    {"id": "Q5", "base_weight": 1.0}
   ],
-  "spatial_opportunities":[{"support_ref":"GRASS_EDGE_01","cohort":"Ordinary","engagement_mass":1.0},{"support_ref":"SPAWN_BED_03","cohort":"ActiveSpawning","engagement_mass":1.0},{"support_ref":"SPAWN_BED_03","cohort":"Guard","engagement_mass":1.0}],
-  "pathways":[{"id":"FEEDING"},{"id":"GUARD_DEFENSE"}],
-  "response_slices":[{"id":"ACTIVE_SPAWNING","operation":"CEILING","grade":"LOW"}],
-  "meanings":[{"id":"FeedingMatch"},{"id":"NestThreat"}],
-  "rules":[{"id":"NORMAL_FEEDING","priority":10,"grade":"NORMAL","operation":"SET"},{"id":"SPAWN_GUARD_DEFENSE","priority":20,"grade":"HIGH","operation":"SET"},{"id":"DEFAULT_FALLBACK","priority":0,"grade":"LOW","operation":"SET","fallback":true}],
-  "materialization_profiles":[{"id":"normal","requires_anchor":false},{"id":"reproductive","requires_anchor":false},{"id":"guard","requires_anchor":true,"behavior_anchor_ref":"Nest_03","reproductive_only":true}]
+  "engagement_mode_routing": {
+    "program_ref": "BASS_ROUTING",
+    "overlap_contract": "ALLOW_PARALLEL",
+    "allocations": [
+      {"quality_ref": "Q2", "mode_ref": "ACTIVE_SPAWNING", "share": 0.15},
+      {"quality_ref": "Q2", "mode_ref": "SPAWN_GUARD", "share": 0.05},
+      {"quality_ref": "Q3", "mode_ref": "ACTIVE_SPAWNING", "share": 0.20},
+      {"quality_ref": "Q3", "mode_ref": "SPAWN_GUARD", "share": 0.10},
+      {"quality_ref": "Q4", "mode_ref": "ACTIVE_SPAWNING", "share": 0.20},
+      {"quality_ref": "Q4", "mode_ref": "SPAWN_GUARD", "share": 0.10},
+      {"quality_ref": "Q5", "mode_ref": "ACTIVE_SPAWNING", "share": 0.15},
+      {"quality_ref": "Q5", "mode_ref": "SPAWN_GUARD", "share": 0.15}
+    ]
+  },
+  "spatial_opportunities": [
+    {"support_ref": "GRASS_EDGE_01", "mode_ref": "NORMAL", "spatial_weight": 1.0},
+    {"support_ref": "SPAWN_BED_03", "mode_ref": "ACTIVE_SPAWNING", "spatial_weight": 1.0},
+    {"support_ref": "SPAWN_BED_03", "mode_ref": "SPAWN_GUARD", "spatial_weight": 1.0}
+  ],
+  "surface_programs": {
+    "bake": [
+      {"id": "BAKE_NORMAL", "dsl": "return weight"},
+      {"id": "BAKE_ACTIVE_SPAWNING", "dsl": "return spawn_habitat_fit * weight"},
+      {"id": "BAKE_SPAWN_GUARD", "dsl": "return guard_habitat_fit * weight"}
+    ],
+    "response": [
+      {"id": "RESPONSE_NORMAL", "rules": [
+        {"id": "NORMAL_FEEDING", "intent": "SET_RESPONSE_BAND", "band": "NORMAL"},
+        {"id": "NORMAL_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
+      ]},
+      {"id": "RESPONSE_ACTIVE_SPAWNING", "rules": [
+        {"id": "SPAWNING_CAP", "intent": "CAP_RESPONSE_BAND", "band": "NORMAL"},
+        {"id": "SPAWNING_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
+      ]},
+      {"id": "RESPONSE_SPAWN_GUARD", "rules": [
+        {"id": "GUARD_DEFENSE", "intent": "SET_RESPONSE_BAND", "band": "HIGH"},
+        {"id": "GUARD_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
+      ]}
+    ],
+    "quality_selection": [
+      {"id": "QUALITY_DEFAULT"},
+      {"id": "QUALITY_SPAWNING"},
+      {"id": "QUALITY_GUARD"}
+    ]
+  },
+  "meanings": [{"id": "FeedingMatch"}, {"id": "NestThreat"}]
 }
