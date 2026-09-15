@@ -30,6 +30,27 @@ def test_editor_does_not_expose_legacy_business_axes_or_runtime_controls():
         assert forbidden not in html
 
 
+def test_component_inspector_is_generated_from_component_definitions():
+    html = Path("editor/index.html").read_text()
+    assert "componentDefsForOwner" in html
+    assert "draft.component_definitions" in html
+    assert "allowed_owners" in html
+    assert "Generated from ComponentDefinition owner, type and constraints" in html
+
+    # Workspace renderers must not hardcode the current fixture's component keys.
+    species_body = html.split("function showSpecies(){", 1)[1].split("function setSpeciesParam", 1)[0]
+    quality_body = html.split("function showQuality(){", 1)[1].split("function setQualityOverride", 1)[0]
+    assert "structure_affinity" not in species_body
+    assert "prey_size_preference" not in species_body
+    assert "prey_size_preference" not in quality_body
+
+
+def test_routing_workspace_discloses_fixture_scope_boundary():
+    html = Path("editor/index.html").read_text()
+    assert "Human fixture slice: explicit allocation + diagnostics" in html
+    assert "Full ConditionAtom / RuleSet authoring remains outside 0.3.4.0 executable scope" in html
+
+
 def test_editor_backend_uses_current_compiler_resolver_and_reset_contract():
     source = Path("editor/prototype.py").read_text()
     for required in (
