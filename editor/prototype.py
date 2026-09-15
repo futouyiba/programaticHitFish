@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Small local current-contract editor prototype; run: python3 editor/prototype.py"""
 import json
+import sys
 from copy import deepcopy
 from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from fcf_v1.authoring import compile_authoring, lint_authoring, resolve_bake_subject
 
-ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "authoring" / "bass_v0.json"
 HTML = (Path(__file__).parent / "index.html").read_text()
 BASELINE = json.loads(CONFIG.read_text())
