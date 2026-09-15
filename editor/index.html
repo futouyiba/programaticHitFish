@@ -1,15 +1,121 @@
-<!doctype html><meta charset="utf-8"><title>FCF Authoring Editor Current Contract</title>
-<style>body{font:14px system-ui;margin:0;background:#f4f6f8;color:#17202a}header{padding:18px 28px;background:#16324f;color:white}main{display:grid;grid-template-columns:220px 1fr 360px;gap:16px;padding:18px}nav,section,aside{background:white;border:1px solid #d7dde5;border-radius:8px;padding:14px}button{margin:4px;padding:7px 10px;border:1px solid #9aaabd;border-radius:5px;background:#fff;cursor:pointer}.active{background:#dceeff}.ok{color:#087f46}.bad{color:#b42318}.code{white-space:pre-wrap;background:#f7f8fa;padding:10px;border-radius:5px;font-family:ui-monospace;font-size:12px}label{display:block;margin:10px 0}input,select{padding:6px;width:90%}.pill{display:inline-block;background:#edf2f7;padding:3px 7px;border-radius:10px;margin:2px}</style>
-<header><h1>FCF Authoring Editor <small>Current Contract fixture</small></h1><div>Species → FishQuality → Engagement Mode Routing → independent Surface Programs</div></header>
-<main><nav><h3>Species</h3><button class=active>Largemouth Bass</button><h3>Workspaces</h3><button onclick="show('species')">Species</button><button onclick="show('quality')">FishQuality</button><button onclick="show('routing')">Engagement Mode Routing</button><button onclick="show('mode')">Engagement Mode</button><button onclick="show('programs')">Surface Programs</button></nav>
-<section id=content><h2>Overview</h2><div id=workspace></div></section>
-<aside><h3>Draft status</h3><div id=status>Loading…</div><button onclick="validate()">Lint & Compile</button><button onclick="save()">Save valid draft</button><h3>Effective / Compiled Preview</h3><div id=preview class=code>—</div><h3>Affected Objects</h3><div id=affected>Bass · Q1–Q5 · NORMAL · ACTIVE_SPAWNING · SPAWN_GUARD</div></aside></main>
+<!doctype html>
+<meta charset="utf-8">
+<title>FCF Authoring Editor Current Contract</title>
+<style>
+body{font:14px system-ui;margin:0;background:#f4f6f8;color:#17202a}header{padding:16px 24px;background:#16324f;color:white}main{display:grid;grid-template-columns:230px minmax(520px,1fr) 390px;gap:14px;padding:14px}nav,section,aside{background:white;border:1px solid #d7dde5;border-radius:8px;padding:14px}button{margin:3px;padding:7px 10px;border:1px solid #9aaabd;border-radius:5px;background:#fff;cursor:pointer}.active{background:#dceeff}.ok{color:#087f46}.bad{color:#b42318}.warn{color:#a15c00}.code{white-space:pre-wrap;background:#f7f8fa;padding:10px;border-radius:5px;font-family:ui-monospace;font-size:12px;max-height:330px;overflow:auto}label{display:block;margin:10px 0}input,select,textarea{padding:6px;max-width:95%;box-sizing:border-box}input[type=number]{width:120px}select{min-width:180px}textarea{width:100%;height:210px;font-family:ui-monospace}.pill{display:inline-block;background:#edf2f7;padding:3px 7px;border-radius:10px;margin:2px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{border:1px solid #d7dde5;border-radius:6px;padding:10px;margin:8px 0}table{border-collapse:collapse;width:100%;font-size:12px}td,th{border-bottom:1px solid #e3e8ee;padding:6px;text-align:left}.status-INHERITED,.status-FACT,.status-PROGRAM{color:#087f46}.status-OVERRIDE{color:#155eef}.status-MISSING,.status-ORPHANED{color:#b42318}.muted{color:#667085}.fixture{margin-top:18px;padding-top:12px;border-top:1px dashed #9aaabd}</style>
+<header><h1>FCF Authoring Editor <small>Human Gate Current Fixture</small></h1><div>Species → FishQuality → Engagement Mode Routing → independent Surface Programs</div></header>
+<main>
+<nav>
+<h3>Species</h3><button class="active">Largemouth Bass</button>
+<h3>Workspaces</h3>
+<button onclick="showSpecies()">Species Shared</button>
+<button onclick="showQuality()">FishQuality</button>
+<button onclick="showMode()">Engagement Mode</button>
+<button onclick="showPrograms()">Bake Program Editor</button>
+<button onclick="showRouting()">Engagement Mode Routing</button>
+<div class="fixture"><h3>Moderator Fixture</h3><button onclick="resetFixture()">Reset Saved Baseline</button><button onclick="loadT5Breaker()">Load T5 OVERALLOCATED</button></div>
+</nav>
+<section><div id="workspace"><h2>Loading…</h2></div></section>
+<aside>
+<h3>Draft status</h3><div id="status">Loading…</div>
+<button onclick="inspectDraft()">Refresh Diagnostics</button><button onclick="validateDraft()">Validate / Compile</button><button onclick="saveDraft()">Save valid draft</button>
+<h3>Resolved Preview + Provenance</h3><div class="grid2"><label>FishQuality<select id="previewQuality" onchange="selectionChanged()"></select></label><label>Engagement Mode<select id="previewMode" onchange="selectionChanged()"></select></label></div>
+<div id="preview" class="code">—</div>
+<h3>Routing Diagnostics</h3><div id="routingDiagnostics" class="code">—</div>
+<h3>Affected Objects</h3><div id="affected">—</div>
+</aside>
+</main>
 <script>
-let saved,draft; const $=id=>document.getElementById(id); const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;');
-fetch('/api/config').then(r=>r.json()).then(x=>{saved=x;draft=structuredClone(x); render()});
-function render(){ $('status').innerHTML='<span class=ok>✓ Saved Source loaded · Working Draft clean</span>'; $('workspace').innerHTML=`<h3>Species Shared Config</h3><label>FeedingReadiness<select onchange="draft.species.slow_facts.FeedingReadiness=this.value;dirty()"><option>NORMAL</option><option ${draft.species.slow_facts.FeedingReadiness==='LOW'?'selected':''}>LOW</option><option>HIGH</option></select></label><p>DefaultEngagementModeRef: <b>${draft.species.default_engagement_mode_ref}</b></p><p>EngagementModeRoutingProgramRef: <b>${draft.species.engagement_mode_routing_program_ref}</b></p><h3>FishQuality</h3>${draft.fish_qualities.map(x=>`<span class=pill>${x.id}: base ${x.base_weight}</span>`).join('')}<h3>Engagement Modes</h3>${draft.species.engagement_modes.map(x=>`<span class=pill>${x.id}</span>`).join('')}` }
-function dirty(){ $('status').innerHTML='<span>● Working Draft changed (not compiled)</span>'; }
-function show(kind){ if(kind==='quality') $('workspace').innerHTML='<h2>FishQuality</h2><div class=code>'+esc(JSON.stringify(draft.fish_qualities,null,2))+'</div>'; else if(kind==='routing') $('workspace').innerHTML='<h2>Engagement Mode Routing</h2><p>Special shares are authored per FishQuality bucket; Default is derived remainder.</p><div class=code>'+esc(JSON.stringify(draft.engagement_mode_routing,null,2))+'</div>'; else if(kind==='mode') $('workspace').innerHTML='<h2>Engagement Mode</h2><p>Each Mode independently binds Bake / Response / Quality Selection programs.</p><div class=code>'+esc(JSON.stringify(draft.species.engagement_modes,null,2))+'</div>'; else if(kind==='programs') $('workspace').innerHTML='<h2>Surface Programs</h2><div class=code>'+esc(JSON.stringify(draft.surface_programs,null,2))+'</div>'; else render() }
-function validate(){ fetch('/api/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(draft)}).then(r=>r.json()).then(x=>{if(x.valid){$('status').innerHTML='<span class=ok>✓ Valid · Compiled</span>';$('preview').textContent=JSON.stringify(x.effective,null,2)}else{$('status').innerHTML='<span class=bad>✕ '+x.errors.join('<br>✕ ')+'</span>';}})}
-function save(){fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(draft)}).then(r=>r.json()).then(x=>{if(x.saved){saved=structuredClone(draft);$('status').innerHTML='<span class=ok>✓ Saved Source updated</span>'}else $('status').innerHTML='<span class=bad>✕ '+x.errors.join('<br>')+'</span>'})}
+let saved,draft,inspection,currentView='species';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+const byId=(xs,id)=>xs.find(x=>x.id===id);
+
+fetch('/api/config').then(r=>r.json()).then(x=>{saved=x;draft=structuredClone(x);syncSelectors();inspectDraft(showSpecies)});
+
+function syncSelectors(){
+  const q=$('previewQuality'),m=$('previewMode'); if(!q||!m)return;
+  const oldQ=q.value||'Q5',oldM=m.value||'NORMAL';
+  q.innerHTML=draft.fish_qualities.map(x=>`<option ${x.id===oldQ?'selected':''}>${esc(x.id)}</option>`).join('');
+  m.innerHTML=draft.species.engagement_modes.map(x=>`<option ${x.id===oldM?'selected':''}>${esc(x.id)}</option>`).join('');
+}
+function selectionChanged(){renderPreview(); if(currentView==='quality')showQuality(); if(currentView==='mode')showMode();}
+function dirty(){ $('status').innerHTML='<span>● Working Draft changed · diagnostics may be stale</span>'; }
+function markChanged(after){dirty(); inspectDraft(after||renderCurrent);}
+function post(path,obj){return fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:obj===undefined?'':JSON.stringify(obj)}).then(r=>r.json())}
+
+function inspectDraft(after){
+  post('/api/inspect',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();if(after)after();});
+}
+function validateDraft(){
+  post('/api/validate',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();if(x.valid){$('status').innerHTML='<span class=ok>✓ VALID · compiled Current Contract</span>'}else{$('status').innerHTML='<span class=bad>✕ INVALID · '+esc(x.errors.join(' | '))+'</span>'}})
+}
+function saveDraft(){
+  post('/api/save',draft).then(x=>{if(x.saved){saved=structuredClone(draft);$('status').innerHTML='<span class=ok>✓ Saved Source updated</span>'}else{$('status').innerHTML='<span class=bad>✕ '+esc((x.errors||[]).join(' | '))+'</span>'}})
+}
+function resetFixture(){
+  post('/api/reset').then(x=>{saved=structuredClone(x.config);draft=structuredClone(x.config);syncSelectors();$('status').innerHTML='<span class=ok>✓ Baseline reset</span>';inspectDraft(renderCurrent)})
+}
+function loadT5Breaker(){
+  const active=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='ACTIVE_SPAWNING');
+  const guard=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='SPAWN_GUARD');
+  active.share=0.95; guard.share=0.10; markChanged(showRouting);
+}
+
+function renderDiagnostics(){
+  if(!inspection)return;
+  $('routingDiagnostics').textContent=inspection.routing_diagnostics.length?inspection.routing_diagnostics.join('\n'):'No routing errors';
+  if(inspection.valid && $('status').textContent.includes('Loading')) $('status').innerHTML='<span class=ok>✓ Saved Source loaded · Working Draft clean</span>';
+}
+function selectedKey(){return `${$('previewQuality').value}::${$('previewMode').value}`}
+function renderPreview(){
+  if(!inspection||!$('previewQuality'))return;
+  const r=inspection.resolved_bake_subjects[selectedKey()];
+  if(!r){$('preview').textContent='No resolved subject';return}
+  if(r.error){$('preview').textContent=r.error;return}
+  const rows=Object.values(r.params).map(p=>`${p.key} = ${p.value}\n  ${p.status} ← ${p.source||'—'}${p.source_ref?' / '+p.source_ref:''}`).join('\n');
+  const orphan=r.orphaned.length?'\nORPHANED\n'+r.orphaned.map(x=>`${x.key} = ${x.value}`).join('\n'):'';
+  $('preview').textContent=`${r.identity.species} × ${r.identity.fish_quality} × ${r.identity.engagement_mode}\nBakeProgramRef = ${r.program_ref}\n\n${rows}${orphan}\n\nProgram-owned logic\n${r.program_logic.dsl}`;
+  $('affected').textContent=currentView==='species'?'All Engagement Modes inheriting Species Shared values':currentView==='programs'?'Every Engagement Mode bound to the edited Bake Program':currentView==='routing'?'Candidate shares inside the edited FishQuality bucket':'Selected FishQuality × Engagement Mode subject';
+}
+function renderCurrent(){({species:showSpecies,quality:showQuality,mode:showMode,programs:showPrograms,routing:showRouting}[currentView]||showSpecies)()}
+
+function showSpecies(){
+ currentView='species'; const p=draft.species.shared_params;
+ $('workspace').innerHTML=`<h2>Species Shared</h2><p class=muted>Shared values are inherited unless an allowed narrower owner overrides them.</p><div class=card><h3>Definition-driven Component Inspector</h3><label>structure_affinity <input type=number step=0.05 value="${p.structure_affinity}" onchange="draft.species.shared_params.structure_affinity=Number(this.value);markChanged(showSpecies)"></label><label>prey_size_preference <input type=number step=0.05 value="${p.prey_size_preference}" onchange="draft.species.shared_params.prey_size_preference=Number(this.value);markChanged(showSpecies)"></label><p>Shared Profile: <b>${esc((draft.species.shared_profile_refs||[]).join(', '))}</b></p></div><div class=card><b>DefaultEngagementModeRef</b> ${esc(draft.species.default_engagement_mode_ref)}<br><b>EngagementModeRoutingProgramRef</b> ${esc(draft.species.engagement_mode_routing_program_ref)}</div>`;
+ renderPreview();
+}
+function showQuality(){
+ currentView='quality'; const id=$('previewQuality').value; const q=byId(draft.fish_qualities,id); const v=q.narrow_param_overrides?.prey_size_preference??'';
+ $('workspace').innerHTML=`<h2>FishQuality Stable + Narrow Override</h2><p><b>${esc(id)}</b> · BaseWeight ${q.base_weight}</p><p class=muted>FishQuality may hold stable size/quality data and approved narrow parameter overrides. It cannot bind a Surface Program.</p><label>prey_size_preference narrow override <input type=number step=0.05 value="${v}" placeholder="inherit" onchange="setQualityOverride('${esc(id)}',this.value)"></label><div class=card><b>ProgramRef:</b> not owned by FishQuality</div>`;
+ renderPreview();
+}
+function setQualityOverride(id,value){const q=byId(draft.fish_qualities,id);q.narrow_param_overrides=q.narrow_param_overrides||{};if(value==='')delete q.narrow_param_overrides.prey_size_preference;else q.narrow_param_overrides.prey_size_preference=Number(value);markChanged(showQuality)}
+
+function showMode(){
+ currentView='mode'; const id=$('previewMode').value; const qid=$('previewQuality').value; const m=byId(draft.species.engagement_modes,id); const programs=draft.surface_programs.bake; const r=inspection?.resolved_bake_subjects?.[`${qid}::${id}`];
+ let paramRows=''; if(r&&!r.error){paramRows=Object.values(r.params).map(p=>`<tr><td>${esc(p.key)}</td><td class="status-${p.status}">${esc(p.status)}</td><td>${esc(p.source||'—')}</td><td>${p.value===null?'—':esc(p.value)}</td><td>${modeParamEditor(m,p)}</td></tr>`).join('')}
+ let orphanRows=r&&!r.error?r.orphaned.map(o=>`<div class=bad>ORPHANED: ${esc(o.key)} = ${esc(o.value)} <button onclick="removeModeParam('${esc(id)}','${esc(o.key)}')">Remove</button></div>`).join(''):'';
+ $('workspace').innerHTML=`<h2>Engagement Mode / Surface Program Binding</h2><label>Mode <select onchange="$('previewMode').value=this.value;selectionChanged()">${draft.species.engagement_modes.map(x=>`<option ${x.id===id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><label>BakeProgramRef <select onchange="switchBakeProgram('${esc(id)}',this.value)">${programs.map(p=>`<option ${p.id===m.bake_program_ref?'selected':''}>${esc(p.id)}</option>`).join('')}</select></label><p>ResponseProgramRef: <b>${esc(m.response_program_ref)}</b><br>QualitySelectionProgramRef: <b>${esc(m.quality_selection_program_ref)}</b></p><h3>RequiredParamSchema resolution · ${esc(qid)}</h3><table><tr><th>Param</th><th>Status</th><th>Source</th><th>Value</th><th>Mode edit</th></tr>${paramRows}</table>${orphanRows}`;
+ renderPreview();
+}
+function modeParamEditor(mode,p){const program=byId(draft.surface_programs.bake,mode.bake_program_ref);const spec=program.required_params.find(x=>x.key===p.key);if(!(spec.owner_policy||[]).includes('ENGAGEMENT_MODE'))return '<span class=muted>not Mode-owned</span>';const v=mode.bake_params?.[p.key]??'';return `<input type=number step=0.05 value="${v}" placeholder="unset" onchange="setModeParam('${mode.id}','${p.key}',this.value)">`}
+function switchBakeProgram(modeId,ref){byId(draft.species.engagement_modes,modeId).bake_program_ref=ref;markChanged(showMode)}
+function setModeParam(modeId,key,value){const m=byId(draft.species.engagement_modes,modeId);m.bake_params=m.bake_params||{};if(value==='')delete m.bake_params[key];else m.bake_params[key]=Number(value);markChanged(showMode)}
+function removeModeParam(modeId,key){delete byId(draft.species.engagement_modes,modeId).bake_params[key];markChanged(showMode)}
+
+function showPrograms(){
+ currentView='programs'; const bound=byId(draft.species.engagement_modes,$('previewMode').value).bake_program_ref; const p=byId(draft.surface_programs.bake,bound);
+ const lens=inspection?.resolved_bake_subjects?.[selectedKey()]?.program_logic?.structure_lens||[];
+ $('workspace').innerHTML=`<h2>Bake Program Editor</h2><label>Program <select onchange="showProgramById(this.value)">${draft.surface_programs.bake.map(x=>`<option ${x.id===p.id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><div id=programBody></div>`; showProgramById(p.id);
+}
+function showProgramById(id){const p=byId(draft.surface_programs.bake,id);$('programBody').innerHTML=`<p class=muted>DSL Source is the executable structure source of truth. Structure Lens is derived and read-only.</p><textarea id=dslSource>${esc(p.dsl)}</textarea><br><button onclick="applyDsl('${esc(id)}')">Apply DSL Draft</button><h3>RequiredParamSchema</h3><div class=code>${esc(JSON.stringify(p.required_params||[],null,2))}</div><h3>Structure Lens</h3><div class=code>${esc(JSON.stringify((inspection?.resolved_bake_subjects?.[selectedKey()]?.program_ref===id?inspection.resolved_bake_subjects[selectedKey()].program_logic.structure_lens:[]),null,2))}</div>`}
+function applyDsl(id){byId(draft.surface_programs.bake,id).dsl=$('dslSource').value;markChanged(showPrograms)}
+
+function showRouting(){
+ currentView='routing'; const rows=draft.engagement_mode_routing.allocations.map((a,i)=>`<tr><td>${esc(a.quality_ref)}</td><td>${esc(a.mode_ref)}</td><td><input type=number min=0 max=1 step=0.05 value="${a.share}" onchange="draft.engagement_mode_routing.allocations[${i}].share=Number(this.value);markChanged(showRouting)"></td></tr>`).join('');
+ $('workspace').innerHTML=`<h2>Engagement Mode Routing</h2><p>Shares are explicit inside each FishQuality bucket. Default Mode is derived remainder; no silent normalization or row-order priority.</p><p>Overlap Contract: <b>${esc(draft.engagement_mode_routing.overlap_contract)}</b></p><table><tr><th>FishQuality</th><th>Special Engagement Mode</th><th>Share</th></tr>${rows}</table><h3>Default remainder preview</h3><div class=code>${routingRemainders()}</div>`;
+ renderPreview();
+}
+function routingRemainders(){return draft.fish_qualities.map(q=>{const s=draft.engagement_mode_routing.allocations.filter(a=>a.quality_ref===q.id).reduce((x,a)=>x+Number(a.share),0);return `${q.id}: SpecialShareTotal=${s.toFixed(2)} · Default=${(1-s).toFixed(2)}`}).join('\n')}
 </script>
