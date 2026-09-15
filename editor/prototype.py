@@ -1,13 +1,50 @@
 #!/usr/bin/env python3
 """Small local current-contract editor prototype; run: python3 editor/prototype.py"""
 import json
+from copy import deepcopy
 from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from fcf_v1.authoring import compile_authoring, lint_authoring
+
+from fcf_v1.authoring import compile_authoring, lint_authoring, resolve_bake_subject
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "authoring" / "bass_v0.json"
 HTML = (Path(__file__).parent / "index.html").read_text()
+BASELINE = json.loads(CONFIG.read_text())
+DEMO_ENVIRONMENT_FACTS = {"water_temperature": 22.0}
+
+
+def inspect_doc(doc):
+    """Return current-contract diagnostics and provenance even for an invalid draft."""
+    errors = lint_authoring(doc)
+    resolved = {}
+    species = doc.get("species", {})
+    for mode in species.get("engagement_modes", []):
+        for quality in doc.get("fish_qualities", []):
+            key = f"{quality.get('id')}::{mode.get('id')}"
+            try:
+                resolved[key] = resolve_bake_subject(
+                    doc,
+                    quality.get("id"),
+                    mode.get("id"),
+                    environment_facts=DEMO_ENVIRONMENT_FACTS,
+                )
+            except Exception as exc:
+                resolved[key] = {"error": str(exc)}
+    return {
+        "valid": not errors,
+        "errors": errors,
+        "resolved_bake_subjects": resolved,
+        "routing_diagnostics": [
+            error for error in errors
+            if error.startswith("OVERALLOCATED") or error.startswith("COMPATIBILITY_CONFLICT")
+        ],
+    }
+
+
+def reset_config():
+    CONFIG.write_text(json.dumps(BASELINE, indent=2, ensure_ascii=False) + "\n")
+    return deepcopy(BASELINE)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -19,6 +56,10 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    def _read_doc(self):
+        n = int(self.headers.get("Content-Length", "0"))
+        return json.loads(self.rfile.read(n)) if n else {}
+
     def do_GET(self):
         if self.path == "/":
             return self._send(200, HTML, "text/html; charset=utf-8")
@@ -27,29 +68,41 @@ class Handler(BaseHTTPRequestHandler):
         self._send(404, {"error": "not found"})
 
     def do_POST(self):
-        n = int(self.headers.get("Content-Length", "0"))
-        doc = json.loads(self.rfile.read(n))
+        if self.path == "/api/reset":
+            return self._send(200, {"reset": True, "config": reset_config()})
+
+        doc = self._read_doc()
+        if self.path == "/api/inspect":
+            return self._send(200, inspect_doc(doc))
+
         if self.path == "/api/validate":
             errors = lint_authoring(doc)
             if errors:
-                return self._send(200, {"valid": False, "errors": errors})
+                result = inspect_doc(doc)
+                result["valid"] = False
+                return self._send(200, result)
             b = compile_authoring(doc)
             return self._send(200, {
                 "valid": True,
                 "errors": [],
+                "resolved_bake_subjects": inspect_doc(doc)["resolved_bake_subjects"],
+                "routing_diagnostics": [],
                 "effective": {
                     "slow_facts": b.species_slow_facts,
                     "routing": b.engagement_mode_routing_snapshot,
                     "surface_programs": b.surface_program_bundle,
+                    "resolved_bake_subjects": b.resolved_bake_subjects,
                     "contributions": [c.__dict__ for c in b.contributions],
                 },
             })
+
         if self.path == "/api/save":
             errors = lint_authoring(doc)
             if errors:
                 return self._send(422, {"valid": False, "errors": errors})
             CONFIG.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
             return self._send(200, {"saved": True})
+
         self._send(404, {"error": "not found"})
 
 
