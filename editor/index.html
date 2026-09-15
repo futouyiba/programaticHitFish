@@ -2,7 +2,8 @@
 <meta charset="utf-8">
 <title>FCF Authoring Editor Current Contract</title>
 <style>
-body{font:14px system-ui;margin:0;background:#f4f6f8;color:#17202a}header{padding:16px 24px;background:#16324f;color:white}main{display:grid;grid-template-columns:230px minmax(520px,1fr) 390px;gap:14px;padding:14px}nav,section,aside{background:white;border:1px solid #d7dde5;border-radius:8px;padding:14px}button{margin:3px;padding:7px 10px;border:1px solid #9aaabd;border-radius:5px;background:#fff;cursor:pointer}.active{background:#dceeff}.ok{color:#087f46}.bad{color:#b42318}.warn{color:#a15c00}.code{white-space:pre-wrap;background:#f7f8fa;padding:10px;border-radius:5px;font-family:ui-monospace;font-size:12px;max-height:330px;overflow:auto}label{display:block;margin:10px 0}input,select,textarea{padding:6px;max-width:95%;box-sizing:border-box}input[type=number]{width:120px}select{min-width:180px}textarea{width:100%;height:210px;font-family:ui-monospace}.pill{display:inline-block;background:#edf2f7;padding:3px 7px;border-radius:10px;margin:2px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{border:1px solid #d7dde5;border-radius:6px;padding:10px;margin:8px 0}table{border-collapse:collapse;width:100%;font-size:12px}td,th{border-bottom:1px solid #e3e8ee;padding:6px;text-align:left}.status-INHERITED,.status-FACT,.status-PROGRAM{color:#087f46}.status-OVERRIDE{color:#155eef}.status-MISSING,.status-ORPHANED{color:#b42318}.muted{color:#667085}.fixture{margin-top:18px;padding-top:12px;border-top:1px dashed #9aaabd}</style>
+body{font:14px system-ui;margin:0;background:#f4f6f8;color:#17202a}header{padding:16px 24px;background:#16324f;color:white}main{display:grid;grid-template-columns:230px minmax(520px,1fr) 390px;gap:14px;padding:14px}nav,section,aside{background:white;border:1px solid #d7dde5;border-radius:8px;padding:14px}button{margin:3px;padding:7px 10px;border:1px solid #9aaabd;border-radius:5px;background:#fff;cursor:pointer}.active{background:#dceeff}.ok{color:#087f46}.bad{color:#b42318}.warn{color:#a15c00}.code{white-space:pre-wrap;background:#f7f8fa;padding:10px;border-radius:5px;font-family:ui-monospace;font-size:12px;max-height:330px;overflow:auto}label{display:block;margin:10px 0}input,select,textarea{padding:6px;max-width:95%;box-sizing:border-box}input[type=number]{width:120px}select{min-width:180px}textarea{width:100%;height:210px;font-family:ui-monospace}.pill{display:inline-block;background:#edf2f7;padding:3px 7px;border-radius:10px;margin:2px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{border:1px solid #d7dde5;border-radius:6px;padding:10px;margin:8px 0}table{border-collapse:collapse;width:100%;font-size:12px}td,th{border-bottom:1px solid #e3e8ee;padding:6px;text-align:left}.status-INHERITED,.status-FACT,.status-PROGRAM{color:#087f46}.status-OVERRIDE{color:#155eef}.status-MISSING,.status-ORPHANED{color:#b42318}.muted{color:#667085}.fixture{margin-top:18px;padding-top:12px;border-top:1px dashed #9aaabd}.definition-note{font-size:12px;color:#667085}
+</style>
 <header><h1>FCF Authoring Editor <small>Human Gate Current Fixture</small></h1><div>Species → FishQuality → Engagement Mode Routing → independent Surface Programs</div></header>
 <main>
 <nav>
@@ -28,7 +29,7 @@ body{font:14px system-ui;margin:0;background:#f4f6f8;color:#17202a}header{paddin
 <script>
 let saved,draft,inspection,currentView='species';
 const $=id=>document.getElementById(id);
-const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const byId=(xs,id)=>xs.find(x=>x.id===id);
 
 fetch('/api/config').then(r=>r.json()).then(x=>{saved=x;draft=structuredClone(x);syncSelectors();inspectDraft(showSpecies)});
@@ -40,39 +41,20 @@ function syncSelectors(){
   m.innerHTML=draft.species.engagement_modes.map(x=>`<option ${x.id===oldM?'selected':''}>${esc(x.id)}</option>`).join('');
 }
 function selectionChanged(){renderPreview(); if(currentView==='quality')showQuality(); if(currentView==='mode')showMode();}
-function dirty(){ $('status').innerHTML='<span>● Working Draft changed · diagnostics may be stale</span>'; }
-function markChanged(after){dirty(); inspectDraft(after||renderCurrent);}
+function dirty(){$('status').innerHTML='<span>● Working Draft changed · diagnostics may be stale</span>'}
+function markChanged(after){dirty();inspectDraft(after||renderCurrent)}
 function post(path,obj){return fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:obj===undefined?'':JSON.stringify(obj)}).then(r=>r.json())}
+function inspectDraft(after){post('/api/inspect',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();if(after)after()})}
+function validateDraft(){post('/api/validate',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();$('status').innerHTML=x.valid?'<span class=ok>✓ VALID · compiled Current Contract</span>':'<span class=bad>✕ INVALID · '+esc(x.errors.join(' | '))+'</span>'})}
+function saveDraft(){post('/api/save',draft).then(x=>{if(x.saved){saved=structuredClone(draft);$('status').innerHTML='<span class=ok>✓ Saved Source updated</span>'}else{$('status').innerHTML='<span class=bad>✕ '+esc((x.errors||[]).join(' | '))+'</span>'}})}
+function resetFixture(){post('/api/reset').then(x=>{saved=structuredClone(x.config);draft=structuredClone(x.config);syncSelectors();$('status').innerHTML='<span class=ok>✓ Baseline reset</span>';inspectDraft(renderCurrent)})}
+function loadT5Breaker(){const active=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='ACTIVE_SPAWNING');const guard=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='SPAWN_GUARD');active.share=0.95;guard.share=0.10;markChanged(showRouting)}
 
-function inspectDraft(after){
-  post('/api/inspect',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();if(after)after();});
-}
-function validateDraft(){
-  post('/api/validate',draft).then(x=>{inspection=x;renderDiagnostics();renderPreview();if(x.valid){$('status').innerHTML='<span class=ok>✓ VALID · compiled Current Contract</span>'}else{$('status').innerHTML='<span class=bad>✕ INVALID · '+esc(x.errors.join(' | '))+'</span>'}})
-}
-function saveDraft(){
-  post('/api/save',draft).then(x=>{if(x.saved){saved=structuredClone(draft);$('status').innerHTML='<span class=ok>✓ Saved Source updated</span>'}else{$('status').innerHTML='<span class=bad>✕ '+esc((x.errors||[]).join(' | '))+'</span>'}})
-}
-function resetFixture(){
-  post('/api/reset').then(x=>{saved=structuredClone(x.config);draft=structuredClone(x.config);syncSelectors();$('status').innerHTML='<span class=ok>✓ Baseline reset</span>';inspectDraft(renderCurrent)})
-}
-function loadT5Breaker(){
-  const active=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='ACTIVE_SPAWNING');
-  const guard=draft.engagement_mode_routing.allocations.find(x=>x.quality_ref==='Q3'&&x.mode_ref==='SPAWN_GUARD');
-  active.share=0.95; guard.share=0.10; markChanged(showRouting);
-}
-
-function renderDiagnostics(){
-  if(!inspection)return;
-  $('routingDiagnostics').textContent=inspection.routing_diagnostics.length?inspection.routing_diagnostics.join('\n'):'No routing errors';
-  if(inspection.valid && $('status').textContent.includes('Loading')) $('status').innerHTML='<span class=ok>✓ Saved Source loaded · Working Draft clean</span>';
-}
+function renderDiagnostics(){if(!inspection)return;$('routingDiagnostics').textContent=inspection.routing_diagnostics.length?inspection.routing_diagnostics.join('\n'):'No routing errors';if(inspection.valid&&$('status').textContent.includes('Loading'))$('status').innerHTML='<span class=ok>✓ Saved Source loaded · Working Draft clean</span>'}
 function selectedKey(){return `${$('previewQuality').value}::${$('previewMode').value}`}
 function renderPreview(){
-  if(!inspection||!$('previewQuality'))return;
-  const r=inspection.resolved_bake_subjects[selectedKey()];
-  if(!r){$('preview').textContent='No resolved subject';return}
-  if(r.error){$('preview').textContent=r.error;return}
+  if(!inspection||!$('previewQuality'))return;const r=inspection.resolved_bake_subjects[selectedKey()];
+  if(!r){$('preview').textContent='No resolved subject';return}if(r.error){$('preview').textContent=r.error;return}
   const rows=Object.values(r.params).map(p=>`${p.key} = ${p.value}\n  ${p.status} ← ${p.source||'—'}${p.source_ref?' / '+p.source_ref:''}`).join('\n');
   const orphan=r.orphaned.length?'\nORPHANED\n'+r.orphaned.map(x=>`${x.key} = ${x.value}`).join('\n'):'';
   $('preview').textContent=`${r.identity.species} × ${r.identity.fish_quality} × ${r.identity.engagement_mode}\nBakeProgramRef = ${r.program_ref}\n\n${rows}${orphan}\n\nProgram-owned logic\n${r.program_logic.dsl}`;
@@ -80,42 +62,49 @@ function renderPreview(){
 }
 function renderCurrent(){({species:showSpecies,quality:showQuality,mode:showMode,programs:showPrograms,routing:showRouting}[currentView]||showSpecies)()}
 
+// The executable fixture intentionally implements only the currently-needed definition shapes.
+// Controls are generated from ComponentDefinition type / owner / constraints; field names are not hardcoded into workspace renderers.
+function componentDefsForOwner(owner){return Object.entries(draft.component_definitions||{}).filter(([,d])=>(d.allowed_owners||[]).includes(owner))}
+function componentControl(key,value,onchange,placeholder=''){
+  const d=(draft.component_definitions||{})[key]||{};
+  if(d.type==='float'||d.type==='int'){
+    const step=d.type==='int'?1:0.05;const min=d.min===undefined?'':` min="${esc(d.min)}"`;const max=d.max===undefined?'':` max="${esc(d.max)}"`;const ph=placeholder?` placeholder="${esc(placeholder)}"`:'';
+    return `<input aria-label="${esc(key)}" type=number step="${step}"${min}${max} value="${value===undefined||value===null?'':esc(value)}"${ph} onchange="${onchange}">`;
+  }
+  if(d.type==='bool')return `<input aria-label="${esc(key)}" type=checkbox ${value?'checked':''} onchange="${onchange}">`;
+  return `<span class=warn>Unsupported fixture editor shape: ${esc(d.type||'unknown')}</span>`;
+}
+function definitionSummary(key){const d=draft.component_definitions[key]||{};return `${d.type||'?'} · owners ${(d.allowed_owners||[]).join(' / ')}${d.min!==undefined?` · ${d.min}..${d.max}`:''}`}
+
 function showSpecies(){
- currentView='species'; const p=draft.species.shared_params;
- $('workspace').innerHTML=`<h2>Species Shared</h2><p class=muted>Shared values are inherited unless an allowed narrower owner overrides them.</p><div class=card><h3>Definition-driven Component Inspector</h3><label>structure_affinity <input type=number step=0.05 value="${p.structure_affinity}" onchange="draft.species.shared_params.structure_affinity=Number(this.value);markChanged(showSpecies)"></label><label>prey_size_preference <input type=number step=0.05 value="${p.prey_size_preference}" onchange="draft.species.shared_params.prey_size_preference=Number(this.value);markChanged(showSpecies)"></label><p>Shared Profile: <b>${esc((draft.species.shared_profile_refs||[]).join(', '))}</b></p></div><div class=card><b>DefaultEngagementModeRef</b> ${esc(draft.species.default_engagement_mode_ref)}<br><b>EngagementModeRoutingProgramRef</b> ${esc(draft.species.engagement_mode_routing_program_ref)}</div>`;
- renderPreview();
+  currentView='species';const p=draft.species.shared_params||{};
+  const controls=componentDefsForOwner('SPECIES_SHARED').map(([key])=>`<label>${esc(key)} ${componentControl(key,p[key],`setSpeciesParam('${key}',this.value)`)}</label><div class=definition-note>${esc(definitionSummary(key))}</div>`).join('');
+  $('workspace').innerHTML=`<h2>Species Shared</h2><p class=muted>Shared values are inherited unless an allowed narrower owner overrides them.</p><div class=card><h3>Definition-driven Component Inspector</h3><p class=definition-note>Generated from ComponentDefinition owner, type and constraints.</p>${controls}<p>Shared Profile: <b>${esc((draft.species.shared_profile_refs||[]).join(', '))}</b></p></div><div class=card><b>DefaultEngagementModeRef</b> ${esc(draft.species.default_engagement_mode_ref)}<br><b>EngagementModeRoutingProgramRef</b> ${esc(draft.species.engagement_mode_routing_program_ref)}</div>`;renderPreview();
 }
+function setSpeciesParam(key,value){if(value==='')delete draft.species.shared_params[key];else draft.species.shared_params[key]=Number(value);markChanged(showSpecies)}
+
 function showQuality(){
- currentView='quality'; const id=$('previewQuality').value; const q=byId(draft.fish_qualities,id); const v=q.narrow_param_overrides?.prey_size_preference??'';
- $('workspace').innerHTML=`<h2>FishQuality Stable + Narrow Override</h2><p><b>${esc(id)}</b> · BaseWeight ${q.base_weight}</p><p class=muted>FishQuality may hold stable size/quality data and approved narrow parameter overrides. It cannot bind a Surface Program.</p><label>prey_size_preference narrow override <input type=number step=0.05 value="${v}" placeholder="inherit" onchange="setQualityOverride('${esc(id)}',this.value)"></label><div class=card><b>ProgramRef:</b> not owned by FishQuality</div>`;
- renderPreview();
+  currentView='quality';const id=$('previewQuality').value;const q=byId(draft.fish_qualities,id);q.narrow_param_overrides=q.narrow_param_overrides||{};
+  const controls=componentDefsForOwner('FISH_QUALITY').map(([key])=>{const inherited=draft.species.shared_params?.[key];const placeholder=inherited===undefined?'inherit':'inherit '+inherited;return `<label>${esc(key)} narrow override ${componentControl(key,q.narrow_param_overrides[key],`setQualityOverride('${id}','${key}',this.value)`,placeholder)}</label><div class=definition-note>${esc(definitionSummary(key))}</div>`}).join('');
+  $('workspace').innerHTML=`<h2>FishQuality Stable + Narrow Override</h2><p><b>${esc(id)}</b> · BaseWeight ${q.base_weight}</p><p class=muted>FishQuality may hold stable size/quality data and approved narrow parameter overrides. It cannot bind a Surface Program.</p><div class=card>${controls||'<span class=muted>No FishQuality-owned ComponentDefinition.</span>'}</div><div class=card><b>ProgramRef:</b> not owned by FishQuality</div>`;renderPreview();
 }
-function setQualityOverride(id,value){const q=byId(draft.fish_qualities,id);q.narrow_param_overrides=q.narrow_param_overrides||{};if(value==='')delete q.narrow_param_overrides.prey_size_preference;else q.narrow_param_overrides.prey_size_preference=Number(value);markChanged(showQuality)}
+function setQualityOverride(id,key,value){const q=byId(draft.fish_qualities,id);q.narrow_param_overrides=q.narrow_param_overrides||{};if(value==='')delete q.narrow_param_overrides[key];else q.narrow_param_overrides[key]=Number(value);markChanged(showQuality)}
 
 function showMode(){
- currentView='mode'; const id=$('previewMode').value; const qid=$('previewQuality').value; const m=byId(draft.species.engagement_modes,id); const programs=draft.surface_programs.bake; const r=inspection?.resolved_bake_subjects?.[`${qid}::${id}`];
- let paramRows=''; if(r&&!r.error){paramRows=Object.values(r.params).map(p=>`<tr><td>${esc(p.key)}</td><td class="status-${p.status}">${esc(p.status)}</td><td>${esc(p.source||'—')}</td><td>${p.value===null?'—':esc(p.value)}</td><td>${modeParamEditor(m,p)}</td></tr>`).join('')}
- let orphanRows=r&&!r.error?r.orphaned.map(o=>`<div class=bad>ORPHANED: ${esc(o.key)} = ${esc(o.value)} <button onclick="removeModeParam('${esc(id)}','${esc(o.key)}')">Remove</button></div>`).join(''):'';
- $('workspace').innerHTML=`<h2>Engagement Mode / Surface Program Binding</h2><label>Mode <select onchange="$('previewMode').value=this.value;selectionChanged()">${draft.species.engagement_modes.map(x=>`<option ${x.id===id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><label>BakeProgramRef <select onchange="switchBakeProgram('${esc(id)}',this.value)">${programs.map(p=>`<option ${p.id===m.bake_program_ref?'selected':''}>${esc(p.id)}</option>`).join('')}</select></label><p>ResponseProgramRef: <b>${esc(m.response_program_ref)}</b><br>QualitySelectionProgramRef: <b>${esc(m.quality_selection_program_ref)}</b></p><h3>RequiredParamSchema resolution · ${esc(qid)}</h3><table><tr><th>Param</th><th>Status</th><th>Source</th><th>Value</th><th>Mode edit</th></tr>${paramRows}</table>${orphanRows}`;
- renderPreview();
+  currentView='mode';const id=$('previewMode').value,qid=$('previewQuality').value,m=byId(draft.species.engagement_modes,id),programs=draft.surface_programs.bake,r=inspection?.resolved_bake_subjects?.[`${qid}::${id}`];
+  let paramRows='';if(r&&!r.error)paramRows=Object.values(r.params).map(p=>`<tr><td>${esc(p.key)}</td><td class="status-${p.status}">${esc(p.status)}</td><td>${esc(p.source||'—')}</td><td>${p.value===null?'—':esc(p.value)}</td><td>${modeParamEditor(m,p)}</td></tr>`).join('');
+  const orphanRows=r&&!r.error?r.orphaned.map(o=>`<div class=bad>ORPHANED: ${esc(o.key)} = ${esc(o.value)} <button onclick="removeModeParam('${esc(id)}','${esc(o.key)}')">Remove</button></div>`).join(''):'';
+  $('workspace').innerHTML=`<h2>Engagement Mode / Surface Program Binding</h2><label>Mode <select onchange="$('previewMode').value=this.value;selectionChanged()">${draft.species.engagement_modes.map(x=>`<option ${x.id===id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><label>BakeProgramRef <select onchange="switchBakeProgram('${esc(id)}',this.value)">${programs.map(p=>`<option ${p.id===m.bake_program_ref?'selected':''}>${esc(p.id)}</option>`).join('')}</select></label><p>ResponseProgramRef: <b>${esc(m.response_program_ref)}</b><br>QualitySelectionProgramRef: <b>${esc(m.quality_selection_program_ref)}</b></p><h3>RequiredParamSchema resolution · ${esc(qid)}</h3><table><tr><th>Param</th><th>Status</th><th>Source</th><th>Value</th><th>Mode edit</th></tr>${paramRows}</table>${orphanRows}`;renderPreview();
 }
-function modeParamEditor(mode,p){const program=byId(draft.surface_programs.bake,mode.bake_program_ref);const spec=program.required_params.find(x=>x.key===p.key);if(!(spec.owner_policy||[]).includes('ENGAGEMENT_MODE'))return '<span class=muted>not Mode-owned</span>';const v=mode.bake_params?.[p.key]??'';return `<input type=number step=0.05 value="${v}" placeholder="unset" onchange="setModeParam('${mode.id}','${p.key}',this.value)">`}
+function modeParamEditor(mode,p){const program=byId(draft.surface_programs.bake,mode.bake_program_ref),spec=program.required_params.find(x=>x.key===p.key);if(!(spec.owner_policy||[]).includes('ENGAGEMENT_MODE'))return '<span class=muted>not Mode-owned</span>';const v=mode.bake_params?.[p.key];return componentControl(p.key,v,`setModeParam('${mode.id}','${p.key}',this.value)`,'unset')}
 function switchBakeProgram(modeId,ref){byId(draft.species.engagement_modes,modeId).bake_program_ref=ref;markChanged(showMode)}
 function setModeParam(modeId,key,value){const m=byId(draft.species.engagement_modes,modeId);m.bake_params=m.bake_params||{};if(value==='')delete m.bake_params[key];else m.bake_params[key]=Number(value);markChanged(showMode)}
 function removeModeParam(modeId,key){delete byId(draft.species.engagement_modes,modeId).bake_params[key];markChanged(showMode)}
 
-function showPrograms(){
- currentView='programs'; const bound=byId(draft.species.engagement_modes,$('previewMode').value).bake_program_ref; const p=byId(draft.surface_programs.bake,bound);
- const lens=inspection?.resolved_bake_subjects?.[selectedKey()]?.program_logic?.structure_lens||[];
- $('workspace').innerHTML=`<h2>Bake Program Editor</h2><label>Program <select onchange="showProgramById(this.value)">${draft.surface_programs.bake.map(x=>`<option ${x.id===p.id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><div id=programBody></div>`; showProgramById(p.id);
-}
+function showPrograms(){currentView='programs';const bound=byId(draft.species.engagement_modes,$('previewMode').value).bake_program_ref,p=byId(draft.surface_programs.bake,bound);$('workspace').innerHTML=`<h2>Bake Program Editor</h2><label>Program <select onchange="showProgramById(this.value)">${draft.surface_programs.bake.map(x=>`<option ${x.id===p.id?'selected':''}>${esc(x.id)}</option>`).join('')}</select></label><div id=programBody></div>`;showProgramById(p.id)}
 function showProgramById(id){const p=byId(draft.surface_programs.bake,id);$('programBody').innerHTML=`<p class=muted>DSL Source is the executable structure source of truth. Structure Lens is derived and read-only.</p><textarea id=dslSource>${esc(p.dsl)}</textarea><br><button onclick="applyDsl('${esc(id)}')">Apply DSL Draft</button><h3>RequiredParamSchema</h3><div class=code>${esc(JSON.stringify(p.required_params||[],null,2))}</div><h3>Structure Lens</h3><div class=code>${esc(JSON.stringify((inspection?.resolved_bake_subjects?.[selectedKey()]?.program_ref===id?inspection.resolved_bake_subjects[selectedKey()].program_logic.structure_lens:[]),null,2))}</div>`}
 function applyDsl(id){byId(draft.surface_programs.bake,id).dsl=$('dslSource').value;markChanged(showPrograms)}
 
-function showRouting(){
- currentView='routing'; const rows=draft.engagement_mode_routing.allocations.map((a,i)=>`<tr><td>${esc(a.quality_ref)}</td><td>${esc(a.mode_ref)}</td><td><input type=number min=0 max=1 step=0.05 value="${a.share}" onchange="draft.engagement_mode_routing.allocations[${i}].share=Number(this.value);markChanged(showRouting)"></td></tr>`).join('');
- $('workspace').innerHTML=`<h2>Engagement Mode Routing</h2><p>Shares are explicit inside each FishQuality bucket. Default Mode is derived remainder; no silent normalization or row-order priority.</p><p>Overlap Contract: <b>${esc(draft.engagement_mode_routing.overlap_contract)}</b></p><table><tr><th>FishQuality</th><th>Special Engagement Mode</th><th>Share</th></tr>${rows}</table><h3>Default remainder preview</h3><div class=code>${routingRemainders()}</div>`;
- renderPreview();
-}
+function showRouting(){currentView='routing';const rows=draft.engagement_mode_routing.allocations.map((a,i)=>`<tr><td>${esc(a.quality_ref)}</td><td>${esc(a.mode_ref)}</td><td><input type=number min=0 max=1 step=0.05 value="${a.share}" onchange="draft.engagement_mode_routing.allocations[${i}].share=Number(this.value);markChanged(showRouting)"></td></tr>`).join('');$('workspace').innerHTML=`<h2>Engagement Mode Routing</h2><p>Human fixture slice: explicit allocation + diagnostics. Full ConditionAtom / RuleSet authoring remains outside 0.3.4.0 executable scope.</p><p>Shares are explicit inside each FishQuality bucket. Default Mode is derived remainder; no silent normalization or row-order priority.</p><p>Overlap Contract: <b>${esc(draft.engagement_mode_routing.overlap_contract)}</b></p><table><tr><th>FishQuality</th><th>Special Engagement Mode</th><th>Share</th></tr>${rows}</table><h3>Default remainder preview</h3><div class=code>${routingRemainders()}</div>`;renderPreview()}
 function routingRemainders(){return draft.fish_qualities.map(q=>{const s=draft.engagement_mode_routing.allocations.filter(a=>a.quality_ref===q.id).reduce((x,a)=>x+Number(a.share),0);return `${q.id}: SpecialShareTotal=${s.toFixed(2)} · Default=${(1-s).toFixed(2)}`}).join('\n')}
 </script>
