@@ -1,10 +1,39 @@
 {
   "repository": "futouyiba/programaticHitFish",
-  "feature_branch": "feature/pc-cue-validation-r1",
-  "baseline_commit": "0e4ea3d",
-  "baseline_description": "snapshot of the uncommitted Current Contract rebase working state (2026-09-16) on top of main 0ccd168; original authorship belongs to the in-flight session that produced it",
-  "pre_change_regression": "126 passed / 0 failed (python3 -m pytest -q, 2026-09-16). NOTE: the Notion gate record for the Current Contract rebase states 166 passed / 1 skipped; the delta is recorded as open question PC-OPEN-01 and was NOT explained away.",
-  "post_change_regression": "164 passed / 0 failed (python3 -m pytest -q, 2026-09-16; = pre-change 126 + 38 new pc_validation lane tests)",
+  "feature_branch": "feature/pc-cue-validation-r1-clean",
+  "baseline_commit": "b8bcf778cd9481235b9ab6efc9099ed3471c36e8",
+  "clean_parent_branch": "fcf-v0-current-contract-rebase",
+  "pre_change_regression": "166 passed / 1 skipped on b8bcf77 (Current evidence reproduced; full inventory in baseline_regression below)",
+  "clean_parent_baseline": {
+    "branch": "fcf-v0-current-contract-rebase",
+    "commit": "b8bcf778cd9481235b9ab6efc9099ed3471c36e8",
+    "executable_evidence_head": "975a05d6dae05067e94490404a7cccc1dbc08ea5",
+    "source": "Notion Framework R2 Rebase Checkpoint R0 section 11 follow-through (Design Owner designated clean head)",
+    "branch_tip_note": "origin branch tip has since advanced to 9c2beebd (10 further commits by the in-flight session); NOT used because no Current document has designated it as a newer clean head"
+  },
+  "provenance_note": "feature/pc-cue-validation-r1@0e4ea3d retained as WIP_SNAPSHOT_PROVENANCE only, not an experiment baseline (Design Owner ruling 2026-09-16). Its 126/0 regression vs 166/1 is explained below.",
+  "baseline_regression": {
+    "result": "166 passed / 1 skipped",
+    "collected": 167,
+    "working_directory": "repository worktree at b8bcf77",
+    "python_environment": "Python 3.9.6 (/usr/bin/python3)",
+    "pytest_config": "pyproject.toml [tool.pytest.ini_options] testpaths=['tests']",
+    "test_file_inventory": {
+      "tests/harness/test_agent_defs.py": 6,
+      "tests/harness/test_contracts.py": 34,
+      "tests/test_authoring_maintenance_gate.py": 6,
+      "tests/test_authoring_vertical_slice.py": 14,
+      "tests/test_bass_dynamic_preference.py": 11,
+      "tests/test_calibration_experiment.py": 6,
+      "tests/test_editor_prototype.py": 6,
+      "tests/test_fcf_v1.py": 70,
+      "tests/test_pre_generation_harness.py": 14
+    },
+    "skipped_test_identity": "tests/harness/test_agent_defs.py:75 — workspace-root agent deploy dir not present on this machine (environment-conditional)",
+    "pc_open_01_status": "CLOSED_BY_REPRODUCTION",
+    "pc_open_01_explanation": "The WIP snapshot (0e4ea3d) predates tests/harness/ (test_agent_defs.py 6 + test_contracts.py 34 = 40 tests) which the in-flight session committed only on the clean branch; snapshot also captured an earlier working-tree moment of files later finalized. Full Current evidence reproduced exactly on b8bcf77."
+  },
+  "post_change_regression": "206 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; Current baseline 166/1 + 40 PC-specific tests in tests/test_pc_validation.py)",
   "contract": {
     "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
     "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16",

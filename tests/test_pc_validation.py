@@ -14,7 +14,8 @@ from fcf_v1.pc_validation import (
     check_dynamic_feeding_preference, check_fish_independence,
     check_kinematic_metadata, check_presentation_descriptors,
     check_static_target_affinity, check_target_resolution,
-    cue_signature_identity, run_cases, validate_bundle,
+    cue_signature_identity, development_regression_summary, run_cases,
+    validate_bundle,
 )
 
 FIXTURES = Path(__file__).resolve().parent.parent / "pc_validation" / "fixtures"
@@ -252,27 +253,49 @@ def test_selftest_cases_produce_exactly_expected_finding_codes():
         assert got == sorted(case["expected_codes"]), case["case_id"]
 
 
-def test_development_cases_await_backfill_without_invented_semantics():
-    report = run_cases(_load("devset_structural_r0.json")["cases"], baseline={})
-    assert len(report.case_results) == 10
-    for result in report.case_results:
-        codes = _codes(result.findings)
-        assert codes == ["AWAITING_BACKFILL"], result.case_id
-        assert result.classification is None  # no classification before backfill
+def test_dev_regression_fixture_backfilled_and_classified():
+    cases = _load("devset_r1_backfilled.json")["cases"]
+    assert len(cases) == 15  # DEV-001..010 + five strategy stories (incl. Owner-added Walleye)
+    report = run_cases(cases, baseline={})
+    assert report.violations == 0  # backfilled DEV content must be contract-clean
+    for case, result in zip(cases, report.case_results):
+        assert case["backfill_status"] == "BACKFILLED", case["case_id"]
+        assert case["provenance"]["notion"], case["case_id"]  # every case cites its sources
+        assert result.classification is not None, case["case_id"]
+    distribution = development_regression_summary(report, cases)["classification_distribution"]
+    assert distribution == {"ANNOTATION_ONLY": 3, "COVERED": 10, "UNRESOLVED": 2}
+
+
+def test_dev_unresolved_cases_are_exactly_the_displacement_dependent_ones():
+    cases = _load("devset_r1_backfilled.json")["cases"]
+    summary = development_regression_summary(run_cases(cases, baseline={}), cases)
+    assert summary["breaking_cases"] == ["DEV-006", "DEV-010"]
+    assert summary["displacement_dependent_cases"] == ["DEV-006", "DEV-010"]  # R1 A2 PROVISIONAL
+    assert summary["chemical_intensity_gap_cases"] == ["DEV-003", "DEV-S5"]
+    assert summary["ownership_watch_cases"] == ["DEV-S4"]  # Walleye light double-count lint watch
+    assert summary["unused_basis_cues"] == ["cue.sound_pattern"]
+
+
+def test_dev_fixture_never_asserts_responseband_numbers():
+    for case in _load("devset_r1_backfilled.json")["cases"]:
+        assert "response_band" not in case.get("bundle", {}).get("target_resolution", {})
 
 
 def test_report_json_and_markdown_shapes():
-    cases = (_load("lane_selftest_cases.json")["cases"]
-             + _load("devset_structural_r0.json")["cases"])
-    report = run_cases(cases, baseline={"baseline_commit": "0e4ea3d",
+    cases = (_load("devset_r1_backfilled.json")["cases"]
+             + _load("lane_selftest_cases.json")["cases"])
+    report = run_cases(cases, baseline={"baseline_commit": "b8bcf77",
                                         "r1_addendum_sha256": "test-hash"})
     data = json.loads(report.to_json())
     assert data["summary"]["cases"] == len(cases)
     assert data["summary"]["synthetic_cases"] == 16
-    assert data["summary"]["development_cases"] == 10
-    assert data["summary"]["findings_by_code"]["AWAITING_BACKFILL"] == 10
+    assert data["summary"]["development_cases"] == 15
+    assert data["summary"]["findings_by_code"].get("AWAITING_BACKFILL", 0) == 0
+    assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 2  # SYN-02 only
+    # mixed distribution: 10 dev COVERED + 2 synthetic COVERED, 3 dev ANNOTATION_ONLY, 2 dev UNRESOLVED
+    assert data["summary"]["classification_counts"] == \
+        {"ANNOTATION_ONLY": 3, "COVERED": 12, "UNRESOLVED": 2}
     assert data["summary"]["descriptor_token_counts"]["cue_provisional"] == 1
     md = report.to_markdown()
     assert "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16" in md
-    assert "0e4ea3d" in md and "test-hash" in md
-    assert "AWAITING_BACKFILL" in md
+    assert "b8bcf77" in md and "test-hash" in md

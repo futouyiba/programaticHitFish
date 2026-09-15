@@ -1,23 +1,22 @@
 # FCF Presentation/Cue Contract Validation — Run Report
 
 - lane: `fcf_pc_validation` — R0 `FCF-PC-BASELINE-R0-20260915` + R1 addendum `FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16`
-- baseline commit: `0e4ea3d`
+- baseline commit: `b8bcf778cd9481235b9ab6efc9099ed3471c36e8`
 - R1 addendum sha256: `5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b`
-- pre-change regression: 126 passed / 0 failed (python3 -m pytest -q, 2026-09-16). NOTE: the Notion gate record for the Current Contract rebase states 166 passed / 1 skipped; the delta is recorded as open question PC-OPEN-01 and was NOT explained away.
-- post-change regression: 164 passed / 0 failed (python3 -m pytest -q, 2026-09-16; = pre-change 126 + 38 new pc_validation lane tests)
+- pre-change regression: 166 passed / 1 skipped on b8bcf77 (Current evidence reproduced; full inventory in baseline_regression below)
+- post-change regression: 206 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; Current baseline 166/1 + 40 PC-specific tests in tests/test_pc_validation.py)
 
 ## Summary
 
-- cases: 26 (development 10, synthetic lane self-test 16)
+- cases: 31 (development 15, synthetic lane self-test 16)
 - violations: 18
-- classification counts: {"COVERED": 2}
+- classification counts: {"ANNOTATION_ONLY": 3, "COVERED": 12, "UNRESOLVED": 2}
 - descriptor token counts: {'cue_basis': 13, 'cue_candidate_extension': 1, 'cue_provisional': 1}
 
 ## Findings by code
 
 - `AFFINITY_ABSORPTION`: 1
 - `AGGREGATOR_SMUGGLED`: 1
-- `AWAITING_BACKFILL`: 10
 - `BAND_MAPPING_NOT_DECIDED`: 1
 - `CAUSE_OWNERSHIP_CONFLICT`: 1
 - `DISPLACEMENT_PROVISIONAL`: 1
@@ -37,34 +36,64 @@
 ## Per-case findings
 
 ### DEV-001 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-001 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-002 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-002 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-003 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-003 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `ANNOTATION_ONLY` deltas=['admit presentation.chemical_signature candidate values (sparse item annotation)', 'admit PREPARED_FOOD as FeedingTargetKey dictionary member'] flags=['CHEMICAL_INTENSITY_GAP_WATCH']
+- findings: none
 
 ### DEV-004 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-004 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-005 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-005 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-006 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-006 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `UNRESOLVED` deltas=['adjudicate cue.displacement summary semantics (net vs path length) — needed to discriminate DEV-005 steady vs DEV-006 oscillating if band-level cue.direction_change is insufficient'] flags=[]
+- findings: none
 
 ### DEV-007 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-007 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-008 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-008 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-009 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-009 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
 
 ### DEV-010 (development, bundle ``)
-- [info] `AWAITING_BACKFILL` @ DEV-010 — expectations/inputs not yet backfilled from 中鱼库/推导表; no semantics may be invented locally (DEVSET-REGISTRY-R0 / AGENTS.md)
+- classification: `UNRESOLVED` deltas=['adjudicate cue.displacement summary semantics for continuous slow drag', 'evaluate mechanical-scrape temporal-pattern admission (Manifest: must NOT be added from this single case)'] flags=[]
+- findings: none
+
+### DEV-S1 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
+
+### DEV-S2 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=[]
+- findings: none
+
+### DEV-S3 (development, bundle ``)
+- classification: `ANNOTATION_ONLY` deltas=['admit presentation.prey_stage candidate values (Enum member admission)'] flags=[]
+- findings: none
+
+### DEV-S4 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['CAUSE_OWNERSHIP_LINT_WATCH']
+- findings: none
+
+### DEV-S5 (development, bundle ``)
+- classification: `ANNOTATION_ONLY` deltas=['admit presentation.chemical_signature candidate values'] flags=['CHEMICAL_INTENSITY_GAP_WATCH']
+- findings: none
 
 ### SYN-01-clean-bundle (synthetic, bundle ``)
 - classification: `COVERED` deltas=[] flags=[]
@@ -122,3 +151,35 @@
 - classification: `MOSTLY_COVERED` deltas=[] flags=[]
 - [violation] `INVALID_PRIMARY_CLASSIFICATION` @ classification — primary_classification 'MOSTLY_COVERED' not in vocabulary (R1 A4)
 
+## Development Regression
+
+```json
+{
+  "awaiting_count": 0,
+  "backfilled_count": 15,
+  "breaking_cases": [
+    "DEV-006",
+    "DEV-010"
+  ],
+  "chemical_intensity_gap_cases": [
+    "DEV-003",
+    "DEV-S5"
+  ],
+  "classification_distribution": {
+    "ANNOTATION_ONLY": 3,
+    "COVERED": 10,
+    "UNRESOLVED": 2
+  },
+  "displacement_dependent_cases": [
+    "DEV-006",
+    "DEV-010"
+  ],
+  "fish_descriptor_resurfacing": "NOT_MEASURABLE_FROM_DEV_FIXTURES: DEV bundles carry fact requirements and classifications, no authored Response rules yet; monitor per R0 9 once rules exist",
+  "ownership_watch_cases": [
+    "DEV-S4"
+  ],
+  "unused_basis_cues": [
+    "cue.sound_pattern"
+  ]
+}
+```

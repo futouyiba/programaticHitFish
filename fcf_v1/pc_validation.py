@@ -484,6 +484,64 @@ class PCValidationReport:
 
 # ---------------------------------------------------------------- lane body --
 
+BREAKING_CLASSIFICATIONS = frozenset({
+    "UNRESOLVED", "NEW_GENERIC_RULE_REQUIRED", "NEW_PRIMITIVE_REQUIRED",
+    "NEW_RELATION_REQUIRED", "ITEM_SPECIFIC_EXCEPTION",
+})
+
+
+def development_regression_summary(report: "PCValidationReport",
+                                   cases: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+    """Owner-adjudicated Development Regression readout (ruling 2026-09-16 step 6).
+
+    `cases` are the raw fixture records (the report alone does not carry
+    bundles).  Fish x Descriptor resurfacing is NOT measurable from DEV
+    fixtures yet because no Response rules are encoded in them — stated
+    honestly instead of computed from absent data.
+    """
+    by_id = {c.get("case_id"): c for c in cases}
+    dev_ids = [c.case_id for c in report.case_results if not c.synthetic]
+    distribution: Dict[str, int] = {}
+    breaking, displacement_dependent, chemical_gap, ownership_watch = [], [], [], []
+    used: set = set()
+    backfilled = awaiting = 0
+    for case_id in dev_ids:
+        case = by_id.get(case_id, {})
+        bundle = case.get("bundle", {})
+        status = case.get("backfill_status")
+        backfilled += status == "BACKFILLED"
+        awaiting += status == "AWAITING_NOTION_BACKFILL"
+        for fact in bundle.get("cue_facts", []):
+            used.add(fact.get("name", ""))
+        record = bundle.get("classification", {})
+        primary = record.get("primary_classification")
+        if primary in CLASSIFICATION_VALUES:
+            distribution[primary] = distribution.get(primary, 0) + 1
+        if primary in BREAKING_CLASSIFICATIONS:
+            breaking.append(case_id)
+        relied = record.get("relied_upon", []) or []
+        if "cue.displacement" in relied:
+            displacement_dependent.append(case_id)
+        flags = record.get("flags", []) or []
+        if "CHEMICAL_INTENSITY_GAP_WATCH" in flags:
+            chemical_gap.append(case_id)
+        if "CAUSE_OWNERSHIP_LINT_WATCH" in flags:
+            ownership_watch.append(case_id)
+    return {
+        "backfilled_count": backfilled,
+        "awaiting_count": awaiting,
+        "classification_distribution": dict(sorted(distribution.items())),
+        "breaking_cases": sorted(breaking),
+        "unused_basis_cues": sorted(set(CUE_BASIS) - used),
+        "displacement_dependent_cases": sorted(displacement_dependent),
+        "chemical_intensity_gap_cases": sorted(chemical_gap),
+        "ownership_watch_cases": sorted(ownership_watch),
+        "fish_descriptor_resurfacing": "NOT_MEASURABLE_FROM_DEV_FIXTURES: DEV bundles carry "
+                                       "fact requirements and classifications, no authored "
+                                       "Response rules yet; monitor per R0 9 once rules exist",
+    }
+
+
 def validate_bundle(bundle: Mapping[str, Any]) -> Tuple[Finding, ...]:
     findings: List[Finding] = []
     findings += check_cue_vocabulary(bundle.get("cue_facts", []), "cue_facts")
