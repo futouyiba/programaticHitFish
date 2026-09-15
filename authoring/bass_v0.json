@@ -1,72 +1,388 @@
 {
-  "schema_version": "pre-generation-authoring-current-r1",
-  "templates": {"BASS_BASE": {"kind": "species_authoring_preset"}},
+  "schema_version": "pre-generation-authoring-current-r2-human-fixture",
+  "templates": {
+    "BASS_BASE": {
+      "kind": "species_authoring_preset"
+    }
+  },
   "template_ref": "BASS_BASE",
+  "component_definitions": {
+    "structure_affinity": {
+      "type": "float",
+      "min": 0.0,
+      "max": 2.0,
+      "allowed_owners": ["SPECIES_SHARED", "ENGAGEMENT_MODE"]
+    },
+    "prey_size_preference": {
+      "type": "float",
+      "min": 0.0,
+      "max": 2.0,
+      "allowed_owners": ["SPECIES_SHARED", "FISH_QUALITY"]
+    },
+    "normal_bias": {
+      "type": "float",
+      "min": 0.0,
+      "max": 2.0,
+      "allowed_owners": ["ENGAGEMENT_MODE"]
+    },
+    "thermal_stability_min": {
+      "type": "float",
+      "min": 0.0,
+      "max": 1.0,
+      "allowed_owners": ["ENGAGEMENT_MODE"]
+    },
+    "guard_intensity": {
+      "type": "float",
+      "min": 0.0,
+      "max": 2.0,
+      "allowed_owners": ["ENGAGEMENT_MODE"]
+    },
+    "daylight_sensitivity": {
+      "type": "float",
+      "min": 0.0,
+      "max": 2.0,
+      "allowed_owners": ["SHARED_PROFILE", "ENGAGEMENT_MODE"]
+    },
+    "water_temperature": {
+      "type": "float",
+      "min": -5.0,
+      "max": 40.0,
+      "allowed_owners": ["ENVIRONMENT_FACT"]
+    },
+    "ambush_threshold": {
+      "type": "float",
+      "min": 0.0,
+      "max": 1.0,
+      "allowed_owners": ["ENGAGEMENT_MODE"]
+    }
+  },
+  "shared_profiles": [
+    {
+      "id": "BASS_BASE_PROFILE",
+      "params": {
+        "daylight_sensitivity": 0.8
+      }
+    }
+  ],
   "species": {
     "species_id": "Bass",
     "default_engagement_mode_ref": "NORMAL",
     "engagement_mode_routing_program_ref": "BASS_ROUTING",
+    "shared_profile_refs": ["BASS_BASE_PROFILE"],
+    "shared_params": {
+      "structure_affinity": 0.8,
+      "prey_size_preference": 1.0
+    },
     "slow_facts": {
       "FeedingReadiness": "NORMAL",
-      "FeedingCueDisposition": {"SHAD": "PREFERRED", "CRAWFISH": "NEUTRAL"}
+      "FeedingCueDisposition": {
+        "SHAD": "PREFERRED",
+        "CRAWFISH": "NEUTRAL"
+      }
     },
     "engagement_modes": [
-      {"id": "NORMAL", "bake_program_ref": "BAKE_NORMAL", "response_program_ref": "RESPONSE_NORMAL", "quality_selection_program_ref": "QUALITY_DEFAULT"},
-      {"id": "ACTIVE_SPAWNING", "bake_program_ref": "BAKE_ACTIVE_SPAWNING", "response_program_ref": "RESPONSE_ACTIVE_SPAWNING", "quality_selection_program_ref": "QUALITY_SPAWNING"},
-      {"id": "SPAWN_GUARD", "bake_program_ref": "BAKE_SPAWN_GUARD", "response_program_ref": "RESPONSE_SPAWN_GUARD", "quality_selection_program_ref": "QUALITY_GUARD"}
+      {
+        "id": "NORMAL",
+        "bake_program_ref": "BAKE_NORMAL",
+        "response_program_ref": "RESPONSE_NORMAL",
+        "quality_selection_program_ref": "QUALITY_DEFAULT",
+        "bake_params": {
+          "normal_bias": 1.0
+        }
+      },
+      {
+        "id": "ACTIVE_SPAWNING",
+        "bake_program_ref": "BAKE_ACTIVE_SPAWNING",
+        "response_program_ref": "RESPONSE_ACTIVE_SPAWNING",
+        "quality_selection_program_ref": "QUALITY_SPAWNING",
+        "bake_params": {
+          "thermal_stability_min": 0.55
+        }
+      },
+      {
+        "id": "SPAWN_GUARD",
+        "bake_program_ref": "BAKE_SPAWN_GUARD",
+        "response_program_ref": "RESPONSE_SPAWN_GUARD",
+        "quality_selection_program_ref": "QUALITY_GUARD",
+        "bake_params": {
+          "guard_intensity": 1.3
+        }
+      }
     ]
   },
   "fish_qualities": [
-    {"id": "Q1", "base_weight": 1.0},
-    {"id": "Q2", "base_weight": 1.0},
-    {"id": "Q3", "base_weight": 1.0},
-    {"id": "Q4", "base_weight": 1.0},
-    {"id": "Q5", "base_weight": 1.0}
+    {
+      "id": "Q1",
+      "base_weight": 1.0
+    },
+    {
+      "id": "Q2",
+      "base_weight": 1.0
+    },
+    {
+      "id": "Q3",
+      "base_weight": 1.0
+    },
+    {
+      "id": "Q4",
+      "base_weight": 1.0
+    },
+    {
+      "id": "Q5",
+      "base_weight": 1.0,
+      "narrow_param_overrides": {
+        "prey_size_preference": 1.35
+      }
+    }
   ],
   "engagement_mode_routing": {
     "program_ref": "BASS_ROUTING",
     "overlap_contract": "ALLOW_PARALLEL",
     "allocations": [
-      {"quality_ref": "Q2", "mode_ref": "ACTIVE_SPAWNING", "share": 0.15},
-      {"quality_ref": "Q2", "mode_ref": "SPAWN_GUARD", "share": 0.05},
-      {"quality_ref": "Q3", "mode_ref": "ACTIVE_SPAWNING", "share": 0.20},
-      {"quality_ref": "Q3", "mode_ref": "SPAWN_GUARD", "share": 0.10},
-      {"quality_ref": "Q4", "mode_ref": "ACTIVE_SPAWNING", "share": 0.20},
-      {"quality_ref": "Q4", "mode_ref": "SPAWN_GUARD", "share": 0.10},
-      {"quality_ref": "Q5", "mode_ref": "ACTIVE_SPAWNING", "share": 0.15},
-      {"quality_ref": "Q5", "mode_ref": "SPAWN_GUARD", "share": 0.15}
+      {
+        "quality_ref": "Q2",
+        "mode_ref": "ACTIVE_SPAWNING",
+        "share": 0.15
+      },
+      {
+        "quality_ref": "Q2",
+        "mode_ref": "SPAWN_GUARD",
+        "share": 0.05
+      },
+      {
+        "quality_ref": "Q3",
+        "mode_ref": "ACTIVE_SPAWNING",
+        "share": 0.2
+      },
+      {
+        "quality_ref": "Q3",
+        "mode_ref": "SPAWN_GUARD",
+        "share": 0.1
+      },
+      {
+        "quality_ref": "Q4",
+        "mode_ref": "ACTIVE_SPAWNING",
+        "share": 0.2
+      },
+      {
+        "quality_ref": "Q4",
+        "mode_ref": "SPAWN_GUARD",
+        "share": 0.1
+      },
+      {
+        "quality_ref": "Q5",
+        "mode_ref": "ACTIVE_SPAWNING",
+        "share": 0.15
+      },
+      {
+        "quality_ref": "Q5",
+        "mode_ref": "SPAWN_GUARD",
+        "share": 0.15
+      }
     ]
   },
   "spatial_opportunities": [
-    {"support_ref": "GRASS_EDGE_01", "mode_ref": "NORMAL", "spatial_weight": 1.0},
-    {"support_ref": "SPAWN_BED_03", "mode_ref": "ACTIVE_SPAWNING", "spatial_weight": 1.0},
-    {"support_ref": "SPAWN_BED_03", "mode_ref": "SPAWN_GUARD", "spatial_weight": 1.0}
+    {
+      "support_ref": "GRASS_EDGE_01",
+      "mode_ref": "NORMAL",
+      "spatial_weight": 1.0
+    },
+    {
+      "support_ref": "SPAWN_BED_03",
+      "mode_ref": "ACTIVE_SPAWNING",
+      "spatial_weight": 1.0
+    },
+    {
+      "support_ref": "SPAWN_BED_03",
+      "mode_ref": "SPAWN_GUARD",
+      "spatial_weight": 1.0
+    }
   ],
   "surface_programs": {
     "bake": [
-      {"id": "BAKE_NORMAL", "dsl": "return weight"},
-      {"id": "BAKE_ACTIVE_SPAWNING", "dsl": "return spawn_habitat_fit * weight"},
-      {"id": "BAKE_SPAWN_GUARD", "dsl": "return guard_habitat_fit * weight"}
+      {
+        "id": "BAKE_NORMAL",
+        "required_params": [
+          {
+            "key": "structure_affinity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SPECIES_SHARED"],
+            "required": true
+          },
+          {
+            "key": "prey_size_preference",
+            "type": "float",
+            "owner_policy": ["FISH_QUALITY", "SPECIES_SHARED"],
+            "required": true
+          },
+          {
+            "key": "normal_bias",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE"],
+            "required": true
+          },
+          {
+            "key": "daylight_sensitivity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SHARED_PROFILE"],
+            "required": true
+          },
+          {
+            "key": "water_temperature",
+            "type": "float",
+            "owner_policy": ["ENVIRONMENT_FACT"],
+            "required": true
+          }
+        ],
+        "dsl": "let weight = 1.0\nrule structure {\nweight = weight * structure_affinity\n}\nif weight < 0.05: return 0.01 * weight\nreturn weight * normal_bias"
+      },
+      {
+        "id": "BAKE_ACTIVE_SPAWNING",
+        "required_params": [
+          {
+            "key": "structure_affinity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SPECIES_SHARED"],
+            "required": true
+          },
+          {
+            "key": "thermal_stability_min",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE"],
+            "required": true
+          },
+          {
+            "key": "daylight_sensitivity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SHARED_PROFILE"],
+            "required": true
+          },
+          {
+            "key": "water_temperature",
+            "type": "float",
+            "owner_policy": ["ENVIRONMENT_FACT"],
+            "required": true
+          }
+        ],
+        "dsl": "let weight = 1.0\nif structure_affinity < thermal_stability_min: return 0.01 * weight\nreturn weight * structure_affinity"
+      },
+      {
+        "id": "BAKE_SPAWN_GUARD",
+        "required_params": [
+          {
+            "key": "structure_affinity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SPECIES_SHARED"],
+            "required": true
+          },
+          {
+            "key": "guard_intensity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE"],
+            "required": true
+          },
+          {
+            "key": "water_temperature",
+            "type": "float",
+            "owner_policy": ["ENVIRONMENT_FACT"],
+            "required": true
+          }
+        ],
+        "dsl": "let weight = 1.0\nif structure_affinity < 0.2: return 0.01 * weight\nreturn weight * guard_intensity"
+      },
+      {
+        "id": "BAKE_ALT",
+        "required_params": [
+          {
+            "key": "structure_affinity",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE", "SPECIES_SHARED"],
+            "required": true
+          },
+          {
+            "key": "ambush_threshold",
+            "type": "float",
+            "owner_policy": ["ENGAGEMENT_MODE"],
+            "required": true
+          },
+          {
+            "key": "water_temperature",
+            "type": "float",
+            "owner_policy": ["ENVIRONMENT_FACT"],
+            "required": true
+          }
+        ],
+        "dsl": "let weight = 1.0\nif structure_affinity < ambush_threshold: return 0.01 * weight\nreturn weight * structure_affinity"
+      }
     ],
     "response": [
-      {"id": "RESPONSE_NORMAL", "rules": [
-        {"id": "NORMAL_FEEDING", "intent": "SET_RESPONSE_BAND", "band": "NORMAL"},
-        {"id": "NORMAL_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
-      ]},
-      {"id": "RESPONSE_ACTIVE_SPAWNING", "rules": [
-        {"id": "SPAWNING_CAP", "intent": "CAP_RESPONSE_BAND", "band": "NORMAL"},
-        {"id": "SPAWNING_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
-      ]},
-      {"id": "RESPONSE_SPAWN_GUARD", "rules": [
-        {"id": "GUARD_DEFENSE", "intent": "SET_RESPONSE_BAND", "band": "HIGH"},
-        {"id": "GUARD_FALLBACK", "intent": "SET_RESPONSE_BAND", "band": "LOW", "fallback": true}
-      ]}
+      {
+        "id": "RESPONSE_NORMAL",
+        "rules": [
+          {
+            "id": "NORMAL_FEEDING",
+            "intent": "SET_RESPONSE_BAND",
+            "band": "NORMAL"
+          },
+          {
+            "id": "NORMAL_FALLBACK",
+            "intent": "SET_RESPONSE_BAND",
+            "band": "LOW",
+            "fallback": true
+          }
+        ]
+      },
+      {
+        "id": "RESPONSE_ACTIVE_SPAWNING",
+        "rules": [
+          {
+            "id": "SPAWNING_CAP",
+            "intent": "CAP_RESPONSE_BAND",
+            "band": "NORMAL"
+          },
+          {
+            "id": "SPAWNING_FALLBACK",
+            "intent": "SET_RESPONSE_BAND",
+            "band": "LOW",
+            "fallback": true
+          }
+        ]
+      },
+      {
+        "id": "RESPONSE_SPAWN_GUARD",
+        "rules": [
+          {
+            "id": "GUARD_DEFENSE",
+            "intent": "SET_RESPONSE_BAND",
+            "band": "HIGH"
+          },
+          {
+            "id": "GUARD_FALLBACK",
+            "intent": "SET_RESPONSE_BAND",
+            "band": "LOW",
+            "fallback": true
+          }
+        ]
+      }
     ],
     "quality_selection": [
-      {"id": "QUALITY_DEFAULT"},
-      {"id": "QUALITY_SPAWNING"},
-      {"id": "QUALITY_GUARD"}
+      {
+        "id": "QUALITY_DEFAULT"
+      },
+      {
+        "id": "QUALITY_SPAWNING"
+      },
+      {
+        "id": "QUALITY_GUARD"
+      }
     ]
   },
-  "meanings": [{"id": "FeedingMatch"}, {"id": "NestThreat"}]
+  "meanings": [
+    {
+      "id": "FeedingMatch"
+    },
+    {
+      "id": "NestThreat"
+    }
+  ]
 }
