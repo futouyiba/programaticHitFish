@@ -1,0 +1,151 @@
+{
+  "registry": "PC-VALIDATION-LANE-SELFTEST",
+  "note": "SYNTHETIC validator self-test cases. These exercise accept/reject paths of the contract validators only. They are NOT fish behavior expectations, NOT strategy stories, and NOT development-set semantics. Values are deliberately minimal structural shapes.",
+  "cases": [
+    {
+      "case_id": "SYN-01-clean-bundle",
+      "synthetic": true,
+      "purpose": "fully contract-clean bundle passes with zero findings",
+      "expected_codes": [],
+      "bundle": {
+        "cue_facts": [
+          {"name": "cue.apparent_size"},
+          {"name": "cue.visual_contrast"},
+          {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "1.0s"},
+          {"name": "cue.speed_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "0.5s"},
+          {"name": "cue.direction_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "0.5s"},
+          {"name": "cue.vertical_motion", "reference_frame": "WORLD_VERTICAL"},
+          {"name": "cue.pause_duration"},
+          {"name": "cue.vibration_amplitude"}
+        ],
+        "presentation_descriptors": [{"name": "presentation.profile", "status": "candidate"}],
+        "resolvers": [
+          {"name": "resolve_visual_contrast", "inputs": ["background", "turbidity", "geometry", "medium_propagation"]}
+        ],
+        "static_target_affinity": [
+          {"species": "Bass", "feeding_target_key": "SMALL_BAITFISH", "affinity": "GOOD"}
+        ],
+        "dynamic_feeding_preference": [
+          {"species": "Bass", "current_preference": "OPPORTUNISTIC"}
+        ],
+        "target_resolution": {"status": "HYPOTHESES", "hypotheses": [{"feeding_target_key": "SMALL_BAITFISH", "weight": "UNRESOLVED_AGGREGATION_OPEN"}]},
+        "cue_signature": {"signature_version": "pc-sig-v0", "facts": {"cue.speed": "MID", "cue.visual_contrast": "HIGH"}},
+        "classification": {"primary_classification": "COVERED", "requested_deltas": [], "flags": [], "relied_upon": ["cue.speed"]}
+      }
+    },
+    {
+      "case_id": "SYN-02-frame-metadata-missing",
+      "synthetic": true,
+      "purpose": "speed without reference_frame/temporal_scope is a violation (R1 A2)",
+      "expected_codes": ["FRAME_METADATA_MISSING", "FRAME_METADATA_MISSING"],
+      "bundle": {"cue_facts": [{"name": "cue.speed"}]}
+    },
+    {
+      "case_id": "SYN-03-vertical-motion-frame-invalid",
+      "synthetic": true,
+      "purpose": "vertical_motion may only use the gravity/world-vertical semantic",
+      "expected_codes": ["FRAME_METADATA_INVALID"],
+      "bundle": {"cue_facts": [{"name": "cue.vertical_motion", "reference_frame": "LOCAL_WATER"}]}
+    },
+    {
+      "case_id": "SYN-04-displacement-provisional-blocks-covered",
+      "synthetic": true,
+      "purpose": "a COVERED claim relying on cue.displacement must instead be UNRESOLVED (R1 A2)",
+      "expected_codes": ["DISPLACEMENT_PROVISIONAL"],
+      "bundle": {
+        "cue_facts": [{"name": "cue.displacement", "reference_frame": "LOCAL_WATER", "temporal_scope": "2.0s", "summary_semantics": "ASSUMED_NET"}],
+        "classification": {"primary_classification": "COVERED", "requested_deltas": [], "flags": [], "relied_upon": ["cue.displacement"]}
+      }
+    },
+    {
+      "case_id": "SYN-05-fish-dependent-resolver",
+      "synthetic": true,
+      "purpose": "resolver reading species preference violates the fish-independence boundary (R0 2.1 / R1 A1)",
+      "expected_codes": ["FISH_DEPENDENT_INPUT"],
+      "bundle": {"resolvers": [{"name": "bad_resolver", "inputs": ["species_preference"]}]}
+    },
+    {
+      "case_id": "SYN-06-forbidden-vocabulary",
+      "synthetic": true,
+      "purpose": "injuredness/fish_visibility style semantics cannot enter cue.* (R0 3.2 / R0 7)",
+      "expected_codes": ["FORBIDDEN_CUE_SEMANTICS", "UNKNOWN_CUE_TOKEN"],
+      "bundle": {"cue_facts": [{"name": "injuredness"}, {"name": "cue.reaction_bait_grade"}]}
+    },
+    {
+      "case_id": "SYN-07-affinity-mode-axis",
+      "synthetic": true,
+      "purpose": "static affinity keyed with engagement_mode is rejected; absorbing motion quality is rejected (R1 A3 / R0 4)",
+      "expected_codes": ["MODE_AXIS_FORBIDDEN", "AFFINITY_ABSORPTION"],
+      "bundle": {"static_target_affinity": [{"species": "Bass", "engagement_mode": "NORMAL_FEEDING", "feeding_target_key": "CRUSTACEAN", "motion_quality": "GOOD"}]}
+    },
+    {
+      "case_id": "SYN-08-mode-specific-dynamic-target-table",
+      "synthetic": true,
+      "purpose": "dynamic preference must not become a mode-specific target ranking (R1 A3)",
+      "expected_codes": ["MODE_SPECIFIC_TARGET_TABLE"],
+      "bundle": {"dynamic_feeding_preference": [{"species": "Bass", "engagement_mode_target_ranking": {"NORMAL_FEEDING": ["SMALL_BAITFISH"]}}]}
+    },
+    {
+      "case_id": "SYN-09-typed-zero-target",
+      "synthetic": true,
+      "purpose": "NO_SUPPORTED_TARGET is typed; UNKNOWN must not be mapped to affinity or band (R1 B2)",
+      "expected_codes": ["NON_AFFIRMATIVE_TREATED_AS_AFFINITY", "BAND_MAPPING_NOT_DECIDED"],
+      "bundle": {"target_resolution": {"status": "UNKNOWN", "affinity": "NONE", "response_band": "LOW"}}
+    },
+    {
+      "case_id": "SYN-10-sku-memory-signature",
+      "synthetic": true,
+      "purpose": "CueSignature carrying SKU/item identity is rejected (R1 B1)",
+      "expected_codes": ["SKU_MEMORY_LEAK", "SKU_MEMORY_LEAK"],
+      "bundle": {"cue_signature": {"signature_version": "pc-sig-v0", "facts": {"sku": "RAPALA-XRAP-10", "ui_action": "retrieve_fast"}}}
+    },
+    {
+      "case_id": "SYN-11-unversioned-signature",
+      "synthetic": true,
+      "purpose": "CueSignature must be versioned (R1 B1)",
+      "expected_codes": ["SIGNATURE_NOT_VERSIONED"],
+      "bundle": {"cue_signature": {"facts": {"cue.speed": "MID"}}}
+    },
+    {
+      "case_id": "SYN-12-cause-ownership-conflict",
+      "synthetic": true,
+      "purpose": "rule consuming visual_contrast and turbidity double-counts the cause without CAUSE_JUSTIFIED (R0 8)",
+      "expected_codes": ["CAUSE_OWNERSHIP_CONFLICT"],
+      "bundle": {
+        "cause_provenance": {"cue.visual_contrast": ["turbidity", "background"]},
+        "response_rules": [{"rule_id": "r1", "consumes": ["cue.visual_contrast", "turbidity"]}]
+      }
+    },
+    {
+      "case_id": "SYN-13-cause-justified-clears",
+      "synthetic": true,
+      "purpose": "explicit CAUSE_JUSTIFIED declaration clears the double-count report (R0 8; carrier still proposal P2-7)",
+      "expected_codes": [],
+      "bundle": {
+        "cause_provenance": {"cue.visual_contrast": ["turbidity"]},
+        "response_rules": [{"rule_id": "r2", "consumes": ["cue.visual_contrast", "turbidity"], "cause_justified": "turbidity also gates locator range; independent semantic reason recorded"}]
+      }
+    },
+    {
+      "case_id": "SYN-14-aggregator-smuggled",
+      "synthetic": true,
+      "purpose": "sum/max/Noisy-OR multi-target aggregation is deliberately OPEN; smuggling one in is a violation (R0 4)",
+      "expected_codes": ["AGGREGATOR_SMUGGLED"],
+      "bundle": {"resolvers": [{"name": "feedtarget", "multi_target_aggregator": "max"}]}
+    },
+    {
+      "case_id": "SYN-15-nondeterministic-descriptor",
+      "synthetic": true,
+      "purpose": "derived descriptors may only read admitted fish-independent facts, deterministically (R1 A4)",
+      "expected_codes": ["NON_DETERMINISTIC_DESCRIPTOR"],
+      "bundle": {"derived_descriptors": [{"name": "prey_stage_guess", "inputs": ["species_preference"]}]}
+    },
+    {
+      "case_id": "SYN-16-invalid-classification-record",
+      "synthetic": true,
+      "purpose": "primary_classification must come from the A4 vocabulary",
+      "expected_codes": ["INVALID_PRIMARY_CLASSIFICATION"],
+      "bundle": {"classification": {"primary_classification": "MOSTLY_COVERED", "requested_deltas": [], "flags": []}}
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "repository": "futouyiba/programaticHitFish",
+  "feature_branch": "feature/pc-cue-validation-r1",
+  "baseline_commit": "0e4ea3d",
+  "baseline_description": "snapshot of the uncommitted Current Contract rebase working state (2026-09-16) on top of main 0ccd168; original authorship belongs to the in-flight session that produced it",
+  "pre_change_regression": "126 passed / 0 failed (python3 -m pytest -q, 2026-09-16). NOTE: the Notion gate record for the Current Contract rebase states 166 passed / 1 skipped; the delta is recorded as open question PC-OPEN-01 and was NOT explained away.",
+  "post_change_regression": "164 passed / 0 failed (python3 -m pytest -q, 2026-09-16; = pre-change 126 + 38 new pc_validation lane tests)",
+  "contract": {
+    "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
+    "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16",
+    "r0_canonical_home": "HitFish-Up repo docs/baselines/ (local sidecar)",
+    "r1_mirror": "docs/pc_validation/FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16.md (byte-identical copy; sha256 pinned in each run report)"
+  }
+}

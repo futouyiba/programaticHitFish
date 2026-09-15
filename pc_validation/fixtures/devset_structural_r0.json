@@ -1,0 +1,16 @@
+{
+  "registry": "DEVSET-REGISTRY-R0",
+  "note": "Structural skeletons only, from R0 section 12 enumeration. item/rig/technique specifics and expected responses are NOT invented here; they are backfilled from the Notion 中鱼升级 library and the Feishu 推导表 with per-case source citations (DEVSET-REGISTRY-R0 discipline). Kinematic fact lists stay empty until backfill so no implicit frame or displacement semantics sneak in.",
+  "cases": [
+    {"case_id": "DEV-001", "source": "R0 §12", "presentation": "Spinnerbait steady", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-002", "source": "R0 §12", "presentation": "Spinnerbait jerk-pause", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-003", "source": "R0 §12", "presentation": "Bread / prepared-food passive", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-004", "source": "R0 §12", "presentation": "Shrimp-like bottom hop", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-005", "source": "R0 §12", "presentation": "Spoon steady", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-006", "source": "R0 §12", "presentation": "Spoon oscillating", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}, "note": "distinction from DEV-005 depends on cue.displacement, PROVISIONAL per R1 A2"},
+    {"case_id": "DEV-007", "source": "R0 §12", "presentation": "Fly dead drift", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}, "note": "water-local vs ground frame choice is contract-required metadata per R1 A2"},
+    {"case_id": "DEV-008", "source": "R0 §12", "presentation": "Fly twitch", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}},
+    {"case_id": "DEV-009", "source": "R0 §12", "presentation": "Topwater popper pop-pause", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}, "note": "receiver/support-relative cues legal per R1 A1"},
+    {"case_id": "DEV-010", "source": "R0 §12", "presentation": "Soft worm bottom drag", "backfill_status": "AWAITING_NOTION_BACKFILL", "bundle": {}}
+  ]
+}
