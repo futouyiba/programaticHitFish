@@ -418,6 +418,11 @@ def lint_authoring(doc: Mapping[str, Any]) -> List[str]:
     overlap = routing.get("overlap_contract", "ALLOW_PARALLEL")
     if overlap not in ALLOWED_OVERLAP:
         errors.append(f"invalid AllocationOverlapContract: {overlap}")
+    elif overlap == "REQUIRE_DISJOINT_ELIGIBILITY":
+        errors.append(
+            "UNSUPPORTED_ALLOCATION_OVERLAP_CONTRACT: REQUIRE_DISJOINT_ELIGIBILITY "
+            "requires the deferred ConditionAtom/RuleSet eligibility layer"
+        )
 
     for s in doc.get("spatial_opportunities", []):
         m = s.get("mode_ref")
