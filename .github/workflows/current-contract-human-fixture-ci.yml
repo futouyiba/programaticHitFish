@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pytest:
+  pytest-and-browser-smoke:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,3 +16,16 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install --upgrade pip pytest numpy
       - run: python -m pytest -q
+      - run: npm install playwright@1.55.0
+      - run: npx playwright install --with-deps chromium
+      - name: Human T1-T5 browser smoke
+        run: |
+          python editor/prototype.py >/tmp/fcf-editor.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/api/config >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8765/api/config >/dev/null
+          node editor/human_fixture_smoke.js
