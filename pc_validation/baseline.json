@@ -1,0 +1,44 @@
+{
+  "repository": "futouyiba/programaticHitFish",
+  "feature_branch": "feature/pc-cue-validation-r2-clean",
+  "baseline_commit": "9c2beebd2e2b1f5757223149e9c65f16bb200841",
+  "clean_parent_branch": "fcf-v0-current-contract-rebase",
+  "pre_change_regression": "169 passed / 1 skipped on 9c2beebd (measured 2026-09-16; NOT assumed from prior 166/1 — full inventory in baseline_regression below)",
+  "clean_parent_baseline": {
+    "branch": "fcf-v0-current-contract-rebase",
+    "commit": "9c2beebd2e2b1f5757223149e9c65f16bb200841",
+    "source": "FCF Handoff + Design Owner ruling 2026-09-16 (Current clean head)"
+  },
+  "provenance_note": "b8bcf778cd9481235b9ab6efc9099ed3471c36e8 downgraded to PRIOR_CLEAN_BASELINE_PROVENANCE; feature/pc-cue-validation-r1-clean@2697de4 and feature/pc-cue-validation-r1@704a8bd retained as historical provenance only.",
+  "baseline_regression": {
+    "result": "169 passed / 1 skipped",
+    "collected": 170,
+    "working_directory": "repository worktree at 9c2beebd",
+    "python_environment": "Python 3.9.6 (/usr/bin/python3)",
+    "pytest_config": "pyproject.toml [tool.pytest.ini_options] testpaths=['tests']",
+    "test_file_inventory": {
+      "tests/harness/test_agent_defs.py": 6,
+      "tests/harness/test_contracts.py": 34,
+      "tests/test_authoring_maintenance_gate.py": 6,
+      "tests/test_authoring_vertical_slice.py": 15,
+      "tests/test_bass_dynamic_preference.py": 11,
+      "tests/test_calibration_experiment.py": 6,
+      "tests/test_editor_prototype.py": 8,
+      "tests/test_fcf_v1.py": 70,
+      "tests/test_pre_generation_harness.py": 14
+    },
+    "delta_vs_prior_clean_baseline": "+3 passed vs b8bcf77's 166/1: test_authoring_vertical_slice 14->15 and test_editor_prototype 6->8 from the in-flight session's post-b8bcf77 commits (definition-driven fixture controls, routing-overlap fail-closed). Measured, not assumed.",
+    "skipped_test_identity": "tests/harness/test_agent_defs.py:75 — workspace-root agent deploy dir not present on this machine (environment-conditional)"
+  },
+  "post_change_regression": "210 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; 9c2 baseline 169/1 + 41 PC-specific tests in tests/test_pc_validation.py)",
+  "contract": {
+    "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
+    "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16 (historical, superseded by R2 delta only)",
+    "r2_delta": "FCF-PC-BASELINE-R2-20260916 (current: D1-D6)",
+    "canonical_home": "HitFish-Up repo docs/baselines/",
+    "mirrors": {
+      "r1": "docs/pc_validation/FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16.md (sha256 5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b)",
+      "r2": "docs/pc_validation/FCF-PC-BASELINE-R2-20260916.md (sha256 e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e)"
+    }
+  }
+}

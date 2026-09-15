@@ -1,0 +1,7 @@
+{
+  "registry": "HOLDOUT-REGISTRY-PC-R0",
+  "status": "SEALED_EMPTY",
+  "real_cases": [],
+  "provenance": null,
+  "note": "Blind holdout identities are selected by the independent Reviewer / Sample Agent AFTER the implementation lane is executable and full regression PASS (R0 section 12; HOLDOUT-HANDOFF-R0). This registry must stay empty of real unseen cases in this repo. A sealed payload may only replace it with full provenance (sample_agent, frame_version, delivered_at)."
+}

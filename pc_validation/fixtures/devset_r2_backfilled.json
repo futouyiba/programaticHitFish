@@ -1,0 +1,714 @@
+{
+  "registry": "DEVSET-R2-BACKFILLED",
+  "note": "Development Regression set under R2 (FCF-PC-BASELINE-R2-20260916). Same sources as the R1 backfill (Presentation Adapter Development Set Manifest v1 frozen 2026-08-25; Response Language Expression Pressure Test 14.1; R0 s12; Design Owner rulings) plus the Design Owner Development Review 2026-09-16: D2 (DEV-006 re-evaluated without cue.displacement), D3 (DEV-010 pinned as KNOWN_DEV_GAP), D4 (chemical intensity stays candidate), D5 (Walleye LINT_WATCH_DOUBLE_COUNT), D6 (cue.sound_pattern UNEXERCISED_BY_CURRENT_DEVSET). cue.displacement is NOT_ADMITTED per D1 and appears in no bundle. NO ResponseBand numbers anywhere; undetermined values stay UNKNOWN_FROM_SOURCE.",
+  "cases": [
+    {
+      "case_id": "DEV-001",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: Spinnerbait / Fast-steady \u2014 optical motion + flash + possible mechanical evidence; Item metadata must not become fish response directly",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.vibration_frequency"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.visual_contrast",
+            "cue.flash",
+            "cue.speed",
+            "cue.speed_change",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "steady retrieve; steady-state kinematics expressible with frame metadata per R1 A2; no descriptor needed at presentation level per Manifest."
+    },
+    {
+      "case_id": "DEV-002",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: Spinnerbait / jerk+pause \u2014 same Item, different resolved kinematics; Action name must not become a setter",
+        "response_language": "Pressure Test 14.1: Bass jerk-pause expressible via cue.speed_change + cue.pause_duration + ALL; no sequence operator needed",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b",
+          "3d0a4137d2368168b678ccfafc85583c"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.pause_duration"
+          },
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.speed_change",
+            "cue.pause_duration"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "documented no-expression-gap verdict; pause_duration is an upstream DurationFact (R1 A2), exempt from frame declaration."
+    },
+    {
+      "case_id": "DEV-003",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: Bread/prepared food \u2014 chemical + target representation form a simple sparse path; not every Item needs the full sensory surface",
+        "response_language": "Pressure Test 14.1: chemical/scent type-match expressible via presentation.chemical_signature IN [...]; concentration cue stays optional candidate",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b",
+          "3d0a4137d2368168b678ccfafc85583c"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.pause_duration"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.chemical_signature",
+            "status": "candidate",
+            "admission_requested": true
+          },
+          {
+            "name": "presentation.profile",
+            "status": "candidate",
+            "admission_requested": true
+          }
+        ],
+        "static_target_affinity": [
+          {
+            "species": "UNKNOWN_FROM_SOURCE",
+            "feeding_target_key": "PREPARED_FOOD",
+            "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ],
+        "classification": {
+          "primary_classification": "ANNOTATION_ONLY",
+          "requested_deltas": [
+            "admit presentation.chemical_signature candidate values (sparse item annotation)",
+            "admit PREPARED_FOOD as FeedingTargetKey dictionary member"
+          ],
+          "flags": [
+            "CHEMICAL_INTENSITY_GAP_WATCH"
+          ],
+          "relied_upon": [
+            "presentation.chemical_signature",
+            "presentation.profile"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "type-match path needs no concentration primitive; CHEMICAL_INTENSITY_GAP_WATCH records that cue.chemical_intensity? remains an unadmitted candidate (Pressure Test 14.1: odor concentration not auto-admitted)."
+    },
+    {
+      "case_id": "DEV-004",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: shrimp-like / bottom hop \u2014 target representation and bottom-contact mechanical cause stay separate; do not add a bottom_disturbance dimension",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          },
+          {
+            "name": "cue.pause_duration"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "static_target_affinity": [
+          {
+            "species": "UNKNOWN_FROM_SOURCE",
+            "feeding_target_key": "CRUSTACEAN",
+            "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.vertical_motion",
+            "cue.pause_duration",
+            "cue.vibration_amplitude",
+            "relation.bottom"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "uses existing relation.bottom (R0 5); hop rhythm expressible via vertical_motion + pause_duration without a mechanical temporal-pattern setter."
+    },
+    {
+      "case_id": "DEV-005",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: spoon-like / steady \u2014 existing Optical family reusable; no new sensory dimension per new category",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.visual_contrast",
+            "cue.flash",
+            "cue.speed"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "documented family-reuse verdict; steady spoon needs no oscillation discrimination."
+    },
+    {
+      "case_id": "DEV-006",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: spoon-like / steady+oscillating \u2014 Optical family reuse; no new sensory dimension",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ],
+        "owner_review": "Design Owner Development Review 2026-09-16 D2"
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.flash",
+            "cue.direction_change",
+            "cue.speed_change",
+            "cue.speed"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "D2 re-evaluation: historical judgement was Optical/motion family reuse, no new sensory dimension. Discriminated via admitted cues (flash + direction_change + speed_change bands over speed); band values are ordinary authoring, not schema annotation -> COVERED. cue.displacement removed per D1."
+    },
+    {
+      "case_id": "DEV-007",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: fly-like / dead drift \u2014 Target Semantic growth and Perception vocabulary growth must be counted separately",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.visual_contrast"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.speed",
+            "relation.flow"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "dead drift is exactly the frame-sensitive case R1 A2 exists for: water-relative speed ~ ZERO vs ground-relative ~ current speed. The fixture declares LOCAL_WATER as its own metadata; A2 deliberately does NOT impose a universal frame. Kinematic expression is COVERED; prey_stage matching belongs to DEV-S3."
+    },
+    {
+      "case_id": "DEV-008",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: fly-like / twitch \u2014 same representation under different kinematics must reuse item-side semantics",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.pause_duration"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.speed_change",
+            "cue.direction_change",
+            "cue.pause_duration"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "documented reuse verdict: kinematic variation only, no presentation-side semantic growth."
+    },
+    {
+      "case_id": "DEV-009",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: topwater popper-like / pop+pause \u2014 mechanical impulse as source cause; do not promote surface_pop to a universal Feature",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          },
+          {
+            "name": "cue.pause_duration"
+          },
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.visual_contrast"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.vertical_motion",
+            "cue.pause_duration",
+            "cue.sound_amplitude",
+            "relation.surface"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "uses existing relation.surface (R0 5) and scalar sound_amplitude; the pop's impulse rhythm is left as upstream temporal pattern \u2014 no new primitive, per Manifest. cue.sound_pattern intentionally NOT relied upon."
+    },
+    {
+      "case_id": "DEV-010",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12",
+        "design_judgment": "Manifest v1 row: soft-worm-like / bottom drag \u2014 exposes continuous scrape / displacement as unresolved; do not add a mechanical_scrape setter from this single case",
+        "response_language": "UNKNOWN_FROM_SOURCE",
+        "notion": [
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ],
+        "owner_review": "Design Owner Development Review 2026-09-16 D3"
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          }
+        ],
+        "classification": {
+          "primary_classification": "UNRESOLVED",
+          "requested_deltas": [
+            "D3 question: is relation.bottom + ordinary admitted motion facts sufficient for the bottom-drag strategy the product needs; if not, is the missing piece a continuous-contact physical cue, a temporal summary, or another reusable primitive (do NOT add mechanical_scrape / continuous_drag / bottom_scrape from this case alone)"
+          ],
+          "flags": [
+            "KNOWN_DEV_GAP_CONTINUOUS_BOTTOM_CONTACT_MECHANICAL_CAUSE"
+          ],
+          "relied_upon": [
+            "relation.bottom",
+            "cue.speed",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "D3: Known Development Gap, explicitly NOT blocking blind holdout. This case is Development material and may never be cited as blind evidence. cue.displacement removed per D1."
+    },
+    {
+      "case_id": "DEV-S1",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12 Bass story; Design Owner 2026-09-16",
+        "design_judgment": "UNKNOWN_FROM_SOURCE",
+        "response_language": "Pressure Test 14.1: Bass jerk-pause \u2014 no sequence operator needed",
+        "notion": [
+          "3d0a4137d2368168b678ccfafc85583c"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          },
+          {
+            "name": "cue.pause_duration"
+          },
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.flash"
+          }
+        ],
+        "static_target_affinity": [
+          {
+            "species": "Bass",
+            "feeding_target_key": "SMALL_BAITFISH",
+            "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.speed_change",
+            "cue.pause_duration",
+            "relation.feeding_target_affinity"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "Species x Engagement Mode profile scope (Response Language 3); affinity VALUES deliberately UNKNOWN_FROM_SOURCE \u2014 this regression proves expression capability, not calibration."
+    },
+    {
+      "case_id": "DEV-S2",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12 Bass story (Spawn Guard)",
+        "design_judgment": "UNKNOWN_FROM_SOURCE",
+        "response_language": "Pressure Test 14.1: Spawn Guard Bass \u2014 Profile scope + relation.nest + necessary cues; NestThreat is NOT a mandatory layer",
+        "notion": [
+          "3d0a4137d2368168b678ccfafc85583c"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "relation.nest",
+            "cue.apparent_size"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "documented verdict: no mandatory meaning layer (PreyMatch/NestThreat stay pressure-tested, not auto-inherited) \u2014 consistent with R0 6."
+    },
+    {
+      "case_id": "DEV-S3",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12 Trout story",
+        "design_judgment": "UNKNOWN_FROM_SOURCE",
+        "response_language": "Pressure Test 14.1: Trout Match Hatch \u2014 presentation.prey_stage == context.hatch_stage proves typed field-to-field compare must be retained",
+        "notion": [
+          "3d0a4137d2368168b678ccfafc85583c"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.prey_stage",
+            "status": "candidate",
+            "admission_requested": true
+          }
+        ],
+        "classification": {
+          "primary_classification": "ANNOTATION_ONLY",
+          "requested_deltas": [
+            "admit presentation.prey_stage candidate values (Enum member admission)"
+          ],
+          "flags": [],
+          "relied_upon": [
+            "presentation.prey_stage",
+            "relation.flow"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "field-to-field typed compare itself is already in the language contract; the minimal sufficient delta is admitting prey_stage values (sparse annotation)."
+    },
+    {
+      "case_id": "DEV-S4",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "Design Owner 2026-09-16 (Walleye added to DEV set)",
+        "design_judgment": "UNKNOWN_FROM_SOURCE",
+        "response_language": "Pressure Test 14.1: Walleye low-light / hydro-acoustic \u2014 context.* + cue.vibration_* / sound_* sufficient; possible double-count with Exposure/LocalOpportunity is an ownership-lint matter, not a new-operator reason",
+        "notion": [
+          "3d0a4137d2368168b678ccfafc85583c"
+        ],
+        "owner_review": "Design Owner Development Review 2026-09-16 D5"
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.vibration_frequency"
+          },
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "LINT_WATCH_DOUBLE_COUNT"
+          ],
+          "relied_upon": [
+            "cue.vibration_amplitude",
+            "cue.vibration_frequency",
+            "cue.sound_amplitude",
+            "context.light"
+          ]
+        }
+      },
+      "expected_ownership_result": "LINT_WATCH_DOUBLE_COUNT (D5): if local light -> propagation -> cue.visual_contrast already consumed the visual cause, Response may not anonymously re-read context.light for a second penalty/bonus on the same visual effect; only an independent causal role with explainable provenance allows co-reading",
+      "notes": "D5: correct handling retained; no new semantic, not a confirmed conflict."
+    },
+    {
+      "case_id": "DEV-S5",
+      "backfill_status": "BACKFILLED",
+      "provenance": {
+        "identity": "R0 12 Carp story; species attribution of the 14.1 scent-feeder verdict is UNKNOWN_FROM_SOURCE",
+        "design_judgment": "UNKNOWN_FROM_SOURCE",
+        "response_language": "Pressure Test 14.1: Chemical / scent feeder \u2014 presentation.chemical_signature IN [...] expresses type match; odor concentration stays optional candidate",
+        "notion": [
+          "3d0a4137d2368168b678ccfafc85583c",
+          "3c7a4137d23681b7adc7cafa9f444b6b"
+        ]
+      },
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.pause_duration"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.chemical_signature",
+            "status": "candidate",
+            "admission_requested": true
+          }
+        ],
+        "classification": {
+          "primary_classification": "ANNOTATION_ONLY",
+          "requested_deltas": [
+            "admit presentation.chemical_signature candidate values"
+          ],
+          "flags": [
+            "CHEMICAL_INTENSITY_GAP_WATCH"
+          ],
+          "relied_upon": [
+            "presentation.chemical_signature"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "CHEMICAL_INTENSITY_GAP_WATCH: cue.chemical_intensity? / odor concentration remains unadmitted candidate; if the product later needs concentration-driven response, that is a NEW_PRIMITIVE admission request, not silently added."
+    }
+  ]
+}
