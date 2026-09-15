@@ -60,6 +60,15 @@ def test_overallocated_quality_bucket_is_invalid():
     assert "OVERALLOCATED" in "; ".join(lint_authoring(d))
 
 
+def test_disjoint_overlap_contract_fails_closed_without_eligibility_layer():
+    d = deepcopy(DOC)
+    d["engagement_mode_routing"]["overlap_contract"] = "REQUIRE_DISJOINT_ELIGIBILITY"
+    errors = "; ".join(lint_authoring(d))
+    assert "UNSUPPORTED_ALLOCATION_OVERLAP_CONTRACT" in errors
+    with pytest.raises(AuthoringError):
+        compile_authoring(d)
+
+
 def test_surface_program_bindings_are_independent():
     mode = _mode(DOC, "SPAWN_GUARD")
     assert len({mode["bake_program_ref"], mode["response_program_ref"], mode["quality_selection_program_ref"]}) == 3
