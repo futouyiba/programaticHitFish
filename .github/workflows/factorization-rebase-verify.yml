@@ -75,7 +75,7 @@ jobs:
               assert q1.split('FISHQUALITY STABLE')[0] == bake_q5
 
               # FishQuality UI exposes stable facts, never generic Bake overrides.
-              page.get_by_role('button', name='FishQuality Stable').click()
+              page.get_by_role('button', name='FishQuality Stable', exact=True).click()
               page.wait_for_selector('text=FishQuality Stable Facts')
               workspace = page.locator('#workspace').inner_text()
               assert 'Bake Param Override: not owned by FishQuality in P0' in workspace
@@ -83,7 +83,7 @@ jobs:
 
               # Program switch still exposes Mode-level MISSING + ORPHANED provenance.
               page.select_option('#previewMode', 'NORMAL')
-              page.get_by_role('button', name='Engagement Mode').click()
+              page.get_by_role('button', name='Engagement Mode', exact=True).click()
               page.locator('#workspace label').filter(has_text='BakeProgramRef').locator('select').select_option('BAKE_ALT')
               page.wait_for_timeout(250)
               mode_workspace = page.locator('#workspace').inner_text()
@@ -92,9 +92,9 @@ jobs:
               assert 'ORPHANED: normal_bias' in mode_workspace
 
               # Reset and verify routing fail-closed diagnostics still work.
-              page.get_by_role('button', name='Reset Saved Baseline').click()
+              page.get_by_role('button', name='Reset Saved Baseline', exact=True).click()
               page.wait_for_timeout(250)
-              page.get_by_role('button', name='Load T5 OVERALLOCATED').click()
+              page.get_by_role('button', name='Load T5 OVERALLOCATED', exact=True).click()
               page.wait_for_timeout(250)
               diagnostics = page.locator('#routingDiagnostics').inner_text()
               assert 'OVERALLOCATED: Q3' in diagnostics
