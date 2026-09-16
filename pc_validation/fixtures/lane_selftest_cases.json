@@ -1,618 +1,716 @@
 {
-  "registry": "PC-VALIDATION-LANE-SELFTEST",
-  "note": "SYNTHETIC validator self-test cases. These exercise accept/reject paths of the contract validators only. They are NOT fish behavior expectations, NOT strategy stories, and NOT development-set semantics. Values are deliberately minimal structural shapes.",
-  "cases": [
-    {
-      "case_id": "SYN-01-clean-bundle",
-      "synthetic": true,
-      "purpose": "fully contract-clean bundle passes with zero findings",
-      "expected_codes": [],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.apparent_size"
-          },
-          {
-            "name": "cue.visual_contrast"
-          },
-          {
-            "name": "cue.speed",
-            "reference_frame": "LOCAL_WATER",
-            "temporal_scope": "1.0s"
-          },
-          {
-            "name": "cue.speed_change",
-            "reference_frame": "LOCAL_WATER",
-            "temporal_scope": "0.5s"
-          },
-          {
-            "name": "cue.direction_change",
-            "reference_frame": "LOCAL_WATER",
-            "temporal_scope": "0.5s"
-          },
-          {
-            "name": "cue.vertical_motion",
-            "reference_frame": "WORLD_VERTICAL"
-          },
-          {
-            "name": "cue.pause_duration"
-          },
-          {
-            "name": "cue.vibration_amplitude"
-          }
-        ],
-        "presentation_descriptors": [
-          {
-            "name": "presentation.profile",
-            "status": "candidate"
-          }
-        ],
-        "resolvers": [
-          {
-            "name": "resolve_visual_contrast",
-            "inputs": [
-              "background",
-              "turbidity",
-              "geometry",
-              "medium_propagation"
-            ]
-          }
-        ],
-        "static_target_affinity": [
-          {
-            "species": "Bass",
-            "feeding_target_key": "SMALL_BAITFISH",
-            "affinity": "GOOD"
-          }
-        ],
-        "dynamic_feeding_preference": [
-          {
-            "species": "Bass",
-            "current_preference": "OPPORTUNISTIC"
-          }
-        ],
-        "target_resolution": {
-          "status": "HYPOTHESES",
-          "hypotheses": [
-            {
-              "feeding_target_key": "SMALL_BAITFISH",
-              "weight": "UNRESOLVED_AGGREGATION_OPEN"
-            }
-          ]
-        },
-        "cue_signature": {
-          "signature_version": "pc-sig-v0",
-          "facts": {
-            "cue.speed": "MID",
-            "cue.visual_contrast": "HIGH"
-          }
-        },
-        "classification": {
-          "primary_classification": "COVERED",
-          "requested_deltas": [],
-          "flags": [],
-          "relied_upon": [
-            "cue.speed"
-          ]
-        }
+ "registry": "PC-VALIDATION-LANE-SELFTEST",
+ "note": "SYNTHETIC validator self-test cases. These exercise accept/reject paths of the contract validators only. They are NOT fish behavior expectations, NOT strategy stories, and NOT development-set semantics. Values are deliberately minimal structural shapes. SYN-28..31 added 2026-09-16 per Design Owner Round 2 adjudication: sound_pattern conformance fixtures (implementation conformance, not an R4 semantic delta).",
+ "cases": [
+  {
+   "case_id": "SYN-01-clean-bundle",
+   "synthetic": true,
+   "purpose": "fully contract-clean bundle passes with zero findings",
+   "expected_codes": [],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.apparent_size"
+     },
+     {
+      "name": "cue.visual_contrast"
+     },
+     {
+      "name": "cue.speed",
+      "reference_frame": "LOCAL_WATER",
+      "temporal_scope": "1.0s"
+     },
+     {
+      "name": "cue.speed_change",
+      "reference_frame": "LOCAL_WATER",
+      "temporal_scope": "0.5s"
+     },
+     {
+      "name": "cue.direction_change",
+      "reference_frame": "LOCAL_WATER",
+      "temporal_scope": "0.5s"
+     },
+     {
+      "name": "cue.vertical_motion",
+      "reference_frame": "WORLD_VERTICAL"
+     },
+     {
+      "name": "cue.pause_duration"
+     },
+     {
+      "name": "cue.vibration_amplitude"
+     }
+    ],
+    "presentation_descriptors": [
+     {
+      "name": "presentation.profile",
+      "status": "candidate"
+     }
+    ],
+    "resolvers": [
+     {
+      "name": "resolve_visual_contrast",
+      "inputs": [
+       "background",
+       "turbidity",
+       "geometry",
+       "medium_propagation"
+      ]
+     }
+    ],
+    "static_target_affinity": [
+     {
+      "species": "Bass",
+      "feeding_target_key": "SMALL_BAITFISH",
+      "affinity": "GOOD"
+     }
+    ],
+    "dynamic_feeding_preference": [
+     {
+      "species": "Bass",
+      "current_preference": "OPPORTUNISTIC"
+     }
+    ],
+    "target_resolution": {
+     "status": "HYPOTHESES",
+     "hypotheses": [
+      {
+       "feeding_target_key": "SMALL_BAITFISH",
+       "weight": "UNRESOLVED_AGGREGATION_OPEN"
       }
+     ]
     },
-    {
-      "case_id": "SYN-02-frame-metadata-missing",
-      "synthetic": true,
-      "purpose": "speed without reference_frame/temporal_scope is a violation (R1 A2)",
-      "expected_codes": [
-        "FRAME_METADATA_MISSING",
-        "FRAME_METADATA_MISSING"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.speed"
-          }
-        ]
-      }
+    "cue_signature": {
+     "signature_version": "pc-sig-v0",
+     "facts": {
+      "cue.speed": "MID",
+      "cue.visual_contrast": "HIGH"
+     }
     },
-    {
-      "case_id": "SYN-03-vertical-motion-frame-invalid",
-      "synthetic": true,
-      "purpose": "vertical_motion may only use the gravity/world-vertical semantic",
-      "expected_codes": [
-        "FRAME_METADATA_INVALID"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.vertical_motion",
-            "reference_frame": "LOCAL_WATER"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-04-displacement-not-admitted-blocks-covered",
-      "synthetic": true,
-      "purpose": "cue.displacement is NOT_ADMITTED (R2 D1); vocabulary usage and a COVERED reliance are both violations",
-      "expected_codes": [
-        "NOT_ADMITTED_CUE",
-        "NOT_ADMITTED_CUE"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.displacement",
-            "reference_frame": "LOCAL_WATER",
-            "temporal_scope": "2.0s",
-            "summary_semantics": "ASSUMED_NET"
-          }
-        ],
-        "classification": {
-          "primary_classification": "COVERED",
-          "requested_deltas": [],
-          "flags": [],
-          "relied_upon": [
-            "cue.displacement"
-          ]
-        }
-      }
-    },
-    {
-      "case_id": "SYN-05-fish-dependent-resolver",
-      "synthetic": true,
-      "purpose": "resolver reading species preference violates the fish-independence boundary (R0 2.1 / R1 A1)",
-      "expected_codes": [
-        "FISH_DEPENDENT_INPUT"
-      ],
-      "bundle": {
-        "resolvers": [
-          {
-            "name": "bad_resolver",
-            "inputs": [
-              "species_preference"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-06-forbidden-vocabulary",
-      "synthetic": true,
-      "purpose": "injuredness/fish_visibility style semantics cannot enter cue.* (R0 3.2 / R0 7)",
-      "expected_codes": [
-        "FORBIDDEN_CUE_SEMANTICS",
-        "UNKNOWN_CUE_TOKEN"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "injuredness"
-          },
-          {
-            "name": "cue.reaction_bait_grade"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-07-affinity-mode-axis",
-      "synthetic": true,
-      "purpose": "static affinity keyed with engagement_mode is rejected; absorbing motion quality is rejected (R1 A3 / R0 4)",
-      "expected_codes": [
-        "MODE_AXIS_FORBIDDEN",
-        "AFFINITY_ABSORPTION"
-      ],
-      "bundle": {
-        "static_target_affinity": [
-          {
-            "species": "Bass",
-            "engagement_mode": "NORMAL_FEEDING",
-            "feeding_target_key": "CRUSTACEAN",
-            "motion_quality": "GOOD"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-08-mode-specific-dynamic-target-table",
-      "synthetic": true,
-      "purpose": "dynamic preference must not become a mode-specific target ranking (R1 A3)",
-      "expected_codes": [
-        "MODE_SPECIFIC_TARGET_TABLE"
-      ],
-      "bundle": {
-        "dynamic_feeding_preference": [
-          {
-            "species": "Bass",
-            "engagement_mode_target_ranking": {
-              "NORMAL_FEEDING": [
-                "SMALL_BAITFISH"
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-09-typed-zero-target",
-      "synthetic": true,
-      "purpose": "NO_SUPPORTED_TARGET is typed; UNKNOWN must not be mapped to affinity or band (R1 B2)",
-      "expected_codes": [
-        "NON_AFFIRMATIVE_TREATED_AS_AFFINITY",
-        "BAND_MAPPING_NOT_DECIDED"
-      ],
-      "bundle": {
-        "target_resolution": {
-          "status": "UNKNOWN",
-          "affinity": "NONE",
-          "response_band": "LOW"
-        }
-      }
-    },
-    {
-      "case_id": "SYN-10-sku-memory-signature",
-      "synthetic": true,
-      "purpose": "CueSignature carrying SKU/item identity is rejected (R1 B1)",
-      "expected_codes": [
-        "SKU_MEMORY_LEAK",
-        "SKU_MEMORY_LEAK"
-      ],
-      "bundle": {
-        "cue_signature": {
-          "signature_version": "pc-sig-v0",
-          "facts": {
-            "sku": "RAPALA-XRAP-10",
-            "ui_action": "retrieve_fast"
-          }
-        }
-      }
-    },
-    {
-      "case_id": "SYN-11-unversioned-signature",
-      "synthetic": true,
-      "purpose": "CueSignature must be versioned (R1 B1)",
-      "expected_codes": [
-        "SIGNATURE_NOT_VERSIONED"
-      ],
-      "bundle": {
-        "cue_signature": {
-          "facts": {
-            "cue.speed": "MID"
-          }
-        }
-      }
-    },
-    {
-      "case_id": "SYN-12-cause-ownership-conflict",
-      "synthetic": true,
-      "purpose": "rule consuming visual_contrast and turbidity double-counts the cause without CAUSE_JUSTIFIED (R0 8)",
-      "expected_codes": [
-        "CAUSE_OWNERSHIP_CONFLICT"
-      ],
-      "bundle": {
-        "cause_provenance": {
-          "cue.visual_contrast": [
-            "turbidity",
-            "background"
-          ]
-        },
-        "response_rules": [
-          {
-            "rule_id": "r1",
-            "consumes": [
-              "cue.visual_contrast",
-              "turbidity"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-13-boolean-override-removed",
-      "synthetic": true,
-      "purpose": "R3 ruling B: a boolean justification no longer clears a shared-cause conflict; there is no override",
-      "expected_codes": [
-        "CAUSE_OWNERSHIP_CONFLICT"
-      ],
-      "bundle": {
-        "response_rules": [
-          {
-            "rule_id": "r2",
-            "consumes": [
-              "cue.visual_contrast",
-              "turbidity"
-            ],
-            "cause_justified": "legacy marker \u2014 ignored by the validator, kept only to prove it has no effect"
-          }
-        ],
-        "cause_provenance": {
-          "cue.visual_contrast": [
-            "turbidity"
-          ]
-        }
-      }
-    },
-    {
-      "case_id": "SYN-14-aggregator-smuggled",
-      "synthetic": true,
-      "purpose": "sum/max/Noisy-OR multi-target aggregation is deliberately OPEN; smuggling one in is a violation (R0 4)",
-      "expected_codes": [
-        "AGGREGATOR_SMUGGLED"
-      ],
-      "bundle": {
-        "resolvers": [
-          {
-            "name": "feedtarget",
-            "multi_target_aggregator": "max"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-15-nondeterministic-descriptor",
-      "synthetic": true,
-      "purpose": "derived descriptors may only read admitted fish-independent facts, deterministically (R1 A4)",
-      "expected_codes": [
-        "NON_DETERMINISTIC_DESCRIPTOR"
-      ],
-      "bundle": {
-        "derived_descriptors": [
-          {
-            "name": "prey_stage_guess",
-            "inputs": [
-              "species_preference"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-16-invalid-classification-record",
-      "synthetic": true,
-      "purpose": "primary_classification must come from the A4 vocabulary",
-      "expected_codes": [
-        "INVALID_PRIMARY_CLASSIFICATION"
-      ],
-      "bundle": {
-        "classification": {
-          "primary_classification": "MOSTLY_COVERED",
-          "requested_deltas": [],
-          "flags": []
-        }
-      }
-    },
-    {
-      "case_id": "SYN-17-displacement-admission-request-path",
-      "synthetic": true,
-      "purpose": "using a NOT_ADMITTED cue is a vocabulary violation even when the case itself is honestly UNRESOLVED with an admission request (R2 D1)",
-      "expected_codes": [
-        "NOT_ADMITTED_CUE"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.displacement",
-            "reference_frame": "LOCAL_WATER",
-            "temporal_scope": "2.0s"
-          }
-        ],
-        "classification": {
-          "primary_classification": "UNRESOLVED",
-          "requested_deltas": [
-            "admission request for a displacement-family concept (net spatial displacement / path length / ...) per R2 D1"
-          ],
-          "flags": [],
-          "relied_upon": [
-            "cue.displacement"
-          ]
-        }
-      }
-    },
-    {
-      "case_id": "SYN-18-contact-disturbance-valid",
-      "synthetic": true,
-      "purpose": "R3 ruling A: plain OrderedBand contact_disturbance with temporal metadata passes",
-      "expected_codes": [],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.contact_disturbance",
-            "magnitude": "MEDIUM",
-            "temporal_scope": "2.0s"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-19-contact-disturbance-metadata-missing",
-      "synthetic": true,
-      "purpose": "R3 ruling A: temporal_scope is required (duration semantics stay on existing machinery)",
-      "expected_codes": [
-        "FRAME_METADATA_MISSING"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.contact_disturbance",
-            "magnitude": "MEDIUM"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-20-strategy-token-rejected",
-      "synthetic": true,
-      "purpose": "R3 Delta 1: strategy-specific tokens like mechanical_scrape are not admitted vocabulary",
-      "expected_codes": [
-        "UNKNOWN_CUE_TOKEN"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.mechanical_scrape"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-21-contact-family-provenance-required",
-      "synthetic": true,
-      "purpose": "R3 ruling B: two contact-family facts with no cause identity declared require provenance (independence not yet shown)",
-      "expected_codes": [
-        "CAUSE_PROVENANCE_REQUIRED"
-      ],
-      "bundle": {
-        "response_rules": [
-          {
-            "rule_id": "r-contact",
-            "consumes": [
-              "cue.contact_disturbance",
-              "cue.sound_amplitude"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-22-multiplicity-not-admitted",
-      "synthetic": true,
-      "purpose": "R3 Delta 2: source_count/lure_count are NOT_ADMITTED; a COVERED reliance on them is blocked",
-      "expected_codes": [
-        "NOT_ADMITTED_CUE",
-        "NOT_ADMITTED_CUE"
-      ],
-      "bundle": {
-        "cue_facts": [
-          {
-            "name": "cue.source_count",
-            "temporal_scope": "1.0s"
-          }
-        ],
-        "classification": {
-          "primary_classification": "COVERED",
-          "requested_deltas": [],
-          "flags": [],
-          "relied_upon": [
-            "cue.source_count"
-          ]
-        }
-      }
-    },
-    {
-      "case_id": "SYN-23-composition-clean",
-      "synthetic": true,
-      "purpose": "R3 Delta 2: deterministic multi-source composition without identity keys passes",
-      "expected_codes": [],
-      "bundle": {
-        "composition": {
-          "sources": [
-            {
-              "cue.flash": "HIGH"
-            },
-            {
-              "cue.flash": "HIGH"
-            }
-          ],
-          "resolver": {
-            "deterministic": true,
-            "inputs": [
-              "cue.flash"
-            ]
-          }
-        }
-      }
-    },
-    {
-      "case_id": "SYN-24-composition-violations",
-      "synthetic": true,
-      "purpose": "R3 Delta 2: rig identity in sources and non-deterministic resolver are violations",
-      "expected_codes": [
-        "COMPOSITION_IDENTITY_LEAK",
-        "COMPOSITION_NON_DETERMINISTIC"
-      ],
-      "bundle": {
-        "composition": {
-          "sources": [
-            {
-              "rig_identity": "UMBRELLA_5_ARM",
-              "cue.flash": "HIGH"
-            }
-          ],
-          "resolver": {
-            "inputs": [
-              "cue.flash"
-            ]
-          }
-        }
-      }
-    },
-    {
-      "case_id": "SYN-25-crab-dictionary-admission",
-      "synthetic": true,
-      "purpose": "R3 Delta 3: CRAB is not a documented member; the ruling reuses CRUSTACEAN instead",
-      "expected_codes": [
-        "DICTIONARY_MEMBER_ADMISSION_REQUIRED"
-      ],
-      "bundle": {
-        "static_target_affinity": [
-          {
-            "species": "Sheepshead",
-            "feeding_target_key": "CRAB",
-            "affinity": "UNKNOWN_FROM_SOURCE"
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-26-contact-family-shared-cause",
-      "synthetic": true,
-      "purpose": "R3 ruling B: two contact-family facts sharing a recorded cause identity is an unconditional conflict (no override)",
-      "expected_codes": [
-        "CAUSE_OWNERSHIP_CONFLICT"
-      ],
-      "bundle": {
-        "cause_provenance": {
-          "cue.contact_disturbance": [
-            "substrate_grind"
-          ],
-          "cue.sound_amplitude": [
-            "substrate_grind"
-          ]
-        },
-        "response_rules": [
-          {
-            "rule_id": "r-shared",
-            "consumes": [
-              "cue.contact_disturbance",
-              "cue.sound_amplitude"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "case_id": "SYN-27-contact-family-independent-causes",
-      "synthetic": true,
-      "purpose": "R3 ruling B: disjoint cause identities prove independence and clear the family guard",
-      "expected_codes": [],
-      "bundle": {
-        "cause_provenance": {
-          "cue.contact_disturbance": [
-            "substrate_plume"
-          ],
-          "cue.vibration_amplitude": [
-            "blade_rotation"
-          ]
-        },
-        "response_rules": [
-          {
-            "rule_id": "r-indep",
-            "consumes": [
-              "cue.contact_disturbance",
-              "cue.vibration_amplitude"
-            ]
-          }
-        ]
-      }
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": [],
+     "relied_upon": [
+      "cue.speed"
+     ]
     }
-  ]
+   }
+  },
+  {
+   "case_id": "SYN-02-frame-metadata-missing",
+   "synthetic": true,
+   "purpose": "speed without reference_frame/temporal_scope is a violation (R1 A2)",
+   "expected_codes": [
+    "FRAME_METADATA_MISSING",
+    "FRAME_METADATA_MISSING"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.speed"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-03-vertical-motion-frame-invalid",
+   "synthetic": true,
+   "purpose": "vertical_motion may only use the gravity/world-vertical semantic",
+   "expected_codes": [
+    "FRAME_METADATA_INVALID"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.vertical_motion",
+      "reference_frame": "LOCAL_WATER"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-04-displacement-not-admitted-blocks-covered",
+   "synthetic": true,
+   "purpose": "cue.displacement is NOT_ADMITTED (R2 D1); vocabulary usage and a COVERED reliance are both violations",
+   "expected_codes": [
+    "NOT_ADMITTED_CUE",
+    "NOT_ADMITTED_CUE"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.displacement",
+      "reference_frame": "LOCAL_WATER",
+      "temporal_scope": "2.0s",
+      "summary_semantics": "ASSUMED_NET"
+     }
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": [],
+     "relied_upon": [
+      "cue.displacement"
+     ]
+    }
+   }
+  },
+  {
+   "case_id": "SYN-05-fish-dependent-resolver",
+   "synthetic": true,
+   "purpose": "resolver reading species preference violates the fish-independence boundary (R0 2.1 / R1 A1)",
+   "expected_codes": [
+    "FISH_DEPENDENT_INPUT"
+   ],
+   "bundle": {
+    "resolvers": [
+     {
+      "name": "bad_resolver",
+      "inputs": [
+       "species_preference"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-06-forbidden-vocabulary",
+   "synthetic": true,
+   "purpose": "injuredness/fish_visibility style semantics cannot enter cue.* (R0 3.2 / R0 7)",
+   "expected_codes": [
+    "FORBIDDEN_CUE_SEMANTICS",
+    "UNKNOWN_CUE_TOKEN"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "injuredness"
+     },
+     {
+      "name": "cue.reaction_bait_grade"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-07-affinity-mode-axis",
+   "synthetic": true,
+   "purpose": "static affinity keyed with engagement_mode is rejected; absorbing motion quality is rejected (R1 A3 / R0 4)",
+   "expected_codes": [
+    "MODE_AXIS_FORBIDDEN",
+    "AFFINITY_ABSORPTION"
+   ],
+   "bundle": {
+    "static_target_affinity": [
+     {
+      "species": "Bass",
+      "engagement_mode": "NORMAL_FEEDING",
+      "feeding_target_key": "CRUSTACEAN",
+      "motion_quality": "GOOD"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-08-mode-specific-dynamic-target-table",
+   "synthetic": true,
+   "purpose": "dynamic preference must not become a mode-specific target ranking (R1 A3)",
+   "expected_codes": [
+    "MODE_SPECIFIC_TARGET_TABLE"
+   ],
+   "bundle": {
+    "dynamic_feeding_preference": [
+     {
+      "species": "Bass",
+      "engagement_mode_target_ranking": {
+       "NORMAL_FEEDING": [
+        "SMALL_BAITFISH"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-09-typed-zero-target",
+   "synthetic": true,
+   "purpose": "NO_SUPPORTED_TARGET is typed; UNKNOWN must not be mapped to affinity or band (R1 B2)",
+   "expected_codes": [
+    "NON_AFFIRMATIVE_TREATED_AS_AFFINITY",
+    "BAND_MAPPING_NOT_DECIDED"
+   ],
+   "bundle": {
+    "target_resolution": {
+     "status": "UNKNOWN",
+     "affinity": "NONE",
+     "response_band": "LOW"
+    }
+   }
+  },
+  {
+   "case_id": "SYN-10-sku-memory-signature",
+   "synthetic": true,
+   "purpose": "CueSignature carrying SKU/item identity is rejected (R1 B1)",
+   "expected_codes": [
+    "SKU_MEMORY_LEAK",
+    "SKU_MEMORY_LEAK"
+   ],
+   "bundle": {
+    "cue_signature": {
+     "signature_version": "pc-sig-v0",
+     "facts": {
+      "sku": "RAPALA-XRAP-10",
+      "ui_action": "retrieve_fast"
+     }
+    }
+   }
+  },
+  {
+   "case_id": "SYN-11-unversioned-signature",
+   "synthetic": true,
+   "purpose": "CueSignature must be versioned (R1 B1)",
+   "expected_codes": [
+    "SIGNATURE_NOT_VERSIONED"
+   ],
+   "bundle": {
+    "cue_signature": {
+     "facts": {
+      "cue.speed": "MID"
+     }
+    }
+   }
+  },
+  {
+   "case_id": "SYN-12-cause-ownership-conflict",
+   "synthetic": true,
+   "purpose": "rule consuming visual_contrast and turbidity double-counts the cause without CAUSE_JUSTIFIED (R0 8)",
+   "expected_codes": [
+    "CAUSE_OWNERSHIP_CONFLICT"
+   ],
+   "bundle": {
+    "cause_provenance": {
+     "cue.visual_contrast": [
+      "turbidity",
+      "background"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r1",
+      "consumes": [
+       "cue.visual_contrast",
+       "turbidity"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-13-boolean-override-removed",
+   "synthetic": true,
+   "purpose": "R3 ruling B: a boolean justification no longer clears a shared-cause conflict; there is no override",
+   "expected_codes": [
+    "CAUSE_OWNERSHIP_CONFLICT"
+   ],
+   "bundle": {
+    "response_rules": [
+     {
+      "rule_id": "r2",
+      "consumes": [
+       "cue.visual_contrast",
+       "turbidity"
+      ],
+      "cause_justified": "legacy marker — ignored by the validator, kept only to prove it has no effect"
+     }
+    ],
+    "cause_provenance": {
+     "cue.visual_contrast": [
+      "turbidity"
+     ]
+    }
+   }
+  },
+  {
+   "case_id": "SYN-14-aggregator-smuggled",
+   "synthetic": true,
+   "purpose": "sum/max/Noisy-OR multi-target aggregation is deliberately OPEN; smuggling one in is a violation (R0 4)",
+   "expected_codes": [
+    "AGGREGATOR_SMUGGLED"
+   ],
+   "bundle": {
+    "resolvers": [
+     {
+      "name": "feedtarget",
+      "multi_target_aggregator": "max"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-15-nondeterministic-descriptor",
+   "synthetic": true,
+   "purpose": "derived descriptors may only read admitted fish-independent facts, deterministically (R1 A4)",
+   "expected_codes": [
+    "NON_DETERMINISTIC_DESCRIPTOR"
+   ],
+   "bundle": {
+    "derived_descriptors": [
+     {
+      "name": "prey_stage_guess",
+      "inputs": [
+       "species_preference"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-16-invalid-classification-record",
+   "synthetic": true,
+   "purpose": "primary_classification must come from the A4 vocabulary",
+   "expected_codes": [
+    "INVALID_PRIMARY_CLASSIFICATION"
+   ],
+   "bundle": {
+    "classification": {
+     "primary_classification": "MOSTLY_COVERED",
+     "requested_deltas": [],
+     "flags": []
+    }
+   }
+  },
+  {
+   "case_id": "SYN-17-displacement-admission-request-path",
+   "synthetic": true,
+   "purpose": "using a NOT_ADMITTED cue is a vocabulary violation even when the case itself is honestly UNRESOLVED with an admission request (R2 D1)",
+   "expected_codes": [
+    "NOT_ADMITTED_CUE"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.displacement",
+      "reference_frame": "LOCAL_WATER",
+      "temporal_scope": "2.0s"
+     }
+    ],
+    "classification": {
+     "primary_classification": "UNRESOLVED",
+     "requested_deltas": [
+      "admission request for a displacement-family concept (net spatial displacement / path length / ...) per R2 D1"
+     ],
+     "flags": [],
+     "relied_upon": [
+      "cue.displacement"
+     ]
+    }
+   }
+  },
+  {
+   "case_id": "SYN-18-contact-disturbance-valid",
+   "synthetic": true,
+   "purpose": "R3 ruling A: plain OrderedBand contact_disturbance with temporal metadata passes",
+   "expected_codes": [],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.contact_disturbance",
+      "magnitude": "MEDIUM",
+      "temporal_scope": "2.0s"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-19-contact-disturbance-metadata-missing",
+   "synthetic": true,
+   "purpose": "R3 ruling A: temporal_scope is required (duration semantics stay on existing machinery)",
+   "expected_codes": [
+    "FRAME_METADATA_MISSING"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.contact_disturbance",
+      "magnitude": "MEDIUM"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-20-strategy-token-rejected",
+   "synthetic": true,
+   "purpose": "R3 Delta 1: strategy-specific tokens like mechanical_scrape are not admitted vocabulary",
+   "expected_codes": [
+    "UNKNOWN_CUE_TOKEN"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.mechanical_scrape"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-21-contact-family-provenance-required",
+   "synthetic": true,
+   "purpose": "R3 ruling B: two contact-family facts with no cause identity declared require provenance (independence not yet shown)",
+   "expected_codes": [
+    "CAUSE_PROVENANCE_REQUIRED"
+   ],
+   "bundle": {
+    "response_rules": [
+     {
+      "rule_id": "r-contact",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.sound_amplitude"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-22-multiplicity-not-admitted",
+   "synthetic": true,
+   "purpose": "R3 Delta 2: source_count/lure_count are NOT_ADMITTED; a COVERED reliance on them is blocked",
+   "expected_codes": [
+    "NOT_ADMITTED_CUE",
+    "NOT_ADMITTED_CUE"
+   ],
+   "bundle": {
+    "cue_facts": [
+     {
+      "name": "cue.source_count",
+      "temporal_scope": "1.0s"
+     }
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": [],
+     "relied_upon": [
+      "cue.source_count"
+     ]
+    }
+   }
+  },
+  {
+   "case_id": "SYN-23-composition-clean",
+   "synthetic": true,
+   "purpose": "R3 Delta 2: deterministic multi-source composition without identity keys passes",
+   "expected_codes": [],
+   "bundle": {
+    "composition": {
+     "sources": [
+      {
+       "cue.flash": "HIGH"
+      },
+      {
+       "cue.flash": "HIGH"
+      }
+     ],
+     "resolver": {
+      "deterministic": true,
+      "inputs": [
+       "cue.flash"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "case_id": "SYN-24-composition-violations",
+   "synthetic": true,
+   "purpose": "R3 Delta 2: rig identity in sources and non-deterministic resolver are violations",
+   "expected_codes": [
+    "COMPOSITION_IDENTITY_LEAK",
+    "COMPOSITION_NON_DETERMINISTIC"
+   ],
+   "bundle": {
+    "composition": {
+     "sources": [
+      {
+       "rig_identity": "UMBRELLA_5_ARM",
+       "cue.flash": "HIGH"
+      }
+     ],
+     "resolver": {
+      "inputs": [
+       "cue.flash"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "case_id": "SYN-25-crab-dictionary-admission",
+   "synthetic": true,
+   "purpose": "R3 Delta 3: CRAB is not a documented member; the ruling reuses CRUSTACEAN instead",
+   "expected_codes": [
+    "DICTIONARY_MEMBER_ADMISSION_REQUIRED"
+   ],
+   "bundle": {
+    "static_target_affinity": [
+     {
+      "species": "Sheepshead",
+      "feeding_target_key": "CRAB",
+      "affinity": "UNKNOWN_FROM_SOURCE"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-26-contact-family-shared-cause",
+   "synthetic": true,
+   "purpose": "R3 ruling B: two contact-family facts sharing a recorded cause identity is an unconditional conflict (no override)",
+   "expected_codes": [
+    "CAUSE_OWNERSHIP_CONFLICT"
+   ],
+   "bundle": {
+    "cause_provenance": {
+     "cue.contact_disturbance": [
+      "substrate_grind"
+     ],
+     "cue.sound_amplitude": [
+      "substrate_grind"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r-shared",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.sound_amplitude"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-27-contact-family-independent-causes",
+   "synthetic": true,
+   "purpose": "R3 ruling B: disjoint cause identities prove independence and clear the family guard",
+   "expected_codes": [],
+   "bundle": {
+    "cause_provenance": {
+     "cue.contact_disturbance": [
+      "substrate_plume"
+     ],
+     "cue.vibration_amplitude": [
+      "blade_rotation"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r-indep",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.vibration_amplitude"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-28-sound-pattern-shared-cause-conflict",
+   "synthetic": true,
+   "purpose": "Round 2 conformance fix: contact_disturbance + sound_pattern of one physical cause double-weighted by the same rule is an unconditional conflict (no override); closes the HR2-05 scope note",
+   "expected_codes": [
+    "CAUSE_OWNERSHIP_CONFLICT"
+   ],
+   "bundle": {
+    "cause_provenance": {
+     "cue.contact_disturbance": [
+      "bottom_contact_scrape"
+     ],
+     "cue.sound_pattern": [
+      "bottom_contact_scrape"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r-sp-shared",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.sound_pattern"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-29-sound-pattern-independent-causes-clean",
+   "synthetic": true,
+   "purpose": "Round 2 conformance fix: contact_disturbance (world-geometry contact) + sound_pattern (independent acoustic source) with disjoint cause identities clears the family guard",
+   "expected_codes": [],
+   "bundle": {
+    "cause_provenance": {
+     "cue.contact_disturbance": [
+      "substrate_drag"
+     ],
+     "cue.sound_pattern": [
+      "lure_body_acoustics"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r-sp-disjoint",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.sound_pattern"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-30-sound-pattern-provenance-required",
+   "synthetic": true,
+   "purpose": "Round 2 conformance fix: contact-family pair incl. sound_pattern consumed with no cause identity declared requires provenance; independence may not be assumed",
+   "expected_codes": [
+    "CAUSE_PROVENANCE_REQUIRED"
+   ],
+   "bundle": {
+    "response_rules": [
+     {
+      "rule_id": "r-sp-undeclared",
+      "consumes": [
+       "cue.contact_disturbance",
+       "cue.sound_pattern"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "SYN-31-acoustic-pair-shared-cause-conflict",
+   "synthetic": true,
+   "purpose": "Round 2 conformance fix: sound_amplitude + sound_pattern of one acoustic event share a cause identity; same rule weighting both is a conflict (the exact HR2-05 watch-item pair)",
+   "expected_codes": [
+    "CAUSE_OWNERSHIP_CONFLICT"
+   ],
+   "bundle": {
+    "cause_provenance": {
+     "cue.sound_amplitude": [
+      "chug_sequence"
+     ],
+     "cue.sound_pattern": [
+      "chug_sequence"
+     ]
+    },
+    "response_rules": [
+     {
+      "rule_id": "r-acoustic",
+      "consumes": [
+       "cue.sound_amplitude",
+       "cue.sound_pattern"
+      ]
+     }
+    ]
+   }
+  }
+ ]
 }

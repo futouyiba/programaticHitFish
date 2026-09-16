@@ -340,8 +340,11 @@ def test_contact_cause_family_and_new_validators():
     disjoint = {"cue.contact_disturbance": ["substrate_plume"], "cue.vibration_amplitude": ["blade_rotation"]}
     assert check_cause_ownership([{"rule_id": "r2", "consumes": ["cue.contact_disturbance", "cue.vibration_amplitude"]}],
                                  disjoint, "rules") == []
+    # Round 2 conformance fix: sound_pattern joins the family (frozen R3 contract
+    # already required provenance across contact vs vibration_* vs sound_*)
     assert set(CONTACT_CAUSE_FAMILY) == {"cue.contact_disturbance", "cue.vibration_amplitude",
-                                         "cue.vibration_frequency", "cue.sound_amplitude"}
+                                         "cue.vibration_frequency", "cue.sound_amplitude",
+                                         "cue.sound_pattern"}
     # Delta 2: composition validator
     good = {"sources": [{"cue.flash": "HIGH"}], "resolver": {"deterministic": True, "inputs": ["cue.flash"]}}
     assert check_composition_resolver(good, "c") == []
@@ -349,6 +352,71 @@ def test_contact_cause_family_and_new_validators():
     assert _codes(check_composition_resolver(bad, "c")) == ["COMPOSITION_IDENTITY_LEAK",
                                                             "COMPOSITION_NON_DETERMINISTIC",
                                                             "COMPOSITION_FISH_DEPENDENT"]
+
+
+def test_sound_pattern_cause_family_conformance():
+    # Round 2 adjudication conformance fix (2026-09-16): the frozen R3 contract's
+    # provenance requirement covers contact disturbance vs vibration_* vs sound_*;
+    # sound_pattern is a sound_* aspect and must be linted like the others.
+    # No boolean override is introduced by this fix.
+    shared = {"cue.contact_disturbance": ["bottom_contact_scrape"],
+              "cue.sound_pattern": ["bottom_contact_scrape"]}
+    rule = {"rule_id": "r", "consumes": ["cue.contact_disturbance", "cue.sound_pattern"]}
+    assert _codes(check_cause_ownership([rule], shared, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
+    disjoint = {"cue.contact_disturbance": ["substrate_drag"],
+                "cue.sound_pattern": ["lure_body_acoustics"]}
+    assert check_cause_ownership([rule], disjoint, "rules") == []
+    assert _codes(check_cause_ownership([rule], {}, "rules")) == ["CAUSE_PROVENANCE_REQUIRED"]
+    # the exact HR2-05 watch-item pair: one acoustic event, two facts
+    acoustic = {"cue.sound_amplitude": ["chug_sequence"], "cue.sound_pattern": ["chug_sequence"]}
+    acoustic_rule = {"rule_id": "ra", "consumes": ["cue.sound_amplitude", "cue.sound_pattern"],
+                     "cause_justified": "legacy marker — validator ignores it"}
+    assert _codes(check_cause_ownership([acoustic_rule], acoustic, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
+    # single-channel consumption of one acoustic event stays clean
+    assert check_cause_ownership(
+        [{"rule_id": "rb", "consumes": ["cue.sound_pattern"]}], {}, "rules") == []
+
+
+def test_round2_cases_now_development():
+    cases = _load("holdout_round2_devset.json")["cases"]
+    assert len(cases) == 18  # 16 blind-valid + 2 confirmatory
+    blind = [c for c in cases if c["blind_validity"] == "BLIND_VALID"]
+    confirmatory = [c for c in cases if c["blind_validity"] != "BLIND_VALID"]
+    assert len(blind) == 16 and len(confirmatory) == 2
+    report = run_cases(cases, baseline={})
+    assert report.violations == 0  # backfilled Round 2 content must be contract-clean
+    summary = development_regression_summary(report, cases)
+    assert summary["classification_distribution"] == {"ANNOTATION_ONLY": 1, "COVERED": 17}
+    assert summary["breaking_cases"] == []
+    assert summary["unused_basis_cues"] == {}  # Round 2 alone exercises the full basis
+    by_id = {c["case_id"]: c for c in cases}
+    # CRITICAL conformance replay check (Design Owner instruction 3): the correct
+    # sound_pattern provenance lint must NOT change HR2-05's blind classification
+    assert by_id["HR2-05"]["blind_classification_under_r3"] == "COVERED"
+    assert by_id["HR2-05"]["bundle"]["classification"]["primary_classification"] == "COVERED"
+    assert by_id["HR2-05"]["bundle"]["classification"]["relied_upon"] == ["cue.sound_pattern", "cue.pause_duration"]
+    for case in cases:
+        replayed = case["bundle"]["classification"]["primary_classification"]
+        blind_recorded = case.get("blind_classification_under_r3")
+        if blind_recorded is not None:  # confirmatory C1/C2 carry no blind classification
+            assert replayed == blind_recorded, case["case_id"]
+    assert by_id["HR2-04"]["bundle"]["classification"]["primary_classification"] == "ANNOTATION_ONLY"
+    assert by_id["HR2-16"]["bundle"]["classification"]["flags"] == [
+        "PLUME_GEOMETRY_OUT_OF_CUE_SIDE", "ZERO_MOTION_NEGATIVE_SPACE",
+        "CHEMICAL_MAGNITUDE_ECHO_CONFIRMATORY_ONLY"]
+    # confirmatory cases stay marked and never read as blind promotion evidence
+    assert by_id["HR2-C1"]["blind_validity"] == "CONFIRMATORY_CONTAMINATED"
+    assert "CF_MULTI_1_EVIDENCE_STRENGTHENED" in by_id["HR2-C1"]["bundle"]["classification"]["flags"]
+    assert by_id["HR2-C2"]["blind_validity"] == "POSSIBLE_CONTAMINATION"
+    # no ResponseBand numbers anywhere in round-2 material
+    for case in cases:
+        assert "response_band" not in case.get("bundle", {}).get("target_resolution", {})
+    # sound_pattern family fixtures: conflict / disjoint-clean / provenance-required
+    syn = {c["case_id"]: c for c in _load("lane_selftest_cases.json")["cases"]}
+    assert syn["SYN-28-sound-pattern-shared-cause-conflict"]["expected_codes"] == ["CAUSE_OWNERSHIP_CONFLICT"]
+    assert syn["SYN-29-sound-pattern-independent-causes-clean"]["expected_codes"] == []
+    assert syn["SYN-30-sound-pattern-provenance-required"]["expected_codes"] == ["CAUSE_PROVENANCE_REQUIRED"]
+    assert syn["SYN-31-acoustic-pair-shared-cause-conflict"]["expected_codes"] == ["CAUSE_OWNERSHIP_CONFLICT"]
 
 
 def test_dev_fixture_never_asserts_responseband_numbers():
@@ -359,22 +427,24 @@ def test_dev_fixture_never_asserts_responseband_numbers():
 def test_report_json_and_markdown_shapes():
     cases = (_load("devset_r3_dev.json")["cases"]
              + _load("holdout_round1_devset.json")["cases"]
+             + _load("holdout_round2_devset.json")["cases"]
              + _load("lane_selftest_cases.json")["cases"])
     report = run_cases(cases, baseline={"baseline_commit": "c412a6e",
                                         "r1_addendum_sha256": "test-hash"})
     data = json.loads(report.to_json())
     assert data["summary"]["cases"] == len(cases)
-    assert data["summary"]["synthetic_cases"] == 27
-    assert data["summary"]["development_cases"] == 33  # 15 original + 18 round-1
+    assert data["summary"]["synthetic_cases"] == 31
+    assert data["summary"]["development_cases"] == 51  # 15 original + 18 round-1 + 18 round-2
     assert data["summary"]["findings_by_code"].get("AWAITING_BACKFILL", 0) == 0
     assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 3  # SYN-02 x2 + SYN-19 x1
-    assert data["summary"]["findings_by_code"]["CAUSE_PROVENANCE_REQUIRED"] == 1  # SYN-21
+    assert data["summary"]["findings_by_code"]["CAUSE_PROVENANCE_REQUIRED"] == 2  # SYN-21 + SYN-30
     assert data["summary"]["findings_by_code"]["NOT_ADMITTED_CUE"] == 5  # SYN-04 x2 + SYN-17 + SYN-22 x2
-    assert data["summary"]["findings_by_code"]["DICTIONARY_MEMBER_ADMISSION_REQUIRED"] == 2  # DEV-003 + SYN-25
-    # 12 + 17 dev COVERED + 3 synthetic COVERED (SYN-01/04/22), 3 dev ANNOTATION_ONLY,
+    assert data["summary"]["findings_by_code"]["DICTIONARY_MEMBER_ADMISSION_REQUIRED"] == 3  # DEV-003 + SYN-25 + HR2-04
+    assert data["summary"]["findings_by_code"]["CAUSE_OWNERSHIP_CONFLICT"] == 5  # SYN-12 + SYN-13 + SYN-26 + SYN-28 + SYN-31
+    # 12 + 17 + 17 dev COVERED + 3 synthetic COVERED (SYN-01/04/22), 3 + 1 dev ANNOTATION_ONLY,
     # 1 synthetic UNRESOLVED (SYN-17), 1 NEW_PRIMITIVE (H17)
     assert data["summary"]["classification_counts"] == \
-        {"ANNOTATION_ONLY": 3, "COVERED": 32, "NEW_PRIMITIVE_REQUIRED": 1, "UNRESOLVED": 1}
+        {"ANNOTATION_ONLY": 4, "COVERED": 49, "NEW_PRIMITIVE_REQUIRED": 1, "UNRESOLVED": 1}
     assert data["summary"]["descriptor_token_counts"] == \
         {"cue_basis": 13, "cue_candidate_extension": 1, "cue_not_admitted": 5}
     md = report.to_markdown()

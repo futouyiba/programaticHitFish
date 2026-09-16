@@ -1,0 +1,599 @@
+{
+ "registry": "HOLDOUT-ROUND2-DEVSET",
+ "note": "All 18 Blind Holdout Round 2 cases, adjudicated by the Design Owner (ROUND2_ADJUDICATION = HOLDOUT_PASS_ACCEPTED, 2026-09-16) and thereby converted into permanent Development material (R0 10). 16 cases are BLIND_VALID; HR2-C1/HR2-C2 are contamination-flagged confirmatory cases and are NOT blind evidence. blind_classification_under_r3 preserves the blind-round classification verbatim; no primary classification changed on replay (Round 2 report + conformance run). No ResponseBand numbers; affinity values UNKNOWN_FROM_SOURCE.",
+ "cases": [
+  {
+   "case_id": "HR2-01",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.contact_disturbance", "magnitude": "HIGH", "temporal_scope": "0.8s"},
+     {"name": "cue.vibration_amplitude", "magnitude": "HIGH"},
+     {"name": "cue.flash", "magnitude": "MEDIUM"},
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "0.8s"},
+     {"name": "cue.speed_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "0.3s"}
+    ],
+    "response_rules": [
+     {"rule_id": "r2-01-reaction", "consumes": ["cue.contact_disturbance", "cue.vibration_amplitude", "cue.speed_change"]}
+    ],
+    "cause_provenance": {
+     "cue.contact_disturbance": ["grass_contact_drag"],
+     "cue.vibration_amplitude": ["internal_rattle"]
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["DELTA1_GENERALIZES_TO_VEGETATION", "RULING_A_NEGATIVE_SPACE_RESPECTED"],
+     "relied_upon": ["cue.contact_disturbance", "cue.vibration_amplitude", "cue.speed_change"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (grass contact vs internal rattle: disjoint cause identities declared)",
+   "notes": "Lipless crankbait ripped through submerged grass then killed (report HR2-01). R3 Delta 1 generalizes to vegetation contact with zero sub-vocabulary; rip burst and kill ride existing motion/temporal facts.",
+   "flags": ["DELTA1_GENERALIZES_TO_VEGETATION"]
+  },
+  {
+   "case_id": "HR2-02",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.contact_disturbance", "magnitude": "HIGH", "temporal_scope": "0.2s"},
+     {"name": "cue.sound_amplitude", "magnitude": "HIGH"},
+     {"name": "cue.vertical_motion", "reference_frame": "WORLD_VERTICAL"}
+    ],
+    "response_rules": [
+     {"rule_id": "r2-02-reaction", "consumes": ["cue.contact_disturbance"]}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["DELTA1_AXIS_PRE_VISITED", "DISCRETE_IMPULSE_NO_TEMPORAL_ENUM_NEEDED"],
+     "relied_upon": ["cue.contact_disturbance"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (knock sound shares the wood-strike cause; rule consumes contact_disturbance only — single-channel discipline)",
+   "notes": "Pitched jig banging standing timber on the fall (report HR2-02). Discrete impulse expressed without the composite temporal enum the freeze declined to admit.",
+   "flags": ["DISCRETE_IMPULSE_NO_TEMPORAL_ENUM_NEEDED"]
+  },
+  {
+   "case_id": "HR2-03",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.contact_disturbance", "magnitude": "MEDIUM", "temporal_scope": "3.0s"},
+     {"name": "cue.speed", "reference_frame": "GROUND", "temporal_scope": "3.0s"},
+     {"name": "cue.apparent_size", "magnitude": "MEDIUM"}
+    ],
+    "composition": {
+     "sources": [
+      {"cue.contact_disturbance": "MEDIUM"},
+      {"cue.apparent_size": "MEDIUM", "cue.speed": "LOW"}
+     ],
+     "resolver": {"deterministic": true, "inputs": ["cue.contact_disturbance", "cue.apparent_size", "cue.speed"]}
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["SUBSTRATE_DESCRIPTOR_TEMPTATION_DECLINED", "DELTA1_GENERALIZES_TO_SOFT_SUBSTRATE", "HETEROGENEOUS_COMPONENT_UNION"],
+     "relied_upon": ["cue.contact_disturbance"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (sinker disturbance and trailing bait are independent sources)",
+   "notes": "Carolina rig sinker dragged across soft mud raising a silt-puff trail (report HR2-03). substrate_specific_disturbance / mud_disturbance requests did not survive blind pressure; substrate identity stays debug/annotation layer.",
+   "flags": ["SUBSTRATE_DESCRIPTOR_TEMPTATION_DECLINED"]
+  },
+  {
+   "case_id": "HR2-04",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "ANNOTATION_ONLY",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.contact_disturbance", "magnitude": "LOW", "temporal_scope": "2.0s"},
+     {"name": "cue.sound_amplitude", "magnitude": "LOW"},
+     {"name": "cue.visual_contrast", "magnitude": "LOW"},
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "2.0s"},
+     {"name": "cue.direction_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "2.0s"}
+    ],
+    "static_target_affinity": [
+     {"species": "Bass", "feeding_target_key": "AMPHIBIAN", "affinity": "UNKNOWN_FROM_SOURCE"}
+    ],
+    "classification": {
+     "primary_classification": "ANNOTATION_ONLY",
+     "requested_deltas": ["FeedingTarget dictionary value AMPHIBIAN (fish-neutral; canonical FeedingTarget dictionary admission process per R3 ruling D scope; CRUSTACEAN reuse is not defensible for frog)"],
+     "flags": ["FEEDING_TARGET_DICTIONARY_PRESSURE", "CRUSTACEAN_REUSE_NOT_DEFENSIBLE", "TARGET_AMBIGUITY_ABSORBED_BY_AFFINITY"],
+     "relied_upon": ["cue.contact_disturbance", "cue.sound_amplitude", "relation.surface"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (mat drag contact and muffled sound share one cause; single-consumption discipline)",
+   "notes": "Hollow-body frog walked over matted vegetation (report HR2-04). Dictionary value request is annotation-level and lives with the canonical FeedingTarget dictionary authority, not this lane's semantic contract. Unresolved finding DICTIONARY_MEMBER_ADMISSION_REQUIRED is the honest pending-admission marker.",
+   "flags": ["FEEDING_TARGET_DICTIONARY_PRESSURE"]
+  },
+  {
+   "case_id": "HR2-05",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.sound_pattern", "pattern": "BURST_3HZ"},
+     {"name": "cue.sound_amplitude", "magnitude": "MEDIUM"},
+     {"name": "cue.pause_duration", "value": "LONG"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["SOUND_PATTERN_BLIND_EXERCISE", "SOUND_PATTERN_STATUS_BLIND_SUPPORTED_UTILITY"],
+     "relied_upon": ["cue.sound_pattern", "cue.pause_duration"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (cadence rule reads the acoustic channel once via sound_pattern; sound_amplitude is the same cause's magnitude aspect and is not double-weighted; family scope gap closed by the 2026-09-16 conformance fix)",
+   "notes": "Chugger cadence dial: chug-chug-stop vs continuous chug at equal amplitude (report HR2-05). First independent blind pressure on cue.sound_pattern; status updated to BLIND_SUPPORTED_UTILITY by Design Owner (not NECESSITY_PROVEN).",
+   "flags": ["SOUND_PATTERN_BLIND_EXERCISE"]
+  },
+  {
+   "case_id": "HR2-06",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.visual_contrast", "magnitude": "MEDIUM"},
+     {"name": "cue.apparent_size", "magnitude": "SMALL"},
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "4.0s"}
+    ],
+    "composition": {
+     "sources": [
+      {"cue.visual_contrast": "MEDIUM", "cue.speed": "LOW"},
+      {"cue.apparent_size": "SMALL", "cue.vertical_motion": "HOLD"}
+     ],
+     "resolver": {"deterministic": true, "inputs": ["cue.visual_contrast", "cue.apparent_size", "cue.speed"]}
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["MULTI_SOURCE_HETEROGENEOUS_UNION", "NO_RIG_IDENTITY_NEEDED", "SEMANTIC_QUESTION_PRE_VISITED_R1"],
+     "relied_upon": ["cue.visual_contrast", "cue.apparent_size"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (dry and nymph are fully independent sources)",
+   "notes": "Dry-dropper: dry fly attractor/indicator + nymph target as separate opportunities (report HR2-06). Deterministic per-source composition; rig linkage is angler mechanics, not fish semantics.",
+   "flags": ["MULTI_SOURCE_HETEROGENEOUS_UNION"]
+  },
+  {
+   "case_id": "HR2-07",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.flash", "magnitude": "HIGH"},
+     {"name": "cue.vibration_amplitude", "magnitude": "MEDIUM"},
+     {"name": "cue.vibration_frequency", "magnitude": "MEDIUM"},
+     {"name": "cue.apparent_size", "magnitude": "SMALL"}
+    ],
+    "composition": {
+     "sources": [
+      {"cue.flash": "HIGH", "cue.vibration_amplitude": "MEDIUM", "cue.vibration_frequency": "MEDIUM"},
+      {"cue.speed": "MEDIUM", "cue.apparent_size": "SMALL"}
+     ],
+     "resolver": {"deterministic": true, "inputs": ["cue.flash", "cue.vibration_amplitude", "cue.vibration_frequency", "cue.apparent_size"]}
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["HETEROGENEOUS_COUPLED_COMPONENTS_UNION", "ROTATION_PERIODICITY_ABSORBED_BY_VIBRATION_FREQUENCY", "CAUSAL_COUPLING_NOT_NEEDED_FISH_SIDE"],
+     "relied_upon": ["cue.flash", "cue.vibration_frequency"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (flasher flash and its thump share the rotation cause; rules weight each modality once with one declared cause identity — multimodal integration is not double-counting)",
+   "notes": "Flasher + fly trolling (report HR2-07). Rotation-rate dial carried by vibration_frequency + flash magnitude; no visual_pattern descriptor requested.",
+   "flags": ["HETEROGENEOUS_COUPLED_COMPONENTS_UNION"]
+  },
+  {
+   "case_id": "HR2-08",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.contact_disturbance", "magnitude": "LOW", "temporal_scope": "0.5s"},
+     {"name": "cue.sound_amplitude", "magnitude": "MEDIUM"},
+     {"name": "cue.apparent_size", "magnitude": "SMALL"}
+    ],
+    "response_rules": [
+     {"rule_id": "r2-08-recruit", "consumes": ["cue.sound_amplitude"]}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["COMPONENT_INTERNAL_CONTACT_OUT_OF_CONTACT_DISTURBANCE_SCOPE", "PROVENANCE_MECHANISM_EXERCISED"],
+     "relied_upon": ["cue.sound_amplitude"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (bead-strike sound and its shock vibration share one cause; rule consumes sound_amplitude only)",
+   "notes": "Texas rig brass-and-glass clacker (report HR2-08). Component-internal contact is correctly OUTSIDE cue.contact_disturbance scope (world geometry only); bottom tap uses the contact fact.",
+   "flags": ["COMPONENT_INTERNAL_CONTACT_OUT_OF_CONTACT_DISTURBANCE_SCOPE"]
+  },
+  {
+   "case_id": "HR2-09",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.visual_contrast", "magnitude": "HIGH"},
+     {"name": "cue.speed", "reference_frame": "GROUND", "temporal_scope": "60.0s"},
+     {"name": "cue.pause_duration", "value": "LONG"}
+    ],
+    "presentation_descriptors": [
+     {"name": "presentation.chemical_signature"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["GLOW_ABSORBED_BY_EFFECTIVE_RECEIVER_RELATIVE_CONTRAST", "NO_LIGHT_INTENSITY_PRIMITIVE_NEEDED", "MIXED_CHANNEL_UNION"],
+     "relied_upon": ["cue.visual_contrast", "presentation.chemical_signature"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (glow, chemical type and lead thump are three independent causes; lead thump kept single-channel)",
+   "notes": "Deep-drop rig: glow sleeve + cut squid at 600-1200 ft (report HR2-09). Glow decay/charge state is a value trajectory of effective receiver-relative visual_contrast, not a new light-intensity primitive.",
+   "flags": ["GLOW_ABSORBED_BY_EFFECTIVE_RECEIVER_RELATIVE_CONTRAST"]
+  },
+  {
+   "case_id": "HR2-10",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "5.0s"},
+     {"name": "cue.direction_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "5.0s"},
+     {"name": "cue.apparent_size", "magnitude": "MEDIUM"},
+     {"name": "cue.visual_contrast", "magnitude": "LOW"}
+    ],
+    "presentation_descriptors": [
+     {"name": "presentation.chemical_signature"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["PARTIAL_UNKNOWN_EXPRESSIBLE_VIA_TYPED_BANDS", "LIVE_PROVENANCE_AGAIN_NOT_NEEDED", "LIVE_QUESTION_PRE_VISITED_R1", "NIGHT_CONTEXT_PRE_EXERCISED_H10"],
+     "relied_upon": ["cue.direction_change", "cue.apparent_size", "presentation.chemical_signature"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+   "notes": "Night drift of a live eel for striped bass (report HR2-10). Partially-unresolvable live motion degrades honestly to typed bands; no 'live' provenance semantic (H08 boundary reconfirmed on a second species).",
+   "flags": ["PARTIAL_UNKNOWN_EXPRESSIBLE_VIA_TYPED_BANDS"]
+  },
+  {
+   "case_id": "HR2-11",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.vibration_amplitude", "magnitude": "LOW"},
+     {"name": "cue.vertical_motion", "reference_frame": "WORLD_VERTICAL"},
+     {"name": "cue.flash", "magnitude": "LOW"},
+     {"name": "cue.pause_duration", "value": "LONG"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["CONTEXT_OUT_OF_LANE_GEOMETRY", "IN_FAMILY_UNSEEN_CONFIG"],
+     "relied_upon": ["cue.vibration_amplitude", "cue.flash", "cue.pause_duration"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+   "notes": "Ice micro-jig quiver for perch / lake trout (report HR2-11). Under-ice approach geometry belongs to Bake/Opportunity, not presentation semantics.",
+   "flags": ["CONTEXT_OUT_OF_LANE_GEOMETRY"]
+  },
+  {
+   "case_id": "HR2-12",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.sound_amplitude", "magnitude": "MEDIUM"},
+     {"name": "cue.direction_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "4.0s"},
+     {"name": "cue.apparent_size", "magnitude": "LARGE"}
+    ],
+    "response_rules": [
+     {"rule_id": "r2-12-wake", "consumes": ["cue.sound_amplitude"]}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["SINGLE_CAUSE_DUAL_ASPECT_FORCES_SINGLE_CHANNEL_CONSUMPTION", "PROVENANCE_MECHANISM_EXERCISED", "KILL_SIGNAL_C_OBSERVATION_POINT"],
+     "relied_upon": ["cue.sound_amplitude", "relation.surface"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (wake visual distortion and gurgle share the body-displacement cause; rule consumes the acoustic channel once; wake-enlarged apparent_size is geometry, not a second weighting)",
+   "notes": "Glide bait slow-waked at dawn (report HR2-12). Provenance discipline blocks the natural wake-profile double-count without any per-item cause taxonomy (Kill Signal C observation point, untriggered).",
+   "flags": ["SINGLE_CAUSE_DUAL_ASPECT_FORCES_SINGLE_CHANNEL_CONSUMPTION"]
+  },
+  {
+   "case_id": "HR2-13",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.sound_amplitude", "magnitude": "LOW"},
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "8.0s"},
+     {"name": "cue.visual_contrast", "magnitude": "LOW"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["PRESSURE_FAMILIARITY_OUT_OF_LANE_SCOPE", "R3_S3_AXIS_ATTACKED"],
+     "relied_upon": ["cue.sound_amplitude", "cue.speed"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+   "notes": "Pressured-flat bonefish stealth presentation (report HR2-13). R3 S3 axis: presentation-side strategy difference fully expressible; fish-side wariness is another owner's state — NOT_ADMITTED here is correct absence, not a gap.",
+   "flags": ["PRESSURE_FAMILIARITY_OUT_OF_LANE_SCOPE"]
+  },
+  {
+   "case_id": "HR2-14",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.vibration_amplitude", "magnitude": "MEDIUM"},
+     {"name": "cue.flash", "magnitude": "MEDIUM"},
+     {"name": "cue.direction_change", "reference_frame": "LOCAL_WATER", "temporal_scope": "4.0s"},
+     {"name": "cue.speed", "reference_frame": "LOCAL_WATER", "temporal_scope": "4.0s"}
+    ],
+    "composition": {
+     "sources": [
+      {"cue.vibration_amplitude": "MEDIUM", "cue.direction_change": "MEDIUM"},
+      {"cue.flash": "MEDIUM", "cue.speed": "MEDIUM"}
+     ],
+     "resolver": {"deterministic": true, "inputs": ["cue.vibration_amplitude", "cue.flash", "cue.direction_change", "cue.speed"]}
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["NO_RIG_IDENTITY_NEEDED", "HETEROGENEOUS_UNION"],
+     "relied_upon": ["cue.vibration_amplitude", "cue.flash"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (diver and lure are independent sources)",
+   "notes": "Dipsey diver ahead of the lure while trolling (report HR2-14). Device name stays out of semantics; the diver's own planing signal is a plain source-local fact set.",
+   "flags": ["NO_RIG_IDENTITY_NEEDED"]
+  },
+  {
+   "case_id": "HR2-15",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.sound_amplitude", "magnitude": "HIGH"},
+     {"name": "cue.apparent_size", "magnitude": "MEDIUM"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["RECEIVER_RELATIVE_EXTENDS_TO_ACOUSTIC_MASKING", "NO_SN_RATIO_DESCRIPTOR_NEEDED", "UPSTREAM_DATA_READINESS_NOTE"],
+     "relied_upon": ["cue.sound_amplitude", "relation.surface"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (entry splash and working sounds are independent causes)",
+   "notes": "Surf pencil popper in breaking waves (report HR2-15). Wave noise floor folds into effective receiver-relative facts via allowed background/medium-propagation inputs; no signal-to-noise descriptor requested.",
+   "flags": ["RECEIVER_RELATIVE_EXTENDS_TO_ACOUSTIC_MASKING"]
+  },
+  {
+   "case_id": "HR2-16",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_BLIND_VALID (now permanent Development per R0 10 + Design Owner adjudication HOLDOUT_PASS_ACCEPTED)",
+   "blind_validity": "BLIND_VALID",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639"
+   },
+   "blind_classification_under_r3": "COVERED",
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.pause_duration", "value": "VERY_LONG"},
+     {"name": "cue.apparent_size", "magnitude": "MEDIUM"}
+    ],
+    "presentation_descriptors": [
+     {"name": "presentation.chemical_signature"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["PLUME_GEOMETRY_OUT_OF_CUE_SIDE", "ZERO_MOTION_NEGATIVE_SPACE", "CHEMICAL_MAGNITUDE_ECHO_CONFIRMATORY_ONLY"],
+     "relied_upon": ["presentation.chemical_signature", "cue.pause_duration"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT (single chemical source)",
+   "notes": "River-bottom soak of cut herring for sturgeon (report HR2-16). Static chemical recruit: contact_disturbance / vibration / sound correctly absent (negative-space calibration for Delta 1); plume advection belongs to Exposure/Opportunity. Freshness-decay dial would re-enter the H17 deferred candidate — unchanged, confirmatory only.",
+   "flags": ["ZERO_MOTION_NEGATIVE_SPACE"]
+  },
+  {
+   "case_id": "HR2-C1",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_CONFIRMATORY (contamination-flagged; never blind evidence per R0 10 + Design Owner adjudication)",
+   "blind_validity": "CONFIRMATORY_CONTAMINATED",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639",
+    "contamination_basis": "H07 umbrella-rig same-source cluster family (R1 adjudicated); saltwater sibling config"
+   },
+   "bundle": {
+    "cue_facts": [
+     {"name": "cue.flash", "magnitude": "HIGH"},
+     {"name": "cue.visual_contrast", "magnitude": "HIGH"},
+     {"name": "cue.apparent_size", "magnitude": "SMALL"}
+    ],
+    "composition": {
+     "sources": [
+      {"cue.flash": "HIGH", "cue.visual_contrast": "HIGH", "cue.apparent_size": "SMALL"},
+      {"cue.flash": "HIGH", "cue.visual_contrast": "HIGH", "cue.apparent_size": "SMALL"},
+      {"cue.flash": "HIGH", "cue.visual_contrast": "HIGH", "cue.apparent_size": "SMALL"},
+      {"cue.flash": "HIGH", "cue.visual_contrast": "HIGH", "cue.apparent_size": "SMALL"},
+      {"cue.flash": "HIGH", "cue.visual_contrast": "HIGH", "cue.apparent_size": "LARGE"}
+     ],
+     "resolver": {"deterministic": true, "inputs": ["cue.flash", "cue.visual_contrast", "cue.apparent_size"]}
+    },
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["CONFIRMATORY_CONTAMINATED", "NOT_BLIND_EVIDENCE", "MULTIPLICITY_ADMISSION_PRESSURE_REPEAT", "CF_MULTI_1_EVIDENCE_STRENGTHENED"],
+     "relied_upon": ["cue.flash", "cue.visual_contrast", "cue.apparent_size"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+   "notes": "Tuna spreader bar (report HR2-C1). Per-source union expressible; residual cluster-multiplicity question stays with CF-MULTI-1 (OPEN_PENDING_EVIDENCE, now with a second independent content family). C1/C2 do not enter blind promotion evidence.",
+   "flags": ["CONFIRMATORY_CONTAMINATED", "MULTIPLICITY_ADMISSION_PRESSURE_REPEAT"]
+  },
+  {
+   "case_id": "HR2-C2",
+   "backfill_status": "BACKFILLED",
+   "round": "ROUND2_CONFIRMATORY (contamination-flagged; never blind evidence per R0 10 + Design Owner adjudication)",
+   "blind_validity": "POSSIBLE_CONTAMINATION",
+   "provenance": {
+    "report": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (mirror; canonical in HitFish-Up docs/holdout/)",
+    "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+    "r3_baseline_sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "hitfish_up_report_commit": "b57e5c976fc6fdebbf1bea774a841b6316bf2639",
+    "contamination_basis": "chum/groundbait region-level chemical axis visited and deferred in R1; named as suggested Round 2 axis by R3 S3"
+   },
+   "bundle": {
+    "cue_facts": [],
+    "presentation_descriptors": [
+     {"name": "presentation.chemical_signature"}
+    ],
+    "classification": {
+     "primary_classification": "COVERED",
+     "requested_deltas": [],
+     "flags": ["POSSIBLE_CONTAMINATION", "NOT_BLIND_EVIDENCE", "OWNERSHIP_ROUTING_TO_WORLD_EXPOSURE", "CHEMICAL_INTENSITY_CANDIDATE_SECOND_SCENARIO"],
+     "relied_upon": ["presentation.chemical_signature"]
+    }
+   },
+   "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+   "notes": "Berley/chum trail for snapper (report HR2-C2). Region-level chemical field routes to World/Exposure ownership, not presentation semantics; at-fish effective chemical concentration remains the DEFERRED/NOT_ADMITTED cue.chemical_intensity candidate (H17 precedent, second consumption scenario).",
+   "flags": ["POSSIBLE_CONTAMINATION", "OWNERSHIP_ROUTING_TO_WORLD_EXPOSURE"]
+  }
+ ]
+}

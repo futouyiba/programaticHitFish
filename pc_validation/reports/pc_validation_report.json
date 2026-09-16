@@ -583,6 +583,355 @@
     },
     {
       "bundle_id": "",
+      "case_id": "HR2-01",
+      "classification": {
+        "flags": [
+          "DELTA1_GENERALIZES_TO_VEGETATION",
+          "RULING_A_NEGATIVE_SPACE_RESPECTED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.contact_disturbance",
+          "cue.speed_change",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-02",
+      "classification": {
+        "flags": [
+          "DELTA1_AXIS_PRE_VISITED",
+          "DISCRETE_IMPULSE_NO_TEMPORAL_ENUM_NEEDED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.contact_disturbance"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-03",
+      "classification": {
+        "flags": [
+          "DELTA1_GENERALIZES_TO_SOFT_SUBSTRATE",
+          "HETEROGENEOUS_COMPONENT_UNION",
+          "SUBSTRATE_DESCRIPTOR_TEMPTATION_DECLINED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.contact_disturbance"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-04",
+      "classification": {
+        "flags": [
+          "CRUSTACEAN_REUSE_NOT_DEFENSIBLE",
+          "FEEDING_TARGET_DICTIONARY_PRESSURE",
+          "TARGET_AMBIGUITY_ABSORBED_BY_AFFINITY"
+        ],
+        "primary_classification": "ANNOTATION_ONLY",
+        "relied_upon": [
+          "cue.contact_disturbance",
+          "cue.sound_amplitude",
+          "relation.surface"
+        ],
+        "requested_deltas": [
+          "FeedingTarget dictionary value AMPHIBIAN (fish-neutral; canonical FeedingTarget dictionary admission process per R3 ruling D scope; CRUSTACEAN reuse is not defensible for frog)"
+        ]
+      },
+      "findings": [
+        {
+          "citation": "R3 ruling D",
+          "code": "DICTIONARY_MEMBER_ADMISSION_REQUIRED",
+          "detail": "feeding_target_key 'AMPHIBIAN' is outside this lane's test vocabulary ('SMALL_BAITFISH', 'CRUSTACEAN'); canonical FeedingTarget membership is governed by its own dictionary authority \u2014 record an admission request (R3 ruling D: CRUSTACEAN reused, nothing added)",
+          "path": "static_target_affinity[0]",
+          "severity": "unresolved"
+        }
+      ],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-05",
+      "classification": {
+        "flags": [
+          "SOUND_PATTERN_BLIND_EXERCISE",
+          "SOUND_PATTERN_STATUS_BLIND_SUPPORTED_UTILITY"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.pause_duration",
+          "cue.sound_pattern"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-06",
+      "classification": {
+        "flags": [
+          "MULTI_SOURCE_HETEROGENEOUS_UNION",
+          "NO_RIG_IDENTITY_NEEDED",
+          "SEMANTIC_QUESTION_PRE_VISITED_R1"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size",
+          "cue.visual_contrast"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-07",
+      "classification": {
+        "flags": [
+          "CAUSAL_COUPLING_NOT_NEEDED_FISH_SIDE",
+          "HETEROGENEOUS_COUPLED_COMPONENTS_UNION",
+          "ROTATION_PERIODICITY_ABSORBED_BY_VIBRATION_FREQUENCY"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.flash",
+          "cue.vibration_frequency"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-08",
+      "classification": {
+        "flags": [
+          "COMPONENT_INTERNAL_CONTACT_OUT_OF_CONTACT_DISTURBANCE_SCOPE",
+          "PROVENANCE_MECHANISM_EXERCISED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.sound_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-09",
+      "classification": {
+        "flags": [
+          "GLOW_ABSORBED_BY_EFFECTIVE_RECEIVER_RELATIVE_CONTRAST",
+          "MIXED_CHANNEL_UNION",
+          "NO_LIGHT_INTENSITY_PRIMITIVE_NEEDED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.visual_contrast",
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-10",
+      "classification": {
+        "flags": [
+          "LIVE_PROVENANCE_AGAIN_NOT_NEEDED",
+          "LIVE_QUESTION_PRE_VISITED_R1",
+          "NIGHT_CONTEXT_PRE_EXERCISED_H10",
+          "PARTIAL_UNKNOWN_EXPRESSIBLE_VIA_TYPED_BANDS"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size",
+          "cue.direction_change",
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-11",
+      "classification": {
+        "flags": [
+          "CONTEXT_OUT_OF_LANE_GEOMETRY",
+          "IN_FAMILY_UNSEEN_CONFIG"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.flash",
+          "cue.pause_duration",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-12",
+      "classification": {
+        "flags": [
+          "KILL_SIGNAL_C_OBSERVATION_POINT",
+          "PROVENANCE_MECHANISM_EXERCISED",
+          "SINGLE_CAUSE_DUAL_ASPECT_FORCES_SINGLE_CHANNEL_CONSUMPTION"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.sound_amplitude",
+          "relation.surface"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-13",
+      "classification": {
+        "flags": [
+          "PRESSURE_FAMILIARITY_OUT_OF_LANE_SCOPE",
+          "R3_S3_AXIS_ATTACKED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.sound_amplitude",
+          "cue.speed"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-14",
+      "classification": {
+        "flags": [
+          "HETEROGENEOUS_UNION",
+          "NO_RIG_IDENTITY_NEEDED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.flash",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-15",
+      "classification": {
+        "flags": [
+          "NO_SN_RATIO_DESCRIPTOR_NEEDED",
+          "RECEIVER_RELATIVE_EXTENDS_TO_ACOUSTIC_MASKING",
+          "UPSTREAM_DATA_READINESS_NOTE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.sound_amplitude",
+          "relation.surface"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-16",
+      "classification": {
+        "flags": [
+          "CHEMICAL_MAGNITUDE_ECHO_CONFIRMATORY_ONLY",
+          "PLUME_GEOMETRY_OUT_OF_CUE_SIDE",
+          "ZERO_MOTION_NEGATIVE_SPACE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.pause_duration",
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-C1",
+      "classification": {
+        "flags": [
+          "CF_MULTI_1_EVIDENCE_STRENGTHENED",
+          "CONFIRMATORY_CONTAMINATED",
+          "MULTIPLICITY_ADMISSION_PRESSURE_REPEAT",
+          "NOT_BLIND_EVIDENCE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size",
+          "cue.flash",
+          "cue.visual_contrast"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "HR2-C2",
+      "classification": {
+        "flags": [
+          "CHEMICAL_INTENSITY_CANDIDATE_SECOND_SCENARIO",
+          "NOT_BLIND_EVIDENCE",
+          "OWNERSHIP_ROUTING_TO_WORLD_EXPOSURE",
+          "POSSIBLE_CONTAMINATION"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
       "case_id": "SYN-01-clean-bundle",
       "classification": {
         "flags": [],
@@ -1043,6 +1392,58 @@
       "classification": null,
       "findings": [],
       "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-28-sound-pattern-shared-cause-conflict",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 ruling A/B",
+          "code": "CAUSE_OWNERSHIP_CONFLICT",
+          "detail": "rule weights ['cue.contact_disturbance', 'cue.sound_pattern'] sharing cause identity ['bottom_contact_scrape']",
+          "path": "response_rules[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-29-sound-pattern-independent-causes-clean",
+      "classification": null,
+      "findings": [],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-30-sound-pattern-provenance-required",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 ruling B",
+          "code": "CAUSE_PROVENANCE_REQUIRED",
+          "detail": "rule weights ['cue.contact_disturbance', 'cue.sound_pattern'] without cause identity for ['cue.contact_disturbance', 'cue.sound_pattern']; declare cause_provenance to show the consumed facts stem from independent causes",
+          "path": "response_rules[0]",
+          "severity": "unresolved"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-31-acoustic-pair-shared-cause-conflict",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 ruling A/B",
+          "code": "CAUSE_OWNERSHIP_CONFLICT",
+          "detail": "rule weights ['cue.sound_amplitude', 'cue.sound_pattern'] sharing cause identity ['chug_sequence']",
+          "path": "response_rules[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
     }
   ],
   "contract": {
@@ -1051,7 +1452,7 @@
   },
   "development_regression": {
     "awaiting_count": 0,
-    "backfilled_count": 33,
+    "backfilled_count": 51,
     "breaking_cases": [
       "H17"
     ],
@@ -1060,8 +1461,8 @@
       "DEV-S5"
     ],
     "classification_distribution": {
-      "ANNOTATION_ONLY": 3,
-      "COVERED": 29,
+      "ANNOTATION_ONLY": 4,
+      "COVERED": 46,
       "NEW_PRIMITIVE_REQUIRED": 1
     },
     "displacement_dependent_cases": [],
@@ -1083,6 +1484,16 @@
   "run": {
     "baseline_commit": "c412a6e254a86502538746d2f82a5327f7b4a1ff",
     "baseline_description": "R2-approved validation lane head (ARTIFACT_APPROVE 2026-09-16); Current-branch ancestry: c412a6e -> 9c2beebd (fcf-v0-current-contract-rebase)",
+    "conformance_fix": {
+      "cf_multi_1": "OPEN_PENDING_EVIDENCE (evidence strengthened by HR2-C1; status unchanged)",
+      "change": "cue.sound_pattern joined CONTACT_CAUSE_FAMILY so the frozen R3 provenance requirement (contact disturbance vs vibration_* vs sound_*) is fully linted; fixtures SYN-28..31 cover same-cause conflict / disjoint-cause clean / provenance-required and the HR2-05 acoustic pair",
+      "chemical_magnitude": "DEFERRED / NOT_ADMITTED (HR2-C2 second scenario; status unchanged)",
+      "date": "2026-09-16",
+      "frozen_baseline_untouched": "FCF-PC-BASELINE-R3-20260916 sha256 f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625 (verified unchanged on this branch)",
+      "replay": "R3 devset 15 + Round 1 18 + Round 2 18: 0 violations, zero primary-classification changes; HR2-05 COVERED unchanged",
+      "scope": "IMPLEMENTATION_CONFORMANCE_FIX \u2014 NOT an R4 semantic delta",
+      "sound_pattern_status": "BLIND_SUPPORTED_UTILITY (per Design Owner; not NECESSITY_PROVEN)"
+    },
     "contract": {
       "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
       "canonical_home": "HitFish-Up repo docs/baselines/",
@@ -1104,8 +1515,8 @@
       ],
       "status": "WORKING VALIDATION BASELINE / FROZEN / NOT PROMOTED"
     },
-    "pc_specific_test_count": 46,
-    "post_change_regression": "215 passed / 1 skipped (python3 -m pytest -q, 2026-09-16, after freeze revision A-F; 169 Current + 46 PC-specific)",
+    "pc_specific_test_count": 48,
+    "post_change_regression": "217 passed / 1 skipped (python3 -m pytest -q, 2026-09-16, after Round 2 conformance fix; 169 Current + 48 PC-specific)",
     "pre_change_regression": "210 passed / 1 skipped (R2 lane state, re-verified at branch point)",
     "r1_addendum_sha256": "5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b",
     "repository": "futouyiba/programaticHitFish",
@@ -1115,17 +1526,24 @@
       "report_mirror": "docs/pc_validation/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (sha256 eed0c5daa97053942a2b441390f631a15df2a9923b8eb583a7b0eab2ec2db1d2)",
       "verdict_by_design_owner": "HOLDOUT_PASS_WITH_NARROW_DELTA / R3_DELTA_AUTHORIZED / R3_NOT_YET_FROZEN / NOT_PROMOTED"
     },
+    "round2": {
+      "blind_outcome": "COVERED 15 / ANNOTATION_ONLY 1 / new primitives 0 / new generic rules 0 / exceptions 0 / unresolved 0 / cause conflicts 0",
+      "cases": "18; 16 BLIND_VALID + 2 confirmatory (HR2-C1 CONFIRMATORY_CONTAMINATED, HR2-C2 POSSIBLE_CONTAMINATION); all backfilled as Development material (fixtures/holdout_round2_devset.json)",
+      "id": "FCF-PC-BLIND-HOLDOUT-ROUND-2-20260916",
+      "report_mirror": "docs/pc_validation/FCF-PC-R3_BLIND_HOLDOUT_R2_20260916.md (sha256 ef6c8afaa94389dae6aac7213c36904edb6fb83cb6742153cd0c080e93176053; canonical in HitFish-Up docs/holdout/, commit b57e5c976fc6fdebbf1bea774a841b6316bf2639)",
+      "verdict_by_design_owner": "HOLDOUT_PASS_ACCEPTED / R3_SEMANTIC_GENERALIZATION=PASSED_TWO_ROUNDS / R3_FACTORIZATION=STABLE_ON_CURRENT_EVIDENCE / R4_SEMANTIC_DELTA=NOT_REQUIRED / ROUND3_BLIND_HOLDOUT=NOT_REQUIRED_NOW / PROMOTION=NOT_YET"
+    },
     "status": {
       "r3": "WORKING VALIDATION BASELINE (FROZEN / NOT PROMOTED)",
       "round1": "HISTORICAL BLIND EVIDENCE",
-      "round2": "NOT_YET_AUTHORIZED (holdout registry SEALED_EMPTY)"
+      "round2": "COMPLETE / DESIGN OWNER ADJUDICATION: HOLDOUT_PASS_ACCEPTED (2026-09-16); cases backfilled as Development (fixtures/holdout_round2_devset.json); in-repo holdout registry stays SEALED_EMPTY (blind identities live in the independent report, not in this repo)"
     }
   },
   "summary": {
-    "cases": 60,
+    "cases": 82,
     "classification_counts": {
-      "ANNOTATION_ONLY": 3,
-      "COVERED": 32,
+      "ANNOTATION_ONLY": 4,
+      "COVERED": 49,
       "NEW_PRIMITIVE_REQUIRED": 1,
       "UNRESOLVED": 1
     },
@@ -1134,16 +1552,16 @@
       "cue_candidate_extension": 1,
       "cue_not_admitted": 5
     },
-    "development_cases": 33,
+    "development_cases": 51,
     "findings_by_code": {
       "AFFINITY_ABSORPTION": 1,
       "AGGREGATOR_SMUGGLED": 1,
       "BAND_MAPPING_NOT_DECIDED": 1,
-      "CAUSE_OWNERSHIP_CONFLICT": 3,
-      "CAUSE_PROVENANCE_REQUIRED": 1,
+      "CAUSE_OWNERSHIP_CONFLICT": 5,
+      "CAUSE_PROVENANCE_REQUIRED": 2,
       "COMPOSITION_IDENTITY_LEAK": 1,
       "COMPOSITION_NON_DETERMINISTIC": 1,
-      "DICTIONARY_MEMBER_ADMISSION_REQUIRED": 2,
+      "DICTIONARY_MEMBER_ADMISSION_REQUIRED": 3,
       "FISH_DEPENDENT_INPUT": 1,
       "FORBIDDEN_CUE_SEMANTICS": 1,
       "FRAME_METADATA_INVALID": 1,
@@ -1158,7 +1576,7 @@
       "SKU_MEMORY_LEAK": 2,
       "UNKNOWN_CUE_TOKEN": 2
     },
-    "synthetic_cases": 27,
-    "violations": 29
+    "synthetic_cases": 31,
+    "violations": 31
   }
 }

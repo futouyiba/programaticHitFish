@@ -58,7 +58,8 @@ def main() -> int:
 
     # current Development sets only; superseded files (r2/r1/structural) stay as
     # provenance on disk and are deliberately not loaded
-    development_fixtures = [n for n in ("devset_r3_dev.json", "holdout_round1_devset.json")
+    development_fixtures = [n for n in ("devset_r3_dev.json", "holdout_round1_devset.json",
+                                        "holdout_round2_devset.json")
                             if (FIXTURES / n).exists()]
     cases, dev_cases = [], []
     for name in development_fixtures:

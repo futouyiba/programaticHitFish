@@ -4,18 +4,22 @@
 - 实现:`fcf_v1/pc_validation.py` + `pc_validation/`;测试:`tests/test_pc_validation.py`(44 个)
 - 分支:`feature/pc-cue-validation-r3-candidate` @ baseline `c412a6e`(R2 approved lane;ancestry → `9c2beebd`)
 
-## 当前状态(2026-09-16,R3 FROZEN)
+## 当前状态(2026-09-16,R2 盲测已裁决 + conformance fix)
 
 ```text
 ROUND1 = HISTORICAL BLIND EVIDENCE(closed)
-R3     = WORKING VALIDATION BASELINE(FCF-PC-BASELINE-R3-20260916,FROZEN / NOT PROMOTED;sha256 f68bac2b…)
-ROUND2 = NOT_YET_AUTHORIZED(holdout registry SEALED_EMPTY)
+R3     = WORKING VALIDATION BASELINE(FCF-PC-BASELINE-R3-20260916,FROZEN / NOT PROMOTED;sha256 f68bac2b…,本分支验证未变)
+ROUND2 = COMPLETE / DESIGN OWNER ADJUDICATION:HOLDOUT_PASS_ACCEPTED(16 blind + 2 confirmatory;已转 Development)
+CONFORMANCE FIX = IMPLEMENTATION_CONFORMANCE_FIX(非 R4 semantic delta)
+PROMOTION = NOT_YET
 ```
 
-- Full regression:**215 passed / 1 skipped**(169 Current + 46 PC-specific,真实 inventory)。
-- 33-case Development Regression:**COVERED 29 / ANNOTATION_ONLY 3 / NEW_PRIMITIVE_REQUIRED 1(H17)/ UNRESOLVED 0**。
-- Freeze 修订(A–F)已应用:`cue.contact_disturbance` 收敛为纯 OrderedBand(无 composite enum、无 surface_ 前缀);`CAUSE_JUSTIFIED` 从契约/validator 移除,double-count 判定改为 cause provenance/identity;`FEEDING_TARGET_TEST_VOCABULARY` 明确为 lane 局部 test vocabulary;`cue.sound_pattern` 状态为 `EXERCISED_BY_DEVELOPMENT_CASE`(非 NECESSITY_VALIDATED);CF-MULTI-1 保持 OPEN_PENDING_EVIDENCE。
-- 稳定读取位置:HitFish-Up `docs/baselines/FCF-PC-BASELINE-R3-20260916.md`(canonical)+ 本分支镜像(逐字节一致)。
+- Full regression:**217 passed / 1 skipped**(169 Current + 48 PC-specific)。
+- **Round 2 conformance fix(2026-09-16,Design Owner 裁决执行)**:`cue.sound_pattern` 加入 `CONTACT_CAUSE_FAMILY`——冻结 R3 契约本就要求 contact disturbance vs vibration_* vs sound_* 同因不重复计权,family 清单此前漏掉 sound_* 的节奏面(Round 2 报告 HR2-05 scope note)。新增 fixtures SYN-28(同因→`CAUSE_OWNERSHIP_CONFLICT`)/ SYN-29(异因 disjoint→clean)/ SYN-30(缺 provenance→`CAUSE_PROVENANCE_REQUIRED`)/ SYN-31(HR2-05 的 sound_amplitude + sound_pattern 声学对,同因→conflict)。未引入任何 boolean override;frozen R3 文件与 hash 未动。
+- **Round 1 + Round 2 development replay**:R3 devset 15 + Round 1 18 + Round 2 18 全部 0 violations、**零 primary classification 变化**;HR2-05 保持 COVERED。
+- `cue.sound_pattern` 状态:**`BLIND_SUPPORTED_UTILITY`**(Round 2 首个独立盲压 HR2-05;非 NECESSITY_PROVEN)。CF-MULTI-1 维持 `OPEN_PENDING_EVIDENCE`(HR2-C1 第二内容族证据增强);chemical magnitude 维持 `DEFERRED / NOT_ADMITTED`(HR2-C2 第二消费场景)。C1/C2 不进入 blind promotion evidence。
+- Development Regression(51 cases = 15 原有 + 18 Round 1 + 18 Round 2):**COVERED 46 / ANNOTATION_ONLY 4 / NEW_PRIMITIVE_REQUIRED 1(H17)/ UNRESOLVED 0**;combined unused basis = 空。
+- 稳定读取位置:HitFish-Up `docs/baselines/FCF-PC-BASELINE-R3-20260916.md`(canonical)+ `feature/pc-cue-validation-r3-candidate` @ `8221cf6` 镜像(逐字节一致;conformance 分支同样逐字节未改)。
 
 ## R3 三个 delta 的落点
 
@@ -75,9 +79,12 @@ python3 pc_validation/run_lane.py                  # 报告(devset_r2_backfilled
 
 | 文件 | 内容 | 性质 |
 |---|---|---|
-| `devset_r2_backfilled.json` | 15 案(R2 裁决后) | development regression(current) |
+| `devset_r3_dev.json` | 15 案(R3 冻结态) | development regression |
+| `holdout_round1_devset.json` | 18 案(Round 1 盲测,已转 Development) | development regression |
+| `holdout_round2_devset.json` | 18 案(Round 2 盲测,16 blind + 2 confirmatory,已转 Development) | development regression |
 | `devset_r1_backfilled.json` / `devset_structural_r0.json` | R1 回填 / 前身 | historical provenance |
-| `lane_selftest_cases.json` | SYN-01..17 | synthetic 自测 |
+| `lane_selftest_cases.json` | SYN-01..31(SYN-28..31 = sound_pattern conformance) | synthetic 自测 |
+| `counterfactuals.json` | CF-MULTI-1 | OPEN_PENDING_EVIDENCE |
 | `holdout_registry.json` | SEALED_EMPTY | gate;必须保持空 |
 
 ## UNRESOLVED(不阻塞本轮 Holdout;不得由 Harness 自行闭合)

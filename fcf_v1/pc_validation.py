@@ -111,11 +111,22 @@ NON_AFFIRMATIVE_STATUSES = (TargetResolutionStatus.UNKNOWN.value,
 FORBIDDEN_AGGREGATORS = ("sum", "weighted_average", "max", "noisy_or")
 
 # R3 (ruling A): these cues may share one physical cause (contact with world
-# geometry).  Double-count prevention is provenance-based (ruling B): a rule
-# consuming two of them must show, via cause identity in cause_provenance,
-# that they stem from independent causes.  There is NO boolean override.
+# geometry, or one and the same acoustic/mechanical event).  Double-count
+# prevention is provenance-based (ruling B): a rule consuming two of them must
+# show, via cause identity in cause_provenance, that they stem from independent
+# causes.  There is NO boolean override.
+#
+# IMPLEMENTATION CONFORMANCE FIX (2026-09-16, Design Owner adjudication of
+# Blind Holdout Round 2): cue.sound_pattern joined the family.  The frozen R3
+# contract already requires provenance across "contact disturbance vs
+# vibration_* vs sound_*"; the family list was missing the sound_* rhythm
+# aspect, so a rule double-weighting e.g. sound_amplitude + sound_pattern of
+# one acoustic event (Round 2 report HR2-05 scope note) was not linted.
+# Conformance fix only — no R4 semantic delta; sound_pattern was already an
+# admitted CUE_BASIS member and gains no new semantics here.
 CONTACT_CAUSE_FAMILY = (CONTACT_DISTURBANCE_CUE, "cue.vibration_amplitude",
-                        "cue.vibration_frequency", "cue.sound_amplitude")
+                        "cue.vibration_frequency", "cue.sound_amplitude",
+                        "cue.sound_pattern")
 
 # R3 (ruling D): VALIDATION-LANE TEST VOCABULARY ONLY — the handful of
 # FeedingTarget values exercised by this lane's fixtures.  This is NOT the
