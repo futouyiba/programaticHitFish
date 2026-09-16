@@ -39,7 +39,7 @@ def test_factorized_bake_keeps_qxm_selection_rows_without_qxm_bake_subjects():
     assert len(bundle.resolved_mode_bake_configs) == 3
     assert len(bundle.contributions) == 13
     assert all("fish_quality" not in resolved["identity"] for resolved in bundle.resolved_mode_bake_configs.values())
-    assert {c.quality_ref for c in bundle.contributions} == {"Q1", "Q2", "Q3", "Q4", "Q5"}
+    assert {c.fish_quality for c in bundle.contributions} == {"Q1", "Q2", "Q3", "Q4", "Q5"}
 
 
 def test_compiled_bundle_enters_harness():
