@@ -201,11 +201,24 @@ def test_double_count_conflict_detected():
     assert _codes(check_cause_ownership([rule], provenance, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
 
 
-def test_cause_justified_declaration_clears_conflict():
+def test_boolean_override_removed_shared_cause_still_conflicts():
+    # R3 ruling B: no boolean escape exists; shared cause identity conflicts regardless
     provenance = {"cue.visual_contrast": ["turbidity"]}
     rule = {"rule_id": "r2", "consumes": ["cue.visual_contrast", "turbidity"],
-            "cause_justified": "independent range-gating reason recorded"}
+            "cause_justified": "legacy marker — validator ignores it"}
+    assert _codes(check_cause_ownership([rule], provenance, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
+
+
+def test_disjoint_cause_identities_clear_family_guard():
+    provenance = {"cue.contact_disturbance": ["substrate_plume"],
+                  "cue.vibration_amplitude": ["blade_rotation"]}
+    rule = {"rule_id": "r", "consumes": ["cue.contact_disturbance", "cue.vibration_amplitude"]}
     assert check_cause_ownership([rule], provenance, "rules") == []
+
+
+def test_family_without_provenance_requires_it():
+    rule = {"rule_id": "r", "consumes": ["cue.contact_disturbance", "cue.sound_amplitude"]}
+    assert _codes(check_cause_ownership([rule], {}, "rules")) == ["CAUSE_PROVENANCE_REQUIRED"]
 
 
 # --- R0 4 open aggregation ----------------------------------------------------
@@ -320,13 +333,14 @@ def test_counterfactual_cf_multi_1_open():
     assert "YES" in cfs[0]["decision_rule"] and "NO" in cfs[0]["decision_rule"]
 
 def test_contact_cause_family_and_new_validators():
-    # Delta 1: family guard
-    rule = {"rule_id": "r", "consumes": ["cue.surface_contact_disturbance", "cue.vibration_amplitude"]}
-    assert _codes(check_cause_ownership([rule], {}, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
-    ok = {"rule_id": "r2", "consumes": ["cue.surface_contact_disturbance", "cue.vibration_amplitude"],
-          "cause_justified": "vibration carries the blade's own rotary cause; disturbance carries the substrate plume"}
-    assert check_cause_ownership([ok], {}, "rules") == []
-    assert set(CONTACT_CAUSE_FAMILY) == {"cue.surface_contact_disturbance", "cue.vibration_amplitude",
+    # ruling B: shared identity conflicts; disjoint identities clear; absent provenance demands it
+    shared = {"cue.contact_disturbance": ["substrate_grind"], "cue.sound_amplitude": ["substrate_grind"]}
+    assert _codes(check_cause_ownership([{"rule_id": "r", "consumes": ["cue.contact_disturbance", "cue.sound_amplitude"]}],
+                                        shared, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
+    disjoint = {"cue.contact_disturbance": ["substrate_plume"], "cue.vibration_amplitude": ["blade_rotation"]}
+    assert check_cause_ownership([{"rule_id": "r2", "consumes": ["cue.contact_disturbance", "cue.vibration_amplitude"]}],
+                                 disjoint, "rules") == []
+    assert set(CONTACT_CAUSE_FAMILY) == {"cue.contact_disturbance", "cue.vibration_amplitude",
                                          "cue.vibration_frequency", "cue.sound_amplitude"}
     # Delta 2: composition validator
     good = {"sources": [{"cue.flash": "HIGH"}], "resolver": {"deterministic": True, "inputs": ["cue.flash"]}}
@@ -350,10 +364,11 @@ def test_report_json_and_markdown_shapes():
                                         "r1_addendum_sha256": "test-hash"})
     data = json.loads(report.to_json())
     assert data["summary"]["cases"] == len(cases)
-    assert data["summary"]["synthetic_cases"] == 25
+    assert data["summary"]["synthetic_cases"] == 27
     assert data["summary"]["development_cases"] == 33  # 15 original + 18 round-1
     assert data["summary"]["findings_by_code"].get("AWAITING_BACKFILL", 0) == 0
-    assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 4  # SYN-02 x2 + SYN-19 x2
+    assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 3  # SYN-02 x2 + SYN-19 x1
+    assert data["summary"]["findings_by_code"]["CAUSE_PROVENANCE_REQUIRED"] == 1  # SYN-21
     assert data["summary"]["findings_by_code"]["NOT_ADMITTED_CUE"] == 5  # SYN-04 x2 + SYN-17 + SYN-22 x2
     assert data["summary"]["findings_by_code"]["DICTIONARY_MEMBER_ADMISSION_REQUIRED"] == 2  # DEV-003 + SYN-25
     # 12 + 17 dev COVERED + 3 synthetic COVERED (SYN-01/04/22), 3 dev ANNOTATION_ONLY,

@@ -465,10 +465,9 @@
       "bundle": {
         "cue_facts": [
           {
-            "name": "cue.surface_contact_disturbance",
+            "name": "cue.contact_disturbance",
             "magnitude": "MEDIUM",
-            "temporal_scope": "2.0s",
-            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+            "temporal_scope": "2.0s"
           },
           {
             "name": "cue.speed",
@@ -486,14 +485,14 @@
             "RESOLVED_BY_R3_DELTA_1"
           ],
           "relied_upon": [
-            "cue.surface_contact_disturbance",
+            "cue.contact_disturbance",
             "relation.bottom",
             "cue.speed"
           ]
         }
       },
       "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
-      "notes": "R3 Delta 1: KNOWN_DEV_GAP_CONTINUOUS_BOTTOM_CONTACT_MECHANICAL_CAUSE closed by the generic surface-contact disturbance primitive (summary_semantics CONTINUOUS_WHILE_MOVING vs MOMENTARY_IMPULSE vs STATIC_CONTACT keeps drag/deflection/resting distinct). Case retains permanent Development identity (R0 10)."
+      "notes": "R3 ruling A (freeze revision): KNOWN_DEV_GAP closed by the generic cue.contact_disturbance OrderedBand fact. Movement semantics ride existing motion facts; duration/sustained ride existing DurationFact / temporal_scope. No composite temporal enum; case retains permanent Development identity (R0 10)."
     },
     {
       "case_id": "DEV-S1",

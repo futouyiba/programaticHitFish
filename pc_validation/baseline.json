@@ -4,7 +4,7 @@
   "baseline_commit": "c412a6e254a86502538746d2f82a5327f7b4a1ff",
   "baseline_description": "R2-approved validation lane head (ARTIFACT_APPROVE 2026-09-16); Current-branch ancestry: c412a6e -> 9c2beebd (fcf-v0-current-contract-rebase)",
   "pre_change_regression": "210 passed / 1 skipped (R2 lane state, re-verified at branch point)",
-  "post_change_regression": "213 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; R2 lane 210/1 + net +3 PC tests -> 44 total)",
+  "post_change_regression": "215 passed / 1 skipped (python3 -m pytest -q, 2026-09-16, after freeze revision A-F; 169 Current + 46 PC-specific)",
   "round1": {
     "id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
     "verdict_by_design_owner": "HOLDOUT_PASS_WITH_NARROW_DELTA / R3_DELTA_AUTHORIZED / R3_NOT_YET_FROZEN / NOT_PROMOTED",
@@ -15,7 +15,7 @@
     "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
     "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16 (historical)",
     "r2_delta": "FCF-PC-BASELINE-R2-20260916 (frozen; sha256 5b6f9eff/... mirror verified in R2 round)",
-    "r3_candidate": "FCF-PC-BASELINE-R3-CANDIDATE-20260916 (current; narrow delta 1-3)",
+    "r3_candidate": "FCF-PC-BASELINE-R3-CANDIDATE-20260916 (superseded by frozen R3; kept as provenance)",
     "canonical_home": "HitFish-Up repo docs/baselines/",
     "mirrors": {
       "r3": "docs/pc_validation/FCF-PC-BASELINE-R3-CANDIDATE-20260916.md (sha256 fae0af1ca3ee335f6dea612937bb1923122bdaa3d1ac460fe0671fe4fda7e23b)"
@@ -23,7 +23,17 @@
   },
   "status": {
     "round1": "HISTORICAL BLIND EVIDENCE",
-    "r3": "DEVELOPMENT CANDIDATE (NOT YET FROZEN / NOT PROMOTED)",
-    "round2": "NOT YET STARTED (holdout registry SEALED_EMPTY)"
+    "r3": "WORKING VALIDATION BASELINE (FROZEN / NOT PROMOTED)",
+    "round2": "NOT_YET_AUTHORIZED (holdout registry SEALED_EMPTY)"
+  },
+  "freeze": {
+    "id": "FCF-PC-BASELINE-R3-20260916",
+    "status": "WORKING VALIDATION BASELINE / FROZEN / NOT PROMOTED",
+    "revision": "REVISE_NARROWLY_BEFORE_FREEZE rulings A-F applied; no other semantic delta",
+    "sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+    "stable_locations": [
+      "HitFish-Up docs/baselines/FCF-PC-BASELINE-R3-20260916.md (canonical)",
+      "this branch feature/pc-cue-validation-r3-candidate: docs/pc_validation/FCF-PC-BASELINE-R3-20260916.md (byte-identical mirror)"
+    ]
   }
 }

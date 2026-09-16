@@ -4,24 +4,26 @@
 - 实现:`fcf_v1/pc_validation.py` + `pc_validation/`;测试:`tests/test_pc_validation.py`(44 个)
 - 分支:`feature/pc-cue-validation-r3-candidate` @ baseline `c412a6e`(R2 approved lane;ancestry → `9c2beebd`)
 
-## 当前状态(2026-09-16,R3 candidate 执行完毕)
+## 当前状态(2026-09-16,R3 FROZEN)
 
 ```text
-ROUND1 = HISTORICAL BLIND EVIDENCE(HOLDOUT_PASS_WITH_NARROW_DELTA;18 cases 转为永久 Development)
-R3     = DEVELOPMENT CANDIDATE(NOT YET FROZEN / NOT_PROMOTED)
-ROUND2 = NOT YET STARTED(holdout registry 保持 SEALED_EMPTY)
+ROUND1 = HISTORICAL BLIND EVIDENCE(closed)
+R3     = WORKING VALIDATION BASELINE(FCF-PC-BASELINE-R3-20260916,FROZEN / NOT PROMOTED;sha256 f68bac2b…)
+ROUND2 = NOT_YET_AUTHORIZED(holdout registry SEALED_EMPTY)
 ```
 
-- Pre-change(R2 lane 状态):210/1;Post-change:**213 passed / 1 skipped**(169 Current 基线 + 44 PC)。
-- Round 1 报告镜像:`docs/pc_validation/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md`(sha256 `eed0c5da…`)。
+- Full regression:**215 passed / 1 skipped**(169 Current + 46 PC-specific,真实 inventory)。
+- 33-case Development Regression:**COVERED 29 / ANNOTATION_ONLY 3 / NEW_PRIMITIVE_REQUIRED 1(H17)/ UNRESOLVED 0**。
+- Freeze 修订(A–F)已应用:`cue.contact_disturbance` 收敛为纯 OrderedBand(无 composite enum、无 surface_ 前缀);`CAUSE_JUSTIFIED` 从契约/validator 移除,double-count 判定改为 cause provenance/identity;`FEEDING_TARGET_TEST_VOCABULARY` 明确为 lane 局部 test vocabulary;`cue.sound_pattern` 状态为 `EXERCISED_BY_DEVELOPMENT_CASE`(非 NECESSITY_VALIDATED);CF-MULTI-1 保持 OPEN_PENDING_EVIDENCE。
+- 稳定读取位置:HitFish-Up `docs/baselines/FCF-PC-BASELINE-R3-20260916.md`(canonical)+ 本分支镜像(逐字节一致)。
 
 ## R3 三个 delta 的落点
 
 | Delta | 落点 |
 |---|---|
-| 1 contact disturbance | `cue.surface_contact_disturbance`(单一 primitive;magnitude 与 summary_semantics/temporal_scope 分离;CONTINUOUS_WHILE_MOVING / MOMENTARY_IMPULSE / STATIC_CONTACT;不命名表面;`CONTACT_CAUSE_FAMILY` 双计守卫 vs vibration_*/sound_*;不恢复 displacement) |
+| 1 contact disturbance(冻结版) | `cue.contact_disturbance : OrderedBand`(movement → 既有 motion facts;duration → 既有 DurationFact/temporal_scope;无 composite enum;无 surface_ 前缀;`CONTACT_CAUSE_FAMILY` 经 cause provenance/identity 防双计;不恢复 displacement) |
 | 2 composition resolver | `check_composition_resolver`(0..N sources;deterministic;identity denylist + `rig_identity`;`source_count/lure_count` NOT_ADMITTED);**CF-MULTI-1 counterfactual**(`counterfactuals.json`,OPEN_PENDING_EVIDENCE)挂起 multiplicity 准入 |
-| 3 crab dictionary | `KNOWN_FEEDING_TARGET_KEYS = {SMALL_BAITFISH, CRUSTACEAN}`;H14 复用 CRUSTACEAN(COVERED);未知成员(如 CRAB)→ `DICTIONARY_MEMBER_ADMISSION_REQUIRED`;不加值不加维度 |
+| 3 crab dictionary | `FEEDING_TARGET_TEST_VOCABULARY = {SMALL_BAITFISH, CRUSTACEAN}`(**仅 lane 局部 test vocabulary,非 canonical dictionary**);H14 复用 CRUSTACEAN(COVERED);未知成员(如 CRAB)→ `DICTIONARY_MEMBER_ADMISSION_REQUIRED`;不加值不加维度 |
 
 不准入维持:chemical magnitude / odor concentration(H17 仅 confirmatory)、cue.displacement、strategy tokens、raw source count、new Meaning layer;pressure / cue familiarity 未验证。
 
@@ -34,7 +36,7 @@ NEW_PRIMITIVE_REQUIRED 1(H17,chemical magnitude DEFERRED / NOT_ADMITTED;confirma
 UNRESOLVED             0
 ```
 
-H10 首次行使 `cue.sound_pattern`(D6 UNEXERCISED 观察解除);combined dev set unused basis = 空。
+H10 行使 `cue.sound_pattern` → 状态 `EXERCISED_BY_DEVELOPMENT_CASE`(非 NECESSITY_VALIDATED);combined dev set unused basis = 空。
 
 ## R2 语义 delta 在 lane 中的落点
 

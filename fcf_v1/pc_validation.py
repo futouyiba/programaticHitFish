@@ -32,12 +32,13 @@ from .pre_generation import canonical_json, digest
 
 # ---------------------------------------------------------------- contract --
 
-# R3 Delta 1: one generic primitive for World/Physics-resolved mechanical
-# disturbance from a presentation/rig in sustained contact with a world
-# surface while moving.  The fact does NOT name the surface (generic
-# world-surface semantic; existing relation.* supplies world context) and
-# carries no strategy token (no mechanical_scrape / bottom_drag / ...).
-CONTACT_DISTURBANCE_CUE = "cue.surface_contact_disturbance"
+# R3 (freeze-revised, ruling A): ONE generic primitive — moving contact with
+# world geometry generates a fish-independent resolved disturbance fact.
+# Plain OrderedBand magnitude; no composite temporal enum (movement comes
+# from existing motion facts, duration/sustained from existing DurationFact
+# / temporal_scope); no surface naming (avoids relation.surface ambiguity);
+# no strategy token (mechanical_scrape / bottom_drag / ... stay rejected).
+CONTACT_DISTURBANCE_CUE = "cue.contact_disturbance"
 
 CUE_BASIS: Tuple[str, ...] = (
     "cue.apparent_size", "cue.visual_contrast", "cue.flash",
@@ -109,15 +110,18 @@ NON_AFFIRMATIVE_STATUSES = (TargetResolutionStatus.UNKNOWN.value,
 # R0 4: multi-target aggregation is deliberately OPEN; smuggling one in is a violation.
 FORBIDDEN_AGGREGATORS = ("sum", "weighted_average", "max", "noisy_or")
 
-# R3 Delta 1: these cues may share one physical cause (sustained surface
-# contact).  A single Response rule may not weight two of them for the same
-# cause without an explicit CAUSE_JUSTIFIED declaration.
+# R3 (ruling A): these cues may share one physical cause (contact with world
+# geometry).  Double-count prevention is provenance-based (ruling B): a rule
+# consuming two of them must show, via cause identity in cause_provenance,
+# that they stem from independent causes.  There is NO boolean override.
 CONTACT_CAUSE_FAMILY = (CONTACT_DISTURBANCE_CUE, "cue.vibration_amplitude",
                         "cue.vibration_frequency", "cue.sound_amplitude")
 
-# R3 Delta 3: documented FeedingTarget dictionary members (reused values only;
-# new members still need an admission request).
-KNOWN_FEEDING_TARGET_KEYS = ("SMALL_BAITFISH", "CRUSTACEAN")
+# R3 (ruling D): VALIDATION-LANE TEST VOCABULARY ONLY — the handful of
+# FeedingTarget values exercised by this lane's fixtures.  This is NOT the
+# canonical FeedingTarget dictionary; canonical membership authority stays
+# with the FeedingTarget dictionary contract and its admission process.
+FEEDING_TARGET_TEST_VOCABULARY = ("SMALL_BAITFISH", "CRUSTACEAN")
 
 # A4: classification vocabulary and decision order.
 CLASSIFICATION_VALUES = (
@@ -208,15 +212,12 @@ def check_kinematic_metadata(cue_facts: Sequence[Mapping[str, Any]], path: str) 
         if name in FRAME_AMBIGUOUS_CUES and not fact.get("temporal_scope"):
             out.append(_v("FRAME_METADATA_MISSING", p,
                           f"{name} must record temporal_scope / summary_semantics", "R1 A2"))
-        if name == CONTACT_DISTURBANCE_CUE:
-            if not fact.get("temporal_scope"):
-                out.append(_v("FRAME_METADATA_MISSING", p,
-                              f"{name} must record temporal_scope", "R1 A2 / R3 Delta 1"))
-            if not fact.get("summary_semantics"):
-                out.append(_v("FRAME_METADATA_MISSING", p,
-                              f"{name} must record summary_semantics "
-                              "(CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) "
-                              "so magnitude and temporal semantics stay distinct", "R3 Delta 1"))
+        if name == CONTACT_DISTURBANCE_CUE and not fact.get("temporal_scope"):
+            # duration/sustained semantics ride the existing temporal machinery;
+            # the cue itself is a plain OrderedBand magnitude (ruling A)
+            out.append(_v("FRAME_METADATA_MISSING", p,
+                          f"{name} must record temporal_scope (duration semantics stay "
+                          "on existing DurationFact / temporal_scope)", "R1 A2 / R3 ruling A"))
         if name == "cue.vertical_motion" and fact.get("reference_frame") not in (None, WORLD_VERTICAL_SEMANTIC):
             out.append(_v("FRAME_METADATA_INVALID", p,
                           "vertical_motion may only use the gravity/world-vertical semantic",
@@ -254,11 +255,12 @@ def check_static_target_affinity(entries: Sequence[Mapping[str, Any]], path: str
                               f"affinity key contains {part!r}; v1 axis is fixed to "
                               "Species x FeedingTargetKey", "R1 A3"))
         key = e.get("feeding_target_key")
-        if key is not None and key not in KNOWN_FEEDING_TARGET_KEYS:
+        if key is not None and key not in FEEDING_TARGET_TEST_VOCABULARY:
             out.append(_u("DICTIONARY_MEMBER_ADMISSION_REQUIRED", p,
-                          f"feeding_target_key {key!r} is not a documented member; "
-                          "record an admission request (R3 Delta 3 reused CRUSTACEAN; "
-                          "no new value was added)", "R3 Delta 3"))
+                          f"feeding_target_key {key!r} is outside this lane's test vocabulary "
+                          f"{FEEDING_TARGET_TEST_VOCABULARY}; canonical FeedingTarget membership "
+                          "is governed by its own dictionary authority — record an admission "
+                          "request (R3 ruling D: CRUSTACEAN reused, nothing added)", "R3 ruling D"))
         for absorbed in AFFINITY_ABSORPTION_FORBIDDEN:
             if absorbed in e:
                 out.append(_v("AFFINITY_ABSORPTION", p,
@@ -341,29 +343,40 @@ def check_classification(record: Mapping[str, Any], path: str) -> List[Finding]:
 
 
 def check_cause_ownership(response_rules: Sequence[Mapping[str, Any]],
-                          provenance: Mapping[str, str], path: str) -> List[Finding]:
-    """R0 8: a rule consuming a derived cue plus one of its recorded cause
-    primitives needs an explicit CAUSE_JUSTIFIED declaration.
+                          provenance: Mapping[str, Sequence[str]], path: str) -> List[Finding]:
+    """R0 8 + R3 ruling B: double-count prevention is provenance-based.
 
-    The declaration carrier itself is still a proposal (self-review P2-7);
-    the lane only requires *some* explicit justification to exist.
+    There is deliberately NO boolean justification override (no
+    CAUSE_JUSTIFIED in contract, DSL, schema or validator logic): consuming
+    two facts that share a recorded cause identity is a conflict, period.
+    Independence is demonstrated only by cause provenance / cause identity.
     """
     out: List[Finding] = []
     for i, rule in enumerate(response_rules):
         p = f"{path}[{i}]"
-        for cue in rule.get("consumes", []):
+        consumes = set(rule.get("consumes", []))
+        # direct: a consumed cue plus one of its own recorded causes
+        for cue in consumes:
             for cause in provenance.get(cue, []):
-                if cause in rule.get("consumes", []) and not rule.get("cause_justified"):
+                if cause in consumes:
                     out.append(_v("CAUSE_OWNERSHIP_CONFLICT", p,
                                   f"rule consumes both {cue!r} and its recorded cause "
-                                  f"{cause!r} without CAUSE_JUSTIFIED", "R0 8"))
-        # R3 Delta 1: shared physical cause family guard
-        if not rule.get("cause_justified"):
-            family_hits = sorted(set(rule.get("consumes", [])) & set(CONTACT_CAUSE_FAMILY))
-            if len(family_hits) >= 2:
+                                  f"{cause!r} (shared cause identity; no override exists)", "R0 8 / R3 B"))
+        # family: two contact-cause-family members must prove independent causes
+        family_hits = sorted(consumes & set(CONTACT_CAUSE_FAMILY))
+        if len(family_hits) >= 2:
+            cause_sets = {c: set(provenance.get(c, ())) for c in family_hits}
+            shared = set.intersection(*cause_sets.values()) if cause_sets else set()
+            if shared:
                 out.append(_v("CAUSE_OWNERSHIP_CONFLICT", p,
-                              f"rule weights {family_hits} from one contact cause family "
-                              "without CAUSE_JUSTIFIED", "R3 Delta 1"))
+                              f"rule weights {family_hits} sharing cause identity "
+                              f"{sorted(shared)}", "R3 ruling A/B"))
+            elif any(not cs for cs in cause_sets.values()):
+                undeclared = [c for c, cs in cause_sets.items() if not cs]
+                out.append(_u("CAUSE_PROVENANCE_REQUIRED", p,
+                              f"rule weights {family_hits} without cause identity for "
+                              f"{undeclared}; declare cause_provenance to show the consumed "
+                              "facts stem from independent causes", "R3 ruling B"))
     return out
 
 

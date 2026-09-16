@@ -307,16 +307,13 @@
       }
     },
     {
-      "case_id": "SYN-13-cause-justified-clears",
+      "case_id": "SYN-13-boolean-override-removed",
       "synthetic": true,
-      "purpose": "explicit CAUSE_JUSTIFIED declaration clears the double-count report (R0 8; carrier still proposal P2-7)",
-      "expected_codes": [],
+      "purpose": "R3 ruling B: a boolean justification no longer clears a shared-cause conflict; there is no override",
+      "expected_codes": [
+        "CAUSE_OWNERSHIP_CONFLICT"
+      ],
       "bundle": {
-        "cause_provenance": {
-          "cue.visual_contrast": [
-            "turbidity"
-          ]
-        },
         "response_rules": [
           {
             "rule_id": "r2",
@@ -324,9 +321,14 @@
               "cue.visual_contrast",
               "turbidity"
             ],
-            "cause_justified": "turbidity also gates locator range; independent semantic reason recorded"
+            "cause_justified": "legacy marker \u2014 ignored by the validator, kept only to prove it has no effect"
           }
-        ]
+        ],
+        "cause_provenance": {
+          "cue.visual_contrast": [
+            "turbidity"
+          ]
+        }
       }
     },
     {
@@ -408,15 +410,14 @@
     {
       "case_id": "SYN-18-contact-disturbance-valid",
       "synthetic": true,
-      "purpose": "R3 Delta 1: fully-specified surface_contact_disturbance passes",
+      "purpose": "R3 ruling A: plain OrderedBand contact_disturbance with temporal metadata passes",
       "expected_codes": [],
       "bundle": {
         "cue_facts": [
           {
-            "name": "cue.surface_contact_disturbance",
+            "name": "cue.contact_disturbance",
             "magnitude": "MEDIUM",
-            "temporal_scope": "2.0s",
-            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+            "temporal_scope": "2.0s"
           }
         ]
       }
@@ -424,15 +425,14 @@
     {
       "case_id": "SYN-19-contact-disturbance-metadata-missing",
       "synthetic": true,
-      "purpose": "R3 Delta 1: temporal_scope and summary_semantics are both required (magnitude vs duration distinct)",
+      "purpose": "R3 ruling A: temporal_scope is required (duration semantics stay on existing machinery)",
       "expected_codes": [
-        "FRAME_METADATA_MISSING",
         "FRAME_METADATA_MISSING"
       ],
       "bundle": {
         "cue_facts": [
           {
-            "name": "cue.surface_contact_disturbance",
+            "name": "cue.contact_disturbance",
             "magnitude": "MEDIUM"
           }
         ]
@@ -454,18 +454,18 @@
       }
     },
     {
-      "case_id": "SYN-21-contact-cause-family-double-count",
+      "case_id": "SYN-21-contact-family-provenance-required",
       "synthetic": true,
-      "purpose": "R3 Delta 1: one rule weighting two contact-cause-family cues without CAUSE_JUSTIFIED is a conflict",
+      "purpose": "R3 ruling B: two contact-family facts with no cause identity declared require provenance (independence not yet shown)",
       "expected_codes": [
-        "CAUSE_OWNERSHIP_CONFLICT"
+        "CAUSE_PROVENANCE_REQUIRED"
       ],
       "bundle": {
         "response_rules": [
           {
             "rule_id": "r-contact",
             "consumes": [
-              "cue.surface_contact_disturbance",
+              "cue.contact_disturbance",
               "cue.sound_amplitude"
             ]
           }
@@ -558,6 +558,58 @@
             "species": "Sheepshead",
             "feeding_target_key": "CRAB",
             "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-26-contact-family-shared-cause",
+      "synthetic": true,
+      "purpose": "R3 ruling B: two contact-family facts sharing a recorded cause identity is an unconditional conflict (no override)",
+      "expected_codes": [
+        "CAUSE_OWNERSHIP_CONFLICT"
+      ],
+      "bundle": {
+        "cause_provenance": {
+          "cue.contact_disturbance": [
+            "substrate_grind"
+          ],
+          "cue.sound_amplitude": [
+            "substrate_grind"
+          ]
+        },
+        "response_rules": [
+          {
+            "rule_id": "r-shared",
+            "consumes": [
+              "cue.contact_disturbance",
+              "cue.sound_amplitude"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-27-contact-family-independent-causes",
+      "synthetic": true,
+      "purpose": "R3 ruling B: disjoint cause identities prove independence and clear the family guard",
+      "expected_codes": [],
+      "bundle": {
+        "cause_provenance": {
+          "cue.contact_disturbance": [
+            "substrate_plume"
+          ],
+          "cue.vibration_amplitude": [
+            "blade_rotation"
+          ]
+        },
+        "response_rules": [
+          {
+            "rule_id": "r-indep",
+            "consumes": [
+              "cue.contact_disturbance",
+              "cue.vibration_amplitude"
+            ]
           }
         ]
       }

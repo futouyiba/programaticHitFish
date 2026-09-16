@@ -4,11 +4,11 @@
 - baseline commit: `c412a6e254a86502538746d2f82a5327f7b4a1ff`
 - R1 addendum sha256: `5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b`
 - pre-change regression: 210 passed / 1 skipped (R2 lane state, re-verified at branch point)
-- post-change regression: 213 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; R2 lane 210/1 + net +3 PC tests -> 44 total)
+- post-change regression: 215 passed / 1 skipped (python3 -m pytest -q, 2026-09-16, after freeze revision A-F; 169 Current + 46 PC-specific)
 
 ## Summary
 
-- cases: 58 (development 33, synthetic lane self-test 25)
+- cases: 60 (development 33, synthetic lane self-test 27)
 - violations: 29
 - classification counts: {"ANNOTATION_ONLY": 3, "COVERED": 32, "NEW_PRIMITIVE_REQUIRED": 1, "UNRESOLVED": 1}
 - descriptor token counts: {'cue_basis': 13, 'cue_candidate_extension': 1, 'cue_not_admitted': 5}
@@ -18,14 +18,15 @@
 - `AFFINITY_ABSORPTION`: 1
 - `AGGREGATOR_SMUGGLED`: 1
 - `BAND_MAPPING_NOT_DECIDED`: 1
-- `CAUSE_OWNERSHIP_CONFLICT`: 2
+- `CAUSE_OWNERSHIP_CONFLICT`: 3
+- `CAUSE_PROVENANCE_REQUIRED`: 1
 - `COMPOSITION_IDENTITY_LEAK`: 1
 - `COMPOSITION_NON_DETERMINISTIC`: 1
 - `DICTIONARY_MEMBER_ADMISSION_REQUIRED`: 2
 - `FISH_DEPENDENT_INPUT`: 1
 - `FORBIDDEN_CUE_SEMANTICS`: 1
 - `FRAME_METADATA_INVALID`: 1
-- `FRAME_METADATA_MISSING`: 4
+- `FRAME_METADATA_MISSING`: 3
 - `INVALID_PRIMARY_CLASSIFICATION`: 1
 - `MODE_AXIS_FORBIDDEN`: 1
 - `MODE_SPECIFIC_TARGET_TABLE`: 1
@@ -48,7 +49,7 @@
 
 ### DEV-003 (development, bundle ``)
 - classification: `ANNOTATION_ONLY` deltas=['admit presentation.chemical_signature candidate values (sparse item annotation)', 'admit PREPARED_FOOD as FeedingTargetKey dictionary member'] flags=['CHEMICAL_INTENSITY_GAP_WATCH']
-- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'PREPARED_FOOD' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added) (R3 Delta 3)
+- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'PREPARED_FOOD' is outside this lane's test vocabulary ('SMALL_BAITFISH', 'CRUSTACEAN'); canonical FeedingTarget membership is governed by its own dictionary authority — record an admission request (R3 ruling D: CRUSTACEAN reused, nothing added) (R3 ruling D)
 
 ### DEV-004 (development, bundle ``)
 - classification: `COVERED` deltas=[] flags=[]
@@ -212,10 +213,10 @@
 - [violation] `SIGNATURE_NOT_VERSIONED` @ cue_signature — CueSignature must carry a signature_version (R1 B1)
 
 ### SYN-12-cause-ownership-conflict (synthetic, bundle ``)
-- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' without CAUSE_JUSTIFIED (R0 8)
+- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' (shared cause identity; no override exists) (R0 8 / R3 B)
 
-### SYN-13-cause-justified-clears (synthetic, bundle ``)
-- findings: none
+### SYN-13-boolean-override-removed (synthetic, bundle ``)
+- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' (shared cause identity; no override exists) (R0 8 / R3 B)
 
 ### SYN-14-aggregator-smuggled (synthetic, bundle ``)
 - [violation] `AGGREGATOR_SMUGGLED` @ resolvers[0] — 'max' aggregation of hypotheses is deliberately OPEN; record UNRESOLVED instead (R0 4)
@@ -235,14 +236,13 @@
 - findings: none
 
 ### SYN-19-contact-disturbance-metadata-missing (synthetic, bundle ``)
-- [violation] `FRAME_METADATA_MISSING` @ cue_facts[0] — cue.surface_contact_disturbance must record temporal_scope (R1 A2 / R3 Delta 1)
-- [violation] `FRAME_METADATA_MISSING` @ cue_facts[0] — cue.surface_contact_disturbance must record summary_semantics (CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) so magnitude and temporal semantics stay distinct (R3 Delta 1)
+- [violation] `FRAME_METADATA_MISSING` @ cue_facts[0] — cue.contact_disturbance must record temporal_scope (duration semantics stay on existing DurationFact / temporal_scope) (R1 A2 / R3 ruling A)
 
 ### SYN-20-strategy-token-rejected (synthetic, bundle ``)
 - [violation] `UNKNOWN_CUE_TOKEN` @ cue_facts[0] — 'cue.mechanical_scrape' is not in the frozen basis; needs admission (R0 9)
 
-### SYN-21-contact-cause-family-double-count (synthetic, bundle ``)
-- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule weights ['cue.sound_amplitude', 'cue.surface_contact_disturbance'] from one contact cause family without CAUSE_JUSTIFIED (R3 Delta 1)
+### SYN-21-contact-family-provenance-required (synthetic, bundle ``)
+- [unresolved] `CAUSE_PROVENANCE_REQUIRED` @ response_rules[0] — rule weights ['cue.contact_disturbance', 'cue.sound_amplitude'] without cause identity for ['cue.contact_disturbance', 'cue.sound_amplitude']; declare cause_provenance to show the consumed facts stem from independent causes (R3 ruling B)
 
 ### SYN-22-multiplicity-not-admitted (synthetic, bundle ``)
 - classification: `COVERED` deltas=[] flags=[]
@@ -257,7 +257,13 @@
 - [violation] `COMPOSITION_NON_DETERMINISTIC` @ composition.resolver — composition resolver must be declared deterministic (R3 Delta 2)
 
 ### SYN-25-crab-dictionary-admission (synthetic, bundle ``)
-- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'CRAB' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added) (R3 Delta 3)
+- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'CRAB' is outside this lane's test vocabulary ('SMALL_BAITFISH', 'CRUSTACEAN'); canonical FeedingTarget membership is governed by its own dictionary authority — record an admission request (R3 ruling D: CRUSTACEAN reused, nothing added) (R3 ruling D)
+
+### SYN-26-contact-family-shared-cause (synthetic, bundle ``)
+- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule weights ['cue.contact_disturbance', 'cue.sound_amplitude'] sharing cause identity ['substrate_grind'] (R3 ruling A/B)
+
+### SYN-27-contact-family-independent-causes (synthetic, bundle ``)
+- findings: none
 
 ## Development Regression
 

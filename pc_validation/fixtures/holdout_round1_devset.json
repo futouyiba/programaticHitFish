@@ -590,10 +590,9 @@
       "bundle": {
         "cue_facts": [
           {
-            "name": "cue.surface_contact_disturbance",
+            "name": "cue.contact_disturbance",
             "magnitude": "MEDIUM",
-            "temporal_scope": "2.0s",
-            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+            "temporal_scope": "2.0s"
           },
           {
             "name": "cue.vibration_amplitude"
@@ -618,14 +617,14 @@
             "RESOLVED_BY_R3_DELTA_1"
           ],
           "relied_upon": [
-            "cue.surface_contact_disturbance",
+            "cue.contact_disturbance",
             "relation.bottom",
             "cue.vibration_amplitude"
           ]
         }
       },
       "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
-      "notes": "R3 Delta 1 admits the generic contact-disturbance primitive; REPEATED_PRESSURE_ON_KNOWN_DEV_GAP resolved; no bottom hardcoding \u2014 surface context via relation.bottom (report H12 + Owner ruling 1).",
+      "notes": "R3 ruling A (freeze revision): generic cue.contact_disturbance OrderedBand; REPEATED_PRESSURE_ON_KNOWN_DEV_GAP resolved; surface context via relation.bottom; duration on existing temporal machinery (report H12 + Owner rulings 1 & A).",
       "flags": [
         "RESOLVED_BY_R3_DELTA_1"
       ]
@@ -643,10 +642,9 @@
       "bundle": {
         "cue_facts": [
           {
-            "name": "cue.surface_contact_disturbance",
+            "name": "cue.contact_disturbance",
             "magnitude": "MEDIUM",
-            "temporal_scope": "2.0s",
-            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+            "temporal_scope": "2.0s"
           },
           {
             "name": "cue.sound_amplitude"
@@ -665,13 +663,13 @@
             "RESOLVED_BY_R3_DELTA_1"
           ],
           "relied_upon": [
-            "cue.surface_contact_disturbance",
+            "cue.contact_disturbance",
             "relation.bottom"
           ]
         }
       },
       "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
-      "notes": "drag vs hop now distinguishable via summary_semantics (CONTINUOUS_WHILE_MOVING vs MOMENTARY_IMPULSE); same delta as H12, not double-counted (report H13 + Owner ruling 1).",
+      "notes": "R3 ruling A (freeze revision): drag vs hop expressed via contact_disturbance + existing motion facts; the grind acoustics stay on cue.sound_amplitude but must not be double-weighted with the disturbance for the same cause (provenance-based, ruling B). Same delta as H12, not double-counted.",
       "flags": [
         "RESOLVED_BY_R3_DELTA_1"
       ]

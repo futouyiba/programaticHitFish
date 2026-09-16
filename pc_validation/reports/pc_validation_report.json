@@ -52,9 +52,9 @@
       },
       "findings": [
         {
-          "citation": "R3 Delta 3",
+          "citation": "R3 ruling D",
           "code": "DICTIONARY_MEMBER_ADMISSION_REQUIRED",
-          "detail": "feeding_target_key 'PREPARED_FOOD' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added)",
+          "detail": "feeding_target_key 'PREPARED_FOOD' is outside this lane's test vocabulary ('SMALL_BAITFISH', 'CRUSTACEAN'); canonical FeedingTarget membership is governed by its own dictionary authority \u2014 record an admission request (R3 ruling D: CRUSTACEAN reused, nothing added)",
           "path": "static_target_affinity[0]",
           "severity": "unresolved"
         }
@@ -168,8 +168,8 @@
         ],
         "primary_classification": "COVERED",
         "relied_upon": [
+          "cue.contact_disturbance",
           "cue.speed",
-          "cue.surface_contact_disturbance",
           "relation.bottom"
         ],
         "requested_deltas": []
@@ -467,7 +467,7 @@
         ],
         "primary_classification": "COVERED",
         "relied_upon": [
-          "cue.surface_contact_disturbance",
+          "cue.contact_disturbance",
           "cue.vibration_amplitude",
           "relation.bottom"
         ],
@@ -486,7 +486,7 @@
         ],
         "primary_classification": "COVERED",
         "relied_upon": [
-          "cue.surface_contact_disturbance",
+          "cue.contact_disturbance",
           "relation.bottom"
         ],
         "requested_deltas": []
@@ -800,9 +800,9 @@
       "classification": null,
       "findings": [
         {
-          "citation": "R0 8",
+          "citation": "R0 8 / R3 B",
           "code": "CAUSE_OWNERSHIP_CONFLICT",
-          "detail": "rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' without CAUSE_JUSTIFIED",
+          "detail": "rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' (shared cause identity; no override exists)",
           "path": "response_rules[0]",
           "severity": "violation"
         }
@@ -811,9 +811,17 @@
     },
     {
       "bundle_id": "",
-      "case_id": "SYN-13-cause-justified-clears",
+      "case_id": "SYN-13-boolean-override-removed",
       "classification": null,
-      "findings": [],
+      "findings": [
+        {
+          "citation": "R0 8 / R3 B",
+          "code": "CAUSE_OWNERSHIP_CONFLICT",
+          "detail": "rule consumes both 'cue.visual_contrast' and its recorded cause 'turbidity' (shared cause identity; no override exists)",
+          "path": "response_rules[0]",
+          "severity": "violation"
+        }
+      ],
       "synthetic": true
     },
     {
@@ -902,16 +910,9 @@
       "classification": null,
       "findings": [
         {
-          "citation": "R3 Delta 1",
+          "citation": "R1 A2 / R3 ruling A",
           "code": "FRAME_METADATA_MISSING",
-          "detail": "cue.surface_contact_disturbance must record summary_semantics (CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) so magnitude and temporal semantics stay distinct",
-          "path": "cue_facts[0]",
-          "severity": "violation"
-        },
-        {
-          "citation": "R1 A2 / R3 Delta 1",
-          "code": "FRAME_METADATA_MISSING",
-          "detail": "cue.surface_contact_disturbance must record temporal_scope",
+          "detail": "cue.contact_disturbance must record temporal_scope (duration semantics stay on existing DurationFact / temporal_scope)",
           "path": "cue_facts[0]",
           "severity": "violation"
         }
@@ -935,15 +936,15 @@
     },
     {
       "bundle_id": "",
-      "case_id": "SYN-21-contact-cause-family-double-count",
+      "case_id": "SYN-21-contact-family-provenance-required",
       "classification": null,
       "findings": [
         {
-          "citation": "R3 Delta 1",
-          "code": "CAUSE_OWNERSHIP_CONFLICT",
-          "detail": "rule weights ['cue.sound_amplitude', 'cue.surface_contact_disturbance'] from one contact cause family without CAUSE_JUSTIFIED",
+          "citation": "R3 ruling B",
+          "code": "CAUSE_PROVENANCE_REQUIRED",
+          "detail": "rule weights ['cue.contact_disturbance', 'cue.sound_amplitude'] without cause identity for ['cue.contact_disturbance', 'cue.sound_amplitude']; declare cause_provenance to show the consumed facts stem from independent causes",
           "path": "response_rules[0]",
-          "severity": "violation"
+          "severity": "unresolved"
         }
       ],
       "synthetic": true
@@ -1012,13 +1013,35 @@
       "classification": null,
       "findings": [
         {
-          "citation": "R3 Delta 3",
+          "citation": "R3 ruling D",
           "code": "DICTIONARY_MEMBER_ADMISSION_REQUIRED",
-          "detail": "feeding_target_key 'CRAB' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added)",
+          "detail": "feeding_target_key 'CRAB' is outside this lane's test vocabulary ('SMALL_BAITFISH', 'CRUSTACEAN'); canonical FeedingTarget membership is governed by its own dictionary authority \u2014 record an admission request (R3 ruling D: CRUSTACEAN reused, nothing added)",
           "path": "static_target_affinity[0]",
           "severity": "unresolved"
         }
       ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-26-contact-family-shared-cause",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 ruling A/B",
+          "code": "CAUSE_OWNERSHIP_CONFLICT",
+          "detail": "rule weights ['cue.contact_disturbance', 'cue.sound_amplitude'] sharing cause identity ['substrate_grind']",
+          "path": "response_rules[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-27-contact-family-independent-causes",
+      "classification": null,
+      "findings": [],
       "synthetic": true
     }
   ],
@@ -1068,11 +1091,21 @@
       },
       "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16 (historical)",
       "r2_delta": "FCF-PC-BASELINE-R2-20260916 (frozen; sha256 5b6f9eff/... mirror verified in R2 round)",
-      "r3_candidate": "FCF-PC-BASELINE-R3-CANDIDATE-20260916 (current; narrow delta 1-3)"
+      "r3_candidate": "FCF-PC-BASELINE-R3-CANDIDATE-20260916 (superseded by frozen R3; kept as provenance)"
     },
     "feature_branch": "feature/pc-cue-validation-r3-candidate",
-    "pc_specific_test_count": 44,
-    "post_change_regression": "213 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; R2 lane 210/1 + net +3 PC tests -> 44 total)",
+    "freeze": {
+      "id": "FCF-PC-BASELINE-R3-20260916",
+      "revision": "REVISE_NARROWLY_BEFORE_FREEZE rulings A-F applied; no other semantic delta",
+      "sha256": "f68bac2b78c3d23850478269f679eb9c9847b66168b7a196edf176992dcf6625",
+      "stable_locations": [
+        "HitFish-Up docs/baselines/FCF-PC-BASELINE-R3-20260916.md (canonical)",
+        "this branch feature/pc-cue-validation-r3-candidate: docs/pc_validation/FCF-PC-BASELINE-R3-20260916.md (byte-identical mirror)"
+      ],
+      "status": "WORKING VALIDATION BASELINE / FROZEN / NOT PROMOTED"
+    },
+    "pc_specific_test_count": 46,
+    "post_change_regression": "215 passed / 1 skipped (python3 -m pytest -q, 2026-09-16, after freeze revision A-F; 169 Current + 46 PC-specific)",
     "pre_change_regression": "210 passed / 1 skipped (R2 lane state, re-verified at branch point)",
     "r1_addendum_sha256": "5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b",
     "repository": "futouyiba/programaticHitFish",
@@ -1083,13 +1116,13 @@
       "verdict_by_design_owner": "HOLDOUT_PASS_WITH_NARROW_DELTA / R3_DELTA_AUTHORIZED / R3_NOT_YET_FROZEN / NOT_PROMOTED"
     },
     "status": {
-      "r3": "DEVELOPMENT CANDIDATE (NOT YET FROZEN / NOT PROMOTED)",
+      "r3": "WORKING VALIDATION BASELINE (FROZEN / NOT PROMOTED)",
       "round1": "HISTORICAL BLIND EVIDENCE",
-      "round2": "NOT YET STARTED (holdout registry SEALED_EMPTY)"
+      "round2": "NOT_YET_AUTHORIZED (holdout registry SEALED_EMPTY)"
     }
   },
   "summary": {
-    "cases": 58,
+    "cases": 60,
     "classification_counts": {
       "ANNOTATION_ONLY": 3,
       "COVERED": 32,
@@ -1106,14 +1139,15 @@
       "AFFINITY_ABSORPTION": 1,
       "AGGREGATOR_SMUGGLED": 1,
       "BAND_MAPPING_NOT_DECIDED": 1,
-      "CAUSE_OWNERSHIP_CONFLICT": 2,
+      "CAUSE_OWNERSHIP_CONFLICT": 3,
+      "CAUSE_PROVENANCE_REQUIRED": 1,
       "COMPOSITION_IDENTITY_LEAK": 1,
       "COMPOSITION_NON_DETERMINISTIC": 1,
       "DICTIONARY_MEMBER_ADMISSION_REQUIRED": 2,
       "FISH_DEPENDENT_INPUT": 1,
       "FORBIDDEN_CUE_SEMANTICS": 1,
       "FRAME_METADATA_INVALID": 1,
-      "FRAME_METADATA_MISSING": 4,
+      "FRAME_METADATA_MISSING": 3,
       "INVALID_PRIMARY_CLASSIFICATION": 1,
       "MODE_AXIS_FORBIDDEN": 1,
       "MODE_SPECIFIC_TARGET_TABLE": 1,
@@ -1124,7 +1158,7 @@
       "SKU_MEMORY_LEAK": 2,
       "UNKNOWN_CUE_TOKEN": 2
     },
-    "synthetic_cases": 25,
+    "synthetic_cases": 27,
     "violations": 29
   }
 }
