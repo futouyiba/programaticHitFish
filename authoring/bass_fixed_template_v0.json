@@ -1,0 +1,59 @@
+{
+  "schema_version": "fcf-0.3.4.0-b-fixed-template-r0",
+  "fixture_status": "WORKING_VERTICAL_SLICE_NOT_SPECIES_AUTHORITY",
+  "identity": {
+    "speciesId": "LARGEMOUTH_BASS",
+    "fishQualityId": "Q3"
+  },
+  "bakeTemplateProgramId": "FCF_BAKE_TEMPLATE_V1",
+  "bakeAlgorithmContractVersion": "AFLA_R2_1",
+  "baseOpportunityIntensity": 1.0,
+  "backgroundPolicy": {
+    "enabled": false
+  },
+  "components": {
+    "temperature": {
+      "acceptMin": 2.0,
+      "preferredMin": 24.0,
+      "preferredMax": 29.0,
+      "acceptMax": 35.0,
+      "tempThreshold": 0.05,
+      "falloffShape": "LINEAR"
+    },
+    "structure": {
+      "affinity": {
+        "GRASS_EDGE": 1.0,
+        "COMPLEX_WOOD": 1.0,
+        "DROPOFF": 0.6,
+        "ROCK": 0.6,
+        "OPEN": 0.3,
+        "FEATURELESS_FLAT": 0.3
+      }
+    },
+    "feedingLayer": {
+      "affinity": {
+        "SURFACE": 0.6,
+        "MIDDLE": 1.0,
+        "BOTTOM": 0.6
+      }
+    }
+  },
+  "conditionBindings": {
+    "TEMPERATURE": {
+      "conditionRole": "CORE",
+      "gatePolicy": "NONE"
+    },
+    "STRUCTURE": {
+      "conditionRole": "CORE",
+      "gatePolicy": "NONE"
+    },
+    "FEEDING_LAYER": {
+      "conditionRole": "SECONDARY",
+      "gatePolicy": "NONE"
+    },
+    "TIME_PERIOD": {
+      "conditionRole": "OFF",
+      "gatePolicy": "NONE"
+    }
+  }
+}
