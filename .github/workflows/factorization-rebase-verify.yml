@@ -9,7 +9,7 @@ on:
       - fcf-v0-current-contract-rebase
 
 jobs:
-  pytest:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,10 +17,88 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install test dependencies
-        run: python -m pip install pytest numpy
+        run: python -m pip install pytest numpy playwright
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
       - name: Compile Python
         run: python -m compileall -q fcf_v1 authoring editor tests
       - name: Run focused factorization/editor tests
         run: python -m pytest -q tests/test_authoring_vertical_slice.py tests/test_editor_prototype.py tests/test_authoring_maintenance_gate.py
       - name: Run full repository tests
         run: python -m pytest -q
+      - name: Chromium factorization smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          python editor/prototype.py > /tmp/fcf-editor.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          python - <<'PY'
+          import time
+          from playwright.sync_api import sync_playwright
+
+          url = 'http://127.0.0.1:8765'
+          last = None
+          for _ in range(30):
+              try:
+                  import urllib.request
+                  urllib.request.urlopen(url, timeout=1).read()
+                  break
+              except Exception as exc:
+                  last = exc
+                  time.sleep(0.2)
+          else:
+              raise RuntimeError(f'editor server did not start: {last}')
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page()
+              page.goto(url)
+              page.wait_for_selector('text=Species Shared')
+              page.wait_for_function("document.querySelector('#status').innerText.includes('Working Draft clean')")
+
+              # Factorized preview: q changes stable facts, not the Mode-level Bake config.
+              page.select_option('#previewMode', 'NORMAL')
+              page.select_option('#previewQuality', 'Q5')
+              page.wait_for_timeout(100)
+              q5 = page.locator('#preview').inner_text()
+              assert 'MODE-LEVEL BAKE CONFIG' in q5
+              assert 'Bass × NORMAL' in q5
+              assert 'FISHQUALITY STABLE (NOT BAKE PARAM PROVENANCE)' in q5
+              assert 'body_length_cm = 58' in q5
+              bake_q5 = q5.split('FISHQUALITY STABLE')[0]
+
+              page.select_option('#previewQuality', 'Q1')
+              page.wait_for_timeout(100)
+              q1 = page.locator('#preview').inner_text()
+              assert 'body_length_cm = 18' in q1
+              assert q1.split('FISHQUALITY STABLE')[0] == bake_q5
+
+              # FishQuality UI exposes stable facts, never generic Bake overrides.
+              page.get_by_role('button', name='FishQuality Stable').click()
+              page.wait_for_selector('text=FishQuality Stable Facts')
+              workspace = page.locator('#workspace').inner_text()
+              assert 'Bake Param Override: not owned by FishQuality in P0' in workspace
+              assert 'narrow override' not in workspace
+
+              # Program switch still exposes Mode-level MISSING + ORPHANED provenance.
+              page.select_option('#previewMode', 'NORMAL')
+              page.get_by_role('button', name='Engagement Mode').click()
+              page.locator('#workspace label').filter(has_text='BakeProgramRef').locator('select').select_option('BAKE_ALT')
+              page.wait_for_timeout(250)
+              mode_workspace = page.locator('#workspace').inner_text()
+              assert 'MISSING' in mode_workspace
+              assert 'ambush_threshold' in mode_workspace
+              assert 'ORPHANED: normal_bias' in mode_workspace
+
+              # Reset and verify routing fail-closed diagnostics still work.
+              page.get_by_role('button', name='Reset Saved Baseline').click()
+              page.wait_for_timeout(250)
+              page.get_by_role('button', name='Load T5 OVERALLOCATED').click()
+              page.wait_for_timeout(250)
+              diagnostics = page.locator('#routingDiagnostics').inner_text()
+              assert 'OVERALLOCATED: Q3' in diagnostics
+
+              browser.close()
+          print('FACTORISATION_BROWSER_SMOKE_PASS')
+          PY
