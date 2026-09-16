@@ -1,0 +1,38 @@
+{
+  "schema_version": "fcf-0.3.4.0-b-condition-groups-r0",
+  "condition_groups": [
+    {
+      "id": "CG-01",
+      "semanticSupportRef": "GRASS_EDGE_01",
+      "facts": {
+        "structureType": "GRASS_EDGE",
+        "waterTemperatureRange": [25.0, 27.0],
+        "feedingEcologyLayer": "MIDDLE",
+        "timePeriod": "MORNING"
+      },
+      "expectedFinalEnvCoeff": 1.0
+    },
+    {
+      "id": "CG-02",
+      "semanticSupportRef": "DROPOFF_01",
+      "facts": {
+        "structureType": "DROPOFF",
+        "waterTemperatureRange": [15.0, 15.0],
+        "feedingEcologyLayer": "BOTTOM",
+        "timePeriod": "MORNING"
+      },
+      "expectedFinalEnvCoeff": 0.3256095471324488
+    },
+    {
+      "id": "CG-03",
+      "semanticSupportRef": "OPEN_01",
+      "facts": {
+        "structureType": "OPEN",
+        "waterTemperatureRange": [32.0, 32.0],
+        "feedingEcologyLayer": "SURFACE",
+        "timePeriod": "MORNING"
+      },
+      "expectedFinalEnvCoeff": 0.13775788532526678
+    }
+  ]
+}
