@@ -1,5 +1,5 @@
 {
-  "schema_version": "pre-generation-authoring-current-r2-human-fixture",
+  "schema_version": "pre-generation-authoring-current-r3-factorized",
   "templates": {
     "BASS_BASE": {
       "kind": "species_authoring_preset"
@@ -13,11 +13,11 @@
       "max": 2.0,
       "allowed_owners": ["SPECIES_SHARED", "ENGAGEMENT_MODE"]
     },
-    "prey_size_preference": {
+    "body_length_cm": {
       "type": "float",
       "min": 0.0,
-      "max": 2.0,
-      "allowed_owners": ["SPECIES_SHARED", "FISH_QUALITY"]
+      "max": 200.0,
+      "allowed_owners": ["FISH_QUALITY"]
     },
     "normal_bias": {
       "type": "float",
@@ -70,8 +70,7 @@
     "engagement_mode_routing_program_ref": "BASS_ROUTING",
     "shared_profile_refs": ["BASS_BASE_PROFILE"],
     "shared_params": {
-      "structure_affinity": 0.8,
-      "prey_size_preference": 1.0
+      "structure_affinity": 0.8
     },
     "slow_facts": {
       "FeedingReadiness": "NORMAL",
@@ -113,25 +112,37 @@
   "fish_qualities": [
     {
       "id": "Q1",
-      "base_weight": 1.0
+      "base_weight": 1.0,
+      "stable_params": {
+        "body_length_cm": 18.0
+      }
     },
     {
       "id": "Q2",
-      "base_weight": 1.0
+      "base_weight": 1.0,
+      "stable_params": {
+        "body_length_cm": 28.0
+      }
     },
     {
       "id": "Q3",
-      "base_weight": 1.0
+      "base_weight": 1.0,
+      "stable_params": {
+        "body_length_cm": 38.0
+      }
     },
     {
       "id": "Q4",
-      "base_weight": 1.0
+      "base_weight": 1.0,
+      "stable_params": {
+        "body_length_cm": 48.0
+      }
     },
     {
       "id": "Q5",
       "base_weight": 1.0,
-      "narrow_param_overrides": {
-        "prey_size_preference": 1.35
+      "stable_params": {
+        "body_length_cm": 58.0
       }
     }
   ],
@@ -207,12 +218,6 @@
             "key": "structure_affinity",
             "type": "float",
             "owner_policy": ["ENGAGEMENT_MODE", "SPECIES_SHARED"],
-            "required": true
-          },
-          {
-            "key": "prey_size_preference",
-            "type": "float",
-            "owner_policy": ["FISH_QUALITY", "SPECIES_SHARED"],
             "required": true
           },
           {
