@@ -10,12 +10,23 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from fcf_v1.authoring import compile_authoring, lint_authoring, resolve_bake_subject
+from fcf_v1.authoring import compile_authoring, lint_authoring, resolve_mode_bake_config
 
 CONFIG = ROOT / "authoring" / "bass_v0.json"
 HTML = (Path(__file__).parent / "index.html").read_text()
 BASELINE = json.loads(CONFIG.read_text())
 DEMO_ENVIRONMENT_FACTS = {"water_temperature": 22.0}
+
+
+def _quality_stable_snapshot(doc):
+    return {
+        q.get("id"): {
+            "base_weight": q.get("base_weight"),
+            "stable_params": deepcopy(q.get("stable_params", {})),
+        }
+        for q in doc.get("fish_qualities", [])
+        if q.get("id")
+    }
 
 
 def inspect_doc(doc):
@@ -24,21 +35,20 @@ def inspect_doc(doc):
     resolved = {}
     species = doc.get("species", {})
     for mode in species.get("engagement_modes", []):
-        for quality in doc.get("fish_qualities", []):
-            key = f"{quality.get('id')}::{mode.get('id')}"
-            try:
-                resolved[key] = resolve_bake_subject(
-                    doc,
-                    quality.get("id"),
-                    mode.get("id"),
-                    environment_facts=DEMO_ENVIRONMENT_FACTS,
-                )
-            except Exception as exc:
-                resolved[key] = {"error": str(exc)}
+        key = mode.get("id")
+        try:
+            resolved[key] = resolve_mode_bake_config(
+                doc,
+                key,
+                environment_facts=DEMO_ENVIRONMENT_FACTS,
+            )
+        except Exception as exc:
+            resolved[key] = {"error": str(exc)}
     return {
         "valid": not errors,
         "errors": errors,
-        "resolved_bake_subjects": resolved,
+        "resolved_mode_bake_configs": resolved,
+        "fish_quality_stable": _quality_stable_snapshot(doc),
         "routing_diagnostics": [
             error for error in errors
             if error.startswith("OVERALLOCATED") or error.startswith("COMPATIBILITY_CONFLICT")
@@ -86,16 +96,18 @@ class Handler(BaseHTTPRequestHandler):
                 result["valid"] = False
                 return self._send(200, result)
             b = compile_authoring(doc)
+            current = inspect_doc(doc)
             return self._send(200, {
                 "valid": True,
                 "errors": [],
-                "resolved_bake_subjects": inspect_doc(doc)["resolved_bake_subjects"],
+                "resolved_mode_bake_configs": current["resolved_mode_bake_configs"],
+                "fish_quality_stable": current["fish_quality_stable"],
                 "routing_diagnostics": [],
                 "effective": {
                     "slow_facts": b.species_slow_facts,
                     "routing": b.engagement_mode_routing_snapshot,
                     "surface_programs": b.surface_program_bundle,
-                    "resolved_bake_subjects": b.resolved_bake_subjects,
+                    "resolved_mode_bake_configs": b.resolved_mode_bake_configs,
                     "contributions": [c.__dict__ for c in b.contributions],
                 },
             })
