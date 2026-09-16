@@ -1,0 +1,26 @@
+name: factorization-rebase-verify
+
+on:
+  push:
+    branches:
+      - fcf-v0-quality-mode-factorization-rebase
+  pull_request:
+    branches:
+      - fcf-v0-current-contract-rebase
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Compile Python
+        run: python -m compileall -q fcf_v1 authoring editor tests
+      - name: Run focused factorization/editor tests
+        run: python -m pytest -q tests/test_authoring_vertical_slice.py tests/test_editor_prototype.py tests/test_authoring_maintenance_gate.py
+      - name: Run full repository tests
+        run: python -m pytest -q
