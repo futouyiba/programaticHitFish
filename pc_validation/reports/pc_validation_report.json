@@ -50,7 +50,15 @@
           "admit presentation.chemical_signature candidate values (sparse item annotation)"
         ]
       },
-      "findings": [],
+      "findings": [
+        {
+          "citation": "R3 Delta 3",
+          "code": "DICTIONARY_MEMBER_ADMISSION_REQUIRED",
+          "detail": "feeding_target_key 'PREPARED_FOOD' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added)",
+          "path": "static_target_affinity[0]",
+          "severity": "unresolved"
+        }
+      ],
       "synthetic": false
     },
     {
@@ -156,17 +164,15 @@
       "case_id": "DEV-010",
       "classification": {
         "flags": [
-          "KNOWN_DEV_GAP_CONTINUOUS_BOTTOM_CONTACT_MECHANICAL_CAUSE"
+          "RESOLVED_BY_R3_DELTA_1"
         ],
-        "primary_classification": "UNRESOLVED",
+        "primary_classification": "COVERED",
         "relied_upon": [
           "cue.speed",
-          "cue.vibration_amplitude",
+          "cue.surface_contact_disturbance",
           "relation.bottom"
         ],
-        "requested_deltas": [
-          "D3 question: is relation.bottom + ordinary admitted motion facts sufficient for the bottom-drag strategy the product needs; if not, is the missing piece a continuous-contact physical cue, a temporal summary, or another reusable primitive (do NOT add mechanical_scrape / continuous_drag / bottom_scrape from this case alone)"
-        ]
+        "requested_deltas": []
       },
       "findings": [],
       "synthetic": false
@@ -252,6 +258,325 @@
         "requested_deltas": [
           "admit presentation.chemical_signature candidate values"
         ]
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H01",
+      "classification": {
+        "flags": [
+          "MECHANICAL_DOMINANT_CHANNEL_REUSE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.speed",
+          "cue.vibration_amplitude",
+          "cue.vibration_frequency"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H02",
+      "classification": {
+        "flags": [
+          "SHORT_EVENT_TEMPORAL"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.flash",
+          "cue.vertical_motion"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H03",
+      "classification": {
+        "flags": [
+          "SURFACE_RELATION_REUSE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.direction_change",
+          "cue.pause_duration",
+          "relation.surface"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H04",
+      "classification": {
+        "flags": [
+          "FALL_PHASE_NO_BOTTOM_CONTACT"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.vertical_motion",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H05",
+      "classification": {
+        "flags": [
+          "REFERENCE_FRAME_RESOLVED_BY_SUPPORT_RELATIVE_RULE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.speed",
+          "relation.flow"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H06",
+      "classification": {
+        "flags": [
+          "DISCRETE_CONTACT_EVENT_EXPRESSIBLE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.direction_change",
+          "cue.sound_amplitude",
+          "cue.speed_change"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H07",
+      "classification": {
+        "flags": [
+          "COUNTERFACTUAL_PENDING_MULTIPLICITY",
+          "HISTORICAL_R2_NEW_GENERIC_RULE_REQUIRED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size",
+          "cue.flash",
+          "cue.visual_contrast"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H08",
+      "classification": {
+        "flags": [
+          "NO_LIVE_SEMANTIC_NEEDED"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.direction_change",
+          "presentation.prey_stage"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H09",
+      "classification": {
+        "flags": [
+          "MULTI_COMPONENT_HETEROGENEOUS_FACT_UNION"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size",
+          "cue.sound_amplitude",
+          "relation.surface"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H10",
+      "classification": {
+        "flags": [
+          "LIGHT_DOUBLE_COUNT_RESOLVED_BY_EFFECTIVE_RECEIVER_RELATIVE_CUE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.sound_amplitude",
+          "cue.sound_pattern",
+          "relation.surface"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H11",
+      "classification": {
+        "flags": [
+          "ZERO_DISPLACEMENT_EXPRESSIBLE_WITHOUT_cue.displacement"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.pause_duration",
+          "cue.speed",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H12",
+      "classification": {
+        "flags": [
+          "HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED",
+          "RESOLVED_BY_R3_DELTA_1"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.surface_contact_disturbance",
+          "cue.vibration_amplitude",
+          "relation.bottom"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H13",
+      "classification": {
+        "flags": [
+          "HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED",
+          "RESOLVED_BY_R3_DELTA_1"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.surface_contact_disturbance",
+          "relation.bottom"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H14",
+      "classification": {
+        "flags": [
+          "HISTORICAL_R2_ANNOTATION_ONLY",
+          "RESOLVED_BY_R3_DELTA_3_REUSE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.apparent_size"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H15",
+      "classification": {
+        "flags": [
+          "NON_FEEDING_MODE_VIA_REACTION_CHANNEL",
+          "POST_GEN_SCOPE_NOTE"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.direction_change"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H16",
+      "classification": {
+        "flags": [
+          "CHEMICAL_TYPE_BOUNDARY_WORKS"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.vibration_amplitude",
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H17",
+      "classification": {
+        "flags": [
+          "CONFIRMATORY_ONLY_POSSIBLE_CONTAMINATION",
+          "KNOWN_DEFERRED_CANDIDATE"
+        ],
+        "primary_classification": "NEW_PRIMITIVE_REQUIRED",
+        "relied_upon": [
+          "presentation.chemical_signature"
+        ],
+        "requested_deltas": [
+          "cue.odor_concentration / chemical magnitude \u2014 DEFERRED / NOT_ADMITTED per R3; H17 is confirmatory only"
+        ]
+      },
+      "findings": [],
+      "synthetic": false
+    },
+    {
+      "bundle_id": "",
+      "case_id": "H18",
+      "classification": {
+        "flags": [
+          "STRATEGY_DIFF_LIVES_OUTSIDE_PRESENTATION_SEMANTICS"
+        ],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.speed",
+          "cue.vibration_amplitude"
+        ],
+        "requested_deltas": []
       },
       "findings": [],
       "synthetic": false
@@ -563,6 +888,138 @@
         }
       ],
       "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-18-contact-disturbance-valid",
+      "classification": null,
+      "findings": [],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-19-contact-disturbance-metadata-missing",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 Delta 1",
+          "code": "FRAME_METADATA_MISSING",
+          "detail": "cue.surface_contact_disturbance must record summary_semantics (CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) so magnitude and temporal semantics stay distinct",
+          "path": "cue_facts[0]",
+          "severity": "violation"
+        },
+        {
+          "citation": "R1 A2 / R3 Delta 1",
+          "code": "FRAME_METADATA_MISSING",
+          "detail": "cue.surface_contact_disturbance must record temporal_scope",
+          "path": "cue_facts[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-20-strategy-token-rejected",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R0 9",
+          "code": "UNKNOWN_CUE_TOKEN",
+          "detail": "'cue.mechanical_scrape' is not in the frozen basis; needs admission",
+          "path": "cue_facts[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-21-contact-cause-family-double-count",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 Delta 1",
+          "code": "CAUSE_OWNERSHIP_CONFLICT",
+          "detail": "rule weights ['cue.sound_amplitude', 'cue.surface_contact_disturbance'] from one contact cause family without CAUSE_JUSTIFIED",
+          "path": "response_rules[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-22-multiplicity-not-admitted",
+      "classification": {
+        "flags": [],
+        "primary_classification": "COVERED",
+        "relied_upon": [
+          "cue.source_count"
+        ],
+        "requested_deltas": []
+      },
+      "findings": [
+        {
+          "citation": "R2 D1",
+          "code": "NOT_ADMITTED_CUE",
+          "detail": "case relying on a NOT_ADMITTED cue cannot be COVERED; use admitted facts or record a semantic admission request",
+          "path": "classification",
+          "severity": "violation"
+        },
+        {
+          "citation": "R2 D1",
+          "code": "NOT_ADMITTED_CUE",
+          "detail": "'cue.source_count' is NOT_ADMITTED per R2 D1; use admitted facts or file a semantic admission request",
+          "path": "cue_facts[0]",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-23-composition-clean",
+      "classification": null,
+      "findings": [],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-24-composition-violations",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 Delta 2",
+          "code": "COMPOSITION_IDENTITY_LEAK",
+          "detail": "source carries forbidden identity key 'rig_identity'",
+          "path": "composition.sources[0].rig_identity",
+          "severity": "violation"
+        },
+        {
+          "citation": "R3 Delta 2",
+          "code": "COMPOSITION_NON_DETERMINISTIC",
+          "detail": "composition resolver must be declared deterministic",
+          "path": "composition.resolver",
+          "severity": "violation"
+        }
+      ],
+      "synthetic": true
+    },
+    {
+      "bundle_id": "",
+      "case_id": "SYN-25-crab-dictionary-admission",
+      "classification": null,
+      "findings": [
+        {
+          "citation": "R3 Delta 3",
+          "code": "DICTIONARY_MEMBER_ADMISSION_REQUIRED",
+          "detail": "feeding_target_key 'CRAB' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added)",
+          "path": "static_target_affinity[0]",
+          "severity": "unresolved"
+        }
+      ],
+      "synthetic": true
     }
   ],
   "contract": {
@@ -571,9 +1028,9 @@
   },
   "development_regression": {
     "awaiting_count": 0,
-    "backfilled_count": 15,
+    "backfilled_count": 33,
     "breaking_cases": [
-      "DEV-010"
+      "H17"
     ],
     "chemical_intensity_gap_cases": [
       "DEV-003",
@@ -581,101 +1038,93 @@
     ],
     "classification_distribution": {
       "ANNOTATION_ONLY": 3,
-      "COVERED": 11,
-      "UNRESOLVED": 1
+      "COVERED": 29,
+      "NEW_PRIMITIVE_REQUIRED": 1
     },
     "displacement_dependent_cases": [],
     "fish_descriptor_resurfacing": "NOT_MEASURABLE_FROM_DEV_FIXTURES: DEV bundles carry fact requirements and classifications, no authored Response rules yet; monitor per R0 9 once rules exist",
-    "known_dev_gap_cases": [
-      "DEV-010"
-    ],
+    "known_dev_gap_cases": [],
     "ownership_watch_cases": [
       "DEV-S4"
     ],
-    "unused_basis_cues": {
-      "cue.sound_pattern": "UNEXERCISED_BY_CURRENT_DEVSET"
-    }
+    "unused_basis_cues": {}
   },
   "lane": "fcf_pc_validation",
+  "open_counterfactuals": [
+    {
+      "id": "CF-MULTI-1",
+      "question": "When aggregate cue / target semantics are equal, is there a residual, player-relevant strategy difference between single-source and multi-source presentations that must be preserved in Response?",
+      "status": "OPEN_PENDING_EVIDENCE"
+    }
+  ],
   "run": {
-    "baseline_commit": "9c2beebd2e2b1f5757223149e9c65f16bb200841",
-    "baseline_regression": {
-      "collected": 170,
-      "delta_vs_prior_clean_baseline": "+3 passed vs b8bcf77's 166/1: test_authoring_vertical_slice 14->15 and test_editor_prototype 6->8 from the in-flight session's post-b8bcf77 commits (definition-driven fixture controls, routing-overlap fail-closed). Measured, not assumed.",
-      "pytest_config": "pyproject.toml [tool.pytest.ini_options] testpaths=['tests']",
-      "python_environment": "Python 3.9.6 (/usr/bin/python3)",
-      "result": "169 passed / 1 skipped",
-      "skipped_test_identity": "tests/harness/test_agent_defs.py:75 \u2014 workspace-root agent deploy dir not present on this machine (environment-conditional)",
-      "test_file_inventory": {
-        "tests/harness/test_agent_defs.py": 6,
-        "tests/harness/test_contracts.py": 34,
-        "tests/test_authoring_maintenance_gate.py": 6,
-        "tests/test_authoring_vertical_slice.py": 15,
-        "tests/test_bass_dynamic_preference.py": 11,
-        "tests/test_calibration_experiment.py": 6,
-        "tests/test_editor_prototype.py": 8,
-        "tests/test_fcf_v1.py": 70,
-        "tests/test_pre_generation_harness.py": 14
-      },
-      "working_directory": "repository worktree at 9c2beebd"
-    },
-    "clean_parent_baseline": {
-      "branch": "fcf-v0-current-contract-rebase",
-      "commit": "9c2beebd2e2b1f5757223149e9c65f16bb200841",
-      "source": "FCF Handoff + Design Owner ruling 2026-09-16 (Current clean head)"
-    },
-    "clean_parent_branch": "fcf-v0-current-contract-rebase",
+    "baseline_commit": "c412a6e254a86502538746d2f82a5327f7b4a1ff",
+    "baseline_description": "R2-approved validation lane head (ARTIFACT_APPROVE 2026-09-16); Current-branch ancestry: c412a6e -> 9c2beebd (fcf-v0-current-contract-rebase)",
     "contract": {
       "baseline_r0": "FCF-PC-BASELINE-R0-20260915",
       "canonical_home": "HitFish-Up repo docs/baselines/",
       "mirrors": {
-        "r1": "docs/pc_validation/FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16.md (sha256 5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b)",
-        "r2": "docs/pc_validation/FCF-PC-BASELINE-R2-20260916.md (sha256 e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e)"
+        "r3": "docs/pc_validation/FCF-PC-BASELINE-R3-CANDIDATE-20260916.md (sha256 fae0af1ca3ee335f6dea612937bb1923122bdaa3d1ac460fe0671fe4fda7e23b)"
       },
-      "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16 (historical, superseded by R2 delta only)",
-      "r2_delta": "FCF-PC-BASELINE-R2-20260916 (current: D1-D6)"
+      "r1_addendum": "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16 (historical)",
+      "r2_delta": "FCF-PC-BASELINE-R2-20260916 (frozen; sha256 5b6f9eff/... mirror verified in R2 round)",
+      "r3_candidate": "FCF-PC-BASELINE-R3-CANDIDATE-20260916 (current; narrow delta 1-3)"
     },
-    "feature_branch": "feature/pc-cue-validation-r2-clean",
-    "pc_specific_test_count": 41,
-    "post_change_regression": "210 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; 9c2 baseline 169/1 + 41 PC-specific tests in tests/test_pc_validation.py)",
-    "pre_change_regression": "169 passed / 1 skipped on 9c2beebd (measured 2026-09-16; NOT assumed from prior 166/1 \u2014 full inventory in baseline_regression below)",
-    "provenance_note": "b8bcf778cd9481235b9ab6efc9099ed3471c36e8 downgraded to PRIOR_CLEAN_BASELINE_PROVENANCE; feature/pc-cue-validation-r1-clean@2697de4 and feature/pc-cue-validation-r1@704a8bd retained as historical provenance only.",
+    "feature_branch": "feature/pc-cue-validation-r3-candidate",
+    "pc_specific_test_count": 44,
+    "post_change_regression": "213 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; R2 lane 210/1 + net +3 PC tests -> 44 total)",
+    "pre_change_regression": "210 passed / 1 skipped (R2 lane state, re-verified at branch point)",
     "r1_addendum_sha256": "5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b",
-    "repository": "futouyiba/programaticHitFish"
+    "repository": "futouyiba/programaticHitFish",
+    "round1": {
+      "cases": "18; all converted to permanent Development material (fixtures/holdout_round1_devset.json)",
+      "id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+      "report_mirror": "docs/pc_validation/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (sha256 eed0c5daa97053942a2b441390f631a15df2a9923b8eb583a7b0eab2ec2db1d2)",
+      "verdict_by_design_owner": "HOLDOUT_PASS_WITH_NARROW_DELTA / R3_DELTA_AUTHORIZED / R3_NOT_YET_FROZEN / NOT_PROMOTED"
+    },
+    "status": {
+      "r3": "DEVELOPMENT CANDIDATE (NOT YET FROZEN / NOT PROMOTED)",
+      "round1": "HISTORICAL BLIND EVIDENCE",
+      "round2": "NOT YET STARTED (holdout registry SEALED_EMPTY)"
+    }
   },
   "summary": {
-    "cases": 32,
+    "cases": 58,
     "classification_counts": {
       "ANNOTATION_ONLY": 3,
-      "COVERED": 13,
-      "UNRESOLVED": 2
+      "COVERED": 32,
+      "NEW_PRIMITIVE_REQUIRED": 1,
+      "UNRESOLVED": 1
     },
     "descriptor_token_counts": {
-      "cue_basis": 12,
+      "cue_basis": 13,
       "cue_candidate_extension": 1,
-      "cue_not_admitted": 1
+      "cue_not_admitted": 5
     },
-    "development_cases": 15,
+    "development_cases": 33,
     "findings_by_code": {
       "AFFINITY_ABSORPTION": 1,
       "AGGREGATOR_SMUGGLED": 1,
       "BAND_MAPPING_NOT_DECIDED": 1,
-      "CAUSE_OWNERSHIP_CONFLICT": 1,
+      "CAUSE_OWNERSHIP_CONFLICT": 2,
+      "COMPOSITION_IDENTITY_LEAK": 1,
+      "COMPOSITION_NON_DETERMINISTIC": 1,
+      "DICTIONARY_MEMBER_ADMISSION_REQUIRED": 2,
       "FISH_DEPENDENT_INPUT": 1,
       "FORBIDDEN_CUE_SEMANTICS": 1,
       "FRAME_METADATA_INVALID": 1,
-      "FRAME_METADATA_MISSING": 2,
+      "FRAME_METADATA_MISSING": 4,
       "INVALID_PRIMARY_CLASSIFICATION": 1,
       "MODE_AXIS_FORBIDDEN": 1,
       "MODE_SPECIFIC_TARGET_TABLE": 1,
       "NON_AFFIRMATIVE_TREATED_AS_AFFINITY": 1,
       "NON_DETERMINISTIC_DESCRIPTOR": 1,
-      "NOT_ADMITTED_CUE": 3,
+      "NOT_ADMITTED_CUE": 5,
       "SIGNATURE_NOT_VERSIONED": 1,
       "SKU_MEMORY_LEAK": 2,
-      "UNKNOWN_CUE_TOKEN": 1
+      "UNKNOWN_CUE_TOKEN": 2
     },
-    "synthetic_cases": 17,
-    "violations": 21
+    "synthetic_cases": 25,
+    "violations": 29
   }
 }

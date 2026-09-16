@@ -1,7 +1,6 @@
-{
-  "registry": "HOLDOUT-REGISTRY-PC-R0",
+{"registry": "HOLDOUT-REGISTRY-PC",
   "status": "SEALED_EMPTY",
   "real_cases": [],
   "provenance": null,
-  "note": "Blind holdout identities are selected by the independent Reviewer / Sample Agent AFTER the implementation lane is executable and full regression PASS (R0 section 12; HOLDOUT-HANDOFF-R0). This registry must stay empty of real unseen cases in this repo. A sealed payload may only replace it with full provenance (sample_agent, frame_version, delivered_at)."
+  "note": "Round 1 (FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916) consumed and adjudicated; its 18 cases are now permanent Development material (holdout_round1_devset.json). ROUND2 = NOT YET STARTED. This registry stays empty of real unseen cases until the Design Owner authorizes Round 2; sealed payload may only arrive from the independent Sample Agent with full provenance."
 }

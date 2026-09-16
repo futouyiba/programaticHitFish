@@ -1,20 +1,40 @@
 # FCF Presentation / Cue Contract Validation Lane
 
-- 契约链:R0 `FCF-PC-BASELINE-R0-20260915` → R1 Addendum `FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16`(historical)→ **R2 Development Review Delta `FCF-PC-BASELINE-R2-20260916`(current,D1–D6)**;canonical 在 HitFish-Up `docs/baselines/`,镜像在本目录(R1 sha256 `5b6f9eff…`,R2 sha256 `e5c7c1e5…`)
-- 实现:`fcf_v1/pc_validation.py` + `pc_validation/`(fixtures / runner / reports / baseline 记录)
-- 测试:`tests/test_pc_validation.py`(41 个)
-- 分支:`feature/pc-cue-validation-r2-clean`,clean parent `9c2beebd`(`fcf-v0-current-contract-rebase`,Design Owner 2026-09-16 指定;`b8bcf77…` 降为 PRIOR_CLEAN_BASELINE_PROVENANCE)
+- 契约链:R0 → R1 Addendum(historical)→ R2(冻结)→ **R3 Candidate `FCF-PC-BASELINE-R3-CANDIDATE-20260916`(当前;窄 Delta 1–3)**;canonical 在 HitFish-Up `docs/baselines/`,镜像在本目录(R3 sha256 `fae0af1c…`)
+- 实现:`fcf_v1/pc_validation.py` + `pc_validation/`;测试:`tests/test_pc_validation.py`(44 个)
+- 分支:`feature/pc-cue-validation-r3-candidate` @ baseline `c412a6e`(R2 approved lane;ancestry → `9c2beebd`)
 
-## 当前状态(2026-09-16,R2 执行完毕)
+## 当前状态(2026-09-16,R3 candidate 执行完毕)
 
 ```text
-HARNESS_IMPLEMENTATION_READY
-DEVELOPMENT_REGRESSION_EXECUTED_UNDER_R2
-BLIND_HOLDOUT: 待独立 reviewer PASS + R2 hash 冻结确认后 AUTHORIZED
+ROUND1 = HISTORICAL BLIND EVIDENCE(HOLDOUT_PASS_WITH_NARROW_DELTA;18 cases 转为永久 Development)
+R3     = DEVELOPMENT CANDIDATE(NOT YET FROZEN / NOT_PROMOTED)
+ROUND2 = NOT YET STARTED(holdout registry 保持 SEALED_EMPTY)
 ```
 
-- 9c2 基线实测:**169 passed / 1 skipped(170 collected)**——非沿用 166/1;+3 来自在途会话 post-b8bcf77 commits(vertical_slice 15、editor 8)。inventory 钉在 [baseline.json](../../pc_validation/baseline.json)。
-- Post-change 实测:**210 passed / 1 skipped**(169 + 41 PC);未为凑数调测试。
+- Pre-change(R2 lane 状态):210/1;Post-change:**213 passed / 1 skipped**(169 Current 基线 + 44 PC)。
+- Round 1 报告镜像:`docs/pc_validation/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md`(sha256 `eed0c5da…`)。
+
+## R3 三个 delta 的落点
+
+| Delta | 落点 |
+|---|---|
+| 1 contact disturbance | `cue.surface_contact_disturbance`(单一 primitive;magnitude 与 summary_semantics/temporal_scope 分离;CONTINUOUS_WHILE_MOVING / MOMENTARY_IMPULSE / STATIC_CONTACT;不命名表面;`CONTACT_CAUSE_FAMILY` 双计守卫 vs vibration_*/sound_*;不恢复 displacement) |
+| 2 composition resolver | `check_composition_resolver`(0..N sources;deterministic;identity denylist + `rig_identity`;`source_count/lure_count` NOT_ADMITTED);**CF-MULTI-1 counterfactual**(`counterfactuals.json`,OPEN_PENDING_EVIDENCE)挂起 multiplicity 准入 |
+| 3 crab dictionary | `KNOWN_FEEDING_TARGET_KEYS = {SMALL_BAITFISH, CRUSTACEAN}`;H14 复用 CRUSTACEAN(COVERED);未知成员(如 CRAB)→ `DICTIONARY_MEMBER_ADMISSION_REQUIRED`;不加值不加维度 |
+
+不准入维持:chemical magnitude / odor concentration(H17 仅 confirmatory)、cue.displacement、strategy tokens、raw source count、new Meaning layer;pressure / cue familiarity 未验证。
+
+## Development Regression(33 cases = 15 原有 + 18 Round 1)
+
+```text
+COVERED                29(含 DEV-010 经 Delta 1 关闭;H12/H13 经 Delta 1;H07 经 Delta 2 + counterfactual flag;H14 经 Delta 3 复用)
+ANNOTATION_ONLY        3(DEV-003 / S3 / S5 不变)
+NEW_PRIMITIVE_REQUIRED 1(H17,chemical magnitude DEFERRED / NOT_ADMITTED;confirmatory only)
+UNRESOLVED             0
+```
+
+H10 首次行使 `cue.sound_pattern`(D6 UNEXERCISED 观察解除);combined dev set unused basis = 空。
 
 ## R2 语义 delta 在 lane 中的落点
 

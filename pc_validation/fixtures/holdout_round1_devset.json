@@ -1,0 +1,904 @@
+{
+  "registry": "HOLDOUT-ROUND1-DEVSET",
+  "note": "All 18 Blind Holdout Round 1 cases, adjudicated by the Design Owner (HOLDOUT_PASS_WITH_NARROW_DELTA) and thereby converted into permanent Development material (R0 10). historical_classification_under_r2 preserves the blind-round classification verbatim; bundle.classification is the R3-candidate re-classification where an authorized delta applies (H12/H13 via Delta 1, H07 via Delta 2, H14 via Delta 3 reuse). H17 remains NEW_PRIMITIVE_REQUIRED with chemical magnitude DEFERRED/NOT_ADMITTED. No ResponseBand numbers; affinity values UNKNOWN_FROM_SOURCE.",
+  "cases": [
+    {
+      "case_id": "H01",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.vibration_frequency"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "MECHANICAL_DOMINANT_CHANNEL_REUSE"
+          ],
+          "relied_upon": [
+            "cue.vibration_amplitude",
+            "cue.vibration_frequency",
+            "cue.speed"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "slow-rolled single-Colorado: low-freq high-amplitude thump + slow speed; optical family reuse verdict extrapolates to mechanical-dominant config (report H01).",
+      "flags": [
+        "MECHANICAL_DOMINANT_CHANNEL_REUSE"
+      ]
+    },
+    {
+      "case_id": "H02",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "SHORT_EVENT_TEMPORAL"
+          ],
+          "relied_upon": [
+            "cue.flash",
+            "cue.vertical_motion"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "flutter-fall phase + ripping lift: phase snapshots suffice; no sequence operator (report H02).",
+      "flags": [
+        "SHORT_EVENT_TEMPORAL"
+      ]
+    },
+    {
+      "case_id": "H03",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "SURFACE_RELATION_REUSE"
+          ],
+          "relied_upon": [
+            "cue.direction_change",
+            "cue.pause_duration",
+            "relation.surface"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "continuous walk-the-dog vs pop-pause distinguished by direction_change HIGH + pause LOW (report H03).",
+      "flags": [
+        "SURFACE_RELATION_REUSE"
+      ]
+    },
+    {
+      "case_id": "H04",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "FALL_PHASE_NO_BOTTOM_CONTACT"
+          ],
+          "relied_upon": [
+            "cue.vertical_motion",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "mid-column sink phase; boundary evidence: gap belongs to continuous bottom contact only (report H04).",
+      "flags": [
+        "FALL_PHASE_NO_BOTTOM_CONTACT"
+      ]
+    },
+    {
+      "case_id": "H05",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "REFERENCE_FRAME_RESOLVED_BY_SUPPORT_RELATIVE_RULE"
+          ],
+          "relied_upon": [
+            "cue.speed",
+            "relation.flow"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "swing vs dead-drift vs strip distinguished inside the support-relative frame (report H05).",
+      "flags": [
+        "REFERENCE_FRAME_RESOLVED_BY_SUPPORT_RELATIVE_RULE"
+      ]
+    },
+    {
+      "case_id": "H06",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.2s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.2s"
+          },
+          {
+            "name": "cue.sound_amplitude"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "DISCRETE_CONTACT_EVENT_EXPRESSIBLE"
+          ],
+          "relied_upon": [
+            "cue.direction_change",
+            "cue.speed_change",
+            "cue.sound_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "discrete deflection = kinematics + acoustics facts; relation.cover/wood correctly NOT required (report H06).",
+      "flags": [
+        "DISCRETE_CONTACT_EVENT_EXPRESSIBLE"
+      ]
+    },
+    {
+      "case_id": "H07",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "NEW_GENERIC_RULE_REQUIRED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.flash"
+          },
+          {
+            "name": "cue.visual_contrast"
+          },
+          {
+            "name": "cue.apparent_size"
+          }
+        ],
+        "composition": {
+          "sources": [
+            {
+              "cue.flash": "HIGH",
+              "cue.visual_contrast": "HIGH",
+              "cue.apparent_size": "SMALL"
+            },
+            {
+              "cue.flash": "HIGH",
+              "cue.visual_contrast": "HIGH",
+              "cue.apparent_size": "SMALL"
+            },
+            {
+              "cue.flash": "HIGH",
+              "cue.visual_contrast": "HIGH",
+              "cue.apparent_size": "SMALL"
+            },
+            {
+              "cue.flash": "HIGH",
+              "cue.visual_contrast": "HIGH",
+              "cue.apparent_size": "SMALL"
+            },
+            {
+              "cue.flash": "HIGH",
+              "cue.visual_contrast": "HIGH",
+              "cue.apparent_size": "SMALL"
+            }
+          ],
+          "resolver": {
+            "deterministic": true,
+            "inputs": [
+              "cue.flash",
+              "cue.visual_contrast",
+              "cue.apparent_size"
+            ]
+          }
+        },
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "HISTORICAL_R2_NEW_GENERIC_RULE_REQUIRED",
+            "COUNTERFACTUAL_PENDING_MULTIPLICITY"
+          ],
+          "relied_upon": [
+            "cue.flash",
+            "cue.visual_contrast",
+            "cue.apparent_size"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "R3 Delta 2 supplies the deterministic multi-source composition contract; raw multiplicity (source_count/lure_count) NOT admitted; CF-MULTI-1 owns whether a residual strategy difference must be preserved (report H07 + Owner ruling 2).",
+      "flags": [
+        "COUNTERFACTUAL_PENDING_MULTIPLICITY"
+      ]
+    },
+    {
+      "case_id": "H08",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.speed_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.prey_stage",
+            "status": "candidate"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "NO_LIVE_SEMANTIC_NEEDED"
+          ],
+          "relied_upon": [
+            "cue.direction_change",
+            "presentation.prey_stage"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "self-propelled live bait needs no LIVE semantic: erratic kinematics + prey_stage + static affinity (report H08).",
+      "flags": [
+        "NO_LIVE_SEMANTIC_NEEDED"
+      ]
+    },
+    {
+      "case_id": "H09",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          }
+        ],
+        "composition": {
+          "sources": [
+            {
+              "cue.sound_amplitude": "HIGH"
+            },
+            {
+              "cue.speed": "ZERO",
+              "cue.apparent_size": "SMALL",
+              "cue.vibration_amplitude": "LOW"
+            }
+          ],
+          "resolver": {
+            "deterministic": true,
+            "inputs": [
+              "cue.sound_amplitude",
+              "cue.speed",
+              "cue.apparent_size"
+            ]
+          }
+        },
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "MULTI_COMPONENT_HETEROGENEOUS_FACT_UNION"
+          ],
+          "relied_upon": [
+            "cue.sound_amplitude",
+            "cue.apparent_size",
+            "relation.surface"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "heterogeneous multi-component: fact union suffices under the R3 Delta 2 composition contract (report H09).",
+      "flags": [
+        "MULTI_COMPONENT_HETEROGENEOUS_FACT_UNION"
+      ]
+    },
+    {
+      "case_id": "H10",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.sound_pattern"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.visual_contrast"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "LIGHT_DOUBLE_COUNT_RESOLVED_BY_EFFECTIVE_RECEIVER_RELATIVE_CUE"
+          ],
+          "relied_upon": [
+            "cue.sound_amplitude",
+            "cue.sound_pattern",
+            "relation.surface"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "sound-dominant night retrieve; light already folded into receiver-relative effective contrast \u2014 cue.sound_pattern gains its first exercised use (report H10; D6 watch resolves).",
+      "flags": [
+        "LIGHT_DOUBLE_COUNT_RESOLVED_BY_EFFECTIVE_RECEIVER_RELATIVE_CUE"
+      ]
+    },
+    {
+      "case_id": "H11",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          },
+          {
+            "name": "cue.pause_duration"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "ZERO_DISPLACEMENT_EXPRESSIBLE_WITHOUT_cue.displacement"
+          ],
+          "relied_upon": [
+            "cue.speed",
+            "cue.vibration_amplitude",
+            "cue.pause_duration"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "zero-displacement finesse fully expressed without displacement; non-necessity evidence for D1 (report H11).",
+      "flags": [
+        "ZERO_DISPLACEMENT_EXPRESSIBLE_WITHOUT_cue.displacement"
+      ]
+    },
+    {
+      "case_id": "H12",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "NEW_PRIMITIVE_REQUIRED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.surface_contact_disturbance",
+            "magnitude": "MEDIUM",
+            "temporal_scope": "2.0s",
+            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.chemical_signature",
+            "status": "candidate"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED",
+            "RESOLVED_BY_R3_DELTA_1"
+          ],
+          "relied_upon": [
+            "cue.surface_contact_disturbance",
+            "relation.bottom",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "R3 Delta 1 admits the generic contact-disturbance primitive; REPEATED_PRESSURE_ON_KNOWN_DEV_GAP resolved; no bottom hardcoding \u2014 surface context via relation.bottom (report H12 + Owner ruling 1).",
+      "flags": [
+        "RESOLVED_BY_R3_DELTA_1"
+      ]
+    },
+    {
+      "case_id": "H13",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "NEW_PRIMITIVE_REQUIRED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.surface_contact_disturbance",
+            "magnitude": "MEDIUM",
+            "temporal_scope": "2.0s",
+            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+          },
+          {
+            "name": "cue.sound_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED",
+            "RESOLVED_BY_R3_DELTA_1"
+          ],
+          "relied_upon": [
+            "cue.surface_contact_disturbance",
+            "relation.bottom"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "drag vs hop now distinguishable via summary_semantics (CONTINUOUS_WHILE_MOVING vs MOMENTARY_IMPULSE); same delta as H12, not double-counted (report H13 + Owner ruling 1).",
+      "flags": [
+        "RESOLVED_BY_R3_DELTA_1"
+      ]
+    },
+    {
+      "case_id": "H14",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "ANNOTATION_ONLY",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          }
+        ],
+        "static_target_affinity": [
+          {
+            "species": "Sheepshead",
+            "feeding_target_key": "CRUSTACEAN",
+            "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "HISTORICAL_R2_ANNOTATION_ONLY",
+            "RESOLVED_BY_R3_DELTA_3_REUSE"
+          ],
+          "relied_upon": [
+            "cue.apparent_size"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "dictionary check: CRUSTACEAN (existing member, DEV-004 precedent) suffices for crab-like; reuse, no new enum value, no new dimension (Owner ruling 3).",
+      "flags": [
+        "RESOLVED_BY_R3_DELTA_3_REUSE"
+      ]
+    },
+    {
+      "case_id": "H15",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          },
+          {
+            "name": "cue.direction_change",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "0.5s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "NON_FEEDING_MODE_VIA_REACTION_CHANNEL",
+            "POST_GEN_SCOPE_NOTE"
+          ],
+          "relied_upon": [
+            "cue.direction_change"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "non-feeding recruitment via generic Reaction channel; pursuit/attack stay post-generation (report H15).",
+      "flags": [
+        "NON_FEEDING_MODE_VIA_REACTION_CHANNEL"
+      ]
+    },
+    {
+      "case_id": "H16",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.chemical_signature",
+            "status": "candidate"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "CHEMICAL_TYPE_BOUNDARY_WORKS"
+          ],
+          "relied_upon": [
+            "presentation.chemical_signature",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "chemical type-level use sufficient under the narrowed signature semantics (report H16).",
+      "flags": [
+        "CHEMICAL_TYPE_BOUNDARY_WORKS"
+      ]
+    },
+    {
+      "case_id": "H17",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "NEW_PRIMITIVE_REQUIRED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.apparent_size"
+          },
+          {
+            "name": "cue.pause_duration"
+          }
+        ],
+        "presentation_descriptors": [
+          {
+            "name": "presentation.chemical_signature",
+            "status": "candidate"
+          }
+        ],
+        "classification": {
+          "primary_classification": "NEW_PRIMITIVE_REQUIRED",
+          "requested_deltas": [
+            "cue.odor_concentration / chemical magnitude \u2014 DEFERRED / NOT_ADMITTED per R3; H17 is confirmatory only"
+          ],
+          "flags": [
+            "KNOWN_DEFERRED_CANDIDATE",
+            "CONFIRMATORY_ONLY_POSSIBLE_CONTAMINATION"
+          ],
+          "relied_upon": [
+            "presentation.chemical_signature"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "POSSIBLE_CONTAMINATION (family-level): not blind discovery; chemical magnitude remains DEFERRED / NOT_ADMITTED (Owner ruling; R3 forbidden list).",
+      "flags": [
+        "KNOWN_DEFERRED_CANDIDATE"
+      ]
+    },
+    {
+      "case_id": "H18",
+      "backfill_status": "BACKFILLED",
+      "round": "ROUND1_HISTORICAL_BLIND_EVIDENCE (now permanent Development per R0 10)",
+      "provenance": {
+        "report": "docs/holdout/FCF-PC-R2_BLIND_HOLDOUT_R1_20260916.md (HitFish-Up; archived verbatim from the independent Reviewer worktree)",
+        "round_id": "FCF-PC-BLIND-HOLDOUT-ROUND-1-20260916",
+        "r2_baseline_sha256": "e5c7c1e5044b4a4ee943975170277a0399cfd50630c08a9d0d25e85ab1b2e93e"
+      },
+      "historical_classification_under_r2": "COVERED",
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.speed",
+            "reference_frame": "LOCAL_WATER",
+            "temporal_scope": "2.0s"
+          },
+          {
+            "name": "cue.vibration_amplitude"
+          },
+          {
+            "name": "cue.vertical_motion",
+            "reference_frame": "WORLD_VERTICAL"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [
+            "STRATEGY_DIFF_LIVES_OUTSIDE_PRESENTATION_SEMANTICS"
+          ],
+          "relied_upon": [
+            "cue.speed",
+            "cue.vibration_amplitude"
+          ]
+        }
+      },
+      "expected_ownership_result": "NO_DOCUMENTED_CONFLICT",
+      "notes": "coverage/search strategy difference correctly outside presentation semantics (report H18).",
+      "flags": [
+        "STRATEGY_DIFF_LIVES_OUTSIDE_PRESENTATION_SEMANTICS"
+      ]
+    }
+  ]
+}

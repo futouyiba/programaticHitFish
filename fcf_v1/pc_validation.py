@@ -2,7 +2,10 @@
 
 Executes the structural contract of FCF-PC-BASELINE-R0-20260915, the
 R1 addendum (FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16) and the R2 Development
-Review Delta (FCF-PC-BASELINE-R2-20260916, D1-D6) against fixture bundles.
+Review Delta (FCF-PC-BASELINE-R2-20260916, D1-D6) and the R3 narrow delta
+(FCF-PC-BASELINE-R3-CANDIDATE-20260916: contact disturbance primitive,
+multi-source composition contract, crab-like dictionary reuse) against
+fixture bundles.
 The lane validates contract *shape* only:
 
 - A1  fish-independent != geometry-independent boundary (R0 2.1)
@@ -29,19 +32,31 @@ from .pre_generation import canonical_json, digest
 
 # ---------------------------------------------------------------- contract --
 
+# R3 Delta 1: one generic primitive for World/Physics-resolved mechanical
+# disturbance from a presentation/rig in sustained contact with a world
+# surface while moving.  The fact does NOT name the surface (generic
+# world-surface semantic; existing relation.* supplies world context) and
+# carries no strategy token (no mechanical_scrape / bottom_drag / ...).
+CONTACT_DISTURBANCE_CUE = "cue.surface_contact_disturbance"
+
 CUE_BASIS: Tuple[str, ...] = (
     "cue.apparent_size", "cue.visual_contrast", "cue.flash",
     "cue.speed", "cue.speed_change", "cue.direction_change",
     "cue.pause_duration", "cue.vertical_motion",
     "cue.vibration_amplitude", "cue.vibration_frequency",
     "cue.sound_amplitude", "cue.sound_pattern",
+    CONTACT_DISTURBANCE_CUE,
 )
 CUE_CANDIDATE_EXTENSION = ("cue.chemical_intensity",)  # "?" per R0 3.2; stays candidate per R2 D4
 # R2 D1: displacement was removed from the core vocabulary (NOT_ADMITTED /
 # PROVISIONAL).  The name mixed several distinct physical quantities; any
 # future concept (net spatial displacement / path length / hydrodynamic
 # displacement / continuous contact travel) needs its own admission.
-NOT_ADMITTED_CUES = ("cue.displacement",)
+NOT_ADMITTED_CUES = ("cue.displacement",
+                      # R3 Delta 2: raw multiplicity is NOT admitted; the
+                      # CF-MULTI-1 counterfactual owns the reopen question.
+                      "cue.source_count", "cue.lure_count",
+                      "presentation.source_count", "presentation.lure_count")
 
 # A2: facts whose frame cannot be implied by the field name must declare it.
 FRAME_AMBIGUOUS_CUES = ("cue.speed", "cue.speed_change", "cue.direction_change")
@@ -78,7 +93,8 @@ AFFINITY_ABSORPTION_FORBIDDEN = ("motion_quality", "drift_quality", "pause_timin
 
 # B1: CueSignature composition.
 SIGNATURE_ALLOWED_PREFIXES = ("presentation.", "cue.")
-SIGNATURE_FORBIDDEN_KEYS = ("sku", "item_id", "technique_id", "merchandise_category", "ui_action")
+SIGNATURE_FORBIDDEN_KEYS = ("sku", "item_id", "technique_id", "merchandise_category",
+                              "ui_action", "rig_identity")  # rig_identity per R3 Delta 2
 
 # B2: typed target-resolution status.
 class TargetResolutionStatus(str, Enum):
@@ -92,6 +108,16 @@ NON_AFFIRMATIVE_STATUSES = (TargetResolutionStatus.UNKNOWN.value,
 
 # R0 4: multi-target aggregation is deliberately OPEN; smuggling one in is a violation.
 FORBIDDEN_AGGREGATORS = ("sum", "weighted_average", "max", "noisy_or")
+
+# R3 Delta 1: these cues may share one physical cause (sustained surface
+# contact).  A single Response rule may not weight two of them for the same
+# cause without an explicit CAUSE_JUSTIFIED declaration.
+CONTACT_CAUSE_FAMILY = (CONTACT_DISTURBANCE_CUE, "cue.vibration_amplitude",
+                        "cue.vibration_frequency", "cue.sound_amplitude")
+
+# R3 Delta 3: documented FeedingTarget dictionary members (reused values only;
+# new members still need an admission request).
+KNOWN_FEEDING_TARGET_KEYS = ("SMALL_BAITFISH", "CRUSTACEAN")
 
 # A4: classification vocabulary and decision order.
 CLASSIFICATION_VALUES = (
@@ -182,6 +208,15 @@ def check_kinematic_metadata(cue_facts: Sequence[Mapping[str, Any]], path: str) 
         if name in FRAME_AMBIGUOUS_CUES and not fact.get("temporal_scope"):
             out.append(_v("FRAME_METADATA_MISSING", p,
                           f"{name} must record temporal_scope / summary_semantics", "R1 A2"))
+        if name == CONTACT_DISTURBANCE_CUE:
+            if not fact.get("temporal_scope"):
+                out.append(_v("FRAME_METADATA_MISSING", p,
+                              f"{name} must record temporal_scope", "R1 A2 / R3 Delta 1"))
+            if not fact.get("summary_semantics"):
+                out.append(_v("FRAME_METADATA_MISSING", p,
+                              f"{name} must record summary_semantics "
+                              "(CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) "
+                              "so magnitude and temporal semantics stay distinct", "R3 Delta 1"))
         if name == "cue.vertical_motion" and fact.get("reference_frame") not in (None, WORLD_VERTICAL_SEMANTIC):
             out.append(_v("FRAME_METADATA_INVALID", p,
                           "vertical_motion may only use the gravity/world-vertical semantic",
@@ -200,6 +235,10 @@ def check_presentation_descriptors(descriptors: Sequence[Mapping[str, Any]], pat
             out.append(_v("FORBIDDEN_PRESENTATION_FIELD", p, f"{name!r} is forbidden", "R0 7"))
         if "sku" in name or "product" in name:
             out.append(_v("SKU_ALIAS_DESCRIPTOR", p, f"{name!r} looks like a SKU alias", "R0 3.1"))
+        if name in NOT_ADMITTED_CUES:
+            out.append(_v("NOT_ADMITTED_CUE", p,
+                          f"{name!r} is NOT_ADMITTED per R3 Delta 2 (raw multiplicity); "
+                          "counterfactual CF-MULTI-1 owns the reopen question", "R3 Delta 2"))
     return out
 
 
@@ -214,6 +253,12 @@ def check_static_target_affinity(entries: Sequence[Mapping[str, Any]], path: str
                 out.append(_v("MODE_AXIS_FORBIDDEN", p,
                               f"affinity key contains {part!r}; v1 axis is fixed to "
                               "Species x FeedingTargetKey", "R1 A3"))
+        key = e.get("feeding_target_key")
+        if key is not None and key not in KNOWN_FEEDING_TARGET_KEYS:
+            out.append(_u("DICTIONARY_MEMBER_ADMISSION_REQUIRED", p,
+                          f"feeding_target_key {key!r} is not a documented member; "
+                          "record an admission request (R3 Delta 3 reused CRUSTACEAN; "
+                          "no new value was added)", "R3 Delta 3"))
         for absorbed in AFFINITY_ABSORPTION_FORBIDDEN:
             if absorbed in e:
                 out.append(_v("AFFINITY_ABSORPTION", p,
@@ -312,6 +357,13 @@ def check_cause_ownership(response_rules: Sequence[Mapping[str, Any]],
                     out.append(_v("CAUSE_OWNERSHIP_CONFLICT", p,
                                   f"rule consumes both {cue!r} and its recorded cause "
                                   f"{cause!r} without CAUSE_JUSTIFIED", "R0 8"))
+        # R3 Delta 1: shared physical cause family guard
+        if not rule.get("cause_justified"):
+            family_hits = sorted(set(rule.get("consumes", [])) & set(CONTACT_CAUSE_FAMILY))
+            if len(family_hits) >= 2:
+                out.append(_v("CAUSE_OWNERSHIP_CONFLICT", p,
+                              f"rule weights {family_hits} from one contact cause family "
+                              "without CAUSE_JUSTIFIED", "R3 Delta 1"))
     return out
 
 
@@ -340,6 +392,40 @@ def check_derived_descriptor(defn: Mapping[str, Any], path: str) -> List[Finding
         out.append(_v("NON_DETERMINISTIC_DESCRIPTOR", path,
                       "descriptor declares nondeterminism", "R1 A4"))
     return out
+
+
+# --------------------------------------------- composition resolver (R3 D2) --
+
+COMPOSITION_FORBIDDEN_SOURCE_KEYS = SIGNATURE_FORBIDDEN_KEYS
+
+
+def check_composition_resolver(composition: Mapping[str, Any], path: str) -> List[Finding]:
+    """R3 Delta 2: 0..N source-local facts -> deterministic resolver -> canonical
+    snapshot.  No raw rig/SKU/technique identity anywhere; no multiplicity fact."""
+    out: List[Finding] = []
+    sources = composition.get("sources", [])
+    if not isinstance(sources, list):
+        out.append(_v("COMPOSITION_INVALID", path, "sources must be a list", "R3 Delta 2"))
+        return out
+    for i, source in enumerate(sources):
+        for key in source:
+            if key in COMPOSITION_FORBIDDEN_SOURCE_KEYS:
+                out.append(_v("COMPOSITION_IDENTITY_LEAK", f"{path}.sources[{i}].{key}",
+                              f"source carries forbidden identity key {key!r}", "R3 Delta 2"))
+    resolver = composition.get("resolver", {})
+    if not resolver.get("deterministic", False):
+        out.append(_v("COMPOSITION_NON_DETERMINISTIC", f"{path}.resolver",
+                      "composition resolver must be declared deterministic", "R3 Delta 2"))
+    for token in resolver.get("inputs", []):
+        if token in FISH_DEPENDENT_INPUT_TOKENS:
+            out.append(_v("COMPOSITION_FISH_DEPENDENT", f"{path}.resolver.inputs",
+                          f"resolver reads {token!r}", "R3 Delta 2 / R0 2.1"))
+    return out
+
+
+def counterfactual_summary(counterfactuals: Sequence[Mapping[str, Any]]) -> List[Dict[str, str]]:
+    return [{"id": c.get("id", ""), "status": c.get("status", ""),
+             "question": c.get("question", "")} for c in counterfactuals]
 
 
 # ------------------------------------------------------------- holdout gate --
@@ -570,6 +656,8 @@ def validate_bundle(bundle: Mapping[str, Any]) -> Tuple[Finding, ...]:
         findings += check_target_resolution(bundle["target_resolution"], "target_resolution")
     if "cue_signature" in bundle:
         findings += check_cue_signature(bundle["cue_signature"], "cue_signature")
+    if "composition" in bundle:
+        findings += check_composition_resolver(bundle["composition"], "composition")
     findings += check_cause_ownership(bundle.get("response_rules", []),
                                       bundle.get("cause_provenance", {}), "response_rules")
     if "classification" in bundle:

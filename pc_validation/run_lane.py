@@ -21,7 +21,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from fcf_v1.pc_validation import (  # noqa: E402
-    HoldoutRegistry, development_regression_summary, run_cases,
+    HoldoutRegistry, counterfactual_summary, development_regression_summary,
+    run_cases,
 )
 
 FIXTURES = ROOT / "pc_validation" / "fixtures"
@@ -55,25 +56,32 @@ def main() -> int:
         json.loads((FIXTURES / "holdout_registry.json").read_text(encoding="utf-8"))
     ).validate()  # hard gate: lane refuses to run against a non-empty/unprovenanced holdout
 
-    devset_name = next(name for name in ("devset_r2_backfilled.json", "devset_r1_backfilled.json",
-                                         "devset_structural_r0.json")
-                       if (FIXTURES / name).exists())
+    # current Development sets only; superseded files (r2/r1/structural) stay as
+    # provenance on disk and are deliberately not loaded
+    development_fixtures = [n for n in ("devset_r3_dev.json", "holdout_round1_devset.json")
+                            if (FIXTURES / n).exists()]
     cases, dev_cases = [], []
-    for name, synthetic in ((devset_name, False), ("lane_selftest_cases.json", True)):
-        payload = json.loads((FIXTURES / name).read_text(encoding="utf-8"))
-        for case in payload["cases"]:
-            case.setdefault("synthetic", synthetic)
+    for name in development_fixtures:
+        for case in json.loads((FIXTURES / name).read_text(encoding="utf-8"))["cases"]:
+            case.setdefault("synthetic", False)
             cases.append(case)
-            if not synthetic:
-                dev_cases.append(case)
+            dev_cases.append(case)
+    for case in json.loads((FIXTURES / "lane_selftest_cases.json").read_text(encoding="utf-8"))["cases"]:
+        case.setdefault("synthetic", True)
+        cases.append(case)
 
     report = run_cases(cases, baseline=baseline)
     summary = development_regression_summary(report, dev_cases)
+    counterfactuals = counterfactual_summary(
+        json.loads((FIXTURES / "counterfactuals.json").read_text(encoding="utf-8"))["counterfactuals"])
 
     payload = json.loads(report.to_json())
     payload["development_regression"] = summary
-    md = report.to_markdown() + "\n## Development Regression\n\n```json\n" + \
-        json.dumps(summary, indent=2, ensure_ascii=True, sort_keys=True) + "\n```\n"
+    payload["open_counterfactuals"] = counterfactuals
+    md = (report.to_markdown() + "\n## Development Regression\n\n```json\n" +
+       json.dumps(summary, indent=2, ensure_ascii=True, sort_keys=True) + "\n```\n" +
+       "\n## Open Counterfactuals (R3 Delta 2)\n\n```json\n" +
+       json.dumps(counterfactuals, indent=2, ensure_ascii=True, sort_keys=True) + "\n```\n")
 
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "pc_validation_report.json").write_text(
@@ -81,7 +89,8 @@ def main() -> int:
     (REPORTS / "pc_validation_report.md").write_text(md, encoding="utf-8")
 
     print(json.dumps({"summary": payload["summary"],
-                      "development_regression": summary}, sort_keys=True))
+                      "development_regression": summary,
+                      "open_counterfactuals": counterfactuals}, sort_keys=True))
     return 0
 
 

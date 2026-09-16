@@ -1,0 +1,26 @@
+{
+  "counterfactuals": [
+    {
+      "id": "CF-MULTI-1",
+      "type": "SINGLE_VS_MULTI_SOURCE_EQUAL_AGGREGATE",
+      "mandated_by": "Design Owner R3 ruling, delta 2 (2026-09-16)",
+      "description": "single-source and multi-source presentations whose AGGREGATE cue / target semantics are controlled to be identical; the question is whether a strategy difference that must be preserved still exists.",
+      "snapshots": {
+        "single": {
+          "cue.flash": "HIGH",
+          "cue.visual_contrast": "HIGH",
+          "cue.apparent_size": "SMALL"
+        },
+        "multi_composed_equal": {
+          "cue.flash": "HIGH",
+          "cue.visual_contrast": "HIGH",
+          "cue.apparent_size": "SMALL"
+        }
+      },
+      "question": "When aggregate cue / target semantics are equal, is there a residual, player-relevant strategy difference between single-source and multi-source presentations that must be preserved in Response?",
+      "decision_rule": "Only a clear YES (with evidence) reopens the multiplicity primitive admission request (source_count-family); a clear NO closes it for this baseline generation. Until then, multiplicity stays NOT_ADMITTED.",
+      "status": "OPEN_PENDING_EVIDENCE",
+      "evidence_so_far": "H07 (single blind case) motivated the composition contract; no counterfactual evidence yet."
+    }
+  ]
+}

@@ -1,37 +1,40 @@
 # FCF Presentation/Cue Contract Validation — Run Report
 
 - lane: `fcf_pc_validation` — R0 `FCF-PC-BASELINE-R0-20260915` + R1 addendum `FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16`
-- baseline commit: `9c2beebd2e2b1f5757223149e9c65f16bb200841`
+- baseline commit: `c412a6e254a86502538746d2f82a5327f7b4a1ff`
 - R1 addendum sha256: `5b6f9effcf2b71873d74721bbb97a52f251980c3306a596402b292489739617b`
-- pre-change regression: 169 passed / 1 skipped on 9c2beebd (measured 2026-09-16; NOT assumed from prior 166/1 — full inventory in baseline_regression below)
-- post-change regression: 210 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; 9c2 baseline 169/1 + 41 PC-specific tests in tests/test_pc_validation.py)
+- pre-change regression: 210 passed / 1 skipped (R2 lane state, re-verified at branch point)
+- post-change regression: 213 passed / 1 skipped (python3 -m pytest -q, 2026-09-16; R2 lane 210/1 + net +3 PC tests -> 44 total)
 
 ## Summary
 
-- cases: 32 (development 15, synthetic lane self-test 17)
-- violations: 21
-- classification counts: {"ANNOTATION_ONLY": 3, "COVERED": 13, "UNRESOLVED": 2}
-- descriptor token counts: {'cue_basis': 12, 'cue_candidate_extension': 1, 'cue_not_admitted': 1}
+- cases: 58 (development 33, synthetic lane self-test 25)
+- violations: 29
+- classification counts: {"ANNOTATION_ONLY": 3, "COVERED": 32, "NEW_PRIMITIVE_REQUIRED": 1, "UNRESOLVED": 1}
+- descriptor token counts: {'cue_basis': 13, 'cue_candidate_extension': 1, 'cue_not_admitted': 5}
 
 ## Findings by code
 
 - `AFFINITY_ABSORPTION`: 1
 - `AGGREGATOR_SMUGGLED`: 1
 - `BAND_MAPPING_NOT_DECIDED`: 1
-- `CAUSE_OWNERSHIP_CONFLICT`: 1
+- `CAUSE_OWNERSHIP_CONFLICT`: 2
+- `COMPOSITION_IDENTITY_LEAK`: 1
+- `COMPOSITION_NON_DETERMINISTIC`: 1
+- `DICTIONARY_MEMBER_ADMISSION_REQUIRED`: 2
 - `FISH_DEPENDENT_INPUT`: 1
 - `FORBIDDEN_CUE_SEMANTICS`: 1
 - `FRAME_METADATA_INVALID`: 1
-- `FRAME_METADATA_MISSING`: 2
+- `FRAME_METADATA_MISSING`: 4
 - `INVALID_PRIMARY_CLASSIFICATION`: 1
 - `MODE_AXIS_FORBIDDEN`: 1
 - `MODE_SPECIFIC_TARGET_TABLE`: 1
 - `NON_AFFIRMATIVE_TREATED_AS_AFFINITY`: 1
 - `NON_DETERMINISTIC_DESCRIPTOR`: 1
-- `NOT_ADMITTED_CUE`: 3
+- `NOT_ADMITTED_CUE`: 5
 - `SIGNATURE_NOT_VERSIONED`: 1
 - `SKU_MEMORY_LEAK`: 2
-- `UNKNOWN_CUE_TOKEN`: 1
+- `UNKNOWN_CUE_TOKEN`: 2
 
 ## Per-case findings
 
@@ -45,7 +48,7 @@
 
 ### DEV-003 (development, bundle ``)
 - classification: `ANNOTATION_ONLY` deltas=['admit presentation.chemical_signature candidate values (sparse item annotation)', 'admit PREPARED_FOOD as FeedingTargetKey dictionary member'] flags=['CHEMICAL_INTENSITY_GAP_WATCH']
-- findings: none
+- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'PREPARED_FOOD' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added) (R3 Delta 3)
 
 ### DEV-004 (development, bundle ``)
 - classification: `COVERED` deltas=[] flags=[]
@@ -72,7 +75,7 @@
 - findings: none
 
 ### DEV-010 (development, bundle ``)
-- classification: `UNRESOLVED` deltas=['D3 question: is relation.bottom + ordinary admitted motion facts sufficient for the bottom-drag strategy the product needs; if not, is the missing piece a continuous-contact physical cue, a temporal summary, or another reusable primitive (do NOT add mechanical_scrape / continuous_drag / bottom_scrape from this case alone)'] flags=['KNOWN_DEV_GAP_CONTINUOUS_BOTTOM_CONTACT_MECHANICAL_CAUSE']
+- classification: `COVERED` deltas=[] flags=['RESOLVED_BY_R3_DELTA_1']
 - findings: none
 
 ### DEV-S1 (development, bundle ``)
@@ -93,6 +96,78 @@
 
 ### DEV-S5 (development, bundle ``)
 - classification: `ANNOTATION_ONLY` deltas=['admit presentation.chemical_signature candidate values'] flags=['CHEMICAL_INTENSITY_GAP_WATCH']
+- findings: none
+
+### H01 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['MECHANICAL_DOMINANT_CHANNEL_REUSE']
+- findings: none
+
+### H02 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['SHORT_EVENT_TEMPORAL']
+- findings: none
+
+### H03 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['SURFACE_RELATION_REUSE']
+- findings: none
+
+### H04 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['FALL_PHASE_NO_BOTTOM_CONTACT']
+- findings: none
+
+### H05 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['REFERENCE_FRAME_RESOLVED_BY_SUPPORT_RELATIVE_RULE']
+- findings: none
+
+### H06 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['DISCRETE_CONTACT_EVENT_EXPRESSIBLE']
+- findings: none
+
+### H07 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['HISTORICAL_R2_NEW_GENERIC_RULE_REQUIRED', 'COUNTERFACTUAL_PENDING_MULTIPLICITY']
+- findings: none
+
+### H08 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['NO_LIVE_SEMANTIC_NEEDED']
+- findings: none
+
+### H09 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['MULTI_COMPONENT_HETEROGENEOUS_FACT_UNION']
+- findings: none
+
+### H10 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['LIGHT_DOUBLE_COUNT_RESOLVED_BY_EFFECTIVE_RECEIVER_RELATIVE_CUE']
+- findings: none
+
+### H11 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['ZERO_DISPLACEMENT_EXPRESSIBLE_WITHOUT_cue.displacement']
+- findings: none
+
+### H12 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED', 'RESOLVED_BY_R3_DELTA_1']
+- findings: none
+
+### H13 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['HISTORICAL_R2_NEW_PRIMITIVE_REQUIRED', 'RESOLVED_BY_R3_DELTA_1']
+- findings: none
+
+### H14 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['HISTORICAL_R2_ANNOTATION_ONLY', 'RESOLVED_BY_R3_DELTA_3_REUSE']
+- findings: none
+
+### H15 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['NON_FEEDING_MODE_VIA_REACTION_CHANNEL', 'POST_GEN_SCOPE_NOTE']
+- findings: none
+
+### H16 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['CHEMICAL_TYPE_BOUNDARY_WORKS']
+- findings: none
+
+### H17 (development, bundle ``)
+- classification: `NEW_PRIMITIVE_REQUIRED` deltas=['cue.odor_concentration / chemical magnitude — DEFERRED / NOT_ADMITTED per R3; H17 is confirmatory only'] flags=['KNOWN_DEFERRED_CANDIDATE', 'CONFIRMATORY_ONLY_POSSIBLE_CONTAMINATION']
+- findings: none
+
+### H18 (development, bundle ``)
+- classification: `COVERED` deltas=[] flags=['STRATEGY_DIFF_LIVES_OUTSIDE_PRESENTATION_SEMANTICS']
 - findings: none
 
 ### SYN-01-clean-bundle (synthetic, bundle ``)
@@ -156,14 +231,42 @@
 - classification: `UNRESOLVED` deltas=['admission request for a displacement-family concept (net spatial displacement / path length / ...) per R2 D1'] flags=[]
 - [violation] `NOT_ADMITTED_CUE` @ cue_facts[0] — 'cue.displacement' is NOT_ADMITTED per R2 D1; use admitted facts or file a semantic admission request (R2 D1)
 
+### SYN-18-contact-disturbance-valid (synthetic, bundle ``)
+- findings: none
+
+### SYN-19-contact-disturbance-metadata-missing (synthetic, bundle ``)
+- [violation] `FRAME_METADATA_MISSING` @ cue_facts[0] — cue.surface_contact_disturbance must record temporal_scope (R1 A2 / R3 Delta 1)
+- [violation] `FRAME_METADATA_MISSING` @ cue_facts[0] — cue.surface_contact_disturbance must record summary_semantics (CONTINUOUS_WHILE_MOVING | MOMENTARY_IMPULSE | STATIC_CONTACT) so magnitude and temporal semantics stay distinct (R3 Delta 1)
+
+### SYN-20-strategy-token-rejected (synthetic, bundle ``)
+- [violation] `UNKNOWN_CUE_TOKEN` @ cue_facts[0] — 'cue.mechanical_scrape' is not in the frozen basis; needs admission (R0 9)
+
+### SYN-21-contact-cause-family-double-count (synthetic, bundle ``)
+- [violation] `CAUSE_OWNERSHIP_CONFLICT` @ response_rules[0] — rule weights ['cue.sound_amplitude', 'cue.surface_contact_disturbance'] from one contact cause family without CAUSE_JUSTIFIED (R3 Delta 1)
+
+### SYN-22-multiplicity-not-admitted (synthetic, bundle ``)
+- classification: `COVERED` deltas=[] flags=[]
+- [violation] `NOT_ADMITTED_CUE` @ cue_facts[0] — 'cue.source_count' is NOT_ADMITTED per R2 D1; use admitted facts or file a semantic admission request (R2 D1)
+- [violation] `NOT_ADMITTED_CUE` @ classification — case relying on a NOT_ADMITTED cue cannot be COVERED; use admitted facts or record a semantic admission request (R2 D1)
+
+### SYN-23-composition-clean (synthetic, bundle ``)
+- findings: none
+
+### SYN-24-composition-violations (synthetic, bundle ``)
+- [violation] `COMPOSITION_IDENTITY_LEAK` @ composition.sources[0].rig_identity — source carries forbidden identity key 'rig_identity' (R3 Delta 2)
+- [violation] `COMPOSITION_NON_DETERMINISTIC` @ composition.resolver — composition resolver must be declared deterministic (R3 Delta 2)
+
+### SYN-25-crab-dictionary-admission (synthetic, bundle ``)
+- [unresolved] `DICTIONARY_MEMBER_ADMISSION_REQUIRED` @ static_target_affinity[0] — feeding_target_key 'CRAB' is not a documented member; record an admission request (R3 Delta 3 reused CRUSTACEAN; no new value was added) (R3 Delta 3)
+
 ## Development Regression
 
 ```json
 {
   "awaiting_count": 0,
-  "backfilled_count": 15,
+  "backfilled_count": 33,
   "breaking_cases": [
-    "DEV-010"
+    "H17"
   ],
   "chemical_intensity_gap_cases": [
     "DEV-003",
@@ -171,19 +274,27 @@
   ],
   "classification_distribution": {
     "ANNOTATION_ONLY": 3,
-    "COVERED": 11,
-    "UNRESOLVED": 1
+    "COVERED": 29,
+    "NEW_PRIMITIVE_REQUIRED": 1
   },
   "displacement_dependent_cases": [],
   "fish_descriptor_resurfacing": "NOT_MEASURABLE_FROM_DEV_FIXTURES: DEV bundles carry fact requirements and classifications, no authored Response rules yet; monitor per R0 9 once rules exist",
-  "known_dev_gap_cases": [
-    "DEV-010"
-  ],
+  "known_dev_gap_cases": [],
   "ownership_watch_cases": [
     "DEV-S4"
   ],
-  "unused_basis_cues": {
-    "cue.sound_pattern": "UNEXERCISED_BY_CURRENT_DEVSET"
-  }
+  "unused_basis_cues": {}
 }
+```
+
+## Open Counterfactuals (R3 Delta 2)
+
+```json
+[
+  {
+    "id": "CF-MULTI-1",
+    "question": "When aggregate cue / target semantics are equal, is there a residual, player-relevant strategy difference between single-source and multi-source presentations that must be preserved in Response?",
+    "status": "OPEN_PENDING_EVIDENCE"
+  }
+]
 ```

@@ -404,6 +404,163 @@
           ]
         }
       }
+    },
+    {
+      "case_id": "SYN-18-contact-disturbance-valid",
+      "synthetic": true,
+      "purpose": "R3 Delta 1: fully-specified surface_contact_disturbance passes",
+      "expected_codes": [],
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.surface_contact_disturbance",
+            "magnitude": "MEDIUM",
+            "temporal_scope": "2.0s",
+            "summary_semantics": "CONTINUOUS_WHILE_MOVING"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-19-contact-disturbance-metadata-missing",
+      "synthetic": true,
+      "purpose": "R3 Delta 1: temporal_scope and summary_semantics are both required (magnitude vs duration distinct)",
+      "expected_codes": [
+        "FRAME_METADATA_MISSING",
+        "FRAME_METADATA_MISSING"
+      ],
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.surface_contact_disturbance",
+            "magnitude": "MEDIUM"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-20-strategy-token-rejected",
+      "synthetic": true,
+      "purpose": "R3 Delta 1: strategy-specific tokens like mechanical_scrape are not admitted vocabulary",
+      "expected_codes": [
+        "UNKNOWN_CUE_TOKEN"
+      ],
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.mechanical_scrape"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-21-contact-cause-family-double-count",
+      "synthetic": true,
+      "purpose": "R3 Delta 1: one rule weighting two contact-cause-family cues without CAUSE_JUSTIFIED is a conflict",
+      "expected_codes": [
+        "CAUSE_OWNERSHIP_CONFLICT"
+      ],
+      "bundle": {
+        "response_rules": [
+          {
+            "rule_id": "r-contact",
+            "consumes": [
+              "cue.surface_contact_disturbance",
+              "cue.sound_amplitude"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SYN-22-multiplicity-not-admitted",
+      "synthetic": true,
+      "purpose": "R3 Delta 2: source_count/lure_count are NOT_ADMITTED; a COVERED reliance on them is blocked",
+      "expected_codes": [
+        "NOT_ADMITTED_CUE",
+        "NOT_ADMITTED_CUE"
+      ],
+      "bundle": {
+        "cue_facts": [
+          {
+            "name": "cue.source_count",
+            "temporal_scope": "1.0s"
+          }
+        ],
+        "classification": {
+          "primary_classification": "COVERED",
+          "requested_deltas": [],
+          "flags": [],
+          "relied_upon": [
+            "cue.source_count"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "SYN-23-composition-clean",
+      "synthetic": true,
+      "purpose": "R3 Delta 2: deterministic multi-source composition without identity keys passes",
+      "expected_codes": [],
+      "bundle": {
+        "composition": {
+          "sources": [
+            {
+              "cue.flash": "HIGH"
+            },
+            {
+              "cue.flash": "HIGH"
+            }
+          ],
+          "resolver": {
+            "deterministic": true,
+            "inputs": [
+              "cue.flash"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "case_id": "SYN-24-composition-violations",
+      "synthetic": true,
+      "purpose": "R3 Delta 2: rig identity in sources and non-deterministic resolver are violations",
+      "expected_codes": [
+        "COMPOSITION_IDENTITY_LEAK",
+        "COMPOSITION_NON_DETERMINISTIC"
+      ],
+      "bundle": {
+        "composition": {
+          "sources": [
+            {
+              "rig_identity": "UMBRELLA_5_ARM",
+              "cue.flash": "HIGH"
+            }
+          ],
+          "resolver": {
+            "inputs": [
+              "cue.flash"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "case_id": "SYN-25-crab-dictionary-admission",
+      "synthetic": true,
+      "purpose": "R3 Delta 3: CRAB is not a documented member; the ruling reuses CRUSTACEAN instead",
+      "expected_codes": [
+        "DICTIONARY_MEMBER_ADMISSION_REQUIRED"
+      ],
+      "bundle": {
+        "static_target_affinity": [
+          {
+            "species": "Sheepshead",
+            "feeding_target_key": "CRAB",
+            "affinity": "UNKNOWN_FROM_SOURCE"
+          }
+        ]
+      }
     }
   ]
 }

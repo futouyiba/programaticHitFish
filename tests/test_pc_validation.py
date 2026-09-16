@@ -8,7 +8,8 @@ import json
 from pathlib import Path
 
 from fcf_v1.pc_validation import (
-    CUE_BASIS, HoldoutError, HoldoutRegistry,
+    CUE_BASIS, CONTACT_CAUSE_FAMILY, HoldoutError, HoldoutRegistry,
+    check_composition_resolver, counterfactual_summary,
     check_aggregation_smuggling, check_cause_ownership, check_classification,
     check_cue_signature, check_cue_vocabulary, check_derived_descriptor,
     check_dynamic_feeding_preference, check_fish_independence,
@@ -260,7 +261,7 @@ def test_selftest_cases_produce_exactly_expected_finding_codes():
 
 
 def test_dev_regression_fixture_backfilled_and_classified():
-    cases = _load("devset_r2_backfilled.json")["cases"]
+    cases = _load("devset_r3_dev.json")["cases"]
     assert len(cases) == 15  # DEV-001..010 + five strategy stories (incl. Owner-added Walleye)
     report = run_cases(cases, baseline={})
     assert report.violations == 0  # backfilled DEV content must be contract-clean
@@ -269,48 +270,98 @@ def test_dev_regression_fixture_backfilled_and_classified():
         assert case["provenance"]["notion"], case["case_id"]  # every case cites its sources
         assert result.classification is not None, case["case_id"]
     distribution = development_regression_summary(report, cases)["classification_distribution"]
-    assert distribution == {"ANNOTATION_ONLY": 3, "COVERED": 11, "UNRESOLVED": 1}
+    assert distribution == {"ANNOTATION_ONLY": 3, "COVERED": 12}
+    by_id = {c["case_id"]: c for c in cases}
+    assert by_id["DEV-010"]["bundle"]["classification"]["primary_classification"] == "COVERED"  # R3 Delta 1
+    assert "RESOLVED_BY_R3_DELTA_1" in by_id["DEV-010"]["bundle"]["classification"]["flags"]
     for case in cases:  # D1: not used as a fact and not relied upon anywhere
         bundle = case.get("bundle", {})
         assert all(f["name"] != "cue.displacement" for f in bundle.get("cue_facts", [])), case["case_id"]
         assert "cue.displacement" not in (bundle.get("classification", {}).get("relied_upon") or []), case["case_id"]
 
 
-def test_dev_r2_outcome_per_owner_ruling():
-    cases = _load("devset_r2_backfilled.json")["cases"]
+def test_dev_r3_outcome_per_owner_ruling():
+    cases = _load("devset_r3_dev.json")["cases"]
     summary = development_regression_summary(run_cases(cases, baseline={}), cases)
-    assert summary["breaking_cases"] == ["DEV-010"]
-    assert summary["known_dev_gap_cases"] == ["DEV-010"]  # D3: typed gap, non-blocking for holdout
-    assert summary["displacement_dependent_cases"] == []  # D2: DEV-006 no longer blocked
-    assert summary["chemical_intensity_gap_cases"] == ["DEV-003", "DEV-S5"]  # D4: stays candidate
-    assert summary["ownership_watch_cases"] == ["DEV-S4"]  # D5: LINT_WATCH_DOUBLE_COUNT
-    assert summary["unused_basis_cues"] == {"cue.sound_pattern": "UNEXERCISED_BY_CURRENT_DEVSET"}  # D6
+    assert summary["breaking_cases"] == []
+    assert summary["known_dev_gap_cases"] == []  # gap closed by R3 Delta 1
+    assert summary["displacement_dependent_cases"] == []
+    assert summary["chemical_intensity_gap_cases"] == ["DEV-003", "DEV-S5"]  # D4 unchanged
+    assert summary["ownership_watch_cases"] == ["DEV-S4"]  # D5 unchanged
+    # within the original 15-case file alone sound_pattern is still unexercised;
+    # across the combined Development set (this file + 18 round-1 cases) H10 exercises it
+    assert summary["unused_basis_cues"] == {"cue.sound_pattern": "UNEXERCISED_BY_CURRENT_DEVSET"}
+    combined = cases + _load("holdout_round1_devset.json")["cases"]
+    assert development_regression_summary(run_cases(combined, baseline={}), combined)["unused_basis_cues"] == {}
+
+def test_round1_cases_now_development():
+    cases = _load("holdout_round1_devset.json")["cases"]
+    assert len(cases) == 18
+    report = run_cases(cases, baseline={})
+    assert report.violations == 0
+    summary = development_regression_summary(report, cases)
+    assert summary["classification_distribution"] == {"COVERED": 17, "NEW_PRIMITIVE_REQUIRED": 1}
     by_id = {c["case_id"]: c for c in cases}
-    assert by_id["DEV-006"]["bundle"]["classification"]["primary_classification"] == "COVERED"
+    for cid in ("H12", "H13"):
+        assert by_id[cid]["bundle"]["classification"]["primary_classification"] == "COVERED"  # Delta 1
+        assert by_id[cid]["historical_classification_under_r2"] == "NEW_PRIMITIVE_REQUIRED"
+    assert by_id["H07"]["bundle"]["classification"]["flags"] == [
+        "HISTORICAL_R2_NEW_GENERIC_RULE_REQUIRED", "COUNTERFACTUAL_PENDING_MULTIPLICITY"]
+    assert by_id["H14"]["bundle"]["classification"]["primary_classification"] == "COVERED"  # Delta 3 reuse
+    assert by_id["H17"]["bundle"]["classification"]["primary_classification"] == "NEW_PRIMITIVE_REQUIRED"
+    for case in cases:  # no ResponseBand numbers anywhere in round-1 material
+        assert "response_band" not in case.get("bundle", {}).get("target_resolution", {})
+
+def test_counterfactual_cf_multi_1_open():
+    cfs = _load("counterfactuals.json")["counterfactuals"]
+    assert counterfactual_summary(cfs) == [{"id": "CF-MULTI-1", "status": "OPEN_PENDING_EVIDENCE",
+        "question": cfs[0]["question"]}]
+    assert cfs[0]["snapshots"]["single"] == cfs[0]["snapshots"]["multi_composed_equal"]  # aggregates controlled equal
+    assert "YES" in cfs[0]["decision_rule"] and "NO" in cfs[0]["decision_rule"]
+
+def test_contact_cause_family_and_new_validators():
+    # Delta 1: family guard
+    rule = {"rule_id": "r", "consumes": ["cue.surface_contact_disturbance", "cue.vibration_amplitude"]}
+    assert _codes(check_cause_ownership([rule], {}, "rules")) == ["CAUSE_OWNERSHIP_CONFLICT"]
+    ok = {"rule_id": "r2", "consumes": ["cue.surface_contact_disturbance", "cue.vibration_amplitude"],
+          "cause_justified": "vibration carries the blade's own rotary cause; disturbance carries the substrate plume"}
+    assert check_cause_ownership([ok], {}, "rules") == []
+    assert set(CONTACT_CAUSE_FAMILY) == {"cue.surface_contact_disturbance", "cue.vibration_amplitude",
+                                         "cue.vibration_frequency", "cue.sound_amplitude"}
+    # Delta 2: composition validator
+    good = {"sources": [{"cue.flash": "HIGH"}], "resolver": {"deterministic": True, "inputs": ["cue.flash"]}}
+    assert check_composition_resolver(good, "c") == []
+    bad = {"sources": [{"sku": "X"}], "resolver": {"deterministic": False, "inputs": ["species_preference"]}}
+    assert _codes(check_composition_resolver(bad, "c")) == ["COMPOSITION_IDENTITY_LEAK",
+                                                            "COMPOSITION_NON_DETERMINISTIC",
+                                                            "COMPOSITION_FISH_DEPENDENT"]
 
 
 def test_dev_fixture_never_asserts_responseband_numbers():
-    for case in _load("devset_r2_backfilled.json")["cases"]:
+    for case in _load("devset_r3_dev.json")["cases"]:
         assert "response_band" not in case.get("bundle", {}).get("target_resolution", {})
 
 
 def test_report_json_and_markdown_shapes():
-    cases = (_load("devset_r2_backfilled.json")["cases"]
+    cases = (_load("devset_r3_dev.json")["cases"]
+             + _load("holdout_round1_devset.json")["cases"]
              + _load("lane_selftest_cases.json")["cases"])
-    report = run_cases(cases, baseline={"baseline_commit": "9c2beebd",
+    report = run_cases(cases, baseline={"baseline_commit": "c412a6e",
                                         "r1_addendum_sha256": "test-hash"})
     data = json.loads(report.to_json())
     assert data["summary"]["cases"] == len(cases)
-    assert data["summary"]["synthetic_cases"] == 17
-    assert data["summary"]["development_cases"] == 15
+    assert data["summary"]["synthetic_cases"] == 25
+    assert data["summary"]["development_cases"] == 33  # 15 original + 18 round-1
     assert data["summary"]["findings_by_code"].get("AWAITING_BACKFILL", 0) == 0
-    assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 2  # SYN-02 only
-    assert data["summary"]["findings_by_code"]["NOT_ADMITTED_CUE"] == 3  # SYN-04 x2 + SYN-17
-    # 11 dev COVERED + 2 synthetic COVERED, 3 dev ANNOTATION_ONLY, 1 dev + 1 synthetic UNRESOLVED
+    assert data["summary"]["findings_by_code"]["FRAME_METADATA_MISSING"] == 4  # SYN-02 x2 + SYN-19 x2
+    assert data["summary"]["findings_by_code"]["NOT_ADMITTED_CUE"] == 5  # SYN-04 x2 + SYN-17 + SYN-22 x2
+    assert data["summary"]["findings_by_code"]["DICTIONARY_MEMBER_ADMISSION_REQUIRED"] == 2  # DEV-003 + SYN-25
+    # 12 + 17 dev COVERED + 3 synthetic COVERED (SYN-01/04/22), 3 dev ANNOTATION_ONLY,
+    # 1 synthetic UNRESOLVED (SYN-17), 1 NEW_PRIMITIVE (H17)
     assert data["summary"]["classification_counts"] == \
-        {"ANNOTATION_ONLY": 3, "COVERED": 13, "UNRESOLVED": 2}
+        {"ANNOTATION_ONLY": 3, "COVERED": 32, "NEW_PRIMITIVE_REQUIRED": 1, "UNRESOLVED": 1}
     assert data["summary"]["descriptor_token_counts"] == \
-        {"cue_basis": 12, "cue_candidate_extension": 1, "cue_not_admitted": 1}
+        {"cue_basis": 13, "cue_candidate_extension": 1, "cue_not_admitted": 5}
     md = report.to_markdown()
     assert "FCF-PC-BASELINE-R1-ADDENDUM-2026-09-16" in md
-    assert "9c2beebd" in md and "test-hash" in md
+    assert "c412a6e" in md and "test-hash" in md
