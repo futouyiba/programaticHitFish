@@ -21,7 +21,7 @@ class CompiledContentBundle:
     species_slow_facts: Mapping[str, Any]
     engagement_mode_routing_snapshot: Mapping[str, Any]
     surface_program_bundle: Mapping[str, Any]
-    resolved_bake_subjects: Mapping[str, Any]
+    resolved_mode_bake_configs: Mapping[str, Any]
     contributions: Tuple[CandidateContribution, ...]
 
 
@@ -144,20 +144,21 @@ def _resolve_profile_param(doc, species, mode, key):
     return None, None
 
 
-def resolve_bake_subject(
+def resolve_mode_bake_config(
     doc: Mapping[str, Any],
-    quality_ref: str,
     mode_ref: str,
     environment_facts: Optional[Mapping[str, Any]] = None,
 ) -> Mapping[str, Any]:
-    """Resolve one Species x FishQuality x EngagementMode subject with provenance."""
+    """Resolve one Species x EngagementMode Bake config with provenance.
+
+    FishQuality is intentionally absent from this subject. Quality-aware routing and
+    downstream quality selection may still preserve q x m mass/rows, but P0 Bake
+    RequiredParam resolution cannot consume FishQuality-owned overrides.
+    """
     species = doc.get("species", {})
     mode = _by_id(species.get("engagement_modes", []), mode_ref)
-    quality = _by_id(doc.get("fish_qualities", []), quality_ref)
     if mode is None:
         raise AuthoringError(f"missing EngagementMode: {mode_ref}")
-    if quality is None:
-        raise AuthoringError(f"missing FishQuality: {quality_ref}")
     program = _by_id(doc.get("surface_programs", {}).get("bake", []), mode.get("bake_program_ref"))
     if program is None:
         raise AuthoringError(f"missing Bake Program: {mode.get('bake_program_ref')}")
@@ -185,10 +186,6 @@ def resolve_bake_subject(
         for owner in owners:
             if owner == "ENGAGEMENT_MODE" and key in mode_params:
                 entry.update(status="OVERRIDE", source=owner, value=mode_params[key])
-                found = True
-                break
-            if owner == "FISH_QUALITY" and key in quality.get("narrow_param_overrides", {}):
-                entry.update(status="OVERRIDE", source=owner, value=quality["narrow_param_overrides"][key])
                 found = True
                 break
             if owner == "SPECIES_SHARED" and key in species.get("shared_params", {}):
@@ -221,7 +218,6 @@ def resolve_bake_subject(
     return {
         "identity": {
             "species": species.get("species_id"),
-            "fish_quality": quality_ref,
             "engagement_mode": mode_ref,
         },
         "program_ref": program["id"],
@@ -316,7 +312,11 @@ def lint_authoring(doc: Mapping[str, Any]) -> List[str]:
             errors.append(f"invalid FishQualityBaseWeight: {q.get('id')}")
         if any(k in q for k in ("bake_program_ref", "response_program_ref", "quality_selection_program_ref", "program_ref")):
             errors.append(f"FishQuality cannot bind Surface Program: {q.get('id')}")
-        validate_param_map(q.get("narrow_param_overrides", {}), "FISH_QUALITY", f"FishQuality {q.get('id')}")
+        if "narrow_param_overrides" in q:
+            errors.append(
+                f"FishQuality generic RequiredParam override is forbidden in factorized Bake P0: {q.get('id')}"
+            )
+        validate_param_map(q.get("stable_params", {}), "FISH_QUALITY", f"FishQuality {q.get('id')} Stable")
 
     surface_programs = doc.get("surface_programs", {})
     program_ids = {}
@@ -350,6 +350,8 @@ def lint_authoring(doc: Mapping[str, Any]) -> List[str]:
             owners = spec.get("owner_policy", [])
             if not owners or any(o not in ALLOWED_PARAM_OWNERS for o in owners):
                 errors.append(f"invalid Owner Policy: {p.get('id')}/{key}")
+            if "FISH_QUALITY" in owners:
+                errors.append(f"Bake RequiredParamSchema cannot use FISH_QUALITY owner: {p.get('id')}/{key}")
             if key in component_defs and any(o not in component_defs[key].get("allowed_owners", []) for o in owners):
                 errors.append(f"Owner Policy exceeds ComponentDefinition: {p.get('id')}/{key}")
             if "PROGRAM_CONST" in owners and "const_value" in spec:
@@ -434,22 +436,21 @@ def lint_authoring(doc: Mapping[str, Any]) -> List[str]:
         except (TypeError, ValueError):
             errors.append(f"invalid SpatialOpportunity weight: {s.get('support_ref')}")
 
-    # Authoring completeness resolves per Species x FishQuality x EngagementMode.
+    # Authoring completeness resolves once per Species x EngagementMode.
     valid_bake_refs = program_ids.get("bake", set())
     for m in modes:
         if m.get("bake_program_ref") not in valid_bake_refs:
             continue
-        for q in qualities:
-            try:
-                resolved = resolve_bake_subject(doc, q.get("id"), m.get("id"), environment_facts=None)
-            except AuthoringError as exc:
-                errors.append(str(exc))
-                continue
-            for entry in resolved["params"].values():
-                if entry["status"] == "MISSING" and entry["required"]:
-                    errors.append(f"MISSING_PARAM: {m.get('id')}/{q.get('id')}/{entry['key']}")
-            for orphan in resolved["orphaned"]:
-                errors.append(f"ORPHANED_PARAM: {m.get('id')}/{orphan['key']}")
+        try:
+            resolved = resolve_mode_bake_config(doc, m.get("id"), environment_facts=None)
+        except AuthoringError as exc:
+            errors.append(str(exc))
+            continue
+        for entry in resolved["params"].values():
+            if entry["status"] == "MISSING" and entry["required"]:
+                errors.append(f"MISSING_PARAM: {m.get('id')}/{entry['key']}")
+        for orphan in resolved["orphaned"]:
+            errors.append(f"ORPHANED_PARAM: {m.get('id')}/{orphan['key']}")
 
     return _dedupe(errors)
 
@@ -480,6 +481,8 @@ def compile_authoring(doc: Mapping[str, Any]) -> CompiledContentBundle:
     for s in doc["spatial_opportunities"]:
         spatial_by_mode.setdefault(s["mode_ref"], []).append(s)
 
+    # Selection compatibility stays q x m. The factorization removes q from
+    # full Bake resolution/evaluation, not from routing mass or final weighted rows.
     contributions = []
     for qid, q in qualities.items():
         base = float(q["base_weight"])
@@ -514,16 +517,14 @@ def compile_authoring(doc: Mapping[str, Any]) -> CompiledContentBundle:
         ), key=lambda x: (x["quality_ref"], x["mode_ref"]))),
     }
 
-    resolved_subjects = {}
+    resolved_mode_configs = {}
     for m in species["engagement_modes"]:
-        for q in doc["fish_qualities"]:
-            key = f"{q['id']}::{m['id']}"
-            resolved_subjects[key] = resolve_bake_subject(doc, q["id"], m["id"], environment_facts=None)
+        resolved_mode_configs[m["id"]] = resolve_mode_bake_config(doc, m["id"], environment_facts=None)
 
     return CompiledContentBundle(
         species.get("slow_facts", {}),
         routing_snapshot,
         surface_bundle,
-        resolved_subjects,
+        resolved_mode_configs,
         tuple(contributions),
     )
