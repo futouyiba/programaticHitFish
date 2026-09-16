@@ -1,4 +1,5 @@
 import json
+import math
 from copy import deepcopy
 from pathlib import Path
 
@@ -8,6 +9,7 @@ from fcf_v1.bake import (
     BakeConfigError,
     ConditionGroupSnapshot,
     FixedBakeTemplateProgram,
+    SECONDARY_LOSS_BUDGET,
 )
 
 
@@ -60,6 +62,34 @@ def test_off_time_period_does_not_require_a_fake_profile():
     assert not any(x["conditionKey"] == "TIME_PERIOD" for x in result.trace["factorResults"])
 
 
+def test_temperature_interval_gate_uses_analytic_max_not_sampling():
+    subject = deepcopy(SUBJECT)
+    subject["components"]["temperature"] = {
+        "acceptMin": 49.999,
+        "preferredMin": 50.001,
+        "preferredMax": 50.002,
+        "acceptMax": 50.003,
+        "tempThreshold": 0.9,
+        "falloffShape": "LINEAR",
+    }
+    subject["conditionBindings"]["TEMPERATURE"]["gatePolicy"] = "TRACE_RESIDUAL"
+    snapshot = ConditionGroupSnapshot(
+        "NARROW_BAND",
+        "OPEN_01",
+        {
+            "structureType": "OPEN",
+            "waterTemperatureRange": [0.0, 100.0],
+            "feedingEcologyLayer": "SURFACE",
+            "timePeriod": "MORNING",
+        },
+    )
+
+    result = PROGRAM.evaluate(subject, snapshot)
+    temp_gate = next(x for x in result.trace["gateResults"] if x["conditionKey"] == "TEMPERATURE")
+    assert temp_gate["passed"] is True
+    assert result.trace["gateFailureCap"] is None
+
+
 def test_gate_failure_cap_never_raises_a_worse_raw_result():
     subject = deepcopy(SUBJECT)
     subject["conditionBindings"]["TEMPERATURE"]["gatePolicy"] = "LOW_RESIDUAL"
@@ -88,6 +118,13 @@ def test_background_floor_only_applies_on_gate_pass_path():
     assert failed.trace["backgroundFloorApplied"] is False
 
 
+def test_background_floor_requires_background_flag():
+    subject = deepcopy(SUBJECT)
+    subject["backgroundPolicy"] = {"enabled": False, "envCoeffMin": 0.10}
+    with pytest.raises(BakeConfigError, match="envCoeffMin requires"):
+        PROGRAM.evaluate(subject, _point_snapshot(26, "GRASS_EDGE", "MIDDLE"))
+
+
 def test_base_zero_stays_zero_even_with_background_floor():
     subject = deepcopy(SUBJECT)
     subject["baseOpportunityIntensity"] = 0.0
@@ -103,11 +140,28 @@ def test_missing_condition_role_is_not_silently_off():
         PROGRAM.evaluate(subject, _point_snapshot(26, "GRASS_EDGE", "MIDDLE"))
 
 
+def test_unknown_condition_cannot_extend_the_fixed_template():
+    subject = deepcopy(SUBJECT)
+    subject["conditionBindings"]["CUSTOM_FACTOR"] = {
+        "conditionRole": "CORE",
+        "gatePolicy": "NONE",
+    }
+    with pytest.raises(BakeConfigError, match="unknown fixed-template condition"):
+        PROGRAM.evaluate(subject, _point_snapshot(26, "GRASS_EDGE", "MIDDLE"))
+
+
 def test_active_condition_requires_its_profile():
     subject = deepcopy(SUBJECT)
     subject["conditionBindings"]["TIME_PERIOD"]["conditionRole"] = "CORE"
     with pytest.raises(BakeConfigError, match="TIME_PERIOD missing affinity"):
         PROGRAM.evaluate(subject, _point_snapshot(26, "GRASS_EDGE", "MIDDLE"))
+
+
+def test_authored_discrete_affinity_is_validated_not_silently_clamped():
+    subject = deepcopy(SUBJECT)
+    subject["components"]["structure"]["affinity"]["OPEN"] = 0.02
+    with pytest.raises(BakeConfigError, match="authored affinity must be within"):
+        PROGRAM.evaluate(subject, _point_snapshot(26, "OPEN", "MIDDLE"))
 
 
 def test_gate_policy_is_finite_and_component_capability_is_fixed():
@@ -120,6 +174,20 @@ def test_gate_policy_is_finite_and_component_capability_is_fixed():
     subject["conditionBindings"]["TEMPERATURE"]["gatePolicy"] = "ARBITRARY_0_2"
     with pytest.raises(BakeConfigError, match="invalid GatePolicy"):
         PROGRAM.evaluate(subject, _point_snapshot(26, "GRASS_EDGE", "MIDDLE"))
+
+
+def test_three_secondary_suboptimal_conditions_hit_the_shared_budget():
+    subject = deepcopy(SUBJECT)
+    subject["conditionBindings"]["TEMPERATURE"]["conditionRole"] = "OFF"
+    subject["conditionBindings"]["STRUCTURE"]["conditionRole"] = "SECONDARY"
+    subject["conditionBindings"]["FEEDING_LAYER"]["conditionRole"] = "SECONDARY"
+    subject["conditionBindings"]["TIME_PERIOD"]["conditionRole"] = "SECONDARY"
+    subject["components"]["timePeriod"] = {"affinity": {"MORNING": 0.60}}
+
+    result = PROGRAM.evaluate(subject, _point_snapshot(26, "DROPOFF", "BOTTOM"))
+    assert result.trace["secondaryLossRaw"] == pytest.approx(SECONDARY_LOSS_BUDGET)
+    assert result.trace["secondaryLossApplied"] == pytest.approx(SECONDARY_LOSS_BUDGET)
+    assert result.env_coeff == pytest.approx(math.sqrt(0.60))
 
 
 def test_mapping_order_does_not_change_result():
