@@ -63,9 +63,7 @@
       "fishQualityId": "Q3"
     },
     "baseOpportunityIntensity": 1.0,
-    "backgroundPolicy": {
-      "enabled": false
-    },
+    "isBackgroundFish": false,
     "provenance": {
       "source": "TEST_STOCK_RELEASE_ROW_Q3"
     }
