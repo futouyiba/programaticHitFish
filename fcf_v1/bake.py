@@ -1,14 +1,15 @@
 """0.3.4.0-B fixed Bake template prototype.
 
-This module intentionally does not expose a DSL or per-subject program picker.
-The execution topology is system-owned; authoring only supplies component
-profiles, ConditionRole switches, and finite GatePolicy values.
+B-current runtime contract only. The module intentionally exposes no author-editable
+DSL or per-subject program picker. Static authoring resolves to a fish-side subject
+and a pond-side opportunity seed; environment evaluation consumes those two objects
+plus one canonical ConditionGroup.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
 import math
-from typing import Any, Mapping
+from typing import Any, Mapping, Sequence
 
 
 FIXED_BAKE_TEMPLATE_PROGRAM_ID = "FCF_BAKE_TEMPLATE_V1"
@@ -20,7 +21,7 @@ CORE_SUBOPTIMAL_FIT = 0.60
 SECONDARY_LOSS_SCALE = 1.0 / 6.0
 SECONDARY_LOSS_BUDGET = 0.5 * (-math.log(CORE_SUBOPTIMAL_FIT))
 
-CONDITION_ROLES = frozenset({"CORE", "SECONDARY", "OFF"})
+AGGREGATION_ROLES = frozenset({"CORE", "SECONDARY", "EXCLUDED"})
 GATE_FAILURE_CAPS = {
     "NONE": None,
     "HARD_EXCLUDE": 0.00,
@@ -34,10 +35,12 @@ class BakeConfigError(ValueError):
 
 
 @dataclass(frozen=True)
-class ConditionGroupSnapshot:
+class ConditionGroup:
     condition_group_id: str
-    semantic_support_ref: str
-    facts: Mapping[str, Any]
+    structure_type: str
+    water_temperature_range: tuple[float, float]
+    feeding_ecology_layers: tuple[str, ...]
+    time_period: str
 
 
 @dataclass(frozen=True)
@@ -47,12 +50,46 @@ class BakeEvaluationResult:
     trace: Mapping[str, Any]
 
 
-def _clamp_computed_soft_fit(value: float) -> float:
-    """Apply the AFLA soft floor to a computed suitability result.
+def migrate_legacy_binding(binding: Mapping[str, Any]) -> Mapping[str, str]:
+    """Normalize legacy ConditionRole into current AggregationRole.
 
-    Authored discrete affinities are validated separately and are never
-    silently repaired by this function.
+    OFF + NONE is losslessly equivalent to EXCLUDED + NONE. Legacy OFF with an
+    active Gate is *not* losslessly representable under the current contract and
+    therefore requires an explicit content decision instead of silent coercion.
     """
+    if "aggregationRole" in binding:
+        role = str(binding["aggregationRole"])
+    elif "conditionRole" in binding:
+        role = str(binding["conditionRole"])
+    else:
+        raise BakeConfigError("missing AggregationRole")
+    gate_policy = str(binding.get("gatePolicy", "NONE"))
+
+    if role == "OFF":
+        if gate_policy != "NONE":
+            raise BakeConfigError(
+                "legacy OFF + non-NONE GatePolicy requires explicit content migration"
+            )
+        role = "EXCLUDED"
+
+    _validate_role_gate(role, gate_policy)
+    return {"aggregationRole": role, "gatePolicy": gate_policy}
+
+
+def migrate_legacy_bindings(bindings: Mapping[str, Mapping[str, Any]]) -> Mapping[str, Mapping[str, str]]:
+    return {key: migrate_legacy_binding(value) for key, value in bindings.items()}
+
+
+def _validate_role_gate(role: str, gate_policy: str) -> None:
+    if role not in AGGREGATION_ROLES:
+        raise BakeConfigError(f"invalid AggregationRole: {role}")
+    if gate_policy not in GATE_FAILURE_CAPS:
+        raise BakeConfigError(f"invalid GatePolicy: {gate_policy}")
+    if role != "CORE" and gate_policy != "NONE":
+        raise BakeConfigError("GatePolicy must be NONE/absent unless AggregationRole=CORE")
+
+
+def _clamp_computed_soft_fit(value: float) -> float:
     if not math.isfinite(value):
         raise BakeConfigError("computed factor fit is not finite")
     return min(SOFT_FACTOR_MAX, max(SOFT_FACTOR_MIN, value))
@@ -67,23 +104,12 @@ def _authored_affinity(value: Any, label: str) -> float:
     return result
 
 
-def _validate_role(role: str) -> None:
-    if role not in CONDITION_ROLES:
-        raise BakeConfigError(f"invalid ConditionRole: {role}")
-
-
-def _validate_gate_policy(policy: str) -> None:
-    if policy not in GATE_FAILURE_CAPS:
-        raise BakeConfigError(f"invalid GatePolicy: {policy}")
-
-
 def _temperature_params(profile: Mapping[str, Any]) -> tuple[float, float, float, float, str]:
     accept_min = float(profile["acceptMin"])
     preferred_min = float(profile["preferredMin"])
     preferred_max = float(profile["preferredMax"])
     accept_max = float(profile["acceptMax"])
     shape = str(profile.get("falloffShape", "LINEAR")).upper()
-
     if not all(math.isfinite(x) for x in (accept_min, preferred_min, preferred_max, accept_max)):
         raise BakeConfigError("temperature boundaries must be finite")
     if not (accept_min <= preferred_min <= preferred_max <= accept_max):
@@ -100,22 +126,12 @@ def _falloff_value(x: float, shape: str) -> float:
     return x * x * (3.0 - 2.0 * x)
 
 
-def _falloff_integral_01(x: float, shape: str) -> float:
-    """Integral of the normalized falloff from 0 to x."""
-    x = min(1.0, max(0.0, x))
-    if shape == "LINEAR":
-        return 0.5 * x * x
-    # integral(3x^2 - 2x^3) = x^3 - 0.5x^4
-    return x**3 - 0.5 * x**4
-
-
 def _point_temperature_fit(t: float, profile: Mapping[str, Any]) -> float:
     accept_min, preferred_min, preferred_max, accept_max, shape = _temperature_params(profile)
     if t <= accept_min or t >= accept_max:
         return 0.0
     if preferred_min <= t <= preferred_max:
         return 1.0
-
     if t < preferred_min:
         width = preferred_min - accept_min
         x = 1.0 if width == 0 else (t - accept_min) / width
@@ -125,59 +141,23 @@ def _point_temperature_fit(t: float, profile: Mapping[str, Any]) -> float:
     return _falloff_value(x, shape)
 
 
-def _temperature_cumulative_fit(t: float, profile: Mapping[str, Any]) -> float:
-    """Exact integral of the piecewise temperature-fit curve from -inf to t."""
-    accept_min, preferred_min, preferred_max, accept_max, shape = _temperature_params(profile)
-    left_width = preferred_min - accept_min
-    plateau_width = preferred_max - preferred_min
-    right_width = accept_max - preferred_max
-    half_area = _falloff_integral_01(1.0, shape)  # 0.5 for both supported shapes.
-    left_area = left_width * half_area
-
-    if t <= accept_min:
-        return 0.0
-    if t < preferred_min:
-        if left_width == 0:
-            return 0.0
-        x = (t - accept_min) / left_width
-        return left_width * _falloff_integral_01(x, shape)
-    if t <= preferred_max:
-        return left_area + (t - preferred_min)
-
-    plateau_area = plateau_width
-    if t < accept_max:
-        if right_width == 0:
-            return left_area + plateau_area
-        y = (accept_max - t) / right_width
-        consumed_right_area = right_width * (half_area - _falloff_integral_01(y, shape))
-        return left_area + plateau_area + consumed_right_area
-
-    return left_area + plateau_area + right_width * half_area
-
-
-def _temperature_interval_fit(
-    t_min: float,
-    t_max: float,
-    profile: Mapping[str, Any],
-) -> tuple[float, float]:
-    """Return exact (mean_fit, max_fit) for a uniform temperature interval."""
+def _representative_temperature(temp_range: Sequence[Any]) -> tuple[float, float, float]:
+    if not isinstance(temp_range, (list, tuple)) or len(temp_range) != 2:
+        raise BakeConfigError("TEMPERATURE requires waterTemperatureRange [min,max]")
+    t_min, t_max = float(temp_range[0]), float(temp_range[1])
     if not math.isfinite(t_min) or not math.isfinite(t_max):
         raise BakeConfigError("temperature range must be finite")
     if t_min > t_max:
         raise BakeConfigError("temperature range min > max")
-    if t_min == t_max:
-        point = _point_temperature_fit(t_min, profile)
-        return point, point
+    return t_min, t_max, (t_min + t_max) / 2.0
 
-    _, preferred_min, preferred_max, _, _ = _temperature_params(profile)
-    integral = _temperature_cumulative_fit(t_max, profile) - _temperature_cumulative_fit(t_min, profile)
-    mean_fit = integral / (t_max - t_min)
 
-    if t_min <= preferred_max and t_max >= preferred_min:
-        max_fit = 1.0
-    else:
-        max_fit = max(_point_temperature_fit(t_min, profile), _point_temperature_fit(t_max, profile))
-    return mean_fit, max_fit
+def _require_quality_ref(value: Any, label: str) -> Mapping[str, Any]:
+    if not isinstance(value, Mapping):
+        raise BakeConfigError(f"{label} fishQualityRef must be a mapping")
+    if not value.get("fishQualityId"):
+        raise BakeConfigError(f"{label} fishQualityRef missing fishQualityId")
+    return value
 
 
 class FixedBakeTemplateProgram:
@@ -189,19 +169,27 @@ class FixedBakeTemplateProgram:
     def evaluate(
         self,
         resolved_subject: Mapping[str, Any],
-        snapshot: ConditionGroupSnapshot,
+        resolved_seed: Mapping[str, Any],
+        condition_group: ConditionGroup,
     ) -> BakeEvaluationResult:
-        if resolved_subject.get("bakeTemplateProgramId") != FIXED_BAKE_TEMPLATE_PROGRAM_ID:
-            raise BakeConfigError("unexpected fixed Bake template program id")
-        if resolved_subject.get("bakeAlgorithmContractVersion") != BAKE_ALGORITHM_CONTRACT_VERSION:
-            raise BakeConfigError("unexpected Bake algorithm contract version")
+        if any(key in resolved_subject for key in ("fishPondRef", "baseOpportunityIntensity", "backgroundPolicy")):
+            raise BakeConfigError("ResolvedSpatialOpportunitySubject must not contain Pond-owned opportunity truth")
+        if any(key in resolved_seed for key in ("resolvedComponentProfiles", "resolvedSpatialOpportunityBindings")):
+            raise BakeConfigError("ResolvedOpportunitySeed must not contain fish-side profile/binding truth")
 
-        base = float(resolved_subject["baseOpportunityIntensity"])
+        subject_quality = _require_quality_ref(resolved_subject.get("fishQualityRef"), "subject")
+        seed_quality = _require_quality_ref(resolved_seed.get("fishQualityRef"), "seed")
+        if dict(subject_quality) != dict(seed_quality):
+            raise BakeConfigError("subject/seed fishQualityRef mismatch")
+        if not resolved_seed.get("fishPondRef"):
+            raise BakeConfigError("ResolvedOpportunitySeed missing fishPondRef")
+
+        base = float(resolved_seed["baseOpportunityIntensity"])
         if not math.isfinite(base) or base < 0:
             raise BakeConfigError("invalid BaseOpportunityIntensity")
 
-        bindings = resolved_subject.get("conditionBindings", {})
-        components = resolved_subject.get("components", {})
+        bindings = resolved_subject.get("resolvedSpatialOpportunityBindings", {})
+        components = resolved_subject.get("resolvedComponentProfiles", {})
         unknown_conditions = set(bindings) - set(self.condition_slots)
         if unknown_conditions:
             raise BakeConfigError(f"unknown fixed-template condition(s): {sorted(unknown_conditions)}")
@@ -214,45 +202,46 @@ class FixedBakeTemplateProgram:
 
         for condition_key in self.condition_slots:
             if condition_key not in bindings:
-                raise BakeConfigError(f"missing ConditionRole/GatePolicy: {condition_key}")
+                raise BakeConfigError(f"missing AggregationRole/GatePolicy: {condition_key}")
             binding = bindings[condition_key]
-            role = str(binding["conditionRole"])
+            if "conditionRole" in binding:
+                raise BakeConfigError("legacy ConditionRole must be migrated before B-current evaluation")
+            role = str(binding.get("aggregationRole", ""))
             gate_policy = str(binding.get("gatePolicy", "NONE"))
-            _validate_role(role)
-            _validate_gate_policy(gate_policy)
+            _validate_role_gate(role, gate_policy)
             if gate_policy != "NONE" and condition_key not in self.gate_capable:
                 raise BakeConfigError(f"GatePolicy unsupported for {condition_key}")
 
-            needs_factor = role != "OFF"
-            needs_gate = gate_policy != "NONE"
-            if not needs_factor and not needs_gate:
+            if role == "EXCLUDED":
                 continue
 
             raw_fit: float
-            gate_passed = True
             raw_inputs: Mapping[str, Any]
             is_computed_continuous_fit = False
+            gate_passed = True
 
             if condition_key == "TEMPERATURE":
                 profile = components.get("temperature")
                 if profile is None:
                     raise BakeConfigError("active TEMPERATURE missing profile")
-                temp_range = snapshot.facts.get("waterTemperatureRange")
-                if not isinstance(temp_range, (list, tuple)) or len(temp_range) != 2:
-                    raise BakeConfigError("TEMPERATURE requires waterTemperatureRange [min,max]")
-                t_min, t_max = float(temp_range[0]), float(temp_range[1])
-                raw_fit, max_fit = _temperature_interval_fit(t_min, t_max, profile)
-                raw_inputs = {"waterTemperatureRange": [t_min, t_max], "maxFit": max_fit}
+                t_min, t_max, representative = _representative_temperature(
+                    condition_group.water_temperature_range
+                )
+                raw_fit = _point_temperature_fit(representative, profile)
+                raw_inputs = {
+                    "waterTemperatureRange": [t_min, t_max],
+                    "representativeTemp": representative,
+                }
                 is_computed_continuous_fit = True
-                if needs_gate:
+                if gate_policy != "NONE":
                     threshold = float(profile["tempThreshold"])
                     if not math.isfinite(threshold) or not (0.0 <= threshold <= 1.0):
                         raise BakeConfigError("tempThreshold must be within [0,1]")
-                    gate_passed = max_fit >= threshold
+                    gate_passed = raw_fit >= threshold
 
             elif condition_key == "STRUCTURE":
                 profile = components.get("structure", {}).get("affinity", {})
-                structure_type = snapshot.facts.get("structureType")
+                structure_type = condition_group.structure_type
                 if not profile or structure_type not in profile:
                     raise BakeConfigError(f"STRUCTURE missing affinity for {structure_type}")
                 raw_fit = _authored_affinity(profile[structure_type], f"STRUCTURE/{structure_type}")
@@ -260,24 +249,51 @@ class FixedBakeTemplateProgram:
 
             elif condition_key == "FEEDING_LAYER":
                 profile = components.get("feedingLayer", {}).get("affinity", {})
-                layer = snapshot.facts.get("feedingEcologyLayer")
-                if not profile or layer not in profile:
-                    raise BakeConfigError(f"FEEDING_LAYER missing affinity for {layer}")
-                raw_fit = _authored_affinity(profile[layer], f"FEEDING_LAYER/{layer}")
-                raw_inputs = {"feedingEcologyLayer": layer}
+                layers = tuple(condition_group.feeding_ecology_layers)
+                if not layers:
+                    raise BakeConfigError("FEEDING_LAYER requires at least one FeedingEcologyLayer")
+                missing = [layer for layer in layers if layer not in profile]
+                if not profile or missing:
+                    raise BakeConfigError(f"FEEDING_LAYER missing affinity for {missing or layers}")
+                layer_fits = {
+                    layer: _authored_affinity(profile[layer], f"FEEDING_LAYER/{layer}")
+                    for layer in layers
+                }
+                raw_fit = max(layer_fits.values())
+                raw_inputs = {
+                    "feedingEcologyLayers": list(layers),
+                    "layerFits": layer_fits,
+                }
 
             elif condition_key == "TIME_PERIOD":
                 profile = components.get("timePeriod", {}).get("affinity", {})
-                period = snapshot.facts.get("timePeriod")
+                period = condition_group.time_period
                 if not profile or period not in profile:
                     raise BakeConfigError(f"TIME_PERIOD missing affinity for {period}")
                 raw_fit = _authored_affinity(profile[period], f"TIME_PERIOD/{period}")
                 raw_inputs = {"timePeriod": period}
 
-            else:  # pragma: no cover - condition_slots is fixed above.
+            else:  # pragma: no cover
                 raise BakeConfigError(f"unknown condition slot: {condition_key}")
 
-            if needs_gate:
+            applied_fit = _clamp_computed_soft_fit(raw_fit) if is_computed_continuous_fit else raw_fit
+            loss = -math.log(applied_fit)
+            factor_results.append(
+                {
+                    "conditionKey": condition_key,
+                    "aggregationRole": role,
+                    "rawInputs": dict(raw_inputs),
+                    "rawFit": raw_fit,
+                    "appliedFit": applied_fit,
+                    "loss": loss,
+                }
+            )
+            if role == "CORE":
+                core_loss += loss
+            elif role == "SECONDARY":
+                secondary_loss_unscaled += loss
+
+            if gate_policy != "NONE":
                 cap = GATE_FAILURE_CAPS[gate_policy]
                 gate_results.append(
                     {
@@ -290,39 +306,17 @@ class FixedBakeTemplateProgram:
                 if not gate_passed:
                     failed_caps.append(float(cap))
 
-            if needs_factor:
-                applied_fit = (
-                    _clamp_computed_soft_fit(raw_fit)
-                    if is_computed_continuous_fit
-                    else raw_fit
-                )
-                loss = -math.log(applied_fit)
-                factor_results.append(
-                    {
-                        "conditionKey": condition_key,
-                        "conditionRole": role,
-                        "rawInputs": dict(raw_inputs),
-                        "rawFit": raw_fit,
-                        "appliedFit": applied_fit,
-                        "loss": loss,
-                    }
-                )
-                if role == "CORE":
-                    core_loss += loss
-                elif role == "SECONDARY":
-                    secondary_loss_unscaled += loss
-
         secondary_loss_raw = SECONDARY_LOSS_SCALE * secondary_loss_unscaled
         secondary_loss_applied = min(secondary_loss_raw, SECONDARY_LOSS_BUDGET)
         raw_env_coeff = math.exp(-(core_loss + secondary_loss_applied))
 
         gate_failure_cap = min(failed_caps) if failed_caps else None
-        background_policy = resolved_subject.get("backgroundPolicy", {"enabled": False})
-        floor_applied = False
+        background_policy = resolved_seed.get("backgroundPolicy", {"enabled": False})
         background_enabled = bool(background_policy.get("enabled", False))
         if not background_enabled and "envCoeffMin" in background_policy:
             raise BakeConfigError("envCoeffMin requires backgroundPolicy.enabled=true")
 
+        floor_applied = False
         if gate_failure_cap is not None:
             final_env_coeff = min(raw_env_coeff, gate_failure_cap)
         elif background_enabled:
@@ -338,8 +332,9 @@ class FixedBakeTemplateProgram:
         trace = {
             "programId": FIXED_BAKE_TEMPLATE_PROGRAM_ID,
             "algorithmContractVersion": BAKE_ALGORITHM_CONTRACT_VERSION,
-            "subjectIdentity": resolved_subject.get("identity", {}),
-            "conditionGroupId": snapshot.condition_group_id,
+            "fishQualityRef": dict(subject_quality),
+            "fishPondRef": resolved_seed["fishPondRef"],
+            "conditionGroupId": condition_group.condition_group_id,
             "baseOpportunityIntensity": base,
             "gateResults": tuple(gate_results),
             "factorResults": tuple(factor_results),
