@@ -103,16 +103,30 @@ Role change 不创建 Profile、不删除 Profile、不修改 Profile 数值。
 
 中栏集中展示 Temperature / Structure / Feeding Layer / Time Period Role 与 fail_env_coeff。ComponentCard 只显示 Role badge，不承担第二套完整 Role mutation surface。
 
-## 10. RoleControl / fail_env_coeff Working Contract
+## 10. RoleControl / fail_env_coeff / Spatial Opportunity Policy
 
-Species Role：CORE / SECONDARY / IGNORED。
-Affinity Role：沿用物种角色或本层 SET。
+Spatial Opportunity Policy 有独立 Shared Policy Template Source；payload = 四个 AggregationRole + fail_env_coeff。它是第 5 类 Template Kind，但**不是第五个 Component**，也不生成第五张 Production Component Profile。
 
-Working Delta：Role 的 CLEAR 在 Current 中缺少独立 Source/Base 语义；Phase 1 UI 不暴露 CLEAR。最低复杂度模型为 INHERIT / SET。
+Policy Source 绑定在 Species 层；Current 明确 **Affinity 没有 policySourceOverride**。Affinity 只对 Policy fields 做 patch。
+
+Role operation：
+- Species：INHERIT / SET；
+- Affinity：absent(INHERIT) / CLEAR / SET；
+- Role 不允许 ADD；
+- Affinity CLEAR = 移除继承自 Species 的 Role operation，回到 **Species 当前 Policy Template raw Role**。
+
+fail_env_coeff operation：
+- Species：INHERIT / ADD / SET；
+- Affinity：absent(INHERIT) / CLEAR / ADD / SET；
+- Affinity CLEAR = 移除继承自 Species 的 fail_env_coeff operation，回到 **Species 当前 Policy Template raw value**；
+- ADD 是绝对数值 delta，最终值必须落在 [0, 0.10]。
+
+粒度必须保持分离：
+- 四个 numeric Component override = bucket-level；
+- Role override = FishEnvAffinity row-level；
+- 同一 id 组合的不同行可以有不同 Role，Validator 不得因为 Role 不同报错。
 
 fail_env_coeff 属于 Spatial Opportunity Policy，不属于某个 Component。始终显示，不根据当前是否 Background Fish 隐藏。
-Working UI 暂用：Species base / ADD / SET；Affinity INHERIT / ADD / SET。
-Working Delta：fail_env_coeff CLEAR 缺少明确 Base/Source 语义，Phase 1 UI 暂不暴露。
 
 Diagnostics ownership：Field → FieldValueRow；Profile → ComponentCard；Policy → SpatialOpportunityPolicy；Publish/global → App header / Validation Summary。
 
@@ -159,14 +173,37 @@ enumAbsolute：Species NONE / SET；Affinity INHERIT / CLEAR / SET。
 ## 16. Template Workspace
 
 Template Workspace 使用同样三栏：左模板导航 / 中模板上下文 / 右模板值编辑。
+
+Current 有 **5 类 Live Template**：
+1. Temperature；
+2. Structure；
+3. Feeding Layer；
+4. Time Period；
+5. Spatial Opportunity Policy。
+
+Policy Template payload = 四个 Role + fail_env_coeff；只扩 TemplateKind，不扩 ComponentType，不新增 Production Policy 子表。
+
 Template 是 Source Asset，不是 Recipe。Template Value Editor 直接编辑 completeValue，不出现 ADD / SET / CLEAR / INHERIT / SourceSelector。
+
+Template 使用**两个入口、一个焦点编辑器**：
+- 从鱼的 Component / Policy 上下文钻入 Template：中栏仍保持鱼 Context；
+- 从左侧 Template Library 进入：中栏切换到 Template Context；
+- 两种入口必须复用同一 Template Value Editor，不形成两套模板编辑逻辑。
+
+name / identity：
+- source / production name 只读且不作关联键；
+- editor 中文 / 英文显示别名属于 editor-state；
+- editor 内关联按稳定 id；
+- name 永远不作 key；
+- 模板显示名由作者维护，不从 production name 自动充当 identity。
 
 display name / description 等 metadata 可 autosave。
 Template completeValue 修改：candidate buffer → Impact Preview → explicit confirm → atomic commit。不是普通 field autosave。
 
-Impact Preview 必须区分：直接引用 / 实际使用 / 最终结果变化。
+Impact Preview 必须区分：直接引用 / 实际使用 / 最终结果变化 / 新增 Error·Warning。
 Template Value Edit 的 Impact 使用 Effective Consumers；Replace References 的 mutation target 只使用 Direct References。
 禁止给继承 child 自动写新的 sourceOverride。
+共享模板正常传播本身**不为每个 consumer 制造人工待复核债**；只有真实诊断 / review condition 才进入待复核。
 
 ## 17. Template lifecycle
 
@@ -177,19 +214,47 @@ Hard Delete：DirectReferenceCount > 0 时 blocked。
 Extract Template from current fish：Resolve 当前 Component effective profile → create new Shared Template。
 只创建资产，不自动 switch current fish source，不清 current operations，不 rewrite recipe。
 
-## 18. Working Contract Deltas to review against Current
+## 18. Third-Rebase Classification｜与最新 Current 的关系
 
-1. falloff_shape 是 enumAbsolute，SET only，不得 ADD。
-2. affinity_tier 只适用于 tieredNumeric；Temperature 不应全局 required。
-3. TimePeriod preset 是 one-shot batch SET，不是 Source / Template，不持久化 preset identity。
-4. Role 的 CLEAR 当前缺少独立 Source/Base 语义；最低复杂度模型为 INHERIT / SET。
-5. fail_env_coeff CLEAR 同样缺少明确 Base/Source；Phase 1 UI 暂不暴露。
-6. P0 不建立通用 Remove Component Profile；只支持 TimePeriod 已有合法 Empty Setup。
-7. Template completeValue 修改是高影响 staged commit，不是普通 autosave。
-8. Extract Template 只创建 Template，不自动重绑当前 Recipe。
+第三次 preflight 已对 2026-09-20 最新 Notion Current 做定点 rebase。以下内容**已经在 Current 落地，不再作为待裁 Delta**：
 
-分类：1/2 = schema correction candidate；3/6/7/8 = 产品/交互 Contract；4/5 = Current ambiguity，Freeze 前必须 delta review。
+1. Temperature `falloff` / `falloff_shape` 为 enum absolute，SET-only，不允许 ADD。
+2. `affinity_tier` 只适用于 Structure / Feeding Layer / Time Period；Temperature 免，不得伪造 CUSTOM。
+3. Time Period 晨暮型 / 昼行型 / 夜行型是 one-shot batch SET，不是 Source / Template identity，不持久化 presetId。
+4. Spatial Opportunity Policy 已有第 5 类 Shared Policy Template；Role / fail_env_coeff 的 CLEAR 均已有明确 raw-source 语义。
+5. P0 不新增通用 Remove Component Profile；已存在 Profile 删除生命周期 Deferred。
+6. Shared Template completeValue 高影响修改走 Preview + explicit confirm + atomic durable commit。
+7. Template identity / ACTIVE-ARCHIVED / DirectReferenceSet / EffectiveConsumerSet / Replace References / Hard Delete 已有 Current Contract。
+8. P0 只有一次性 Initial Bootstrap；持续 Production→Editor Reconcile Deferred。
 
+### 18.1 仍需 Notion 集成时明确处理的 UI Projection Delta
+
+当前 Current IA 写的是：
+
+> 四张 Component Card 可就地编辑“用哪个模板 / 当前聚合角色”；Policy 区整体编辑四 Role + fail_env_coeff；两处共享同一 Authoring Truth。
+
+本 Phase 1 Working Baseline 经进一步 UX 收敛后提出一个**有意的 UI Projection Delta**：
+
+- ComponentCard 保留 Source summary + Role badge，用于整体扫描与定位；
+- Source mutation 只在右侧 ComponentDetailEditor 的 SourceSelector 完成；
+- Role / fail_env_coeff mutation 集中在中栏 SpatialOpportunityPolicy 区；
+- Card 上的 Source / Role 不再提供第二套直接 mutation control；
+- 点击 Card 的 Source / Role 摘要可以定位对应 Detail / Policy control。
+
+动机：减少同一 Authoring Truth 的重复 mutation surface，避免 Card 成为第二个 mini-editor，同时保留“一眼看懂整条鱼”的摘要能力。
+
+**这不是 Current 已有事实，而是本轮 Working UI Contract 希望集成时 supersede / 调整的 IA 投影。Notion Agent 必须显式处理，不得把新旧两套同时保留。**
+
+### 18.2 仍属 Working UI 决定、但不改底层机制
+
+以下主要是 UI 投影 /交互收敛，可在不改 Runtime / Persistence semantics 的前提下集成：
+
+- FieldValueRow 折叠 / 展开信息密度；
+- Source Change Rebase Preview 的摘要布局；
+- Template Impact Preview 的筛选与 masked-change 展示；
+- blocking ERROR 下 Publish → Validation Summary 的可发现性；
+- Temperature Curve P0 作为 derived read-only visualization；
+- Explicit Negative UI Contract 中列出的降复杂度约束。
 
 ## 19. Completeness Pass｜已裁定行为护栏
 
@@ -633,21 +698,27 @@ Editor 没有 FishPond Context，因此：
 - fail_env_coeff 始终可以查看；
 - 背景鱼实际 Gate Fail 使用 Opportunity Seed / envCoeffMin 的 runtime 规则，不由本 Editor 隐藏字段来表达。
 
-### 20.9 Role inheritance 的 mutation 语义
+### 20.9 Policy Recipe / Role inheritance mutation
 
-在当前 Working Contract 下，Affinity Role：
+Current Policy Source = Species 当前 Spatial Opportunity Policy Template。
 
-```text
-patch absent
-→ inherit Species Role
+Species Role：
+- INHERIT = 使用 Policy Template raw Role；
+- SET = Species operation pin。
 
-local SET
-→ use Affinity Role
-```
+Affinity Role：
+- patch absent = 继承 Species Role operation；
+- CLEAR = 移除 Species Role operation，回到 Species 当前 Policy Template raw Role；
+- SET = Affinity local pin。
 
-“恢复为物种角色”应实现为删除 local SET / 恢复 absence，而不是写另一个等值 SET。
+因此“恢复为物种角色”（patch absent）与“恢复为 Policy Source raw Role”（CLEAR）是两个不同动作，UI 必须区分。
 
-不要根据数值 / enum 相等自动推断“已恢复继承”。
+fail_env_coeff 同构：
+- patch absent = 继承 Species operation；
+- CLEAR = 回到 Species 当前 Policy Template raw fail_env_coeff；
+- ADD / SET = Affinity local operation。
+
+不要根据最终值 / enum 相等自动推断 inherit、CLEAR 或 SET。
 
 ### 20.10 Profile presence 的 P0 capability
 
@@ -718,18 +789,23 @@ candidate：
 - confirm 后一次 atomic commit；
 - Impact Preview 以 candidate resolved result 对比 current durable result。
 
-### 20.15 Template direct references 必须包含非鱼对象引用
+### 20.15 Template direct references / Policy direct refs
 
 DirectReferenceSet 不只包括 Species / Affinity。
 
 凡 durable ref 显式指向 Template，都计入 hard-delete / replace guard，例如：
 
-- Species sourceRef；
-- Affinity sourceOverride；
-- Preset 内的 sourceRef（若 Current 存在该引用形式）；
+- Species Component Recipe sourceRef；
+- Affinity Component sourceOverride；
+- SpeciesPreset bindings；
+- Species Policy source binding；
 - 其他 Current 明确定义的 direct durable refs。
 
-因此 hard delete 的 “DirectReferenceCount = 0” 必须覆盖这些 ref owner，不能只扫描鱼。
+Policy Template 有一个重要例外：
+- direct refs = Species policy source binding + SpeciesPreset policy binding；
+- **Affinity 没有 policySourceOverride**，不得虚构 Affinity Policy direct ref。
+
+因此 hard delete 的 “DirectReferenceCount = 0” 必须覆盖全部合法 ref owner，不能只扫描鱼。
 
 若 Preset 指向已 ARCHIVED Source：
 
@@ -815,10 +891,19 @@ Quality / Fish Quality 虽然业务上可能未来需要自己的编辑面，但
 
 ### 20.21 Object navigation Phase 1 scope
 
-左栏 Phase 1 可按两大类组织：
+左栏 Phase 1 至少承接 Current 的三类入口：
 
-- Fish / Species / Affinity objects；
-- Template objects，并按 Component Type 分组。
+- FISH：Species → Habit / Affinity；FishQuality 用于定位其 FishEnvAffinityRef / Compat shell，Quality Stable Data 本版不开放；
+- TEMPLATES：5 类 Template（Temperature / Structure / Feeding Layer / Time Period / Spatial Opportunity Policy）；
+- SPECIES PRESETS：一次性装配配方。
+
+Species Preset：
+- 一次性写入 5 个 Source binding（四 Component + Policy）；
+- apply 后不成为 parent / live inheritance layer；
+- Preset 自己是 Template DirectReference owner；
+- 若引用 ARCHIVED Source，则 invalid-for-apply，禁止 fallback / skip。
+
+Share / Routing / 分群不在 P0；若 Current UI 保留占位，必须 disabled 且不产生 Runtime 行为。
 
 DSL 不作为 Phase 1 左栏主导航对象。
 
@@ -914,7 +999,104 @@ Phase 1 追求的是“最低总复杂度”，不是视觉控件数量最少。
 
 
 
-## 21. Phase 1 Freeze Boundary
+## 21. Third Preflight Addendum｜Current Rebase 补齐
+
+### 21.1 Affinity Tier anchors + ranges
+
+Current UI Authoring 四档：
+
+| Tier | Anchor | 可表达范围 |
+|---|---:|---:|
+| PREFERRED | 1.00 | 1.00 |
+| SUBOPTIMAL | 0.60 | 0.50–0.75 |
+| ACCEPTABLE | 0.25 | 0.20–0.30 |
+| REJECT | 0.05 | 0.00–0.10 |
+
+Custom 可表达精确值，但不能因为数字落进某 Tier range 就自动声称该 Tier。
+
+离散 Soft Fit = 0 时：
+- CORE：触发 Gate；
+- SECONDARY：不触发 Gate，只作为 Secondary fit 参与其固定聚合语义；
+- IGNORED：不消费。
+
+### 21.2 Time Period preset exact payload
+
+Current 的 5 段为：
+
+```text
+DAWN / MORNING / AFTERNOON / DUSK / NIGHT
+```
+
+一次性填表 Preset：
+
+| Preset | DAWN | MORNING | AFTERNOON | DUSK | NIGHT |
+|---|---:|---:|---:|---:|---:|
+| 晨暮型 | 1.00 | 0.25 | 0.25 | 1.00 | 0.05 |
+| 昼行型 | 0.60 | 1.00 | 1.00 | 0.60 | 0.05 |
+| 夜行型 | 0.25 | 0.05 | 0.05 | 0.25 | 1.00 |
+
+它们批量生成 SET + 明确 Tier metadata；应用后单字段可独立修改，不能继续宣称仍属于某 preset。
+
+### 21.3 Five-template taxonomy
+
+TemplateKind Current：
+
+```text
+TEMPERATURE
+STRUCTURE
+FEEDING_LAYER
+TIME_PERIOD
+SPATIAL_OPPORTUNITY_POLICY
+```
+
+第五类只属于 Template taxonomy；不扩 ComponentType，不增加 Runtime 第五条件槽，不新增 Production Policy 子表。
+
+### 21.4 Numeric override vs Role override granularity
+
+实现 / Figma 解释 provenance 时必须尊重：
+
+```text
+numeric component override
+→ bucket-level (young / mature)
+
+Role override
+→ FishEnvAffinity row-level
+```
+
+不能因为 UI 把两者放在同一个 Policy / Component context 就把 record 粒度合并。
+
+### 21.5 Two Template entry routes, one editor
+
+同一个 Template 可以从：
+
+1. Fish / Component Context 钻入：中栏保持鱼 Context，右栏打开 Template editor；
+2. Template Library 导航进入：中栏切到 Template Context，右栏仍使用同一 Template editor。
+
+这与 19.1 Context / Focus 可 detached 的 IA 一致。
+
+### 21.6 Name / identity discipline
+
+- production row name = display only；
+- editor 中文 / 英文 alias = display only；
+- template displayName = display only；
+- association / reference = stable id；
+- name 永不作 key；
+- 不把 inheritance lineage 编进 production name；
+- 新增 production profile 的 name 只作为人类可读 semantic label。
+
+### 21.7 Review debt boundary
+
+Shared Template 正常传播：
+
+- 必须 Impact Preview；
+- 必须在确认前显示 direct / effective / changed / diagnostics；
+- **确认提交后不因为“传播到了很多 consumer”就自动给每个 consumer 创建待复核债**。
+
+Review / 待复核只来自真实需要人工处理的 condition，而不是普通 live-source propagation 本身。
+
+
+
+## 22. Phase 1 Freeze Boundary
 
 下一步：Current delta review → classify UI-only vs schema/current changes → Freeze Contract → Figma Structure vertical slice → Code Structure vertical slice。
 本文件仍是 Working Baseline，不得直接作为 Figma / Implementation 最终 Authority。
