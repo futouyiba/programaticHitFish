@@ -454,7 +454,467 @@ Shared Template 是 complete-value asset：
 这组状态作为 Phase 1 Figma 与 Code 的共同 acceptance story，避免两边各自重新解释 Contract。
 
 
-## 20. Phase 1 Freeze Boundary
+
+## 20. Exhaustive Integration Guardrails｜跨 UI / Persistence / Projection 补齐
+
+本节补齐第二轮完整性审计中发现的跨层约束。目的不是扩大 Phase 1 scope，而是防止 Figma / Code 在实现 UI Contract 时重新发明已经裁定的 persistence、projection 或 scope 语义。
+
+### 20.1 Authoring Truth：持久化意图，不持久化 resolved value
+
+Editor durable state 保存：
+
+- Source binding / sourceOverride；
+- Species operation；
+- Affinity patch；
+- Role / Policy authoring intent；
+- Template completeValue；
+- 必要 identity / lifecycle metadata。
+
+Editor durable state **不把 Effective / resolved value 当第二份可编辑真相**。
+
+Effective Value、provenance、diagnostics、Impact result 均由当前 durable authoring state + schema / resolver 派生。
+
+因此：
+
+- 不持久化一份独立 “resolved value cache” 作为 authoring truth；
+- 不持久化 diagnostics list 作为第二真相；
+- UI 上的 Effective Value 是 read-only derived result；
+- equal payload 不允许反向覆盖 authoring intent。
+
+### 20.2 Autosave 物理语义
+
+普通 authoring mutation 使用 autosave UX，但不是 per-keystroke / per-character 同步写盘。
+
+推荐物理行为：
+
+```text
+semantic edit
+→ in-memory typed current state
+→ short debounce / coalesce
+→ atomic persist coherent editor-state object / revision
+```
+
+默认不提供普通 “Save” 按钮。
+
+高影响动作例外：
+
+- Source Change；
+- Shared Template completeValue mutation；
+- Concrete Reimport；
+- TimePeriod batch Preset；
+- Replace References。
+
+这些动作使用：
+
+```text
+prepare candidate
+→ Impact / Diff Preview
+→ explicit confirm
+→ one atomic durable commit
+```
+
+Preview candidate 只是短命 UI state，不形成 durable Draft Entity。
+
+### 20.3 Preview 与 Publish 读取边界
+
+- Inline / local Preview 可以读取当前最新、typed-valid 的 in-memory candidate；
+- Publish 只读取成功 durable persist 的 editor-state revision；
+- raw input 尚未形成 typed mutation 时不得参与 Publish；
+- 若存在尚未确认的 staged high-impact candidate，Publish 不得偷偷把 candidate 当 durable truth。
+
+### 20.4 Revision conflict
+
+Editor persistence 使用 optimistic conflict detection：
+
+- load 时保留 expected revision / hash；
+- commit 时只在 expected revision 仍匹配时写入；
+- external editor-state change 发生后，禁止 last-write-wins；
+- 禁止静默 auto-merge；
+- 进入 reload / compare / reconcile 路径。
+
+“生产配置外部变化”与“Editor State revision conflict”是两类不同问题，不得混为同一个保存失败原因。
+
+### 20.5 Source capability matrix
+
+P0 不要求所有 Component 支持所有 Source kind。
+
+**Structure**
+
+- Species：SharedTemplateSource；
+- Affinity：follow Species 或 pin 合法 SharedTemplateSource。
+
+**Feeding Layer**
+
+- Species：SharedTemplateSource；
+- Affinity：follow Species 或 pin 合法 SharedTemplateSource。
+
+**Time Period**
+
+- Species：SharedTemplateSource；
+- Affinity：follow Species 或 pin 合法 SharedTemplateSource；
+- Profile 可以在特定合法 Empty State 下 absent。
+
+**Temperature**
+
+- Species：SharedTemplateSource 或当前 Species 自己的 SpeciesConcreteSource；
+- Affinity：follow Species，或 pin 当前 Species 可合法使用的 Temperature Source；
+- 不得 pin 另一个 Species 的 Concrete。
+
+不要为了统一 SourceSelector 而给 Structure / Feeding / TimePeriod 发明 Concrete Source。
+
+### 20.6 SourceOverride 的语义
+
+`sourceOverride` 只固定 Source Choice，不冻结全部配置。
+
+因此：
+
+- Affinity pin Source 后，若 patch absent，仍可继承 Species operation；
+- SourceOverride 不自动 SET 全部字段；
+- SourceOverride 不清 Existing Operations；
+- same-source pin 是真实 authoring intent；
+- 解除 pin = 删除 sourceOverride，重新跟随 Species Source。
+
+### 20.7 Species field edit 的 Impact 强度
+
+不是所有传播修改都需要 Modal。
+
+**普通 Species field ADD / SET**
+
+- 可在当前 Row 附近显示下游影响摘要；
+- 正常 autosave；
+- 不要求每次二次确认。
+
+推荐摘要：
+
+```text
+将改变 3 个档案
+1 个档案有本层覆盖，不受当前结果影响
+```
+
+**Component Source Change**
+
+- 必须 Rebase Preview + explicit confirm。
+
+**Shared Template Value Change**
+
+- 必须 Effective Consumer Impact Preview + explicit confirm。
+
+用不同强度对应不同 blast radius，避免所有编辑都被重型确认拖慢。
+
+### 20.8 fail_env_coeff 数值 Contract
+
+`fail_env_coeff` 的 ADD 是 **绝对数值 delta**，不是百分比，也不是 multiplier。
+
+例如：
+
+```text
+0.01 + 0.01 → 0.02
+```
+
+不是：
+
+```text
+0.01 × 1.01
+```
+
+当前生产有效范围：
+
+```text
+0 ≤ fail_env_coeff ≤ 0.10
+```
+
+越界是 ERROR + Publish Block，不是 WARNING。
+
+UI 文案优先使用“调整 / 相对调整”，避免向策划暴露 ADD 工程词。
+
+Editor 没有 FishPond Context，因此：
+
+- 不根据当前对象臆测 Background Fish；
+- fail_env_coeff 始终可以查看；
+- 背景鱼实际 Gate Fail 使用 Opportunity Seed / envCoeffMin 的 runtime 规则，不由本 Editor 隐藏字段来表达。
+
+### 20.9 Role inheritance 的 mutation 语义
+
+在当前 Working Contract 下，Affinity Role：
+
+```text
+patch absent
+→ inherit Species Role
+
+local SET
+→ use Affinity Role
+```
+
+“恢复为物种角色”应实现为删除 local SET / 恢复 absence，而不是写另一个等值 SET。
+
+不要根据数值 / enum 相等自动推断“已恢复继承”。
+
+### 20.10 Profile presence 的 P0 capability
+
+Phase 1 Authoring capability：
+
+```text
+Temperature   profileCanStartAbsent = false
+Structure     profileCanStartAbsent = false
+FeedingLayer  profileCanStartAbsent = false
+TimePeriod    profileCanStartAbsent = true
+```
+
+如果 Bootstrap / migration 后前三者缺失，应作为迁移 / 数据错误处理，不应因为 Role=IGNORED 就把它包装成常规空态。
+
+TimePeriod 是当前明确支持 Empty Setup 的 Component。
+
+### 20.11 TimePeriod Setup transaction
+
+当 TimePeriod Profile absent 时：
+
+1. Role 可以先从 IGNORED 改成 CORE / SECONDARY，并形成 semantic ERROR；
+2. Detail Editor 自动进入 Setup State；
+3. 作者选择合法 Source；
+4. 建立完整 Recipe / Source binding；
+5. 缺 Profile ERROR 消失；
+6. 作者随后可继续逐字段操作或应用 one-shot Preset。
+
+不能创建一条 required Source / identity 为 null 的半成品 Profile record。
+
+### 20.12 TimePeriod Preset Preview
+
+Preset batch preview 至少显示：
+
+- 5 个 period before / after；
+- 将替换多少已有 local operations；
+- 将新增多少 local operations；
+- 是否新增 ERROR / WARNING。
+
+确认后 5 项作为一个 atomic authoring commit。
+
+Preset 选择本身不成为长期 mode；应用后每个 period 独立编辑。
+
+### 20.13 Temperature Curve / Threshold 展示
+
+TemperatureCurvePreview 是 derived visualization。
+
+- P0 不可直接拖拽编辑；
+- CORE 时可显示 threshold 参考线并说明 Gate active；
+- SECONDARY / IGNORED 时 threshold 仍显示 / 保存，但标记“当前不参与 Gate”；
+- threshold 不改变 curve shape；
+- cross-field invalid 时曲线进入 Invalid Profile state，而不是 auto-repair。
+
+### 20.14 Template candidate edit 生命周期
+
+Shared Template completeValue 修改可在 UI 中暂存多项 candidate edit。
+
+推荐状态：
+
+```text
+N 项待审查修改
+[撤销] [审查修改]
+```
+
+candidate：
+
+- 不自动 durable；
+- 离开 Workspace 时若仍存在，应显式丢弃 / 留在当前 session，不得悄悄持久化为 Draft Entity；
+- confirm 后一次 atomic commit；
+- Impact Preview 以 candidate resolved result 对比 current durable result。
+
+### 20.15 Template direct references 必须包含非鱼对象引用
+
+DirectReferenceSet 不只包括 Species / Affinity。
+
+凡 durable ref 显式指向 Template，都计入 hard-delete / replace guard，例如：
+
+- Species sourceRef；
+- Affinity sourceOverride；
+- Preset 内的 sourceRef（若 Current 存在该引用形式）；
+- 其他 Current 明确定义的 direct durable refs。
+
+因此 hard delete 的 “DirectReferenceCount = 0” 必须覆盖这些 ref owner，不能只扫描鱼。
+
+若 Preset 指向已 ARCHIVED Source：
+
+- Preset 不得静默 fallback；
+- 不得跳过该字段后继续应用；
+- 应阻断 apply 并明确 source 已归档 / 不可用于新引用。
+
+### 20.16 Production projection boundary
+
+Production 是 Editor Authoring 的 runtime projection，不是 Authoring Graph 镜像，也不能用 payload equality 反向决定 authoring topology。
+
+Projection reuse 依照结构化 authoring intent：
+
+- Species 使用 Shared Template 且无 effective local operation：可复用该 Template 的 production profile；
+- Affinity 完全 follow Species：可复用 Species projection；
+- Affinity explicit sourceOverride 到 Shared Template 且无 effective local operation：可复用该 Shared Template projection，即使 Source Choice 是显式 pin；
+- 任意 effective ADD / SET 存在：该 owner 需要 own projection；
+- equal-value SET 仍是 pin，因此不能因为 payload 相同就 collapse；
+- SpeciesConcreteSource 即使无 operation，仍是 Species-owned projection；
+- 不允许把互不相关 owner 仅因当前 payload hash 相等就全局 dedup。
+
+Production profile identity 应稳定；owner recipe 改变时优先原位更新其 projection。若 local semantic fork 被删除并重新 collapse 到 parent projection，旧 own row 才成为 orphan candidate。
+
+Production profile `name` 只是人类可读 label，不是 identity / join / reuse key。
+
+### 20.17 Spatial Opportunity Policy 的 production projection
+
+Spatial Opportunity Policy 不是第五个 Component Profile。
+
+Role / fail_env_coeff 等 Policy authoring state 在 Publish 时投影到既有 runtime / FishEnvAffinity physical fields。
+
+UI / code 不应为了统一 ComponentCard 而制造一个新的 “Policy Component Profile” production asset。
+
+### 20.18 Bootstrap / Production→Editor P0 boundary
+
+当前 release 的 Production→Editor 能力只包含 **one-time Initial Bootstrap**：
+
+```text
+existing Production config
+→ bootstrap / seed editor durable state
+→ thereafter Editor State is authoring truth
+```
+
+P0 不提供持续的 Production→Editor bulk reconcile / adopt production values。
+
+允许的 P0 后续能力最多是 read-only drift detection / status；不得在 Fish Habit Editor 中出现：
+
+- Adopt Production；
+- Import Production Changes；
+- bulk reverse reconcile；
+- 从 Production 反推 Template / Species / ADD / Concrete authoring intent。
+
+持续 Reconcile 属于下一 release / 后续显式设计。
+
+### 20.19 Bootstrap 与 Phase 1 UI 的关系
+
+`BootstrapSurface` 可由并行实现处理，但不改变 Phase 1 Authoring Contract。
+
+Roundtrip smoke test 应验证：
+
+```text
+Production
+→ Initial Bootstrap
+→ Editor
+→ no authoring edits
+→ Publish
+→ Production semantic parity
+```
+
+这用于验证迁移完整性，不意味着 Production 重新成为持续 authoring truth。
+
+### 20.20 Quality P0 scope guard
+
+Quality / Fish Quality 虽然业务上可能未来需要自己的编辑面，但当前 B P0 的 Quality Stable Data / Quality Recipe / Quality Template 不在本 Phase 1 Editor scope。
+
+因此 Figma / Code 不应在本阶段：
+
+- 新建 Quality Template library；
+- 把 Quality 作为第五个 habit Component；
+- 为 XP / coin / length / weight 引入新的 Source / Recipe / Patch 链。
+
+若后续 Current 明确启用 Quality authoring，再作为独立增量进入。
+
+### 20.21 Object navigation Phase 1 scope
+
+左栏 Phase 1 可按两大类组织：
+
+- Fish / Species / Affinity objects；
+- Template objects，并按 Component Type 分组。
+
+DSL 不作为 Phase 1 左栏主导航对象。
+
+Template referencers / affected objects 放在中栏 Context 下部，而不是把引用关系树塞进主导航。
+
+### 20.22 Production drift 与 save conflict 必须区分 UI 文案
+
+至少区分：
+
+**保存冲突**
+
+```text
+当前 Editor State revision 已被外部修改
+→ reload / compare
+```
+
+**Production drift**
+
+```text
+Production config 与当前 editor projection 不一致
+→ P0 read-only diagnostic
+```
+
+不能把二者都显示成“保存失败”。
+
+### 20.23 Temperature / TimePeriod / Template acceptance variants
+
+除 Structure 13 个 variants 外，Phase 1 至少保留以下验收状态。
+
+**Temperature**
+
+1. Shared Template Source；
+2. SpeciesConcrete Source；
+3. Affinity inherited；
+4. Affinity explicit Source Override；
+5. numericRelative ADD / SET；
+6. enumAbsolute SET；
+7. cross-field ERROR / Invalid Curve；
+8. CORE threshold active；
+9. non-CORE threshold inactive-but-preserved；
+10. Concrete Reimport Preview。
+
+**Time Period**
+
+1. legal IGNORED + Profile absent；
+2. CORE + Profile absent ERROR；
+3. Source selected / zero local ops；
+4. Preset Batch Preview；
+5. 5 SET after preset；
+6. IGNORED-but-configured；
+7. Profile error while IGNORED；
+8. Source Change with all SET values masked。
+
+**Template Workspace**
+
+1. ACTIVE clean；
+2. ACTIVE with staged candidate edits；
+3. Template Value Impact Preview；
+4. Replace References Impact Preview；
+5. ARCHIVED read-only；
+6. Restore；
+7. Hard Delete blocked by direct refs；
+8. Extract Template without automatic rebind。
+
+### 20.24 No hidden coupling rules
+
+Phase 1 不允许以下 silent coupling：
+
+- Source Change → 自动改 Role；
+- Role Change → 自动换 Source；
+- Role IGNORED → 自动删 Profile；
+- Template Reimport / Concrete Reimport → 自动切 Recipe Source；
+- Preset Apply → 自动创建长期 preset identity；
+- equal value → 自动转 inherit；
+- same source → 自动删除 sourceOverride；
+- Profile payload equality → 自动合并 authoring owners；
+- Archived Source → 自动 fallback；
+- Broken Source → 自动 fallback。
+
+所有 topology / intent 变化都必须来自明确 authoring action。
+
+### 20.25 Complete negative knowledge summary
+
+Phase 1 追求的是“最低总复杂度”，不是视觉控件数量最少。以下复杂度迁移也视为失败：
+
+- 为了少一个 Source 类型，给所有 Component 强行加入 Concrete；
+- 为了统一字段编辑器，让 enum 支持伪 ADD；
+- 为了统一 Card，把 Policy 做成第五个 Component；
+- 为了减少 ERROR state，偷偷 clamp / sort / repair；
+- 为了减少 Profile 数量，按 payload hash 全局 dedup；
+- 为了让空态整齐，把全部 Component 都做 optional；
+- 为了看起来省操作，把 Source change、Role change、Operation change 合成一个隐式 mutation。
+
+
+
+## 21. Phase 1 Freeze Boundary
 
 下一步：Current delta review → classify UI-only vs schema/current changes → Freeze Contract → Figma Structure vertical slice → Code Structure vertical slice。
 本文件仍是 Working Baseline，不得直接作为 Figma / Implementation 最终 Authority。
