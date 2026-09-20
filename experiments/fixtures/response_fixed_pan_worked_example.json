@@ -1,0 +1,22 @@
+{
+  "status": "WORKING_EXAMPLE_NOT_PRODUCTION_DATA",
+  "panScale": 100,
+  "mapping": {
+    "LOW": 0.25,
+    "NORMAL": 0.50
+  },
+  "candidates": [
+    {
+      "candidateId": "TARGET",
+      "preResponseWeight": 40,
+      "responseBand": "HIGH",
+      "isTarget": true
+    },
+    {
+      "candidateId": "OTHER",
+      "preResponseWeight": 30,
+      "responseBand": "NORMAL",
+      "isTarget": false
+    }
+  ]
+}
