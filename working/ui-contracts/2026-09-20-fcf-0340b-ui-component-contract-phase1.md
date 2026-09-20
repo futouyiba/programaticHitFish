@@ -79,11 +79,34 @@ Autosave UI：已保存 / 已保存 · 有错误 / 保存中… / 保存失败�
 
 ## 7. ComponentCard + DetailEditor
 
-ComponentCard 只显示：Component identity、Source summary、Role badge、local operation count、diagnostic count、profile presence、source health。
-不显示 mini heatmap，不直接编辑 Source，不展开完整 provenance。
+ComponentCard 是**摘要 + 快速编辑入口**，不是只读卡。
 
-ComponentDetailEditor 负责 SourceSelector、FieldValueRow × N、Filters、Diagnostics。
-Structure Filter：全部 / 本层修改 / 问题。
+每张 Component Card 至少展示：
+- Component identity；
+- 当前 Source / Template；
+- 当前 AggregationRole；
+- inherited / override 状态；
+- local operation count；
+- diagnostic count；
+- profile presence / source health。
+
+卡片允许就地编辑：
+- **Source / Template 下拉**；
+- **Role 三态下拉（CORE / SECONDARY / IGNORED）**。
+
+这些不是独立数据副本：
+- Card Source selector 与右侧 ComponentDetailEditor 的 SourceSelector 指向同一个 Component Recipe Source binding；
+- Card Role selector 与 SpatialOpportunityPolicy 区对应 Role row 指向同一个 Policy Authoring Truth；
+- 任一入口修改后，其它入口必须立即同步反映。
+
+分工：
+- ComponentCard：定位、整体扫描、快速改 Source / Role；
+- ComponentDetailEditor：逐字段 Value / Operation / Provenance / Diagnostic 的精细编辑；
+- SpatialOpportunityPolicy：四个 Role + fail_env_coeff 的整体策略编辑与比较。
+
+Card 不显示 mini heatmap，不展开完整 field provenance，不承担逐字段 ADD / SET / CLEAR 编辑。
+
+Structure Detail Filter：全部 / 本层修改 / 问题。
 不增加二级 Field drawer；FieldValueRow 原地展开。
 
 ## 8. SourceSelector + Rebase Preview
@@ -101,7 +124,13 @@ Role 回答：这份习性在 Spatial Opportunity 中如何被消费？
 
 Role change 不创建 Profile、不删除 Profile、不修改 Profile 数值。
 
-中栏集中展示 Temperature / Structure / Feeding Layer / Time Period Role 与 fail_env_coeff。ComponentCard 只显示 Role badge，不承担第二套完整 Role mutation surface。
+UI 采用 **双入口、单 Truth**：
+- 每张 Component Card 可直接下拉修改当前 Role；
+- SpatialOpportunityPolicy 区可整体编辑四个 Role + fail_env_coeff；
+- 两处 Role 控件读写同一个 Policy Authoring Truth，必须双向同步；
+- 这不是两套 durable data，也不是两个独立 override。
+
+Source 也可在 Component Card 直接选择，但其 durable owner 仍属于该 Component Recipe Source binding，**不存入 Spatial Opportunity Policy**。Policy Template 明确不拥有四个 Component 的 Source binding。
 
 ## 10. RoleControl / fail_env_coeff / Spatial Opportunity Policy
 
@@ -227,23 +256,42 @@ Extract Template from current fish：Resolve 当前 Component effective profile 
 7. Template identity / ACTIVE-ARCHIVED / DirectReferenceSet / EffectiveConsumerSet / Replace References / Hard Delete 已有 Current Contract。
 8. P0 只有一次性 Initial Bootstrap；持续 Production→Editor Reconcile Deferred。
 
-### 18.1 仍需 Notion 集成时明确处理的 UI Projection Delta
+### 18.1 Component Card × Policy：Current 已明确的双入口单 Truth
 
-当前 Current IA 写的是：
+第三次复核后确认：此前把 Card 收窄为只读摘要，是本轮中途产生的错误收敛，**不应进入集成**。
 
-> 四张 Component Card 可就地编辑“用哪个模板 / 当前聚合角色”；Policy 区整体编辑四 Role + fail_env_coeff；两处共享同一 Authoring Truth。
+Current UI / IA 已明确：
 
-本 Phase 1 Working Baseline 经进一步 UX 收敛后提出一个**有意的 UI Projection Delta**：
+- Component Card 承担定位与摘要，并可就地改 **Template / Source + Role**；
+- 每张卡有一个 Role 三态下拉；
+- Spatial Opportunity Policy 区可整体编辑四 Role + fail_env_coeff；
+- Card Role 与 Policy Role 是**双入口、单 Truth**，不得改成单入口；
+- 逐字段数值 / ADD / SET / CLEAR 仍在右侧 Focus Editor 完成。
 
-- ComponentCard 保留 Source summary + Role badge，用于整体扫描与定位；
-- Source mutation 只在右侧 ComponentDetailEditor 的 SourceSelector 完成；
-- Role / fail_env_coeff mutation 集中在中栏 SpatialOpportunityPolicy 区；
-- Card 上的 Source / Role 不再提供第二套直接 mutation control；
-- 点击 Card 的 Source / Role 摘要可以定位对应 Detail / Policy control。
+同步规则：
 
-动机：减少同一 Authoring Truth 的重复 mutation surface，避免 Card 成为第二个 mini-editor，同时保留“一眼看懂整条鱼”的摘要能力。
+```text
+Card Role change
+→ write Policy Authoring Truth
+→ Policy section updates immediately
 
-**这不是 Current 已有事实，而是本轮 Working UI Contract 希望集成时 supersede / 调整的 IA 投影。Notion Agent 必须显式处理，不得把新旧两套同时保留。**
+Policy Role change
+→ write same Policy Authoring Truth
+→ Component Card updates immediately
+```
+
+Source 的同步范围不同：
+
+```text
+Card Source change
+→ write Component Recipe Source binding
+→ Card + DetailEditor SourceSelector update
+→ Source Rebase Preview / resolve result update
+```
+
+**Component Source 不属于 Policy payload。** Spatial Opportunity Policy Template 只拥有四 Role + fail_env_coeff，不拥有四个 Component 的 Template / Source binding。
+
+因此 Notion 集成时应保留 Current 的“双入口单 Truth”，并删除本 Working MD 旧版“Card 只读 / 单入口”的残留。
 
 ### 18.2 仍属 Working UI 决定、但不改底层机制
 
@@ -475,7 +523,8 @@ Replace References：
 Phase 1 明确不做：
 
 - ComponentCard mini heatmap；
-- Card 内直接 Source dropdown；
+- **Card 内逐字段 ADD / SET / CLEAR 编辑**（Card 只允许 Source / Role 快速编辑）；
+- 为 Card Source / Role 再建一套独立 durable state；
 - Field 二级 drawer；
 - operation history timeline；
 - 每行永久展开完整 provenance；
@@ -1096,7 +1145,50 @@ Review / 待复核只来自真实需要人工处理的 condition，而不是普�
 
 
 
-## 22. Phase 1 Freeze Boundary
+## 22. Card / Policy Ownership Clarification｜第四次复核
+
+为避免“UI 在哪里编辑”与“数据归谁”混淆，最终按三层理解：
+
+### 22.1 Component Source
+
+```text
+Card Source dropdown
+↕ same truth
+DetailEditor SourceSelector
+→ Component Recipe Source binding
+```
+
+Source 不进入 Policy payload。
+
+### 22.2 AggregationRole
+
+```text
+Card Role dropdown
+↕ same truth
+SpatialOpportunityPolicy Role row
+→ Policy Authoring Truth
+→ Publish 时物化到 FishEnvAffinity Role fields
+```
+
+所以“在 Card 改 Role，Policy 区跟着变”是正确心智模型。
+
+### 22.3 fail_env_coeff
+
+只在 SpatialOpportunityPolicy 整体策略面编辑，不塞进某张 Component Card，因为它是档案级 Gate-fail policy，不属于某一个 Component。
+
+### 22.4 双入口的目的
+
+双入口不是重复数据，而是两种工作尺度：
+
+- Card：在看整条鱼时快速调 Source / Role；
+- Policy：横向比较并整体调四 Role + fail_env_coeff；
+- DetailEditor：深入一个 Component 调字段与 operation。
+
+三个 Surface 的背后仍只有对应的一份 Authoring Truth。
+
+
+
+## 23. Phase 1 Freeze Boundary
 
 下一步：Current delta review → classify UI-only vs schema/current changes → Freeze Contract → Figma Structure vertical slice → Code Structure vertical slice。
 本文件仍是 Working Baseline，不得直接作为 Figma / Implementation 最终 Authority。
