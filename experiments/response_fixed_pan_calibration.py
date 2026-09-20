@@ -25,7 +25,7 @@ import json
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
+from typing import Iterable, Mapping, Optional, Sequence
 
 
 BANDS = ("NONE", "LOW", "NORMAL", "HIGH")
@@ -320,7 +320,7 @@ def write_sweep_csv(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
         writer.writerows(rows)
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, help="explicit PreResponseWeight projection fixture")
     parser.add_argument("--sweep-csv", type=Path, help="write the default mapping x rho sweep")
