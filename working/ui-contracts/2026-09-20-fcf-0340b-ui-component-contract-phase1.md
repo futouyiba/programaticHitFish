@@ -95,13 +95,14 @@ ComponentCard 是**摘要 + 快速编辑入口**，不是只读卡。
 - **Role 三态下拉（CORE / SECONDARY / IGNORED）**。
 
 这些不是独立数据副本：
-- Card Source selector 与右侧 ComponentDetailEditor 的 SourceSelector 指向同一个 Component Recipe Source binding；
+- **前层 Source selector 与 Card Source selector** 指向同一个 Component Recipe Source binding；
 - Card Role selector 与 SpatialOpportunityPolicy 区对应 Role row 指向同一个 Policy Authoring Truth；
 - 任一入口修改后，其它入口必须立即同步反映。
 
 分工：
+- 前层 Source selector：在不钻入组件 Detail 的情况下快速换 Source；
 - ComponentCard：定位、整体扫描、快速改 Source / Role；
-- ComponentDetailEditor：逐字段 Value / Operation / Provenance / Diagnostic 的精细编辑；
+- ComponentDetailEditor：显示当前 Source 上下文，并负责逐字段 Value / Operation / Provenance / Diagnostic 的精细编辑；**不提供第三个 Source mutation selector**；
 - SpatialOpportunityPolicy：四个 Role + fail_env_coeff 的整体策略编辑与比较。
 
 Card 不显示 mini heatmap，不展开完整 field provenance，不承担逐字段 ADD / SET / CLEAR 编辑。
@@ -283,11 +284,14 @@ Policy Role change
 Source 的同步范围不同：
 
 ```text
-Card Source change
+Front-layer Source selector
+↕ same truth
+Card Source dropdown
 → write Component Recipe Source binding
-→ Card + DetailEditor SourceSelector update
 → Source Rebase Preview / resolve result update
 ```
+
+Focus / ComponentDetailEditor **不提供第三个 Source mutation 入口**；它只展示当前 Source 上下文并编辑逐字段 operation / value。
 
 **Component Source 不属于 Policy payload。** Spatial Opportunity Policy Template 只拥有四 Role + fail_env_coeff，不拥有四个 Component 的 Template / Source binding。
 
@@ -1152,11 +1156,13 @@ Review / 待复核只来自真实需要人工处理的 condition，而不是普�
 ### 22.1 Component Source
 
 ```text
-Card Source dropdown
+Front-layer Source selector
 ↕ same truth
-DetailEditor SourceSelector
+Card Source dropdown
 → Component Recipe Source binding
 ```
+
+Focus / ComponentDetailEditor 不提供第三个 Source mutation selector；只展示当前 Source 上下文并编辑字段。
 
 Source 不进入 Policy payload。
 
@@ -1180,15 +1186,50 @@ SpatialOpportunityPolicy Role row
 
 双入口不是重复数据，而是两种工作尺度：
 
+- 前层 Source：不钻入 Detail 时快速换 Source；
 - Card：在看整条鱼时快速调 Source / Role；
 - Policy：横向比较并整体调四 Role + fail_env_coeff；
-- DetailEditor：深入一个 Component 调字段与 operation。
+- DetailEditor：深入一个 Component 调字段与 operation，不重复 Source mutation。
 
 三个 Surface 的背后仍只有对应的一份 Authoring Truth。
 
 
 
-## 23. Phase 1 Freeze Boundary
+## 23. Persistence Closure Readback｜2026-09-21
+
+Notion Current 已完成并回读以下 Persistence 形状，本 Working Baseline 不再把它们当 Open：
+
+```text
+Species Base Record
+key = species_key
+├─ Component Recipes
+└─ Species Policy Recipe
+   ├─ policy_source_binding
+   ├─ Role op × 4
+   └─ fail_env_coeff op
+
+AffinityAuthoringPatch
+→ Component sourceOverride + numeric operationPatches
+
+AffinityRolePatch
+key = (row_key, component)
+→ CLEAR | SET
+
+AffinityFailEnvCoeffPatch
+key = row_key
+→ CLEAR | ADD | SET
+```
+
+约束：
+- `Species Policy Recipe` 是 `Species Base Record` 的子结构，不是整条 Base Record 的改名；
+- `AffinityAuthoringPatch` 与两条 Policy patch 轨道并列，不合并；
+- Role row patch 的 `species_key` 只作组织 / reconcile 属性，不参与唯一键；
+- 不引入 `layer` discriminator、`scope_key="*"` 或万能 Policy patch record；
+- numeric Component override 仍是 bucket-level；Role override 仍是 row-level。
+
+
+
+## 24. Phase 1 Freeze Boundary
 
 下一步：Current delta review → classify UI-only vs schema/current changes → Freeze Contract → Figma Structure vertical slice → Code Structure vertical slice。
 本文件仍是 Working Baseline，不得直接作为 Figma / Implementation 最终 Authority。
