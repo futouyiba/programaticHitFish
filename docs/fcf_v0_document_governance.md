@@ -3,9 +3,12 @@
 文档状态：**治理基线（Governance Baseline）**  
 权威级别：**文档管理政策，不替代任何 FCF 机制 contract**  
 适用范围：`experiments/fcf_simplified_v0/`、`bass_dynamic_preference/`、
-`docs/bass_dynamic_preference_*.md`，以及与 V0 实验直接相连的 README/索引和交付镜像。
+`docs/bass_dynamic_preference_*.md`、`docs/response_scheme_1.md` 与
+`docs/response_design_explained_cn.md`（Response 方案一提案及其解释层），
+以及与 V0 实验直接相连的 README/索引和交付镜像。
 
-说明：当前 Git checkout 只有 `main`，没有名为 V0 的独立分支；本清单按上述路径和
+说明：除 `main` 外，当前存在 `proposal/response-scheme-1` 提案分支（承载 Response
+方案一文档）；尚无名为 V0 的独立分支。本清单按上述路径和
 “Simplified V0 / Production V0”标记界定 V0 文档范围。若后续出现真实 V0 分支，需
 先做一次 source-map 对照，再决定哪些条目迁移或拆分。
 
@@ -30,6 +33,8 @@ V0 是数值校准和原型验证分支，不是 V1 机制权威，也不应被�
 | `docs/bass_dynamic_preference_pressure_test.md` | 三时段案例报告 | **保留，标记解释性** | 只引用当前 fixture；不得被引用为参数 authority |
 | `docs/bass_dynamic_preference_prototype_validation.md` | Prototype Gate 报告 | **保留，标记 gate evidence** | verdict 只覆盖本报告列出的 gates；不得覆盖 V1 或跨地图推广 |
 | `bass_dynamic_preference/*.py`、`output.json` | 原型实现/输出 | **保留为 V0 prototype** | 与 V1 runtime 分开；参数变更必须同步测试和报告 |
+| `docs/response_scheme_1.md` | Response 方案一提案（Pathway × FactorFit × MAX） | **保留为 canonical（proposal 分支内）** | 自我声明非 Current Authority；公式/阈值/样例数值以此文件为唯一来源；Promotion 前不得被引为 V1 或生产规格 |
+| `docs/response_design_explained_cn.md` | 方案一解释层讲解 | **保留，标记解释性** | 只摘要并链接方案一；不得新增或修改数值；与方案一分叉时以 `response_scheme_1.md` 为准 |
 | `docs/fcf_v1_*.md`、各机制 `*_mechanism_design.md` | V1 设计/contract | **不并入 V0** | V0 只能链接和提出 delta；冲突交给 V1 owner 裁决 |
 | `docs/ogre_lake_*` 与 `deliverables/...` 同名文件 | 复现实验与发布镜像 | **canonical 在 `docs/`，deliverables 只做镜像** | 只改 `docs/`；发布前复制并校验 hash，禁止双源维护 |
 | `docs/rf4_*` | 外部证据/研究 | **保持独立证据层** | 不作为 V0 参数来源；历史版本结论必须保留日期和适用范围 |

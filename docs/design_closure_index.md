@@ -12,6 +12,8 @@ identity 开始，再到解释、状态和终结结算。所有机制先完成�
 - [scoped_review_protocol.md](scoped_review_protocol.md) — PATCH / ARTIFACT / MILESTONE 分级审核与禁止结论越权规则（试行）。
 - [fcf_v0_document_governance.md](fcf_v0_document_governance.md) — Simplified V0 文档台账、重复/冲突/过时内容处置规则。
 - [fcf_v0_conflict_register.md](fcf_v0_conflict_register.md) — V0 冲突登记与 V0→V1 delta 分类。
+- [response_scheme_1.md](response_scheme_1.md) — Simplified V0 Response 方案一提案（Pathway × FactorFit × MAX），Working，未 Promotion 为 Current Authority。
+- [response_design_explained_cn.md](response_design_explained_cn.md) — 方案一的解释层讲解；公式与数值以方案一为准。
 - [Ogre Lake 使用说明](ogre_lake_visualization_user_guide.md) — 如何阅读逐层空间切块可视化。
 - [Ogre Lake companion experiment](archive/fcf_v0/ogre_lake_manual_region_companion_experiment.md) — 初版历史假设，已由可复核实验替代。
 - [RF4 Old Burg Lake estimate](archive/fcf_v0/rf4_old_burg_spatial_authoring_estimate.md) — 历史外部证据，保留用于追溯，不作为当前测算入口。
