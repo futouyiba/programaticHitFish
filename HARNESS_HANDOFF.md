@@ -360,6 +360,9 @@ Notion URL 去重清单和生成时间见 `handoff_manifest.json`。
 
 - Notion 页面当前大多 `unverified`；它们是可定位来源，不是自动完成的审核证明。
 - 本地没有 Git remote；若需要推送，必须先由项目负责人配置并核对目标 remote。
+- （2026-10-21 更新：remote 已配置——`github.com/futouyiba/programaticHitFish`，
+  `proposal/response-scheme-1` 分支已有推送记录；本条与 §8 的 remote 描述为
+  2026-09-10 交接时点状态。）
 - 生产 runtime/storage 尚未通过 RC4 的真实 factory、journal、跨进程和独立窄审
   acceptance contract。
 - Simplified V0 的 Human Usability Validation 尚未完成。

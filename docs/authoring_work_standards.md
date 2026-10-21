@@ -47,6 +47,9 @@ Share 契约：`SpecialShareTotal > 1` → 报 Validation Error 不静默归一�
 - **禁止**：「固定规则合并」「组合适应度」「满足条件后行为改变」等未展开占位。
 - **无程序面显式声明**：`NO_SURFACE_EFFECT：理由`（不是跳过，是无程序的显式记录）。
 
+> 口径更新：终步「合并」与出局值语义已由 §6.1 渐进累积基准修正——不存在独立合并步；
+> 不居留＝×0.01 软出局。本节「怎么合并」与二值 early return 的旧表述以 §6.1 为准。
+
 ### 1.5 质量管线
 
 1. 结构校验器（每批自带 validate_*.py）→ PASS 零违规
@@ -129,6 +132,8 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 3. 水温 4. 光照 5. 食物丰度 6. 流速...
 三个关键特征：有顺序的 early return 链 / 分级命中（全额/削减/出局） / 每鱼顺序不同（顺序差异本身=LogicTemplate 判据）
 
+> 出局值口径已被 §6.1 修正：不居留＝×0.01 软出局（非零、仍可参与下游选择）；需要绝对排除时须显式返回 0。
+
 ### 5.2 LT 方法论精确化
 不是泛泛分类——是对每个具体情况通过特殊习性和策略故事具体推导是否新 LogicTemplate。
 
@@ -139,6 +144,8 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 B 系列需「顺序还原修复」；census 需在顺序还原后重跑受影响族（SINGLE 41 成员可能低估）。
 
 ### 5.5 顺序还原重跑结论（2026-09-11）
+
+（时点记录：registry v7 时点状态；registry 此后已演进至 v10，当前状态见 §6.5 与 `fish_logic_census/template_registry.yaml`。）
 
 SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族（+9 新 Bake 族）。旧 SINGLE 66 成员全部移至新族。B4 饱和候选被证伪。后续饱和判定必须基于顺序还原后输入。
 
@@ -178,6 +185,11 @@ SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族�
 3. Guard 面：anchor 以「四形式值＋实例名＋participant＋修饰槽位」记，底质细值不入轴。
 4. 顺序证据不足时：标 `order_undetermined` 挂真形重验队列，**不得默认约定序**（也不得虚构顺序冒充推导）。
 
-### 6.5 registry 现状基准（v9 起）
+### 6.5 registry 基准（v9 时点；当前版本以 registry 文件为准）
 
 SINGLE RETIRED（v1 证伪）；9 链族转正（canonical 渐进语义＋`order_provisional` 标注）；HARD_GATED v2（双硬门→EXIT 档因子集，LUN+EEL；电感知归 Response/Encounter 层不进 Bake）；PATCH VACATED；PLAIN FALSIFIED；CRR＝负证据台账（live 侧资产）；TYPED/FOOD_FIELD/GUARD 名义扩容入册；B4 饱和候选撤销。**234＋14 条真形重验队列**（`truth_rebuild_queue.jsonl`）＝终局重跑输入；C9 与 brooded 由重跑证据终裁。
+
+以上为 v9 时点基准。registry 此后已按 HRQ 裁定演进至 version 10（终局顺序还原重跑输出）；
+版本与族现状一律以 [`fish_logic_census/template_registry.yaml`](../fish_logic_census/template_registry.yaml)
+为准（裁定记录见 [`fish_logic_census/hrq_decision_log.md`](../fish_logic_census/hrq_decision_log.md)），
+本标准不再复述版本号。

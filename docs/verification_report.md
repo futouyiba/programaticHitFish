@@ -1,5 +1,9 @@
 # RC4 implementation verification report
 
+Snapshot date: 2026-08-31. The counts below are point-in-time evidence for the
+RC4 verification run, not a live statement about the current test suite;
+re-run the commands for current numbers.
+
 ## Executed checks
 
 ```text

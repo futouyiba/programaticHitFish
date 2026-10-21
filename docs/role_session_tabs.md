@@ -4,6 +4,10 @@
 用户决策（2026-09-10）：坚持持久上下文角色，不用 ledger 恢复替代——tab 为主，
 subagent + 角色记忆降级为 fallback。
 
+> 2026-09-10 搭建时点记录：本文各处的 `sessionId` 与 `A:\Projs\FCF-Harness-Handoff`
+> 路径为当时 Windows 工作区位置与当时会话标识；仓库现已迁移到 macOS（本地路径见
+> `HARNESS_HANDOFF.md`），沿用本指南时按当前机器的实际仓库路径替换，勿照抄 A:\ 路径。
+
 ## 1. 拓扑
 
 ```text

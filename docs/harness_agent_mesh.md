@@ -44,7 +44,8 @@ artifact / evidence 进本 repo，本机另有 run journal。对话只是执行�
 - 规范源：`programaticHitFish/.claude/agents/*.md`（随 repo 版本化；
   envelope 的 `ROLE_PROMPT_URL` 绑定到具体文件 + commit SHA）。
 - 部署副本：`A:\Projs\FCF-Harness-Handoff\.claude\agents\`（工作区根，
-  供 cwd 在交接根目录的会话加载）。
+  供 cwd 在交接根目录的会话加载）。**（2026-09-10 时点的 Windows 工作区路径；
+  仓库已迁移到 macOS，部署目录以当前机器实际工作区为准，同步规则不变。）**
 - **同步规则**：修改角色章程只在规范源改，然后复制到工作区根；
   `tests/harness/test_agent_defs.py` 校验定义与 `harness/core.py` 的
   `ROLE_REGISTRY` 一致、reviewer 角色无写工具、章程含 envelope/边界声明，
