@@ -53,7 +53,7 @@ def test_default_neutral_conditions_are_explicit():
     assert result["conditions"] == {
         "satiation": "NORMAL",
         "cue_familiarity": "LOW",
-        "fish_mode": "NORMAL",
+        "engagement_mode": "NORMAL",
         "lifecycle_cohort": "ORDINARY_NORMAL",
         "reach": 0.8,
         "local_scale": 100.0,

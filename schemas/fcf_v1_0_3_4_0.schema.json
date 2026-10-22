@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/fcf/v1/0.3.4.0/schema.json",
+  "title": "FCF V1 DSL 0.3.4.0 strict contract",
+  "allOf": [
+    { "$ref": "fcf_v1.schema.json" },
+    {
+      "type": "object",
+      "required": [
+        "schema_version", "world_facts", "population_definitions", "species",
+        "population_slices", "programs", "variants", "settlement_owners",
+        "resolver_rules", "trace_contract", "arrival"
+      ],
+      "properties": {
+        "population_definitions": {
+          "items": { "required": ["population_revision"] }
+        },
+        "resolver_rules": {
+          "items": {
+            "required": ["rule_id", "priority", "when", "requires", "then", "consequence_id", "owner", "effective_interval"]
+          }
+        },
+        "trace_contract": {
+          "required": ["version", "required_stages", "include_revisions"],
+          "properties": { "include_revisions": { "const": true } }
+        }
+      }
+    }
+  ]
+}

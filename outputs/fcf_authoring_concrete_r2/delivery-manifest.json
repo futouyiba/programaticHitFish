@@ -67,7 +67,7 @@
   "notion-43.md": "d1fa09ac3fc344bf918374b424e1e195740dc19f25060a05c003a3a3a5121a72",
   "progress-overview.html": "11f895d6ba4fd984742d4c167367bad7dbb5d7e047b753ab06f3453064057711",
   "publish-batches.json": "b57982a310c72d1b37f3fc3b742ce1543b3fbfb2a9cf332f11403407e9782dc4",
-  "representation-artifact-index.md": "49ca0910122afbfd8f6c7ad7fdb1e9e98b9376d0e501e8bda783c390ace0aa76",
+  "representation-artifact-index.md": "60646afee56c50d07ad1945461eec0603aea4d6a8fd0bf105b83aa2512c5f3b0",
   "representation-cost-r3.md": "3bbe5bbc1019535e254b7f9c406116648e2f0faaef3bf29a3321aa607b93ccc5",
   "representation-equivalence-r3.json": "695300cf131fafa4ccfc763fc1d0d369b57e5e0f841144b8df965b3ab65f0579",
   "representation-equivalence-r3.md": "7de5e287651ad17ddcd975188ff2610ab6fe4ed8b7fd6fe0273f0e14ec345997",
@@ -92,5 +92,7 @@
   "tables/TemplateStep.csv": "a4765ba3b3822e4230e14691c1c9bd293ea5f1d30ad47c13395178b94a11853e",
   "tables.json": "00aad070631a4f6c1ed524afdd9cca1159754b96dd91262b536820732c5b40ac",
   "traces.json": "39a266b61c6cb741f0f6a5ca66637e49823635b9f484402eed0090b3db9232c8",
-  "verification.json": "ee063af2f66b627cb47478c4915eb023caf03713447077b04591babb74b7f154"
+  "verification.json": "ee063af2f66b627cb47478c4915eb023caf03713447077b04591babb74b7f154",
+  "updatedAt": "2026-09-10",
+  "notes": "Added Representation Matrix R1, Authoring Hub R1, and Bass Concrete Spec R1 to the artifact index."
 }

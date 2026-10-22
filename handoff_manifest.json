@@ -25,7 +25,7 @@
       "responsibility": "已审核 Mechanism Story 到 Config/Table/Step Table/Narrow DSL"
     }
   ],
-  "generated_at_utc": "2026-09-10T03:56:09.661495Z",
+  "generated_at_utc": "2026-09-11T04:33:34.912319Z",
   "handoff_protocol": {
     "bootstrap": [
       "Read HARNESS_HANDOFF.md and AGENTS.md",
@@ -74,10 +74,10 @@
     "file_count_excluding_transient_and_manifest": 294,
     "files": [
       {
-        "bytes": 244,
+        "bytes": 275,
         "category": "canonical",
         "path": ".gitignore",
-        "sha256": "baa094b96036aca3472478d48e4a8b58ef3580be25191e6e88cb6d16adbde6a9"
+        "sha256": "caaa0fdb905471f1f141e3919f3acde760da8526aa5082702b0db944ae615db3"
       },
       {
         "bytes": 5212,
@@ -98,16 +98,16 @@
         "sha256": "89f3ac01bc02dccd1e04a2c593ac39ae76ec79292367ea55a04ada1031d974c0"
       },
       {
-        "bytes": 1711,
+        "bytes": 1715,
         "category": "canonical",
         "path": "authoring/bass_v0.json",
-        "sha256": "3cd0515363f127dff195b6b3255d9d6708d7f823d91a716b66d4a5c727c75596"
+        "sha256": "7126d5e66ee934dea1b1eb4491387a61cfcc7c6dbd20171c97ed36f7f11963d8"
       },
       {
-        "bytes": 1664,
+        "bytes": 1669,
         "category": "canonical",
         "path": "authoring/maintenance_fixtures.py",
-        "sha256": "257c6facd06e812f1dee4f0d7311d56d8226382973ffb58a53d231b277fb86b5"
+        "sha256": "c6518da263febf1d2b37db08b56ee499f1d90cb5274d6eb91c6e3a67c876c985"
       },
       {
         "bytes": 81,
@@ -116,10 +116,10 @@
         "sha256": "6e8301cfec6c62079a4869acf44d6467beadd5925d799c91df56d8bc989c5378"
       },
       {
-        "bytes": 4571,
+        "bytes": 4572,
         "category": "v0_experiment",
         "path": "bass_dynamic_preference/output.json",
-        "sha256": "ae1a3fe8074d9666e62b0ecccddb4312399751cb88002f92419a100571234628"
+        "sha256": "f277358c7345f813c41d82d5b6a3c12e702473ec45b7d6f1eb2a0c8a90bf2b01"
       },
       {
         "bytes": 18037,
@@ -152,10 +152,10 @@
         "sha256": "bf2da267049355ef79c53fcd1e0468aea59036414a968ab365235d01990c10c7"
       },
       {
-        "bytes": 4051,
+        "bytes": 4052,
         "category": "v0_experiment",
         "path": "bass_dynamic_preference/run_case.py",
-        "sha256": "f263fe071ba5bef5291902a8c1222ee74196fec6e155aeb2c0dd17bc5e46d95a"
+        "sha256": "e2dfc45cbc48c9c469814057d844a1b82eda11ba619f9bf2ccd06ebe612a366d"
       },
       {
         "bytes": 5203,
@@ -302,16 +302,16 @@
         "sha256": "2b1a89be64fb46e48a7715b7a0f82f72f2cec709d003d4f40c4269947b9231f1"
       },
       {
-        "bytes": 2979,
+        "bytes": 3159,
         "category": "canonical",
         "path": "docs/authoring_maintenance_ia_gate_r0.md",
-        "sha256": "ae2352948a6f479bfdb6748516f08be61339645c18f55c45274f9b23eab5fdc7"
+        "sha256": "aba4bf33d56a3fe82a76f32aafd47fa67b6457e129b2b74bf50bde58444132b5"
       },
       {
-        "bytes": 6208,
+        "bytes": 6387,
         "category": "canonical",
         "path": "docs/bass_dynamic_preference_pressure_test.md",
-        "sha256": "0c00dc53714d1abb6599702be0b333b12581774e09ee355021d2919ff617a2e7"
+        "sha256": "226195ab700b2dceb1012a913ac1884977b4f9c09ec845016f0b6376c58573b0"
       },
       {
         "bytes": 10121,
@@ -344,10 +344,10 @@
         "sha256": "703a8c1108b6db00800f91a195883ea98c1f4f47167b4f42a19147753fc94d60"
       },
       {
-        "bytes": 2428,
+        "bytes": 2835,
         "category": "canonical",
         "path": "docs/designer_authoring_editor_prototype_r0.md",
-        "sha256": "3c72a6440ac6a1e525b1529b10f45ff70b8cb54baf90e069d3e271e7864490ff"
+        "sha256": "4d849be17259ba1522fb27b0109f30999f889f349b3274575666bee6dad235d8"
       },
       {
         "bytes": 8887,
@@ -506,10 +506,10 @@
         "sha256": "377d4188090f2ded513d25b39c5b248838c4356469455279e273a7d9167fe73d"
       },
       {
-        "bytes": 2548,
+        "bytes": 2745,
         "category": "canonical",
         "path": "docs/pre_generation_authoring_vertical_slice_r0.md",
-        "sha256": "cf459a4848e3fc2c621fb3bc48e4e3003d703ce192c76fce4924f8a11a144acc"
+        "sha256": "07675a1cace0e693ba805747730f6eebb98d4ce71194c0c6d71b65fdd8286394"
       },
       {
         "bytes": 1950,
@@ -590,10 +590,10 @@
         "sha256": "c7550163fdeee35ddf4393f8ea72adc33bbecfead6fe113001cf91a48a80357c"
       },
       {
-        "bytes": 4476,
+        "bytes": 4492,
         "category": "canonical",
         "path": "editor/index.html",
-        "sha256": "c80489308ea6fd1b9331becd78089f31b3ad04886660820d764f450aae28c602"
+        "sha256": "721075456d5189eec61c999d316855eabc1d654979e569b5c7d4f448ecbba6b8"
       },
       {
         "bytes": 1948,
@@ -692,10 +692,10 @@
         "sha256": "ce12ca52ebdbb1b808298028fdef565ce098381c8bdc3af8a33bdaebf0717e4c"
       },
       {
-        "bytes": 4432,
+        "bytes": 4438,
         "category": "canonical",
         "path": "fcf_v1/authoring.py",
-        "sha256": "78a40ba8fcb83a230d0b233a113b94282cdf460bd9cf3bc554d5d10274fc05e4"
+        "sha256": "15498d6f606697d87d72deea00d56eff9b24b4130635e9f3275a5a68e7931d01"
       },
       {
         "bytes": 38086,
@@ -746,10 +746,10 @@
         "sha256": "f7f9be166420a7107dd14501a097ad958d86e68b644750775ce2773f9494f632"
       },
       {
-        "bytes": 8254,
+        "bytes": 8262,
         "category": "canonical",
         "path": "fcf_v1/pre_generation.py",
-        "sha256": "00b73aecb557d62fe69ba1ad117c4bcf51cef583fd78a55e5e85720bf82d6c6e"
+        "sha256": "558d1045296fb5f4507b7aabfeec61a04d321e68dd1d9b424fbb7bc92e46e438"
       },
       {
         "bytes": 6533,
@@ -1082,10 +1082,10 @@
         "sha256": "8eabb3bc9e54397412fda4161b6659cb9fa6ba45a7647376fedba388421dd72a"
       },
       {
-        "bytes": 608608,
+        "bytes": 613699,
         "category": "delivery_bundle",
         "path": "outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
-        "sha256": "7b211fb3e5cf9202c682188cb6b041f3538b9d28862a429b01f80c215e94eb37"
+        "sha256": "30aebb3de77209382a3dca5802515bbf3b1eed591634d23418c1287103c941c7"
       },
       {
         "bytes": 2329,
@@ -1160,10 +1160,10 @@
         "sha256": "51e577dbd383b35045162e3c106c96302c7e13dce1601b288bb0695c11b956ae"
       },
       {
-        "bytes": 8545,
+        "bytes": 8687,
         "category": "delivery_bundle",
         "path": "outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
-        "sha256": "b11aaa80c9a60ce6467c3c632434a70fce20de7809be940526ff97c6a9dad177"
+        "sha256": "2a67ef86c490d8b07b0b7dc9724b11d8b1755b719bc1a21b68960746d03cf61a"
       },
       {
         "bytes": 128923,
@@ -1496,10 +1496,10 @@
         "sha256": "b57982a310c72d1b37f3fc3b742ce1543b3fbfb2a9cf332f11403407e9782dc4"
       },
       {
-        "bytes": 4201,
+        "bytes": 5994,
         "category": "delivery_bundle",
         "path": "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
-        "sha256": "49ca0910122afbfd8f6c7ad7fdb1e9e98b9376d0e501e8bda783c390ace0aa76"
+        "sha256": "60646afee56c50d07ad1945461eec0603aea4d6a8fd0bf105b83aa2512c5f3b0"
       },
       {
         "bytes": 5069,
@@ -1682,22 +1682,22 @@
         "sha256": "6864704d81316c151bf06753c29184945041f641630c5d24f379216d598a01f5"
       },
       {
-        "bytes": 1710,
+        "bytes": 1711,
         "category": "canonical",
         "path": "tests/test_authoring_maintenance_gate.py",
-        "sha256": "95e9ba0938eef2070041765f3745197c1f4c0ff648f76ae6d9fd2557ec158010"
+        "sha256": "8da379623827e600e9b0252c7489e66582b4a3b3e0a80e91823d9f9230852d6f"
       },
       {
-        "bytes": 997,
+        "bytes": 998,
         "category": "canonical",
         "path": "tests/test_authoring_vertical_slice.py",
-        "sha256": "f55dd26cd16c6e7d45ecc176180a15aa1c1e23161d998076cfcf6b756a4a3400"
+        "sha256": "53e026bff754afeb57c7aadb5cd069b41152495ee3b0fdbf1ebad7870adfa6c8"
       },
       {
-        "bytes": 5095,
+        "bytes": 5096,
         "category": "canonical",
         "path": "tests/test_bass_dynamic_preference.py",
-        "sha256": "1c210b7bf56477e7a189efa8977095cdc8cf01edbf4ad07a6e559789f0298bcb"
+        "sha256": "88a8d47652433630459f1e4c46249e78fb9002fe2e57e738e2fa926580abced7"
       },
       {
         "bytes": 2703,
@@ -1706,10 +1706,10 @@
         "sha256": "622de4188e51688ac2062254a2077734aaeb9336a888f8979197d17c5edb7297"
       },
       {
-        "bytes": 700,
+        "bytes": 701,
         "category": "canonical",
         "path": "tests/test_editor_prototype.py",
-        "sha256": "81815861d5447c28248b897f6665526403cf1f565f7ce17c5beb10383472c297"
+        "sha256": "307a356cc654b8d7c77c223980dcb0d22e2c30d4b69a8617eb6817d14dde58fa"
       },
       {
         "bytes": 49488,
@@ -1990,7 +1990,8 @@
     {
       "discovered_in": [
         "handoff_manifest.json",
-        "outputs/fcf_authoring_concrete_r2/baseline_bass.md"
+        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
       ],
       "title": "",
       "url": "https://app.notion.com/p/3cda4137d236819198fecae3c69570b5"
@@ -2034,6 +2035,13 @@
       ],
       "title": "Production Design Document Authoring Guide",
       "url": "https://app.notion.com/p/3cfa4137d23681d68f89cc0eed80f99b"
+    },
+    {
+      "discovered_in": [
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d6a4137d23681108cf8e4f4d5dff510"
     },
     {
       "discovered_in": [
@@ -2325,6 +2333,27 @@
     },
     {
       "discovered_in": [
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d7a4137d236814c9bebe037709bd71b"
+    },
+    {
+      "discovered_in": [
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d7a4137d23681568a5ff2a6b531b319"
+    },
+    {
+      "discovered_in": [
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md"
+      ],
+      "title": "",
+      "url": "https://app.notion.com/p/3d7a4137d23681c4a6a6e5ae9ff1683d"
+    },
+    {
+      "discovered_in": [
         "handoff_manifest.json",
         "tmp/lark_whiteboard/raw.json"
       ],
@@ -2336,285 +2365,57 @@
     "absolute_path": "/Volumes/Mac DS - Data/SharedProjects/programaticHitFish",
     "git": {
       "branch": "main",
-      "deleted_tracked": [
-        "docs/ogre_lake_manual_region_companion_experiment.md",
-        "docs/rf4_old_burg_spatial_authoring_estimate.md"
-      ],
-      "head": "60429db05e5f2c08547a02b43c9fc96aef432614",
-      "head_short": "60429db",
-      "head_subject": "chore: add harness handoff package",
+      "deleted_tracked": [],
+      "head": "0ccd1682a9eafa8939f8774353e701df54d76f6f",
+      "head_short": "0ccd168",
+      "head_subject": "chore: publish FCF harness handoff workspace",
       "modified_tracked": [
-        "README.md",
-        "docs/depth_structure_mechanism_design.md",
-        "docs/design_closure_index.md",
-        "docs/dissolved_oxygen_mechanism_design.md",
-        "docs/experiments/ogre_lake_overlay_model.js",
-        "docs/fcf_v1_overview_cn.md",
-        "docs/flow_mechanism_design.md",
-        "docs/independent_review_checklist.md",
-        "docs/light_turbidity_mechanism_design.md",
-        "docs/ogre_lake_manual_region_companion_experiment.md",
-        "docs/ogre_lake_reproducible_overlay_experiment.md",
-        "docs/ogre_lake_visualization_user_guide.md",
-        "docs/rf4_old_burg_spatial_authoring_estimate.md",
-        "docs/temperature_mechanism_design.md",
-        "experiments/fcf_simplified_v0/README.md"
+        "authoring/bass_v0.json",
+        "authoring/maintenance_fixtures.py",
+        "bass_dynamic_preference/output.json",
+        "bass_dynamic_preference/run_case.py",
+        "docs/authoring_maintenance_ia_gate_r0.md",
+        "docs/bass_dynamic_preference_pressure_test.md",
+        "docs/designer_authoring_editor_prototype_r0.md",
+        "docs/pre_generation_authoring_vertical_slice_r0.md",
+        "editor/index.html",
+        "fcf_v1/authoring.py",
+        "fcf_v1/pre_generation.py",
+        "outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
+        "outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
+        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        "tests/test_authoring_maintenance_gate.py",
+        "tests/test_authoring_vertical_slice.py",
+        "tests/test_bass_dynamic_preference.py",
+        "tests/test_editor_prototype.py"
       ],
       "porcelain": [
-        "M README.md",
-        " M docs/depth_structure_mechanism_design.md",
-        " M docs/design_closure_index.md",
-        " M docs/dissolved_oxygen_mechanism_design.md",
-        " M docs/experiments/ogre_lake_overlay_model.js",
-        " M docs/fcf_v1_overview_cn.md",
-        " M docs/flow_mechanism_design.md",
-        " M docs/independent_review_checklist.md",
-        " M docs/light_turbidity_mechanism_design.md",
-        " D docs/ogre_lake_manual_region_companion_experiment.md",
-        " M docs/ogre_lake_reproducible_overlay_experiment.md",
-        " M docs/ogre_lake_visualization_user_guide.md",
-        " D docs/rf4_old_burg_spatial_authoring_estimate.md",
-        " M docs/temperature_mechanism_design.md",
-        " M experiments/fcf_simplified_v0/README.md",
-        "?? AGENTS.md",
-        "?? bass_dynamic_preference/",
-        "?? deliverables/",
-        "?? docs/archive/",
-        "?? docs/bass_dynamic_preference_pressure_test.md",
-        "?? docs/bass_dynamic_preference_prototype_validation.md",
-        "?? docs/experiments/export_spatial_bake_fixture.js",
-        "?? docs/fcf_v0_conflict_register.md",
-        "?? docs/fcf_v0_document_governance.md",
-        "?? docs/glossary_cn.md",
-        "?? docs/mechanism_spec_writing_and_review_guide_cn.md",
-        "?? docs/ogre-lake-spatial-authoring-explainer.html",
-        "?? docs/rf4_fishing_planet_bite_mechanism_audit_appendix.md",
-        "?? docs/rf4_fishing_planet_bite_mechanism_research_report.md",
-        "?? docs/scoped_review_protocol.md",
-        "?? docs/spatial_bake_fixture/",
-        "?? ogre_lake_spatial_bake/",
-        "?? outputs/",
-        "?? representation-pilot-a-overview.html",
-        "?? tests/test_bass_dynamic_preference.py",
-        "?? tmp/"
+        "M authoring/bass_v0.json",
+        " M authoring/maintenance_fixtures.py",
+        " M bass_dynamic_preference/output.json",
+        " M bass_dynamic_preference/run_case.py",
+        " M docs/authoring_maintenance_ia_gate_r0.md",
+        " M docs/bass_dynamic_preference_pressure_test.md",
+        " M docs/designer_authoring_editor_prototype_r0.md",
+        " M docs/pre_generation_authoring_vertical_slice_r0.md",
+        " M editor/index.html",
+        " M fcf_v1/authoring.py",
+        " M fcf_v1/pre_generation.py",
+        " M outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
+        " M outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
+        " M outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
+        " M tests/test_authoring_maintenance_gate.py",
+        " M tests/test_authoring_vertical_slice.py",
+        " M tests/test_bass_dynamic_preference.py",
+        " M tests/test_editor_prototype.py"
       ],
-      "remotes": [],
-      "untracked": [
-        "AGENTS.md",
-        "bass_dynamic_preference/__init__.py",
-        "bass_dynamic_preference/output.json",
-        "bass_dynamic_preference/prototype.py",
-        "bass_dynamic_preference/prototype_output/continuous_spatial_bias.csv",
-        "bass_dynamic_preference/prototype_output/continuous_spatial_bias.svg",
-        "bass_dynamic_preference/prototype_output/generated_map.json",
-        "bass_dynamic_preference/prototype_output/prototype_results.json",
-        "bass_dynamic_preference/run_case.py",
-        "bass_dynamic_preference/run_prototype.py",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package.zip",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/algae-rock-shore.jpg",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/lily-pads-dusk.jpg",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/old-burg-map.webp",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/reed-bank-morning.jpg",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/assets/rf4-old-burg/shore-algae-morning.jpg",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/export_spatial_bake_fixture.js",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/experiments/ogre_lake_overlay_model.js",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/index.html",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_reproducible_overlay_experiment.md",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/ogre_lake_visualization_user_guide.md",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/README.md",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/cell_layer_labels.json",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/habitat_sources.json",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/lake_grid.json",
-        "deliverables/ogre-lake-spatial-authoring-explainer-package/spatial_bake_fixture/source_metadata.json",
-        "docs/archive/fcf_v0/ogre_lake_manual_region_companion_experiment.md",
-        "docs/archive/fcf_v0/rf4_old_burg_spatial_authoring_estimate.md",
-        "docs/bass_dynamic_preference_pressure_test.md",
-        "docs/bass_dynamic_preference_prototype_validation.md",
-        "docs/experiments/export_spatial_bake_fixture.js",
-        "docs/fcf_v0_conflict_register.md",
-        "docs/fcf_v0_document_governance.md",
-        "docs/glossary_cn.md",
-        "docs/mechanism_spec_writing_and_review_guide_cn.md",
-        "docs/ogre-lake-spatial-authoring-explainer.html",
-        "docs/rf4_fishing_planet_bite_mechanism_audit_appendix.md",
-        "docs/rf4_fishing_planet_bite_mechanism_research_report.md",
-        "docs/scoped_review_protocol.md",
-        "docs/spatial_bake_fixture/README.md",
-        "docs/spatial_bake_fixture/cell_layer_labels.json",
-        "docs/spatial_bake_fixture/habitat_sources.json",
-        "docs/spatial_bake_fixture/lake_grid.json",
-        "docs/spatial_bake_fixture/source_metadata.json",
-        "ogre_lake_spatial_bake/README.md",
-        "ogre_lake_spatial_bake/bass_spatial_profiles.yaml",
-        "ogre_lake_spatial_bake/lifecycle_fixtures.json",
-        "ogre_lake_spatial_bake/ogre_lake_sources.json",
-        "ogre_lake_spatial_bake/output/benchmark.csv",
-        "ogre_lake_spatial_bake/output/query_results.csv",
-        "ogre_lake_spatial_bake/output/spatial_hotspots.png",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_2.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_4.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_8.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_continuous_full.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_2.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_4.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_8.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_distance_band_full.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_2.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_4.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_8.json.gz",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json",
-        "ogre_lake_spatial_bake/output/spatial_relations_expanded_full.json.gz",
-        "ogre_lake_spatial_bake/output/summary.json",
-        "ogre_lake_spatial_bake/output_fixture/benchmark.csv",
-        "ogre_lake_spatial_bake/output_fixture/query_results.csv",
-        "ogre_lake_spatial_bake/output_fixture/reach_falloff_comparison.png",
-        "ogre_lake_spatial_bake/output_fixture/reach_falloff_grouped.png",
-        "ogre_lake_spatial_bake/output_fixture/spatial_hotspots.png",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_2.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_4.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_8.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_continuous_full.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_2.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_4.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_8.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_distance_band_full.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_2.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_4.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_8.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/spatial_relations_expanded_full.json.gz",
-        "ogre_lake_spatial_bake/output_fixture/summary.json",
-        "ogre_lake_spatial_bake/run_experiment.py",
-        "ogre_lake_spatial_bake/run_fixture_experiment.py",
-        "outputs/fcf_authoring_concrete_r2/FCF-Authoring-Concrete-R2.zip",
-        "outputs/fcf_authoring_concrete_r2/README.md",
-        "outputs/fcf_authoring_concrete_r2/authoring-concrete-r2.md",
-        "outputs/fcf_authoring_concrete_r2/baseline_bass.md",
-        "outputs/fcf_authoring_concrete_r2/baseline_gate.md",
-        "outputs/fcf_authoring_concrete_r2/baseline_mapping.md",
-        "outputs/fcf_authoring_concrete_r2/baseline_stress.md",
-        "outputs/fcf_authoring_concrete_r2/build.py",
-        "outputs/fcf_authoring_concrete_r2/c08.png",
-        "outputs/fcf_authoring_concrete_r2/cases.json",
-        "outputs/fcf_authoring_concrete_r2/check-page.cjs",
-        "outputs/fcf_authoring_concrete_r2/cost-independent-review.md",
-        "outputs/fcf_authoring_concrete_r2/current-state-snapshot.md",
-        "outputs/fcf_authoring_concrete_r2/delivery-manifest.json",
-        "outputs/fcf_authoring_concrete_r2/desktop.png",
-        "outputs/fcf_authoring_concrete_r2/equivalence-independent-review.md",
-        "outputs/fcf_authoring_concrete_r2/four-surface-completion-r1.md",
-        "outputs/fcf_authoring_concrete_r2/four_surface_preflight.json",
-        "outputs/fcf_authoring_concrete_r2/four_surface_preflight.py",
-        "outputs/fcf_authoring_concrete_r2/frozen-consumption-manifest-r3.md",
-        "outputs/fcf_authoring_concrete_r2/independent-review.md",
-        "outputs/fcf_authoring_concrete_r2/index.html",
-        "outputs/fcf_authoring_concrete_r2/mobile.png",
-        "outputs/fcf_authoring_concrete_r2/notion-00.md",
-        "outputs/fcf_authoring_concrete_r2/notion-01.md",
-        "outputs/fcf_authoring_concrete_r2/notion-02.md",
-        "outputs/fcf_authoring_concrete_r2/notion-03.md",
-        "outputs/fcf_authoring_concrete_r2/notion-04.md",
-        "outputs/fcf_authoring_concrete_r2/notion-05.md",
-        "outputs/fcf_authoring_concrete_r2/notion-06.md",
-        "outputs/fcf_authoring_concrete_r2/notion-07.md",
-        "outputs/fcf_authoring_concrete_r2/notion-08.md",
-        "outputs/fcf_authoring_concrete_r2/notion-09.md",
-        "outputs/fcf_authoring_concrete_r2/notion-10.md",
-        "outputs/fcf_authoring_concrete_r2/notion-11.md",
-        "outputs/fcf_authoring_concrete_r2/notion-12.md",
-        "outputs/fcf_authoring_concrete_r2/notion-13.md",
-        "outputs/fcf_authoring_concrete_r2/notion-14.md",
-        "outputs/fcf_authoring_concrete_r2/notion-15.md",
-        "outputs/fcf_authoring_concrete_r2/notion-16.md",
-        "outputs/fcf_authoring_concrete_r2/notion-17.md",
-        "outputs/fcf_authoring_concrete_r2/notion-18.md",
-        "outputs/fcf_authoring_concrete_r2/notion-19.md",
-        "outputs/fcf_authoring_concrete_r2/notion-20.md",
-        "outputs/fcf_authoring_concrete_r2/notion-21.md",
-        "outputs/fcf_authoring_concrete_r2/notion-22.md",
-        "outputs/fcf_authoring_concrete_r2/notion-23.md",
-        "outputs/fcf_authoring_concrete_r2/notion-24.md",
-        "outputs/fcf_authoring_concrete_r2/notion-25.md",
-        "outputs/fcf_authoring_concrete_r2/notion-26.md",
-        "outputs/fcf_authoring_concrete_r2/notion-27.md",
-        "outputs/fcf_authoring_concrete_r2/notion-28.md",
-        "outputs/fcf_authoring_concrete_r2/notion-29.md",
-        "outputs/fcf_authoring_concrete_r2/notion-30.md",
-        "outputs/fcf_authoring_concrete_r2/notion-31.md",
-        "outputs/fcf_authoring_concrete_r2/notion-32.md",
-        "outputs/fcf_authoring_concrete_r2/notion-33.md",
-        "outputs/fcf_authoring_concrete_r2/notion-34.md",
-        "outputs/fcf_authoring_concrete_r2/notion-35.md",
-        "outputs/fcf_authoring_concrete_r2/notion-36.md",
-        "outputs/fcf_authoring_concrete_r2/notion-37.md",
-        "outputs/fcf_authoring_concrete_r2/notion-38.md",
-        "outputs/fcf_authoring_concrete_r2/notion-39.md",
-        "outputs/fcf_authoring_concrete_r2/notion-40.md",
-        "outputs/fcf_authoring_concrete_r2/notion-41.md",
-        "outputs/fcf_authoring_concrete_r2/notion-42.md",
-        "outputs/fcf_authoring_concrete_r2/notion-43.md",
-        "outputs/fcf_authoring_concrete_r2/progress-overview.html",
-        "outputs/fcf_authoring_concrete_r2/publish-batches.json",
-        "outputs/fcf_authoring_concrete_r2/representation-artifact-index.md",
-        "outputs/fcf_authoring_concrete_r2/representation-cost-r3.md",
-        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.json",
-        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.md",
-        "outputs/fcf_authoring_concrete_r2/representation-equivalence-r3.py",
-        "outputs/fcf_authoring_concrete_r2/representation-shootout-r3.md",
-        "outputs/fcf_authoring_concrete_r2/representation-work-contract.md",
-        "outputs/fcf_authoring_concrete_r2/scripts.json",
-        "outputs/fcf_authoring_concrete_r2/self-qa-and-cold-review.md",
-        "outputs/fcf_authoring_concrete_r2/shootout-independent-review.md",
-        "outputs/fcf_authoring_concrete_r2/surface-coverage-audit.md",
-        "outputs/fcf_authoring_concrete_r2/tables.json",
-        "outputs/fcf_authoring_concrete_r2/tables/Binding.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/Boundary.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/CurvePoint.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/GroupShare.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/Parameter.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/Predicate.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/PredicateMember.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/QualityModifier.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/QualityWeight.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/ResponseBand.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/Slot.csv",
-        "outputs/fcf_authoring_concrete_r2/tables/TemplateStep.csv",
-        "outputs/fcf_authoring_concrete_r2/traces.json",
-        "outputs/fcf_authoring_concrete_r2/verification.json",
-        "outputs/fish-reference-20260908/fish-reference-20260908.csv",
-        "representation-pilot-a-overview.html",
-        "tests/test_bass_dynamic_preference.py",
-        "tmp/0-3-4-authoring-runtime.svg",
-        "tmp/0-3-4-bass-sequence.svg",
-        "tmp/0-3-4-module-flow.svg",
-        "tmp/0-3-4-overview.svg",
-        "tmp/lark_whiteboard/raw.json",
-        "tmp/lark_whiteboard/whiteboard_QXHjwmb1DhVWFRbaWIfcxoARngg.png",
-        "tmp/pdfs/lure-01.png",
-        "tmp/pdfs/lure-02.png",
-        "tmp/pdfs/lure-03.png",
-        "tmp/pdfs/lure-06.png",
-        "tmp/pdfs/lure-07.png",
-        "tmp/pdfs/lure-08.png",
-        "tmp/pdfs/lure-09.png",
-        "tmp/pdfs/lure-10.png",
-        "tmp/pdfs/lure-11.png",
-        "tmp/pdfs/lure-12.png",
-        "tmp/pdfs/lure-13.png",
-        "tmp/pdfs/lure-14.png"
-      ]
+      "remotes": [
+        "origin\thttps://github.com/futouyiba/programaticHitFish.git (fetch)",
+        "origin\thttps://github.com/futouyiba/programaticHitFish.git (push)"
+      ],
+      "untracked": []
     },
-    "remote_push_available": false
+    "remote_push_available": true
   },
   "snapshot_date": "2026-09-10",
   "state_summary": {
@@ -2633,7 +2434,7 @@
   },
   "validation": {
     "command": "python3 -m pytest -q",
-    "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.58s",
+    "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.50s",
     "passed": true,
     "returncode": 0
   }

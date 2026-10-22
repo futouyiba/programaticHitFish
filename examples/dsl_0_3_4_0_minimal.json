@@ -1,0 +1,120 @@
+{
+  "schema_version": "fcf.v1",
+  "world_facts": [
+    "water_temperature_c",
+    "dissolved_oxygen_mg_l",
+    "depth_m"
+  ],
+  "population_definitions": [
+    {
+      "id": "bass_stock",
+      "q": 10,
+      "history_scope": "SLICE",
+      "population_revision": "bass_stock:r1"
+    }
+  ],
+  "species": {
+    "id": "bass",
+    "population_definition_id": "bass_stock",
+    "anatomy_profile": "bass_v1",
+    "sensory_channels": [
+      "visual"
+    ],
+    "allowed_contacts": [
+      "BITE_REMOVE"
+    ],
+    "history_schema": "bass_history:v1",
+    "capability_limits": {
+      "tasks": [
+        "FORAGE"
+      ]
+    }
+  },
+  "population_slices": [
+    {
+      "id": "bass_mature_normal",
+      "population_id": "bass_stock",
+      "cohort_key": "mature",
+      "lifecycle_role_key": "NORMAL",
+      "behavior_program_id": "forage_program"
+    }
+  ],
+  "programs": [
+    {
+      "id": "forage_program",
+      "slice_role": "NORMAL",
+      "motive_priority": [
+        "FORAGE"
+      ],
+      "tasks": [
+        "FORAGE"
+      ],
+      "contact_types": [
+        "BITE_REMOVE"
+      ],
+      "occupancy": [
+        {
+          "node_tag": "open_water",
+          "grade": "GOOD"
+        }
+      ],
+      "entry_offers": {
+        "FORAGE": {
+          "base": "NORMAL"
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "default",
+      "species_id": "bass",
+      "program_id": "forage_program",
+      "policy_overrides": {
+        "speed_band": "NORMAL"
+      }
+    }
+  ],
+  "settlement_owners": [
+    {
+      "physical_consequence_id": "forage_entry",
+      "owner": "ENTRY"
+    }
+  ],
+  "resolver_rules": [
+    {
+      "rule_id": "warm_entry",
+      "priority": 10,
+      "when": {
+        "fact": "water_temperature_c",
+        "gte": 18
+      },
+      "requires": [
+        "FORAGE"
+      ],
+      "then": {
+        "entry_grade": "NORMAL"
+      },
+      "consequence_id": "forage_entry",
+      "owner": "ENTRY",
+      "effective_interval": {
+        "start": 0,
+        "end": 3600,
+        "unit": "s",
+        "clock": "SIM"
+      }
+    }
+  ],
+  "trace_contract": {
+    "version": "trace:v1",
+    "required_stages": [
+      "ENTRY"
+    ],
+    "include_inputs": true,
+    "include_revisions": true
+  },
+  "arrival": {
+    "produces_new_units": false,
+    "temporal_factor": 1.0
+  }
+}

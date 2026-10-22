@@ -8,7 +8,7 @@ def load_base(): return json.loads((Path(__file__).parent / "bass_v0.json").read
 def add_normal_species(doc):
     out=deepcopy(doc); out["species"]={"species_id":"Trout","slow_facts":{"FeedingReadiness":"NORMAL","FeedingCueDisposition":{"SHAD":"NEUTRAL"}},"engagement_modes":[{"id":"NORMAL","pathways":["FEEDING"]}]}; return out
 
-def add_grammar_group(doc):
+def add_grammar_mode(doc):
     out=deepcopy(doc); out["species"]["engagement_modes"].append({"id":"AMBUSH","pathways":["AMBUSH_STRIKE"]}); out["pathways"].append({"id":"AMBUSH_STRIKE"}); out["rules"].append({"id":"AMBUSH_STRIKE_RULE","priority":30,"grade":"HIGH","operation":"SET","conditions":{"mode":"AMBUSH"}}); return out
 
 def change_readiness(doc):

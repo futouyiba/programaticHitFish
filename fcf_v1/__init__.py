@@ -16,7 +16,7 @@ from .model import (
     FishVariant,
 )
 from .engine import FCFEngine
-from .dsl import DSLCompileError, Diagnostic, compile_artifact
+from .dsl import CompiledArtifact, DSLCompileError, Diagnostic, DSL_CONTRACT_0_3_4_0, compile_artifact
 from .lifecycle import LifecycleCommitment, SliceAllocator, SliceKey
 from .resolution import (
     EncounterState,
@@ -57,7 +57,9 @@ __all__ = [
     "FishVariant",
     "DSLCompileError",
     "Diagnostic",
+    "CompiledArtifact",
     "compile_artifact",
+    "DSL_CONTRACT_0_3_4_0",
     "LifecycleCommitment",
     "SliceAllocator",
     "SliceKey",

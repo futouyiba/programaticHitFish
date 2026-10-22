@@ -75,7 +75,7 @@ class OpportunityBasis:
 class CandidateContribution:
     species: str
     lifecycle_cohort: str
-    fish_mode: str
+    engagement_mode: str
     response_slice: str
     behavior_anchor_ref: Optional[str]
     semantic_support_ref: str
@@ -85,7 +85,7 @@ class CandidateContribution:
 
     @property
     def basis_key(self) -> str:
-        return digest("candidate", self.species, self.lifecycle_cohort, self.fish_mode,
+        return digest("candidate", self.species, self.lifecycle_cohort, self.engagement_mode,
                       self.response_slice, self.behavior_anchor_ref, self.semantic_support_ref,
                       self.materialization_profile_ref)
 
@@ -95,7 +95,7 @@ class CandidateEntry:
     basis_key: str
     species: str
     lifecycle_cohort: str
-    fish_mode: str
+    engagement_mode: str
     response_slice: str
     behavior_anchor_ref: Optional[str]
     semantic_support_ref: str
@@ -133,7 +133,7 @@ class MaterializationPlan:
 @dataclass(frozen=True)
 class ConcreteFishResult:
     species: str
-    fish_mode: str
+    engagement_mode: str
     quality: int
     anchor_ref: Optional[str]
     reproductive_eligible: bool
@@ -157,7 +157,7 @@ class PreGenerationHarness:
             first = cs[0]
             mass = sum(c.engagement_mass for c in cs)
             q = tuple((quality, sum(c.quality_weights[i][1] for c in cs) / len(cs)) for i, quality in enumerate([1,2,3,4,5]))
-            entries.append(CandidateEntry(key, first.species, first.lifecycle_cohort, first.fish_mode,
+            entries.append(CandidateEntry(key, first.species, first.lifecycle_cohort, first.engagement_mode,
                 first.response_slice, first.behavior_anchor_ref, first.semantic_support_ref,
                 first.materialization_profile_ref, mass, q))
         entries = tuple(sorted(entries, key=lambda e: e.basis_key))
@@ -181,7 +181,7 @@ class PreGenerationHarness:
         eligible = tuple(q for q, w in e.quality_weights if w > 0)
         if not eligible: raise ValueError("selected candidate has no legal generation support")
         return MaterializationPlan(e.basis_key, eligible, e.behavior_anchor_ref,
-                                   e.fish_mode == "SPAWN_GUARD")
+                                   e.engagement_mode == "SPAWN_GUARD")
 
     def materialize(self, result: ResolveResult, seed: Optional[str] = None) -> Optional[ConcreteFishResult]:
         plan = self.materialization_plan(result)
@@ -190,8 +190,8 @@ class PreGenerationHarness:
         eligible = plan.quality_support
         s = seed or result.opportunity_id
         quality = eligible[min(int(rng_u(s, "trait", e.basis_key) * len(eligible)), len(eligible)-1)]
-        reproductive = e.fish_mode == "SPAWN_GUARD" and quality >= 2
-        return ConcreteFishResult(e.species, e.fish_mode, quality, e.behavior_anchor_ref, reproductive)
+        reproductive = e.engagement_mode == "SPAWN_GUARD" and quality >= 2
+        return ConcreteFishResult(e.species, e.engagement_mode, quality, e.behavior_anchor_ref, reproductive)
 
 
 def fixture_occurrence(variant: str = "A", snapshot: Optional[ResolveSnapshotBundle] = None) -> RootSemanticOccurrence:

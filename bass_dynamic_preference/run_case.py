@@ -83,7 +83,7 @@ def run() -> dict:
         "conditions": {
             "satiation": "NORMAL",
             "cue_familiarity": "LOW",
-            "fish_mode": "NORMAL",
+            "engagement_mode": "NORMAL",
             "lifecycle_cohort": "ORDINARY_NORMAL",
             "reach": REACH,
             "local_scale": LOCAL_SCALE,

@@ -12,6 +12,11 @@
 | Representation Package | Representation Review Package | Pilot-A 的正式 Representation Review Package 与交付指针 | https://app.notion.com/p/3d6a4137d2368165b064dab4b0db8f60 |
 | Design Gate | Representation Design Gate R1｜15 Case R1 语义裁决 | C06–C13 设计决策、路由收紧与后续具体化边界 | https://app.notion.com/p/3d6a4137d23681eab6cfd3a535a8938a |
 | Hub | FCF Research Orchestration Hub R2 | A4/B4 状态、Frozen Set、Artifact Registry 与流程路由 | https://app.notion.com/p/3d6a4137d236814e9f35e6ae2a761927 |
+| Authoring Hub | FCF Representation Authoring Hub R1｜四面模板与具体化样本集成入口 | FCF Simplified V0 分支下的 representation 协同入口、快速入口与归集治理规则 | https://app.notion.com/p/3d7a4137d236814c9bebe037709bd71b |
+| Matrix | Representation Matrix R1｜按执行面 × 表达类型归集 | 按分群 / 烘焙 / 响应 / 品质选择和 PT / Config / Step Table / Narrow DSL 归集所有来源 | https://app.notion.com/p/3d7a4137d23681568a5ff2a6b531b319 |
+| Compendium | Representation Working Compendium R1｜跨文档统一阅读稿与治理目录 | 按方法、案例、Breaker、Runtime 契约、Review 分章阅读 representation 材料；不复制来源正文 | https://app.notion.com/p/3d7a4137d23681c4a6a6e5ae9ff1683d |
+| Bass 专项 | FCF Simplified V0｜Concrete Discussion Spec / 具体讨论规格 R1｜Largemouth Bass / 大口黑鲈 | 大口黑鲈早期具体化样本；作为历史 Working 来源纳入 Matrix，不直接作为当前 Canonical Projection | https://app.notion.com/p/3cda4137d236819198fecae3c69570b5 |
+| Bass 机制基线 | 大口黑鲈｜Largemouth Bass | 大口黑鲈机制与行为来源；约束 Bass 专项 representation 的语义边界 | https://app.notion.com/p/3d6a4137d23681108cf8e4f4d5dff510 |
 
 ## 本地文件
 
@@ -38,3 +43,6 @@
 - **R2（具体化样本）**：在 R1 基础上展开实际字段、配置行、Profile、Predicate、TemplateStep、脚本、计算轨迹和复算器；这是当前最完整的本地具体化包。
 - **Stress Test R1**：GPT 对话侧的独立四面压力测试和模板候选来源；不能直接覆盖 R2 的 Frozen Story 或把候选值提升为 Authority。
 - **15 Case R0**：原始案例投影与历史追溯页；具体化内容不只在正文早期段落，也在该页末尾的 §25 R2 附录及 §30–§32 R1.1/预检记录。
+- **Bass Concrete Spec R1**：确认存在大口黑鲈专门具体化文档；当前定位为历史 Working 样本，后续按 Matrix 拆回 Group / Bake / Response / Quality 四面再与 C01–C15 做同维度比较。
+- **Representation Matrix R1**：新增的统一索引层；后续新增或修订 representation 时先登记 Matrix，再扩展具体来源页。
+- **Representation Working Compendium R1**：新增的读者向汇总层；只组织章节和结论，不成为第二个可编辑 Source of Truth。

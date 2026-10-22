@@ -18,10 +18,16 @@ class ArtifactVersion:
 class ArtifactStore:
     """Immutable version history with atomic draft edits."""
 
-    def __init__(self, initial_artifact: Dict[str, Any], *, author: str = "system"):
+    def __init__(self, initial_artifact: Dict[str, Any], *, author: str = "system", contract: str = "legacy", source_path: Optional[str] = None, input_revision: Optional[str] = None):
         self._versions: List[ArtifactVersion] = []
         self._draft = deepcopy(initial_artifact)
         self._author = author
+        self._contract = contract
+        self._source_path = source_path
+        self._input_revision = input_revision
+
+    def _compile(self):
+        return compile_artifact(self._draft, contract=self._contract, source_path=self._source_path, input_revision=self._input_revision)
 
     @property
     def draft(self) -> Dict[str, Any]:
@@ -54,7 +60,7 @@ class ArtifactStore:
 
     def validate(self) -> List[Diagnostic]:
         try:
-            compile_artifact(self._draft)
+            self._compile()
         except DSLCompileError as exc:
             return list(exc.diagnostics)
         return []
@@ -63,13 +69,15 @@ class ArtifactStore:
         diagnostics = self.validate()
         if diagnostics:
             raise DSLCompileError(diagnostics)
-        version_id = f"fcf.v1:{len(self._versions) + 1}"
-        version = ArtifactVersion(version_id, message, author or self._author, deepcopy(self._draft))
+        compiled = self._compile()
+        version_id = compiled.semantic_fingerprint if self._contract != "legacy" else f"fcf.v1:{len(self._versions) + 1}"
+        payload = compiled.to_dict() if self._contract != "legacy" else deepcopy(self._draft)
+        version = ArtifactVersion(version_id, message, author or self._author, payload)
         self._versions.append(version)
         return ArtifactVersion(version.version_id, version.message, version.author, deepcopy(version.artifact))
 
     def compile(self) -> Dict[str, Any]:
-        return compile_artifact(self._draft)
+        return self._compile()
 
     @property
     def versions(self) -> List[ArtifactVersion]:
