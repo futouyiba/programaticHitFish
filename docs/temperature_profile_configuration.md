@@ -1,7 +1,8 @@
-# FCF V1 TemperatureProfile 完整配置表
+# FCF V1 温度剖面（TemperatureProfile）完整配置表
 
-本文定义 `temperature(location, depth, causal_cut)` 的 authoring 输入。它只描述
-世界温度数据及其查询方法，不包含任何 Species、Motive、Entry 或咬口解释。
+本文定义 `temperature(location, depth, causal_cut)` 的配置编写（authoring）
+输入。它只描述世界温度数据及其查询方法，不包含任何物种（Species）、当前
+动机（Motive）、进入（Entry）或咬口解释。
 
 ## 1. 顶层配置表
 
@@ -17,7 +18,7 @@
 | `source_policy` | object | 是 | 见 §3 | 允许的数据源和质量门槛 | 禁止未声明 source kind |
 | `interpolation_policy` | object | 是 | 见 §4 | 允许的局部插值 | 必须有算法 revision |
 | `depth_layers` | array | 是 | 见 §5 | 深度层和温度样本 | 至少一层；不得重叠 |
-| `thermocline_boundaries` | array | 否 | 见 §7 | 不可跨越插值的热跃层 | `DEPTH_LAYERS` 时建议显式声明 |
+| `thermocline_boundaries` | array | 否 | 见 §7 | 不可跨越插值的温跃层 | `DEPTH_LAYERS` 时建议显式声明 |
 | `profile_revision` | immutable revision | 是 | — | 世界数据版本 | 任一语义改动生成新 revision |
 | `source_manifest_hash` | string | 是 | SHA-256/内容哈希 | 原始样本清单指纹 | 必须与导入清单一致 |
 | `authoring_metadata` | object | 是 | 见 §8 | 作者、说明、时间 | 不参与鱼类解释 |
@@ -33,8 +34,8 @@
 | `unit` | enum | 是 | `MILLISECONDS` | V1 canonical timestamp 单位 |
 | `epoch` | string | 是 | `SIMULATION_START` / ISO-8601 | 时间零点 |
 
-所有 `observed_at_ms`、`valid_from_ms`、`valid_to_ms` 都属于这个 clock。不同
-clock 的样本不得直接插值。
+所有 `observed_at_ms`、`valid_from_ms`、`valid_to_ms` 都属于这个时钟（clock）。
+不同时钟的样本不得直接插值。
 
 ## 3. source_policy
 
@@ -60,11 +61,11 @@ clock 的样本不得直接插值。
 | `maximum_depth_gap_m` | number | 是 | m，`≥0` | 超出返回 UNKNOWN |
 | `temporal_method` | enum | 是 | `HOLD_LAST`, `LINEAR_WITHIN_WINDOW` | 时间插值方式 |
 | `maximum_time_gap_s` | number | 是 | s，`≥0` | 超出按 stale/missing policy |
-| `thermocline_crossing` | enum | 是 | V1 固定 `BLOCK` | 禁止跨热跃层 |
+| `thermocline_crossing` | enum | 是 | V1 固定 `BLOCK` | 禁止跨温跃层 |
 | `algorithm_revision` | revision | 是 | — | 插值实现/系数 revision |
 
-更换 method、gap 或算法实现必须生成新的 `algorithm_revision`，并进入 causal-cut
-fingerprint。
+更换方法（method）、间隔（gap）或算法实现必须生成新的 `algorithm_revision`，
+并进入因果切点指纹（causal-cut fingerprint）。
 
 ## 5. depth_layers
 
@@ -77,7 +78,7 @@ fingerprint。
 | `samples` | array | 是 | 见 §6 | 至少一个；sample ID 唯一 |
 
 深度层使用半开区间 `[depth_min_m, depth_max_m)`。相邻层可以共边界，但不得
-重叠。`SINGLE_LAYER` 必须恰好一层，并显式覆盖 authoring 声明的有效深度范围。
+重叠。`SINGLE_LAYER` 必须恰好一层，并显式覆盖配置编写声明的有效深度范围。
 
 ## 6. samples
 
@@ -97,8 +98,9 @@ fingerprint。
 | `calibration_revision` | revision/null | 是 | — | 未校准时为 `null` |
 | `source_sample_ids` | raw source ID[] | 是 | — | provenance；DIRECT 至少包含一个原始数据记录 ID |
 
-`valid_from_ms < valid_to_ms`。同 cell/depth/time 出现互相矛盾的 DIRECT 样本时，
-必须由 outlier/calibration policy 明确裁决；不得依赖数组顺序。
+`valid_from_ms < valid_to_ms`。同一 cell/depth/time 出现互相矛盾的 DIRECT
+样本时，必须由异常值/校准策略（outlier/calibration policy）明确裁决；不得
+依赖数组顺序。
 
 ## 7. thermocline_boundaries
 
@@ -106,8 +108,8 @@ fingerprint。
 |---|---|---:|---|
 | `boundary_id` | stable ID | 是 | 边界身份 |
 | `location_cell_group_id` | reference | 是 | 适用空间区域 |
-| `top_depth_m` | number | 是 | 热跃层顶部 |
-| `bottom_depth_m` | number | 是 | 热跃层底部；必须大于顶部 |
+| `top_depth_m` | number | 是 | 温跃层顶部 |
+| `bottom_depth_m` | number | 是 | 温跃层底部；必须大于顶部 |
 | `valid_from_ms` / `valid_to_ms` | integer | 是 | 半开有效时间区间 |
 | `source_revision` | revision | 是 | 边界数据来源 |
 | `crossing_policy` | enum | 是 | V1 固定 `BLOCK_INTERPOLATION` |
@@ -236,8 +238,8 @@ BakedTemperatureIndex {
 }
 ```
 
-`index_revision` 由烘焙产物生成，不是作者手填。任何输入或算法 revision 改变都
-产生新 index；旧 index 不覆盖，用于 replay。
+`index_revision` 由烘焙产物生成，不是作者手填。任何输入或算法修订版本
+（revision）改变都产生新 index；旧 index 不覆盖，用于重放（replay）。
 
 ## 11. 查询输出
 
@@ -260,16 +262,17 @@ WaterTemperatureFact {
 }
 ```
 
-若 location/depth/time 无可接受数据、超过 gap、跨热跃层、revision 不可解析、
-`uncertainty_c > maximum_uncertainty_c`，或 freshness 超出并由 policy 指定
-`RETURN_UNKNOWN`，返回 typed `UNKNOWN(reason, revision_tuple)`，不返回一个虚构标量。
-若 stale policy 为 `RETURN_STALE_FACT`，则返回 `quality=STALE` 的 Fact，后续安全/
-阈值 resolver 仍按保守策略处理。
+若 location/depth/time 无可接受数据、超过 gap、跨温跃层、修订版本不可解析、
+`uncertainty_c > maximum_uncertainty_c`，或新鲜度（freshness）超出并由策略
+指定 `RETURN_UNKNOWN`，返回类型化 `UNKNOWN(reason, revision_tuple)`，不返回
+一个虚构标量。若过期策略（stale policy）为 `RETURN_STALE_FACT`，则返回
+`quality=STALE` 的事实（Fact），后续安全/阈值解析器（resolver）仍按保守
+策略处理。
 
-## 12. Semantic compiler（跨字段校验）
+## 12. 语义编译器（Semantic compiler，跨字段校验）
 
-JSON Schema 只负责结构；以下不变量由 `compile_temperature_profile` fail-closed
-校验，不能推迟到查询时猜测：
+JSON 结构模式（Schema）只负责结构；以下不变量由 `compile_temperature_profile`
+fail-closed 校验，不能推迟到查询时猜测：
 
 | Diagnostic | 条件 |
 |---|---|
@@ -289,12 +292,12 @@ JSON Schema 只负责结构；以下不变量由 `compile_temperature_profile` f
 | `CLOCK_EPOCH` | 不是 `SIMULATION_START` 或 ISO-8601 |
 | `NONFINITE_PHYSICAL_VALUE` | 温度、uncertainty、深度、freshness 或 gap 为 NaN/Infinity |
 
-空间 frame/cell/group 与外部 registry 的存在性由 reference-resolution pass 校验；
-无法解析也必须阻止 compile/bake。
+空间 frame/cell/group 与外部注册表（registry）的存在性由引用解析
+（reference-resolution）阶段校验；无法解析也必须阻止编译/烘焙（compile/bake）。
 
 ## 13. 公开编译与 manifest 验证顺序
 
-生产 authoring pipeline 必须固定为：
+生产配置编写流水线（authoring pipeline）必须固定为：
 
 ```text
 parse YAML/JSON（拒绝非标准数字）
@@ -306,6 +309,7 @@ parse YAML/JSON（拒绝非标准数字）
 → bake immutable index
 ```
 
-任何阶段失败都不生成 index。`source_manifest_hash` 不能只验证字符串格式；bake
-必须从实际导入的 raw sample manifest 重算并比对，防止作者声明与输入样本不一致。
-序列化使用标准 JSON 并设置 `allow_nan=false`；NaN/Infinity 一律阻止编译。
+任何阶段失败都不生成 index。`source_manifest_hash` 不能只验证字符串格式；
+烘焙（bake）必须从实际导入的原始样本清单（raw sample manifest）重算并比对，
+防止作者声明与输入样本不一致。序列化使用标准 JSON 并设置 `allow_nan=false`；
+NaN/Infinity 一律阻止编译。
