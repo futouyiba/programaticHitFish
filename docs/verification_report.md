@@ -1,10 +1,9 @@
-# RC4 implementation verification report
+# RC4 实现验证报告
 
-Snapshot date: 2026-08-31. The counts below are point-in-time evidence for the
-RC4 verification run, not a live statement about the current test suite;
-re-run the commands for current numbers.
+快照日期：2026-08-31。下方数字是该次 RC4 验证运行的时点证据，不是对当前测试套件的
+实时陈述；当前数字请重新运行命令获取。
 
-## Executed checks
+## 已执行检查
 
 ```text
 python3 -m pytest -q                 70 passed
@@ -12,67 +11,50 @@ python3 -m json.tool schemas/...     valid JSON Schema document
 python3 -m py_compile fcf_v1/*.py   passed
 ```
 
-The tests cover:
+测试覆盖：
 
-- finite-unit entry probability and no Poisson substitution;
-- randomized finite-mass conservation property sweep (100 deterministic cases);
-- stable opportunity replay and trigger-once anti-reroll;
-- Pending zero-reservation and no fresh roll on slot release;
-- atomic single-owner reservation under concurrent retries;
-- conservation and idempotent/rollback-safe settlement;
-- stable lifecycle slice identity and PSU transfer;
-- order-invariant capped occupancy allocation;
-- deterministic motive, discrete EntryOffer, Encounter, and Contact/Hook;
-- ARRIVAL producer XOR `T < 1` placement;
-- DSL and Variant capability-boundary diagnostics;
-- strict PopulationSlice/TraceContract namespaces, resolver interval shape, and
-  Variant policy-allowlist diagnostics;
-- PopulationDefinition and BehaviorProgram/Variant reference resolution, typed
-  resolver `when` overlap and interval checks;
-- TemperatureProfile semantic compilation: layer ranges/overlap, sample depth
-  and validity, thermocline ranges, source allowlist/freshness, identity and
-  SINGLE_LAYER constraints, plus rejection of non-finite physical values;
-- downstream-only Hook inputs and proposal-stable Commit randomness;
-- one-shot Commit resolution and settled-only slot release;
-- proposal provenance/source-slice validation before ledger consumption;
-- stable semantic Contact tie IDs and synchronized terminal settlement;
-- executable Spawn Bass, Trout Drift, and Carp ARRIVAL closure traces.
-- durable append-only Opportunity/Reservation/Settlement journal with replay
-  idempotency, conflict detection, failed-write rollback, safe duplicate
-  materialization rejection, and explicit startup hydrate/adopt after restart.
-- cross-process append locking and multi-process journal integrity fixture;
-  SQLite transactional adapter contract and engine restart/hydrate.
-- production handoff `run_core_conformance` smoke runner against reference and
-  SQLite-backed engines, including structured failure reporting.
+- 有限单位进入概率与禁止 Poisson 替换；
+- 随机化有限质量守恒性质扫描（100 个确定性用例）；
+- 稳定机会重放与触发一次的反重掷；
+- Pending 零保留与槽位释放不重新抽取；
+- 并发重试下的原子单归属方保留；
+- 守恒与幂等/可回滚的终结结算；
+- 稳定生命周期切片身份与 PSU 转移；
+- 顺序不变且封顶的栖息占位分配；
+- 确定性当前动机、离散进入机会等级（EntryOffer）、遭遇与接触/挂钩；
+- ARRIVAL 生产者与 `T < 1` 放置的互斥；
+- DSL 与变体能力边界诊断；
+- 严格 PopulationSlice/TraceContract 命名空间、解析器区间形状与变体策略白名单诊断；
+- PopulationDefinition 与 BehaviorProgram/变体引用解析、类型化解析器 `when` 重叠与区间检查；
+- 温度剖面语义编译：层范围/重叠、采样深度与有效期、温跃层范围、来源白名单/新鲜度、身份与 SINGLE_LAYER 约束，以及对非有限物理值的拒绝；
+- 挂钩输入仅来自下游与提案稳定的承诺判定随机性；
+- 一次性承诺判定求解与仅已结算槽位释放；
+- 账本消费前的提案来源/来源切片校验；
+- 稳定语义接触平局裁决 ID 与同步终结结算；
+- 可执行的产卵护巢鲈鱼、鳟鱼漂流与鲤鱼 ARRIVAL 收口追踪样例。
+- 持久只追加的机会/保留/终结结算日志（Journal），含重放幂等、冲突检测、失败写入回滚、安全重复物化拒绝，以及重启后显式 hydrate/adopt。
+- 跨进程追加锁与多进程日志完整性固定样例；
+- SQLite 事务适配器契约与引擎重启/hydrate。
+- 针对参考引擎与 SQLite 支撑引擎的生产交接 `run_core_conformance` 冒烟运行器，含结构化失败报告。
 
-## Remaining gate
+## 剩余闸门
 
-This is reference-oracle evidence, not proof that a production implementation
-is complete. The design surfaces (DSL, mechanisms, entity/Variant, and editor)
-have received Independent Reviewer approval. The remaining gate is to
-run the same fixture contract against the production runtime and validate its
-cross-process storage adapter (the repository now includes a local journal and
-hydrate/adopt contract), then obtain an Independent Narrow Close Review. Any
-concrete MAJOR/BLOCKER must be adjudicated as a narrow revision; realism or
-scope expansion belongs in V1.1.
+这是参考预言机证据，不是生产实现已完成的证明。设计面（DSL、各机制、实体/变体与
+编辑器）已获得独立评审者批准。剩余闸门是把同一固定样例契约跑到真实生产运行时并验证
+其跨进程存储适配器（仓库现含本地日志与 hydrate/adopt 契约），然后取得独立窄域收口
+审查。任何具体的 MAJOR/BLOCKER 必须作为窄域修订裁决；真实感或范围扩展属于 V1.1。
 
-## Production handoff acceptance contract
+## 生产交接验收契约
 
-The final gate is satisfied only when:
+最终闸门仅在以下条件全部满足时视为通过：
 
-1. Production supplies a `JournalAdapter` and starts from a pre-journal source
-   snapshot with `hydrate_journal=True`.
-2. The RC4 fixture set runs against production through an engine factory; no
-   fixture is silently replaced by a mock.
-3. Existing Opportunity IDs never trigger a new Entry draw, and duplicate
-   Reservation/Settlement events remain idempotent across restart.
-4. Two workers racing one event ID produce one append plus one identical replay;
-   a differing payload is rejected as a conflict.
-5. The deterministic 100-case conservation sweep passes and flagship traces
-   remain explainable at stage/owner level.
-6. Independent Narrow Close Review records `APPROVE` or
-   `APPROVE_WITH_MINOR`; any MAJOR/BLOCKER reopens only its named owner
-   contract and is adjudicated with a minimal patch.
+1. 生产方提供 `JournalAdapter` 并以 `hydrate_journal=True` 从预日志来源快照启动。
+2. RC4 固定样例集通过引擎工厂对生产运行；任何固定样例不得被静默替换为 mock。
+3. 既有机会 ID 永不触发新的进入抽取；重复的保留/终结结算事件在重启后保持幂等。
+4. 两个 worker 竞争同一事件 ID 时，只产生一次追加加一次完全相同的重放；载荷不同则
+   作为冲突拒绝。
+5. 确定性 100 用例守恒扫描通过，且旗舰追踪样例在阶段/归属方层面仍可解释。
+6. 独立窄域收口审查记录 `APPROVE` 或 `APPROVE_WITH_MINOR`；任何 MAJOR/BLOCKER 只
+   重开其点名的归属方契约，并以最小补丁裁决。
 
-Promotion is blocked if any item is missing. Realism or scope expansion belongs
-to V1.1 and does not change this acceptance contract.
+任一项缺失则禁止晋升（Promotion）。真实感或范围扩展属于 V1.1，不改变本验收契约。

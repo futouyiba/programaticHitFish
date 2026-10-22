@@ -1,17 +1,18 @@
-# Authoring Maintenance & Editor IA Gate R0
+# 配置维护与编辑器信息架构闸门 R0（Authoring Maintenance & Editor IA Gate R0）
 
-## Maintenance Cost Matrix
+## 维护成本矩阵
 
-| Operation | Files touched | Config nodes added/changed | Shared definitions reused | Cross-owner edits |
-|---|---:|---:|---|---:|
-| Add normal Species | 1 | 1 species block | NORMAL pathways, response rules, profiles | 0 |
-| Add grammar-changing FishMode | 1 | 3 (mode, pathway, rule) | ResponseGrade and typed operations | 0 |
-| Change FeedingReadiness | 1 | 1 scalar | all lifecycle/spatial/mode/materialization | 0 |
-| Add CueFamily | 1 | 1 compatibility entry | feeding rules and response policy | 0 |
+| 操作 | 触及文件 | 新增/变更配置节点 | 复用共享定义 | 跨归属方编辑 |
+|---|---:|---|---|---:|
+| 新增普通物种 | 1 | 1 个物种块 | NORMAL 路径、响应规则、剖面 | 0 |
+| 新增改变语法的 FishMode | 1 | 3（模式、路径、规则） | 响应等级与类型化操作 | 0 |
+| 修改进食准备度（FeedingReadiness） | 1 | 1 个标量 | 全部生命周期/空间/模式/物化 | 0 |
+| 新增 CueFamily | 1 | 1 个兼容条目 | 进食规则与响应策略 | 0 |
 
-These are measured fixture diffs against `authoring/bass_v0.json`, not estimates. A normal Species has low enough marginal cost; FishMode remains a scarce grammar-changing structure; local tuning remains local; CueFamily is a shared catalog concept.
+这些是针对 `authoring/bass_v0.json` 实测的固定样例 diff，不是估算。普通物种的边际成本
+足够低；FishMode 仍是稀缺的改变语法结构；局部调参保持局部；CueFamily 是共享目录概念。
 
-## Editor IA R0
+## 编辑器信息架构 R0
 
 ```text
 Species
@@ -40,19 +41,20 @@ Shared Catalogs
 └─ Templates
 ```
 
-Lifecycle ownership, reproductive eligibility, behavior anchor and spatial support do not belong inside FishMode merely for UI symmetry.
+生命周期归属、繁殖资格、行为锚点与空间支持不因界面对称而塞进 FishMode。
 
-### Typed Rule Editor
+### 类型化规则编辑器
 
-Each rule presents `priority`, typed conditions, typed inputs, typed output, explicit fallback marker and validation status. Arbitrary code is not the primary authoring surface.
+每条规则呈现 `priority`、类型化条件、类型化输入、类型化输出、显式回退标记与校验状态。
+任意代码不是主要配置面。
 
-### Explainability flow
+### 可解释性流
 
 ```text
 Source View → Resolved / Compiled Preview → Lint → Affected Species / Modes
 ```
 
-Preview must show inheritance expanded, for example:
+预览必须展示展开后的继承，例如：
 
 ```text
 ACTIVE_SPAWNING
@@ -61,15 +63,17 @@ ACTIVE_SPAWNING
 → final effective response policy
 ```
 
-## Template boundary
+## 模板边界
 
-Only `single explicit template + shallow override` is supported. The compiler emits fully materialized canonical output; no runtime inheritance, deep inheritance, multiple inheritance or magic merge.
+只支持`单一显式模板 + 浅层覆盖`。编译器输出完全物化的规范产物；无运行时继承、深层
+继承、多重继承或魔法合并。
 
-## Gate result
+## 闸门结果
 
 **READY_FOR_EDITOR_PROTOTYPE**
 
-The gate proves the four maintenance fixtures and rule ambiguity checks. It does not prove a production UI, collaboration model or the out-of-scope FCF stages.
+该闸门证明四个维护固定样例与规则歧义检查。它不证明生产 UI、协作模型或范围外的
+FCF 阶段。
 
 level: ARTIFACT
 scope: maintenance fixtures, authoring compiler/linter extensions, IA contract and tests

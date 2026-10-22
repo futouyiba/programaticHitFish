@@ -1,20 +1,20 @@
-# FCF V1 editor / attribute authoring contract
+# FCF V1 编辑器 / 属性配置契约
 
-The editor is a schema-driven tool over immutable versioned artifacts. It is
-not a runtime behavior scripting surface.
+编辑器是构建于不可变版本化交付物之上的结构模式（Schema）驱动工具。它不是运行时
+行为脚本面。
 
-## Panels and ownership
+## 面板与归属
 
-| Panel | Editable | Read-only / validation |
+| 面板 | 可编辑 | 只读 / 校验 |
 |---|---|---|
-| Species capability | anatomy profile, sensory channels, allowed contacts, task limits | `q` change is marked **scale change** and requires recalibration review |
-| Population slices | cohort and lifecycle role declarations, hysteresis/minimum hold | stable `population_slice_key`; Program is not part of identity |
-| Behavior Program | occupancy rules, motive priority, EntryOffer rules, whitelisted triggers | all choices must be within Species capability |
-| World-factor map | neutral fact bindings and resolver interpretation | no fish-specific World Fact; one physical consequence → one owner |
-| Presentation compiler | object truth, motion/geometry and cue emission mappings | raw Item/Technique IDs cannot be fish-response authority |
-| Verification trace | none | stage-by-stage inputs, outputs, owner, probability, ledger delta |
+| 物种能力 | 解剖剖面、感知通道、允许接触、任务上限 | `q` 变更标记为**规模变更**并要求重新校准审查 |
+| 种群切片 | 队列与生命周期角色声明、滞回/最短保持 | 稳定的 `population_slice_key`；策略程序不属于身份 |
+| 行为策略程序 | 栖息占位规则、动机优先级、进入机会等级规则、白名单触发器 | 所有选择必须在物种能力范围内 |
+| 世界因子映射 | 中性事实绑定与解析器解释 | 不得有鱼专属的世界事实；一个物理后果 → 一个归属方 |
+| 呈现编译器 | 对象真值、运动/几何与线索发射映射 | 原始物品/技巧 ID 不能作为鱼响应权威 |
+| 验证追踪 | 无 | 逐阶段输入、输出、归属方、概率、账本增量 |
 
-## Commands
+## 命令
 
 ```text
 open_artifact(version_id)
@@ -26,12 +26,11 @@ compile() -> CompiledArtifact
 export_review_report(version_id)
 ```
 
-`edit` is transactional: a failed validation leaves the prior artifact
-unchanged. `save_as_new_version` stores the complete flattened artifact, a
-machine-readable diff, and diagnostics. Runtime consumes only `CompiledArtifact`
-and never reads editor draft state.
+`edit` 是事务性的：校验失败时先前交付物保持不变。`save_as_new_version` 存储完整展开的
+交付物、机器可读 diff 与诊断。运行时只消费 `CompiledArtifact`，从不读取编辑器草稿
+状态。
 
-## Diagnostics that block save
+## 阻止保存的诊断
 
 ```text
 UNKNOWN_FIELD / DUPLICATE_ID / INVALID_Q
@@ -44,7 +43,7 @@ UNSTABLE_REEVALUATION_TRIGGER
 PROGRAM_IN_SLICE_IDENTITY
 ```
 
-## ExplainTrace minimum shape
+## ExplainTrace 最小形状
 
 ```json
 {
@@ -61,5 +60,4 @@ PROGRAM_IN_SLICE_IDENTITY
 }
 ```
 
-The trace is an explanatory projection of authoritative decisions. It must not
-perform a second roll or mutate state.
+该追踪是权威决策的解释性投影。它不得执行第二次抽取或改变状态。

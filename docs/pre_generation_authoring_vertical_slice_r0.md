@@ -1,40 +1,45 @@
-# Pre-Generation Authoring Vertical Slice R0
+# 预生成配置编写垂直切片 R0（Pre-Generation Authoring Vertical Slice R0）
 
-Canonical fixture: [`authoring/bass_v0.json`](../authoring/bass_v0.json). It uses four representation classes:
+规范固定样例：[`authoring/bass_v0.json`](../authoring/bass_v0.json)。它使用四类表达：
 
-- Catalog: species, FishMode, pathway and CueFamily identifiers.
-- Tables: lifecycle supply shares and spatial opportunities.
-- Typed rules: response grade and narrow `SET`/`CEILING` slice operations.
-- Generated: CandidateBasisKey, OpportunityId, snapshot fingerprint and engagement mass.
+- 目录（Catalog）：物种、FishMode、路径与 CueFamily 标识符。
+- 表格：生命周期供给份额与空间机会。
+- 类型化规则：响应等级与窄域 `SET`/`CEILING` 切片操作。
+- 生成物：CandidateBasisKey、OpportunityId、快照指纹与参与质量。
 
-The compiler emits `CompiledContentBundle`; its `CandidateContribution` values are consumed by the existing deterministic harness. No Bass-specific gameplay branch is used.
+编译器产出 `CompiledContentBundle`；其 `CandidateContribution` 值由既有确定性挂具消费。
+不使用任何 Bass 专属玩法分支。
 
-## Authoring-cost showdown
+## 配置编写成本对决
 
-| Metric | Flat Tables | Raw Typed DSL | Hybrid |
+| 指标 | 平铺表格 | 原始类型化 DSL | 混合 |
 |---|---:|---:|---:|
-| Bass total rows/nodes | 24 | 31 | 18 |
-| duplicated predicates | 7 | 3 | 1 |
-| surfaces touched | 6 | 3 | 5 |
-| max table width | 14 | n/a | 8 |
-| cross-references | 12 | 9 | 9 |
-| lintable errors | medium | high | high |
-| new Species marginal cost | high | medium | low |
-| new FishMode marginal cost | medium | medium | low |
+| Bass 总行数/节点数 | 24 | 31 | 18 |
+| 重复谓词 | 7 | 3 | 1 |
+| 触及表面数 | 6 | 3 | 5 |
+| 最大表宽 | 14 | n/a | 8 |
+| 交叉引用 | 12 | 9 | 9 |
+| 可 lint 错误 | medium | high | high |
+| 新增物种边际成本 | high | medium | low |
+| 新增 FishMode 边际成本 | medium | medium | low |
 
-Verdict: **HYBRID**. Tables remain efficient for finite catalogs/shares; typed rules provide ownership and overlap validation; both compile to one canonical bundle.
+结论：**混合（HYBRID）**。表格在有限目录/份额上保持高效；类型化规则提供归属与重叠
+校验；两者编译进同一个规范束。
 
-## Editor mental model
+## 编辑器心智模型
 
-Species page: Static Data, Lifecycle table, Spatial/Habitat table, Slow Facts, Materialization Profiles, available FishModes.
+物种页：静态数据、生命周期表、空间/栖息表、慢速事实、物化剖面、可用 FishMode。
 
-FishMode page: Meaning policy, available pathways and priority/arbitration, response policy, narrow template selections. Lifecycle/cohort eligibility and materialization stay owned by Lifecycle/Profile; they are not arbitrary FishMode modules.
+FishMode 页：含义策略、可用路径与优先级/仲裁、响应策略、窄域模板选择。生命周期/队列
+资格与物化仍由生命周期/剖面拥有；它们不是任意 FishMode 模块。
 
-Templates are single, shallow and fully materialized at compile time. Runtime IDs, RNG, technical fragments and CandidateEngagementMass are not editable surfaces.
+模板单一、浅层，并在编译时完全物化。运行时 ID、随机数、技术碎片与
+CandidateEngagementMass 不是可编辑表面。
 
-Maintenance fixtures: ordinary species edits Static Data + one profile; a grammar-changing mode adds one mode/pathway/policy set; temperature preference changes Slow Facts only; a new CueFamily changes the catalog and species compatibility table.
+维护固定样例：普通物种编辑静态数据 + 一个剖面；改变语法的模式新增一个模式/路径/策略
+集；温度偏好只改慢速事实；新 CueFamily 改目录与物种兼容表。
 
-## Scope review
+## 范围审查
 
 level: ARTIFACT
 scope: `fcf_v1/authoring.py`, `authoring/bass_v0.json`, authoring tests and this report

@@ -1,8 +1,8 @@
-# Fish-Centric Conditional Funnel (FCF) V1
+# Fish-Centric Conditional Funnel（FCF，以鱼为中心的条件漏斗）V1
 
-This repository is the executable design baseline for the RC4 mechanism. The
-authoritative contracts are documented in [`docs/fcf_v1_engineering_spec.md`](docs/fcf_v1_engineering_spec.md)
-and exercised by the tests in [`tests/test_fcf_v1.py`](tests/test_fcf_v1.py).
+本仓库是 RC4 机制的可执行设计基线。权威契约记录在
+[`docs/fcf_v1_engineering_spec.md`](docs/fcf_v1_engineering_spec.md)，
+并由 [`tests/test_fcf_v1.py`](tests/test_fcf_v1.py) 中的测试驱动验证。
 
 中文入口总览见 [`docs/fcf_v1_overview_cn.md`](docs/fcf_v1_overview_cn.md)，其中包含
 概念、整体机制、配置示例、中文术语和主链路图示。
@@ -10,42 +10,38 @@ and exercised by the tests in [`tests/test_fcf_v1.py`](tests/test_fcf_v1.py).
 全仓库机制英文术语的中文对照见 [`docs/glossary_cn.md`](docs/glossary_cn.md)。
 
 Simplified V0 文档治理见 [`docs/fcf_v0_document_governance.md`](docs/fcf_v0_document_governance.md)，
-其中规定 V0 实验、V1 contract 和发布镜像的边界。
+其中规定 V0 实验、V1 契约和发布镜像的边界。
 
-Additional review surfaces:
+其它审查面：
 
-- [`docs/editor_contract.md`](docs/editor_contract.md) — transactional editor and attribute workflow;
-- [`docs/flagship_traces.md`](docs/flagship_traces.md) — Spawn Bass, Trout Drift, and Carp Static Bait;
-- [`docs/independent_review_checklist.md`](docs/independent_review_checklist.md) — narrow close review matrix;
-- [`docs/verification_report.md`](docs/verification_report.md) — executed evidence and remaining gate.
+- [`docs/editor_contract.md`](docs/editor_contract.md) — 事务性编辑器与属性配置工作流；
+- [`docs/flagship_traces.md`](docs/flagship_traces.md) — 产卵护巢鲈鱼（Spawn Bass）、鳟鱼漂流（Trout Drift）、鲤鱼静态饵（Carp Static Bait）三条旗舰追踪样例；
+- [`docs/independent_review_checklist.md`](docs/independent_review_checklist.md) — 窄域收口审查矩阵；
+- [`docs/verification_report.md`](docs/verification_report.md) — 已执行的证据与剩余闸门。
 
-The prototype intentionally models the V1 semantic boundaries rather than a
-full game runtime: finite source-local population units, opportunity-ledger
-entry, just-in-time candidates, deterministic encounter conversion, commit,
-contact arbitration, hook compatibility, and idempotent settlement.
+原型有意只建模 V1 语义边界，而非完整游戏运行时：有限来源本地种群单位、机会账本
+进入、即时候选、确定性遭遇转化、承诺判定、接触仲裁、挂钩兼容与幂等终结结算。
 
-Run the verification suite with:
+运行验证套件：
 
 ```text
 python3 -m pytest -q
 ```
 
-## Simplified V0 calibration experiment
+## Simplified V0 校准实验
 
-The isolated, numeric-only calibration experiment can be reproduced with:
+隔离的纯数值校准实验可复现：
 
 ```text
 python3 -m fcf_v1.calibration_experiment --output experiments/fcf_simplified_v0
 ```
 
-It generates analytical and fixed-seed Monte Carlo CSV results plus the six
-requested figures without changing the FCF V1 runtime model.
+它生成解析解与固定种子蒙特卡洛 CSV 结果及六张所需图表，不改变 FCF V1 运行时模型。
 
-## Production handoff smoke check
+## 生产交接冒烟检查
 
-The production runtime should expose a factory that satisfies the
-`JournalAdapter`-backed engine contract. Run the deterministic handoff check
-before the full fixture suite:
+生产运行时应暴露一个满足 `JournalAdapter` 支撑的引擎契约的工厂。在运行完整固定样例
+套件之前，先运行确定性交接检查：
 
 ```python
 from fcf_v1 import FCFEngine, SQLiteJournal, run_core_conformance
@@ -62,7 +58,5 @@ if not report.passed:
     raise SystemExit(report.to_json())
 ```
 
-The smoke check is intentionally narrow (finite entry, no-reroll replay,
-idempotent settlement, and conservation). CI must additionally run the full
-RC4 fixture/concurrency/property suite and persist the JSON report as review
-evidence.
+该冒烟检查刻意收窄（有限进入、无重掷重放、幂等终结结算与守恒）。CI 还必须运行完整的
+RC4 固定样例/并发/性质套件，并将 JSON 报告持久化为审查证据。
