@@ -2,7 +2,11 @@
 
 状态：Working / mesh 基建。本页回答「哪些角色开持久会话 tab、怎么开、怎么协作」。
 用户决策（2026-09-10）：坚持持久上下文角色，不用 ledger 恢复替代——tab 为主，
-subagent + 角色记忆降级为 fallback。
+subagent + 角色记忆降级为后备（fallback）。
+
+> 2026-09-10 搭建时点记录：本文各处的 `sessionId` 与 `A:\Projs\FCF-Harness-Handoff`
+> 路径为当时 Windows 工作区位置与当时会话标识；仓库现已迁移到 macOS（本地路径见
+> `HARNESS_HANDOFF.md`），沿用本指南时按当前机器的实际仓库路径替换，勿照抄 A:\ 路径。
 
 ## 1. 拓扑
 
@@ -17,10 +21,10 @@ subagent + 角色记忆降级为 fallback。
 
 | 角色 | 形态 | 理由 |
 |---|---|---|
-| FCF-FISH-RESEARCHER | **持久 tab（必开）** | 任务连续性强，campaign 设计即长期 Worker |
-| FCF-EVIDENCE-REVIEWER | **持久 tab（必开）** | 治理允许长期 Reviewer 保留 Findings 经验；独立性=不读 Worker 会话（tab 物理隔离） |
+| FCF-FISH-RESEARCHER | **持久 tab（必开）** | 任务连续性强，campaign 设计即长期工作者（Worker） |
+| FCF-EVIDENCE-REVIEWER | **持久 tab（必开）** | 治理允许长期评审者（Reviewer）保留 Findings 经验；独立性=不读工作者会话（tab 物理隔离） |
 | FCF-SEMANTIC-TRIAGE | 可选 tab | FR3 每批一次，量小；提速再开 |
-| Cross-Batch Cold Reviewer | 永远 subagent | 治理要求每 ~3 批 fresh 攻击惯性 |
+| Cross-Batch Cold Reviewer | 永远 subagent | 治理要求每 ~3 批全新（fresh）上下文攻击惯性 |
 | Representation Worker / Narrow Reviewer | subagent（暂） | 表达线频率低；提速可加 tab |
 
 ## 2. 开法（用户操作）
@@ -101,8 +105,8 @@ SEMANTIC_ESCALATION），报告发回 local_53ba8fd9-a666-4aaa-ba05-80c5f9d6fb93
   ② 协调会话临时用 subagent + 角色记忆暖启动顶替（fallback）。
 - **停止条件**（照 Orchestrator R1 §7）：SEMANTIC_ESCALATION、WRITE CONFLICT、
   身份冲突无法隔离、prompt 与 Hub 矛盾、不可逆操作需确认——停下回信协调会话。
-- **审核链独立性**：Researcher 与 Reviewer 是不同对话，互不可见；协调会话只传
-  envelope 和 named artifact，绝不转述 Worker 内部推理。
+- **审核链独立性**：调研方（Researcher）与评审者是不同对话，互不可见；协调会话只传
+  envelope 和具名交付物（named artifact），绝不转述工作者内部推理。
 
 ## 5. Segment 分段（2026-09-10 生效）
 
@@ -117,4 +121,4 @@ Segment B 注册（Registry §7）：
 - FCF-FISH-RESEARCHER → `local_3184f5fc-5292-4fe0-b82e-04bed18aabfd`
 - FCF-EVIDENCE-REVIEWER → `local_780325b5-b1f8-4919-ae06-1be7d2b71eba`
 
-规则：两段 handle 互不混用、互不 resume；跨段只经 Notion 共享 artifact；envelope 跨段投递须显式声明并经用户同意。持久会话有完整工具——Notion 写回由角色**自写自核**（fetch live → 写 → readback），Coordinator 不再代写。
+规则：两段 handle 互不混用、互不 resume；跨段只经 Notion 共享交付物；envelope 跨段投递须显式声明并经用户同意。持久会话有完整工具——Notion 写回由角色**自写自核**（fetch live → 写 → 回读（readback）），Coordinator 不再代写。

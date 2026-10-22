@@ -2,7 +2,7 @@
 
 这份文件是把当前 FCF 工作区交给另一套 harness 的启动入口。它记录的是可复核的
 工作状态、来源关系、角色边界和恢复顺序，不把任何 Working 或 Candidate 误写成
-已经 Promotion 的 Authority。
+已经 Promotion 的权威（Authority）。
 
 快照时间：2026-09-10（Asia/Shanghai；Notion 远端页面按各自 fetch 时间记录）
 
@@ -43,13 +43,13 @@ FCF 的三条顶层设计路线必须分开：
 | 路线 | 语义 | 当前入口 |
 |---|---|---|
 | First-Principles / Original System Model Heritage | 更早的 Mainline 第一性原理与因果树，只作显式 reference/provenance | [Branch Index](https://app.notion.com/p/3cda4137d236819dbbc0d371ee6084dd) |
-| FCF V1 / Full Mechanism | `R1 → Working R2 → V1 Core / Delta / RC` 的连续 lineage；无 branch qualifier 时是 FCF default approved authority | [Project State Current](https://app.notion.com/p/3cca4137d2368114a982f3b09e965e49) |
-| Simplified Production V0 | 独立的极简生产、DSL、authoring 和 prototype 路线；不是 V1 revision 或 ancestor | [Simplified V0 Working Main](https://app.notion.com/p/3cda4137d23681508740ceff789abd41) |
+| FCF V1 / Full Mechanism | `R1 → Working R2 → V1 Core / Delta / RC` 的连续 lineage；无 branch qualifier 时是 FCF 默认核准权威 | [Project State Current](https://app.notion.com/p/3cca4137d2368114a982f3b09e965e49) |
+| Simplified Production V0 | 独立的极简生产、领域专用语言（DSL）、配置编写（authoring）和 prototype 路线；不是 V1 revision 或 ancestor | [Simplified V0 Working Main](https://app.notion.com/p/3cda4137d23681508740ceff789abd41) |
 
-引用、相似术语或旧文档 parent 不会改变 ownership。跨路线只能通过明确的
+引用、相似术语或旧文档 parent 不会改变归属（ownership）。跨路线只能通过明确的
 reference、comparison、compatibility、migration 或 adoption decision 发生。
 
-当前 authority 顺序：
+当前权威顺序：
 
 ```text
 FCF Router
@@ -60,8 +60,8 @@ FCF Router
 ```
 
 `Current`、`Working`、`Candidate`、`Historical` 的状态必须原样保留。任何
-`ARTIFACT_APPROVE` 只覆盖其声明的 artifact scope；不能扩大为整个项目完成或
-V1 Freeze。
+`ARTIFACT_APPROVE` 只覆盖其声明的交付物范围（artifact scope）；不能扩大为整个项目完成或
+V1 冻结（Freeze）。
 
 ## 3. 当前状态
 
@@ -69,28 +69,28 @@ V1 Freeze。
 
 - Current 页面把 V1 active review target 指向
   [V1 Core Candidate RC4｜Closure Revision](https://app.notion.com/p/3cca4137d236819aa3baddca8a2c251c)。
-- RC4 已把有限 PSU、reservation、Candidate resolver order、A/T/E、opportunity
-  replay identity、lifecycle slice identity、cause owner、settlement 和
+- RC4 已把有限 PSU、原子保留（reservation）、遭遇候选（Candidate）解析器顺序（resolver order）、A/T/E、机会重放身份（opportunity
+  replay identity）、生命周期切片身份（lifecycle slice identity）、原因归属方（cause owner）、终结结算（settlement）和
   review transport 规则收成一个 self-contained target。
-- 本地 V1 设计、reference engine、journal、editor、flagship traces 和测试已经
+- 本地 V1 设计、reference engine、日志（journal）、编辑器（editor）、旗舰追踪样例（flagship traces）和测试已经
   形成可运行基线；[`docs/verification_report.md`](docs/verification_report.md)
-  明确剩余门槛是把同一 fixture contract 跑到真实 production runtime/storage，
+  明确剩余门槛是把同一固定样例（fixture）contract 跑到真实 production 运行时（runtime）/storage，
   再完成 Independent Narrow Close Review。
 - 不能把“本地 reference 测试全绿”写成 production 已接入，也不能把 RC4
-  Candidate 写成已经 Freeze。
+  Candidate 写成已经冻结。
 
 ### Simplified Production V0
 
 - 当前入口是
   [Simplified Production V0｜Working Main](https://app.notion.com/p/3cda4137d23681508740ceff789abd41)。
-- 当前主线是 pre-generation、dynamic condition、authoring/compiler、editor
+- 当前主线是 pre-generation、dynamic condition、配置编写（authoring）/compiler、编辑器
   和 representation 的窄闭合；V0 仍是 `WORKING / NOT PROMOTED`。
 - 当前下一 Gate 是
   [Human Usability Validation R0](https://app.notion.com/p/3cfa4137d236810e8e0cc09a96e2b4e5)：
   由 2–3 名未深度参与推导的真实策划执行固定任务。Coding Agent 不再自证
   usability。
-- 不能把 V0 的数值、阈值、prototype PASS 或 authoring 示例自动升级为 V1
-  Authority。
+- 不能把 V0 的数值、阈值、prototype PASS 或配置编写示例自动升级为 V1
+  权威。
 
 ### Representation / Pilot-A
 
@@ -98,7 +98,7 @@ V1 Freeze。
   [`outputs/fcf_authoring_concrete_r2/README.md`](outputs/fcf_authoring_concrete_r2/README.md)
   和 [`outputs/fcf_authoring_concrete_r2/current-state-snapshot.md`](outputs/fcf_authoring_concrete_r2/current-state-snapshot.md)。
 - 当前快照：`A4 = PROCEED_TO_REPRESENTATION`；`B4 = DESIGN_REVISE`；
-  60 个 Case × Surface 单元已通过 preflight；已完成的 artifact review 只覆盖
+  60 个 Case × Surface 单元已通过 preflight；已完成的交付物审查只覆盖
   声明的 R1/R1.1 bundle。
 - 四个执行面：
 
@@ -111,7 +111,7 @@ Quality Selection
 
 - 当前方向是 per-surface hybrid：
   - Group：Config / RuleSet 倾向强；
-  - Bake：Config / Typed Fact / Profile 主路径增强，DSL escape lane 尚未关闭；
+  - Bake：Config / Typed Fact / Profile 主路径增强，领域专用语言 escape lane 尚未关闭；
   - Response：少量固定拓扑 + Profile / Channel；
   - Quality：并列 Modifier + 单次 Normalize。
 - 下一刀优先读取并攻击最新
@@ -148,7 +148,7 @@ Notion verification 状态已经替团队完成语义审核。
 
 ## 5. 本地工作包
 
-### Canonical V1 contract 与 runtime
+### Canonical V1 contract 与运行时（runtime）
 
 - [`docs/fcf_v1_engineering_spec.md`](docs/fcf_v1_engineering_spec.md)
 - [`docs/fcf_v1_overview_cn.md`](docs/fcf_v1_overview_cn.md)
@@ -187,7 +187,7 @@ Notion verification 状态已经替团队完成语义审核。
 - [`docs/fcf_v0_conflict_register.md`](docs/fcf_v0_conflict_register.md)
 - [`docs/glossary_cn.md`](docs/glossary_cn.md)
 
-### V0、Bass、空间和 authoring
+### V0、Bass、空间和配置编写（authoring）
 
 - [`bass_dynamic_preference/`](bass_dynamic_preference)
 - [`experiments/fcf_simplified_v0/`](experiments/fcf_simplified_v0)
@@ -221,11 +221,11 @@ Notion verification 状态已经替团队完成语义审核。
 | Canonical role | 负责什么 | 不负责什么 |
 |---|---|---|
 | `FCF-FISH-RESEARCHER` | Reality / Strategy Research、Story Sweep、Research Package | 不做 Representation PT1–PT4；不把猜测写成事实 |
-| `FCF-EVIDENCE-REVIEWER` | 独立核验事实、Evidence、Scope、Owner、Missed Story | 不读 Worker scratchpad；不直接改 Worker 产物 |
-| `FCF-SEMANTIC-TRIAGE` | Existing Pattern、Compression、Coverage Delta、Semantic Escalation | 不修改 Design Authority；不把自然语言相似当作 Pattern Fit |
-| `FCF-REPRESENTATION-WORKER` | 已审核 Story 到 Config / Table / Step Table / Narrow DSL 的表达验证 | 不重建 Reality Baseline；不隐藏 Authoring freedom |
-| Design / Integration Owner | 机制、取舍、公式、owner、Gate、窄修 | 不用“更真实”无边界扩 V1 |
-| Independent Narrow Reviewer | 按声明 scope 攻击 false fit、replay、conservation、owner 和隐藏复杂度 | 不替代上游设计；不能越权扩大 verdict |
+| `FCF-EVIDENCE-REVIEWER` | 独立核验事实、Evidence、Scope、归属方（Owner）、Missed Story | 不读 Worker scratchpad；不直接改 Worker 产物 |
+| `FCF-SEMANTIC-TRIAGE` | Existing Pattern、Compression、Coverage Delta、Semantic Escalation | 不修改设计权威（Design Authority）；不把自然语言相似当作 Pattern Fit |
+| `FCF-REPRESENTATION-WORKER` | 已审核 Story 到 Config / Table / Step Table / Narrow DSL 的表达验证 | 不重建 Reality Baseline；不隐藏配置编写自由 |
+| Design / Integration Owner | 机制、取舍、公式、归属方、Gate、窄修 | 不用“更真实”无边界扩 V1 |
+| Independent Narrow Reviewer | 按声明 scope 攻击 false fit、重放（replay）、守恒（conservation）、归属方和隐藏复杂度 | 不替代上游设计；不能越权扩大 verdict |
 | Cross-Batch Cold Reviewer | 每约三批攻击长期角色的 rubber-stamp、ontology anchoring、过度压缩 | 不承担常规批次流程 |
 | Coding Agent / Harness | executable prototype、property/concurrency/replay/regression fixture | 不把测试通过当机制 promotion |
 
@@ -289,12 +289,12 @@ BLOCKING_FINDINGS: NONE / URLs
 NOTES: 仅必要限定，不复制长推理
 ```
 
-接收方先恢复自己的长期上下文，再重新读取 Hub / Current / 输入 artifact；不能
+接收方先恢复自己的长期上下文，再重新读取 Hub / Current / 输入交付物；不能
 靠上一角色的长聊天或隐藏思路接管。
 
 ## 7. Review 与状态规则
 
-所有 independent-review verdict 都必须来自
+所有独立审核结论（independent-review verdict）都必须来自
 [`docs/scoped_review_protocol.md`](docs/scoped_review_protocol.md)，并包含：
 
 ```text
@@ -310,13 +310,13 @@ verdict
 规则：
 
 - `PATCH_*` 只覆盖明确 diff、行或章节；
-- `ARTIFACT_*` 只覆盖一个 named artifact 或 cohesive policy bundle；
-- `MILESTONE_*` 才能依据原始 Goal / DoD 判断 milestone；
+- `ARTIFACT_*` 只覆盖一个具名交付物或 cohesive policy bundle；
+- `MILESTONE_*` 才能依据原始 Goal / DoD 判断里程碑（milestone）；
 - 没有声明 level 的 verdict 按 PATCH 处理；
-- 只有准备声明 `all complete`、`closed` 或 `Freeze-ready` 才运行 milestone
-  closure review；
+- 只有准备声明 `all complete`、`closed` 或 `Freeze-ready` 才运行里程碑
+  收口审查（milestone closure review）；
 - Review target 读不到时只报告 `REVIEW BLOCKED BY TRANSPORT`，不能拿旧 RC、
-  Mainline、Species Funnel 或其它 ledger 代替 baseline。
+  Mainline、Species Funnel 或其它 ledger 代替审查基线（baseline）。
 
 ## 8. Git 状态与交接策略
 
@@ -328,7 +328,7 @@ verdict
   具体提交历史以接手时的 `git log` 为准。
 - remote：未配置，因此当前不能执行有效 push。
 - 工作区有既有改动和未跟踪文件，包含机制文档、删除的历史文件、V0/Bass、
-  spatial bake、Representation bundle 以及用户提供的 `AGENTS.md`。
+  空间烘焙（spatial bake）、Representation bundle 以及用户提供的 `AGENTS.md`。
 - 这些既有改动没有被本次交接回滚，也不应被另一套 harness 擅自清理。
 
 本次交接只新增：
@@ -360,7 +360,10 @@ Notion URL 去重清单和生成时间见 `handoff_manifest.json`。
 
 - Notion 页面当前大多 `unverified`；它们是可定位来源，不是自动完成的审核证明。
 - 本地没有 Git remote；若需要推送，必须先由项目负责人配置并核对目标 remote。
-- 生产 runtime/storage 尚未通过 RC4 的真实 factory、journal、跨进程和独立窄审
+- （2026-10-21 更新：remote 已配置——`github.com/futouyiba/programaticHitFish`，
+  `proposal/response-scheme-1` 分支已有推送记录；本条与 §8 的 remote 描述为
+  2026-09-10 交接时点状态。）
+- 生产运行时/storage 尚未通过 RC4 的真实 factory、日志、跨进程和独立窄审
   acceptance contract。
 - Simplified V0 的 Human Usability Validation 尚未完成。
 - Representation 的 Bake escape lane、Summer Oxythermal 2D Profile 准入、

@@ -2,7 +2,9 @@
 
 命令：`python3 -m pytest -q`
 
-结果：**102 passed, 0 failed**（其中 15 项为本 harness 契约测试）。
+结果：**102 passed, 0 failed**（其中 15 项为本测试挂具（harness）契约测试）。
+
+记录时点：2026-09-02；上述数字为该时点快照证据，非当前测试套件状态（复现：运行上述命令）。
 
 ## Implementation Review Result
 

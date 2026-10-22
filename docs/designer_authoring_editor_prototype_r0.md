@@ -2,7 +2,7 @@
 
 运行：`python3 editor/prototype.py`，浏览器打开 `http://127.0.0.1:8765`。
 
-原型读取并修改真实 `authoring/bass_v0.json`，验证调用现有 `lint_authoring` / `compile_authoring`；Working Draft 在通过 lint 前不会写回 Saved Source。Effective Preview 展示编译后的 slow facts、response bundle 与 CandidateContribution。
+原型读取并修改真实 `authoring/bass_v0.json`，验证调用现有 `lint_authoring` / `compile_authoring`；工作草稿（Working Draft）在通过 lint（静态检查）前不会写回已保存源（Saved Source）。生效预览（Effective Preview）展示编译后的慢速事实（slow facts）、响应包（response bundle）与候选贡献（CandidateContribution）。
 
 ## UX task walkthrough
 

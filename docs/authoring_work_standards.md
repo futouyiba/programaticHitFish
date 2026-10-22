@@ -6,7 +6,7 @@
 
 ## 1. B 系列（Representation 生产级表达）标准
 
-### 1.1 条件原子（Group Routing 面）
+### 1.1 条件原子（分群路由 Group Routing 面）
 
 每张条件表必须使用声明的变体（Stress Test R1 Grammar §5.1 V1-V4），**列结构固定**：
 
@@ -35,43 +35,46 @@ V4 无编号（4 列）：条件 / 事实·计算项 / 比较符 / 比较值
 
 ### 1.3 分群结果
 
-5 列结构：规则集 / 命中条件 / 目标 Group / 权重处理 / 权重参数。
-Share 契约：`SpecialShareTotal > 1` → 报 Validation Error 不静默归一化；Default Group 承接剩余。
+5 列结构：规则集 / 命中条件 / 目标分组（Group）/ 权重处理 / 权重参数。
+份额（Share）契约：`SpecialShareTotal > 1` → 报校验错误（Validation Error）不静默归一化；默认分组（Default Group）承接剩余。
 
-### 1.4 伪脚本标准（Bake/Response/Quality 面）
+### 1.4 伪脚本标准（烘焙 Bake / 响应 Response / 质量 Quality 面）
 
-- **完全展开**：每步具体（读取什么事实 / 查什么 Profile / 怎么合并）。
+- **完全展开**：每步具体（读取什么事实 / 查什么剖面（Profile）/ 怎么合并）。
 - **Early return 显式标注**：`如果 X 则返回 Y（EARLY_RETURN）`。
 - **算子未定义显式**：`算子标注：OPERATOR UNDEFINED — 待机制侧（缺口说明）`。
-- **数值不冻结**：全部 `@参数名` 引用（生产数值由 Profile 层定值）。
+- **数值不冻结**：全部 `@参数名` 引用（生产数值由剖面层定值）。
 - **禁止**：「固定规则合并」「组合适应度」「满足条件后行为改变」等未展开占位。
 - **无程序面显式声明**：`NO_SURFACE_EFFECT：理由`（不是跳过，是无程序的显式记录）。
+
+> 口径更新：终步「合并」与出局值语义已由 §6.1 渐进累积基准修正——不存在独立合并步；
+> 不居留＝×0.01 软出局。本节「怎么合并」与二值 early return 的旧表述以 §6.1 为准。
 
 ### 1.5 质量管线
 
 1. 结构校验器（每批自带 validate_*.py）→ PASS 零违规
-2. 独立审（independent-narrow-reviewer）→ 7 字段 verdict
+2. 独立审（independent-narrow-reviewer）→ 7 字段结论（verdict）
 3. REVISE → 修复轮 → 复审 → 闭轮
 4. 修复三步清单（reviewer 定型）：**修复 → 重加总 → 同步表格**，缺一即半修
 
 ### 1.6 跨批分工
 
-同鱼异面可分双批（如肺鱼 P05 面[migration 批] / 护巢面[guarding 批]），须互指不重复。品系 L1-EQUIV 短形（四面声明+本体指针+Profile 重绑定）适用，不冒充本体。
+同鱼异面可分双批（如肺鱼 P05 面[migration 批] / 护巢面[guarding 批]），须互指不重复。品系 L1-EQUIV 短形（四面声明+本体指针+剖面重绑定）适用，不冒充本体。
 
-## 2. LT 系列（LogicTemplate Census）标准
+## 2. LT 系列（LogicTemplate Census，逻辑模板普查）标准
 
 ### 2.1 盲纪律（最高优先级）
 
-1. **先冻结后开 registry**：全部程序骨架写入 `blind_programs.jsonl`（sha256 + `registry_seen=false`）后才允许读 `template_registry.yaml`。
-2. **时序可证**：冻结节点 commit 锚定（coordinator 在冻结后 registry 打开前插入 commit）；或双时间戳 + hash 自证（偏差须事前声明）。
-3. **零 post-registry 改动**：看了 registry 后回头改骨架 = `BLIND_SKETCH_POST_REGISTRY_MUTATION`，只能建 revision 留痕；若动机来自 fit existing template 须标 `BIAS_RISK` 入 Human Review。
+1. **先冻结后开登记表（registry）**：全部程序骨架写入 `blind_programs.jsonl`（sha256 + `registry_seen=false`）后才允许读 `template_registry.yaml`。
+2. **时序可证**：冻结节点 commit 锚定（coordinator 在冻结后登记表打开前插入 commit）；或双时间戳 + hash 自证（偏差须事前声明）。
+3. **零开表后改动**：看了登记表后回头改骨架 = `BLIND_SKETCH_POST_REGISTRY_MUTATION`，只能建 revision 留痕；若动机来自拟合既有模板（fit existing template）须标 `BIAS_RISK` 入人工审查（Human Review）。
 
 ### 2.2 程序骨架纪律
 
 - 保留：`ordered_steps`（顺序不可排序）/ branches / gates / intermediate values + dependencies / combine / early return / return topology。
-- `incoming_premises` 与 `surface_owned_logic` 分开记录（F02：activation 差异留 premise，不算 body 差异）。
-- IR 节点类型仅：SEQUENCE / OPERATOR / IF / PARALLEL_SET / RETURN。SEQUENCE 顺序不可变；PARALLEL_SET 仅契约明确无序时可用。
-- De-instantiation 只生成 comparison view（擦物种/Profile 名/常量），原 body 永不改写。
+- `incoming_premises` 与 `surface_owned_logic` 分开记录（F02：激活（activation）差异留 premise，不算 body 差异）。
+- 中间表示（IR）节点类型仅：SEQUENCE / OPERATOR / IF / PARALLEL_SET / RETURN。SEQUENCE 顺序不可变；PARALLEL_SET 仅契约明确无序时可用。
+- 去实例化（De-instantiation）只生成比较视图（comparison view，擦物种/Profile 名/常量），原 body 永不改写。
 
 ### 2.3 判同四态
 
@@ -83,15 +86,15 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 ```
 
 - 顺序有业务意义即 `STRUCTURAL_DIFF = ORDER`，**不得 MERGE**。
-- 族完整性：≥3 成员族须 canonical body 版本，**禁链式合并**（A≈B 且 B≈C ⇏ A≈C）；每新成员直验 canonical。
-- §9.2 dual-topology：∥ 并行竞争（GUARD 型）与 IF 门互斥（STATE_GATED 型）为不同拓扑，**不得互并**。
+- 族完整性：≥3 成员族须规范本体（canonical body）版本，**禁链式合并**（A≈B 且 B≈C ⇏ A≈C）；每新成员直验 canonical。
+- §9.2 双拓扑（dual-topology）：∥ 并行竞争（GUARD 型）与 IF 门互斥（STATE_GATED 型）为不同拓扑，**不得互并**。
 
 ### 2.4 覆盖与计数纪律
 
-- 每个 Story 的 Sweep Log 逐 S 项过：MSF 项必须有 program / 显式排除 / TAR 三选一（B0 教训）。
-- 计数四方对账：merge_tests verdict 计数 == discovery_curve.csv == 批报告散文 == registry 条目数（B1/B2 教训）。
-- canonical 源自测条计入 `n_merge_confident`（B1 教训）。
-- `AMBIGUOUS` verdict 不得被散文升格为 `non-match`（B0-F-3 / B2-F-2 教训）。
+- 每个 Story 的扫描日志（Sweep Log）逐 S 项过：MSF 项必须有 program / 显式排除 / TAR 三选一（B0 教训）。
+- 计数四方对账：merge_tests 结论计数 == discovery_curve.csv == 批报告散文 == 登记表条目数（B1/B2 教训）。
+- 规范源自测条计入 `n_merge_confident`（B1 教训）。
+- `AMBIGUOUS` 结论不得被散文升格为 `non-match`（B0-F-3 / B2-F-2 教训）。
 
 ### 2.5 质量管线
 
@@ -101,19 +104,19 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 
 ## 3. 通用纪律
 
-- **统计句先跑 query 再写**（R05/R06 两批教训）：任何统计宣称先 live 实算后才写入。
+- **统计句先跑查询（query）再写**（R05/R06 两批教训）：任何统计宣称先实时（live）实算后才写入。
 - **引号内禁合成**（R07 教训）：多个引文短句不得拼成一个引号句。
-- **同属先例核库**（R06 教训）：「属 N/N 全 Px」要先 query 该属全部库内行。
+- **同属先例核库**（R06 教训）：「属 N/N 全 Px」要先查询该属全部库内行。
 - **DB 字段与正文主张一致**（R07 教训）：写入后逐字段核对 properties 与正文结论。
 - **选鱼名单从台账导出，禁凭记忆重建**（R10 事故教训）。
 - **三步修复清单**：修复 → 重加总 → 同步表格。
-- **修复完权威句必查 Machine Status**（R10 同型第三发）。
+- **修复完权威句必查机器状态（Machine Status）**（R10 同型第三发）。
 
 ## 4. 状态与权限
 
 - 所有产出标 `WORKING / NOT AUTHORITY / NOT PROMOTED`。
-- 测试/校验通过不替代语义审核，不构成 promotion / Freeze。
-- Notion 写回：Single-Writer 范围内自写自核（fetch live → 写 → readback）。
+- 测试/校验通过不替代语义审核，不构成提升（promotion）/冻结（Freeze）。
+- Notion 写回：单写者（Single-Writer）范围内自写自核（fetch live → 写 → readback）。
 
 ---
 
@@ -127,7 +130,9 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 1. 是否底层水层？不是→EARLY RETURN
 2. 是否可接受底质？不接受→EARLY RETURN；最适应→全额保留；可接受→削减但不清空
 3. 水温 4. 光照 5. 食物丰度 6. 流速...
-三个关键特征：有顺序的 early return 链 / 分级命中（全额/削减/出局） / 每鱼顺序不同（顺序差异本身=LogicTemplate 判据）
+三个关键特征：有顺序的 early return 链 / 分级命中（全额/削减/出局） / 每鱼顺序不同（顺序差异本身=逻辑模板（LogicTemplate）判据）
+
+> 出局值口径已被 §6.1 修正：不居留＝×0.01 软出局（非零、仍可参与下游选择）；需要绝对排除时须显式返回 0。
 
 ### 5.2 LT 方法论精确化
 不是泛泛分类——是对每个具体情况通过特殊习性和策略故事具体推导是否新 LogicTemplate。
@@ -136,11 +141,13 @@ AMBIGUOUS_NEEDS_EXPANSION  = 证据或程序细节不足
 当前用较弱模型+有限上下文推演，结论方向可信但逐案裁决需更强模型复核。
 
 ### 5.4 行动项
-B 系列需「顺序还原修复」；census 需在顺序还原后重跑受影响族（SINGLE 41 成员可能低估）。
+B 系列需「顺序还原修复」；普查（census）需在顺序还原后重跑受影响族（SINGLE 41 成员可能低估）。
 
 ### 5.5 顺序还原重跑结论（2026-09-11）
 
-SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族（+9 新 Bake 族）。旧 SINGLE 66 成员全部移至新族。B4 饱和候选被证伪。后续饱和判定必须基于顺序还原后输入。
+（时点记录：登记表 v7 时点状态；登记表此后已演进至 v10，当前状态见 §6.5 与 `fish_logic_census/template_registry.yaml`。）
+
+SINGLE 族重跑证实：平铺输入→伪结构收敛。登记表 v7 = 19 族（+9 新烘焙族）。旧 SINGLE 66 成员全部移至新族。B4 饱和候选被证伪。后续饱和判定必须基于顺序还原后输入。
 
 ---
 
@@ -153,7 +160,7 @@ SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族�
 - **不存在独立的终步「合并」**。乘法逐步进行：每一步＝`EVAL(因子) → 三档判定 → 乘入 running weight`。
 - **三档**：最喜爱＝不折损进入下一步；可接受＝×衰减（不清零）进入下一步；不居留＝**×0.01 软出局立即返回**——非零、仍可参与下游选择；需要绝对排除时须显式返回 0。
 - 与 0.3.4.0 Bake DSL 语义一致（rule 内 `weight = weight × fit`；`if fit <= 阈值 { return 0.01 × weight }`）。
-- 存量影响：B 系列文件「排除档返回 0 出局」措辞与「第 5 步 合并」步骤的对齐＝mutation 批登记待办；比较存量 canonical 时**忽略其终步 COMBINE 字段**（v9 前遗留，重写后移除）。
+- 存量影响：B 系列文件「排除档返回 0 出局」措辞与「第 5 步 合并」步骤的对齐＝mutation 批登记待办；比较存量规范本体时**忽略其终步 COMBINE 字段**（v9 前遗留，重写后移除）。
 
 ### 6.2 顺序的地位：严格判据＋逐鱼推导
 
@@ -161,23 +168,28 @@ SINGLE 族重跑证实：平铺输入→伪结构收敛。Registry v7 = 19 族�
 - **逐鱼推导纪律**：每条鱼的因子顺序必须从证据推导——形态/生态/调研资料→关键度与漏斗排序（例：美鱥口器形态→水层先行；蓝鳃→结构先行）。**不得套用模板约定序**；「多个物种同序」若源自模板约定而非逐鱼推导＝**第二层平铺化伪影**（C9 教训：四鱼栖息面「4/4 同形」实为 BA-NORMAL-HABITAT-FIT 约定序产物）。
 - 存量影响：B 系列 Normal 面（§2.4）普遍携带约定序＋[需正文] 旗——真值待全库顺序还原重跑逐鱼推导。
 
-### 6.3 Guard 面 anchor 轴：四形式
+### 6.3 Guard 面锚点（anchor）轴：四形式
 
-- **anchor 轴取值＝后代空间存在形式**，仅四值＋一边界：
+- **锚点轴取值＝后代空间存在形式**，仅四值＋一边界：
   - `nest`（构建型，有 C4 巢体存在原子：石巢/泡沫/殖民巢/pebble_mound/清巢…）
   - `egg_mass`（利用型附着：岩缝/洞顶/岩面/树根——底质差异归 suitability）
   - `fry_school`（移动稚鱼群）
   - `host_brood`（蚌宿主）
   - `brooded`（口孵/体内携带）＝**退化链，结构级，不入 GUARD_ANCHOR 族**（待重跑终裁；罗非退化链先例 vs 银龙盲形冲突在案）
-- **拆解规则**（各归其槽，轴不重复记账）：底质→`@NestStructureSet`（路由 C3）+ suitability Profile；谁守→`guard_participant` 轴（male/biparental）；怎么守→Response 动作注记（fan/黏液喂养）；位相/洪水→DynamicSpatialSlot；停食→premise。`GuardAnchorResolverInstance` 保留细名（实例管场内定位，轴值管语义分类）。
+- **拆解规则**（各归其槽，轴不重复记账）：底质→`@NestStructureSet`（路由 C3）+ 适宜度（suitability）剖面；谁守→`guard_participant` 轴（male/biparental）；怎么守→响应动作注记（fan/黏液喂养）；位相/洪水→DynamicSpatialSlot；停食→前提（premise）。`GuardAnchorResolverInstance` 保留细名（实例管场内定位，轴值管语义分类）。
 
 ### 6.4 判同操作化（LT 执行与审查共用）
 
 1. 比较 Bake 程序：**先比对完整有序链**（含门/槽位位置与因子排列）——顺序任一不同→NEW 轨；再比对算子语义（渐进累积口径）。
 2. 骨架书写：`ordered_steps` 每步标注三档语义（不折损/×衰减/×0.01）；**不写 combine 步**。
-3. Guard 面：anchor 以「四形式值＋实例名＋participant＋修饰槽位」记，底质细值不入轴。
+3. Guard 面：锚点以「四形式值＋实例名＋participant＋修饰槽位」记，底质细值不入轴。
 4. 顺序证据不足时：标 `order_undetermined` 挂真形重验队列，**不得默认约定序**（也不得虚构顺序冒充推导）。
 
-### 6.5 registry 现状基准（v9 起）
+### 6.5 登记表基准（v9 时点；当前版本以 registry 文件为准）
 
-SINGLE RETIRED（v1 证伪）；9 链族转正（canonical 渐进语义＋`order_provisional` 标注）；HARD_GATED v2（双硬门→EXIT 档因子集，LUN+EEL；电感知归 Response/Encounter 层不进 Bake）；PATCH VACATED；PLAIN FALSIFIED；CRR＝负证据台账（live 侧资产）；TYPED/FOOD_FIELD/GUARD 名义扩容入册；B4 饱和候选撤销。**234＋14 条真形重验队列**（`truth_rebuild_queue.jsonl`）＝终局重跑输入；C9 与 brooded 由重跑证据终裁。
+SINGLE RETIRED（v1 证伪）；9 链族转正（规范本体渐进语义＋`order_provisional` 标注）；HARD_GATED v2（双硬门→EXIT 档因子集，LUN+EEL；电感知归响应/遭遇层不进 Bake）；PATCH VACATED；PLAIN FALSIFIED；CRR＝负证据台账（实时侧资产）；TYPED/FOOD_FIELD/GUARD 名义扩容入册；B4 饱和候选撤销。**234＋14 条真形重验队列**（`truth_rebuild_queue.jsonl`）＝终局重跑输入；C9 与 brooded 由重跑证据终裁。
+
+以上为 v9 时点基准。登记表此后已按 HRQ 裁定演进至 version 10（终局顺序还原重跑输出）；
+版本与族现状一律以 [`fish_logic_census/template_registry.yaml`](../fish_logic_census/template_registry.yaml)
+为准（裁定记录见 [`fish_logic_census/hrq_decision_log.md`](../fish_logic_census/hrq_decision_log.md)），
+本标准不再复述版本号。

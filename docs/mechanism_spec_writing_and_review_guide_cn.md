@@ -2,22 +2,22 @@
 
 版本：R1  
 状态：工作规范（Working Guideline）  
-适用范围：FCF、鱼种机制、环境机制、Encounter、配置与规则文档  
+适用范围：FCF、鱼种机制、环境机制、遭遇（Encounter）、配置与规则文档  
 权威级别：本指南只规范写作和审查方式，不替代任何具体机制的产品 Authority
 
-## 0. Agent routing｜什么时候深入读取，什么时候停止
+## 0. 代理路由（Agent routing）｜什么时候深入读取，什么时候停止
 
 本节是 Agent 进入本指南的入口。它的作用是避免两种错误：需要时只看一个链接标题就跳过；不需要时递归读取整套机制文档，污染上下文。
 
 ### 0.1 触发条件
 
-任务将创建、修改或审查以下机制语义或其 Authoring 表达时，进入本指南：
+任务将创建、修改或审查以下机制语义或其配置编写（Authoring）表达时，进入本指南：
 
-- 创建、修改、重构或审查 FCF、鱼种、环境、Encounter、策略故事机制文档；
+- 创建、修改、重构或审查 FCF、鱼种、环境、遭遇、策略故事机制文档；
 - 设计或修改机制配置、Authoring 配置、规则 Schema、DSL 或编译规则；
 - 绘制表达机制语义的执行链、生命周期图、Mermaid 图、空间拓扑或 Owner 边界图；
-- 讨论 State、Mode、Meaning、Response、Conversion、Contact、Hook、随机判定或状态写回；
-- 请求发布前检查、Artifact review、Milestone review 或“是否完成”。
+- 讨论状态（State）、模式（Mode）、呈现含义（Meaning）、响应（Response）、转化（Conversion）、接触（Contact）、挂钩（Hook）、随机判定或状态写回；
+- 请求发布前检查、交付物审查（Artifact review）、里程碑审查（Milestone review）或“是否完成”。
 
 若任务只是普通代码修改、与机制无关的文档编辑，或纯排版、链接修复等不改变技术含义的机械编辑，不进入本指南。机制术语翻译可能改变语义，仍应进入，但只读取相关章节和被修改段落。
 
@@ -38,16 +38,16 @@
 ### 0.3 深入和停止规则
 
 1. 先读本节，再读任务矩阵列出的章节；不要只读链接标题后直接行动。
-2. `ARTIFACT` review 的“完整”指完整读取被审 artifact，不等于自动完整读取本指南或关联文档树。只有当前任务引用某个具体机制、声称要验证其 Authority，或需要做跨文档一致性检查时，才继续读取相应关联文档。
+2. `ARTIFACT` 审查的“完整”指完整读取被审交付物，不等于自动完整读取本指南或关联文档树。只有当前任务引用某个具体机制、声称要验证其权威（Authority），或需要做跨文档一致性检查时，才继续读取相应关联文档。
 3. 指南中的模板、示例和候选方案是方法建议，不自动成为任何具体机制的 Authority。
 4. 读取到能够完成当前任务和验证其明确要求时停止；不要为了“可能有用”继续递归整个文档树。
-5. 如果任务范围后来扩大，重新从本节判断是否需要提升读取深度，并在 review scope 中记录扩大原因。
+5. 如果任务范围后来扩大，重新从本节判断是否需要提升读取深度，并在审查范围（review scope）中记录扩大原因。
 
 ### 0.4 路由可验证性
 
 - 本指南必须由仓库根目录的 [`AGENTS.md`](../AGENTS.md) 以相对链接引用；这里保留反向链接，便于核验入口与目标没有脱节。
-- 如果入口链接无法解析、本节缺失，或任务矩阵指向不存在的章节，Agent 不得静默跳过；应把它报告为 routing blocker。只有任务授权修改治理文件时才修复，否则停止受影响部分。
-- Artifact 或 Milestone review 的 `baseline` 必须列出本次实际读取的指南章节和 review 依赖；日常任务不要求生成额外的“已读证明”。
+- 如果入口链接无法解析、本节缺失，或任务矩阵指向不存在的章节，Agent 不得静默跳过；应把它报告为路由阻断（routing blocker）。只有任务授权修改治理文件时才修复，否则停止受影响部分。
+- 交付物或里程碑审查的 `baseline` 必须列出本次实际读取的指南章节和审查依赖；日常任务不要求生成额外的“已读证明”。
 - 路由检查只验证“能否发现并按范围读取”，不证明任何具体机制正确，也不把本指南提升为具体机制 Authority。
 
 这套路由本身也需要维护：文件重命名后，`AGENTS.md` 和本指南中的相对链接必须同步更新。
@@ -158,9 +158,9 @@
 
 如果空间拓扑也重要，再单独画地图或 SourceGroup 图。空间邻近不等于权重自动相加，图上应明确标出这一点。
 
-## 4. 先做 Layer Admission，再建字段
+## 4. 先做层准入（Layer Admission），再建字段
 
-新建 State、Mode、Meaning、Runtime Layer 或中间分数前，先进行准入检查。它应该位于建模流程的前半段，而不是文档最后的自审。
+新建 State、Mode、Meaning、运行时层（Runtime Layer）或中间分数前，先进行准入检查。它应该位于建模流程的前半段，而不是文档最后的自审。
 
 推荐流程：
 
@@ -401,7 +401,7 @@ Situation
 结论：
 ```
 
-### 10.3 AI Review Finding
+### 10.3 AI 审查发现（AI Review Finding）
 
 只记录需要追踪的意见：
 
@@ -423,11 +423,11 @@ AI 提议 ≠ 人类决定
 已验证 ≠ 已完成数值校准
 ```
 
-## 11. 独立 Review 的范围与结论格式
+## 11. 独立审查（Review）的范围与结论格式
 
-Routine edit 使用 `PATCH` review；准备宣称一份完整 Markdown 文档达到目标时，使用 `ARTIFACT` review；只有准备宣称整个 milestone 完成时，才使用 `MILESTONE` review。
+日常编辑（Routine edit）使用 `PATCH` 审查；准备宣称一份完整 Markdown 文档达到目标时，使用 `ARTIFACT` 审查；只有准备宣称整个里程碑完成时，才使用 `MILESTONE` 审查。
 
-本指南自身作为一个完整 Markdown artifact 审核时，reviewer 必须读取全文，并使用以下格式：
+本指南自身作为一个完整 Markdown 交付物审核时，审查者（reviewer）必须读取全文，并使用以下格式：
 
 ```text
 level: ARTIFACT
@@ -447,7 +447,7 @@ open_findings:
 verdict: ARTIFACT_APPROVE | ARTIFACT_REVISE
 ```
 
-Reviewer 的 verdict 只能覆盖声明的 `level` 和 `scope`，不能从 artifact approval 扩大为项目完成或 V1 Freeze-ready。
+审查者的结论只能覆盖声明的 `level` 和 `scope`，不能从交付物批准（artifact approval）扩大为项目完成或 V1 Freeze-ready。
 
 ## 12. 发布前自检清单
 
