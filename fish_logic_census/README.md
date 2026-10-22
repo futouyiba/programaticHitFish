@@ -7,6 +7,7 @@
 - 输入：FR campaign 冻结故事（FR3-passed，Story DB 只读）
 - 关键纪律：盲重建（骨架先冻结再开 registry）、四态判同、族完整性、负知识保存
 - 权威文件：template_registry.yaml / resolver_registry.yaml / discovery_curve.csv / batches/*/
+- 术语沿革（2026-10-22）：本目录冻结数据中的 FishGroup 为历史名（FishMode →（2026-09-11）FishGroup →（2026-10-22）中鱼习性模式（EngagementMode））；冻结批次按 append-only 纪律保留原名，新工作一律使用中鱼习性模式（EngagementMode）。
 - 停止：每批止于 INDEPENDENT_REVIEW_REQUIRED；饱和只能报 SATURATION_SIGNAL，由 Review/Gate 裁决
 
 ## discovery_curve.csv 列语义（计数基，F-6）

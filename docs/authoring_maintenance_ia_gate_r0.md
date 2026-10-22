@@ -1,16 +1,18 @@
 # 配置维护与编辑器信息架构闸门 R0（Authoring Maintenance & Editor IA Gate R0）
 
+> 术语沿革：FishMode →（2026-09-11）FishGroup →（2026-10-22）中鱼习性模式（EngagementMode）。FishGroup 概念退役；习性的数据与量级划分由中鱼习性模式承担（species 配置键 `engagement_modes`，生命周期/规则键 `mode`）。维护成本矩阵与 IA 结构不变。
+
 ## 维护成本矩阵
 
 | 操作 | 触及文件 | 新增/变更配置节点 | 复用共享定义 | 跨归属方编辑 |
 |---|---:|---|---|---:|
 | 新增普通物种 | 1 | 1 个物种块 | NORMAL 路径、响应规则、剖面 | 0 |
-| 新增改变语法的 FishMode | 1 | 3（模式、路径、规则） | 响应等级与类型化操作 | 0 |
+| 新增改变语法的中鱼习性模式 | 1 | 3（模式、路径、规则） | 响应等级与类型化操作 | 0 |
 | 修改进食准备度（FeedingReadiness） | 1 | 1 个标量 | 全部生命周期/空间/模式/物化 | 0 |
 | 新增 CueFamily | 1 | 1 个兼容条目 | 进食规则与响应策略 | 0 |
 
 这些是针对 `authoring/bass_v0.json` 实测的固定样例 diff，不是估算。普通物种的边际成本
-足够低；FishMode 仍是稀缺的改变语法结构；局部调参保持局部；CueFamily 是共享目录概念。
+足够低；中鱼习性模式仍是稀缺的改变语法结构；局部调参保持局部；CueFamily 是共享目录概念。
 
 ## 编辑器信息架构 R0
 
@@ -23,9 +25,9 @@ Species
 ├─ Slow Facts
 ├─ Cue Families (shared catalog links + local disposition)
 ├─ Materialization Profiles
-└─ Available FishModes
+└─ Available EngagementModes
 
-FishMode
+EngagementMode
 ├─ Mode Definition
 ├─ Meaning Policy
 ├─ Interaction Pathways
@@ -41,7 +43,7 @@ Shared Catalogs
 └─ Templates
 ```
 
-生命周期归属、繁殖资格、行为锚点与空间支持不因界面对称而塞进 FishMode。
+生命周期归属、繁殖资格、行为锚点与空间支持不因界面对称而塞进中鱼习性模式。
 
 ### 类型化规则编辑器
 

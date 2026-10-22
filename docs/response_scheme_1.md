@@ -73,7 +73,7 @@ Canonical Facts
 3. **Pathway Granularity Attack**：用 5–8 个真实钓法故事检查响应路径（Pathway）是否过粗或爆炸。
 4. **Secondary→Variant Attack**：验证是否导致组合式路径爆炸（combinatorial Pathway explosion）；若是，提出更小的算子（operator）。
 5. **Target Archetype Boundary Attack**：区分目标亲和（target affinity）与路径资格（pathway eligibility），防止重复表达。
-6. **Authoring Probe**：至少做 3–5 个鱼种（Species）× 2–3 个参与模式（Engagement Mode），统计实际参数量、覆盖量（override）、模板复用（template reuse）。
+6. **Authoring Probe**：至少做 3–5 个鱼种（Species）× 2–3 个中鱼习性模式（EngagementMode），统计实际参数量、覆盖量（override）、模板复用（template reuse）。
 7. 最后才做 LOW / NORMAL multiplier 与 `ρ=F/N` 校准（Calibration）。
 
 ### 修改纪律
@@ -138,7 +138,7 @@ ResponseMultiplier
 
 # 2. 核心概念
 
-## 2.1 参与模式（Engagement Mode）
+## 2.1 中鱼习性模式（EngagementMode）
 
 响应剖面（Response Profile）的业务作用域仍然是：
 
@@ -153,7 +153,7 @@ Largemouth Bass × Feeding
 Largemouth Bass × Guarding
 ```
 
-参与模式回答：
+中鱼习性模式回答：
 
 > 这条鱼当前以哪一种中鱼习性模式面对呈现（Presentation）？
 
@@ -165,7 +165,7 @@ Largemouth Bass × Guarding
 
 响应路径回答：
 
-> 在当前参与模式下，什么样的玩家呈现组合构成一条完整、可解释的有效响应路径？
+> 在当前中鱼习性模式下，什么样的玩家呈现组合构成一条完整、可解释的有效响应路径？
 
 示例：
 
@@ -211,7 +211,7 @@ speed + sound
 
 除非这些组合真的对应不同玩家策略故事。
 
-建议每个参与模式的第一版响应路径数量控制在约 3～6 条；这只是方案一的生产约束，不是领域真理。
+建议每个中鱼习性模式的第一版响应路径数量控制在约 3～6 条；这只是方案一的生产约束，不是领域真理。
 
 ---
 
@@ -529,7 +529,7 @@ BASELINE_PREY:
 
 # 8. 响应路径间算法｜MAX
 
-同一个物种（Species）× 参与模式（Engagement Mode）可以同时成立多条响应路径（Response Pathway）。
+同一个物种（Species）× 中鱼习性模式（EngagementMode）可以同时成立多条响应路径（Response Pathway）。
 
 方案一：
 
@@ -603,7 +603,7 @@ Ceiling = 1.0
 
 上限（CAP）只表达：
 
-> 当前物种 × 参与模式（Species × Engagement Mode）下，所有正向响应路径都不能超过的全局上限。
+> 当前物种 × 中鱼习性模式（Species × EngagementMode）下，所有正向响应路径都不能超过的全局上限。
 
 例如摄食动机（FeedingMotivation）：
 
@@ -914,7 +914,7 @@ pathways:
 
 ---
 
-## 16.3 物种（Species）× 参与模式（Engagement Mode）响应剖面（ResponseProfile）
+## 16.3 物种（Species）× 中鱼习性模式（EngagementMode）响应剖面（ResponseProfile）
 
 只覆盖参数，不重写算法：
 
@@ -1236,7 +1236,7 @@ Second RNG for Quality
    检查是否与 `feeding_target_affinity` 重复表达。
 
 6. **配置编写探针（Authoring Probe）**  
-   用 3～5 个鱼种 × 2～3 个参与模式（Engagement Mode）实际配置，测参数规模与覆盖（Override）复杂度。
+   用 3～5 个鱼种 × 2～3 个中鱼习性模式（EngagementMode）实际配置，测参数规模与覆盖（Override）复杂度。
 
 7. **校准（Calibration）**  
    最后再处理阈值、LOW/NORMAL multiplier、`ρ=F/N` 与体验时间预算。

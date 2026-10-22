@@ -41,9 +41,9 @@ def lint_authoring(doc: Mapping[str, Any]) -> List[str]:
     if len(ids)!=len(set(ids)): errors.append("duplicate lifecycle id")
     if abs(sum(float(x.get("supply_share",0)) for x in lifecycles)-1)>1e-9: errors.append("Lifecycle share != 1")
     paths={x.get("id") for x in doc.get("pathways",[])}
-    for mode in species.get("fish_modes",[]):
+    for mode in species.get("engagement_modes",[]):
         for p in mode.get("pathways",[]):
-            if p not in paths: errors.append(f"FishMode references missing pathway: {p}")
+            if p not in paths: errors.append(f"EngagementMode references missing pathway: {p}")
     for r in rules:
         if r.get("grade") not in ALLOWED_GRADES: errors.append(f"invalid ResponseGrade: {r.get('grade')}")
         if r.get("operation", "SET") not in ALLOWED_OPS: errors.append(f"illegal ResponseSlice operation: {r.get('operation')}")

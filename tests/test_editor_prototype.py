@@ -2,7 +2,7 @@ from pathlib import Path
 
 def test_editor_prototype_exposes_real_authoring_workspaces():
     html=Path("editor/index.html").read_text()
-    for label in ("Species", "FishMode", "Shared Catalogs", "Rule Editor", "Effective / Compiled Preview", "Affected Objects"):
+    for label in ("Species", "EngagementMode", "Shared Catalogs", "Rule Editor", "Effective / Compiled Preview", "Affected Objects"):
         assert label in html
 
 def test_editor_does_not_expose_runtime_controls():

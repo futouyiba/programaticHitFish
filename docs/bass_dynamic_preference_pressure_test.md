@@ -17,7 +17,7 @@ pytest -q tests/test_bass_dynamic_preference.py
 
 ## A. 固定样例（Fixture）
 
-固定三个长期合理区域：Grass Edge（0.90）、Shaded Wood（0.80）、Drop-off（0.70）。固定三类长期可接受食物/线索族群（food/cue family）：BAITFISH（0.90）、CRUSTACEAN（0.80）、WORM_LIKE（0.70）。第一轮固定 `Satiation=NORMAL`、`CueFamiliarity=LOW`、`FishMode=NORMAL`、`LifecycleCohort=ORDINARY_NORMAL`。
+固定三个长期合理区域：Grass Edge（0.90）、Shaded Wood（0.80）、Drop-off（0.70）。固定三类长期可接受食物/线索族群（food/cue family）：BAITFISH（0.90）、CRUSTACEAN（0.80）、WORM_LIKE（0.70）。第一轮固定 `Satiation=NORMAL`、`CueFamiliarity=LOW`、`EngagementMode=NORMAL`、`LifecycleCohort=ORDINARY_NORMAL`。
 
 为隔离共模（common-mode），测试采用静态偏好加权中心化：`Σ(static × bias)` 保持不变。`LocalIntensity=100×static×bias`，`ExposedIntensity=LocalIntensity×0.80`。这只是相对重排测试，不是物理鱼数守恒或正式归一化（normalization）契约。
 
@@ -73,7 +73,7 @@ pytest -q tests/test_bass_dynamic_preference.py
 
 ## F. 复杂度审计（Complexity Audit）
 
-两个 Bias 都必要：删除任一个都会丢失“换区”和“换线索”两种不同玩家解法。当前没有新增 FishMode、State、FSM、运行时层（Runtime Layer）、FishMood、BiteChance、诱饵 SKU 归属方（owner）或潜在漂移（latent drift）。空间 Bias 应作用于 `Species × Cohort × zone-local stable habitat-use group`，再编译到来源组；这是配置编写键（authoring key），不是新运行时层。觅食 Bias 应作用于低基数猎物/食物线索族群（prey/food-cue family），不作用于 SKU 或 CueSignature。
+两个 Bias 都必要：删除任一个都会丢失“换区”和“换线索”两种不同玩家解法。当前没有新增 State、FSM、运行时层（Runtime Layer）、FishMood、BiteChance、诱饵 SKU 归属方（owner）或潜在漂移（latent drift）；本实验的证据也从未要求新增独立模式对象（术语沿革：FishMode →（2026-09-11）FishGroup →（2026-10-22）中鱼习性模式（EngagementMode）；行为逻辑程序选择由中鱼习性模式直接持有）。空间 Bias 应作用于 `Species × Cohort × zone-local stable habitat-use group`，再编译到来源组；这是配置编写键（authoring key），不是新运行时层。觅食 Bias 应作用于低基数猎物/食物线索族群（prey/food-cue family），不作用于 SKU 或 CueSignature。
 
 `FishConditionEpoch` 继续是描述性慢快照术语。时段切换只需插值（interpolation）/速率限制（rate limit）/滞回（hysteresis），不需要新状态机（State Machine）。未配置动态性的鱼种自然使用两个 Bias=1.0。
 

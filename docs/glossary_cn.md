@@ -48,6 +48,7 @@
 | Task State Machine | 任务状态机 | 由状态、谓词、允许边和终止条件组成的任务流程 | 转化、DSL |
 | State | 状态 | 可持久化或生命周期内可观察的阶段信息 | 全部机制文档 |
 | Mode | 模式 | 当前行为或环境所处的离散运行模式 | 行为、环境 |
+| EngagementMode | 中鱼习性模式 | 承担习性数据与量级划分的行为模式实体；持有响应程序（pathway 仲裁、meaning 引用、response policy）引用。术语沿革：FishMode →（2026-09-11）FishGroup →（2026-10-22）EngagementMode | 配置编写、鱼种 |
 | Meaning | 呈现含义 | 鱼对当前 presentation 的语义解释，如觅食或巢穴威胁 | 总览、行为 |
 | Response | 响应 | 鱼对含义和呈现的行为反应等级或动作 | 总览、行为 |
 | Conversion | 转化 | 将响应/任务推进为攻击承诺或失败结果的阶段 | 总览、工程 |

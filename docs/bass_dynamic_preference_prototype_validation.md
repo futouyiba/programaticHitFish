@@ -220,4 +220,4 @@ verdict: ARTIFACT_REVISE
 3. O1 提高正确性但增加原始食物探测（raw food probes）；其收益是降低正确模式成本（correct-pattern cost），而不是保证每项探测指标（probe metric）都下降。
 4. G2 只在这份 45 来源的固定样例中表现最好；正式采用仍需其它地图密度与不均匀来源分布验证。
 
-没有证据要求新增 FishConditionEpoch 运行时对象、插值、滞回、FishMode、FSM 或全局食欲分数（global appetite score）。
+没有证据要求新增 FishConditionEpoch 运行时对象、插值、滞回、中鱼习性模式（EngagementMode）实例、FSM 或全局食欲分数（global appetite score）。

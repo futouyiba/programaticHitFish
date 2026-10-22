@@ -2,7 +2,7 @@
   "schema_version": "pre-generation-authoring-r0",
   "templates": {"NORMAL_FEEDING_BASE": {"kind":"response_policy"}},
   "template_ref": "NORMAL_FEEDING_BASE",
-  "species": {"species_id":"Bass", "slow_facts":{"FeedingReadiness":"NORMAL", "FeedingCueDisposition":{"SHAD":"PREFERRED","CRAWFISH":"NEUTRAL"}}, "fish_modes":[{"id":"NORMAL","pathways":["FEEDING"]},{"id":"SPAWN_GUARD","pathways":["GUARD_DEFENSE","FEEDING"]}]},
+  "species": {"species_id":"Bass", "slow_facts":{"FeedingReadiness":"NORMAL", "FeedingCueDisposition":{"SHAD":"PREFERRED","CRAWFISH":"NEUTRAL"}}, "engagement_modes":[{"id":"NORMAL","pathways":["FEEDING"]},{"id":"SPAWN_GUARD","pathways":["GUARD_DEFENSE","FEEDING"]}]},
   "lifecycles": [
     {"id":"Ordinary","supply_share":0.70,"mode":"NORMAL","response_slice":null,"materialization_profile":"normal"},
     {"id":"ActiveSpawning","supply_share":0.20,"mode":"NORMAL","response_slice":"ACTIVE_SPAWNING","materialization_profile":"reproductive"},

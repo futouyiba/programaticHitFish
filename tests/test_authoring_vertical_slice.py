@@ -18,7 +18,7 @@ def test_compiled_bundle_enters_harness():
 @pytest.mark.parametrize("mutator", [
     lambda d: {**d, "bad": 1},
     lambda d: {**d, "lifecycles":[{**d["lifecycles"][0],"supply_share":2}] + d["lifecycles"][1:]},
-    lambda d: {**d, "species":{**d["species"],"fish_modes":[{"id":"X","pathways":["MISSING"]}]}},
+    lambda d: {**d, "species":{**d["species"],"engagement_modes":[{"id":"X","pathways":["MISSING"]}]}},
     lambda d: {**d, "rules":[{**d["rules"][0],"grade":"BROKEN"}]},
 ])
 def test_linter_rejects_contract_errors(mutator):
