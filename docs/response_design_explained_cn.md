@@ -95,7 +95,7 @@ FactorFit ∈ [0,1]
 Fit(p, j)
 = Eval(
     当前事实值 x_j,
-    当前 Species × Engagement Mode × Pathway 对该因子的参数
+    当前 Species × EngagementMode × Pathway 对该因子的参数
   )
 ```
 

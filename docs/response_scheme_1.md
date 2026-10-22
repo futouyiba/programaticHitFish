@@ -143,7 +143,7 @@ ResponseMultiplier
 响应剖面（Response Profile）的业务作用域仍然是：
 
 ```text
-Species × Engagement Mode
+Species × EngagementMode
 ```
 
 例如：
@@ -1254,7 +1254,7 @@ Canonical Cue / Relation Facts
         +
 Fish Condition
         ↓
-Species × Engagement Mode ResponseProfile
+Species × EngagementMode ResponseProfile
         ↓
 ┌─────────────────────────────────────┐
 │ Pathway A                           │
