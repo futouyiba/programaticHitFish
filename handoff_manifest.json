@@ -2437,5 +2437,16 @@
     "output_tail": "........................................................................ [ 61%]\n.............................................                            [100%]\n117 passed in 0.50s",
     "passed": true,
     "returncode": 0
+  },
+  "contract_authority": {
+    "repository": "futouyiba/HitFish-Up",
+    "current_path": "docs/fish-habit-editor-v1/",
+    "authority_policy": "HitFish-Up Git Markdown Contract is authoritative; programaticHitFish is reference implementation and evidence.",
+    "pin_required": true,
+    "latest_known_contract_ref": "c1249b19875dff6ef080f891ab528fc67113e95d"
+  },
+  "repository_relationship": {
+    "linkage": "documentation + pinned commits + cross-referenced GitHub issues/PRs; no submodule",
+    "implementation_ref": "3fe90f71fac9735efa6c8b67b80a7c6fc2ad11c9"
   }
 }
