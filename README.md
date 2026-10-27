@@ -60,3 +60,26 @@ if not report.passed:
 
 该冒烟检查刻意收窄（有限进入、无重掷重放、幂等终结结算与守恒）。CI 还必须运行完整的
 RC4 固定样例/并发/性质套件，并将 JSON 报告持久化为审查证据。
+
+## Contract Authority 与仓库关系
+
+本仓是 **Reference Implementation / Evidence**，不是产品 Contract Authority。现行产品契约、语义裁定、范围和编辑器规范以 [`futouyiba/HitFish-Up`](https://github.com/futouyiba/HitFish-Up) 的 `main` 分支 Git Markdown 为准，当前编辑器入口为 [`docs/fish-habit-editor-v1/`](https://github.com/futouyiba/HitFish-Up/tree/main/docs/fish-habit-editor-v1)。
+
+本仓承载：
+
+- FCF / Species Funnel 参考运行时；
+- Response / Condition 原型与实验；
+- harness、测试和验证证据；
+- 与实现相关的 tracker。
+
+实现或实验不得把自身代码、测试或 working 文档反向升级为产品 Contract。每个可审计验证批次应记录：
+
+```yaml
+contract_repository: futouyiba/HitFish-Up
+contract_ref: <pinned HitFish-Up commit>
+implementation_repository: futouyiba/programaticHitFish
+implementation_ref: <pinned implementation commit>
+authority_rule: HitFish-Up Contract is authoritative; this repository is reference implementation and evidence.
+```
+
+两个仓库通过 commit pin、release/tag 和 GitHub issue/PR 互引关联，不使用 submodule。
