@@ -9,7 +9,12 @@
     },
     "fixture_disclaimer": "Species, support, affinity and suspicion values below are illustrative fixtures chosen to exercise the formulas. They are not biological or production facts, and no value here should be promoted.",
     "tier_scale_version": "tier-v2",
-    "tier_anchors": [0.0, 0.25, 0.60, 1.0]
+    "tier_anchors": [
+      0.0,
+      0.25,
+      0.6,
+      1.0
+    ]
   },
   "axes": {
     "A_diet": {
@@ -17,32 +22,70 @@
       "strategies": [
         {
           "name": "generalist",
-          "supports": {"baitfish": 0.65, "crayfish": 0.65},
-          "q": 0.50
+          "supports": {
+            "baitfish": 0.65,
+            "crayfish": 0.65
+          },
+          "q": 0.5,
+          "siblings": [
+            "baitfish",
+            "crayfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0,
+            "crayfish": 0.0
+          }
         },
         {
           "name": "specialist",
-          "supports": {"baitfish": 0.92, "crayfish": 0.15},
-          "q": 0.50
+          "supports": {
+            "baitfish": 0.92,
+            "crayfish": 0.15
+          },
+          "q": 0.5,
+          "siblings": [
+            "baitfish",
+            "crayfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0,
+            "crayfish": 0.0
+          }
         }
       ],
       "scenarios": [
         {
           "id": "A1_no_shift",
           "label": "no diet shift",
-          "fish": {"activity": 1.0, "motivation": 0.5, "wariness": 0.0,
-                   "diet_shift": {"baitfish": 0.0, "crayfish": 0.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.5,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": 0.0,
+              "crayfish": 0.0
+            }
+          }
         },
         {
           "id": "A2_shift_to_crayfish",
           "label": "diet shifts one tier toward crayfish, away from baitfish",
-          "fish": {"activity": 1.0, "motivation": 0.5, "wariness": 0.0,
-                   "diet_shift": {"baitfish": -1.0, "crayfish": 1.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.5,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": -1.0,
+              "crayfish": 1.0
+            }
+          }
         }
       ],
       "shared": {
-        "base_affinity": {"baitfish": 0.60, "crayfish": 0.45},
-        "trigger_strength": {},
+        "base_affinity": {
+          "baitfish": 0.6,
+          "crayfish": 0.45
+        },
         "size_adjustment": 0.0,
         "coverage": 1.0,
         "suspicion_load": 0.0
@@ -51,26 +94,63 @@
     "B_activity_speed": {
       "question": "Fast search (high q) vs slow finesse (low q), under low and high Activity.",
       "strategies": [
-        {"name": "slow_q0.45", "supports": {"baitfish": 0.85}, "q": 0.45},
-        {"name": "fast_q0.90", "supports": {"baitfish": 0.85}, "q": 0.90}
+        {
+          "name": "slow_q0.45",
+          "supports": {
+            "baitfish": 0.85
+          },
+          "q": 0.45,
+          "siblings": [
+            "baitfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0
+          }
+        },
+        {
+          "name": "fast_q0.90",
+          "supports": {
+            "baitfish": 0.85
+          },
+          "q": 0.9,
+          "siblings": [
+            "baitfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0
+          }
+        }
       ],
       "scenarios": [
         {
           "id": "B1_low_activity",
           "label": "low Activity 0.6",
-          "fish": {"activity": 0.6, "motivation": 0.5, "wariness": 0.0,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 0.6,
+            "motivation": 0.5,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         },
         {
           "id": "B2_high_activity",
           "label": "high Activity 1.4",
-          "fish": {"activity": 1.4, "motivation": 0.5, "wariness": 0.0,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 1.4,
+            "motivation": 0.5,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         }
       ],
       "shared": {
-        "base_affinity": {"baitfish": 0.55},
-        "trigger_strength": {},
+        "base_affinity": {
+          "baitfish": 0.55
+        },
         "size_adjustment": 0.0,
         "coverage": 1.0,
         "suspicion_load": 0.0
@@ -79,29 +159,76 @@
     "C_motivation_reaction": {
       "question": "Natural presentation vs reaction/escape presentation, under low and high Feeding Motivation.",
       "strategies": [
-        {"name": "natural_q0.60", "supports": {"baitfish": 0.90}, "q": 0.60,
-         "trigger_strength": {}},
-        {"name": "reaction_twitch_q0.60", "supports": {"baitfish": 0.65}, "q": 0.60,
-         "trigger_strength": {"baitfish": 0.80}},
-        {"name": "reaction_burst_q0.75", "supports": {"baitfish": 0.65}, "q": 0.75,
-         "trigger_strength": {"baitfish": 0.80}}
+        {
+          "name": "natural_q0.60",
+          "supports": {
+            "baitfish": 0.9
+          },
+          "q": 0.6,
+          "trigger_strength": {
+            "baitfish": 0.0
+          },
+          "siblings": [
+            "baitfish"
+          ]
+        },
+        {
+          "name": "reaction_twitch_q0.60",
+          "supports": {
+            "baitfish": 0.65
+          },
+          "q": 0.6,
+          "trigger_strength": {
+            "baitfish": 0.8
+          },
+          "siblings": [
+            "baitfish"
+          ]
+        },
+        {
+          "name": "reaction_burst_q0.75",
+          "supports": {
+            "baitfish": 0.65
+          },
+          "q": 0.75,
+          "trigger_strength": {
+            "baitfish": 0.8
+          },
+          "siblings": [
+            "baitfish"
+          ]
+        }
       ],
       "scenarios": [
         {
           "id": "C1_low_motivation",
           "label": "low Motivation 0.2 (picky fish)",
-          "fish": {"activity": 1.0, "motivation": 0.2, "wariness": 0.0,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.2,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         },
         {
           "id": "C2_high_motivation",
           "label": "high Motivation 0.7 (feeding fish)",
-          "fish": {"activity": 1.0, "motivation": 0.7, "wariness": 0.0,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.7,
+            "wariness": 0.0,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         }
       ],
       "shared": {
-        "base_affinity": {"baitfish": 0.62},
+        "base_affinity": {
+          "baitfish": 0.62
+        },
         "size_adjustment": 0.0,
         "coverage": 1.0,
         "suspicion_load": 0.0
@@ -110,33 +237,72 @@
     "D_wariness_stealth": {
       "question": "Direct vs stealth presentation under Wariness, with the current model (no conspicuousness field) and a labelled hypothetical cue.",
       "strategies": [
-        {"name": "direct", "supports": {"baitfish": 0.85}, "q": 0.60, "coverage": 1.00,
-         "suspicion_load": 0.0},
-        {"name": "stealth", "supports": {"baitfish": 0.85}, "q": 0.60, "coverage": 0.55,
-         "suspicion_load": 0.0}
+        {
+          "name": "direct",
+          "supports": {
+            "baitfish": 0.85
+          },
+          "q": 0.6,
+          "coverage": 1.0,
+          "suspicion_load": 0.0,
+          "siblings": [
+            "baitfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0
+          }
+        },
+        {
+          "name": "stealth",
+          "supports": {
+            "baitfish": 0.85
+          },
+          "q": 0.6,
+          "coverage": 0.55,
+          "suspicion_load": 0.0,
+          "siblings": [
+            "baitfish"
+          ],
+          "trigger_strength": {
+            "baitfish": 0.0
+          }
+        }
       ],
       "hypothetical_cue": {
         "note": "Not model output. Assumes a future TackleConspicuousness field with these suspicion loads; used only to show what a cue would have to deliver.",
-        "direct_suspicion": 0.50,
-        "stealth_suspicion": 0.10
+        "direct_suspicion": 0.5,
+        "stealth_suspicion": 0.1
       },
       "scenarios": [
         {
           "id": "D1_low_wariness",
           "label": "low Wariness 0.1",
-          "fish": {"activity": 1.0, "motivation": 0.5, "wariness": 0.1,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.5,
+            "wariness": 0.1,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         },
         {
           "id": "D2_high_wariness",
           "label": "high Wariness 0.8",
-          "fish": {"activity": 1.0, "motivation": 0.5, "wariness": 0.8,
-                   "diet_shift": {"baitfish": 0.0}}
+          "fish": {
+            "activity": 1.0,
+            "motivation": 0.5,
+            "wariness": 0.8,
+            "diet_shift": {
+              "baitfish": 0.0
+            }
+          }
         }
       ],
       "shared": {
-        "base_affinity": {"baitfish": 0.70},
-        "trigger_strength": {},
+        "base_affinity": {
+          "baitfish": 0.7
+        },
         "size_adjustment": 0.0
       }
     }

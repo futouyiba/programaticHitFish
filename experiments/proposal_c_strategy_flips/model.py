@@ -139,11 +139,15 @@ class Strategy:
     supports: dict          # family -> 0..1 | status
     base_affinity: dict     # family -> 0..1
     q: float                # speed / InterceptSpeedLimit
+    siblings: list = field(default_factory=list)  # declared sibling set; defaults to supports
     trigger_strength: dict = field(default_factory=dict)  # family -> StateMatchStrength
     size_adjustment: float = 0.0
     coverage: float = 1.0   # opportunity toy only
     suspicion_load: float = 0.0
     notes: str = ""
+
+    def sibling_set(self):
+        return list(self.siblings) if self.siblings else list(self.supports)
 
 
 def evaluate_family(family, strategy, fc: FishCondition):
@@ -152,6 +156,8 @@ def evaluate_family(family, strategy, fc: FishCondition):
     if scale is None:
         return RI, None
 
+    if family not in strategy.supports:
+        return UNKNOWN, None              # declared sibling without support evidence
     status, support = _normalize_support(strategy.supports.get(family))
     if status == REJECT:
         return REJECT, 0.0
@@ -185,7 +191,9 @@ def evaluate_family(family, strategy, fc: FishCondition):
     if f_status != RESOLVED:
         return f_status, None
 
-    strength = strategy.trigger_strength.get(family, 0.0)
+    strength = strategy.trigger_strength.get(family)
+    if strength is None:
+        return UNKNOWN, None              # missing StateMatchStrength is not zero
     if not _finite(strength) or not 0.0 <= strength <= 1.0:
         return INVALID, None
     trigger = TRIGGER_BUDGET * strength
@@ -203,7 +211,7 @@ def response(strategy: Strategy, fc: FishCondition):
     """Sibling max with skipped provenance; returns (status, C_feed, skipped, detail)."""
     results = {}
     detail = {}
-    for family in strategy.supports:
+    for family in strategy.sibling_set():
         status, value = evaluate_family(family, strategy, fc)
         results[family] = (status, value)
         detail[family] = status

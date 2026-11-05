@@ -160,9 +160,11 @@ def diet_cross_for(gen_sup, spec_sup):
     axis = FIXTURES["axes"]["A_diet"]
     shared = axis["shared"]
     gen = Strategy(name="gen", supports={"baitfish": gen_sup, "crayfish": gen_sup},
-                   base_affinity=dict(shared["base_affinity"]), q=0.5)
+                   base_affinity=dict(shared["base_affinity"]), q=0.5,
+                   trigger_strength={"baitfish": 0.0, "crayfish": 0.0})
     spec = Strategy(name="spec", supports={"baitfish": spec_sup, "crayfish": 0.15},
-                    base_affinity=dict(shared["base_affinity"]), q=0.5)
+                    base_affinity=dict(shared["base_affinity"]), q=0.5,
+                    trigger_strength={"baitfish": 0.0, "crayfish": 0.0})
     def diff(s):
         fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                              diet_shift={"baitfish": -s, "crayfish": s})
@@ -210,7 +212,8 @@ def q_sweep():
         q = 0.20
         while q <= 2.0001:
             st = Strategy(name=f"q{q:.2f}", supports={"baitfish": 0.85},
-                          base_affinity=dict(shared["base_affinity"]), q=q)
+                          base_affinity=dict(shared["base_affinity"]), q=q,
+                          trigger_strength={"baitfish": 0.0})
             fish = FishCondition(activity=activity, motivation=0.5, wariness=0.0,
                                  diet_shift={"baitfish": 0.0})
             _, c, _, _ = response(st, fish)
@@ -280,7 +283,8 @@ def saturation_scan():
         q = 0.20
         while q <= 2.0001:
             st = Strategy(name="s", supports={"baitfish": 1.0},
-                          base_affinity={"baitfish": food}, q=q)
+                          base_affinity={"baitfish": food}, q=q,
+                          trigger_strength={"baitfish": 0.0})
             fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                                  diet_shift={"baitfish": 0.0})
             _, c, _, _ = response(st, fish)
@@ -297,36 +301,84 @@ def saturation_scan():
 
 def protocol_cases():
     base = Strategy(name="base", supports={"baitfish": 1.0},
-                    base_affinity={"baitfish": 0.70}, q=0.5)
+                    base_affinity={"baitfish": 0.70}, q=0.5,
+                    trigger_strength={"baitfish": 0.0})
     fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                          diet_shift={"baitfish": 0.0})
     cases = {}
     cases["resolved_zero"] = response(
         Strategy(name="z", supports={"baitfish": 0.0},
-                 base_affinity={"baitfish": 0.70}, q=0.5), fish)
+                 base_affinity={"baitfish": 0.70}, q=0.5,
+                 trigger_strength={"baitfish": 0.0}), fish)
     cases["unknown"] = response(
         Strategy(name="u", supports={"baitfish": UNKNOWN},
-                 base_affinity={"baitfish": 0.70}, q=0.5), fish)
+                 base_affinity={"baitfish": 0.70}, q=0.5,
+                 trigger_strength={"baitfish": 0.0}), fish)
     cases["not_configured"] = response(
         Strategy(name="n", supports={"baitfish": NOT_CONFIGURED},
-                 base_affinity={"baitfish": 0.70}, q=0.5), fish)
+                 base_affinity={"baitfish": 0.70}, q=0.5,
+                 trigger_strength={"baitfish": 0.0}), fish)
     cases["reject"] = response(
         Strategy(name="r", supports={"baitfish": REJECT},
-                 base_affinity={"baitfish": 0.70}, q=0.5), fish)
+                 base_affinity={"baitfish": 0.70}, q=0.5,
+                 trigger_strength={"baitfish": 0.0}), fish)
     cases["invalid"] = response(
         Strategy(name="i", supports={"baitfish": 1.0},
-                 base_affinity={"baitfish": 0.70}, q=float("nan")), fish)
+                 base_affinity={"baitfish": 0.70}, q=float("nan"),
+                 trigger_strength={"baitfish": 0.0}), fish)
     mixed = Strategy(name="mixed", supports={"baitfish": 1.0, "crayfish": UNKNOWN},
-                     base_affinity={"baitfish": 0.70, "crayfish": 0.70}, q=0.5)
+                     base_affinity={"baitfish": 0.70, "crayfish": 0.70}, q=0.5,
+                     trigger_strength={"baitfish": 0.0, "crayfish": 0.0})
     mixed_fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                                diet_shift={"baitfish": 0.0, "crayfish": 0.0})
     mixed_status, mixed_c, mixed_skipped, _ = response(mixed, mixed_fish)
     cases["mixed_unknown_branch"] = {
         "status": mixed_status, "C": mixed_c, "skipped": mixed_skipped}
+    cases["missing_trigger"] = response(
+        Strategy(name="mt", supports={"baitfish": 1.0},
+                 base_affinity={"baitfish": 0.70}, q=0.5,
+                 trigger_strength={}), fish)
+    missing_support = Strategy(
+        name="ms", supports={"baitfish": 1.0}, siblings=["baitfish", "crayfish"],
+        base_affinity={"baitfish": 0.70, "crayfish": 0.70}, q=0.5,
+        trigger_strength={"baitfish": 0.0, "crayfish": 0.0})
+    ms_status, ms_c, ms_skipped, _ = response(missing_support, fish)
+    cases["missing_support_sibling"] = {
+        "status": ms_status, "C": ms_c, "skipped": ms_skipped}
     out = {}
     for k, v in cases.items():
         out[k] = v if isinstance(v, dict) else {"status": v[0], "C": v[1]}
     return out
+
+
+def reaction_flip_grid():
+    """How often does the motivation flip survive across plausible strategy settings?"""
+    axis = FIXTURES["axes"]["C_motivation_reaction"]
+    shared = axis["shared"]
+    natural = make_strategy(axis["strategies"][0], shared)
+    rows = []
+    for i in range(7):
+        sup = 0.50 + i * 0.05
+        for j in range(5):
+            trig = 0.50 + j * 0.10
+            for q in (0.60, 0.75):
+                reaction = Strategy(name="r", supports={"baitfish": sup},
+                                    base_affinity=dict(shared["base_affinity"]), q=q,
+                                    trigger_strength={"baitfish": trig})
+                low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
+                                    diet_shift={"baitfish": 0.0})
+                high = FishCondition(activity=1.0, motivation=0.7, wariness=0.0,
+                                     diet_shift={"baitfish": 0.0})
+                rl = response(reaction, low)[1]
+                rh = response(reaction, high)[1]
+                nl = response(natural, low)[1]
+                nh = response(natural, high)[1]
+                rows.append({"support": round(sup, 2), "trigger": round(trig, 2), "q": q,
+                             "reaction_low": rl, "reaction_high": rh,
+                             "natural_low": nl, "natural_high": nh,
+                             "flip": bool(rl > nl and nh > rh)})
+    share = sum(1 for r in rows if r["flip"]) / len(rows)
+    return rows, share
 
 
 def size_scan():
@@ -352,7 +404,7 @@ def dominance(rows):
     for axis_id in FIXTURES["axes"]:
         sc_ids = {r["scenario"] for r in rows if r["axis"] == axis_id}
         wins = {}
-        for sc in sc_ids:
+        for sc in sorted(sc_ids):
             ranked = rank(rows, axis_id, sc)
             if ranked and ranked[0]["C"] is not None:
                 wins.setdefault(ranked[0]["strategy"], []).append(sc)
@@ -496,7 +548,8 @@ def saturation_grid():
         q = 0.20
         while q <= 2.0001:
             st = Strategy(name="s", supports={"baitfish": 1.0},
-                          base_affinity={"baitfish": food}, q=q)
+                          base_affinity={"baitfish": food}, q=q,
+                          trigger_strength={"baitfish": 0.0})
             fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                                  diet_shift={"baitfish": 0.0})
             _, c, _, _ = response(st, fish)
@@ -522,6 +575,7 @@ def main():
     dom = dominance(rows)
     reaction_scan = reaction_support_scan()
     sizes = size_scan()
+    reaction_grid, reaction_flip_share = reaction_flip_grid()
     diet_sensitivity = [
         [round(g, 2), round(sp, 2), diet_cross_for(g, sp)]
         for g in (0.55, 0.65, 0.75)
@@ -539,6 +593,18 @@ def main():
     assert protocol["resolved_zero"]["C"] == 0.0
     assert protocol["mixed_unknown_branch"]["status"] == "Resolved"
     assert protocol["mixed_unknown_branch"]["skipped"] == {"crayfish": "Unknown"}
+    assert protocol["missing_trigger"]["status"] == "ResolutionIncomplete"
+    assert protocol["missing_support_sibling"]["status"] == "Resolved"
+    assert protocol["missing_support_sibling"]["skipped"] == {"crayfish": "Unknown"}
+    # Pinned findings: a silent formula or fixture change must fail here.
+    assert abs(cross - 0.2524) < 0.002
+    assert mcross["reaction_twitch_q0.60"] == [0.65]
+    assert mcross["reaction_burst_q0.75"] == [0.40]
+    assert abs(cov["coverage_ratio_needed"] - 2.7243) < 0.02
+    assert abs(sat["saturated_share"] - 0.7281) < 0.002
+    assert abs(cue_cross - 0.24) < 0.02
+    assert all(v is not None for _, _, v in diet_sensitivity)
+    assert 0.0 < reaction_flip_share < 1.0
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}
@@ -577,6 +643,8 @@ def main():
         "protocol": protocol,
         "dominance": dom,
         "reaction_support_scan": reaction_scan,
+        "reaction_flip_grid": reaction_grid,
+        "reaction_flip_share": reaction_flip_share,
         "diet_boundary_sensitivity": diet_sensitivity,
         "size_scan": sizes,
     }
@@ -625,6 +693,7 @@ def main():
     print("coverage ratio needed for fast to match slow:", cov["coverage_ratio_needed"])
     print("hypothetical cue crossover wariness:", cue_cross)
     print("diet boundary sensitivity:", diet_sensitivity)
+    print("reaction flip share over grid:", round(reaction_flip_share, 3))
     print("size scan monotone specialist lead:",
           all(x["specialist"] >= x["generalist"] for x in sizes))
     print("saturation share:", round(sat["saturated_share"], 3),

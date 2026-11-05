@@ -3641,6 +3641,17 @@
       "skipped": {
         "crayfish": "Unknown"
       }
+    },
+    "missing_trigger": {
+      "status": "ResolutionIncomplete",
+      "C": null
+    },
+    "missing_support_sibling": {
+      "status": "Resolved",
+      "C": 0.63125,
+      "skipped": {
+        "crayfish": "Unknown"
+      }
     }
   },
   "dominance": {
@@ -3654,16 +3665,16 @@
     },
     "B_activity_speed": {
       "slow_q0.45": [
-        "B2_high_activity",
-        "B1_low_activity"
+        "B1_low_activity",
+        "B2_high_activity"
       ]
     },
     "C_motivation_reaction": {
-      "natural_q0.60": [
-        "C2_high_motivation"
-      ],
       "reaction_twitch_q0.60": [
         "C1_low_motivation"
+      ],
+      "natural_q0.60": [
+        "C2_high_motivation"
       ]
     },
     "D_wariness_stealth": {
@@ -4172,6 +4183,709 @@
       "reaction_high": 0.7011
     }
   ],
+  "reaction_flip_grid": [
+    {
+      "support": 0.5,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.10199999999999987,
+      "reaction_high": 0.35199999999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.05390624999999982,
+      "reaction_high": 0.3039062499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.11449999999999988,
+      "reaction_high": 0.3644999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.06640624999999983,
+      "reaction_high": 0.31640624999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.12699999999999975,
+      "reaction_high": 0.3769999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.07890624999999984,
+      "reaction_high": 0.32890624999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.1394999999999999,
+      "reaction_high": 0.3894999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.09140624999999986,
+      "reaction_high": 0.34140624999999986,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.15199999999999977,
+      "reaction_high": 0.40199999999999975,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.10390624999999987,
+      "reaction_high": 0.35390624999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.11219999999999987,
+      "reaction_high": 0.3871999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.05929687499999981,
+      "reaction_high": 0.3342968749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.12594999999999987,
+      "reaction_high": 0.4009499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.07304687499999982,
+      "reaction_high": 0.34804687499999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.13969999999999974,
+      "reaction_high": 0.41469999999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.08679687499999984,
+      "reaction_high": 0.36179687499999985,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.1534499999999999,
+      "reaction_high": 0.42844999999999994,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.10054687499999986,
+      "reaction_high": 0.3755468749999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.16719999999999977,
+      "reaction_high": 0.44219999999999976,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.11429687499999987,
+      "reaction_high": 0.3892968749999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.12239999999999984,
+      "reaction_high": 0.42239999999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.06468749999999979,
+      "reaction_high": 0.3646874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.13739999999999986,
+      "reaction_high": 0.43739999999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.0796874999999998,
+      "reaction_high": 0.3796874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.1523999999999997,
+      "reaction_high": 0.45239999999999964,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.09468749999999981,
+      "reaction_high": 0.3946874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.16739999999999988,
+      "reaction_high": 0.46739999999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.10968749999999983,
+      "reaction_high": 0.4096874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.18239999999999973,
+      "reaction_high": 0.48239999999999966,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.12468749999999984,
+      "reaction_high": 0.42468749999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.13259999999999983,
+      "reaction_high": 0.45759999999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.07007812499999977,
+      "reaction_high": 0.3950781249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.14884999999999984,
+      "reaction_high": 0.4738499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.08632812499999978,
+      "reaction_high": 0.4113281249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.1650999999999997,
+      "reaction_high": 0.49009999999999965,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.1025781249999998,
+      "reaction_high": 0.4275781249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.18134999999999987,
+      "reaction_high": 0.5063499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.11882812499999981,
+      "reaction_high": 0.44382812499999985,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.19759999999999972,
+      "reaction_high": 0.5225999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.13507812499999983,
+      "reaction_high": 0.46007812499999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.14279999999999982,
+      "reaction_high": 0.4927999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.07546874999999975,
+      "reaction_high": 0.42546874999999973,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.16029999999999983,
+      "reaction_high": 0.5102999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.09296874999999977,
+      "reaction_high": 0.44296874999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.17779999999999965,
+      "reaction_high": 0.5277999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.11046874999999977,
+      "reaction_high": 0.46046874999999976,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.19529999999999986,
+      "reaction_high": 0.5452999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.1279687499999998,
+      "reaction_high": 0.4779687499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.21279999999999968,
+      "reaction_high": 0.5627999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1454687499999998,
+      "reaction_high": 0.4954687499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.1529999999999998,
+      "reaction_high": 0.5279999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.08085937499999973,
+      "reaction_high": 0.45585937499999973,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.17174999999999982,
+      "reaction_high": 0.5467499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.09960937499999975,
+      "reaction_high": 0.4746093749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.19049999999999961,
+      "reaction_high": 0.5654999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.11835937499999977,
+      "reaction_high": 0.49335937499999977,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.20924999999999985,
+      "reaction_high": 0.5842499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.13710937499999978,
+      "reaction_high": 0.5121093749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.22799999999999965,
+      "reaction_high": 0.6029999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1558593749999998,
+      "reaction_high": 0.5308593749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.1631999999999998,
+      "reaction_high": 0.5631999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.08624999999999972,
+      "reaction_high": 0.48624999999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.1831999999999998,
+      "reaction_high": 0.5831999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.10624999999999973,
+      "reaction_high": 0.5062499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.2031999999999996,
+      "reaction_high": 0.6031999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.12624999999999975,
+      "reaction_high": 0.5262499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.22319999999999984,
+      "reaction_high": 0.6231999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.14624999999999977,
+      "reaction_high": 0.5462499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.24319999999999964,
+      "reaction_high": 0.6431999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1662499999999998,
+      "reaction_high": 0.5662499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    }
+  ],
+  "reaction_flip_share": 0.6714285714285714,
   "diet_boundary_sensitivity": [
     [
       0.55,
