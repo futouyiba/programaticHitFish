@@ -13,6 +13,7 @@ import csv
 import json
 from pathlib import Path
 
+import stealth
 from model import (
     FishCondition,
     Strategy,
@@ -382,6 +383,92 @@ def reaction_flip_grid():
     return rows, share
 
 
+def stealth_runs():
+    """Direct vs stealth rigs built from tackle.xlsx samples."""
+    rows = []
+    for w in (0.2, 0.6):
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        for rig in stealth.DATA["rigs"]:
+            details = stealth.rig_details(rig)
+            st = Strategy(name=rig["name"], supports={"baitfish": 0.85},
+                          base_affinity={"baitfish": 0.70}, q=0.60,
+                          trigger_strength={"baitfish": 0.0},
+                          coverage=rig["coverage"],
+                          suspicion_load=details["suspicion_load"])
+            _, c, _, _ = response(st, fish)
+            rows.append({"wariness": w, "rig": rig["name"], "C": c,
+                         "yield": toy_yield(c, st.q, st.coverage) if c is not None else None,
+                         **details})
+    return rows
+
+
+def stealth_coverage_sweep():
+    """Coverage needed by the thin stealth rig to match direct, by wariness."""
+    direct = next(r for r in stealth.DATA["rigs"] if r["name"] == "direct_nylon")
+    thin = next(r for r in stealth.DATA["rigs"] if r["name"] == "stealth_thin_fluoro")
+    d_load = stealth.rig_suspicion(direct)
+    s_load = stealth.rig_suspicion(thin)
+    out = []
+    for i in range(1, 101):
+        w = i / 100
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        cd = response(Strategy(name="d", supports={"baitfish": 0.85},
+                               base_affinity={"baitfish": 0.70}, q=0.60,
+                               trigger_strength={"baitfish": 0.0},
+                               coverage=1.0, suspicion_load=d_load), fish)[1]
+        cs = response(Strategy(name="s", supports={"baitfish": 0.85},
+                               base_affinity={"baitfish": 0.70}, q=0.60,
+                               trigger_strength={"baitfish": 0.0},
+                               coverage=1.0, suspicion_load=s_load), fish)[1]
+        out.append({"wariness": w, "C_direct": cd, "C_stealth_full_coverage": cs,
+                    "coverage_needed": (cd / cs) if cs else None})
+    return out
+
+
+def stealth_yield_sweep():
+    rigs = {r["name"]: r for r in stealth.DATA["rigs"]}
+    names = ("direct_nylon", "stealth_std_fluoro", "stealth_thin_fluoro")
+    out = {n: [] for n in names}
+    for i in range(101):
+        w = i / 100
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        for n in names:
+            rig = rigs[n]
+            st = Strategy(name=n, supports={"baitfish": 0.85},
+                          base_affinity={"baitfish": 0.70}, q=0.60,
+                          trigger_strength={"baitfish": 0.0},
+                          coverage=rig["coverage"],
+                          suspicion_load=stealth.rig_suspicion(rig))
+            _, c, _, _ = response(st, fish)
+            out[n].append((w, toy_yield(c, st.q, st.coverage) if c is not None else None))
+    return out
+
+
+def search_session_sweep():
+    """Toy information-search model: time to locate fish scales with 1/q.
+
+    discovery_time = search_cost / q; fishing_time = total - discovery_time.
+    Per-grain yield comes from the B-axis high-Activity case. Assumption only.
+    """
+    y_slow, y_fast = 0.0517, 0.0190
+    total = 120.0
+    out = []
+    for i in range(0, 81):
+        cost = i
+        slow = max(0.0, total - cost / 0.45) * y_slow
+        fast = max(0.0, total - cost / 0.90) * y_fast
+        out.append({"search_cost": cost, "slow_session": slow, "fast_session": fast})
+    cross = None
+    for a, b in zip(out, out[1:]):
+        if (a["slow_session"] - a["fast_session"]) * (b["slow_session"] - b["fast_session"]) < 0:
+            cross = b["search_cost"]
+            break
+    return {"points": out, "crossover_cost": cross, "total_time": total}
+
+
 def size_scan():
     """Negative control: size adjustment shifts FoodValue for every strategy alike."""
     axis = FIXTURES["axes"]["A_diet"]
@@ -577,6 +664,21 @@ def main():
     reaction_scan = reaction_support_scan()
     sizes = size_scan()
     reaction_grid, reaction_flip_share = reaction_flip_grid()
+    stealth_rows = stealth_runs()
+    stealth_cov = stealth_coverage_sweep()
+    search = search_session_sweep()
+    stealth_curve = stealth_yield_sweep()
+    # coverage 0.55 is the assumed stealth cost; find where it becomes enough
+    cross_w = None
+    prev = None
+    for row in stealth_cov:
+        need = 0.55 - row["coverage_needed"] if row["coverage_needed"] is not None else None
+        if need is None:
+            prev = None
+            continue
+        if prev is not None and prev * need < 0:
+            cross_w = row["wariness"]
+        prev = need
     diet_sensitivity = [
         [round(g, 2), round(sp, 2), diet_cross_for(g, sp)]
         for g in (0.55, 0.65, 0.75)
@@ -607,6 +709,12 @@ def main():
     diet_hits = [v for _, _, v in diet_sensitivity]
     assert len(diet_hits) == 9 and all(v is not None for v in diet_hits)
     assert abs(reaction_flip_share - 47 / 70) < 1e-12
+    assert abs(cross_w - 0.46) < 0.011
+    assert abs(search["crossover_cost"] - 42) < 0.01
+    cov_map = {r["wariness"]: r["coverage_needed"] for r in stealth_cov}
+    assert abs(cov_map[0.2] - 0.8777) < 0.002
+    assert abs(cov_map[0.4] - 0.6512) < 0.002
+    assert abs(cov_map[0.6] - 0.0893) < 0.002
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}
@@ -649,6 +757,10 @@ def main():
         "reaction_flip_share": reaction_flip_share,
         "diet_boundary_sensitivity": diet_sensitivity,
         "size_scan": sizes,
+        "stealth_runs": stealth_rows,
+        "stealth_coverage_sweep": stealth_cov,
+        "search_session": search,
+        "stealth_crossover_wariness": cross_w,
     }
     (RESULTS / "results.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -681,6 +793,17 @@ def main():
         [(f"Activity {a['activity']}", [(p["q"], p["yield"]) for p in a["points"]]) for a in qs],
         FIGURES / "speed_yield.svg", "Toy opportunity yield vs speed (equal coverage)",
         "q (speed / intercept limit)", "relative yield")
+    svg_lines(
+        [("direct", stealth_curve["direct_nylon"]),
+         ("stealth std", stealth_curve["stealth_std_fluoro"]),
+         ("stealth thin", stealth_curve["stealth_thin_fluoro"])],
+        FIGURES / "stealth_yield.svg", "Stealth trade-off from tackle.xlsx samples (coverage 1.0 / 0.55)",
+        "Wariness", "toy yield")
+    svg_lines(
+        [("slow q0.45", [(p["search_cost"], p["slow_session"]) for p in search["points"]]),
+         ("fast q0.90", [(p["search_cost"], p["fast_session"]) for p in search["points"]])],
+        FIGURES / "search_session.svg", "Session value with information search (toy model)",
+        "search cost (time-to-find = cost / q)", "session yield")
     svg_heat(saturation_grid(), FIGURES / "saturation_map.svg",
              "C saturation map: light = 0, dark = 1 (M=0.5, Activity=1)")
 
@@ -696,6 +819,11 @@ def main():
     print("hypothetical cue crossover wariness:", cue_cross)
     print("diet boundary sensitivity:", diet_sensitivity)
     print("reaction flip share over grid:", round(reaction_flip_share, 3))
+    print("stealth rows:")
+    for r in stealth_rows:
+        print(f"  W={r['wariness']} {r['rig']} C={None if r['C'] is None else round(r['C'],4)} yield={None if r['yield'] is None else round(r['yield'],4)}")
+    print("search crossover cost:", search["crossover_cost"])
+    print("stealth crossover wariness at coverage 0.55:", cross_w)
     print("size scan monotone specialist lead:",
           all(x["specialist"] >= x["generalist"] for x in sizes))
     print("saturation share:", round(sat["saturated_share"], 3),

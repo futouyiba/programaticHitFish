@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "source": "tackle.xlsx, sheets Lines and Leaders (fish habit editor config tables)",
+    "source_ids": "Rows are copied by id only; no private paths or internal addresses are stored.",
+    "status": "Test data for an experiment. Not production data, not a Contract.",
+    "additions": "clarity is an added test parameter (0 = fully visible material, 1 = fully clear). The current config has opacity and color, but no material-clarity field. Values are declared assumptions, not extracted facts.",
+    "units": "diameter is used in the workbook's own units. Line and leader diameters are normalized within their own class; cross-class unit comparison is not assumed.",
+    "water_rgb": [47, 79, 79],
+    "weights": {
+      "clarity": 0.45,
+      "thickness": 0.30,
+      "opacity": 0.15,
+      "color": 0.10
+    },
+    "exposure_factor": 0.5,
+    "exposure_note": "Rig visibility is multiplied by 0.5 to produce a SuspicionLoad in the Working 0..1 range; this is an assumption, not a contract value."
+  },
+  "lines": [
+    {"id": 303100101, "name": "line_monofilament01_1", "material": "nylon", "diameter": 25, "color": "FFFF80", "opacity": 20, "clarity": 0.15, "mark": "TORAY NYLON 1.0号"},
+    {"id": 303110130, "name": "line_monofilament_flt_rnt_c13_0", "material": "nylon", "diameter": 25, "color": "FFFF80", "opacity": 0, "clarity": 0.15, "mark": "C13 租赁浮钓尼龙线 2.25号"},
+    {"id": 303114200, "name": "line_monofilament_flt_sup_c20_0", "material": "nylon", "diameter": 45, "color": "FFFF80", "opacity": 0, "clarity": 0.15, "mark": "C20 抗冲浮钓尼龙线 7号"},
+    {"id": 303300101, "name": "line_braided01_1", "material": "braid", "diameter": 25, "color": "00FFFF", "opacity": 50, "clarity": 0.30, "mark": "YGK Upgrade PE线 0.4号"},
+    {"id": 303300301, "name": "line_braided03_1", "material": "braid", "diameter": 25, "color": "FF00FF", "opacity": 50, "clarity": 0.30, "mark": "YGK Upgrade PE线 0.8号"},
+    {"id": 303312180, "name": "line_braided_flt_pwr_c18_0", "material": "braid", "diameter": 45, "color": "00FFFF", "opacity": 0, "clarity": 0.30, "mark": "C18 强力浮钓编织线 8号"},
+    {"id": 303400101, "name": "line_fluorocarbon01_1", "material": "fluorocarbon", "diameter": 36, "color": "f2f2f2", "opacity": 0, "clarity": 0.65, "mark": "SEAGUAR 泷 氟碳线1.0号"},
+    {"id": 303415010, "name": "line_fluorocarbon_flt_stl_c1_0", "material": "fluorocarbon", "diameter": 12, "color": "f2f2f2", "opacity": 0, "clarity": 0.65, "mark": "C1 精细浮钓氟碳线 0.5号"},
+    {"id": 303425190, "name": "line_fluorocarbon_lur_stl_c19_0", "material": "fluorocarbon", "diameter": 46, "color": "f2f2f2", "opacity": 0, "clarity": 0.65, "mark": "C19 精细路亚氟碳线 8号"}
+  ],
+  "leaders": [
+    {"id": 3041001, "name": "Mono_Leaders_1", "material": "nylon", "diameter": 2, "color": "FFFF00", "opacity": 0, "clarity": 0.15, "mark": "X系列单丝前导线1"},
+    {"id": 3041002, "name": "Mono_Leaders_1", "material": "nylon", "diameter": 2, "color": "Clear", "opacity": 0, "clarity": 0.15, "mark": "X系列单丝前导线1"},
+    {"id": 3042001, "name": "Fluorocarbon Leader_1", "material": "fluorocarbon", "diameter": 5, "color": "FF00FF", "opacity": 0, "clarity": 0.65, "mark": "X系列氟碳前导线1"},
+    {"id": 3042002, "name": "Titanium_Leaders_1", "material": "titanium", "diameter": 5, "color": "Clear", "opacity": 0, "clarity": 0.45, "mark": "X系列钛合金前导线1"}
+  ],
+  "rigs": [
+    {
+      "name": "direct_nylon",
+      "line_id": 303100101,
+      "leader_id": 3041001,
+      "coverage": 1.0,
+      "note": "bright mono main line plus bright mono leader"
+    },
+    {
+      "name": "stealth_std_fluoro",
+      "line_id": 303400101,
+      "leader_id": 3042001,
+      "coverage": 0.55,
+      "note": "fluorocarbon main and leader, standard diameter"
+    },
+    {
+      "name": "stealth_thin_fluoro",
+      "line_id": 303415010,
+      "leader_id": 3041002,
+      "coverage": 0.55,
+      "note": "thin fluorocarbon main plus clear mono leader"
+    },
+    {
+      "name": "heavy_direct",
+      "line_id": 303114200,
+      "leader_id": 3041001,
+      "coverage": 1.0,
+      "note": "thick bright mono main line"
+    }
+  ]
+}

@@ -5039,5 +5039,1125 @@
       "generalist": 0.5728125000000002,
       "specialist": 0.8107500000000002
     }
-  ]
+  ],
+  "stealth_runs": [
+    {
+      "wariness": 0.2,
+      "rig": "direct_nylon",
+      "C": 0.3326474999999999,
+      "yield": 0.07128160714285711,
+      "line": "TORAY NYLON 1.0号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.7507,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.7507,
+      "suspicion_load": 0.3753,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.2,
+      "rig": "stealth_std_fluoro",
+      "C": 0.3493924999999999,
+      "yield": 0.041178401785714275,
+      "line": "SEAGUAR 泷 氟碳线1.0号",
+      "leader": "X系列氟碳前导线1",
+      "line_visibility": 0.6279,
+      "leader_visibility": 0.6717,
+      "rig_visibility": 0.6717,
+      "suspicion_load": 0.3359,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.2,
+      "rig": "stealth_thin_fluoro",
+      "C": 0.379015,
+      "yield": 0.044669625000000004,
+      "line": "C1 精细浮钓氟碳线 0.5号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.3759,
+      "leader_visibility": 0.5325,
+      "rig_visibility": 0.5325,
+      "suspicion_load": 0.2662,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.2,
+      "rig": "heavy_direct",
+      "C": 0.3028549999999998,
+      "yield": 0.06489749999999996,
+      "line": "C20 抗冲浮钓尼龙线 7号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.8907,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.8907,
+      "suspicion_load": 0.4454,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.6,
+      "rig": "direct_nylon",
+      "C": 0.01364249999999996,
+      "yield": 0.0029233928571428484,
+      "line": "TORAY NYLON 1.0号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.7507,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.7507,
+      "suspicion_load": 0.3753,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.6,
+      "rig": "stealth_std_fluoro",
+      "C": 0.06387750000000006,
+      "yield": 0.007528419642857151,
+      "line": "SEAGUAR 泷 氟碳线1.0号",
+      "leader": "X系列氟碳前导线1",
+      "line_visibility": 0.6279,
+      "leader_visibility": 0.6717,
+      "rig_visibility": 0.6717,
+      "suspicion_load": 0.3359,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.6,
+      "rig": "stealth_thin_fluoro",
+      "C": 0.152745,
+      "yield": 0.018002089285714288,
+      "line": "C1 精细浮钓氟碳线 0.5号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.3759,
+      "leader_visibility": 0.5325,
+      "rig_visibility": 0.5325,
+      "suspicion_load": 0.2662,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.6,
+      "rig": "heavy_direct",
+      "C": 0.0,
+      "yield": 0.0,
+      "line": "C20 抗冲浮钓尼龙线 7号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.8907,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.8907,
+      "suspicion_load": 0.4454,
+      "coverage": 1.0
+    }
+  ],
+  "stealth_coverage_sweep": [
+    {
+      "wariness": 0.01,
+      "C_direct": 0.4841748749999999,
+      "C_stealth_full_coverage": 0.48649324999999977,
+      "coverage_needed": 0.9952345176423314
+    },
+    {
+      "wariness": 0.02,
+      "C_direct": 0.4761997499999998,
+      "C_stealth_full_coverage": 0.4808364999999999,
+      "coverage_needed": 0.990356909261256
+    },
+    {
+      "wariness": 0.03,
+      "C_direct": 0.46822462499999984,
+      "C_stealth_full_coverage": 0.47517974999999973,
+      "coverage_needed": 0.9853631704633881
+    },
+    {
+      "wariness": 0.04,
+      "C_direct": 0.4602494999999998,
+      "C_stealth_full_coverage": 0.46952299999999986,
+      "coverage_needed": 0.9802491038777652
+    },
+    {
+      "wariness": 0.05,
+      "C_direct": 0.45227437499999984,
+      "C_stealth_full_coverage": 0.4638662499999998,
+      "coverage_needed": 0.9750103073892529
+    },
+    {
+      "wariness": 0.06,
+      "C_direct": 0.44429924999999976,
+      "C_stealth_full_coverage": 0.45820949999999994,
+      "coverage_needed": 0.9696421615003613
+    },
+    {
+      "wariness": 0.07,
+      "C_direct": 0.4363241249999998,
+      "C_stealth_full_coverage": 0.4525527499999998,
+      "coverage_needed": 0.9641398157452363
+    },
+    {
+      "wariness": 0.08,
+      "C_direct": 0.42834899999999976,
+      "C_stealth_full_coverage": 0.4468959999999999,
+      "coverage_needed": 0.9584981740718195
+    },
+    {
+      "wariness": 0.09,
+      "C_direct": 0.420373875,
+      "C_stealth_full_coverage": 0.4412392499999998,
+      "coverage_needed": 0.9527118790996045
+    },
+    {
+      "wariness": 0.1,
+      "C_direct": 0.41239874999999976,
+      "C_stealth_full_coverage": 0.43558249999999993,
+      "coverage_needed": 0.946775295150746
+    },
+    {
+      "wariness": 0.11,
+      "C_direct": 0.404423625,
+      "C_stealth_full_coverage": 0.4299257499999998,
+      "coverage_needed": 0.9406824899415777
+    },
+    {
+      "wariness": 0.12,
+      "C_direct": 0.3964485,
+      "C_stealth_full_coverage": 0.42426899999999995,
+      "coverage_needed": 0.9344272148094723
+    },
+    {
+      "wariness": 0.13,
+      "C_direct": 0.38847337499999995,
+      "C_stealth_full_coverage": 0.41861224999999985,
+      "coverage_needed": 0.9280028833365486
+    },
+    {
+      "wariness": 0.14,
+      "C_direct": 0.38049825,
+      "C_stealth_full_coverage": 0.4129555,
+      "coverage_needed": 0.9214025482164543
+    },
+    {
+      "wariness": 0.15,
+      "C_direct": 0.37252312499999995,
+      "C_stealth_full_coverage": 0.4072987499999999,
+      "coverage_needed": 0.9146188761934577
+    },
+    {
+      "wariness": 0.16,
+      "C_direct": 0.3645479999999999,
+      "C_stealth_full_coverage": 0.401642,
+      "coverage_needed": 0.9076441208837719
+    },
+    {
+      "wariness": 0.17,
+      "C_direct": 0.3565728749999999,
+      "C_stealth_full_coverage": 0.3959852499999999,
+      "coverage_needed": 0.9004700932673628
+    },
+    {
+      "wariness": 0.18,
+      "C_direct": 0.34859774999999993,
+      "C_stealth_full_coverage": 0.3903285,
+      "coverage_needed": 0.8930881296139019
+    },
+    {
+      "wariness": 0.19,
+      "C_direct": 0.3406226249999999,
+      "C_stealth_full_coverage": 0.38467174999999987,
+      "coverage_needed": 0.8854890565787584
+    },
+    {
+      "wariness": 0.2,
+      "C_direct": 0.3326474999999999,
+      "C_stealth_full_coverage": 0.379015,
+      "coverage_needed": 0.877663153173357
+    },
+    {
+      "wariness": 0.21,
+      "C_direct": 0.32467237499999985,
+      "C_stealth_full_coverage": 0.3733582499999999,
+      "coverage_needed": 0.8696001092784208
+    },
+    {
+      "wariness": 0.22,
+      "C_direct": 0.3166972499999999,
+      "C_stealth_full_coverage": 0.3677015,
+      "coverage_needed": 0.8612889803277927
+    },
+    {
+      "wariness": 0.23,
+      "C_direct": 0.30872212499999985,
+      "C_stealth_full_coverage": 0.3620447499999999,
+      "coverage_needed": 0.8527181377440217
+    },
+    {
+      "wariness": 0.24,
+      "C_direct": 0.3007469999999998,
+      "C_stealth_full_coverage": 0.35638800000000004,
+      "coverage_needed": 0.8438752146536914
+    },
+    {
+      "wariness": 0.25,
+      "C_direct": 0.2927718749999998,
+      "C_stealth_full_coverage": 0.35073124999999994,
+      "coverage_needed": 0.8347470463495906
+    },
+    {
+      "wariness": 0.26,
+      "C_direct": 0.2847967499999998,
+      "C_stealth_full_coverage": 0.3450744999999998,
+      "coverage_needed": 0.8253196048969136
+    },
+    {
+      "wariness": 0.27,
+      "C_direct": 0.2768216249999998,
+      "C_stealth_full_coverage": 0.3394177499999999,
+      "coverage_needed": 0.8155779272003302
+    },
+    {
+      "wariness": 0.28,
+      "C_direct": 0.2688465,
+      "C_stealth_full_coverage": 0.3337609999999998,
+      "coverage_needed": 0.8055060357561253
+    },
+    {
+      "wariness": 0.29,
+      "C_direct": 0.260871375,
+      "C_stealth_full_coverage": 0.32810424999999993,
+      "coverage_needed": 0.7950868512065908
+    },
+    {
+      "wariness": 0.3,
+      "C_direct": 0.25289625,
+      "C_stealth_full_coverage": 0.32244749999999983,
+      "coverage_needed": 0.7843020956899964
+    },
+    {
+      "wariness": 0.31,
+      "C_direct": 0.24492112499999996,
+      "C_stealth_full_coverage": 0.31679074999999995,
+      "coverage_needed": 0.7731321858356028
+    },
+    {
+      "wariness": 0.32,
+      "C_direct": 0.23694599999999996,
+      "C_stealth_full_coverage": 0.31113399999999986,
+      "coverage_needed": 0.7615561140858925
+    },
+    {
+      "wariness": 0.33,
+      "C_direct": 0.22897087499999993,
+      "C_stealth_full_coverage": 0.30547725,
+      "coverage_needed": 0.7495513168329228
+    },
+    {
+      "wariness": 0.34,
+      "C_direct": 0.22099574999999994,
+      "C_stealth_full_coverage": 0.2998204999999998,
+      "coverage_needed": 0.7370935276273639
+    },
+    {
+      "wariness": 0.35,
+      "C_direct": 0.2130206249999999,
+      "C_stealth_full_coverage": 0.29416374999999995,
+      "coverage_needed": 0.7241566134508414
+    },
+    {
+      "wariness": 0.36,
+      "C_direct": 0.20504549999999994,
+      "C_stealth_full_coverage": 0.28850699999999985,
+      "coverage_needed": 0.710712391727064
+    },
+    {
+      "wariness": 0.37,
+      "C_direct": 0.1970703749999999,
+      "C_stealth_full_coverage": 0.28285024999999997,
+      "coverage_needed": 0.6967304253752645
+    },
+    {
+      "wariness": 0.38,
+      "C_direct": 0.1890952499999999,
+      "C_stealth_full_coverage": 0.27719349999999987,
+      "coverage_needed": 0.682177792769311
+    },
+    {
+      "wariness": 0.39,
+      "C_direct": 0.18112012499999988,
+      "C_stealth_full_coverage": 0.27153675,
+      "coverage_needed": 0.6670188289430432
+    },
+    {
+      "wariness": 0.4,
+      "C_direct": 0.17314499999999988,
+      "C_stealth_full_coverage": 0.2658799999999999,
+      "coverage_needed": 0.6512148337595907
+    },
+    {
+      "wariness": 0.41,
+      "C_direct": 0.16516987499999986,
+      "C_stealth_full_coverage": 0.26022325,
+      "coverage_needed": 0.6347237420176708
+    },
+    {
+      "wariness": 0.42,
+      "C_direct": 0.15719474999999986,
+      "C_stealth_full_coverage": 0.25456649999999986,
+      "coverage_needed": 0.617499749574276
+    },
+    {
+      "wariness": 0.43,
+      "C_direct": 0.14921962499999994,
+      "C_stealth_full_coverage": 0.24890975,
+      "coverage_needed": 0.5994928884866901
+    },
+    {
+      "wariness": 0.44,
+      "C_direct": 0.14124449999999994,
+      "C_stealth_full_coverage": 0.24325299999999989,
+      "coverage_needed": 0.5806485428751136
+    },
+    {
+      "wariness": 0.45,
+      "C_direct": 0.1332693749999999,
+      "C_stealth_full_coverage": 0.23759625,
+      "coverage_needed": 0.5609068956265089
+    },
+    {
+      "wariness": 0.46,
+      "C_direct": 0.1252942499999999,
+      "C_stealth_full_coverage": 0.2319394999999999,
+      "coverage_needed": 0.540202294132737
+    },
+    {
+      "wariness": 0.47,
+      "C_direct": 0.11731912500000001,
+      "C_stealth_full_coverage": 0.22628275000000003,
+      "coverage_needed": 0.5184625208947655
+    },
+    {
+      "wariness": 0.48,
+      "C_direct": 0.109344,
+      "C_stealth_full_coverage": 0.2206259999999999,
+      "coverage_needed": 0.4956079519186317
+    },
+    {
+      "wariness": 0.49,
+      "C_direct": 0.10136887499999998,
+      "C_stealth_full_coverage": 0.2149692499999998,
+      "coverage_needed": 0.4715505822344362
+    },
+    {
+      "wariness": 0.5,
+      "C_direct": 0.09339374999999997,
+      "C_stealth_full_coverage": 0.20931249999999996,
+      "coverage_needed": 0.4461928934010152
+    },
+    {
+      "wariness": 0.51,
+      "C_direct": 0.08541862499999996,
+      "C_stealth_full_coverage": 0.20365574999999994,
+      "coverage_needed": 0.419426532273211
+    },
+    {
+      "wariness": 0.52,
+      "C_direct": 0.07744349999999994,
+      "C_stealth_full_coverage": 0.19799899999999995,
+      "coverage_needed": 0.39113076328668306
+    },
+    {
+      "wariness": 0.53,
+      "C_direct": 0.06946837499999993,
+      "C_stealth_full_coverage": 0.19234224999999996,
+      "coverage_needed": 0.36117064763461976
+    },
+    {
+      "wariness": 0.54,
+      "C_direct": 0.06149324999999992,
+      "C_stealth_full_coverage": 0.18668549999999998,
+      "coverage_needed": 0.3293948914082772
+    },
+    {
+      "wariness": 0.55,
+      "C_direct": 0.05351812499999991,
+      "C_stealth_full_coverage": 0.18102874999999985,
+      "coverage_needed": 0.2956332902922876
+    },
+    {
+      "wariness": 0.56,
+      "C_direct": 0.045542999999999896,
+      "C_stealth_full_coverage": 0.17537199999999997,
+      "coverage_needed": 0.25969367972082147
+    },
+    {
+      "wariness": 0.57,
+      "C_direct": 0.03756787499999988,
+      "C_stealth_full_coverage": 0.16971524999999998,
+      "coverage_needed": 0.22135827511080994
+    },
+    {
+      "wariness": 0.58,
+      "C_direct": 0.02959274999999987,
+      "C_stealth_full_coverage": 0.1640585,
+      "coverage_needed": 0.18037925496088206
+    },
+    {
+      "wariness": 0.59,
+      "C_direct": 0.021617624999999856,
+      "C_stealth_full_coverage": 0.15840174999999998,
+      "coverage_needed": 0.13647339754769033
+    },
+    {
+      "wariness": 0.6,
+      "C_direct": 0.01364249999999996,
+      "C_stealth_full_coverage": 0.152745,
+      "coverage_needed": 0.08931552587646051
+    },
+    {
+      "wariness": 0.61,
+      "C_direct": 0.005667374999999947,
+      "C_stealth_full_coverage": 0.1470882499999999,
+      "coverage_needed": 0.03853044005894387
+    },
+    {
+      "wariness": 0.62,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.14143150000000002,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.63,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.1357747499999999,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.64,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.130118,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.65,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.1244612499999999,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.66,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.11880449999999991,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.67,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.11314774999999991,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.68,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.10749099999999992,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.69,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.10183424999999992,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.7,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.09617750000000004,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.71,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.09052074999999993,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.72,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.08486399999999994,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.73,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.07920724999999994,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.74,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.07355049999999995,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.75,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.06789374999999995,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.76,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.06223699999999996,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.77,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.056580249999999964,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.78,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.05092349999999997,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.79,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.045266749999999974,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.8,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.03960999999999986,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.81,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.03395324999999998,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.82,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.02829649999999999,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.83,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.022639749999999993,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.84,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.016982999999999998,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.85,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.011326250000000003,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.86,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.00566949999999989,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.87,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 1.2750000000012751e-05,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.88,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.89,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.9,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.91,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.92,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.93,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.94,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.95,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.96,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.97,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.98,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.99,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 1.0,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    }
+  ],
+  "search_session": {
+    "points": [
+      {
+        "search_cost": 0,
+        "slow_session": 6.204000000000001,
+        "fast_session": 2.28
+      },
+      {
+        "search_cost": 1,
+        "slow_session": 6.089111111111111,
+        "fast_session": 2.258888888888889
+      },
+      {
+        "search_cost": 2,
+        "slow_session": 5.974222222222223,
+        "fast_session": 2.2377777777777776
+      },
+      {
+        "search_cost": 3,
+        "slow_session": 5.859333333333334,
+        "fast_session": 2.216666666666667
+      },
+      {
+        "search_cost": 4,
+        "slow_session": 5.744444444444445,
+        "fast_session": 2.1955555555555555
+      },
+      {
+        "search_cost": 5,
+        "slow_session": 5.629555555555556,
+        "fast_session": 2.174444444444444
+      },
+      {
+        "search_cost": 6,
+        "slow_session": 5.514666666666667,
+        "fast_session": 2.1533333333333333
+      },
+      {
+        "search_cost": 7,
+        "slow_session": 5.399777777777778,
+        "fast_session": 2.1322222222222225
+      },
+      {
+        "search_cost": 8,
+        "slow_session": 5.284888888888889,
+        "fast_session": 2.111111111111111
+      },
+      {
+        "search_cost": 9,
+        "slow_session": 5.17,
+        "fast_session": 2.09
+      },
+      {
+        "search_cost": 10,
+        "slow_session": 5.055111111111111,
+        "fast_session": 2.068888888888889
+      },
+      {
+        "search_cost": 11,
+        "slow_session": 4.940222222222222,
+        "fast_session": 2.0477777777777777
+      },
+      {
+        "search_cost": 12,
+        "slow_session": 4.825333333333334,
+        "fast_session": 2.026666666666667
+      },
+      {
+        "search_cost": 13,
+        "slow_session": 4.710444444444445,
+        "fast_session": 2.0055555555555555
+      },
+      {
+        "search_cost": 14,
+        "slow_session": 4.595555555555555,
+        "fast_session": 1.9844444444444445
+      },
+      {
+        "search_cost": 15,
+        "slow_session": 4.480666666666666,
+        "fast_session": 1.9633333333333332
+      },
+      {
+        "search_cost": 16,
+        "slow_session": 4.365777777777778,
+        "fast_session": 1.9422222222222223
+      },
+      {
+        "search_cost": 17,
+        "slow_session": 4.250888888888889,
+        "fast_session": 1.9211111111111112
+      },
+      {
+        "search_cost": 18,
+        "slow_session": 4.136,
+        "fast_session": 1.9
+      },
+      {
+        "search_cost": 19,
+        "slow_session": 4.021111111111111,
+        "fast_session": 1.8788888888888888
+      },
+      {
+        "search_cost": 20,
+        "slow_session": 3.9062222222222225,
+        "fast_session": 1.8577777777777775
+      },
+      {
+        "search_cost": 21,
+        "slow_session": 3.791333333333334,
+        "fast_session": 1.8366666666666667
+      },
+      {
+        "search_cost": 22,
+        "slow_session": 3.676444444444445,
+        "fast_session": 1.8155555555555556
+      },
+      {
+        "search_cost": 23,
+        "slow_session": 3.5615555555555556,
+        "fast_session": 1.7944444444444443
+      },
+      {
+        "search_cost": 24,
+        "slow_session": 3.446666666666667,
+        "fast_session": 1.7733333333333334
+      },
+      {
+        "search_cost": 25,
+        "slow_session": 3.331777777777778,
+        "fast_session": 1.7522222222222223
+      },
+      {
+        "search_cost": 26,
+        "slow_session": 3.216888888888889,
+        "fast_session": 1.731111111111111
+      },
+      {
+        "search_cost": 27,
+        "slow_session": 3.1020000000000003,
+        "fast_session": 1.71
+      },
+      {
+        "search_cost": 28,
+        "slow_session": 2.9871111111111115,
+        "fast_session": 1.6888888888888889
+      },
+      {
+        "search_cost": 29,
+        "slow_session": 2.8722222222222227,
+        "fast_session": 1.6677777777777776
+      },
+      {
+        "search_cost": 30,
+        "slow_session": 2.7573333333333334,
+        "fast_session": 1.6466666666666665
+      },
+      {
+        "search_cost": 31,
+        "slow_session": 2.6424444444444446,
+        "fast_session": 1.6255555555555556
+      },
+      {
+        "search_cost": 32,
+        "slow_session": 2.5275555555555553,
+        "fast_session": 1.6044444444444443
+      },
+      {
+        "search_cost": 33,
+        "slow_session": 2.412666666666667,
+        "fast_session": 1.5833333333333335
+      },
+      {
+        "search_cost": 34,
+        "slow_session": 2.2977777777777777,
+        "fast_session": 1.5622222222222224
+      },
+      {
+        "search_cost": 35,
+        "slow_session": 2.1828888888888893,
+        "fast_session": 1.541111111111111
+      },
+      {
+        "search_cost": 36,
+        "slow_session": 2.068,
+        "fast_session": 1.52
+      },
+      {
+        "search_cost": 37,
+        "slow_session": 1.9531111111111117,
+        "fast_session": 1.4988888888888887
+      },
+      {
+        "search_cost": 38,
+        "slow_session": 1.8382222222222224,
+        "fast_session": 1.4777777777777776
+      },
+      {
+        "search_cost": 39,
+        "slow_session": 1.7233333333333332,
+        "fast_session": 1.4566666666666666
+      },
+      {
+        "search_cost": 40,
+        "slow_session": 1.6084444444444448,
+        "fast_session": 1.4355555555555555
+      },
+      {
+        "search_cost": 41,
+        "slow_session": 1.4935555555555555,
+        "fast_session": 1.4144444444444444
+      },
+      {
+        "search_cost": 42,
+        "slow_session": 1.378666666666667,
+        "fast_session": 1.3933333333333335
+      },
+      {
+        "search_cost": 43,
+        "slow_session": 1.2637777777777777,
+        "fast_session": 1.3722222222222222
+      },
+      {
+        "search_cost": 44,
+        "slow_session": 1.1488888888888893,
+        "fast_session": 1.3511111111111112
+      },
+      {
+        "search_cost": 45,
+        "slow_session": 1.034,
+        "fast_session": 1.33
+      },
+      {
+        "search_cost": 46,
+        "slow_session": 0.9191111111111115,
+        "fast_session": 1.3088888888888888
+      },
+      {
+        "search_cost": 47,
+        "slow_session": 0.8042222222222224,
+        "fast_session": 1.2877777777777777
+      },
+      {
+        "search_cost": 48,
+        "slow_session": 0.6893333333333339,
+        "fast_session": 1.2666666666666668
+      },
+      {
+        "search_cost": 49,
+        "slow_session": 0.5744444444444446,
+        "fast_session": 1.2455555555555555
+      },
+      {
+        "search_cost": 50,
+        "slow_session": 0.45955555555555544,
+        "fast_session": 1.2244444444444444
+      },
+      {
+        "search_cost": 51,
+        "slow_session": 0.34466666666666695,
+        "fast_session": 1.2033333333333334
+      },
+      {
+        "search_cost": 52,
+        "slow_session": 0.22977777777777772,
+        "fast_session": 1.1822222222222223
+      },
+      {
+        "search_cost": 53,
+        "slow_session": 0.11488888888888922,
+        "fast_session": 1.1611111111111112
+      },
+      {
+        "search_cost": 54,
+        "slow_session": 0.0,
+        "fast_session": 1.14
+      },
+      {
+        "search_cost": 55,
+        "slow_session": 0.0,
+        "fast_session": 1.118888888888889
+      },
+      {
+        "search_cost": 56,
+        "slow_session": 0.0,
+        "fast_session": 1.0977777777777777
+      },
+      {
+        "search_cost": 57,
+        "slow_session": 0.0,
+        "fast_session": 1.0766666666666667
+      },
+      {
+        "search_cost": 58,
+        "slow_session": 0.0,
+        "fast_session": 1.0555555555555556
+      },
+      {
+        "search_cost": 59,
+        "slow_session": 0.0,
+        "fast_session": 1.0344444444444445
+      },
+      {
+        "search_cost": 60,
+        "slow_session": 0.0,
+        "fast_session": 1.0133333333333332
+      },
+      {
+        "search_cost": 61,
+        "slow_session": 0.0,
+        "fast_session": 0.9922222222222223
+      },
+      {
+        "search_cost": 62,
+        "slow_session": 0.0,
+        "fast_session": 0.9711111111111111
+      },
+      {
+        "search_cost": 63,
+        "slow_session": 0.0,
+        "fast_session": 0.95
+      },
+      {
+        "search_cost": 64,
+        "slow_session": 0.0,
+        "fast_session": 0.9288888888888888
+      },
+      {
+        "search_cost": 65,
+        "slow_session": 0.0,
+        "fast_session": 0.9077777777777779
+      },
+      {
+        "search_cost": 66,
+        "slow_session": 0.0,
+        "fast_session": 0.8866666666666667
+      },
+      {
+        "search_cost": 67,
+        "slow_session": 0.0,
+        "fast_session": 0.8655555555555555
+      },
+      {
+        "search_cost": 68,
+        "slow_session": 0.0,
+        "fast_session": 0.8444444444444444
+      },
+      {
+        "search_cost": 69,
+        "slow_session": 0.0,
+        "fast_session": 0.8233333333333333
+      },
+      {
+        "search_cost": 70,
+        "slow_session": 0.0,
+        "fast_session": 0.8022222222222223
+      },
+      {
+        "search_cost": 71,
+        "slow_session": 0.0,
+        "fast_session": 0.7811111111111112
+      },
+      {
+        "search_cost": 72,
+        "slow_session": 0.0,
+        "fast_session": 0.76
+      },
+      {
+        "search_cost": 73,
+        "slow_session": 0.0,
+        "fast_session": 0.7388888888888888
+      },
+      {
+        "search_cost": 74,
+        "slow_session": 0.0,
+        "fast_session": 0.717777777777778
+      },
+      {
+        "search_cost": 75,
+        "slow_session": 0.0,
+        "fast_session": 0.6966666666666668
+      },
+      {
+        "search_cost": 76,
+        "slow_session": 0.0,
+        "fast_session": 0.6755555555555556
+      },
+      {
+        "search_cost": 77,
+        "slow_session": 0.0,
+        "fast_session": 0.6544444444444444
+      },
+      {
+        "search_cost": 78,
+        "slow_session": 0.0,
+        "fast_session": 0.6333333333333332
+      },
+      {
+        "search_cost": 79,
+        "slow_session": 0.0,
+        "fast_session": 0.6122222222222223
+      },
+      {
+        "search_cost": 80,
+        "slow_session": 0.0,
+        "fast_session": 0.5911111111111111
+      }
+    ],
+    "crossover_cost": 42,
+    "total_time": 120.0
+  },
+  "stealth_crossover_wariness": 0.46
 }
