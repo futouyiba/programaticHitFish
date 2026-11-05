@@ -519,6 +519,35 @@ def stealth_yield_sweep():
     return out
 
 
+def _bisect_root(diff, lo, hi, scan_step=0.5):
+    """Return a bracketed root of diff, or None when no sign change exists.
+
+    The bisection alone would happily return an endpoint for a monotone or
+    constant function; scan first so a missing crossover is reported as None.
+    """
+    d_lo = diff(lo)
+    if d_lo == 0:
+        return lo
+    x_prev, d_prev = lo, d_lo
+    x = lo + scan_step
+    while x <= hi + 1e-12:
+        d = diff(x)
+        if d == 0:
+            return x
+        if d_prev * d < 0:
+            a, b = x_prev, x
+            for _ in range(80):
+                mid = (a + b) / 2
+                if diff(a) * diff(mid) <= 0:
+                    b = mid
+                else:
+                    a = mid
+            return (a + b) / 2
+        x_prev, d_prev = x, d
+        x += scan_step
+    return None
+
+
 def search_session_sweep():
     """Toy information-search model: time to locate fish scales with 1/q.
 
@@ -543,14 +572,7 @@ def search_session_sweep():
     def diff(cost):
         return session(0.45, y_slow, cost) - session(0.90, y_fast, cost)
 
-    lo, hi = 0.0, 200.0
-    for _ in range(80):
-        mid = (lo + hi) / 2
-        if diff(lo) * diff(mid) <= 0:
-            hi = mid
-        else:
-            lo = mid
-    crossover = (lo + hi) / 2
+    crossover = _bisect_root(diff, 0.0, 200.0, scan_step=0.5)
 
     points = []
     for i in range(0, 81):
@@ -805,6 +827,8 @@ def main():
     assert abs(reaction_flip_share - 47 / 70) < 1e-12
     assert abs(cross_w - 0.46) < 0.011
     assert abs(search["crossover_cost"] - 41.84) < 0.05
+    assert _bisect_root(lambda c: 1.0, 0.0, 10.0) is None
+    assert _bisect_root(lambda c: 1.0 - c / 2.0, 0.0, 10.0) is not None
     cov_map = {r["wariness"]: r["coverage_needed"] for r in stealth_cov}
     assert abs(cov_map[0.2] - 0.8777) < 0.002
     assert abs(cov_map[0.4] - 0.6512) < 0.002
