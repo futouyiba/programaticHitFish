@@ -817,6 +817,9 @@ def main():
     assert abs(con[1]["reaction_contribution"] - 0.3926) < 0.001
     assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
     assert abs(constraint["flip_share"] - 0.157) < 0.002
+    assert stealth.color_contrast("Clear") == 0.0
+    assert stealth.color_contrast("GGGGGG") == 0.5
+    assert stealth.color_contrast("FFFF80") > 0.0
     assert constraint["natural_ignores_lambda"] is True
     assert constraint["bad_lambda_nan"] == "InvalidInput"
     assert constraint["bad_lambda_negative"] == "InvalidInput"

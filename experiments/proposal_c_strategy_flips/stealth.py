@@ -33,7 +33,10 @@ def color_contrast(color: str) -> float:
     c = str(color).strip().lstrip("#")
     if len(c) != 6:
         return 0.5
-    r, g, b = int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16)
+    try:
+        r, g, b = int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16)
+    except ValueError:
+        return 0.5
     dist = math.sqrt((r - WATER[0]) ** 2 + (g - WATER[1]) ** 2 + (b - WATER[2]) ** 2)
     return dist / math.sqrt(3 * 255 ** 2)
 
