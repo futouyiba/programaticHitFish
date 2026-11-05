@@ -35,7 +35,8 @@ python3 run.py
 - `results/scenarios.csv`：场景表；
 - `figures/*.svg`：纯 SVG 图，不需要 matplotlib。
 
-脚本内含断言，覆盖负结果（快搜被慢速支配、Wariness 无 cue 时 C 不变等）。断言失败即退出非零。
+脚本内含断言，覆盖负结果（快搜被慢速支配、无 cue 时 Wariness 不改变 C、隐蔽翻转的覆盖边界等）。
+断言失败即退出非零。
 
 ## 文件
 
@@ -43,6 +44,8 @@ python3 run.py
 |---|---|
 | `model.py` | 按契约转写的响应公式与玩具机会模型；标注了每个常量的来源 |
 | `fixtures.json` | 四条策略轴的策略、鱼况与示意参数 |
+| `stealth_samples.json` | 从 `tackle.xlsx` 的 Lines / Leaders 抽取的样例，含新增的 `clarity` 测试参数 |
+| `stealth.py` | 由直径、颜色、透明度与材料清晰度计算可见度的测试算法 |
 | `run.py` | 场景、单变量扫描、边界搜索、饱和统计、SVG 输出 |
 | `report.md` | 完整报告：结果、边界、反例、归因与建议 |
 | `policy_brief.md` | 一页面向策划会的结论 |
@@ -55,3 +58,7 @@ python3 run.py
   不能称为游戏真实效率。报告里凡是综合收益都标为 “toy yield”。
 - 鱼种、Engagement Mode、体型档没有仓内生产数据。实验用归一化速度 `q`、尺寸调整
   `size_adjustment` 和鱼况数值来覆盖这些维度；按名称的鱼种结论一律标为 `Blocked`。
+- 隐蔽轴的输入来自 `tackle.xlsx` 的公开配置字段（直径、颜色、透明度）；`clarity` 与可见度权重
+  是新增的测试假设，不是配置表已有字段，也不代表生产参数。
+- 反应口的 `ReactionCost = λ×(1−support)` 是讨论中的候选约束，只在 `run.py` 的探针里启用，
+  没有进入 `model.py` 的默认路径，也没有得到 Contract 地位。

@@ -144,6 +144,8 @@ class Strategy:
     size_adjustment: float = 0.0
     coverage: float = 1.0   # opportunity toy only
     suspicion_load: float = 0.0
+    is_reaction: bool = False          # opt-in Candidate constraint, reaction branches only
+    reaction_cost_lambda: float = 0.0  # optional Candidate constraint, not approved
     notes: str = ""
 
     def sibling_set(self):
@@ -202,7 +204,16 @@ def evaluate_family(family, strategy, fc: FishCondition):
     risk = K_WARY * w * strategy.suspicion_load
     threshold = willingness_threshold(m)
 
-    margin = food + trigger - closing - risk - threshold
+    # Optional Candidate constraint: reaction presentations pay for weak prey
+    # expression before the single support multiplication. Natural branches must
+    # never carry it, and the parameter has to be finite and non-negative.
+    reaction_cost = 0.0
+    if strategy.is_reaction:
+        lam = strategy.reaction_cost_lambda
+        if not _finite(lam) or lam < 0.0:
+            return INVALID, None
+        reaction_cost = lam * (1.0 - support)
+    margin = food + trigger - reaction_cost - closing - risk - threshold
     c = clamp01((margin - M0) / (M1 - M0))
     return RESOLVED, support * c
 

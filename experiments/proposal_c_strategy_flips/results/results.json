@@ -4886,6 +4886,27 @@
     }
   ],
   "reaction_flip_share": 0.6714285714285714,
+  "reaction_constraint": {
+    "lambda": 0.2,
+    "rows": [
+      {
+        "motivation": 0.2,
+        "natural_contribution": 0.07109999999999966,
+        "reaction_contribution": 0.06759999999999995
+      },
+      {
+        "motivation": 0.7,
+        "natural_contribution": 0.5210999999999997,
+        "reaction_contribution": 0.39259999999999995
+      }
+    ],
+    "low_reaction_win_share": 0.2,
+    "high_natural_win_share": 0.9571428571428572,
+    "flip_share": 0.15714285714285714,
+    "natural_ignores_lambda": true,
+    "bad_lambda_nan": "InvalidInput",
+    "bad_lambda_negative": "InvalidInput"
+  },
   "diet_boundary_sensitivity": [
     [
       0.55,
@@ -5039,5 +5060,1127 @@
       "generalist": 0.5728125000000002,
       "specialist": 0.8107500000000002
     }
-  ]
+  ],
+  "stealth_runs": [
+    {
+      "wariness": 0.2,
+      "rig": "direct_nylon",
+      "C": 0.3326474999999999,
+      "yield": 0.07128160714285711,
+      "line": "TORAY NYLON 1.0号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.7507,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.7507,
+      "suspicion_load": 0.3753,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.2,
+      "rig": "stealth_std_fluoro",
+      "C": 0.3493924999999999,
+      "yield": 0.041178401785714275,
+      "line": "SEAGUAR 泷 氟碳线1.0号",
+      "leader": "X系列氟碳前导线1",
+      "line_visibility": 0.6279,
+      "leader_visibility": 0.6717,
+      "rig_visibility": 0.6717,
+      "suspicion_load": 0.3359,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.2,
+      "rig": "stealth_thin_fluoro",
+      "C": 0.379015,
+      "yield": 0.044669625000000004,
+      "line": "C1 精细浮钓氟碳线 0.5号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.3759,
+      "leader_visibility": 0.5325,
+      "rig_visibility": 0.5325,
+      "suspicion_load": 0.2662,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.2,
+      "rig": "heavy_direct",
+      "C": 0.3028549999999998,
+      "yield": 0.06489749999999996,
+      "line": "C20 抗冲浮钓尼龙线 7号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.8907,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.8907,
+      "suspicion_load": 0.4454,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.6,
+      "rig": "direct_nylon",
+      "C": 0.01364249999999996,
+      "yield": 0.0029233928571428484,
+      "line": "TORAY NYLON 1.0号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.7507,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.7507,
+      "suspicion_load": 0.3753,
+      "coverage": 1.0
+    },
+    {
+      "wariness": 0.6,
+      "rig": "stealth_std_fluoro",
+      "C": 0.06387750000000006,
+      "yield": 0.007528419642857151,
+      "line": "SEAGUAR 泷 氟碳线1.0号",
+      "leader": "X系列氟碳前导线1",
+      "line_visibility": 0.6279,
+      "leader_visibility": 0.6717,
+      "rig_visibility": 0.6717,
+      "suspicion_load": 0.3359,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.6,
+      "rig": "stealth_thin_fluoro",
+      "C": 0.152745,
+      "yield": 0.018002089285714288,
+      "line": "C1 精细浮钓氟碳线 0.5号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.3759,
+      "leader_visibility": 0.5325,
+      "rig_visibility": 0.5325,
+      "suspicion_load": 0.2662,
+      "coverage": 0.55
+    },
+    {
+      "wariness": 0.6,
+      "rig": "heavy_direct",
+      "C": 0.0,
+      "yield": 0.0,
+      "line": "C20 抗冲浮钓尼龙线 7号",
+      "leader": "X系列单丝前导线1",
+      "line_visibility": 0.8907,
+      "leader_visibility": 0.5967,
+      "rig_visibility": 0.8907,
+      "suspicion_load": 0.4454,
+      "coverage": 1.0
+    }
+  ],
+  "stealth_coverage_sweep": [
+    {
+      "wariness": 0.01,
+      "C_direct": 0.4841739804161502,
+      "C_stealth_full_coverage": 0.48649218749999984,
+      "coverage_needed": 0.9952348523914382
+    },
+    {
+      "wariness": 0.02,
+      "C_direct": 0.47619796083230054,
+      "C_stealth_full_coverage": 0.4808343749999998,
+      "coverage_needed": 0.990357565081117
+    },
+    {
+      "wariness": 0.03,
+      "C_direct": 0.46822194124845085,
+      "C_stealth_full_coverage": 0.4751765624999998,
+      "coverage_needed": 0.9853641324080479
+    },
+    {
+      "wariness": 0.04,
+      "C_direct": 0.4602459216646012,
+      "C_stealth_full_coverage": 0.46951874999999976,
+      "coverage_needed": 0.9802503556345757
+    },
+    {
+      "wariness": 0.05,
+      "C_direct": 0.4522699020807515,
+      "C_stealth_full_coverage": 0.4638609375,
+      "coverage_needed": 0.9750118311713875
+    },
+    {
+      "wariness": 0.06,
+      "C_direct": 0.4442938824969019,
+      "C_stealth_full_coverage": 0.458203125,
+      "coverage_needed": 0.9696439379301525
+    },
+    {
+      "wariness": 0.07,
+      "C_direct": 0.43631786291305247,
+      "C_stealth_full_coverage": 0.45254531249999996,
+      "coverage_needed": 0.9641418237274362
+    },
+    {
+      "wariness": 0.08,
+      "C_direct": 0.42834184332920283,
+      "C_stealth_full_coverage": 0.44688749999999994,
+      "coverage_needed": 0.9585003906558203
+    },
+    {
+      "wariness": 0.09,
+      "C_direct": 0.4203658237453532,
+      "C_stealth_full_coverage": 0.4412296874999999,
+      "coverage_needed": 0.9527142793295234
+    },
+    {
+      "wariness": 0.1,
+      "C_direct": 0.4123898041615035,
+      "C_stealth_full_coverage": 0.4355718749999999,
+      "coverage_needed": 0.9467778519021771
+    },
+    {
+      "wariness": 0.11,
+      "C_direct": 0.40441378457765387,
+      "C_stealth_full_coverage": 0.42991406249999986,
+      "coverage_needed": 0.9406851737436572
+    },
+    {
+      "wariness": 0.12,
+      "C_direct": 0.3964377649938042,
+      "C_stealth_full_coverage": 0.42425624999999983,
+      "coverage_needed": 0.9344299936507814
+    },
+    {
+      "wariness": 0.13,
+      "C_direct": 0.38846174540995454,
+      "C_stealth_full_coverage": 0.4185984374999998,
+      "coverage_needed": 0.9280057224531678
+    },
+    {
+      "wariness": 0.14,
+      "C_direct": 0.38048572582610485,
+      "C_stealth_full_coverage": 0.412940625,
+      "coverage_needed": 0.9214054098603276
+    },
+    {
+      "wariness": 0.15,
+      "C_direct": 0.3725097062422552,
+      "C_stealth_full_coverage": 0.4072828125,
+      "coverage_needed": 0.9146217193789763
+    },
+    {
+      "wariness": 0.16,
+      "C_direct": 0.3645336866584055,
+      "C_stealth_full_coverage": 0.40162499999999995,
+      "coverage_needed": 0.9076469011102535
+    },
+    {
+      "wariness": 0.17,
+      "C_direct": 0.3565576670745559,
+      "C_stealth_full_coverage": 0.39596718749999993,
+      "coverage_needed": 0.9004727622148134
+    },
+    {
+      "wariness": 0.18,
+      "C_direct": 0.3485816474907064,
+      "C_stealth_full_coverage": 0.3903093749999999,
+      "coverage_needed": 0.8930906348091344
+    },
+    {
+      "wariness": 0.19,
+      "C_direct": 0.3406056279068568,
+      "C_stealth_full_coverage": 0.3846515624999999,
+      "coverage_needed": 0.8854913410285624
+    },
+    {
+      "wariness": 0.2,
+      "C_direct": 0.3326296083230071,
+      "C_stealth_full_coverage": 0.37899374999999985,
+      "coverage_needed": 0.8776651549610177
+    },
+    {
+      "wariness": 0.21,
+      "C_direct": 0.32465358873915745,
+      "C_stealth_full_coverage": 0.3733359374999998,
+      "coverage_needed": 0.8696017611193876
+    },
+    {
+      "wariness": 0.22,
+      "C_direct": 0.31667756915530776,
+      "C_stealth_full_coverage": 0.3676781249999998,
+      "coverage_needed": 0.8612902090797704
+    },
+    {
+      "wariness": 0.23,
+      "C_direct": 0.3087015495714581,
+      "C_stealth_full_coverage": 0.3620203124999998,
+      "coverage_needed": 0.8527188638661216
+    },
+    {
+      "wariness": 0.24,
+      "C_direct": 0.30072552998760843,
+      "C_stealth_full_coverage": 0.3563625,
+      "coverage_needed": 0.8438753516085683
+    },
+    {
+      "wariness": 0.25,
+      "C_direct": 0.2927495104037588,
+      "C_stealth_full_coverage": 0.3507046875,
+      "coverage_needed": 0.8347464999416604
+    },
+    {
+      "wariness": 0.26,
+      "C_direct": 0.2847734908199091,
+      "C_stealth_full_coverage": 0.345046875,
+      "coverage_needed": 0.8253182725387939
+    },
+    {
+      "wariness": 0.27,
+      "C_direct": 0.27679747123605947,
+      "C_stealth_full_coverage": 0.33938906249999995,
+      "coverage_needed": 0.815575697098546
+    },
+    {
+      "wariness": 0.28,
+      "C_direct": 0.2688214516522098,
+      "C_stealth_full_coverage": 0.3337312499999999,
+      "coverage_needed": 0.805502786005835
+    },
+    {
+      "wariness": 0.29,
+      "C_direct": 0.26084543206836014,
+      "C_stealth_full_coverage": 0.3280734374999999,
+      "coverage_needed": 0.795082448783621
+    },
+    {
+      "wariness": 0.3,
+      "C_direct": 0.25286941248451045,
+      "C_stealth_full_coverage": 0.3224156249999999,
+      "coverage_needed": 0.784296395326717
+    },
+    {
+      "wariness": 0.31,
+      "C_direct": 0.2448933929006608,
+      "C_stealth_full_coverage": 0.31675781249999985,
+      "coverage_needed": 0.7731250287651893
+    },
+    {
+      "wariness": 0.32,
+      "C_direct": 0.23691737331681115,
+      "C_stealth_full_coverage": 0.31110000000000004,
+      "coverage_needed": 0.7615473266371299
+    },
+    {
+      "wariness": 0.33,
+      "C_direct": 0.2289413537329617,
+      "C_stealth_full_coverage": 0.3054421875,
+      "coverage_needed": 0.7495407088549668
+    },
+    {
+      "wariness": 0.34,
+      "C_direct": 0.22096533414911204,
+      "C_stealth_full_coverage": 0.299784375,
+      "coverage_needed": 0.7370808907205789
+    },
+    {
+      "wariness": 0.35,
+      "C_direct": 0.21298931456526238,
+      "C_stealth_full_coverage": 0.29412656249999997,
+      "coverage_needed": 0.7241417189760357
+    },
+    {
+      "wariness": 0.36,
+      "C_direct": 0.20501329498141274,
+      "C_stealth_full_coverage": 0.28846874999999994,
+      "coverage_needed": 0.7106949885608503
+    },
+    {
+      "wariness": 0.37,
+      "C_direct": 0.19703727539756308,
+      "C_stealth_full_coverage": 0.2828109374999999,
+      "coverage_needed": 0.6967102373739104
+    },
+    {
+      "wariness": 0.38,
+      "C_direct": 0.1890612558137134,
+      "C_stealth_full_coverage": 0.2771531249999999,
+      "coverage_needed": 0.6821545158969919
+    },
+    {
+      "wariness": 0.39,
+      "C_direct": 0.18108523622986375,
+      "C_stealth_full_coverage": 0.27149531249999986,
+      "coverage_needed": 0.6669921280127584
+    },
+    {
+      "wariness": 0.4,
+      "C_direct": 0.17310921664601409,
+      "C_stealth_full_coverage": 0.26583749999999984,
+      "coverage_needed": 0.6511843387257786
+    },
+    {
+      "wariness": 0.41,
+      "C_direct": 0.16513319706216442,
+      "C_stealth_full_coverage": 0.26017968750000003,
+      "coverage_needed": 0.6346890437485224
+    },
+    {
+      "wariness": 0.42,
+      "C_direct": 0.15715717747831487,
+      "C_stealth_full_coverage": 0.254521875,
+      "coverage_needed": 0.6174603950183648
+    },
+    {
+      "wariness": 0.43,
+      "C_direct": 0.1491811578944652,
+      "C_stealth_full_coverage": 0.24886406249999998,
+      "coverage_needed": 0.5994483751323686
+    },
+    {
+      "wariness": 0.44,
+      "C_direct": 0.14120513831061554,
+      "C_stealth_full_coverage": 0.24320624999999996,
+      "coverage_needed": 0.5805983123814276
+    },
+    {
+      "wariness": 0.45,
+      "C_direct": 0.13322911872676588,
+      "C_stealth_full_coverage": 0.23754843749999993,
+      "coverage_needed": 0.5608503264803243
+    },
+    {
+      "wariness": 0.46,
+      "C_direct": 0.1252530991429162,
+      "C_stealth_full_coverage": 0.2318906249999999,
+      "coverage_needed": 0.5401386931572428
+    },
+    {
+      "wariness": 0.47,
+      "C_direct": 0.11727707955906667,
+      "C_stealth_full_coverage": 0.22623281249999988,
+      "coverage_needed": 0.518391113398136
+    },
+    {
+      "wariness": 0.48,
+      "C_direct": 0.10930105997521701,
+      "C_stealth_full_coverage": 0.22057499999999985,
+      "coverage_needed": 0.49552787022653105
+    },
+    {
+      "wariness": 0.49,
+      "C_direct": 0.10132504039136735,
+      "C_stealth_full_coverage": 0.21491718750000008,
+      "coverage_needed": 0.47146085229394374
+    },
+    {
+      "wariness": 0.5,
+      "C_direct": 0.09334902080751768,
+      "C_stealth_full_coverage": 0.20925937499999994,
+      "coverage_needed": 0.44609241907330416
+    },
+    {
+      "wariness": 0.51,
+      "C_direct": 0.08537300122366802,
+      "C_stealth_full_coverage": 0.20360156249999992,
+      "coverage_needed": 0.4193140768439243
+    },
+    {
+      "wariness": 0.52,
+      "C_direct": 0.07739698163981835,
+      "C_stealth_full_coverage": 0.19794375000000003,
+      "coverage_needed": 0.3910049276110933
+    },
+    {
+      "wariness": 0.53,
+      "C_direct": 0.06942096205596869,
+      "C_stealth_full_coverage": 0.1922859375,
+      "coverage_needed": 0.36102984419216144
+    },
+    {
+      "wariness": 0.54,
+      "C_direct": 0.061444942472119034,
+      "C_stealth_full_coverage": 0.18662812499999998,
+      "coverage_needed": 0.3292373133584182
+    },
+    {
+      "wariness": 0.55,
+      "C_direct": 0.05346892288826937,
+      "C_stealth_full_coverage": 0.18097031249999995,
+      "coverage_needed": 0.2954568743879988
+    },
+    {
+      "wariness": 0.56,
+      "C_direct": 0.045492903304419706,
+      "C_stealth_full_coverage": 0.17531249999999993,
+      "coverage_needed": 0.25949606162948863
+    },
+    {
+      "wariness": 0.57,
+      "C_direct": 0.03751688372057028,
+      "C_stealth_full_coverage": 0.1696546875,
+      "coverage_needed": 0.22113673529103212
+    },
+    {
+      "wariness": 0.58,
+      "C_direct": 0.029540864136720614,
+      "C_stealth_full_coverage": 0.163996875,
+      "coverage_needed": 0.18013065271347772
+    },
+    {
+      "wariness": 0.59,
+      "C_direct": 0.02156484455287095,
+      "C_stealth_full_coverage": 0.15833906249999996,
+      "coverage_needed": 0.13619409015302814
+    },
+    {
+      "wariness": 0.6,
+      "C_direct": 0.013588824969021286,
+      "C_stealth_full_coverage": 0.15268125000000005,
+      "coverage_needed": 0.08900126878068709
+    },
+    {
+      "wariness": 0.61,
+      "C_direct": 0.005612805385171622,
+      "C_stealth_full_coverage": 0.14702343750000002,
+      "coverage_needed": 0.038176262782399044
+    },
+    {
+      "wariness": 0.62,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.141365625,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.63,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.13570781249999997,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.64,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.13004999999999994,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.65,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.12439218749999992,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.66,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.11873437499999989,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.67,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.11307656249999987,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.68,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.10741874999999984,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.69,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.10176093750000005,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.7,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.09610312500000003,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.71,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0904453125,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.72,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.08478749999999997,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.73,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.07912968749999995,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.74,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.07347187499999992,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.75,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0678140624999999,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.76,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.06215624999999988,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.77,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.05649843749999997,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.78,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.050840624999999945,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.79,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.04518281249999992,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.8,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.03952500000000001,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.81,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.033867187499999986,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.82,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.02820937499999996,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.83,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.022551562499999935,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.84,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.01689374999999991,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.85,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.011235937500000001,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.86,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0055781249999999755,
+      "coverage_needed": 0.0
+    },
+    {
+      "wariness": 0.87,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.88,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.89,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.9,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.91,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.92,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.93,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.94,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.95,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.96,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.97,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.98,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 0.99,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    },
+    {
+      "wariness": 1.0,
+      "C_direct": 0.0,
+      "C_stealth_full_coverage": 0.0,
+      "coverage_needed": null
+    }
+  ],
+  "search_session": {
+    "points": [
+      {
+        "search_cost": 0.0,
+        "slow_session": 6.205318226600987,
+        "fast_session": 2.2777443609022603
+      },
+      {
+        "search_cost": 1.0,
+        "slow_session": 6.090404926108375,
+        "fast_session": 2.2566541353383505
+      },
+      {
+        "search_cost": 2.0,
+        "slow_session": 5.975491625615765,
+        "fast_session": 2.2355639097744406
+      },
+      {
+        "search_cost": 3.0,
+        "slow_session": 5.860578325123154,
+        "fast_session": 2.214473684210531
+      },
+      {
+        "search_cost": 4.0,
+        "slow_session": 5.745665024630544,
+        "fast_session": 2.193383458646621
+      },
+      {
+        "search_cost": 5.0,
+        "slow_session": 5.630751724137932,
+        "fast_session": 2.172293233082711
+      },
+      {
+        "search_cost": 6.0,
+        "slow_session": 5.515838423645322,
+        "fast_session": 2.1512030075188013
+      },
+      {
+        "search_cost": 7.0,
+        "slow_session": 5.40092512315271,
+        "fast_session": 2.1301127819548915
+      },
+      {
+        "search_cost": 8.0,
+        "slow_session": 5.2860118226601,
+        "fast_session": 2.1090225563909817
+      },
+      {
+        "search_cost": 9.0,
+        "slow_session": 5.1710985221674886,
+        "fast_session": 2.087932330827072
+      },
+      {
+        "search_cost": 10.0,
+        "slow_session": 5.056185221674878,
+        "fast_session": 2.066842105263162
+      },
+      {
+        "search_cost": 11.0,
+        "slow_session": 4.941271921182267,
+        "fast_session": 2.045751879699252
+      },
+      {
+        "search_cost": 12.0,
+        "slow_session": 4.826358620689657,
+        "fast_session": 2.0246616541353424
+      },
+      {
+        "search_cost": 13.0,
+        "slow_session": 4.711445320197045,
+        "fast_session": 2.0035714285714326
+      },
+      {
+        "search_cost": 14.0,
+        "slow_session": 4.596532019704434,
+        "fast_session": 1.9824812030075227
+      },
+      {
+        "search_cost": 15.0,
+        "slow_session": 4.4816187192118235,
+        "fast_session": 1.961390977443613
+      },
+      {
+        "search_cost": 16.0,
+        "slow_session": 4.366705418719213,
+        "fast_session": 1.9403007518797033
+      },
+      {
+        "search_cost": 17.0,
+        "slow_session": 4.251792118226602,
+        "fast_session": 1.9192105263157933
+      },
+      {
+        "search_cost": 18.0,
+        "slow_session": 4.136878817733991,
+        "fast_session": 1.8981203007518834
+      },
+      {
+        "search_cost": 19.0,
+        "slow_session": 4.02196551724138,
+        "fast_session": 1.8770300751879736
+      },
+      {
+        "search_cost": 20.0,
+        "slow_session": 3.9070522167487693,
+        "fast_session": 1.8559398496240638
+      },
+      {
+        "search_cost": 21.0,
+        "slow_session": 3.792138916256159,
+        "fast_session": 1.8348496240601542
+      },
+      {
+        "search_cost": 22.0,
+        "slow_session": 3.6772256157635477,
+        "fast_session": 1.8137593984962443
+      },
+      {
+        "search_cost": 23.0,
+        "slow_session": 3.5623123152709364,
+        "fast_session": 1.7926691729323343
+      },
+      {
+        "search_cost": 24.0,
+        "slow_session": 3.447399014778326,
+        "fast_session": 1.7715789473684247
+      },
+      {
+        "search_cost": 25.0,
+        "slow_session": 3.3324857142857147,
+        "fast_session": 1.7504887218045149
+      },
+      {
+        "search_cost": 26.0,
+        "slow_session": 3.217572413793104,
+        "fast_session": 1.729398496240605
+      },
+      {
+        "search_cost": 27.0,
+        "slow_session": 3.1026591133004935,
+        "fast_session": 1.7083082706766952
+      },
+      {
+        "search_cost": 28.0,
+        "slow_session": 2.9877458128078827,
+        "fast_session": 1.6872180451127852
+      },
+      {
+        "search_cost": 29.0,
+        "slow_session": 2.872832512315272,
+        "fast_session": 1.6661278195488753
+      },
+      {
+        "search_cost": 30.0,
+        "slow_session": 2.7579192118226605,
+        "fast_session": 1.6450375939849655
+      },
+      {
+        "search_cost": 31.0,
+        "slow_session": 2.64300591133005,
+        "fast_session": 1.623947368421056
+      },
+      {
+        "search_cost": 32.0,
+        "slow_session": 2.528092610837439,
+        "fast_session": 1.602857142857146
+      },
+      {
+        "search_cost": 33.0,
+        "slow_session": 2.4131793103448285,
+        "fast_session": 1.5817669172932365
+      },
+      {
+        "search_cost": 34.0,
+        "slow_session": 2.298266009852217,
+        "fast_session": 1.5606766917293264
+      },
+      {
+        "search_cost": 35.0,
+        "slow_session": 2.183352709359607,
+        "fast_session": 1.5395864661654166
+      },
+      {
+        "search_cost": 36.0,
+        "slow_session": 2.0684394088669955,
+        "fast_session": 1.5184962406015068
+      },
+      {
+        "search_cost": 37.0,
+        "slow_session": 1.9535261083743851,
+        "fast_session": 1.497406015037597
+      },
+      {
+        "search_cost": 38.0,
+        "slow_session": 1.8386128078817738,
+        "fast_session": 1.4763157894736871
+      },
+      {
+        "search_cost": 39.0,
+        "slow_session": 1.7236995073891628,
+        "fast_session": 1.455225563909777
+      },
+      {
+        "search_cost": 40.0,
+        "slow_session": 1.6087862068965522,
+        "fast_session": 1.4341353383458675
+      },
+      {
+        "search_cost": 41.0,
+        "slow_session": 1.493872906403941,
+        "fast_session": 1.4130451127819577
+      },
+      {
+        "search_cost": 42.0,
+        "slow_session": 1.3789596059113305,
+        "fast_session": 1.391954887218048
+      },
+      {
+        "search_cost": 43.0,
+        "slow_session": 1.2640463054187194,
+        "fast_session": 1.3708646616541382
+      },
+      {
+        "search_cost": 44.0,
+        "slow_session": 1.149133004926109,
+        "fast_session": 1.3497744360902284
+      },
+      {
+        "search_cost": 45.0,
+        "slow_session": 1.0342197044334978,
+        "fast_session": 1.3286842105263184
+      },
+      {
+        "search_cost": 46.0,
+        "slow_session": 0.9193064039408873,
+        "fast_session": 1.3075939849624085
+      },
+      {
+        "search_cost": 47.0,
+        "slow_session": 0.8043931034482761,
+        "fast_session": 1.2865037593984987
+      },
+      {
+        "search_cost": 48.0,
+        "slow_session": 0.6894798029556657,
+        "fast_session": 1.265413533834589
+      },
+      {
+        "search_cost": 49.0,
+        "slow_session": 0.5745665024630545,
+        "fast_session": 1.2443233082706793
+      },
+      {
+        "search_cost": 50.0,
+        "slow_session": 0.4596532019704433,
+        "fast_session": 1.2232330827067692
+      },
+      {
+        "search_cost": 51.0,
+        "slow_session": 0.34473990147783284,
+        "fast_session": 1.2021428571428596
+      },
+      {
+        "search_cost": 52.0,
+        "slow_session": 0.22982660098522165,
+        "fast_session": 1.1810526315789498
+      },
+      {
+        "search_cost": 53.0,
+        "slow_session": 0.11491330049261118,
+        "fast_session": 1.15996240601504
+      },
+      {
+        "search_cost": 54.0,
+        "slow_session": 0.0,
+        "fast_session": 1.1388721804511301
+      },
+      {
+        "search_cost": 55.0,
+        "slow_session": 0.0,
+        "fast_session": 1.1177819548872203
+      },
+      {
+        "search_cost": 56.0,
+        "slow_session": 0.0,
+        "fast_session": 1.0966917293233105
+      },
+      {
+        "search_cost": 57.0,
+        "slow_session": 0.0,
+        "fast_session": 1.0756015037594007
+      },
+      {
+        "search_cost": 58.0,
+        "slow_session": 0.0,
+        "fast_session": 1.0545112781954908
+      },
+      {
+        "search_cost": 59.0,
+        "slow_session": 0.0,
+        "fast_session": 1.033421052631581
+      },
+      {
+        "search_cost": 60.0,
+        "slow_session": 0.0,
+        "fast_session": 1.0123308270676712
+      },
+      {
+        "search_cost": 61.0,
+        "slow_session": 0.0,
+        "fast_session": 0.9912406015037615
+      },
+      {
+        "search_cost": 62.0,
+        "slow_session": 0.0,
+        "fast_session": 0.9701503759398517
+      },
+      {
+        "search_cost": 63.0,
+        "slow_session": 0.0,
+        "fast_session": 0.9490601503759417
+      },
+      {
+        "search_cost": 64.0,
+        "slow_session": 0.0,
+        "fast_session": 0.9279699248120319
+      },
+      {
+        "search_cost": 65.0,
+        "slow_session": 0.0,
+        "fast_session": 0.9068796992481223
+      },
+      {
+        "search_cost": 66.0,
+        "slow_session": 0.0,
+        "fast_session": 0.8857894736842123
+      },
+      {
+        "search_cost": 67.0,
+        "slow_session": 0.0,
+        "fast_session": 0.8646992481203025
+      },
+      {
+        "search_cost": 68.0,
+        "slow_session": 0.0,
+        "fast_session": 0.8436090225563926
+      },
+      {
+        "search_cost": 69.0,
+        "slow_session": 0.0,
+        "fast_session": 0.8225187969924828
+      },
+      {
+        "search_cost": 70.0,
+        "slow_session": 0.0,
+        "fast_session": 0.8014285714285732
+      },
+      {
+        "search_cost": 71.0,
+        "slow_session": 0.0,
+        "fast_session": 0.7803383458646632
+      },
+      {
+        "search_cost": 72.0,
+        "slow_session": 0.0,
+        "fast_session": 0.7592481203007534
+      },
+      {
+        "search_cost": 73.0,
+        "slow_session": 0.0,
+        "fast_session": 0.7381578947368436
+      },
+      {
+        "search_cost": 74.0,
+        "slow_session": 0.0,
+        "fast_session": 0.717067669172934
+      },
+      {
+        "search_cost": 75.0,
+        "slow_session": 0.0,
+        "fast_session": 0.695977443609024
+      },
+      {
+        "search_cost": 76.0,
+        "slow_session": 0.0,
+        "fast_session": 0.6748872180451142
+      },
+      {
+        "search_cost": 77.0,
+        "slow_session": 0.0,
+        "fast_session": 0.6537969924812043
+      },
+      {
+        "search_cost": 78.0,
+        "slow_session": 0.0,
+        "fast_session": 0.6327067669172944
+      },
+      {
+        "search_cost": 79.0,
+        "slow_session": 0.0,
+        "fast_session": 0.6116165413533848
+      },
+      {
+        "search_cost": 80.0,
+        "slow_session": 0.0,
+        "fast_session": 0.5905263157894749
+      }
+    ],
+    "crossover_cost": 41.861491628614885,
+    "total_time": 120.0,
+    "slow_per_grain": 0.05171098522167489,
+    "fast_per_grain": 0.018981203007518835
+  },
+  "stealth_crossover_wariness": 0.46
 }

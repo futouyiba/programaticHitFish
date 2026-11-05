@@ -13,6 +13,7 @@ import csv
 import json
 from pathlib import Path
 
+import stealth
 from model import (
     FishCondition,
     Strategy,
@@ -47,6 +48,8 @@ def make_strategy(spec: dict, shared: dict) -> Strategy:
         size_adjustment=shared.get("size_adjustment", 0.0),
         coverage=spec.get("coverage", shared.get("coverage", 1.0)),
         suspicion_load=spec.get("suspicion_load", shared.get("suspicion_load", 0.0)),
+        is_reaction=spec.get("is_reaction", False),
+        reaction_cost_lambda=spec.get("reaction_cost_lambda", 0.0),
     )
 
 
@@ -352,6 +355,76 @@ def protocol_cases():
     return out
 
 
+def reaction_constraint_probe(lam=0.20):
+    """Candidate constraint from the design discussion: reaction pays for weak expression."""
+    axis = FIXTURES["axes"]["C_motivation_reaction"]
+    shared = axis["shared"]
+    natural = make_strategy(axis["strategies"][0], shared)
+    reaction = make_strategy(axis["strategies"][1], shared)
+    reaction.is_reaction = True
+    reaction.reaction_cost_lambda = lam
+    rows = []
+    for m in (0.2, 0.7):
+        fish = FishCondition(activity=1.0, motivation=m, wariness=0.0,
+                             diet_shift={"baitfish": 0.0})
+        _, cn, _, _ = response(natural, fish)
+        _, cr, _, _ = response(reaction, fish)
+        # response() already returns support x conditional response
+        rows.append({"motivation": m, "natural_contribution": cn,
+                     "reaction_contribution": cr})
+    low_win = 0
+    high_natural = 0
+    flip = 0
+    total = 0
+    for i in range(7):
+        sup = 0.50 + i * 0.05
+        for j in range(5):
+            trig = 0.50 + j * 0.10
+            for q in (0.60, 0.75):
+                r = Strategy(name="r", supports={"baitfish": sup},
+                             base_affinity=dict(shared["base_affinity"]), q=q,
+                             trigger_strength={"baitfish": trig},
+                             is_reaction=True, reaction_cost_lambda=lam)
+                low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
+                                    diet_shift={"baitfish": 0.0})
+                high = FishCondition(activity=1.0, motivation=0.7, wariness=0.0,
+                                     diet_shift={"baitfish": 0.0})
+                rl = response(r, low)[1]
+                rh = response(r, high)[1]
+                nl = response(natural, low)[1]
+                nh = response(natural, high)[1]
+                total += 1
+                if rl > nl:
+                    low_win += 1
+                if nh > rh:
+                    high_natural += 1
+                if rl > nl and nh > rh:
+                    flip += 1
+    # Guard: natural branches must ignore lambda; bad lambda must be invalid.
+    natural_with_lambda = make_strategy(axis["strategies"][0], shared)
+    natural_with_lambda.is_reaction = False
+    natural_with_lambda.reaction_cost_lambda = lam
+    fish_low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
+                             diet_shift={"baitfish": 0.0})
+    natural_plain = response(natural, fish_low)[1]
+    natural_guarded = response(natural_with_lambda, fish_low)[1]
+    bad_nan = Strategy(name="bad_nan", supports={"baitfish": 0.65},
+                       base_affinity=dict(shared["base_affinity"]), q=0.60,
+                       trigger_strength={"baitfish": 0.80},
+                       is_reaction=True, reaction_cost_lambda=float("nan"))
+    bad_neg = Strategy(name="bad_neg", supports={"baitfish": 0.65},
+                       base_affinity=dict(shared["base_affinity"]), q=0.60,
+                       trigger_strength={"baitfish": 0.80},
+                       is_reaction=True, reaction_cost_lambda=-0.1)
+    return {"lambda": lam, "rows": rows,
+            "low_reaction_win_share": low_win / total,
+            "high_natural_win_share": high_natural / total,
+            "flip_share": flip / total,
+            "natural_ignores_lambda": abs(natural_plain - natural_guarded) < 1e-12,
+            "bad_lambda_nan": response(bad_nan, fish_low)[0],
+            "bad_lambda_negative": response(bad_neg, fish_low)[0]}
+
+
 def reaction_flip_grid():
     """How often does the motivation flip survive across plausible strategy settings?"""
     axis = FIXTURES["axes"]["C_motivation_reaction"]
@@ -380,6 +453,135 @@ def reaction_flip_grid():
                              "flip": bool(rl > nl and nh > rh)})
     share = sum(1 for r in rows if r["flip"]) / len(rows)
     return rows, share
+
+
+def stealth_runs():
+    """Direct vs stealth rigs built from tackle.xlsx samples."""
+    rows = []
+    for w in (0.2, 0.6):
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        for rig in stealth.DATA["rigs"]:
+            details = stealth.rig_details(rig)
+            st = Strategy(name=rig["name"], supports={"baitfish": 0.85},
+                          base_affinity={"baitfish": 0.70}, q=0.60,
+                          trigger_strength={"baitfish": 0.0},
+                          coverage=rig["coverage"],
+                          suspicion_load=details["suspicion_load"])
+            _, c, _, _ = response(st, fish)
+            rows.append({"wariness": w, "rig": rig["name"], "C": c,
+                         "yield": toy_yield(c, st.q, st.coverage) if c is not None else None,
+                         **details})
+    return rows
+
+
+def stealth_coverage_sweep():
+    """Coverage needed by the thin stealth rig to match direct, by wariness."""
+    direct = next(r for r in stealth.DATA["rigs"] if r["name"] == "direct_nylon")
+    thin = next(r for r in stealth.DATA["rigs"] if r["name"] == "stealth_thin_fluoro")
+    d_load = stealth.rig_suspicion(direct)
+    s_load = stealth.rig_suspicion(thin)
+    out = []
+    for i in range(1, 101):
+        w = i / 100
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        cd = response(Strategy(name="d", supports={"baitfish": 0.85},
+                               base_affinity={"baitfish": 0.70}, q=0.60,
+                               trigger_strength={"baitfish": 0.0},
+                               coverage=1.0, suspicion_load=d_load), fish)[1]
+        cs = response(Strategy(name="s", supports={"baitfish": 0.85},
+                               base_affinity={"baitfish": 0.70}, q=0.60,
+                               trigger_strength={"baitfish": 0.0},
+                               coverage=1.0, suspicion_load=s_load), fish)[1]
+        out.append({"wariness": w, "C_direct": cd, "C_stealth_full_coverage": cs,
+                    "coverage_needed": (cd / cs) if cs else None})
+    return out
+
+
+def stealth_yield_sweep():
+    rigs = {r["name"]: r for r in stealth.DATA["rigs"]}
+    names = ("direct_nylon", "stealth_std_fluoro", "stealth_thin_fluoro")
+    out = {n: [] for n in names}
+    for i in range(101):
+        w = i / 100
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        for n in names:
+            rig = rigs[n]
+            st = Strategy(name=n, supports={"baitfish": 0.85},
+                          base_affinity={"baitfish": 0.70}, q=0.60,
+                          trigger_strength={"baitfish": 0.0},
+                          coverage=rig["coverage"],
+                          suspicion_load=stealth.rig_suspicion(rig))
+            _, c, _, _ = response(st, fish)
+            out[n].append((w, toy_yield(c, st.q, st.coverage) if c is not None else None))
+    return out
+
+
+def _bisect_root(diff, lo, hi, scan_step=0.5):
+    """Return a bracketed root of diff, or None when no sign change exists.
+
+    The bisection alone would happily return an endpoint for a monotone or
+    constant function; scan first so a missing crossover is reported as None.
+    """
+    d_lo = diff(lo)
+    if d_lo == 0:
+        return lo
+    x_prev, d_prev = lo, d_lo
+    x = lo + scan_step
+    while x <= hi + 1e-12:
+        d = diff(x)
+        if d == 0:
+            return x
+        if d_prev * d < 0:
+            a, b = x_prev, x
+            for _ in range(80):
+                mid = (a + b) / 2
+                if diff(a) * diff(mid) <= 0:
+                    b = mid
+                else:
+                    a = mid
+            return (a + b) / 2
+        x_prev, d_prev = x, d
+        x += scan_step
+    return None
+
+
+def search_session_sweep():
+    """Toy information-search model: time to locate fish scales with 1/q.
+
+    discovery_time = search_cost / q; fishing_time = total - discovery_time.
+    Per-grain yields are derived from the B-axis high-Activity fixtures so the
+    probe cannot go stale when the response inputs change.
+    """
+    axis = FIXTURES["axes"]["B_activity_speed"]
+    shared = axis["shared"]
+    fish = make_fish(axis["scenarios"][1]["fish"])
+    yields = {}
+    for spec in axis["strategies"]:
+        st = make_strategy(spec, shared)
+        _, c, _, _ = response(st, fish)
+        yields[st.q] = toy_yield(c, st.q, 1.0)
+    y_slow, y_fast = yields[0.45], yields[0.90]
+    total = 120.0
+
+    def session(q, per_grain, cost):
+        return max(0.0, total - cost / q) * per_grain
+
+    def diff(cost):
+        return session(0.45, y_slow, cost) - session(0.90, y_fast, cost)
+
+    crossover = _bisect_root(diff, 0.0, 200.0, scan_step=0.5)
+
+    points = []
+    for i in range(0, 81):
+        cost = float(i)
+        points.append({"search_cost": cost,
+                       "slow_session": session(0.45, y_slow, cost),
+                       "fast_session": session(0.90, y_fast, cost)})
+    return {"points": points, "crossover_cost": crossover,
+            "total_time": total, "slow_per_grain": y_slow, "fast_per_grain": y_fast}
 
 
 def size_scan():
@@ -577,6 +779,22 @@ def main():
     reaction_scan = reaction_support_scan()
     sizes = size_scan()
     reaction_grid, reaction_flip_share = reaction_flip_grid()
+    constraint = reaction_constraint_probe()
+    stealth_rows = stealth_runs()
+    stealth_cov = stealth_coverage_sweep()
+    search = search_session_sweep()
+    stealth_curve = stealth_yield_sweep()
+    # coverage 0.55 is the assumed stealth cost; find where it becomes enough
+    cross_w = None
+    prev = None
+    for row in stealth_cov:
+        need = 0.55 - row["coverage_needed"] if row["coverage_needed"] is not None else None
+        if need is None:
+            prev = None
+            continue
+        if prev is not None and prev * need < 0:
+            cross_w = row["wariness"]
+        prev = need
     diet_sensitivity = [
         [round(g, 2), round(sp, 2), diet_cross_for(g, sp)]
         for g in (0.55, 0.65, 0.75)
@@ -607,6 +825,28 @@ def main():
     diet_hits = [v for _, _, v in diet_sensitivity]
     assert len(diet_hits) == 9 and all(v is not None for v in diet_hits)
     assert abs(reaction_flip_share - 47 / 70) < 1e-12
+    assert abs(cross_w - 0.46) < 0.011
+    assert abs(search["crossover_cost"] - 41.84) < 0.05
+    assert _bisect_root(lambda c: 1.0, 0.0, 10.0) is None
+    assert _bisect_root(lambda c: 1.0 - c / 2.0, 0.0, 10.0) is not None
+    cov_map = {r["wariness"]: r["coverage_needed"] for r in stealth_cov}
+    assert abs(cov_map[0.2] - 0.8777) < 0.002
+    assert abs(cov_map[0.4] - 0.6512) < 0.002
+    assert abs(cov_map[0.6] - 0.0893) < 0.002
+    con = constraint["rows"]
+    assert abs(con[0]["natural_contribution"] - 0.0711) < 0.001
+    assert abs(con[0]["reaction_contribution"] - 0.0676) < 0.001
+    assert con[0]["natural_contribution"] > con[0]["reaction_contribution"]
+    assert abs(con[1]["natural_contribution"] - 0.5211) < 0.001
+    assert abs(con[1]["reaction_contribution"] - 0.3926) < 0.001
+    assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
+    assert abs(constraint["flip_share"] - 0.157) < 0.002
+    assert stealth.color_contrast("Clear") == 0.0
+    assert stealth.color_contrast("GGGGGG") == 0.5
+    assert stealth.color_contrast("FFFF80") > 0.0
+    assert constraint["natural_ignores_lambda"] is True
+    assert constraint["bad_lambda_nan"] == "InvalidInput"
+    assert constraint["bad_lambda_negative"] == "InvalidInput"
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}
@@ -647,8 +887,13 @@ def main():
         "reaction_support_scan": reaction_scan,
         "reaction_flip_grid": reaction_grid,
         "reaction_flip_share": reaction_flip_share,
+        "reaction_constraint": constraint,
         "diet_boundary_sensitivity": diet_sensitivity,
         "size_scan": sizes,
+        "stealth_runs": stealth_rows,
+        "stealth_coverage_sweep": stealth_cov,
+        "search_session": search,
+        "stealth_crossover_wariness": cross_w,
     }
     (RESULTS / "results.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -681,6 +926,17 @@ def main():
         [(f"Activity {a['activity']}", [(p["q"], p["yield"]) for p in a["points"]]) for a in qs],
         FIGURES / "speed_yield.svg", "Toy opportunity yield vs speed (equal coverage)",
         "q (speed / intercept limit)", "relative yield")
+    svg_lines(
+        [("direct", stealth_curve["direct_nylon"]),
+         ("stealth std", stealth_curve["stealth_std_fluoro"]),
+         ("stealth thin", stealth_curve["stealth_thin_fluoro"])],
+        FIGURES / "stealth_yield.svg", "Stealth trade-off from tackle.xlsx samples (coverage 1.0 / 0.55)",
+        "Wariness", "toy yield")
+    svg_lines(
+        [("slow q0.45", [(p["search_cost"], p["slow_session"]) for p in search["points"]]),
+         ("fast q0.90", [(p["search_cost"], p["fast_session"]) for p in search["points"]])],
+        FIGURES / "search_session.svg", "Session value with information search (toy model)",
+        "search cost (time-to-find = cost / q)", "session yield")
     svg_heat(saturation_grid(), FIGURES / "saturation_map.svg",
              "C saturation map: light = 0, dark = 1 (M=0.5, Activity=1)")
 
@@ -696,6 +952,14 @@ def main():
     print("hypothetical cue crossover wariness:", cue_cross)
     print("diet boundary sensitivity:", diet_sensitivity)
     print("reaction flip share over grid:", round(reaction_flip_share, 3))
+    print("reaction constraint (lambda=.20):", json.dumps(constraint["rows"], ensure_ascii=False))
+    print("  low-M reaction win share:", round(constraint["low_reaction_win_share"], 3),
+          "flip share:", round(constraint["flip_share"], 3))
+    print("stealth rows:")
+    for r in stealth_rows:
+        print(f"  W={r['wariness']} {r['rig']} C={None if r['C'] is None else round(r['C'],4)} yield={None if r['yield'] is None else round(r['yield'],4)}")
+    print("search crossover cost:", search["crossover_cost"])
+    print("stealth crossover wariness at coverage 0.55:", cross_w)
     print("size scan monotone specialist lead:",
           all(x["specialist"] >= x["generalist"] for x in sizes))
     print("saturation share:", round(sat["saturated_share"], 3),
