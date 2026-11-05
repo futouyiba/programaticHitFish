@@ -4886,6 +4886,24 @@
     }
   ],
   "reaction_flip_share": 0.6714285714285714,
+  "reaction_constraint": {
+    "lambda": 0.2,
+    "rows": [
+      {
+        "motivation": 0.2,
+        "natural_contribution": 0.07109999999999966,
+        "reaction_contribution": 0.06759999999999995
+      },
+      {
+        "motivation": 0.7,
+        "natural_contribution": 0.5210999999999997,
+        "reaction_contribution": 0.39259999999999995
+      }
+    ],
+    "low_reaction_win_share": 0.2,
+    "high_natural_win_share": 0.9571428571428572,
+    "flip_share": 0.15714285714285714
+  },
   "diet_boundary_sensitivity": [
     [
       0.55,

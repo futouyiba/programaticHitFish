@@ -144,6 +144,7 @@ class Strategy:
     size_adjustment: float = 0.0
     coverage: float = 1.0   # opportunity toy only
     suspicion_load: float = 0.0
+    reaction_cost_lambda: float = 0.0  # optional Candidate constraint, not approved
     notes: str = ""
 
     def sibling_set(self):
@@ -202,7 +203,10 @@ def evaluate_family(family, strategy, fc: FishCondition):
     risk = K_WARY * w * strategy.suspicion_load
     threshold = willingness_threshold(m)
 
-    margin = food + trigger - closing - risk - threshold
+    # Optional Candidate constraint: reaction presentations pay for weak prey
+    # expression before the single support multiplication.
+    reaction_cost = strategy.reaction_cost_lambda * (1.0 - support)
+    margin = food + trigger - reaction_cost - closing - risk - threshold
     c = clamp01((margin - M0) / (M1 - M0))
     return RESOLVED, support * c
 

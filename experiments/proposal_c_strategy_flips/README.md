@@ -60,3 +60,5 @@ python3 run.py
   `size_adjustment` 和鱼况数值来覆盖这些维度；按名称的鱼种结论一律标为 `Blocked`。
 - 隐蔽轴的输入来自 `tackle.xlsx` 的公开配置字段（直径、颜色、透明度）；`clarity` 与可见度权重
   是新增的测试假设，不是配置表已有字段，也不代表生产参数。
+- 反应口的 `ReactionCost = λ×(1−support)` 是讨论中的候选约束，只在 `run.py` 的探针里启用，
+  没有进入 `model.py` 的默认路径，也没有得到 Contract 地位。

@@ -353,6 +353,56 @@ def protocol_cases():
     return out
 
 
+def reaction_constraint_probe(lam=0.20):
+    """Candidate constraint from the design discussion: reaction pays for weak expression."""
+    axis = FIXTURES["axes"]["C_motivation_reaction"]
+    shared = axis["shared"]
+    natural = make_strategy(axis["strategies"][0], shared)
+    reaction = make_strategy(axis["strategies"][1], shared)
+    reaction.reaction_cost_lambda = lam
+    rows = []
+    for m in (0.2, 0.7):
+        fish = FishCondition(activity=1.0, motivation=m, wariness=0.0,
+                             diet_shift={"baitfish": 0.0})
+        _, cn, _, _ = response(natural, fish)
+        _, cr, _, _ = response(reaction, fish)
+        # response() already returns support x conditional response
+        rows.append({"motivation": m, "natural_contribution": cn,
+                     "reaction_contribution": cr})
+    low_win = 0
+    high_natural = 0
+    flip = 0
+    total = 0
+    for i in range(7):
+        sup = 0.50 + i * 0.05
+        for j in range(5):
+            trig = 0.50 + j * 0.10
+            for q in (0.60, 0.75):
+                r = Strategy(name="r", supports={"baitfish": sup},
+                             base_affinity=dict(shared["base_affinity"]), q=q,
+                             trigger_strength={"baitfish": trig},
+                             reaction_cost_lambda=lam)
+                low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
+                                    diet_shift={"baitfish": 0.0})
+                high = FishCondition(activity=1.0, motivation=0.7, wariness=0.0,
+                                     diet_shift={"baitfish": 0.0})
+                rl = response(r, low)[1]
+                rh = response(r, high)[1]
+                nl = response(natural, low)[1]
+                nh = response(natural, high)[1]
+                total += 1
+                if rl > nl:
+                    low_win += 1
+                if nh > rh:
+                    high_natural += 1
+                if rl > nl and nh > rh:
+                    flip += 1
+    return {"lambda": lam, "rows": rows,
+            "low_reaction_win_share": low_win / total,
+            "high_natural_win_share": high_natural / total,
+            "flip_share": flip / total}
+
+
 def reaction_flip_grid():
     """How often does the motivation flip survive across plausible strategy settings?"""
     axis = FIXTURES["axes"]["C_motivation_reaction"]
@@ -664,6 +714,7 @@ def main():
     reaction_scan = reaction_support_scan()
     sizes = size_scan()
     reaction_grid, reaction_flip_share = reaction_flip_grid()
+    constraint = reaction_constraint_probe()
     stealth_rows = stealth_runs()
     stealth_cov = stealth_coverage_sweep()
     search = search_session_sweep()
@@ -715,6 +766,14 @@ def main():
     assert abs(cov_map[0.2] - 0.8777) < 0.002
     assert abs(cov_map[0.4] - 0.6512) < 0.002
     assert abs(cov_map[0.6] - 0.0893) < 0.002
+    con = constraint["rows"]
+    assert abs(con[0]["natural_contribution"] - 0.0711) < 0.001
+    assert abs(con[0]["reaction_contribution"] - 0.0676) < 0.001
+    assert con[0]["natural_contribution"] > con[0]["reaction_contribution"]
+    assert abs(con[1]["natural_contribution"] - 0.5211) < 0.001
+    assert abs(con[1]["reaction_contribution"] - 0.3926) < 0.001
+    assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
+    assert abs(constraint["flip_share"] - 0.157) < 0.002
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}
@@ -755,6 +814,7 @@ def main():
         "reaction_support_scan": reaction_scan,
         "reaction_flip_grid": reaction_grid,
         "reaction_flip_share": reaction_flip_share,
+        "reaction_constraint": constraint,
         "diet_boundary_sensitivity": diet_sensitivity,
         "size_scan": sizes,
         "stealth_runs": stealth_rows,
@@ -819,6 +879,9 @@ def main():
     print("hypothetical cue crossover wariness:", cue_cross)
     print("diet boundary sensitivity:", diet_sensitivity)
     print("reaction flip share over grid:", round(reaction_flip_share, 3))
+    print("reaction constraint (lambda=.20):", json.dumps(constraint["rows"], ensure_ascii=False))
+    print("  low-M reaction win share:", round(constraint["low_reaction_win_share"], 3),
+          "flip share:", round(constraint["flip_share"], 3))
     print("stealth rows:")
     for r in stealth_rows:
         print(f"  W={r['wariness']} {r['rig']} C={None if r['C'] is None else round(r['C'],4)} yield={None if r['yield'] is None else round(r['yield'],4)}")
