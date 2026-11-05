@@ -48,6 +48,8 @@ def make_strategy(spec: dict, shared: dict) -> Strategy:
         size_adjustment=shared.get("size_adjustment", 0.0),
         coverage=spec.get("coverage", shared.get("coverage", 1.0)),
         suspicion_load=spec.get("suspicion_load", shared.get("suspicion_load", 0.0)),
+        is_reaction=spec.get("is_reaction", False),
+        reaction_cost_lambda=spec.get("reaction_cost_lambda", 0.0),
     )
 
 
@@ -359,6 +361,7 @@ def reaction_constraint_probe(lam=0.20):
     shared = axis["shared"]
     natural = make_strategy(axis["strategies"][0], shared)
     reaction = make_strategy(axis["strategies"][1], shared)
+    reaction.is_reaction = True
     reaction.reaction_cost_lambda = lam
     rows = []
     for m in (0.2, 0.7):
@@ -381,7 +384,7 @@ def reaction_constraint_probe(lam=0.20):
                 r = Strategy(name="r", supports={"baitfish": sup},
                              base_affinity=dict(shared["base_affinity"]), q=q,
                              trigger_strength={"baitfish": trig},
-                             reaction_cost_lambda=lam)
+                             is_reaction=True, reaction_cost_lambda=lam)
                 low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
                                     diet_shift={"baitfish": 0.0})
                 high = FishCondition(activity=1.0, motivation=0.7, wariness=0.0,
@@ -397,10 +400,29 @@ def reaction_constraint_probe(lam=0.20):
                     high_natural += 1
                 if rl > nl and nh > rh:
                     flip += 1
+    # Guard: natural branches must ignore lambda; bad lambda must be invalid.
+    natural_with_lambda = make_strategy(axis["strategies"][0], shared)
+    natural_with_lambda.is_reaction = False
+    natural_with_lambda.reaction_cost_lambda = lam
+    fish_low = FishCondition(activity=1.0, motivation=0.2, wariness=0.0,
+                             diet_shift={"baitfish": 0.0})
+    natural_plain = response(natural, fish_low)[1]
+    natural_guarded = response(natural_with_lambda, fish_low)[1]
+    bad_nan = Strategy(name="bad_nan", supports={"baitfish": 0.65},
+                       base_affinity=dict(shared["base_affinity"]), q=0.60,
+                       trigger_strength={"baitfish": 0.80},
+                       is_reaction=True, reaction_cost_lambda=float("nan"))
+    bad_neg = Strategy(name="bad_neg", supports={"baitfish": 0.65},
+                       base_affinity=dict(shared["base_affinity"]), q=0.60,
+                       trigger_strength={"baitfish": 0.80},
+                       is_reaction=True, reaction_cost_lambda=-0.1)
     return {"lambda": lam, "rows": rows,
             "low_reaction_win_share": low_win / total,
             "high_natural_win_share": high_natural / total,
-            "flip_share": flip / total}
+            "flip_share": flip / total,
+            "natural_ignores_lambda": abs(natural_plain - natural_guarded) < 1e-12,
+            "bad_lambda_nan": response(bad_nan, fish_low)[0],
+            "bad_lambda_negative": response(bad_neg, fish_low)[0]}
 
 
 def reaction_flip_grid():
@@ -501,22 +523,43 @@ def search_session_sweep():
     """Toy information-search model: time to locate fish scales with 1/q.
 
     discovery_time = search_cost / q; fishing_time = total - discovery_time.
-    Per-grain yield comes from the B-axis high-Activity case. Assumption only.
+    Per-grain yields are derived from the B-axis high-Activity fixtures so the
+    probe cannot go stale when the response inputs change.
     """
-    y_slow, y_fast = 0.0517, 0.0190
+    axis = FIXTURES["axes"]["B_activity_speed"]
+    shared = axis["shared"]
+    fish = make_fish(axis["scenarios"][1]["fish"])
+    yields = {}
+    for spec in axis["strategies"]:
+        st = make_strategy(spec, shared)
+        _, c, _, _ = response(st, fish)
+        yields[st.q] = toy_yield(c, st.q, 1.0)
+    y_slow, y_fast = yields[0.45], yields[0.90]
     total = 120.0
-    out = []
+
+    def session(q, per_grain, cost):
+        return max(0.0, total - cost / q) * per_grain
+
+    def diff(cost):
+        return session(0.45, y_slow, cost) - session(0.90, y_fast, cost)
+
+    lo, hi = 0.0, 200.0
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        if diff(lo) * diff(mid) <= 0:
+            hi = mid
+        else:
+            lo = mid
+    crossover = (lo + hi) / 2
+
+    points = []
     for i in range(0, 81):
-        cost = i
-        slow = max(0.0, total - cost / 0.45) * y_slow
-        fast = max(0.0, total - cost / 0.90) * y_fast
-        out.append({"search_cost": cost, "slow_session": slow, "fast_session": fast})
-    cross = None
-    for a, b in zip(out, out[1:]):
-        if (a["slow_session"] - a["fast_session"]) * (b["slow_session"] - b["fast_session"]) < 0:
-            cross = b["search_cost"]
-            break
-    return {"points": out, "crossover_cost": cross, "total_time": total}
+        cost = float(i)
+        points.append({"search_cost": cost,
+                       "slow_session": session(0.45, y_slow, cost),
+                       "fast_session": session(0.90, y_fast, cost)})
+    return {"points": points, "crossover_cost": crossover,
+            "total_time": total, "slow_per_grain": y_slow, "fast_per_grain": y_fast}
 
 
 def size_scan():
@@ -761,7 +804,7 @@ def main():
     assert len(diet_hits) == 9 and all(v is not None for v in diet_hits)
     assert abs(reaction_flip_share - 47 / 70) < 1e-12
     assert abs(cross_w - 0.46) < 0.011
-    assert abs(search["crossover_cost"] - 42) < 0.01
+    assert abs(search["crossover_cost"] - 41.84) < 0.05
     cov_map = {r["wariness"]: r["coverage_needed"] for r in stealth_cov}
     assert abs(cov_map[0.2] - 0.8777) < 0.002
     assert abs(cov_map[0.4] - 0.6512) < 0.002
@@ -774,6 +817,9 @@ def main():
     assert abs(con[1]["reaction_contribution"] - 0.3926) < 0.001
     assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
     assert abs(constraint["flip_share"] - 0.157) < 0.002
+    assert constraint["natural_ignores_lambda"] is True
+    assert constraint["bad_lambda_nan"] == "InvalidInput"
+    assert constraint["bad_lambda_negative"] == "InvalidInput"
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}

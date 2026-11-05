@@ -98,4 +98,7 @@ def rig_details(rig: dict) -> dict:
 
 
 def rig_suspicion(rig: dict) -> float:
-    return rig_details(rig)["suspicion_load"]
+    """Unrounded SuspicionLoad; display rounding happens in rig_details only."""
+    line = find("lines", rig["line_id"])
+    leader = find("leaders", rig["leader_id"])
+    return EXPOSURE * max(line_visibility(line), leader_visibility(leader))
