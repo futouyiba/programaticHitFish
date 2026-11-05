@@ -1,0 +1,5043 @@
+{
+  "meta": {
+    "purpose": "Independent strategy-flip experiment for Proposal C. Not production data.",
+    "authority": {
+      "repo": "futouyiba/HitFish-Up",
+      "commit": "dcba9ee95008c93798e24243cfbe06fe6b8c46f9",
+      "date": "2026-11-05",
+      "status": "Proposal C design package is Candidate; probes are Working; nothing here is Current Contract"
+    },
+    "fixture_disclaimer": "Species, support, affinity and suspicion values below are illustrative fixtures chosen to exercise the formulas. They are not biological or production facts, and no value here should be promoted.",
+    "tier_scale_version": "tier-v2",
+    "tier_anchors": [
+      0.0,
+      0.25,
+      0.6,
+      1.0
+    ]
+  },
+  "scenarios": [
+    {
+      "strategy": "generalist",
+      "status": "Resolved",
+      "C": 0.24781250000000002,
+      "yield": 0.050833333333333335,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved",
+        "crayfish": "Resolved"
+      },
+      "q": 0.5,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0,
+        "crayfish": 0.0
+      },
+      "axis": "A_diet",
+      "scenario": "A1_no_shift",
+      "label": "no diet shift"
+    },
+    {
+      "strategy": "specialist",
+      "status": "Resolved",
+      "C": 0.35075000000000006,
+      "yield": 0.07194871794871796,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved",
+        "crayfish": "Resolved"
+      },
+      "q": 0.5,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0,
+        "crayfish": 0.0
+      },
+      "axis": "A_diet",
+      "scenario": "A1_no_shift",
+      "label": "no diet shift"
+    },
+    {
+      "strategy": "generalist",
+      "status": "Resolved",
+      "C": 0.6192410714285715,
+      "yield": 0.12702380952380954,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved",
+        "crayfish": "Resolved"
+      },
+      "q": 0.5,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": -1.0,
+        "crayfish": 1.0
+      },
+      "axis": "A_diet",
+      "scenario": "A2_shift_to_crayfish",
+      "label": "diet shifts one tier toward crayfish, away from baitfish"
+    },
+    {
+      "strategy": "specialist",
+      "status": "Resolved",
+      "C": 0.14290178571428575,
+      "yield": 0.029313186813186818,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved",
+        "crayfish": "Resolved"
+      },
+      "q": 0.5,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": -1.0,
+        "crayfish": 1.0
+      },
+      "axis": "A_diet",
+      "scenario": "A2_shift_to_crayfish",
+      "label": "diet shifts one tier toward crayfish, away from baitfish"
+    },
+    {
+      "strategy": "slow_q0.45",
+      "status": "Resolved",
+      "C": 0.1824843750000002,
+      "yield": 0.036245172413793145,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.45,
+      "activity": 0.6,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "B_activity_speed",
+      "scenario": "B1_low_activity",
+      "label": "low Activity 0.6"
+    },
+    {
+      "strategy": "fast_q0.90",
+      "status": "Resolved",
+      "C": 0.0,
+      "yield": 0.0,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.9,
+      "activity": 0.6,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "B_activity_speed",
+      "scenario": "B1_low_activity",
+      "label": "low Activity 0.6"
+    },
+    {
+      "strategy": "slow_q0.45",
+      "status": "Resolved",
+      "C": 0.26035044642857147,
+      "yield": 0.05171098522167489,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.45,
+      "activity": 1.4,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "B_activity_speed",
+      "scenario": "B2_high_activity",
+      "label": "high Activity 1.4"
+    },
+    {
+      "strategy": "fast_q0.90",
+      "status": "Resolved",
+      "C": 0.08515178571428587,
+      "yield": 0.018981203007518835,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.9,
+      "activity": 1.4,
+      "motivation": 0.5,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "B_activity_speed",
+      "scenario": "B2_high_activity",
+      "label": "high Activity 1.4"
+    },
+    {
+      "strategy": "natural_q0.60",
+      "status": "Resolved",
+      "C": 0.07109999999999966,
+      "yield": 0.015235714285714214,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.2,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C1_low_motivation",
+      "label": "low Motivation 0.2 (picky fish)"
+    },
+    {
+      "strategy": "reaction_twitch_q0.60",
+      "status": "Resolved",
+      "C": 0.18134999999999987,
+      "yield": 0.038860714285714255,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.2,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C1_low_motivation",
+      "label": "low Motivation 0.2 (picky fish)"
+    },
+    {
+      "strategy": "reaction_burst_q0.75",
+      "status": "Resolved",
+      "C": 0.11882812499999981,
+      "yield": 0.026284562211981524,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.75,
+      "activity": 1.0,
+      "motivation": 0.2,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C1_low_motivation",
+      "label": "low Motivation 0.2 (picky fish)"
+    },
+    {
+      "strategy": "natural_q0.60",
+      "status": "Resolved",
+      "C": 0.5210999999999997,
+      "yield": 0.11166428571428563,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.7,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C2_high_motivation",
+      "label": "high Motivation 0.7 (feeding fish)"
+    },
+    {
+      "strategy": "reaction_twitch_q0.60",
+      "status": "Resolved",
+      "C": 0.5063499999999999,
+      "yield": 0.1085035714285714,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.7,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C2_high_motivation",
+      "label": "high Motivation 0.7 (feeding fish)"
+    },
+    {
+      "strategy": "reaction_burst_q0.75",
+      "status": "Resolved",
+      "C": 0.44382812499999985,
+      "yield": 0.09817396313364052,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.75,
+      "activity": 1.0,
+      "motivation": 0.7,
+      "wariness": 0.0,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "C_motivation_reaction",
+      "scenario": "C2_high_motivation",
+      "label": "high Motivation 0.7 (feeding fish)"
+    },
+    {
+      "strategy": "direct",
+      "status": "Resolved",
+      "C": 0.49214999999999987,
+      "yield": 0.10546071428571425,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.1,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "D_wariness_stealth",
+      "scenario": "D1_low_wariness",
+      "label": "low Wariness 0.1"
+    },
+    {
+      "strategy": "stealth",
+      "status": "Resolved",
+      "C": 0.49214999999999987,
+      "yield": 0.058003392857142844,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.1,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "D_wariness_stealth",
+      "scenario": "D1_low_wariness",
+      "label": "low Wariness 0.1"
+    },
+    {
+      "strategy": "direct",
+      "status": "Resolved",
+      "C": 0.49214999999999987,
+      "yield": 0.10546071428571425,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.8,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "D_wariness_stealth",
+      "scenario": "D2_high_wariness",
+      "label": "high Wariness 0.8"
+    },
+    {
+      "strategy": "stealth",
+      "status": "Resolved",
+      "C": 0.49214999999999987,
+      "yield": 0.058003392857142844,
+      "skipped": {},
+      "branches": {
+        "baitfish": "Resolved"
+      },
+      "q": 0.6,
+      "activity": 1.0,
+      "motivation": 0.5,
+      "wariness": 0.8,
+      "diet_shift": {
+        "baitfish": 0.0
+      },
+      "axis": "D_wariness_stealth",
+      "scenario": "D2_high_wariness",
+      "label": "high Wariness 0.8"
+    }
+  ],
+  "diet_sweep": [
+    {
+      "shift": -1.0,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.98,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.96,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.94,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.92,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.9,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.88,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.86,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.84,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.82,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.8,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.78,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.76,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.74,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.72,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.7,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.68,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.66,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.64,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.62,
+      "generalist": 0.65,
+      "specialist": 0.92
+    },
+    {
+      "shift": -0.6,
+      "generalist": 0.6378125000000002,
+      "specialist": 0.9027500000000003
+    },
+    {
+      "shift": -0.58,
+      "generalist": 0.6248125000000002,
+      "specialist": 0.8843500000000003
+    },
+    {
+      "shift": -0.56,
+      "generalist": 0.6118125000000002,
+      "specialist": 0.8659500000000002
+    },
+    {
+      "shift": -0.54,
+      "generalist": 0.5988125000000002,
+      "specialist": 0.8475500000000002
+    },
+    {
+      "shift": -0.52,
+      "generalist": 0.5858125000000002,
+      "specialist": 0.8291500000000003
+    },
+    {
+      "shift": -0.5,
+      "generalist": 0.5728125000000002,
+      "specialist": 0.8107500000000002
+    },
+    {
+      "shift": -0.48,
+      "generalist": 0.5598125000000002,
+      "specialist": 0.7923500000000002
+    },
+    {
+      "shift": -0.46,
+      "generalist": 0.5468125000000001,
+      "specialist": 0.7739500000000001
+    },
+    {
+      "shift": -0.44,
+      "generalist": 0.5338125000000001,
+      "specialist": 0.7555500000000002
+    },
+    {
+      "shift": -0.42,
+      "generalist": 0.5208125000000001,
+      "specialist": 0.7371500000000002
+    },
+    {
+      "shift": -0.4,
+      "generalist": 0.5078125000000001,
+      "specialist": 0.7187500000000001
+    },
+    {
+      "shift": -0.38,
+      "generalist": 0.4948125000000001,
+      "specialist": 0.7003500000000001
+    },
+    {
+      "shift": -0.36,
+      "generalist": 0.4818125000000001,
+      "specialist": 0.6819500000000001
+    },
+    {
+      "shift": -0.34,
+      "generalist": 0.4688125000000001,
+      "specialist": 0.6635500000000001
+    },
+    {
+      "shift": -0.32,
+      "generalist": 0.45581250000000006,
+      "specialist": 0.6451500000000001
+    },
+    {
+      "shift": -0.3,
+      "generalist": 0.44281250000000005,
+      "specialist": 0.62675
+    },
+    {
+      "shift": -0.28,
+      "generalist": 0.42981250000000015,
+      "specialist": 0.6083500000000003
+    },
+    {
+      "shift": -0.26,
+      "generalist": 0.41681250000000003,
+      "specialist": 0.58995
+    },
+    {
+      "shift": -0.24,
+      "generalist": 0.40381250000000013,
+      "specialist": 0.5715500000000002
+    },
+    {
+      "shift": -0.22,
+      "generalist": 0.3908125,
+      "specialist": 0.55315
+    },
+    {
+      "shift": -0.2,
+      "generalist": 0.3778125000000001,
+      "specialist": 0.5347500000000002
+    },
+    {
+      "shift": -0.18,
+      "generalist": 0.36481249999999976,
+      "specialist": 0.5163499999999996
+    },
+    {
+      "shift": -0.16,
+      "generalist": 0.3518125000000001,
+      "specialist": 0.4979500000000001
+    },
+    {
+      "shift": -0.14,
+      "generalist": 0.33881250000000007,
+      "specialist": 0.4795500000000001
+    },
+    {
+      "shift": -0.12,
+      "generalist": 0.32581250000000006,
+      "specialist": 0.4611500000000001
+    },
+    {
+      "shift": -0.1,
+      "generalist": 0.3128125000000001,
+      "specialist": 0.44275000000000014
+    },
+    {
+      "shift": -0.08,
+      "generalist": 0.2998125000000001,
+      "specialist": 0.4243500000000001
+    },
+    {
+      "shift": -0.06,
+      "generalist": 0.2868125000000001,
+      "specialist": 0.4059500000000001
+    },
+    {
+      "shift": -0.04,
+      "generalist": 0.27381250000000007,
+      "specialist": 0.38755000000000006
+    },
+    {
+      "shift": -0.02,
+      "generalist": 0.26081250000000006,
+      "specialist": 0.3691500000000001
+    },
+    {
+      "shift": 0.0,
+      "generalist": 0.24781250000000002,
+      "specialist": 0.35075000000000006
+    },
+    {
+      "shift": 0.02,
+      "generalist": 0.23643750000000002,
+      "specialist": 0.33465000000000006
+    },
+    {
+      "shift": 0.04,
+      "generalist": 0.2250625,
+      "specialist": 0.31855
+    },
+    {
+      "shift": 0.06,
+      "generalist": 0.2136875,
+      "specialist": 0.30245
+    },
+    {
+      "shift": 0.08,
+      "generalist": 0.20231249999999998,
+      "specialist": 0.28635
+    },
+    {
+      "shift": 0.1,
+      "generalist": 0.19093749999999998,
+      "specialist": 0.27025
+    },
+    {
+      "shift": 0.12,
+      "generalist": 0.17956249999999996,
+      "specialist": 0.25414999999999993
+    },
+    {
+      "shift": 0.14,
+      "generalist": 0.16818749999999996,
+      "specialist": 0.23804999999999993
+    },
+    {
+      "shift": 0.16,
+      "generalist": 0.15681250000000013,
+      "specialist": 0.2219500000000002
+    },
+    {
+      "shift": 0.18,
+      "generalist": 0.14543749999999994,
+      "specialist": 0.20584999999999995
+    },
+    {
+      "shift": 0.2,
+      "generalist": 0.1340625000000001,
+      "specialist": 0.18975000000000017
+    },
+    {
+      "shift": 0.22,
+      "generalist": 0.12918750000000012,
+      "specialist": 0.17364999999999992
+    },
+    {
+      "shift": 0.24,
+      "generalist": 0.14056250000000012,
+      "specialist": 0.15755000000000013
+    },
+    {
+      "shift": 0.26,
+      "generalist": 0.15193750000000014,
+      "specialist": 0.14145000000000013
+    },
+    {
+      "shift": 0.28,
+      "generalist": 0.16331250000000014,
+      "specialist": 0.12535000000000013
+    },
+    {
+      "shift": 0.3,
+      "generalist": 0.17468750000000013,
+      "specialist": 0.1092500000000001
+    },
+    {
+      "shift": 0.32,
+      "generalist": 0.18606250000000016,
+      "specialist": 0.09315000000000008
+    },
+    {
+      "shift": 0.34,
+      "generalist": 0.19743750000000015,
+      "specialist": 0.07705000000000008
+    },
+    {
+      "shift": 0.36,
+      "generalist": 0.20881250000000018,
+      "specialist": 0.06095000000000006
+    },
+    {
+      "shift": 0.38,
+      "generalist": 0.22018750000000017,
+      "specialist": 0.05081250000000004
+    },
+    {
+      "shift": 0.4,
+      "generalist": 0.2315625000000002,
+      "specialist": 0.05343750000000004
+    },
+    {
+      "shift": 0.42,
+      "generalist": 0.24293750000000003,
+      "specialist": 0.0560625
+    },
+    {
+      "shift": 0.44,
+      "generalist": 0.2552410714285716,
+      "specialist": 0.058901785714285754
+    },
+    {
+      "shift": 0.46,
+      "generalist": 0.2682410714285716,
+      "specialist": 0.061901785714285756
+    },
+    {
+      "shift": 0.48,
+      "generalist": 0.28124107142857163,
+      "specialist": 0.06490178571428576
+    },
+    {
+      "shift": 0.5,
+      "generalist": 0.29424107142857164,
+      "specialist": 0.06790178571428576
+    },
+    {
+      "shift": 0.52,
+      "generalist": 0.30724107142857165,
+      "specialist": 0.07090178571428576
+    },
+    {
+      "shift": 0.54,
+      "generalist": 0.32024107142857167,
+      "specialist": 0.07390178571428577
+    },
+    {
+      "shift": 0.56,
+      "generalist": 0.3332410714285717,
+      "specialist": 0.07690178571428576
+    },
+    {
+      "shift": 0.58,
+      "generalist": 0.3462410714285717,
+      "specialist": 0.07990178571428576
+    },
+    {
+      "shift": 0.6,
+      "generalist": 0.3592410714285717,
+      "specialist": 0.08290178571428576
+    },
+    {
+      "shift": 0.62,
+      "generalist": 0.3722410714285717,
+      "specialist": 0.08590178571428576
+    },
+    {
+      "shift": 0.64,
+      "generalist": 0.3852410714285717,
+      "specialist": 0.08890178571428577
+    },
+    {
+      "shift": 0.66,
+      "generalist": 0.39824107142857174,
+      "specialist": 0.09190178571428577
+    },
+    {
+      "shift": 0.68,
+      "generalist": 0.41124107142857175,
+      "specialist": 0.09490178571428577
+    },
+    {
+      "shift": 0.7,
+      "generalist": 0.42424107142857137,
+      "specialist": 0.09790178571428569
+    },
+    {
+      "shift": 0.72,
+      "generalist": 0.43724107142857177,
+      "specialist": 0.10090178571428578
+    },
+    {
+      "shift": 0.74,
+      "generalist": 0.4502410714285714,
+      "specialist": 0.1039017857142857
+    },
+    {
+      "shift": 0.76,
+      "generalist": 0.4632410714285718,
+      "specialist": 0.10690178571428578
+    },
+    {
+      "shift": 0.78,
+      "generalist": 0.4762410714285714,
+      "specialist": 0.1099017857142857
+    },
+    {
+      "shift": 0.8,
+      "generalist": 0.4892410714285718,
+      "specialist": 0.11290178571428579
+    },
+    {
+      "shift": 0.82,
+      "generalist": 0.5022410714285714,
+      "specialist": 0.11590178571428571
+    },
+    {
+      "shift": 0.84,
+      "generalist": 0.5152410714285718,
+      "specialist": 0.1189017857142858
+    },
+    {
+      "shift": 0.86,
+      "generalist": 0.5282410714285715,
+      "specialist": 0.12190178571428571
+    },
+    {
+      "shift": 0.88,
+      "generalist": 0.5412410714285718,
+      "specialist": 0.1249017857142858
+    },
+    {
+      "shift": 0.9,
+      "generalist": 0.5542410714285715,
+      "specialist": 0.12790178571428573
+    },
+    {
+      "shift": 0.92,
+      "generalist": 0.5672410714285715,
+      "specialist": 0.13090178571428573
+    },
+    {
+      "shift": 0.94,
+      "generalist": 0.5802410714285715,
+      "specialist": 0.13390178571428574
+    },
+    {
+      "shift": 0.96,
+      "generalist": 0.5932410714285715,
+      "specialist": 0.13690178571428574
+    },
+    {
+      "shift": 0.98,
+      "generalist": 0.6062410714285715,
+      "specialist": 0.13990178571428574
+    },
+    {
+      "shift": 1.0,
+      "generalist": 0.6192410714285715,
+      "specialist": 0.14290178571428575
+    }
+  ],
+  "diet_crossover_shift": 0.2524,
+  "motivation_sweep": [
+    {
+      "motivation": 0.0,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.05134999999999994,
+      "reaction_burst_q0.75": 0.0
+    },
+    {
+      "motivation": 0.01,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.05784999999999994,
+      "reaction_burst_q0.75": 0.0
+    },
+    {
+      "motivation": 0.02,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.06434999999999995,
+      "reaction_burst_q0.75": 0.0018281249999998889
+    },
+    {
+      "motivation": 0.03,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.07084999999999995,
+      "reaction_burst_q0.75": 0.008328124999999895
+    },
+    {
+      "motivation": 0.04,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.07734999999999996,
+      "reaction_burst_q0.75": 0.0148281249999999
+    },
+    {
+      "motivation": 0.05,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.08384999999999997,
+      "reaction_burst_q0.75": 0.021328124999999906
+    },
+    {
+      "motivation": 0.06,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.09034999999999997,
+      "reaction_burst_q0.75": 0.027828124999999912
+    },
+    {
+      "motivation": 0.07,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.09684999999999998,
+      "reaction_burst_q0.75": 0.03432812499999992
+    },
+    {
+      "motivation": 0.08,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.10334999999999998,
+      "reaction_burst_q0.75": 0.040828124999999924
+    },
+    {
+      "motivation": 0.09,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.10984999999999999,
+      "reaction_burst_q0.75": 0.04732812499999993
+    },
+    {
+      "motivation": 0.1,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.11635,
+      "reaction_burst_q0.75": 0.053828124999999935
+    },
+    {
+      "motivation": 0.11,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.12285,
+      "reaction_burst_q0.75": 0.06032812499999994
+    },
+    {
+      "motivation": 0.12,
+      "natural_q0.60": 0.0,
+      "reaction_twitch_q0.60": 0.12935000000000002,
+      "reaction_burst_q0.75": 0.06682812499999995
+    },
+    {
+      "motivation": 0.13,
+      "natural_q0.60": 0.008099999999999857,
+      "reaction_twitch_q0.60": 0.13585000000000003,
+      "reaction_burst_q0.75": 0.07332812499999995
+    },
+    {
+      "motivation": 0.14,
+      "natural_q0.60": 0.017099999999999865,
+      "reaction_twitch_q0.60": 0.14235000000000003,
+      "reaction_burst_q0.75": 0.07982812499999996
+    },
+    {
+      "motivation": 0.15,
+      "natural_q0.60": 0.026099999999999624,
+      "reaction_twitch_q0.60": 0.14884999999999984,
+      "reaction_burst_q0.75": 0.08632812499999978
+    },
+    {
+      "motivation": 0.16,
+      "natural_q0.60": 0.03509999999999963,
+      "reaction_twitch_q0.60": 0.15534999999999985,
+      "reaction_burst_q0.75": 0.09282812499999979
+    },
+    {
+      "motivation": 0.17,
+      "natural_q0.60": 0.04409999999999964,
+      "reaction_twitch_q0.60": 0.16184999999999986,
+      "reaction_burst_q0.75": 0.0993281249999998
+    },
+    {
+      "motivation": 0.18,
+      "natural_q0.60": 0.05309999999999965,
+      "reaction_twitch_q0.60": 0.16834999999999986,
+      "reaction_burst_q0.75": 0.1058281249999998
+    },
+    {
+      "motivation": 0.19,
+      "natural_q0.60": 0.062099999999999655,
+      "reaction_twitch_q0.60": 0.17484999999999987,
+      "reaction_burst_q0.75": 0.1123281249999998
+    },
+    {
+      "motivation": 0.2,
+      "natural_q0.60": 0.07109999999999966,
+      "reaction_twitch_q0.60": 0.18134999999999987,
+      "reaction_burst_q0.75": 0.11882812499999981
+    },
+    {
+      "motivation": 0.21,
+      "natural_q0.60": 0.08009999999999967,
+      "reaction_twitch_q0.60": 0.18784999999999988,
+      "reaction_burst_q0.75": 0.12532812499999982
+    },
+    {
+      "motivation": 0.22,
+      "natural_q0.60": 0.08909999999999968,
+      "reaction_twitch_q0.60": 0.19434999999999988,
+      "reaction_burst_q0.75": 0.13182812499999982
+    },
+    {
+      "motivation": 0.23,
+      "natural_q0.60": 0.09809999999999969,
+      "reaction_twitch_q0.60": 0.2008499999999999,
+      "reaction_burst_q0.75": 0.13832812499999983
+    },
+    {
+      "motivation": 0.24,
+      "natural_q0.60": 0.1070999999999997,
+      "reaction_twitch_q0.60": 0.2073499999999999,
+      "reaction_burst_q0.75": 0.14482812499999984
+    },
+    {
+      "motivation": 0.25,
+      "natural_q0.60": 0.1160999999999997,
+      "reaction_twitch_q0.60": 0.2138499999999999,
+      "reaction_burst_q0.75": 0.15132812499999984
+    },
+    {
+      "motivation": 0.26,
+      "natural_q0.60": 0.1250999999999997,
+      "reaction_twitch_q0.60": 0.2203499999999999,
+      "reaction_burst_q0.75": 0.15782812499999985
+    },
+    {
+      "motivation": 0.27,
+      "natural_q0.60": 0.13409999999999972,
+      "reaction_twitch_q0.60": 0.2268499999999999,
+      "reaction_burst_q0.75": 0.16432812499999985
+    },
+    {
+      "motivation": 0.28,
+      "natural_q0.60": 0.14309999999999973,
+      "reaction_twitch_q0.60": 0.23334999999999992,
+      "reaction_burst_q0.75": 0.17082812499999986
+    },
+    {
+      "motivation": 0.29,
+      "natural_q0.60": 0.15209999999999974,
+      "reaction_twitch_q0.60": 0.23984999999999992,
+      "reaction_burst_q0.75": 0.17732812499999986
+    },
+    {
+      "motivation": 0.3,
+      "natural_q0.60": 0.16109999999999974,
+      "reaction_twitch_q0.60": 0.24634999999999993,
+      "reaction_burst_q0.75": 0.18382812499999987
+    },
+    {
+      "motivation": 0.31,
+      "natural_q0.60": 0.17009999999999975,
+      "reaction_twitch_q0.60": 0.25284999999999996,
+      "reaction_burst_q0.75": 0.19032812499999988
+    },
+    {
+      "motivation": 0.32,
+      "natural_q0.60": 0.17909999999999976,
+      "reaction_twitch_q0.60": 0.25934999999999997,
+      "reaction_burst_q0.75": 0.19682812499999988
+    },
+    {
+      "motivation": 0.33,
+      "natural_q0.60": 0.18809999999999977,
+      "reaction_twitch_q0.60": 0.26585,
+      "reaction_burst_q0.75": 0.2033281249999999
+    },
+    {
+      "motivation": 0.34,
+      "natural_q0.60": 0.19709999999999978,
+      "reaction_twitch_q0.60": 0.27235,
+      "reaction_burst_q0.75": 0.2098281249999999
+    },
+    {
+      "motivation": 0.35,
+      "natural_q0.60": 0.20609999999999978,
+      "reaction_twitch_q0.60": 0.27885,
+      "reaction_burst_q0.75": 0.2163281249999999
+    },
+    {
+      "motivation": 0.36,
+      "natural_q0.60": 0.2150999999999998,
+      "reaction_twitch_q0.60": 0.28535,
+      "reaction_burst_q0.75": 0.2228281249999999
+    },
+    {
+      "motivation": 0.37,
+      "natural_q0.60": 0.2240999999999998,
+      "reaction_twitch_q0.60": 0.29185,
+      "reaction_burst_q0.75": 0.2293281249999999
+    },
+    {
+      "motivation": 0.38,
+      "natural_q0.60": 0.2330999999999998,
+      "reaction_twitch_q0.60": 0.29835,
+      "reaction_burst_q0.75": 0.23582812499999992
+    },
+    {
+      "motivation": 0.39,
+      "natural_q0.60": 0.24209999999999982,
+      "reaction_twitch_q0.60": 0.30485,
+      "reaction_burst_q0.75": 0.24232812499999992
+    },
+    {
+      "motivation": 0.4,
+      "natural_q0.60": 0.2510999999999998,
+      "reaction_twitch_q0.60": 0.31135,
+      "reaction_burst_q0.75": 0.24882812499999993
+    },
+    {
+      "motivation": 0.41,
+      "natural_q0.60": 0.26009999999999983,
+      "reaction_twitch_q0.60": 0.31785,
+      "reaction_burst_q0.75": 0.25532812499999996
+    },
+    {
+      "motivation": 0.42,
+      "natural_q0.60": 0.26909999999999984,
+      "reaction_twitch_q0.60": 0.32435,
+      "reaction_burst_q0.75": 0.26182812499999997
+    },
+    {
+      "motivation": 0.43,
+      "natural_q0.60": 0.27809999999999985,
+      "reaction_twitch_q0.60": 0.33085000000000003,
+      "reaction_burst_q0.75": 0.268328125
+    },
+    {
+      "motivation": 0.44,
+      "natural_q0.60": 0.28709999999999986,
+      "reaction_twitch_q0.60": 0.33735000000000004,
+      "reaction_burst_q0.75": 0.274828125
+    },
+    {
+      "motivation": 0.45,
+      "natural_q0.60": 0.29609999999999986,
+      "reaction_twitch_q0.60": 0.34385000000000004,
+      "reaction_burst_q0.75": 0.281328125
+    },
+    {
+      "motivation": 0.46,
+      "natural_q0.60": 0.30509999999999987,
+      "reaction_twitch_q0.60": 0.35035000000000005,
+      "reaction_burst_q0.75": 0.287828125
+    },
+    {
+      "motivation": 0.47,
+      "natural_q0.60": 0.3140999999999997,
+      "reaction_twitch_q0.60": 0.3568499999999999,
+      "reaction_burst_q0.75": 0.2943281249999999
+    },
+    {
+      "motivation": 0.48,
+      "natural_q0.60": 0.3230999999999997,
+      "reaction_twitch_q0.60": 0.3633499999999999,
+      "reaction_burst_q0.75": 0.3008281249999999
+    },
+    {
+      "motivation": 0.49,
+      "natural_q0.60": 0.33209999999999973,
+      "reaction_twitch_q0.60": 0.3698499999999999,
+      "reaction_burst_q0.75": 0.3073281249999999
+    },
+    {
+      "motivation": 0.5,
+      "natural_q0.60": 0.34109999999999974,
+      "reaction_twitch_q0.60": 0.3763499999999999,
+      "reaction_burst_q0.75": 0.3138281249999999
+    },
+    {
+      "motivation": 0.51,
+      "natural_q0.60": 0.35009999999999974,
+      "reaction_twitch_q0.60": 0.3828499999999999,
+      "reaction_burst_q0.75": 0.3203281249999999
+    },
+    {
+      "motivation": 0.52,
+      "natural_q0.60": 0.35909999999999975,
+      "reaction_twitch_q0.60": 0.3893499999999999,
+      "reaction_burst_q0.75": 0.32682812499999986
+    },
+    {
+      "motivation": 0.53,
+      "natural_q0.60": 0.36809999999999976,
+      "reaction_twitch_q0.60": 0.3958499999999999,
+      "reaction_burst_q0.75": 0.33332812499999986
+    },
+    {
+      "motivation": 0.54,
+      "natural_q0.60": 0.37709999999999977,
+      "reaction_twitch_q0.60": 0.40234999999999993,
+      "reaction_burst_q0.75": 0.33982812499999987
+    },
+    {
+      "motivation": 0.55,
+      "natural_q0.60": 0.3860999999999998,
+      "reaction_twitch_q0.60": 0.40884999999999994,
+      "reaction_burst_q0.75": 0.3463281249999999
+    },
+    {
+      "motivation": 0.56,
+      "natural_q0.60": 0.3950999999999998,
+      "reaction_twitch_q0.60": 0.41534999999999994,
+      "reaction_burst_q0.75": 0.3528281249999999
+    },
+    {
+      "motivation": 0.57,
+      "natural_q0.60": 0.40409999999999974,
+      "reaction_twitch_q0.60": 0.4218499999999999,
+      "reaction_burst_q0.75": 0.35932812499999983
+    },
+    {
+      "motivation": 0.58,
+      "natural_q0.60": 0.41309999999999975,
+      "reaction_twitch_q0.60": 0.4283499999999999,
+      "reaction_burst_q0.75": 0.36582812499999984
+    },
+    {
+      "motivation": 0.59,
+      "natural_q0.60": 0.42209999999999975,
+      "reaction_twitch_q0.60": 0.4348499999999999,
+      "reaction_burst_q0.75": 0.37232812499999984
+    },
+    {
+      "motivation": 0.6,
+      "natural_q0.60": 0.43109999999999976,
+      "reaction_twitch_q0.60": 0.4413499999999999,
+      "reaction_burst_q0.75": 0.37882812499999985
+    },
+    {
+      "motivation": 0.61,
+      "natural_q0.60": 0.44009999999999977,
+      "reaction_twitch_q0.60": 0.4478499999999999,
+      "reaction_burst_q0.75": 0.38532812499999985
+    },
+    {
+      "motivation": 0.62,
+      "natural_q0.60": 0.4490999999999998,
+      "reaction_twitch_q0.60": 0.4543499999999999,
+      "reaction_burst_q0.75": 0.39182812499999986
+    },
+    {
+      "motivation": 0.63,
+      "natural_q0.60": 0.45809999999999973,
+      "reaction_twitch_q0.60": 0.4608499999999999,
+      "reaction_burst_q0.75": 0.39832812499999987
+    },
+    {
+      "motivation": 0.64,
+      "natural_q0.60": 0.46709999999999974,
+      "reaction_twitch_q0.60": 0.46734999999999993,
+      "reaction_burst_q0.75": 0.40482812499999987
+    },
+    {
+      "motivation": 0.65,
+      "natural_q0.60": 0.47609999999999975,
+      "reaction_twitch_q0.60": 0.47384999999999994,
+      "reaction_burst_q0.75": 0.4113281249999999
+    },
+    {
+      "motivation": 0.66,
+      "natural_q0.60": 0.48509999999999975,
+      "reaction_twitch_q0.60": 0.48034999999999994,
+      "reaction_burst_q0.75": 0.4178281249999999
+    },
+    {
+      "motivation": 0.67,
+      "natural_q0.60": 0.49409999999999976,
+      "reaction_twitch_q0.60": 0.48684999999999995,
+      "reaction_burst_q0.75": 0.4243281249999999
+    },
+    {
+      "motivation": 0.68,
+      "natural_q0.60": 0.5030999999999998,
+      "reaction_twitch_q0.60": 0.49334999999999996,
+      "reaction_burst_q0.75": 0.4308281249999999
+    },
+    {
+      "motivation": 0.69,
+      "natural_q0.60": 0.5120999999999997,
+      "reaction_twitch_q0.60": 0.4998499999999999,
+      "reaction_burst_q0.75": 0.43732812499999985
+    },
+    {
+      "motivation": 0.7,
+      "natural_q0.60": 0.5210999999999997,
+      "reaction_twitch_q0.60": 0.5063499999999999,
+      "reaction_burst_q0.75": 0.44382812499999985
+    },
+    {
+      "motivation": 0.71,
+      "natural_q0.60": 0.5300999999999997,
+      "reaction_twitch_q0.60": 0.5128499999999999,
+      "reaction_burst_q0.75": 0.45032812499999986
+    },
+    {
+      "motivation": 0.72,
+      "natural_q0.60": 0.5390999999999997,
+      "reaction_twitch_q0.60": 0.5193499999999999,
+      "reaction_burst_q0.75": 0.45682812499999986
+    },
+    {
+      "motivation": 0.73,
+      "natural_q0.60": 0.5480999999999997,
+      "reaction_twitch_q0.60": 0.5258499999999999,
+      "reaction_burst_q0.75": 0.46332812499999987
+    },
+    {
+      "motivation": 0.74,
+      "natural_q0.60": 0.5570999999999997,
+      "reaction_twitch_q0.60": 0.5323499999999999,
+      "reaction_burst_q0.75": 0.4698281249999999
+    },
+    {
+      "motivation": 0.75,
+      "natural_q0.60": 0.5660999999999998,
+      "reaction_twitch_q0.60": 0.5388499999999999,
+      "reaction_burst_q0.75": 0.47632812499999994
+    },
+    {
+      "motivation": 0.76,
+      "natural_q0.60": 0.5750999999999998,
+      "reaction_twitch_q0.60": 0.54535,
+      "reaction_burst_q0.75": 0.48282812499999994
+    },
+    {
+      "motivation": 0.77,
+      "natural_q0.60": 0.5840999999999998,
+      "reaction_twitch_q0.60": 0.55185,
+      "reaction_burst_q0.75": 0.48932812499999995
+    },
+    {
+      "motivation": 0.78,
+      "natural_q0.60": 0.5930999999999998,
+      "reaction_twitch_q0.60": 0.55835,
+      "reaction_burst_q0.75": 0.49582812499999995
+    },
+    {
+      "motivation": 0.79,
+      "natural_q0.60": 0.6020999999999999,
+      "reaction_twitch_q0.60": 0.56485,
+      "reaction_burst_q0.75": 0.5023281249999999
+    },
+    {
+      "motivation": 0.8,
+      "natural_q0.60": 0.6110999999999999,
+      "reaction_twitch_q0.60": 0.57135,
+      "reaction_burst_q0.75": 0.508828125
+    },
+    {
+      "motivation": 0.81,
+      "natural_q0.60": 0.63135,
+      "reaction_twitch_q0.60": 0.585975,
+      "reaction_burst_q0.75": 0.523453125
+    },
+    {
+      "motivation": 0.82,
+      "natural_q0.60": 0.6515999999999997,
+      "reaction_twitch_q0.60": 0.6005999999999999,
+      "reaction_burst_q0.75": 0.5380781249999999
+    },
+    {
+      "motivation": 0.83,
+      "natural_q0.60": 0.6718499999999996,
+      "reaction_twitch_q0.60": 0.6152249999999999,
+      "reaction_burst_q0.75": 0.5527031249999999
+    },
+    {
+      "motivation": 0.84,
+      "natural_q0.60": 0.6920999999999997,
+      "reaction_twitch_q0.60": 0.6298499999999999,
+      "reaction_burst_q0.75": 0.5673281249999998
+    },
+    {
+      "motivation": 0.85,
+      "natural_q0.60": 0.7123499999999997,
+      "reaction_twitch_q0.60": 0.6444749999999999,
+      "reaction_burst_q0.75": 0.5819531249999998
+    },
+    {
+      "motivation": 0.86,
+      "natural_q0.60": 0.7325999999999998,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.5965781249999998
+    },
+    {
+      "motivation": 0.87,
+      "natural_q0.60": 0.7528499999999997,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.6112031249999998
+    },
+    {
+      "motivation": 0.88,
+      "natural_q0.60": 0.7730999999999998,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.625828125
+    },
+    {
+      "motivation": 0.89,
+      "natural_q0.60": 0.7933499999999998,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.6404531249999998
+    },
+    {
+      "motivation": 0.9,
+      "natural_q0.60": 0.8135999999999999,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.91,
+      "natural_q0.60": 0.8338499999999998,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.92,
+      "natural_q0.60": 0.8540999999999999,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.93,
+      "natural_q0.60": 0.8743499999999998,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.94,
+      "natural_q0.60": 0.8945999999999996,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.95,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.96,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.97,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.98,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 0.99,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    },
+    {
+      "motivation": 1.0,
+      "natural_q0.60": 0.9,
+      "reaction_twitch_q0.60": 0.65,
+      "reaction_burst_q0.75": 0.65
+    }
+  ],
+  "motivation_crossovers": {
+    "reaction_twitch_q0.60": [
+      0.65
+    ],
+    "reaction_burst_q0.75": [
+      0.4
+    ]
+  },
+  "q_sweep": [
+    {
+      "activity": 0.6,
+      "points": [
+        {
+          "q": 0.2,
+          "C": 0.2918333333333334,
+          "yield": 0.038911111111111125
+        },
+        {
+          "q": 0.22,
+          "C": 0.2861808333333334,
+          "yield": 0.04047559198542806
+        },
+        {
+          "q": 0.24,
+          "C": 0.27999000000000007,
+          "yield": 0.04168585607940448
+        },
+        {
+          "q": 0.26,
+          "C": 0.27326083333333345,
+          "yield": 0.042556344214834806
+        },
+        {
+          "q": 0.28,
+          "C": 0.26599333333333347,
+          "yield": 0.04310077160493829
+        },
+        {
+          "q": 0.3,
+          "C": 0.2581875000000002,
+          "yield": 0.04333216783216787
+        },
+        {
+          "q": 0.32,
+          "C": 0.24984333333333336,
+          "yield": 0.04326291486291487
+        },
+        {
+          "q": 0.34,
+          "C": 0.24096083333333346,
+          "yield": 0.042904783102033724
+        },
+        {
+          "q": 0.36,
+          "C": 0.23153999999999997,
+          "yield": 0.04226896551724138
+        },
+        {
+          "q": 0.38,
+          "C": 0.22158083333333342,
+          "yield": 0.04136610988291167
+        },
+        {
+          "q": 0.4,
+          "C": 0.21108333333333343,
+          "yield": 0.04020634920634923
+        },
+        {
+          "q": 0.42,
+          "C": 0.20004750000000013,
+          "yield": 0.03879933040868163
+        },
+        {
+          "q": 0.44,
+          "C": 0.18847333333333335,
+          "yield": 0.03715424133811231
+        },
+        {
+          "q": 0.46,
+          "C": 0.17636083333333338,
+          "yield": 0.03527983619627457
+        },
+        {
+          "q": 0.48,
+          "C": 0.16371,
+          "yield": 0.03318445945945946
+        },
+        {
+          "q": 0.5,
+          "C": 0.15052083333333338,
+          "yield": 0.030876068376068388
+        },
+        {
+          "q": 0.52,
+          "C": 0.13679333333333335,
+          "yield": 0.028362254120148866
+        },
+        {
+          "q": 0.54,
+          "C": 0.12252749999999997,
+          "yield": 0.025650261678619887
+        },
+        {
+          "q": 0.56,
+          "C": 0.10772333333333328,
+          "yield": 0.02274700854700854
+        },
+        {
+          "q": 0.58,
+          "C": 0.09238083333333327,
+          "yield": 0.01965910230538738
+        },
+        {
+          "q": 0.6,
+          "C": 0.07649999999999994,
+          "yield": 0.016392857142857133
+        },
+        {
+          "q": 0.62,
+          "C": 0.0600808333333333,
+          "yield": 0.012954309395467451
+        },
+        {
+          "q": 0.64,
+          "C": 0.04312333333333309,
+          "yield": 0.009349232158988205
+        },
+        {
+          "q": 0.66,
+          "C": 0.025627499999999796,
+          "yield": 0.005583149034494097
+        },
+        {
+          "q": 0.68,
+          "C": 0.007593333333333181,
+          "yield": 0.0016613470613470282
+        },
+        {
+          "q": 0.7,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.72,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.74,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.76,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.78,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.8,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.82,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.84,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.86,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.88,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.9,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.92,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.94,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.96,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.98,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.0,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.02,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.04,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.06,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.08,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.1,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.12,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.14,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.16,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.18,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.2,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.22,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.24,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.26,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.28,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.3,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.32,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.34,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.36,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.38,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.4,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.42,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.44,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.46,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.48,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.5,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.52,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.54,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.56,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.58,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.6,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.62,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.64,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.66,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.68,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.7,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.72,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.74,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.76,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.78,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.8,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.82,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.84,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.86,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.88,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.9,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.92,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.94,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.96,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.98,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 2.0,
+          "C": 0.0,
+          "yield": 0.0
+        }
+      ]
+    },
+    {
+      "activity": 1.0,
+      "points": [
+        {
+          "q": 0.2,
+          "C": 0.30260000000000004,
+          "yield": 0.040346666666666677
+        },
+        {
+          "q": 0.22,
+          "C": 0.29920850000000015,
+          "yield": 0.04231814207650275
+        },
+        {
+          "q": 0.24,
+          "C": 0.29549400000000026,
+          "yield": 0.04399414392059558
+        },
+        {
+          "q": 0.26,
+          "C": 0.29145650000000023,
+          "yield": 0.04539005091344718
+        },
+        {
+          "q": 0.28,
+          "C": 0.2870960000000001,
+          "yield": 0.0465201851851852
+        },
+        {
+          "q": 0.3,
+          "C": 0.2824125000000001,
+          "yield": 0.04739790209790212
+        },
+        {
+          "q": 0.32,
+          "C": 0.2774060000000001,
+          "yield": 0.04803567099567102
+        },
+        {
+          "q": 0.34,
+          "C": 0.27207650000000017,
+          "yield": 0.04844514794448812
+        },
+        {
+          "q": 0.36,
+          "C": 0.26642400000000016,
+          "yield": 0.04863724137931038
+        },
+        {
+          "q": 0.38,
+          "C": 0.2604485000000001,
+          "yield": 0.04862217145664458
+        },
+        {
+          "q": 0.4,
+          "C": 0.25415000000000015,
+          "yield": 0.048409523809523854
+        },
+        {
+          "q": 0.42,
+          "C": 0.24752850000000015,
+          "yield": 0.04800829831447706
+        },
+        {
+          "q": 0.44,
+          "C": 0.24058400000000005,
+          "yield": 0.04742695340501793
+        },
+        {
+          "q": 0.46,
+          "C": 0.2333165000000001,
+          "yield": 0.046673446401391636
+        },
+        {
+          "q": 0.48,
+          "C": 0.22572600000000007,
+          "yield": 0.045755270270270286
+        },
+        {
+          "q": 0.5,
+          "C": 0.21781249999999994,
+          "yield": 0.04467948717948717
+        },
+        {
+          "q": 0.52,
+          "C": 0.2095760000000001,
+          "yield": 0.043452759170653936
+        },
+        {
+          "q": 0.54,
+          "C": 0.20101650000000001,
+          "yield": 0.042081376235704605
+        },
+        {
+          "q": 0.56,
+          "C": 0.192134,
+          "yield": 0.040571282051282055
+        },
+        {
+          "q": 0.58,
+          "C": 0.1829285,
+          "yield": 0.03892809759677124
+        },
+        {
+          "q": 0.6,
+          "C": 0.1734,
+          "yield": 0.03715714285714286
+        },
+        {
+          "q": 0.62,
+          "C": 0.16354849999999996,
+          "yield": 0.03526345679012346
+        },
+        {
+          "q": 0.64,
+          "C": 0.15337399999999993,
+          "yield": 0.03325181571815717
+        },
+        {
+          "q": 0.66,
+          "C": 0.14287650000000005,
+          "yield": 0.031126750288826548
+        },
+        {
+          "q": 0.68,
+          "C": 0.13205599999999995,
+          "yield": 0.028892561132561126
+        },
+        {
+          "q": 0.7,
+          "C": 0.1209125,
+          "yield": 0.02655333333333334
+        },
+        {
+          "q": 0.72,
+          "C": 0.10944599999999986,
+          "yield": 0.024112949816401438
+        },
+        {
+          "q": 0.74,
+          "C": 0.09765649999999987,
+          "yield": 0.021575103746827855
+        },
+        {
+          "q": 0.76,
+          "C": 0.08554399999999991,
+          "yield": 0.018943310023310005
+        },
+        {
+          "q": 0.78,
+          "C": 0.07310849999999985,
+          "yield": 0.01622091594367796
+        },
+        {
+          "q": 0.8,
+          "C": 0.06034999999999984,
+          "yield": 0.013411111111111077
+        },
+        {
+          "q": 0.82,
+          "C": 0.04726849999999985,
+          "yield": 0.010516936643603278
+        },
+        {
+          "q": 0.84,
+          "C": 0.033863999999999776,
+          "yield": 0.007541293743372167
+        },
+        {
+          "q": 0.86,
+          "C": 0.02013649999999973,
+          "yield": 0.0044869516776783955
+        },
+        {
+          "q": 0.88,
+          "C": 0.006085999999999835,
+          "yield": 0.0013565552178317769
+        },
+        {
+          "q": 0.9,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.92,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.94,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.96,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 0.98,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.0,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.02,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.04,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.06,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.08,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.1,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.12,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.14,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.16,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.18,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.2,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.22,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.24,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.26,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.28,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.3,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.32,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.34,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.36,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.38,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.4,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.42,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.44,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.46,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.48,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.5,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.52,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.54,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.56,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.58,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.6,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.62,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.64,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.66,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.68,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.7,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.72,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.74,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.76,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.78,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.8,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.82,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.84,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.86,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.88,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.9,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.92,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.94,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.96,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.98,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 2.0,
+          "C": 0.0,
+          "yield": 0.0
+        }
+      ]
+    },
+    {
+      "activity": 1.4,
+      "points": [
+        {
+          "q": 0.2,
+          "C": 0.30721428571428583,
+          "yield": 0.04096190476190478
+        },
+        {
+          "q": 0.22,
+          "C": 0.3047917857142857,
+          "yield": 0.043107806401249026
+        },
+        {
+          "q": 0.24,
+          "C": 0.3021385714285716,
+          "yield": 0.04498341013824888
+        },
+        {
+          "q": 0.26,
+          "C": 0.29925464285714304,
+          "yield": 0.0466044966414239
+        },
+        {
+          "q": 0.28,
+          "C": 0.2961400000000002,
+          "yield": 0.04798564814814818
+        },
+        {
+          "q": 0.3,
+          "C": 0.29279464285714296,
+          "yield": 0.04914035964035966
+        },
+        {
+          "q": 0.32,
+          "C": 0.2892185714285716,
+          "yield": 0.050081137909709375
+        },
+        {
+          "q": 0.34,
+          "C": 0.28541178571428594,
+          "yield": 0.05081959001982573
+        },
+        {
+          "q": 0.36,
+          "C": 0.2813742857142859,
+          "yield": 0.05136650246305423
+        },
+        {
+          "q": 0.38,
+          "C": 0.2771060714285715,
+          "yield": 0.051731912131101544
+        },
+        {
+          "q": 0.4,
+          "C": 0.27260714285714305,
+          "yield": 0.05192517006802726
+        },
+        {
+          "q": 0.42,
+          "C": 0.2678775,
+          "yield": 0.051954998845532216
+        },
+        {
+          "q": 0.44,
+          "C": 0.262917142857143,
+          "yield": 0.051829544290834646
+        },
+        {
+          "q": 0.46,
+          "C": 0.2577260714285715,
+          "yield": 0.05155642220358466
+        },
+        {
+          "q": 0.48,
+          "C": 0.25230428571428587,
+          "yield": 0.05114276061776065
+        },
+        {
+          "q": 0.5,
+          "C": 0.24665178571428586,
+          "yield": 0.05059523809523813
+        },
+        {
+          "q": 0.52,
+          "C": 0.24076857142857153,
+          "yield": 0.049920118478013246
+        },
+        {
+          "q": 0.54,
+          "C": 0.23465464285714285,
+          "yield": 0.049123282474455195
+        },
+        {
+          "q": 0.56,
+          "C": 0.22831000000000004,
+          "yield": 0.048210256410256426
+        },
+        {
+          "q": 0.58,
+          "C": 0.2217346428571429,
+          "yield": 0.04718623843593575
+        },
+        {
+          "q": 0.6,
+          "C": 0.2149285714285714,
+          "yield": 0.046056122448979595
+        },
+        {
+          "q": 0.62,
+          "C": 0.20789178571428582,
+          "yield": 0.04482451995926178
+        },
+        {
+          "q": 0.64,
+          "C": 0.20062428571428575,
+          "yield": 0.04349578010065817
+        },
+        {
+          "q": 0.66,
+          "C": 0.19312607142857144,
+          "yield": 0.042074007969254715
+        },
+        {
+          "q": 0.68,
+          "C": 0.18539714285714293,
+          "yield": 0.04056308144879575
+        },
+        {
+          "q": 0.7,
+          "C": 0.17743750000000003,
+          "yield": 0.03896666666666668
+        },
+        {
+          "q": 0.72,
+          "C": 0.16924714285714282,
+          "yield": 0.037288232208428036
+        },
+        {
+          "q": 0.74,
+          "C": 0.16082607142857136,
+          "yield": 0.035531062205446426
+        },
+        {
+          "q": 0.76,
+          "C": 0.15217428571428565,
+          "yield": 0.03369826839826839
+        },
+        {
+          "q": 0.78,
+          "C": 0.14329178571428564,
+          "yield": 0.03179280126785458
+        },
+        {
+          "q": 0.8,
+          "C": 0.13417857142857137,
+          "yield": 0.029817460317460305
+        },
+        {
+          "q": 0.82,
+          "C": 0.12483464285714274,
+          "yield": 0.02777490357966546
+        },
+        {
+          "q": 0.84,
+          "C": 0.1152599999999999,
+          "yield": 0.025667656415694573
+        },
+        {
+          "q": 0.86,
+          "C": 0.1054546428571427,
+          "yield": 0.0234981196676105
+        },
+        {
+          "q": 0.88,
+          "C": 0.09541857142857128,
+          "yield": 0.02126857721812126
+        },
+        {
+          "q": 0.9,
+          "C": 0.08515178571428551,
+          "yield": 0.01898120300751875
+        },
+        {
+          "q": 0.92,
+          "C": 0.07465428571428552,
+          "yield": 0.016638067552602394
+        },
+        {
+          "q": 0.94,
+          "C": 0.06392607142857117,
+          "yield": 0.014241144008260907
+        },
+        {
+          "q": 0.96,
+          "C": 0.052967142857142595,
+          "yield": 0.011792313808640282
+        },
+        {
+          "q": 0.98,
+          "C": 0.04177749999999979,
+          "yield": 0.009293371921461763
+        },
+        {
+          "q": 1.0,
+          "C": 0.03035714285714263,
+          "yield": 0.006746031746031695
+        },
+        {
+          "q": 1.02,
+          "C": 0.018706071428571246,
+          "yield": 0.004151929682764155
+        },
+        {
+          "q": 1.04,
+          "C": 0.006824285714285512,
+          "yield": 0.001512629399585876
+        },
+        {
+          "q": 1.06,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.08,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.1,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.12,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.14,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.16,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.18,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.2,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.22,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.24,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.26,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.28,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.3,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.32,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.34,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.36,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.38,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.4,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.42,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.44,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.46,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.48,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.5,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.52,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.54,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.56,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.58,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.6,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.62,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.64,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.66,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.68,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.7,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.72,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.74,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.76,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.78,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.8,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.82,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.84,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.86,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.88,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.9,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.92,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.94,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.96,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 1.98,
+          "C": 0.0,
+          "yield": 0.0
+        },
+        {
+          "q": 2.0,
+          "C": 0.0,
+          "yield": 0.0
+        }
+      ]
+    }
+  ],
+  "coverage_sensitivity": {
+    "slow_yield": 0.05171098522167489,
+    "fast_yield": 0.018981203007518835,
+    "coverage_ratio_needed": 2.724326018808773
+  },
+  "hypothetical_cue": [
+    {
+      "wariness": 0.0,
+      "C_direct": 0.49214999999999987,
+      "C_stealth": 0.49214999999999987,
+      "yield_direct": 0.10546071428571425,
+      "yield_stealth": 0.058003392857142844
+    },
+    {
+      "wariness": 0.01,
+      "C_direct": 0.48152499999999987,
+      "C_stealth": 0.4900249999999999,
+      "yield_direct": 0.10318392857142854,
+      "yield_stealth": 0.05775294642857142
+    },
+    {
+      "wariness": 0.02,
+      "C_direct": 0.4708999999999998,
+      "C_stealth": 0.48789999999999983,
+      "yield_direct": 0.1009071428571428,
+      "yield_stealth": 0.057502499999999984
+    },
+    {
+      "wariness": 0.03,
+      "C_direct": 0.4602749999999999,
+      "C_stealth": 0.4857749999999999,
+      "yield_direct": 0.09863035714285712,
+      "yield_stealth": 0.05725205357142857
+    },
+    {
+      "wariness": 0.04,
+      "C_direct": 0.4496499999999998,
+      "C_stealth": 0.48364999999999986,
+      "yield_direct": 0.09635357142857139,
+      "yield_stealth": 0.05700160714285713
+    },
+    {
+      "wariness": 0.05,
+      "C_direct": 0.43902499999999983,
+      "C_stealth": 0.48152499999999987,
+      "yield_direct": 0.09407678571428567,
+      "yield_stealth": 0.0567511607142857
+    },
+    {
+      "wariness": 0.06,
+      "C_direct": 0.4283999999999998,
+      "C_stealth": 0.4793999999999998,
+      "yield_direct": 0.09179999999999995,
+      "yield_stealth": 0.05650071428571427
+    },
+    {
+      "wariness": 0.07,
+      "C_direct": 0.41777499999999984,
+      "C_stealth": 0.4772749999999999,
+      "yield_direct": 0.08952321428571425,
+      "yield_stealth": 0.05625026785714285
+    },
+    {
+      "wariness": 0.08,
+      "C_direct": 0.40714999999999985,
+      "C_stealth": 0.47514999999999985,
+      "yield_direct": 0.08724642857142853,
+      "yield_stealth": 0.05599982142857142
+    },
+    {
+      "wariness": 0.09,
+      "C_direct": 0.39652499999999985,
+      "C_stealth": 0.47302499999999986,
+      "yield_direct": 0.08496964285714283,
+      "yield_stealth": 0.05574937499999999
+    },
+    {
+      "wariness": 0.1,
+      "C_direct": 0.3858999999999998,
+      "C_stealth": 0.4708999999999998,
+      "yield_direct": 0.0826928571428571,
+      "yield_stealth": 0.05549892857142855
+    },
+    {
+      "wariness": 0.11,
+      "C_direct": 0.3752749999999998,
+      "C_stealth": 0.4687749999999999,
+      "yield_direct": 0.08041607142857138,
+      "yield_stealth": 0.05524848214285714
+    },
+    {
+      "wariness": 0.12,
+      "C_direct": 0.3646499999999998,
+      "C_stealth": 0.46664999999999984,
+      "yield_direct": 0.07813928571428568,
+      "yield_stealth": 0.0549980357142857
+    },
+    {
+      "wariness": 0.13,
+      "C_direct": 0.35402500000000003,
+      "C_stealth": 0.46452499999999985,
+      "yield_direct": 0.0758625,
+      "yield_stealth": 0.05474758928571427
+    },
+    {
+      "wariness": 0.14,
+      "C_direct": 0.34339999999999976,
+      "C_stealth": 0.4623999999999998,
+      "yield_direct": 0.07358571428571423,
+      "yield_stealth": 0.05449714285714284
+    },
+    {
+      "wariness": 0.15,
+      "C_direct": 0.332775,
+      "C_stealth": 0.4602749999999999,
+      "yield_direct": 0.07130892857142856,
+      "yield_stealth": 0.05424669642857142
+    },
+    {
+      "wariness": 0.16,
+      "C_direct": 0.32215,
+      "C_stealth": 0.45814999999999984,
+      "yield_direct": 0.06903214285714285,
+      "yield_stealth": 0.05399624999999999
+    },
+    {
+      "wariness": 0.17,
+      "C_direct": 0.311525,
+      "C_stealth": 0.45602499999999985,
+      "yield_direct": 0.06675535714285714,
+      "yield_stealth": 0.05374580357142856
+    },
+    {
+      "wariness": 0.18,
+      "C_direct": 0.3009,
+      "C_stealth": 0.4538999999999998,
+      "yield_direct": 0.06447857142857143,
+      "yield_stealth": 0.05349535714285712
+    },
+    {
+      "wariness": 0.19,
+      "C_direct": 0.29027499999999995,
+      "C_stealth": 0.45177499999999987,
+      "yield_direct": 0.0622017857142857,
+      "yield_stealth": 0.053244910714285706
+    },
+    {
+      "wariness": 0.2,
+      "C_direct": 0.27964999999999995,
+      "C_stealth": 0.4496499999999998,
+      "yield_direct": 0.059924999999999985,
+      "yield_stealth": 0.05299446428571427
+    },
+    {
+      "wariness": 0.21,
+      "C_direct": 0.26902499999999996,
+      "C_stealth": 0.44752499999999984,
+      "yield_direct": 0.057648214285714275,
+      "yield_stealth": 0.05274401785714284
+    },
+    {
+      "wariness": 0.22,
+      "C_direct": 0.25839999999999996,
+      "C_stealth": 0.4453999999999998,
+      "yield_direct": 0.05537142857142856,
+      "yield_stealth": 0.05249357142857141
+    },
+    {
+      "wariness": 0.23,
+      "C_direct": 0.24777499999999994,
+      "C_stealth": 0.44327499999999986,
+      "yield_direct": 0.05309464285714284,
+      "yield_stealth": 0.05224312499999999
+    },
+    {
+      "wariness": 0.24,
+      "C_direct": 0.23714999999999992,
+      "C_stealth": 0.4411499999999998,
+      "yield_direct": 0.05081785714285712,
+      "yield_stealth": 0.05199267857142856
+    },
+    {
+      "wariness": 0.25,
+      "C_direct": 0.22652499999999992,
+      "C_stealth": 0.43902499999999983,
+      "yield_direct": 0.048541071428571406,
+      "yield_stealth": 0.05174223214285713
+    },
+    {
+      "wariness": 0.26,
+      "C_direct": 0.2158999999999999,
+      "C_stealth": 0.4368999999999998,
+      "yield_direct": 0.04626428571428569,
+      "yield_stealth": 0.05149178571428569
+    },
+    {
+      "wariness": 0.27,
+      "C_direct": 0.20527499999999993,
+      "C_stealth": 0.43477499999999986,
+      "yield_direct": 0.043987499999999985,
+      "yield_stealth": 0.051241339285714275
+    },
+    {
+      "wariness": 0.28,
+      "C_direct": 0.1946499999999999,
+      "C_stealth": 0.4326499999999998,
+      "yield_direct": 0.04171071428571426,
+      "yield_stealth": 0.05099089285714284
+    },
+    {
+      "wariness": 0.29,
+      "C_direct": 0.1840249999999999,
+      "C_stealth": 0.4305249999999998,
+      "yield_direct": 0.03943392857142855,
+      "yield_stealth": 0.050740446428571416
+    },
+    {
+      "wariness": 0.3,
+      "C_direct": 0.1733999999999999,
+      "C_stealth": 0.4283999999999998,
+      "yield_direct": 0.03715714285714283,
+      "yield_stealth": 0.05048999999999998
+    },
+    {
+      "wariness": 0.31,
+      "C_direct": 0.1627749999999999,
+      "C_stealth": 0.42627499999999985,
+      "yield_direct": 0.034880357142857116,
+      "yield_stealth": 0.05023955357142856
+    },
+    {
+      "wariness": 0.32,
+      "C_direct": 0.15214999999999987,
+      "C_stealth": 0.42414999999999986,
+      "yield_direct": 0.0326035714285714,
+      "yield_stealth": 0.049989107142857134
+    },
+    {
+      "wariness": 0.33,
+      "C_direct": 0.14152499999999987,
+      "C_stealth": 0.4220249999999999,
+      "yield_direct": 0.030326785714285685,
+      "yield_stealth": 0.049738660714285704
+    },
+    {
+      "wariness": 0.34,
+      "C_direct": 0.13089999999999985,
+      "C_stealth": 0.41989999999999983,
+      "yield_direct": 0.028049999999999967,
+      "yield_stealth": 0.04948821428571427
+    },
+    {
+      "wariness": 0.35,
+      "C_direct": 0.12027499999999997,
+      "C_stealth": 0.41777499999999984,
+      "yield_direct": 0.025773214285714278,
+      "yield_stealth": 0.049237767857142845
+    },
+    {
+      "wariness": 0.36,
+      "C_direct": 0.10964999999999996,
+      "C_stealth": 0.41564999999999985,
+      "yield_direct": 0.02349642857142856,
+      "yield_stealth": 0.048987321428571415
+    },
+    {
+      "wariness": 0.37,
+      "C_direct": 0.09902499999999995,
+      "C_stealth": 0.41352499999999986,
+      "yield_direct": 0.021219642857142843,
+      "yield_stealth": 0.04873687499999999
+    },
+    {
+      "wariness": 0.38,
+      "C_direct": 0.08839999999999994,
+      "C_stealth": 0.4113999999999998,
+      "yield_direct": 0.01894285714285713,
+      "yield_stealth": 0.048486428571428555
+    },
+    {
+      "wariness": 0.39,
+      "C_direct": 0.07777499999999993,
+      "C_stealth": 0.40927499999999983,
+      "yield_direct": 0.016666071428571412,
+      "yield_stealth": 0.048235982142857126
+    },
+    {
+      "wariness": 0.4,
+      "C_direct": 0.06714999999999992,
+      "C_stealth": 0.40714999999999985,
+      "yield_direct": 0.014389285714285696,
+      "yield_stealth": 0.0479855357142857
+    },
+    {
+      "wariness": 0.41,
+      "C_direct": 0.05652500000000003,
+      "C_stealth": 0.40502499999999986,
+      "yield_direct": 0.012112500000000005,
+      "yield_stealth": 0.04773508928571427
+    },
+    {
+      "wariness": 0.42,
+      "C_direct": 0.04590000000000002,
+      "C_stealth": 0.4028999999999998,
+      "yield_direct": 0.00983571428571429,
+      "yield_stealth": 0.047484642857142836
+    },
+    {
+      "wariness": 0.43,
+      "C_direct": 0.03527500000000001,
+      "C_stealth": 0.4007749999999998,
+      "yield_direct": 0.007558928571428572,
+      "yield_stealth": 0.047234196428571414
+    },
+    {
+      "wariness": 0.44,
+      "C_direct": 0.02465,
+      "C_stealth": 0.39864999999999984,
+      "yield_direct": 0.005282142857142857,
+      "yield_stealth": 0.046983749999999984
+    },
+    {
+      "wariness": 0.45,
+      "C_direct": 0.014024999999999989,
+      "C_stealth": 0.39652499999999985,
+      "yield_direct": 0.0030053571428571403,
+      "yield_stealth": 0.04673330357142856
+    },
+    {
+      "wariness": 0.46,
+      "C_direct": 0.0033999999999999794,
+      "C_stealth": 0.3943999999999998,
+      "yield_direct": 0.0007285714285714241,
+      "yield_stealth": 0.046482857142857124
+    },
+    {
+      "wariness": 0.47,
+      "C_direct": 0.0,
+      "C_stealth": 0.3922749999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.046232410714285695
+    },
+    {
+      "wariness": 0.48,
+      "C_direct": 0.0,
+      "C_stealth": 0.39014999999999983,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04598196428571427
+    },
+    {
+      "wariness": 0.49,
+      "C_direct": 0.0,
+      "C_stealth": 0.38802499999999984,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04573151785714284
+    },
+    {
+      "wariness": 0.5,
+      "C_direct": 0.0,
+      "C_stealth": 0.3858999999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04548107142857141
+    },
+    {
+      "wariness": 0.51,
+      "C_direct": 0.0,
+      "C_stealth": 0.3837749999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04523062499999998
+    },
+    {
+      "wariness": 0.52,
+      "C_direct": 0.0,
+      "C_stealth": 0.3816499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04498017857142855
+    },
+    {
+      "wariness": 0.53,
+      "C_direct": 0.0,
+      "C_stealth": 0.37952499999999983,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04472973214285713
+    },
+    {
+      "wariness": 0.54,
+      "C_direct": 0.0,
+      "C_stealth": 0.3773999999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04447928571428569
+    },
+    {
+      "wariness": 0.55,
+      "C_direct": 0.0,
+      "C_stealth": 0.3752749999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.044228839285714264
+    },
+    {
+      "wariness": 0.56,
+      "C_direct": 0.0,
+      "C_stealth": 0.3731499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04397839285714284
+    },
+    {
+      "wariness": 0.57,
+      "C_direct": 0.0,
+      "C_stealth": 0.37102500000000005,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04372794642857144
+    },
+    {
+      "wariness": 0.58,
+      "C_direct": 0.0,
+      "C_stealth": 0.3688999999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04347749999999998
+    },
+    {
+      "wariness": 0.59,
+      "C_direct": 0.0,
+      "C_stealth": 0.366775,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04322705357142858
+    },
+    {
+      "wariness": 0.6,
+      "C_direct": 0.0,
+      "C_stealth": 0.3646499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04297660714285712
+    },
+    {
+      "wariness": 0.61,
+      "C_direct": 0.0,
+      "C_stealth": 0.36252500000000004,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04272616071428572
+    },
+    {
+      "wariness": 0.62,
+      "C_direct": 0.0,
+      "C_stealth": 0.3603999999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04247571428571426
+    },
+    {
+      "wariness": 0.63,
+      "C_direct": 0.0,
+      "C_stealth": 0.358275,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04222526785714286
+    },
+    {
+      "wariness": 0.64,
+      "C_direct": 0.0,
+      "C_stealth": 0.3561499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04197482142857141
+    },
+    {
+      "wariness": 0.65,
+      "C_direct": 0.0,
+      "C_stealth": 0.35402500000000003,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04172437500000001
+    },
+    {
+      "wariness": 0.66,
+      "C_direct": 0.0,
+      "C_stealth": 0.35189999999999977,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04147392857142855
+    },
+    {
+      "wariness": 0.67,
+      "C_direct": 0.0,
+      "C_stealth": 0.349775,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04122348214285715
+    },
+    {
+      "wariness": 0.68,
+      "C_direct": 0.0,
+      "C_stealth": 0.3476499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04097303571428569
+    },
+    {
+      "wariness": 0.69,
+      "C_direct": 0.0,
+      "C_stealth": 0.345525,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.040722589285714296
+    },
+    {
+      "wariness": 0.7,
+      "C_direct": 0.0,
+      "C_stealth": 0.34340000000000004,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.040472142857142866
+    },
+    {
+      "wariness": 0.71,
+      "C_direct": 0.0,
+      "C_stealth": 0.341275,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.04022169642857143
+    },
+    {
+      "wariness": 0.72,
+      "C_direct": 0.0,
+      "C_stealth": 0.33915,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03997125000000001
+    },
+    {
+      "wariness": 0.73,
+      "C_direct": 0.0,
+      "C_stealth": 0.337025,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03972080357142858
+    },
+    {
+      "wariness": 0.74,
+      "C_direct": 0.0,
+      "C_stealth": 0.33490000000000003,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03947035714285715
+    },
+    {
+      "wariness": 0.75,
+      "C_direct": 0.0,
+      "C_stealth": 0.332775,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03921991071428572
+    },
+    {
+      "wariness": 0.76,
+      "C_direct": 0.0,
+      "C_stealth": 0.3306499999999998,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03896946428571426
+    },
+    {
+      "wariness": 0.77,
+      "C_direct": 0.0,
+      "C_stealth": 0.328525,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.038719017857142865
+    },
+    {
+      "wariness": 0.78,
+      "C_direct": 0.0,
+      "C_stealth": 0.32639999999999975,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.0384685714285714
+    },
+    {
+      "wariness": 0.79,
+      "C_direct": 0.0,
+      "C_stealth": 0.324275,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.038218125
+    },
+    {
+      "wariness": 0.8,
+      "C_direct": 0.0,
+      "C_stealth": 0.32214999999999977,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03796767857142855
+    },
+    {
+      "wariness": 0.81,
+      "C_direct": 0.0,
+      "C_stealth": 0.320025,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.037717232142857146
+    },
+    {
+      "wariness": 0.82,
+      "C_direct": 0.0,
+      "C_stealth": 0.3179,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.037466785714285716
+    },
+    {
+      "wariness": 0.83,
+      "C_direct": 0.0,
+      "C_stealth": 0.315775,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03721633928571429
+    },
+    {
+      "wariness": 0.84,
+      "C_direct": 0.0,
+      "C_stealth": 0.31365,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03696589285714286
+    },
+    {
+      "wariness": 0.85,
+      "C_direct": 0.0,
+      "C_stealth": 0.311525,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.036715446428571434
+    },
+    {
+      "wariness": 0.86,
+      "C_direct": 0.0,
+      "C_stealth": 0.3094,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.036465000000000004
+    },
+    {
+      "wariness": 0.87,
+      "C_direct": 0.0,
+      "C_stealth": 0.30727499999999996,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03621455357142857
+    },
+    {
+      "wariness": 0.88,
+      "C_direct": 0.0,
+      "C_stealth": 0.30515,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.035964107142857145
+    },
+    {
+      "wariness": 0.89,
+      "C_direct": 0.0,
+      "C_stealth": 0.303025,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.035713660714285715
+    },
+    {
+      "wariness": 0.9,
+      "C_direct": 0.0,
+      "C_stealth": 0.3009,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03546321428571429
+    },
+    {
+      "wariness": 0.91,
+      "C_direct": 0.0,
+      "C_stealth": 0.29877499999999996,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.035212767857142856
+    },
+    {
+      "wariness": 0.92,
+      "C_direct": 0.0,
+      "C_stealth": 0.29664999999999997,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.034962321428571426
+    },
+    {
+      "wariness": 0.93,
+      "C_direct": 0.0,
+      "C_stealth": 0.294525,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.034711875
+    },
+    {
+      "wariness": 0.94,
+      "C_direct": 0.0,
+      "C_stealth": 0.2924,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03446142857142857
+    },
+    {
+      "wariness": 0.95,
+      "C_direct": 0.0,
+      "C_stealth": 0.29027499999999995,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.034210982142857144
+    },
+    {
+      "wariness": 0.96,
+      "C_direct": 0.0,
+      "C_stealth": 0.28814999999999996,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.033960535714285714
+    },
+    {
+      "wariness": 0.97,
+      "C_direct": 0.0,
+      "C_stealth": 0.286025,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.033710089285714284
+    },
+    {
+      "wariness": 0.98,
+      "C_direct": 0.0,
+      "C_stealth": 0.2839,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.03345964285714286
+    },
+    {
+      "wariness": 0.99,
+      "C_direct": 0.0,
+      "C_stealth": 0.28177499999999994,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.033209196428571425
+    },
+    {
+      "wariness": 1.0,
+      "C_direct": 0.0,
+      "C_stealth": 0.27964999999999995,
+      "yield_direct": 0.0,
+      "yield_stealth": 0.032958749999999995
+    }
+  ],
+  "cue_crossover_wariness": 0.24,
+  "saturation": {
+    "total": 4641,
+    "zero": 3110,
+    "one": 269,
+    "saturated_share": 0.7280758457229045,
+    "interior_share": 0.2719241542770955
+  },
+  "protocol": {
+    "resolved_zero": {
+      "status": "Resolved",
+      "C": 0.0
+    },
+    "unknown": {
+      "status": "ResolutionIncomplete",
+      "C": null
+    },
+    "not_configured": {
+      "status": "ResolutionIncomplete",
+      "C": null
+    },
+    "reject": {
+      "status": "Reject",
+      "C": 0.0
+    },
+    "invalid": {
+      "status": "InvalidInput",
+      "C": null
+    },
+    "mixed_unknown_branch": {
+      "status": "Resolved",
+      "C": 0.63125,
+      "skipped": {
+        "crayfish": "Unknown"
+      }
+    },
+    "missing_trigger": {
+      "status": "ResolutionIncomplete",
+      "C": null
+    },
+    "missing_support_sibling": {
+      "status": "Resolved",
+      "C": 0.63125,
+      "skipped": {
+        "crayfish": "Unknown"
+      }
+    }
+  },
+  "dominance": {
+    "A_diet": {
+      "specialist": [
+        "A1_no_shift"
+      ],
+      "generalist": [
+        "A2_shift_to_crayfish"
+      ]
+    },
+    "B_activity_speed": {
+      "slow_q0.45": [
+        "B1_low_activity",
+        "B2_high_activity"
+      ]
+    },
+    "C_motivation_reaction": {
+      "reaction_twitch_q0.60": [
+        "C1_low_motivation"
+      ],
+      "natural_q0.60": [
+        "C2_high_motivation"
+      ]
+    },
+    "D_wariness_stealth": {
+      "direct": [
+        "D1_low_wariness",
+        "D2_high_wariness"
+      ]
+    }
+  },
+  "reaction_support_scan": [
+    {
+      "support": 0.2,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.05579999999999996,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.15579999999999997
+    },
+    {
+      "support": 0.21,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.05858999999999996,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.16358999999999999
+    },
+    {
+      "support": 0.22,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.061379999999999955,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.17137999999999995
+    },
+    {
+      "support": 0.23,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.06416999999999996,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.17916999999999997
+    },
+    {
+      "support": 0.24,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.06695999999999996,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.18695999999999996
+    },
+    {
+      "support": 0.25,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.06974999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.19474999999999995
+    },
+    {
+      "support": 0.26,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.07253999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.20253999999999994
+    },
+    {
+      "support": 0.27,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.07532999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.21032999999999996
+    },
+    {
+      "support": 0.28,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.07811999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.21811999999999995
+    },
+    {
+      "support": 0.29,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.08090999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.22590999999999997
+    },
+    {
+      "support": 0.3,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.08369999999999995,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.23369999999999996
+    },
+    {
+      "support": 0.31,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.08648999999999994,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.24148999999999993
+    },
+    {
+      "support": 0.32,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.08927999999999994,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.24927999999999995
+    },
+    {
+      "support": 0.33,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.09206999999999994,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.25706999999999997
+    },
+    {
+      "support": 0.34,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.09485999999999994,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.26485999999999993
+    },
+    {
+      "support": 0.35,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.09764999999999993,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.2726499999999999
+    },
+    {
+      "support": 0.36,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.10043999999999993,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.2804399999999999
+    },
+    {
+      "support": 0.37,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.10322999999999993,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.28822999999999993
+    },
+    {
+      "support": 0.38,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.10601999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.29601999999999995
+    },
+    {
+      "support": 0.39,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.10880999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3038099999999999
+    },
+    {
+      "support": 0.4,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.11159999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.31159999999999993
+    },
+    {
+      "support": 0.41,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.11438999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.31938999999999995
+    },
+    {
+      "support": 0.42,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.11717999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.32717999999999997
+    },
+    {
+      "support": 0.43,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.11996999999999992,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.33496999999999993
+    },
+    {
+      "support": 0.44,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.12275999999999991,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3427599999999999
+    },
+    {
+      "support": 0.45,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1255499999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3505499999999999
+    },
+    {
+      "support": 0.46,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.12833999999999993,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.35833999999999994
+    },
+    {
+      "support": 0.47,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1311299999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.36612999999999996
+    },
+    {
+      "support": 0.48,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.13391999999999993,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3739199999999999
+    },
+    {
+      "support": 0.49,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.13670999999999991,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3817099999999999
+    },
+    {
+      "support": 0.5,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1394999999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3894999999999999
+    },
+    {
+      "support": 0.51,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1422899999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.3972899999999999
+    },
+    {
+      "support": 0.52,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1450799999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4050799999999999
+    },
+    {
+      "support": 0.53,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1478699999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4128699999999999
+    },
+    {
+      "support": 0.54,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1506599999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4206599999999999
+    },
+    {
+      "support": 0.55,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1534499999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.42844999999999994
+    },
+    {
+      "support": 0.56,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1562399999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4362399999999999
+    },
+    {
+      "support": 0.57,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1590299999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4440299999999999
+    },
+    {
+      "support": 0.58,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1618199999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.45181999999999994
+    },
+    {
+      "support": 0.59,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1646099999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.45960999999999996
+    },
+    {
+      "support": 0.6,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1673999999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4673999999999999
+    },
+    {
+      "support": 0.61,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1701899999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.47518999999999995
+    },
+    {
+      "support": 0.62,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.17297999999999988,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.48297999999999985
+    },
+    {
+      "support": 0.63,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.17576999999999987,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4907699999999999
+    },
+    {
+      "support": 0.64,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.17855999999999989,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.4985599999999999
+    },
+    {
+      "support": 0.65,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.18134999999999987,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5063499999999999
+    },
+    {
+      "support": 0.66,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.1841399999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5141399999999999
+    },
+    {
+      "support": 0.67,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.18692999999999987,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5219299999999999
+    },
+    {
+      "support": 0.68,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.18971999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5297199999999999
+    },
+    {
+      "support": 0.69,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.19250999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5375099999999998
+    },
+    {
+      "support": 0.7,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.19529999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5452999999999998
+    },
+    {
+      "support": 0.71,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.19808999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5530899999999999
+    },
+    {
+      "support": 0.72,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.20087999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5608799999999998
+    },
+    {
+      "support": 0.73,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.20366999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5686699999999999
+    },
+    {
+      "support": 0.74,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.20645999999999987,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5764599999999999
+    },
+    {
+      "support": 0.75,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.20924999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5842499999999998
+    },
+    {
+      "support": 0.76,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.21203999999999984,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5920399999999999
+    },
+    {
+      "support": 0.77,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.21482999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.5998299999999999
+    },
+    {
+      "support": 0.78,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.21761999999999984,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6076199999999998
+    },
+    {
+      "support": 0.79,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.22040999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6154099999999999
+    },
+    {
+      "support": 0.8,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.22319999999999984,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6231999999999999
+    },
+    {
+      "support": 0.81,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.22598999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6309899999999998
+    },
+    {
+      "support": 0.82,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.22877999999999984,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6387799999999999
+    },
+    {
+      "support": 0.83,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.23156999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6465699999999999
+    },
+    {
+      "support": 0.84,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.23435999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6543599999999999
+    },
+    {
+      "support": 0.85,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.23714999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6621499999999999
+    },
+    {
+      "support": 0.86,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.23993999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6699399999999999
+    },
+    {
+      "support": 0.87,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.24272999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6777299999999999
+    },
+    {
+      "support": 0.88,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.24551999999999985,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6855199999999999
+    },
+    {
+      "support": 0.89,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.24830999999999986,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.6933099999999999
+    },
+    {
+      "support": 0.9,
+      "natural_low": 0.07109999999999966,
+      "reaction_low": 0.2510999999999999,
+      "natural_high": 0.5210999999999997,
+      "reaction_high": 0.7011
+    }
+  ],
+  "reaction_flip_grid": [
+    {
+      "support": 0.5,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.10199999999999987,
+      "reaction_high": 0.35199999999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.05390624999999982,
+      "reaction_high": 0.3039062499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.11449999999999988,
+      "reaction_high": 0.3644999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.06640624999999983,
+      "reaction_high": 0.31640624999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.12699999999999975,
+      "reaction_high": 0.3769999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.07890624999999984,
+      "reaction_high": 0.32890624999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.1394999999999999,
+      "reaction_high": 0.3894999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.09140624999999986,
+      "reaction_high": 0.34140624999999986,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.15199999999999977,
+      "reaction_high": 0.40199999999999975,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.5,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.10390624999999987,
+      "reaction_high": 0.35390624999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.11219999999999987,
+      "reaction_high": 0.3871999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.05929687499999981,
+      "reaction_high": 0.3342968749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.12594999999999987,
+      "reaction_high": 0.4009499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.07304687499999982,
+      "reaction_high": 0.34804687499999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.13969999999999974,
+      "reaction_high": 0.41469999999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.08679687499999984,
+      "reaction_high": 0.36179687499999985,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.1534499999999999,
+      "reaction_high": 0.42844999999999994,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.10054687499999986,
+      "reaction_high": 0.3755468749999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.16719999999999977,
+      "reaction_high": 0.44219999999999976,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.55,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.11429687499999987,
+      "reaction_high": 0.3892968749999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.12239999999999984,
+      "reaction_high": 0.42239999999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.06468749999999979,
+      "reaction_high": 0.3646874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.13739999999999986,
+      "reaction_high": 0.43739999999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.0796874999999998,
+      "reaction_high": 0.3796874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.1523999999999997,
+      "reaction_high": 0.45239999999999964,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.09468749999999981,
+      "reaction_high": 0.3946874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.16739999999999988,
+      "reaction_high": 0.46739999999999987,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.10968749999999983,
+      "reaction_high": 0.4096874999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.18239999999999973,
+      "reaction_high": 0.48239999999999966,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.6,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.12468749999999984,
+      "reaction_high": 0.42468749999999983,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.13259999999999983,
+      "reaction_high": 0.45759999999999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.07007812499999977,
+      "reaction_high": 0.3950781249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.14884999999999984,
+      "reaction_high": 0.4738499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.08632812499999978,
+      "reaction_high": 0.4113281249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.1650999999999997,
+      "reaction_high": 0.49009999999999965,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.1025781249999998,
+      "reaction_high": 0.4275781249999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.18134999999999987,
+      "reaction_high": 0.5063499999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.11882812499999981,
+      "reaction_high": 0.44382812499999985,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.19759999999999972,
+      "reaction_high": 0.5225999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.65,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.13507812499999983,
+      "reaction_high": 0.46007812499999984,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.14279999999999982,
+      "reaction_high": 0.4927999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.07546874999999975,
+      "reaction_high": 0.42546874999999973,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.16029999999999983,
+      "reaction_high": 0.5102999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.09296874999999977,
+      "reaction_high": 0.44296874999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.17779999999999965,
+      "reaction_high": 0.5277999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.11046874999999977,
+      "reaction_high": 0.46046874999999976,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.19529999999999986,
+      "reaction_high": 0.5452999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.1279687499999998,
+      "reaction_high": 0.4779687499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.21279999999999968,
+      "reaction_high": 0.5627999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.7,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1454687499999998,
+      "reaction_high": 0.4954687499999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.1529999999999998,
+      "reaction_high": 0.5279999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.08085937499999973,
+      "reaction_high": 0.45585937499999973,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.17174999999999982,
+      "reaction_high": 0.5467499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.09960937499999975,
+      "reaction_high": 0.4746093749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.19049999999999961,
+      "reaction_high": 0.5654999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.11835937499999977,
+      "reaction_high": 0.49335937499999977,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.20924999999999985,
+      "reaction_high": 0.5842499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.13710937499999978,
+      "reaction_high": 0.5121093749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.22799999999999965,
+      "reaction_high": 0.6029999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.75,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1558593749999998,
+      "reaction_high": 0.5308593749999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.5,
+      "q": 0.6,
+      "reaction_low": 0.1631999999999998,
+      "reaction_high": 0.5631999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.5,
+      "q": 0.75,
+      "reaction_low": 0.08624999999999972,
+      "reaction_high": 0.48624999999999974,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.6,
+      "q": 0.6,
+      "reaction_low": 0.1831999999999998,
+      "reaction_high": 0.5831999999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.6,
+      "q": 0.75,
+      "reaction_low": 0.10624999999999973,
+      "reaction_high": 0.5062499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": true
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.7,
+      "q": 0.6,
+      "reaction_low": 0.2031999999999996,
+      "reaction_high": 0.6031999999999996,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.7,
+      "q": 0.75,
+      "reaction_low": 0.12624999999999975,
+      "reaction_high": 0.5262499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.8,
+      "q": 0.6,
+      "reaction_low": 0.22319999999999984,
+      "reaction_high": 0.6231999999999999,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.8,
+      "q": 0.75,
+      "reaction_low": 0.14624999999999977,
+      "reaction_high": 0.5462499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.9,
+      "q": 0.6,
+      "reaction_low": 0.24319999999999964,
+      "reaction_high": 0.6431999999999997,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    },
+    {
+      "support": 0.8,
+      "trigger": 0.9,
+      "q": 0.75,
+      "reaction_low": 0.1662499999999998,
+      "reaction_high": 0.5662499999999998,
+      "natural_low": 0.07109999999999966,
+      "natural_high": 0.5210999999999997,
+      "flip": false
+    }
+  ],
+  "reaction_flip_share": 0.6714285714285714,
+  "diet_boundary_sensitivity": [
+    [
+      0.55,
+      0.85,
+      0.2617
+    ],
+    [
+      0.55,
+      0.92,
+      0.27
+    ],
+    [
+      0.55,
+      0.97,
+      0.2755
+    ],
+    [
+      0.65,
+      0.85,
+      0.2438
+    ],
+    [
+      0.65,
+      0.92,
+      0.2524
+    ],
+    [
+      0.65,
+      0.97,
+      0.258
+    ],
+    [
+      0.75,
+      0.85,
+      0.2281
+    ],
+    [
+      0.75,
+      0.92,
+      0.2368
+    ],
+    [
+      0.75,
+      0.97,
+      0.2426
+    ]
+  ],
+  "size_scan": [
+    {
+      "size_adjustment": -0.2,
+      "generalist": 0.0,
+      "specialist": 0.0
+    },
+    {
+      "size_adjustment": -0.18,
+      "generalist": 0.0,
+      "specialist": 0.0
+    },
+    {
+      "size_adjustment": -0.16,
+      "generalist": 0.0,
+      "specialist": 0.0
+    },
+    {
+      "size_adjustment": -0.14,
+      "generalist": 0.020312500000000018,
+      "specialist": 0.028750000000000026
+    },
+    {
+      "size_adjustment": -0.12,
+      "generalist": 0.05281250000000005,
+      "specialist": 0.07475000000000007
+    },
+    {
+      "size_adjustment": -0.1,
+      "generalist": 0.08531250000000008,
+      "specialist": 0.12075000000000011
+    },
+    {
+      "size_adjustment": -0.08,
+      "generalist": 0.11781250000000011,
+      "specialist": 0.16675000000000015
+    },
+    {
+      "size_adjustment": -0.06,
+      "generalist": 0.15031250000000013,
+      "specialist": 0.2127500000000002
+    },
+    {
+      "size_adjustment": -0.04,
+      "generalist": 0.18281249999999996,
+      "specialist": 0.25875
+    },
+    {
+      "size_adjustment": -0.02,
+      "generalist": 0.2153125,
+      "specialist": 0.30475
+    },
+    {
+      "size_adjustment": 0.0,
+      "generalist": 0.24781250000000002,
+      "specialist": 0.35075000000000006
+    },
+    {
+      "size_adjustment": 0.02,
+      "generalist": 0.2803125000000001,
+      "specialist": 0.3967500000000001
+    },
+    {
+      "size_adjustment": 0.04,
+      "generalist": 0.3128124999999999,
+      "specialist": 0.44274999999999987
+    },
+    {
+      "size_adjustment": 0.06,
+      "generalist": 0.34531249999999997,
+      "specialist": 0.4887499999999999
+    },
+    {
+      "size_adjustment": 0.08,
+      "generalist": 0.3778125,
+      "specialist": 0.53475
+    },
+    {
+      "size_adjustment": 0.1,
+      "generalist": 0.4103125,
+      "specialist": 0.58075
+    },
+    {
+      "size_adjustment": 0.12,
+      "generalist": 0.44281250000000005,
+      "specialist": 0.62675
+    },
+    {
+      "size_adjustment": 0.14,
+      "generalist": 0.4753125000000001,
+      "specialist": 0.6727500000000001
+    },
+    {
+      "size_adjustment": 0.16,
+      "generalist": 0.5078125000000001,
+      "specialist": 0.7187500000000001
+    },
+    {
+      "size_adjustment": 0.18,
+      "generalist": 0.5403125000000001,
+      "specialist": 0.7647500000000002
+    },
+    {
+      "size_adjustment": 0.2,
+      "generalist": 0.5728125000000002,
+      "specialist": 0.8107500000000002
+    }
+  ]
+}

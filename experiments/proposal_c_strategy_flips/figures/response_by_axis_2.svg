@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="474" font-family="PingFang SC, Noto Sans SC, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="24" font-size="15" fill="#1e2328">Response C by strategy (axis C and D)</text>
+<text x="24" y="58" font-size="12" font-weight="600" fill="#1e2328">C1_low_motivation</text>
+<rect x="170" y="76" width="37.0" height="18" fill="#0f6b63" opacity="0.88"/>
+<text x="162" y="89" font-size="11" text-anchor="end" fill="#5b6470">natural_q0.60</text>
+<text x="213.0" y="89" font-size="11" fill="#1e2328">0.071</text>
+<rect x="170" y="100" width="94.3" height="18" fill="#a85a12" opacity="0.88"/>
+<text x="162" y="113" font-size="11" text-anchor="end" fill="#5b6470">reaction_twitch_q0.60</text>
+<text x="270.3" y="113" font-size="11" fill="#1e2328">0.181</text>
+<rect x="170" y="124" width="61.8" height="18" fill="#7a4e9b" opacity="0.88"/>
+<text x="162" y="137" font-size="11" text-anchor="end" fill="#5b6470">reaction_burst_q0.75</text>
+<text x="237.8" y="137" font-size="11" fill="#1e2328">0.119</text>
+<text x="24" y="176" font-size="12" font-weight="600" fill="#1e2328">C2_high_motivation</text>
+<rect x="170" y="194" width="271.0" height="18" fill="#0f6b63" opacity="0.88"/>
+<text x="162" y="207" font-size="11" text-anchor="end" fill="#5b6470">natural_q0.60</text>
+<text x="447.0" y="207" font-size="11" fill="#1e2328">0.521</text>
+<rect x="170" y="218" width="263.3" height="18" fill="#a85a12" opacity="0.88"/>
+<text x="162" y="231" font-size="11" text-anchor="end" fill="#5b6470">reaction_twitch_q0.60</text>
+<text x="439.3" y="231" font-size="11" fill="#1e2328">0.506</text>
+<rect x="170" y="242" width="230.8" height="18" fill="#7a4e9b" opacity="0.88"/>
+<text x="162" y="255" font-size="11" text-anchor="end" fill="#5b6470">reaction_burst_q0.75</text>
+<text x="406.8" y="255" font-size="11" fill="#1e2328">0.444</text>
+<text x="24" y="294" font-size="12" font-weight="600" fill="#1e2328">D1_low_wariness</text>
+<rect x="170" y="312" width="255.9" height="18" fill="#0f6b63" opacity="0.88"/>
+<text x="162" y="325" font-size="11" text-anchor="end" fill="#5b6470">direct</text>
+<text x="431.9" y="325" font-size="11" fill="#1e2328">0.492</text>
+<rect x="170" y="336" width="255.9" height="18" fill="#a85a12" opacity="0.88"/>
+<text x="162" y="349" font-size="11" text-anchor="end" fill="#5b6470">stealth</text>
+<text x="431.9" y="349" font-size="11" fill="#1e2328">0.492</text>
+<text x="24" y="388" font-size="12" font-weight="600" fill="#1e2328">D2_high_wariness</text>
+<rect x="170" y="406" width="255.9" height="18" fill="#0f6b63" opacity="0.88"/>
+<text x="162" y="419" font-size="11" text-anchor="end" fill="#5b6470">direct</text>
+<text x="431.9" y="419" font-size="11" fill="#1e2328">0.492</text>
+<rect x="170" y="430" width="255.9" height="18" fill="#a85a12" opacity="0.88"/>
+<text x="162" y="443" font-size="11" text-anchor="end" fill="#5b6470">stealth</text>
+<text x="431.9" y="443" font-size="11" fill="#1e2328">0.492</text>
+<line x1="170" y1="46" x2="170" y2="454" stroke="#1e2328" stroke-width="1"/>
+<text x="170" y="468" font-size="10" fill="#5b6470">0</text>
+<text x="690" y="468" font-size="10" text-anchor="end" fill="#5b6470">1.0</text>
+</svg>
