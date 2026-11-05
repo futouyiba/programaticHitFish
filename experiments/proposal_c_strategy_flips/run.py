@@ -41,6 +41,7 @@ def make_strategy(spec: dict, shared: dict) -> Strategy:
         name=spec["name"],
         supports=dict(spec["supports"]),
         base_affinity=dict(shared["base_affinity"]),
+        siblings=list(spec.get("siblings", [])),
         q=spec.get("q", 0.50),
         trigger_strength=dict(spec.get("trigger_strength", shared.get("trigger_strength", {}))),
         size_adjustment=shared.get("size_adjustment", 0.0),
@@ -603,8 +604,9 @@ def main():
     assert abs(cov["coverage_ratio_needed"] - 2.7243) < 0.02
     assert abs(sat["saturated_share"] - 0.7281) < 0.002
     assert abs(cue_cross - 0.24) < 0.02
-    assert all(v is not None for _, _, v in diet_sensitivity)
-    assert 0.0 < reaction_flip_share < 1.0
+    diet_hits = [v for _, _, v in diet_sensitivity]
+    assert len(diet_hits) == 9 and all(v is not None for v in diet_hits)
+    assert abs(reaction_flip_share - 47 / 70) < 1e-12
     # Slow beats fast at Response level at both activities.
     b1 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B1_low_activity")}
     b2 = {r["strategy"]: r for r in rank(rows, "B_activity_speed", "B2_high_activity")}
