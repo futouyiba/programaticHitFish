@@ -592,20 +592,28 @@ def _rel_gap(a, b):
 
 
 def _runs(points, key, threshold=0.40):
-    """Contiguous parameter intervals where the relative gap is perceptible."""
+    """Contiguous parameter intervals where the relative gap is perceptible.
+
+    Each run carries the winner at its start, so a window cannot be reported
+    without saying who is ahead on the metric that defined the window.
+    """
     runs = []
     start = None
+    winner = None
+    prev_x = None
     for p in points:
         g = p[key]
         ok = g is not None and g >= threshold
         if ok and start is None:
             start = p["x"]
+            winner = p["winner"]
         if not ok and start is not None:
-            runs.append([start, prev_x])
+            runs.append([start, prev_x, winner])
             start = None
+            winner = None
         prev_x = p["x"]
     if start is not None:
-        runs.append([start, prev_x])
+        runs.append([start, prev_x, winner])
     return runs
 
 
@@ -619,7 +627,8 @@ def perceptibility_windows():
         fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
                              diet_shift={"baitfish": -shift, "crayfish": shift})
         vals = [response(st, fish)[1] for st in strategies]
-        diet_rows.append({"x": round(shift, 2), "gap": _rel_gap(vals[0], vals[1])})
+        diet_rows.append({"x": round(shift, 2), "gap": _rel_gap(vals[0], vals[1]),
+                          "winner": "generalist" if vals[0] > vals[1] else "specialist"})
 
     reaction_rows = []
     axis = FIXTURES["axes"]["C_motivation_reaction"]
@@ -632,7 +641,8 @@ def perceptibility_windows():
                              diet_shift={"baitfish": 0.0})
         n = response(natural, fish)[1]
         r = response(reaction, fish)[1]
-        reaction_rows.append({"x": m, "gap": _rel_gap(n, r)})
+        reaction_rows.append({"x": m, "gap": _rel_gap(n, r),
+                              "winner": "natural" if n > r else "reaction"})
 
     stealth_rows = []
     axis = FIXTURES["axes"]["D_wariness_stealth"]
@@ -643,17 +653,20 @@ def perceptibility_windows():
         w = i / 100
         fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
                              diet_shift={"baitfish": 0.0})
-        d = response(Strategy(name="d", supports={"baitfish": 0.85},
-                              base_affinity=dict(shared["base_affinity"]), q=0.60,
-                              trigger_strength={"baitfish": 0.0},
-                              coverage=direct["coverage"],
-                              suspicion_load=stealth.rig_suspicion(direct)), fish)[1]
-        s = response(Strategy(name="s", supports={"baitfish": 0.85},
-                              base_affinity=dict(shared["base_affinity"]), q=0.60,
-                              trigger_strength={"baitfish": 0.0},
-                              coverage=thin["coverage"],
-                              suspicion_load=stealth.rig_suspicion(thin)), fish)[1]
-        stealth_rows.append({"x": w, "gap": _rel_gap(d, s)})
+        _, dc, _, _ = response(Strategy(name="d", supports={"baitfish": 0.85},
+                                        base_affinity=dict(shared["base_affinity"]), q=0.60,
+                                        trigger_strength={"baitfish": 0.0},
+                                        coverage=direct["coverage"],
+                                        suspicion_load=stealth.rig_suspicion(direct)), fish)
+        _, sc, _, _ = response(Strategy(name="s", supports={"baitfish": 0.85},
+                                        base_affinity=dict(shared["base_affinity"]), q=0.60,
+                                        trigger_strength={"baitfish": 0.0},
+                                        coverage=thin["coverage"],
+                                        suspicion_load=stealth.rig_suspicion(thin)), fish)
+        dy = toy_yield(dc, 0.60, direct["coverage"])
+        sy = toy_yield(sc, 0.60, thin["coverage"])
+        stealth_rows.append({"x": w, "gap": _rel_gap(dy, sy),
+                             "winner": "direct" if dy > sy else "thin"})
     return {
         "threshold": 0.40,
         "diet": diet_rows, "diet_runs": _runs(diet_rows, "gap"),
@@ -924,8 +937,16 @@ def main():
     assert abs(windows["diet_runs"][0][1] - 0.21) < 0.011
     assert abs(windows["diet_runs"][1][0] - 0.29) < 0.011
     assert abs(windows["reaction_runs"][0][1] - 0.33) < 0.011
-    assert abs(windows["stealth_runs"][0][0] - 0.36) < 0.011
-    assert abs(windows["stealth_runs"][0][1] - 0.86) < 0.011
+    assert len(windows["stealth_runs"]) == 2
+    assert windows["stealth_runs"][0][0] == 0.0
+    assert abs(windows["stealth_runs"][0][1] - 0.31) < 0.011
+    assert windows["stealth_runs"][0][2] == "direct"
+    assert abs(windows["stealth_runs"][1][0] - 0.52) < 0.011
+    assert abs(windows["stealth_runs"][1][1] - 0.86) < 0.011
+    assert windows["stealth_runs"][1][2] == "thin"
+    assert windows["diet_runs"][0][2] == "specialist"
+    assert windows["diet_runs"][1][2] == "generalist"
+    assert windows["reaction_runs"][0][2] == "reaction"
     assert stealth.color_contrast("Clear") == 0.0
     assert stealth.color_contrast("GGGGGG") == 0.5
     assert stealth.color_contrast("FFFF80") > 0.0
