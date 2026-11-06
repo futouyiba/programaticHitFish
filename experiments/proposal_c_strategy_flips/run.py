@@ -934,8 +934,12 @@ def main():
     assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
     assert abs(constraint["flip_share"] - 0.157) < 0.002
     assert len(windows["diet_runs"]) == 2
+    assert windows["diet_runs"][0][0] == -1.0
     assert abs(windows["diet_runs"][0][1] - 0.21) < 0.011
     assert abs(windows["diet_runs"][1][0] - 0.29) < 0.011
+    assert windows["diet_runs"][1][1] == 1.0
+    assert len(windows["reaction_runs"]) == 1
+    assert windows["reaction_runs"][0][0] == 0.0
     assert abs(windows["reaction_runs"][0][1] - 0.33) < 0.011
     assert len(windows["stealth_runs"]) == 2
     assert windows["stealth_runs"][0][0] == 0.0
