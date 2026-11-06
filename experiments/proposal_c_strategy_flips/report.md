@@ -202,7 +202,7 @@ margin = food + trigger − ReactionCost − closing − risk − threshold
 
 **可证伪条件**：在预注册的 support × M × q × trigger 网格上，如果低动机且反应 support 明显低于
 自然时反应仍系统性胜出，或 `λ=0.20` 让自然 margin 低于 −0.01 的案例也无法跨线，则该约束失败。
-这一条是 Candidate 提案，需 Owner 批准后才进入 Contract。
+Owner 2026-11-06 已批准把这条写入 Proposal C 的 Candidate 规则；仍未升 Production，`λ=0.20` 仍是 probe 值而非标定值。
 
 ### 3.4 直接 vs 隐蔽：用 tackle.xlsx 样例重建
 
