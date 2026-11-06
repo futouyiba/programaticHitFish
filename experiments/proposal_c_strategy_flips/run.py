@@ -584,6 +584,97 @@ def search_session_sweep():
             "total_time": total, "slow_per_grain": y_slow, "fast_per_grain": y_fast}
 
 
+def _rel_gap(a, b):
+    lo = min(a, b)
+    if lo <= 0:
+        return float("inf") if max(a, b) > 0 else 0.0
+    return abs(a - b) / lo
+
+
+def _runs(points, key, threshold=0.40):
+    """Contiguous parameter intervals where the relative gap is perceptible.
+
+    Each run carries the winner at its start, so a window cannot be reported
+    without saying who is ahead on the metric that defined the window.
+    """
+    runs = []
+    start = None
+    winner = None
+    prev_x = None
+    for p in points:
+        g = p[key]
+        ok = g is not None and g >= threshold
+        if ok and start is None:
+            start = p["x"]
+            winner = p["winner"]
+        if not ok and start is not None:
+            runs.append([start, prev_x, winner])
+            start = None
+            winner = None
+        prev_x = p["x"]
+    if start is not None:
+        runs.append([start, prev_x, winner])
+    return runs
+
+
+def perceptibility_windows():
+    diet_rows = []
+    axis = FIXTURES["axes"]["A_diet"]
+    shared = axis["shared"]
+    strategies = [make_strategy(sp, shared) for sp in axis["strategies"]]
+    for i in range(201):
+        shift = -1.0 + i * 0.01
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=0.0,
+                             diet_shift={"baitfish": -shift, "crayfish": shift})
+        vals = [response(st, fish)[1] for st in strategies]
+        diet_rows.append({"x": round(shift, 2), "gap": _rel_gap(vals[0], vals[1]),
+                          "winner": "generalist" if vals[0] > vals[1] else "specialist"})
+
+    reaction_rows = []
+    axis = FIXTURES["axes"]["C_motivation_reaction"]
+    shared = axis["shared"]
+    natural = make_strategy(axis["strategies"][0], shared)
+    reaction = make_strategy(axis["strategies"][1], shared)
+    for i in range(101):
+        m = i / 100
+        fish = FishCondition(activity=1.0, motivation=m, wariness=0.0,
+                             diet_shift={"baitfish": 0.0})
+        n = response(natural, fish)[1]
+        r = response(reaction, fish)[1]
+        reaction_rows.append({"x": m, "gap": _rel_gap(n, r),
+                              "winner": "natural" if n > r else "reaction"})
+
+    stealth_rows = []
+    axis = FIXTURES["axes"]["D_wariness_stealth"]
+    shared = axis["shared"]
+    direct = next(r for r in stealth.DATA["rigs"] if r["name"] == "direct_nylon")
+    thin = next(r for r in stealth.DATA["rigs"] if r["name"] == "stealth_thin_fluoro")
+    for i in range(101):
+        w = i / 100
+        fish = FishCondition(activity=1.0, motivation=0.5, wariness=w,
+                             diet_shift={"baitfish": 0.0})
+        _, dc, _, _ = response(Strategy(name="d", supports={"baitfish": 0.85},
+                                        base_affinity=dict(shared["base_affinity"]), q=0.60,
+                                        trigger_strength={"baitfish": 0.0},
+                                        coverage=direct["coverage"],
+                                        suspicion_load=stealth.rig_suspicion(direct)), fish)
+        _, sc, _, _ = response(Strategy(name="s", supports={"baitfish": 0.85},
+                                        base_affinity=dict(shared["base_affinity"]), q=0.60,
+                                        trigger_strength={"baitfish": 0.0},
+                                        coverage=thin["coverage"],
+                                        suspicion_load=stealth.rig_suspicion(thin)), fish)
+        dy = toy_yield(dc, 0.60, direct["coverage"])
+        sy = toy_yield(sc, 0.60, thin["coverage"])
+        stealth_rows.append({"x": w, "gap": _rel_gap(dy, sy),
+                             "winner": "direct" if dy > sy else "thin"})
+    return {
+        "threshold": 0.40,
+        "diet": diet_rows, "diet_runs": _runs(diet_rows, "gap"),
+        "reaction": reaction_rows, "reaction_runs": _runs(reaction_rows, "gap"),
+        "stealth": stealth_rows, "stealth_runs": _runs(stealth_rows, "gap"),
+    }
+
+
 def size_scan():
     """Negative control: size adjustment shifts FoodValue for every strategy alike."""
     axis = FIXTURES["axes"]["A_diet"]
@@ -778,6 +869,7 @@ def main():
     dom = dominance(rows)
     reaction_scan = reaction_support_scan()
     sizes = size_scan()
+    windows = perceptibility_windows()
     reaction_grid, reaction_flip_share = reaction_flip_grid()
     constraint = reaction_constraint_probe()
     stealth_rows = stealth_runs()
@@ -841,6 +933,24 @@ def main():
     assert abs(con[1]["reaction_contribution"] - 0.3926) < 0.001
     assert abs(constraint["low_reaction_win_share"] - 0.20) < 1e-9
     assert abs(constraint["flip_share"] - 0.157) < 0.002
+    assert len(windows["diet_runs"]) == 2
+    assert windows["diet_runs"][0][0] == -1.0
+    assert abs(windows["diet_runs"][0][1] - 0.21) < 0.011
+    assert abs(windows["diet_runs"][1][0] - 0.29) < 0.011
+    assert windows["diet_runs"][1][1] == 1.0
+    assert len(windows["reaction_runs"]) == 1
+    assert windows["reaction_runs"][0][0] == 0.0
+    assert abs(windows["reaction_runs"][0][1] - 0.33) < 0.011
+    assert len(windows["stealth_runs"]) == 2
+    assert windows["stealth_runs"][0][0] == 0.0
+    assert abs(windows["stealth_runs"][0][1] - 0.31) < 0.011
+    assert windows["stealth_runs"][0][2] == "direct"
+    assert abs(windows["stealth_runs"][1][0] - 0.52) < 0.011
+    assert abs(windows["stealth_runs"][1][1] - 0.86) < 0.011
+    assert windows["stealth_runs"][1][2] == "thin"
+    assert windows["diet_runs"][0][2] == "specialist"
+    assert windows["diet_runs"][1][2] == "generalist"
+    assert windows["reaction_runs"][0][2] == "reaction"
     assert stealth.color_contrast("Clear") == 0.0
     assert stealth.color_contrast("GGGGGG") == 0.5
     assert stealth.color_contrast("FFFF80") > 0.0
@@ -890,6 +1000,7 @@ def main():
         "reaction_constraint": constraint,
         "diet_boundary_sensitivity": diet_sensitivity,
         "size_scan": sizes,
+        "perceptibility_windows": windows,
         "stealth_runs": stealth_rows,
         "stealth_coverage_sweep": stealth_cov,
         "search_session": search,
@@ -960,6 +1071,7 @@ def main():
         print(f"  W={r['wariness']} {r['rig']} C={None if r['C'] is None else round(r['C'],4)} yield={None if r['yield'] is None else round(r['yield'],4)}")
     print("search crossover cost:", search["crossover_cost"])
     print("stealth crossover wariness at coverage 0.55:", cross_w)
+    print("perceptibility runs:", {k: v for k, v in windows.items() if k.endswith("_runs")})
     print("size scan monotone specialist lead:",
           all(x["specialist"] >= x["generalist"] for x in sizes))
     print("saturation share:", round(sat["saturated_share"], 3),
